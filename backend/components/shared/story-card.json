@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_shared_story_cards",
+  "info": {
+    "name": "StoryCard",
+    "icon": "history"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}

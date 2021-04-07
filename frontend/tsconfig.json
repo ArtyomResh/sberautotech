@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "target": "es5",
+        "lib": ["dom", "esnext"],
+        "module": "esnext",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "jsx": "react",
+        "strict": true,
+        "strictNullChecks": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "downlevelIteration": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "paths": {
+            "@streetscape/src/*": ["packages/streetscape/src/*"],
+            "@streetscape/helper/*": ["packages/streetscape/src/helpers/*"],
+            "@streetscape/widget/*": ["packages/streetscape/src/widgets/*"],
+            "@shepherd/components/*": ["packages/shepherd/src/components/*"],
+            "@shepherd/stores/*": ["packages/shepherd/src/stores/*"],
+            "@shepherd/routes/*": ["packages/shepherd/src/routes/*"],
+            "@shepherd/locales/*": ["packages/shepherd/src/locales/*"],
+            "@shepherd/configs/*": ["packages/shepherd/src/configs/*"],
+            "@monorepo/react-2gis-mapgl/*": ["packages/react-2gis-mapgl/src/*"],
+            "@config": ["packages/config.json"],
+            "@hooks/*": ["packages/hooks/*"],
+            "@tools/*": ["packages/tools/*"],
+            "@stores/*": ["packages/stores/*"],
+            "@api/*": ["packages/api/*"]
+        }
+    }
+}

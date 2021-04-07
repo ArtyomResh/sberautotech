@@ -1,0 +1,14 @@
+.nav {
+    &__wrapper {
+        display: flex;
+        position: fixed;
+        width: 100vw;
+        align-items: center;
+        justify-content: space-between;
+        /* padding: 0px 20px; */
+    }
+
+    &__left {
+        display: flex;
+    }
+}

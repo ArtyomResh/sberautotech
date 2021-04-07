@@ -4,6 +4,13 @@ require("dotenv").config({
 
 module.exports = {
   plugins: [
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true,
+        allExtensions: true,
+      },
+    },
     "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-source-filesystem`,
@@ -15,8 +22,9 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
+        queryLimit: 10000,
         apiURL: process.env.API_URL || "http://localhost:1337",
-        contentTypes: ["article", "category", "writer"],
+        contentTypes: ["block"],
         singleTypes: [`homepage`, `global`],
         queryLimit: 1000,
       },
@@ -36,5 +44,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-offline",
+    "gatsby-plugin-postcss"
   ],
 };

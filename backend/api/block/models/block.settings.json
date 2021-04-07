@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blocks",
+  "info": {
+    "name": "block",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "background": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "stories": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.story-card"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    }
+  }
+}

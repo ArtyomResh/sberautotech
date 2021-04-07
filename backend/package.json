@@ -1,12 +1,14 @@
 {
-  "name": "backend",
+  "name": "sberautotech.ru-backend",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
+    "start:production": "NODE_ENV=production yarn start",
     "build": "strapi build",
+    "build:production": "NODE_ENV=production yarn build",
     "strapi": "strapi"
   },
   "devDependencies": {},
