@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import Layout from '../components/layout';
+import MainPageBlock from '../components/main-page-block';
 
 const query = graphql`
   query {
@@ -43,25 +44,7 @@ const IndexPage = () => {
             {
                 data.allStrapiBlock.edges.map(
                     ({ node }, i: number) => (
-                        <div key={i}>
-                            <img src={node.background.publicURL} />
-                            {
-                                (node.link) ? (
-                                    <Link to={node.link.to}>
-                                        <button>{node.link.text}</button>
-                                    </Link>
-                                ) : null
-                            }
-                            <span>{node.text}</span>
-                            {
-                                node.stories.length ? node.stories.map((story) => (
-                                    <div key={story.id}>
-                                        <img src={story.image.publicURL} />
-                                        <span>{story.text}</span>
-                                    </div>
-                                )) : null
-                            }
-                        </div>
+                        <MainPageBlock key={i} data={node}/>
                     )
                 )
             }

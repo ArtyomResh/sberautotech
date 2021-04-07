@@ -1,0 +1,43 @@
+@font-face {
+    font-family: "SB Sans Text";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("woff2/sb_sans_text_regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "SB Sans Text";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("woff2/sb_sans_text_medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "SB Sans Text";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("woff2/sb_sans_text_semibold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "SB Sans Text Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("woff2/sb_sans_text_mono-regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "SB Sans Text Mono";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("woff2/sb_sans_text_mono_bold.woff2") format("woff2");
+}
+
+:root {
+    --font-family-primary: "SB Sans Text", sans-serif;
+}

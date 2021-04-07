@@ -6,7 +6,7 @@ import Nav from '../nav';
 import Seo from '../seo';
 import { useClassnames } from '../../hooks/use-classnames';
 
-import style from './index.css'
+import style from './index.css';
 
 const Layout = ({ children, seo }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
