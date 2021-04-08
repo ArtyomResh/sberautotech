@@ -4,10 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const mime = require("mime-types");
 const {
-  categories,
   homepage,
-  writers,
-  articles,
   global
 } = require("../../data/data.json");
 
@@ -94,39 +91,11 @@ async function createEntry({ model, entry, files }) {
   }
 }
 
-async function importCategories() {
-  return Promise.all(categories.map((category) => {
-    return createEntry({ model: "category", entry: category });
-  }));
-}
-
 async function importHomepage() {
   const files = {
     "seo.shareImage": getFileData("default-image.png"),
   };
   await createEntry({ model: "homepage", entry: homepage, files });
-}
-
-async function importWriters() {
-  return Promise.all(writers.map(async (writer) => {
-    const files = {
-      picture: getFileData(`${writer.email}.jpg`),
-    };
-    return createEntry({
-      model: "writer",
-      entry: writer,
-      files,
-    });
-  }));
-}
-
-async function importArticles() {
-  return Promise.all(articles.map((article) => {
-    const files = {
-      image: getFileData(`${article.slug}.jpg`),
-    };
-    return createEntry({ model: "article", entry: article, files });
-  }));
 }
 
 async function importGlobal() {
@@ -142,16 +111,11 @@ async function importSeedData() {
   await setPublicPermissions({
     global: ['find'],
     homepage: ['find'],
-    article: ['find', 'findone'],
-    category: ['find', 'findone'],
-    writer: ['find', 'findone'],
+    block: ['find', 'findone'],
   });
 
   // Create all entries
-  await importCategories();
   await importHomepage();
-  await importWriters();
-  await importArticles();
   await importGlobal();
 }
 
