@@ -5,7 +5,9 @@ const path = require("path");
 const mime = require("mime-types");
 const {
   homepage,
-  global
+  global,
+  blocks,
+  cards
 } = require("../../data/data.json");
 
 async function isFirstRun() {
@@ -106,17 +108,38 @@ async function importGlobal() {
   return createEntry({ model: "global", entry: global, files });
 }
 
+async function importCards() {
+  return Promise.all(cards.map((card) => {
+    const files = {
+      image: getFileData(card.imageName),
+    };
+    return createEntry({ model: "card", entry: card, files });
+  }));
+}
+
+async function importBlocks() {
+  return blocks.map(async (block) => {
+    const files = {
+      background: getFileData(block.backgroundName),
+    };
+    await createEntry({ model: "block", entry: block, files });
+  });
+}
+
 async function importSeedData() {
   // Allow read of application content types
   await setPublicPermissions({
     global: ['find'],
     homepage: ['find'],
     block: ['find', 'findone'],
+    cards: ['find', 'findone']
   });
 
   // Create all entries
   await importHomepage();
   await importGlobal();
+  await importCards();
+  await importBlocks();
 }
 
 module.exports = async () => {

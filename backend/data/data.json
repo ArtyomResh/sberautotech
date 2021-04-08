@@ -1,4 +1,47 @@
 {
+  "cards": [
+    {
+      "text": "21 декабря на дороги Москвы выехал первый беспилотный автомобиль",
+      "image": null,
+      "imageName": "carWithLidar.jpg"
+    }
+  ],
+  "blocks": [
+    {
+      "position": 1,
+      "text": "Автомобиль будущего, который поможет нам лучше управлять самым ценным ресурсом — временем.",
+      "link": null,
+      "cards": [],
+      "background": null,
+      "backgroundName": "car.jpg"
+    },
+    {
+      "position": 2,
+      "text": "Угол обзора — 360 градусов, реакции — быстрее любого водителя, решения на основе опыта миллионов километров тренировок",
+      "link": {
+        "to": "/self-driving-car",
+        "text": "Беспилотные авто"
+      },
+      "cards": [
+        {
+          "id": 1
+        }
+      ],
+      "background": null,
+      "backgroundName": "lidar.jpg"
+    },
+    {
+      "position": 3,
+      "text": "Создание транспорта будущего — увлекательная задача, и мы с радостью примем в нашу команду тех, кто тоже хотел бы принять участие в ее решении.",
+      "link": {
+        "to": "/career",
+        "text": "Вакансии"
+      },
+      "cards": [],
+      "background": null,
+      "backgroundName": "engineer.jpg"
+    }
+  ],
   "homepage": {
     "seo": {
       "metaTitle": "SberAutoTech",

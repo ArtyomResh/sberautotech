@@ -20,8 +20,8 @@ const MainPageBlock = ({data}) => {
             }
             <span className={cn('block__text')}>{data.text}</span>
             {
-                data.stories.length ? data.stories.map((story) => (
-                    <StoryCard key={story.id} data={story} />
+                data.cards.length ? data.cards.map((card) => (
+                    <StoryCard key={card.id} data={card} />
                 )) : null
             }
         </div>

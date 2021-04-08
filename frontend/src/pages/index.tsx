@@ -24,7 +24,7 @@ const query = graphql`
             text
             to
           }
-          stories {
+          cards {
             text
             image {
               publicURL
