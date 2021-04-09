@@ -3,11 +3,24 @@
         position: relative;
     }
 
+    &__image {
+        width: 100vw;
+        display: block;
+    }
+
     &__link {
         position: absolute;
         z-index: 1;
         top: 40px;
         left: 20px;
+    }
+
+    &__bottom {
+        position: absolute;
+        left: 20px;
+        bottom: 40px;
+        z-index: 1;
+        display: flex;
     }
 
     &__text {
@@ -16,9 +29,5 @@
         letter-spacing: -0.01em;
         text-align: left;
         color: white;
-        position: absolute;
-        left: 20px;
-        bottom: 40px;
-        z-index: 1;
     }
 }

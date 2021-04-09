@@ -9,7 +9,7 @@ import style from './index.css';
 const MainPageBlock = ({data}) => {
     const cn = useClassnames(style);
     return (
-        <div className={cn('block__wrapper')} id={data.id}>
+        <div className={cn('block__wrapper')} id={data.position}>
             <img src={data.background.publicURL} className={cn('block__image')} />
             {
                 (data.link) ? (
@@ -18,12 +18,14 @@ const MainPageBlock = ({data}) => {
                     </Link>
                 ) : null
             }
-            <span className={cn('block__text')}>{data.text}</span>
-            {
-                data.cards.length ? data.cards.map((card) => (
-                    <StoryCard key={card.id} data={card} />
-                )) : null
-            }
+            <div className={cn('block__bottom')}>
+                <span className={cn('block__text')}>{data.text}</span>
+                {
+                    data.cards.length ? data.cards.map((card) => (
+                        <StoryCard key={card.id} data={card} />
+                    )) : null
+                }
+            </div>  
         </div>
     )
 };

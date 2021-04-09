@@ -1,5 +1,17 @@
 .story {
-    &__wrapper{
-        position: absolute;
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__image {
+        border-radius: 10px;
+    }
+
+    &__text {
+        font-size: 18px;
+        line-height: 20px;
+        font-feature-settings: 'tnum' on, 'lnum' on;
+        color: #FFFFFF;
     }
 }

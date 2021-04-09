@@ -30,6 +30,7 @@ const query = graphql`
               publicURL
             }
           }
+          position
         }
       }
     }
@@ -38,11 +39,18 @@ const query = graphql`
 
 const IndexPage = () => {
     const data = useStaticQuery(query);
+    
+    const blocks = data.allStrapiBlock.edges.sort((a, b) => {
+      if (a.node.position > b.node.position) {
+        return 1;
+      }
+      return -1;
+    });
 
     return (
         <Layout seo={data.strapiHomepage.seo}>
             {
-                data.allStrapiBlock.edges.map(
+                blocks.map(
                     ({ node }, i: number) => (
                         <MainPageBlock key={i} data={node}/>
                     )

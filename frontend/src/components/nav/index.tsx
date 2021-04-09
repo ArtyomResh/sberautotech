@@ -32,17 +32,17 @@ const Nav = ({ setIsPopupVisible }) => {
             <div className={cn('nav__center')}>
                 <ul className={cn('nav__list')}>
                     <li className={cn('nav__list-item')}>
-                        <Link to='/#Block_1' className={cn('nav__link')}>
+                        <Link to='/#1' className={cn('nav__link')}>
                             О компании
                         </Link>
                     </li>
                     <li className={cn('nav__list-item')}>
-                        <Link to='/#Block_2' className={cn('nav__link')}>
+                        <Link to='/#2' className={cn('nav__link')}>
                             Беспилотник
                         </Link>
                     </li>
                     <li className={cn('nav__list-item')}>
-                        <Link to='/#Block_3' className={cn('nav__link')}>
+                        <Link to='/#3' className={cn('nav__link')}>
                             Карьера
                         </Link>
                     </li>

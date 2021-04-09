@@ -4,14 +4,12 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-const StoryCard = ({data}) => {
+const StoryCard = ({ data }) => {
     const cn = useClassnames(style);
     return (
         <div className={cn('story__wrapper')}>
-            <div key={data.id}>
-                <img src={data.image.publicURL} />
-                <span>{data.text}</span>
-            </div>
+            <img src={data.image.publicURL} className={cn('story__image')} />
+            <span className={cn('story__text')}>{data.text}</span>
         </div>
     )
 };

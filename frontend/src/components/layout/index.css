@@ -51,12 +51,6 @@ a {
   color: inherit;
 }
 
-img {
-  height: 100vh;
-  width: 100vw;
-  display: block;
-}
-
 article > * + * {
   margin-top: 1em;
 }
