@@ -9,6 +9,12 @@
         padding: 0px 20px;
         color: white;
         z-index: 2;
+
+        &_dark {
+            color: #040A0A;
+            background: white;
+            position: static
+        }
     }
 
     &__left {
