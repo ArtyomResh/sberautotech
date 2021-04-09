@@ -132,7 +132,7 @@ async function importSeedData() {
     global: ['find'],
     homepage: ['find'],
     block: ['find', 'findone'],
-    cards: ['find', 'findone']
+    card: ['find', 'findone']
   });
 
   // Create all entries
