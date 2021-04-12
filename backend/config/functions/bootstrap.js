@@ -11,7 +11,8 @@ const {
   doubleBlocks,
   storyCards,
   sliderItems,
-  SelfDrivingCar
+  SelfDrivingCar,
+  Career
 } = require("../../data/data.json");
 
 async function isFirstRun() {
@@ -109,20 +110,24 @@ async function importGlobal() {
     "favicon": getFileData("favicon.png"),
     "defaultSeo.shareImage": getFileData("default-image.png"),
   };
-  return createEntry({ model: "global", entry: global, files });
+  await createEntry({ model: "global", entry: global, files });
 }
 
 async function importSelfDrivingCar() {
-  return createEntry({ model: "self-driving-car", entry: SelfDrivingCar });
+  return await createEntry({ model: "self-driving-car", entry: SelfDrivingCar });
+}
+
+async function importCareer() {
+  return await createEntry({ model: "career", entry: Career });
 }
 
 async function importCards() {
-  return Promise.all(cards.map((card) => {
+  return cards.map(async (card) => {
     const files = {
       image: getFileData(card.imageName),
     };
-    return createEntry({ model: "card", entry: card, files });
-  }));
+    await createEntry({ model: "card", entry: card, files });
+  });
 }
 
 async function importBlocks() {
@@ -168,6 +173,7 @@ async function importSeedData() {
     global: ['find'],
     homepage: ['find'],
     'self-driving-car': ['find'],
+    career: ['find'],
     block: ['find', 'findone'],
     card: ['find', 'findone'],
     'double-block': ['find', 'findone'],
@@ -176,14 +182,17 @@ async function importSeedData() {
   });
 
   // Create all entries
-  await importHomepage();
-  await importGlobal();
-  await importSelfDrivingCar();
   await importCards();
   await importBlocks();
   await importSliderItems();
   await importStoryCards();
   await importDoubleBlocks();
+
+  // Create all pages
+  await importHomepage();
+  await importGlobal();
+  await importSelfDrivingCar();
+  await importCareer();
 }
 
 module.exports = async () => {
