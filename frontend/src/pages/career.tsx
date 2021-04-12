@@ -18,7 +18,7 @@ const Career = () => {
     const data = useStaticQuery(query);
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'light', logoColor: 'white'}}>
+        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
             <h1>CAREER</h1>
             <p>CAREER</p>
         </Layout>

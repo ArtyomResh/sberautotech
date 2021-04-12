@@ -48,7 +48,7 @@ const IndexPage = () => {
     });
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
+        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'light', logoColor: 'white'}}>
             {
                 blocks.map(
                     ({ node }, i: number) => (

@@ -24,8 +24,8 @@ module.exports = {
       options: {
         queryLimit: 10000,
         apiURL: process.env.API_URL || "http://localhost:1337",
-        contentTypes: ["block"],
-        singleTypes: [`homepage`, `global`],
+        contentTypes: ["block", 'story-card', 'double-block', 'slider-item'],
+        singleTypes: [`homepage`, `global`, 'self-driving-car'],
         queryLimit: 1000,
       },
     },
