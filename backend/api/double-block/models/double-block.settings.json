@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "double-blocks",
   "info": {
-    "name": "DoubleBlock"
+    "name": "DoubleBlock",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -36,7 +37,7 @@
       "required": false
     },
     "text": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

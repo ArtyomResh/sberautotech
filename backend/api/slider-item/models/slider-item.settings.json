@@ -23,7 +23,7 @@
       "required": false
     },
     "text": {
-      "type": "string"
+      "type": "text"
     },
     "header": {
       "type": "string"
