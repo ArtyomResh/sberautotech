@@ -4,10 +4,9 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-const Nav = ({ setIsPopupVisible }) => {
+const Nav = ({ setIsPopupVisible, theme }) => {
     const cn = useClassnames(style);
-    const theme = window.location.pathname !== '/' ? {mode: 'dark', logoColor: '#040A0A'} : {mode: 'light', logoColor: 'white'}
-    console.log(window.location.pathname)
+
     return (
         <nav className={cn('nav__wrapper', `nav__wrapper_${theme.mode}`)}>
             <div className={cn('nav__left')}>

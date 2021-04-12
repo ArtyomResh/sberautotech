@@ -7,7 +7,11 @@ const {
   homepage,
   global,
   blocks,
-  cards
+  cards,
+  doubleBlocks,
+  storyCards,
+  sliderItems,
+  SelfDrivingCar
 } = require("../../data/data.json");
 
 async function isFirstRun() {
@@ -108,6 +112,10 @@ async function importGlobal() {
   return createEntry({ model: "global", entry: global, files });
 }
 
+async function importSelfDrivingCar() {
+  return createEntry({ model: "self-driving-car", entry: SelfDrivingCar });
+}
+
 async function importCards() {
   return Promise.all(cards.map((card) => {
     const files = {
@@ -126,20 +134,56 @@ async function importBlocks() {
   });
 }
 
+async function importDoubleBlocks() {
+  return doubleBlocks.map(async (block) => {
+    const files = {
+      topBackground: getFileData(block.topBackgroundName),
+      bottomBackground: getFileData(block.bottomBackgroundName),
+    };
+    await createEntry({ model: "double-block", entry: block, files });
+  });
+}
+
+async function importSliderItems() {
+  return sliderItems.map(async (item) => {
+    const files = {
+      background: getFileData(item.backgroundName),
+    };
+    await createEntry({ model: "slider-item", entry: item, files });
+  });
+}
+
+async function importStoryCards() {
+  return storyCards.map(async (card) => {
+    const files = {
+      image: getFileData(card.imageName),
+    };
+    await createEntry({ model: "story-card", entry: card, files });
+  });
+}
+
 async function importSeedData() {
   // Allow read of application content types
   await setPublicPermissions({
     global: ['find'],
     homepage: ['find'],
+    'self-driving-car': ['find'],
     block: ['find', 'findone'],
-    card: ['find', 'findone']
+    card: ['find', 'findone'],
+    'double-block': ['find', 'findone'],
+    'slider-item': ['find', 'findone'],
+    'story-card': ['find', 'findone']
   });
 
   // Create all entries
   await importHomepage();
   await importGlobal();
+  await importSelfDrivingCar();
   await importCards();
   await importBlocks();
+  await importSliderItems();
+  await importStoryCards();
+  await importDoubleBlocks();
 }
 
 module.exports = async () => {

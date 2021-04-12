@@ -8,7 +8,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-const Layout = ({ children, seo }) => {
+const Layout = ({ children, seo, theme }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const cn = useClassnames(style);
     return (
@@ -26,7 +26,7 @@ const Layout = ({ children, seo }) => {
             render={() => (
                 <div className={cn('app__wrapper')}>
                     <Seo seo={seo} />
-                    <Nav setIsPopupVisible={setIsPopupVisible} />
+                    <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} />
                     <main>{children}</main>
                     {isPopupVisible ? (
                       <React.Fragment>

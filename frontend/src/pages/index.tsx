@@ -39,7 +39,7 @@ const query = graphql`
 
 const IndexPage = () => {
     const data = useStaticQuery(query);
-    
+
     const blocks = data.allStrapiBlock.edges.sort((a, b) => {
       if (a.node.position > b.node.position) {
         return 1;
@@ -48,7 +48,7 @@ const IndexPage = () => {
     });
 
     return (
-        <Layout seo={data.strapiHomepage.seo}>
+        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
             {
                 blocks.map(
                     ({ node }, i: number) => (

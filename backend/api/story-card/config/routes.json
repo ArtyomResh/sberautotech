@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/story-cards",
+      "handler": "story-card.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/story-cards/count",
+      "handler": "story-card.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/story-cards/:id",
+      "handler": "story-card.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/story-cards",
+      "handler": "story-card.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/story-cards/:id",
+      "handler": "story-card.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/story-cards/:id",
+      "handler": "story-card.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

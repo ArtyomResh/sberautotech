@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/double-blocks",
+      "handler": "double-block.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/double-blocks/count",
+      "handler": "double-block.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/double-blocks/:id",
+      "handler": "double-block.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/double-blocks",
+      "handler": "double-block.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/double-blocks/:id",
+      "handler": "double-block.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/double-blocks/:id",
+      "handler": "double-block.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

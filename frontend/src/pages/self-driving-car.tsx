@@ -18,7 +18,7 @@ const SelfDrivingCar = () => {
     const data = useStaticQuery(query);
 
     return (
-        <Layout seo={data.strapiHomepage.seo}>
+        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'light', logoColor: 'white'}}>
             <h1>SelfDrivingCar</h1>
             <p>SelfDrivingCar</p>
         </Layout>
