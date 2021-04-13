@@ -54,10 +54,10 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop --open",
-    "dev": "npm run develop",
+    "dev": "yarn develop",
     "lint:style": "stylelint \"src/**/*.{css,pcss}\"",
     "lint:es": "eslint --ext .ts,.tsx src/",
-    "start": "npm run develop",
+    "start": "yarn develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
