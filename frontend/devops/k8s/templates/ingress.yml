@@ -2,8 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    konghq.com/https-redirect-status-code: "301"
-    konghq.com/protocols: "https"
     kubernetes.io/ingress.class: kong
   name: {{ app_name }}-{{ package_name }}-kong
   namespace: {{ namespace }}
