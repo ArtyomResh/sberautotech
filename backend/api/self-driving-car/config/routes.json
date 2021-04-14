@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/self-driving-car",
+      "handler": "self-driving-car.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/self-driving-car",
+      "handler": "self-driving-car.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/self-driving-car",
+      "handler": "self-driving-car.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

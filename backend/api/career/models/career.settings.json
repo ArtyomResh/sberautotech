@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "careers",
+  "info": {
+    "name": "Career",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "slider_items": {
+      "collection": "slider-item"
+    }
+  }
+}

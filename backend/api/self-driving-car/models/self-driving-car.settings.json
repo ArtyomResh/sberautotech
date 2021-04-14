@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "self-driving-cars",
+  "info": {
+    "name": "SelfDrivingCar",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "double_block": {
+      "model": "double-block"
+    },
+    "slider_items": {
+      "collection": "slider-item"
+    },
+    "story_cards": {
+      "collection": "story-card"
+    }
+  }
+}

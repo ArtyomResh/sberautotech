@@ -12,7 +12,7 @@
   },
   "attributes": {
     "text": {
-      "type": "string",
+      "type": "text",
       "required": true
     },
     "background": {
@@ -23,17 +23,19 @@
         "videos"
       ],
       "plugin": "upload",
-      "required": true
-    },
-    "stories": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.story-card"
+      "required": false
     },
     "link": {
       "type": "component",
       "repeatable": false,
       "component": "shared.link"
+    },
+    "cards": {
+      "collection": "card"
+    },
+    "position": {
+      "type": "integer",
+      "required": true
     }
   }
 }

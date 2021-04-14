@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import Layout from '../components/layout';
+import MainPageBlock from '../components/main-page-block';
 
 const query = graphql`
   query {
@@ -23,12 +24,13 @@ const query = graphql`
             text
             to
           }
-          stories {
+          cards {
             text
             image {
               publicURL
             }
           }
+          position
         }
       }
     }
@@ -38,30 +40,19 @@ const query = graphql`
 const IndexPage = () => {
     const data = useStaticQuery(query);
 
+    const blocks = data.allStrapiBlock.edges.sort((a, b) => {
+      if (a.node.position > b.node.position) {
+        return 1;
+      }
+      return -1;
+    });
+
     return (
-        <Layout seo={data.strapiHomepage.seo}>
+        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'light', logoColor: 'white'}}>
             {
-                data.allStrapiBlock.edges.map(
+                blocks.map(
                     ({ node }, i: number) => (
-                        <div key={i}>
-                            <img src={node.background.publicURL} />
-                            {
-                                (node.link) ? (
-                                    <Link to={node.link.to}>
-                                        <button>{node.link.text}</button>
-                                    </Link>
-                                ) : null
-                            }
-                            <span>{node.text}</span>
-                            {
-                                node.stories.length ? node.stories.map((story) => (
-                                    <div key={story.id}>
-                                        <img src={story.image.publicURL} />
-                                        <span>{story.text}</span>
-                                    </div>
-                                )) : null
-                            }
-                        </div>
+                        <MainPageBlock key={i} data={node}/>
                     )
                 )
             }
