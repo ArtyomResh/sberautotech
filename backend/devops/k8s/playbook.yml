@@ -1,0 +1,104 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  connection: local
+
+  tasks:
+  - name: Load defaults
+    include_vars: defaults/main.yml
+
+  - name: Load variables
+    include_vars: "vars.{{ stand }}.yml"
+
+  - name: Check certificate
+    stat:
+      path: templates/certificate.yml
+    register: certificate
+
+  - name: Check configmap
+    stat:
+      path: templates/configmap.yml
+    register: configmap
+
+  - name: Check secret
+    stat:
+      path: templates/secret.yml
+    register: secret
+
+  - name: Check service
+    stat:
+      path: templates/service.yml
+    register: service
+
+  - name: Check ingress
+    stat:
+      path: templates/ingress.yml
+    register: ingress
+
+  - name: Check deployment
+    stat:
+      path: templates/deployment.yml
+    register: deployment
+
+  - name: Apply certificate
+    k8s:
+      kubeconfig: "{{ k8s_config }}"
+      state: present
+      apply: yes
+      definition: "{{ lookup('template', 'templates/certificate.yml') }}"
+      validate:
+        fail_on_error: no
+    when: certificate.stat.exists
+
+  - name: Apply configmap
+    k8s:
+      kubeconfig: "{{ k8s_config }}"
+      state: present
+      apply: yes
+      definition: "{{ lookup('template', 'templates/configmap.yml') }}"
+      validate:
+        fail_on_error: yes
+    when: configmap.stat.exists
+
+  - name: Apply secret
+    k8s:
+      kubeconfig: "{{ k8s_config }}"
+      state: present
+      apply: yes
+      definition: "{{ lookup('template', 'templates/secret.yml') }}"
+      validate:
+        fail_on_error: yes
+    when: secret.stat.exists
+
+  - name: Apply deployment
+    k8s:
+      kubeconfig: "{{ k8s_config }}"
+      state: present
+      apply: yes
+      wait: yes
+      wait_timeout: "{{ deploy_timeout }}"
+      definition: "{{ lookup('template', 'templates/deployment.yml') }}"
+      validate:
+        fail_on_error: yes
+    when: deployment.stat.exists
+
+  - name: Apply service
+    k8s:
+      kubeconfig: "{{ k8s_config }}"
+      state: present
+      apply: yes
+      definition: "{{ lookup('template', 'templates/service.yml') }}"
+      validate:
+        fail_on_error: yes
+    when: service.stat.exists
+
+  - name: Apply ingress
+    k8s:
+      kubeconfig: "{{ k8s_config }}"
+      state: present
+      apply: yes
+      definition: "{{ lookup('template', 'templates/ingress.yml') }}"
+      validate:
+        fail_on_error: no
+    when: ingress.stat.exists

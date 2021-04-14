@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ app_name }}-{{ package_name }}-kong
+  namespace: {{ namespace }}
+  labels:
+    app: {{ app_name }}
+spec:
+  ports:
+    - name: {{ app_name }}-{{ package_name }}
+      protocol: TCP
+      port: {{ service_port }}
+      targetPort: {{ service_port }}
+  selector:
+    app: {{ app_name }}-{{ package_name }}
+  type: ClusterIP
+  sessionAffinity: None
