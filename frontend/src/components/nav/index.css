@@ -1,4 +1,5 @@
 .nav {
+
     &__wrapper {
         display: flex;
         position: fixed;
@@ -6,14 +7,14 @@
         height: 66px;
         align-items: center;
         justify-content: space-between;
-        padding: 0px 20px;
+        padding: 0 20px;
         color: white;
         z-index: 2;
 
         &_dark {
-            color: #040A0A;
+            color: #040a0a;
             background: white;
-            position: static
+            position: static;
         }
     }
 
@@ -35,35 +36,33 @@
     }
 
     &__list {
-        display: flex; 
+        display: flex;
     }
 
     &__list-item {
-        padding: 21px 0px;
-        margin: 0px 20px;
+        padding: 21px 0;
+        margin: 0 20px;
         font-size: 18px;
         line-height: 21px;
-        letter-spacing: 0em;
+        letter-spacing: 0;
         text-align: left;
 
-
         &:hover {
-            color: #34B7AA;
-            outline-top: 5px solid #34B7AA;
+            color: #34b7aa;
+            outline-top: 5px solid #34b7aa;
+
             /* border-radius: 10px; */
         }
     }
 
-
-
     &__accept-button {
-        background: #BDFFF8;
+        background: #bdfff8;
         border: none;
         border-radius: 5px;
         outline: none;
         padding: 3px 20px;
         font-size: 18px;
         line-height: 21px;
-        letter-spacing: 0em;
+        letter-spacing: 0;
     }
 }
