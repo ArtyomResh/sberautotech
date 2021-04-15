@@ -5,21 +5,28 @@
     }
 
     &__image {
-        width: 100vw;
+        width: 100%;
         display: block;
     }
 
     &__link {
         position: absolute;
         z-index: 1;
-        top: 40px;
+        top: 80px;
         left: 20px;
+        padding: 17px 30px 21px;
+        border: 1px solid #000;
+        border-radius: 23px;
+        font-size: 47px;
+        line-height: 56px;
     }
 
     &__bottom {
         position: absolute;
-        left: 20px;
+        left: 0;
         bottom: 40px;
+        padding: 0 20px;
+        width: 100%;
         z-index: 1;
         display: flex;
     }
@@ -29,6 +36,7 @@
         line-height: 48px;
         letter-spacing: -0.01em;
         text-align: left;
-        color: white;
+        color: #fff;
+        max-width: 1034px;
     }
 }
