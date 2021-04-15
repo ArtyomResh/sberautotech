@@ -175,7 +175,7 @@ async function importDoubleBlocks(shouldImportSeedData) {
     if (shouldImportSeedData) {
       return await createEntry({ model: "double-block", entry: block, files });
     }
-    return await createEntry({ model: "double-block", entry: block, files });
+    return await updateEntry({ model: "double-block", entry: block, files });
   });
 }
 
