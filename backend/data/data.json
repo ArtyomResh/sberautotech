@@ -46,7 +46,7 @@
       "header": "",
       "background": null,
       "backgroundName": "engineer2.jpg",
-      "text": "Мы занимаемся любимым делом и при этом находимся в авангарде развития отрасли. Хочешь двигать индустрию вперед вместе с нами?"
+      "text": ""
     }
   ],
   "cards": [
@@ -97,6 +97,7 @@
     }
   ],
   "homepage": {
+    "id": 1,
     "seo": {
       "metaTitle": "SberAutoTech",
       "metaDescription": "SberAutoTech company web site.",
@@ -104,6 +105,7 @@
     }
   },
   "SelfDrivingCar": {
+    "id": 1,
     "double_block": {
       "id": 1
     },
@@ -125,6 +127,7 @@
     ]
   },
   "Career": {
+    "id": 1,
     "slider_items": [
       {
         "id": 2
@@ -132,6 +135,7 @@
     ]
   },
   "global": {
+    "id": 1,
     "siteName":"SberAutoTech",
     "defaultSeo":{
       "metaTitle":"Page",
