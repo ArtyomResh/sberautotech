@@ -87,87 +87,124 @@ function getFileData(fileName) {
 // Create an entry and attach files if there are any
 async function createEntry({ model, entry, files }) {
   try {
-    const createdEntry = await strapi.query(model).create(entry);
-    if (files) {
-      await strapi.entityService.uploadFiles(createdEntry, files, {
-        model,
-      });
-    }
+    return await strapi.entityService.create({ data: entry, files }, { model });
   } catch (e) {
     console.log('model', entry, e);
   }
 }
 
-async function importHomepage() {
+async function updateEntry({ model, entry, files }) {
+  try {
+    const params = {id: entry.id}
+    const previousEntry = await strapi.query(model).findOne(params)
+    return await strapi.entityService.update({ params, data: previousEntry, files }, { model });
+  } catch (e) {
+    console.log('model', entry, e);
+  }
+}
+
+async function importHomepage(shouldImportSeedData) {
   const files = {
     "seo.shareImage": getFileData("default-image.png"),
   };
-  await createEntry({ model: "homepage", entry: homepage, files });
+    
+  if (shouldImportSeedData) {
+    return await createEntry({ model: "homepage", entry: homepage, files });
+  }
+  return await updateEntry({ model: "homepage", entry: homepage, files });
 }
 
-async function importGlobal() {
+async function importGlobal(shouldImportSeedData) {
   const files = {
     "favicon": getFileData("favicon.png"),
     "defaultSeo.shareImage": getFileData("default-image.png"),
   };
-  await createEntry({ model: "global", entry: global, files });
+
+  if (shouldImportSeedData) {
+    return await createEntry({ model: "global", entry: global, files });
+  }
+  return await updateEntry({ model: "global", entry: global, files });
 }
 
-async function importSelfDrivingCar() {
-  return await createEntry({ model: "self-driving-car", entry: SelfDrivingCar });
+async function importSelfDrivingCar(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    return await createEntry({ model: "self-driving-car", entry: SelfDrivingCar });
+  }
+  return await updateEntry({ model: "self-driving-car", entry: SelfDrivingCar });
 }
 
-async function importCareer() {
-  return await createEntry({ model: "career", entry: Career });
+async function importCareer(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    return await createEntry({ model: "career", entry: Career });
+  }
+  return await updateEntry({ model: "career", entry: Career });
 }
 
-async function importCards() {
+async function importCards(shouldImportSeedData) {
   return cards.map(async (card) => {
     const files = {
       image: getFileData(card.imageName),
     };
-    await createEntry({ model: "card", entry: card, files });
+    if (shouldImportSeedData) {
+      return await createEntry({ model: "card", entry: card, files });
+    }
+    return await updateEntry({ model: "card", entry: card, files });
+    
   });
 }
 
-async function importBlocks() {
+async function importBlocks(shouldImportSeedData) {
   return blocks.map(async (block) => {
     const files = {
       background: getFileData(block.backgroundName),
     };
-    await createEntry({ model: "block", entry: block, files });
+
+    if (shouldImportSeedData) {
+      return await createEntry({ model: "block", entry: block, files });
+    }
+    return await updateEntry({ model: "block", entry: block, files });
   });
 }
 
-async function importDoubleBlocks() {
+async function importDoubleBlocks(shouldImportSeedData) {
   return doubleBlocks.map(async (block) => {
     const files = {
       topBackground: getFileData(block.topBackgroundName),
       bottomBackground: getFileData(block.bottomBackgroundName),
     };
-    await createEntry({ model: "double-block", entry: block, files });
+    if (shouldImportSeedData) {
+      return await createEntry({ model: "double-block", entry: block, files });
+    }
+    return await createEntry({ model: "double-block", entry: block, files });
   });
 }
 
-async function importSliderItems() {
+async function importSliderItems(shouldImportSeedData) {
   return sliderItems.map(async (item) => {
     const files = {
       background: getFileData(item.backgroundName),
     };
-    await createEntry({ model: "slider-item", entry: item, files });
+
+    if (shouldImportSeedData) {
+      return await createEntry({ model: "slider-item", entry: item, files });
+    }
+    return await updateEntry({ model: "slider-item", entry: item, files });
   });
 }
 
-async function importStoryCards() {
+async function importStoryCards(shouldImportSeedData) {
   return storyCards.map(async (card) => {
     const files = {
       image: getFileData(card.imageName),
     };
-    await createEntry({ model: "story-card", entry: card, files });
+    if (shouldImportSeedData) {
+      return await createEntry({ model: "story-card", entry: card, files });
+    }
+    return await updateEntry({ model: "story-card", entry: card, files });
   });
 }
 
-async function importSeedData() {
+async function importSeedData(shouldImportSeedData) {
   // Allow read of application content types
   await setPublicPermissions({
     global: ['find'],
@@ -181,31 +218,31 @@ async function importSeedData() {
     'story-card': ['find', 'findone']
   });
 
-  // Create all entries
-  await importCards();
-  await importBlocks();
-  await importSliderItems();
-  await importStoryCards();
-  await importDoubleBlocks();
+  // Create or update all entries
+  await importCards(shouldImportSeedData);
+  await importBlocks(shouldImportSeedData);
+  await importSliderItems(shouldImportSeedData);
+  await importStoryCards(shouldImportSeedData);
+  await importDoubleBlocks(shouldImportSeedData);
 
-  // Create all pages
-  await importHomepage();
-  await importGlobal();
-  await importSelfDrivingCar();
-  await importCareer();
+  // Create or update all pages
+  await importHomepage(shouldImportSeedData);
+  await importGlobal(shouldImportSeedData);
+  await importSelfDrivingCar(shouldImportSeedData);
+  await importCareer(shouldImportSeedData);
 }
 
 module.exports = async () => {
   const shouldImportSeedData = await isFirstRun();
 
-  if (shouldImportSeedData) {
+  // if (shouldImportSeedData) {
     try {
       console.log('Setting up your starter...');
-      await importSeedData();
+      await importSeedData(shouldImportSeedData);
       console.log('Ready to go');
     } catch (error) {
       console.log('Could not import seed data');
       console.error(error);
-    }
+    // }
   }
 };

@@ -46,7 +46,7 @@
       "header": "",
       "background": null,
       "backgroundName": "engineer2.jpg",
-      "text": "Мы занимаемся любимым делом и при этом находимся в авангарде развития отрасли. Хочешь двигать индустрию вперед вместе с нами?"
+      "text": ""
     }
   ],
   "cards": [
@@ -59,6 +59,7 @@
   ],
   "blocks": [
     {
+      "id": 1,
       "position": 1,
       "text": "Автомобиль будущего, который поможет нам лучше управлять самым ценным ресурсом — временем.",
       "link": null,
@@ -67,6 +68,7 @@
       "backgroundName": "car.jpg"
     },
     {
+      "id": 2,
       "position": 2,
       "text": "Угол обзора — 360 градусов, реакции — быстрее любого водителя, решения на основе опыта миллионов километров тренировок",
       "link": {
@@ -82,6 +84,7 @@
       "backgroundName": "lidar.jpg"
     },
     {
+      "id": 3,
       "position": 3,
       "text": "Создание транспорта будущего — увлекательная задача, и мы с радостью примем в нашу команду тех, кто тоже хотел бы принять участие в ее решении.",
       "link": {
@@ -94,6 +97,7 @@
     }
   ],
   "homepage": {
+    "id": 1,
     "seo": {
       "metaTitle": "SberAutoTech",
       "metaDescription": "SberAutoTech company web site.",
@@ -101,6 +105,7 @@
     }
   },
   "SelfDrivingCar": {
+    "id": 1,
     "double_block": {
       "id": 1
     },
@@ -122,6 +127,7 @@
     ]
   },
   "Career": {
+    "id": 1,
     "slider_items": [
       {
         "id": 2
@@ -129,6 +135,7 @@
     ]
   },
   "global": {
+    "id": 1,
     "siteName":"SberAutoTech",
     "defaultSeo":{
       "metaTitle":"Page",

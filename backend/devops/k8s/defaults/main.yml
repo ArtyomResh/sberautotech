@@ -1,0 +1,8 @@
+vault:
+  injector:
+    registry: registry.int.sbauto.tech:5574/infra/docker
+    image: vault-injector
+    version: latest
+  path: "k8s/fe-{{ stand }}"
+  role: "fe-{{ stand }}-sa"
+  url: https://vault.int.sbauto.tech:8200

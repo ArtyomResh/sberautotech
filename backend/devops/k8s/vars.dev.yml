@@ -1,0 +1,16 @@
+k8s_config: '~/.kube/config'
+image_pull_secret: 'docker-registries'
+namespace: 'fe-dev'
+deploy_timeout: 300
+domain: sberautotech-backend.dev.fe.sbauto.tech
+service_port: 1337
+service_account: fe-dev-sa
+
+cert_issuer: infra-vault
+cert_secret: sberautotech-backend-dev-fe-sbauto
+
+replicas: 1
+
+requests:
+  cpu: '50m'
+  memory: '50Mi'

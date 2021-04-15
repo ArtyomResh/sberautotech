@@ -1,4 +1,5 @@
 .story {
+
     &__wrapper {
         display: flex;
         flex-direction: column;
@@ -11,7 +12,7 @@
     &__text {
         font-size: 18px;
         line-height: 20px;
-        font-feature-settings: 'tnum' on, 'lnum' on;
-        color: #FFFFFF;
+        font-feature-settings: "tnum" on, "lnum" on;
+        color: #ffffff;
     }
 }

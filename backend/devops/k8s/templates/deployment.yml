@@ -1,0 +1,84 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ app_name }}-{{ package_name }}
+    version: {{ app_version }}
+  name: {{ app_name }}-{{ package_name }}
+  namespace: {{ namespace }}
+spec:
+  progressDeadlineSeconds: {{ deploy_timeout }}
+  replicas: {{ replicas }}
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: {{ app_name }}-{{ package_name }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ app_name }}-{{ package_name }}
+      annotations:
+        vault.url: {{ vault.url }}
+        vault.path: {{ vault.path }}
+        vault.role: {{ vault.role }}
+    spec:
+      securityContext:
+        runAsUser: 1001
+      initContainers:
+        - name: vault
+          image: "{{ vault.injector.registry }}/{{ vault.injector.image }}:{{ vault.injector.version }}"
+          imagePullPolicy: Always
+          env:
+            - name: VAULT_APP
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app']
+            - name: VAULT_PATH
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.annotations['vault.path']
+            - name: VAULT_ROLE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.annotations['vault.role']
+            - name: VAULT_URL
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.annotations['vault.url']
+          resources:
+            requests:
+              cpu: 60m
+              memory: 50Mi
+            limits:
+              cpu: 100m
+              memory: 50Mi
+          volumeMounts:
+            - mountPath: /vault
+              name: envs
+      containers:
+        - name: {{ app_name }}-{{ package_name }}
+          image: "{{ docker_registry }}/{{ package_name }}:{{ app_version }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ service_port }}
+              protocol: TCP
+          resources:
+            requests:
+              cpu: {{ requests.cpu }}
+              memory: {{ requests.memory }}
+          volumeMounts:
+            - mountPath: /vault
+              name: envs
+      imagePullSecrets:
+        - name: {{ image_pull_secret }}
+      restartPolicy: Always
+      serviceAccount: {{ service_account }}
+      volumes:
+        - emptyDir: {}
+          name: envs

@@ -8,6 +8,8 @@ COPY backend .
 RUN yarn
 RUN yarn build:production
 
+RUN chown -R runner /home/runner/public
+
 ENTRYPOINT [ "/home/runner/docker-entrypoint.sh" ]
 
 CMD ["start"]
