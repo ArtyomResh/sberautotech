@@ -1,0 +1,30 @@
+.footer {
+    &__wrapper {
+        font-size: 12px;
+        letter-spacing: -0.01em;
+        color: #000000;
+        display: flex;
+        height: 100px;
+        align-items: flex-end;
+        justify-content: flex-start;
+        padding: 20px;
+    }
+
+    &__left {
+        display: flex;
+    }
+
+    &__center {
+         display: flex;
+    }
+
+    &__right {
+        display: flex;
+        margin-left: auto;
+    }
+
+    &__link {
+        white-space: nowrap;
+        margin-left: 10px;
+    }
+}
