@@ -25,6 +25,17 @@
         overflow: hidden;
     }
 
+    &__bottom-play {
+        position: absolute;
+        top: 20px;
+        left: 27px;
+        z-index: 2;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     &__image {
         position: absolute;
         right: 0;

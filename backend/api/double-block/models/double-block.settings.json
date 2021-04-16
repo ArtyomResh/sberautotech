@@ -25,7 +25,11 @@
       "plugin": "upload",
       "required": false
     },
-    "bottomBackground": {
+    "Text": {
+      "type": "string",
+      "default": "Технологии, которые обеспечат прорыв в безопасности дорожного движения: роботизированная система управления полностью контролирует дорогу и обеспечивает моментальную реакцию на любые изменения обстановки."
+    },
+    "bottomVideo": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
@@ -35,9 +39,6 @@
       ],
       "plugin": "upload",
       "required": false
-    },
-    "text": {
-      "type": "text"
     }
   }
 }
