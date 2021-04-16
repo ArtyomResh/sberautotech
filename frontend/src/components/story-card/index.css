@@ -19,5 +19,9 @@
         line-height: 20px;
         font-feature-settings: "tnum" on, "lnum" on;
         color: #fff;
+
+        span {
+            color: #66DED2;
+        }
     }
 }

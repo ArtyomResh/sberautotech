@@ -21,6 +21,7 @@ interface IData {
 
 const MainPageBlock = ({ data }: { data: IData }) => {
     const cn = useClassnames(style);
+    const text = data.text.replace('{', '<span>').replace('}', '</span>');
 
     return (
         <div className={cn('block__wrapper')} id={data.position}>
@@ -33,10 +34,10 @@ const MainPageBlock = ({ data }: { data: IData }) => {
                 ) : null
             }
             <div className={cn('block__bottom')}>
-                <span className={cn('block__text')}>{data.text}</span>
+                <span className={cn('block__text')} dangerouslySetInnerHTML={{ __html: text }} />
                 {
-                    data.cards.length ? data.cards.map((card) => (
-                        <StoryCard key={card.id} card={card} />
+                    data.cards.length ? data.cards.map((card, i) => (
+                        <StoryCard key={i} card={card} />
                     )) : null
                 }
             </div>

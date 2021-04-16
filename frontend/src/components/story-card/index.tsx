@@ -6,7 +6,6 @@ import { useClassnames } from '../../hooks/use-classnames';
 import style from './index.css';
 
 export interface ICard {
-    id: string,
     image: {
         publicURL: string
     },
@@ -15,11 +14,12 @@ export interface ICard {
 
 const StoryCard = ({ card }: { card: ICard }) => {
     const cn = useClassnames(style);
+    const text = card.text.replace('{', '<span>').replace('}', '</span>');
 
     return (
         <div className={cn('story__wrapper')}>
             <img src={card.image.publicURL} className={cn('story__image')} alt="" />
-            <span className={cn('story__text')}>{card.text}</span>
+            <span className={cn('story__text')} dangerouslySetInnerHTML={{ __html: text }} />
         </div>
     );
 };

@@ -38,5 +38,9 @@
         text-align: left;
         color: #fff;
         max-width: 1034px;
+
+        span {
+            color: #66DED2;
+        }
     }
 }
