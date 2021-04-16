@@ -13,7 +13,8 @@ interface IData {
     },
     link?: {
         to: string,
-        text: string
+        text: string,
+        style: 'border' | 'fill'
     },
     text: string,
     cards: Array<ICard>
@@ -28,7 +29,7 @@ const MainPageBlock = ({ data }: { data: IData }) => {
             <img src={data.background.publicURL} className={cn('block__image')} alt="" />
             {
                 data.link ? (
-                    <Link to={data.link.to} className={cn('block__link')}>
+                    <Link to={data.link.to} className={cn('block__link', `block__link_${data.link.style}`)}>
                         {data.link.text}
                     </Link>
                 ) : null
