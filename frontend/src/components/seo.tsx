@@ -15,6 +15,7 @@ const query = graphql`
   }
 `;
 
+
 const SEO = ({ seo = {} }) => {
     const { strapiGlobal } = useStaticQuery(query);
     const { defaultSeo, siteName, favicon } = strapiGlobal;

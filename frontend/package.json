@@ -11,8 +11,8 @@
     "gatsby": "2.30.2",
     "gatsby-image": "2.9.0",
     "gatsby-plugin-manifest": "2.4.5",
-    "gatsby-plugin-react-helmet": "3.3.1",
     "gatsby-plugin-postcss": "4.2.0",
+    "gatsby-plugin-react-helmet": "3.3.1",
     "gatsby-source-filesystem": "2.3.4",
     "gatsby-source-strapi": "0.0.12",
     "moment": "2.26.0",
@@ -43,8 +43,6 @@
     "stylelint": "13.8.0",
     "stylelint-a11y": "1.2.3",
     "stylelint-declaration-block-no-ignored-properties": "2.3.0",
-    "stylelint-declaration-use-variable": "1.7.2",
-    "stylelint-no-unsupported-browser-features": "4.1.4",
     "typescript": "4.1.2"
   },
   "keywords": [

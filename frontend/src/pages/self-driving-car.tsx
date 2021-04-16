@@ -2,6 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
 import Layout from '../components/layout';
+import MainBlock from '../components/self-driving-cars-main'
 
 const query = graphql`
   query {
@@ -50,13 +51,17 @@ const query = graphql`
 
 const SelfDrivingCar = () => {
     const data = useStaticQuery(query);
-    console.log(data)
-    return (
-        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
-            <h1>SelfDrivingCar</h1>
-            <p>SelfDrivingCar</p>
-        </Layout>
-    );
+    const {double_block, id, slider_items, story_cards } = data.allStrapiSelfDrivingCar.edges[0].node;
+
+    
+
+    // return (
+    //     <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
+    //         <MainBlock data={double_block}/>
+    //     </Layout>
+    // );
+    
+    return <MainBlock data={double_block}/>
 };
 
 export default SelfDrivingCar;

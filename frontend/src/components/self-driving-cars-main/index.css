@@ -1,0 +1,21 @@
+.main-block {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    &__top {
+        height: 878px;
+        border: 1px solid red;
+    }
+
+    &__bottom {
+        height: 888px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    &__image {
+        position: absolute;
+        right: 0;
+    }
+}
