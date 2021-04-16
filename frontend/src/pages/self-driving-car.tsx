@@ -20,6 +20,7 @@ const query = graphql`
             header
             id
             text
+            textBottom
             bottomVideo {
               publicURL
             }

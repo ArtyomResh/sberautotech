@@ -36,6 +36,21 @@
         }
     }
 
+    &__info-bottom {
+        font-size: 47px;
+        max-width: 1045px;
+        position: absolute;
+        z-index: 3;
+        color: white;
+    }
+
+    &__info-top {
+        font-size: 47px;
+        max-width: 1045px;
+        position: absolute;
+        z-index: 3;
+    }
+
     &__image {
         position: absolute;
         right: 0;

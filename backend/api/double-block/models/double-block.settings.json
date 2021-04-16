@@ -39,6 +39,9 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "textBottom": {
+      "type": "string"
     }
   }
 }
