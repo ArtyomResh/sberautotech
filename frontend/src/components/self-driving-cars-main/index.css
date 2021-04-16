@@ -2,10 +2,21 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    position: relative;
 
     &__top {
         height: 878px;
-        border: 1px solid red;
+    }
+
+    &__top-text {
+        font-weight: 400;
+        font-size: 47px;
+        position: absolute;
+        left: 16px;
+        top: 33px;
+        padding: 17px 30px;
+        border: 1px solid #000000;
+        border-radius: 23px;
     }
 
     &__bottom {
@@ -17,5 +28,21 @@
     &__image {
         position: absolute;
         right: 0;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+
+    .main-block {
+
+        &__top,
+        &__bottom {
+            height: auto;
+        }
+
+        &__image {
+            position: static;
+            width: 100%;
+        }
     }
 }

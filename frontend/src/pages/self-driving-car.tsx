@@ -20,7 +20,7 @@ const query = graphql`
             header
             id
             text
-            bottomBackground {
+            bottomVideo {
               publicURL
             }
             topBackground {

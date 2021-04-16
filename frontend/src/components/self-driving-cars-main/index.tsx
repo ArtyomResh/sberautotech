@@ -17,10 +17,12 @@ const MainBlock: React.FC<IProps> = ({data}) => {
         <div className={cn('main-block')}>
             <div className={cn('main-block__top')}>
                 <img src={data.topBackground.publicURL} className={cn('main-block__image')} />
+                <h3 className={cn('main-block__top-text')}>Беспилотный автомобиль</h3>
             </div>
-            <div className={cn('main-block__bottom')}>
+            {/* <div className={cn('main-block__bottom')}>
                 <img src={data.bottomBackground.publicURL} className={cn('main-block__image')} />
-            </div>
+            </div> */}
+            <video src={data.bottomVideo.publicURL} autoPlay muted loop/>
         </div>
     )
 }
