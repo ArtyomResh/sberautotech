@@ -1,0 +1,39 @@
+/* .swiper-container {
+
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+.swiper-slide {
+    border: 1px solid red;
+    flex: 0 0 335px;
+    height: unset;
+} */
+
+.swiper {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, 335px);
+    grid-auto-rows: 1fr;
+    justify-items: stretch;
+    padding: 40px 20px 156px;
+
+    &__slide-heading {
+        font-size: 24px;
+        line-height: 28px;
+        margin-bottom: 30px;
+    }
+
+    &__slide-img {
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+
+    &__slide-text {
+        font-size: 18px;
+        line-height: 20px;
+    }
+}
