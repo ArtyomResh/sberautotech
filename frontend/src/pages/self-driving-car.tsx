@@ -52,17 +52,15 @@ const query = graphql`
 
 const SelfDrivingCar = () => {
     const data = useStaticQuery(query);
-    const {double_block, id, slider_items, story_cards } = data.allStrapiSelfDrivingCar.edges[0].node;
+    const {double_block,  slider_items, story_cards } = data.allStrapiSelfDrivingCar.edges[0].node;
 
-    
 
-    // return (
-    //     <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
-    //         <MainBlock data={double_block}/>
-    //     </Layout>
-    // );
-    
-    return <MainBlock data={double_block}/>
+
+    return (
+        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
+            <MainBlock data={double_block}/>
+        </Layout>
+    );
 };
 
 export default SelfDrivingCar;
