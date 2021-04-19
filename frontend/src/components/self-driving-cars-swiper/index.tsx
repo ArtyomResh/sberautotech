@@ -5,7 +5,6 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 import 'swiper/swiper-bundle.css';
-
 interface IProps {
     data: any
 }
@@ -18,29 +17,41 @@ const SwiperComponent: React.FC<IProps> = ({data}) => {
     const cn = useClassnames(style)
 
     useEffect(() => {
-        // const swiper = new Swiper('.swiper-container', {
-        //     slidesPerView: 1,
-        //     spaceBetween: 30,
-        //     loop: true,
-        // });
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            centeredSlides: true,
+            slidesPerView: 1.3,
+            spaceBetween: 20,
+            watchSlidesProgress: true
+        });
 
-        // return () => {
-        //     swiper.destroy()
-        // }
+        return () => {
+            swiper.destroy()
+        }
     },[])
 
-    console.log(data)
+    const slideEl = (swipable: boolean) =>  (slide: any, idx: number) => (
+        <div key={slide.id} className={cn('swiper__slide', {
+                ['swiper-slide']: swipable,
+                ['swiper-slide-first']: idx === 1}
+            )}>
+            <img src={slide.image.publicURL} className={cn('swiper__slide-img')} />
+            <h3 className={cn('swiper__slide-heading')}>{slide.header}</h3>
+            <p className={cn('swiper__slide-text')}>{slide.text}</p>
+        </div>
+    )
 
     return (
-        <div className={cn('swiper')}>
-                {data.map((slide: any) => (
-                    <div className={cn('swiper__slide')}>
-                        <img src={slide.image.publicURL} className={cn('swiper__slide-img')} />
-                        <h3 className={cn('swiper__slide-heading')}>{slide.header}</h3>
-                        <p className={cn('swiper__slide-text')}>{slide.text}</p>
-                    </div>
-                ))}
-        </div>
+        <React.Fragment>
+            <div className={cn('swiper')}>
+                    {data.map(slideEl(false))}
+            </div>
+            <div className={cn('swiper-container')}>
+                <div className='swiper-wrapper'>
+                    {data.map(slideEl(true))}
+                </div>
+            </div>
+        </React.Fragment>
     )
 }
 

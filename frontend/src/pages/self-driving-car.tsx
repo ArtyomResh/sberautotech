@@ -56,11 +56,17 @@ const SelfDrivingCar = () => {
     const {double_block, story_cards, slider_items } = data.allStrapiSelfDrivingCar.edges[0].node;
 
 
+    // return (
+    //     <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
+    //         <MainBlock data={double_block}/>
+    //         <Swiper data={story_cards} />
+    //     </Layout>
+    // );
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
+        <>
             <MainBlock data={double_block}/>
             <Swiper data={story_cards} />
-        </Layout>
+        </>
     );
 };
 
