@@ -12,8 +12,6 @@ const MainBlock: React.FC<IProps> = ({data}) => {
     const cn = useClassnames(style)
     const videoRef = useRef<HTMLVideoElement>(null)
 
-    console.log(data)
-
     const toggleVideo = () => {
         if(videoRef.current){
             videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause()
