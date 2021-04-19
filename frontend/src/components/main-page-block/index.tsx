@@ -26,7 +26,7 @@ const MainPageBlock = ({ data }: { data: IData }) => {
     const text = data.text.replace('{', '<span>').replace('}', '</span>');
 
     return (
-        <div className={cn('block__wrapper')} id={'section' + data.position}>
+        <div className={cn('block__wrapper')} id={data.position}>
             <img src={data.background.publicURL} className={cn('block__image')} alt="" />
             {
                 data.link ? (

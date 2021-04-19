@@ -29,6 +29,7 @@
     }
 
     &__center {
+        background-color: inherit;
         flex-grow: 0.8;
         align-items: center;
         display: flex;
@@ -84,7 +85,7 @@
                 border-radius: 10px;
                 display: block;
                 position: relative;
-                top: -39px;
+                top: -41px;
             }
         }
 
@@ -107,6 +108,7 @@
     }
 
     &__accept-button {
+        cursor: pointer;
         background: #bdfff8;
         border: none;
         border-radius: 5px;

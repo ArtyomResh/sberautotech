@@ -5,67 +5,11 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-const Nav = ({ setIsPopupVisible, theme, links }) => {
-    const navListRef = useRef(null);
+const Nav = ({ setIsPopupVisible, theme, links, pageNumber }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [active, setActive] = useState(0);
-    const [offsets, setOffsets] = useState([]);
     const cn = useClassnames(style);
 
-    const getScrollLocation = (winY: number, offsets: Array<number>) => {
-        for(let i = 0; i < offsets.length; i++) {
-            if (i < offsets.length - 1) {
-                const next = offsets[i + 1];
-
-                if (winY >= offsets[i] && winY < next) {
-                    return i;
-                }
-            } else if (i === offsets.length - 1 && winY >= offsets[i]) {
-                return i;
-            }
-        }
-    };
-
-    const updateOffsets = useCallback(() => {
-        const navListElement = navListRef.current;
-
-        if (navListElement) {
-            const offsets = Array.from(navListElement.children).map((nav) => {
-                const id = nav.getAttribute('data-section');
-                const section = document.querySelector(id);
-                return section.offsetTop;
-            });
-            setOffsets(offsets);
-        }
-    }, [navListRef.current]);
-
-    const updateSection = useCallback(() => {
-        const index = getScrollLocation(window.pageYOffset, offsets);
-
-        if(active !== index) {
-            setActive(index);
-        }
-    }, [active, offsets]);
-
-    useEffect(() => {
-        window.addEventListener('resize', updateOffsets);
-        return () => {
-            window.removeEventListener('resize', updateOffsets);
-        }
-    }, [updateOffsets]);
-
-    useEffect(() => {
-        window.addEventListener('scroll', updateSection);
-        return () => {
-            window.removeEventListener('scroll', updateSection);
-        }
-    }, [updateSection]);
-
-    useEffect(() => {
-        setTimeout(() => { updateOffsets() }, 100);
-    }, [])
-
-    const onMenuButtonClick = () => { setIsOpen(!open) };
+    const onMenuButtonClick = () => { setIsOpen(!isOpen) };
 
     return (
         <nav className={cn('nav__wrapper', `nav__wrapper_${theme.mode}`)}>
@@ -89,11 +33,11 @@ const Nav = ({ setIsPopupVisible, theme, links }) => {
                     </svg>
                 </Link>
             </div>
-            <div className={cn('nav__center', { nav__center_close: !open })}>
-                <ul className={cn('nav__list')} ref={navListRef}>
+            <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
+                <ul className={cn('nav__list')}>
                     {
                         links.map(({ text, link, section }, i) => (
-                            <li key={i} data-section={section} className={cn('nav__list-item', { 'nav__list-item_active': active === i })}>
+                            <li key={i} data-section={section} className={cn('nav__list-item', { 'nav__list-item_active': pageNumber === i })}>
                                 <Link to={link} className={cn('nav__link')}>
                                     {text}
                                 </Link>

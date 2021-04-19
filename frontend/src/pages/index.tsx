@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import ReactPageScroller from 'react-page-scroller';
 
@@ -39,14 +39,19 @@ const query = graphql`
 `;
 
 const IndexPage = () => {
+    const [pageNumber, setPageNumber] = useState(0);
     const data = useStaticQuery(query);
     const blocks = data.allStrapiBlock.edges.sort((a, b) => (
         a.node.position - b.node.position
     ));
 
+    const handlePageChange = (pageNumber) => {
+        setPageNumber(pageNumber);
+    };
+
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: 'white' }}>
-            <ReactPageScroller>
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: 'white' }} pageNumber={pageNumber}>
+            <ReactPageScroller pageOnChange={handlePageChange}>
                 {blocks.map(({ node }, i: number) => (
                     <MainPageBlock key={i} data={node} />
                 ))}
