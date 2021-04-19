@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'gatsby';
 
 import { useClassnames } from '../../hooks/use-classnames';
@@ -14,7 +14,9 @@ export interface ICard {
 
 const StoryCard = ({ card }: { card: ICard }) => {
     const cn = useClassnames(style);
-    const text = card.text.replace('{', '<span>').replace('}', '</span>');
+    const text = useMemo(() => (
+        card.text.replace('{', '<span>').replace('}', '</span>')
+    ), [card.text]);
 
     return (
         <div className={cn('story__wrapper')}>
