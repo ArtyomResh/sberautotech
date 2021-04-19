@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
+import ReactPageScroller from 'react-page-scroller';
 
 import Layout from '../components/layout';
 import MainPageBlock from '../components/main-page-block';
@@ -45,9 +46,11 @@ const IndexPage = () => {
 
     return (
         <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: 'white' }}>
-            {blocks.map(({ node }, i: number) => (
-                <MainPageBlock key={i} data={node} />
-            ))}
+            <ReactPageScroller>
+                {blocks.map(({ node }, i: number) => (
+                    <MainPageBlock key={i} data={node} />
+                ))}
+            </ReactPageScroller>
         </Layout>
     );
 };
