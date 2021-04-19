@@ -1,4 +1,6 @@
 # Сайт компании SberAutoTech
+[Frontend (DEV-стенд)](https://sberautotech.dev.fe.sbauto.tech/)
+[Administration Panel (DEV-стенд)](https://sberautotech-backend.dev.fe.sbauto.tech/admin)
 
 ## Для установки необходимо
 

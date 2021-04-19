@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Link } from 'gatsby';
+
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
@@ -122,7 +123,7 @@ const Nav = ({ setIsPopupVisible, theme, links }) => {
                 </button>
             </div>
         </nav>
-    )
+    );
 };
 
 export default Nav;

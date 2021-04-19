@@ -3,16 +3,45 @@
     &__wrapper {
         display: flex;
         flex-direction: column;
+        width: 216px;
+        margin-left: auto;
     }
 
     &__image {
-        border-radius: 10px;
+        width: 216px;
+        height: 216px;
+        border-radius: 15px;
+        margin-bottom: 20px;
     }
 
     &__text {
         font-size: 18px;
         line-height: 20px;
         font-feature-settings: "tnum" on, "lnum" on;
-        color: #ffffff;
+        color: #fff;
+
+        span {
+            color: #66DED2;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .story {
+
+        &__wrapper {
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        &__image {
+            width: 86px;
+            height: 86px;
+            border-radius: 10px;
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
     }
 }
