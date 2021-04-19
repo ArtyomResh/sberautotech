@@ -9,7 +9,7 @@ import style from './index.css';
 const MainPageBlock = ({data}) => {
     const cn = useClassnames(style);
     return (
-        <div className={cn('block__wrapper')} id={data.position}>
+        <div className={cn('block__wrapper')} id={'section' + data.position}>
             <img src={data.background.publicURL} className={cn('block__image')} />
             {
                 (data.link) ? (

@@ -4,7 +4,7 @@
         display: flex;
         position: fixed;
         width: 100vw;
-        height: 66px;
+        height: var(--nav-height);
         align-items: center;
         justify-content: space-between;
         padding: 0 20px;
@@ -30,28 +30,79 @@
 
     &__center {
         flex-grow: 0.8;
-        height: inherit;
         align-items: center;
         display: flex;
+
+        @media (max-width: 1024px) {
+            flex-direction: column;
+            position: absolute;
+            left:0;
+            top: var(--nav-height);
+            width: 100vw;
+            align-items: flex-start;
+            padding: 80px 10px;
+
+            &_close {
+                display: none;
+            }
+        }
+    }
+
+    &__right {
+        display: none;
+
+        @media (max-width: 1024px) {
+            display: block;
+        }
     }
 
     &__list {
         display: flex;
+
+        @media (max-width: 1024px) {
+            flex-direction: column;
+        }
     }
 
     &__list-item {
-        padding: 21px 0;
+        padding: 20px 0;
         margin: 0 20px;
         font-size: 18px;
         line-height: 21px;
         letter-spacing: 0;
         text-align: left;
+        align-self: baseline;
+
+        &_active {
+            color: #34b7aa;
+
+            &:after {
+                content: "";
+                background-color: #34b7aa;
+                width: 100%;
+                height: 5px;
+                border-radius: 10px;
+                display: block;
+                position: relative;
+                top: -39px;
+            }
+        }
 
         &:hover {
             color: #34b7aa;
             outline-top: 5px solid #34b7aa;
+        }
 
-            /* border-radius: 10px; */
+        @media (max-width: 1024px) {
+            padding: 10px 0;
+            margin: 0;
+            font-size: 27px;
+            line-height: 30px;
+            letter-spacing: -0.01em;
+
+            &:after {
+                display: none;
+            }
         }
     }
 
@@ -61,8 +112,33 @@
         border-radius: 5px;
         outline: none;
         padding: 3px 20px;
+        height: 36px;
         font-size: 18px;
         line-height: 21px;
         letter-spacing: 0;
+        margin-left: auto;
+
+        @media (max-width: 1024px) {
+            margin-top: 80px;
+            width: 100%;
+            height: 78px;
+            font-size: 27px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: -0.01em;
+            border-radius: 15px;
+        }
     }
+
+    &__menu-button {
+        width: 26px;
+        height: 26px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+
 }

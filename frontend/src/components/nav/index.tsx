@@ -1,11 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Link } from 'gatsby';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-const Nav = ({ setIsPopupVisible, theme }) => {
+const Nav = ({ setIsPopupVisible, theme, links }) => {
+    const navListRef = useRef(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const [active, setActive] = useState(0);
+    const [offsets, setOffsets] = useState([]);
     const cn = useClassnames(style);
+
+    const getScrollLocation = (winY: number, offsets: Array<number>) => {
+        for(let i = 0; i < offsets.length; i++) {
+            if (i < offsets.length - 1) {
+                const next = offsets[i + 1];
+
+                if (winY >= offsets[i] && winY < next) {
+                    return i;
+                }
+            } else if (i === offsets.length - 1 && winY >= offsets[i]) {
+                return i;
+            }
+        }
+    };
+
+    const updateOffsets = useCallback(() => {
+        const navListElement = navListRef.current;
+
+        if (navListElement) {
+            const offsets = Array.from(navListElement.children).map((nav) => {
+                const id = nav.getAttribute('data-section');
+                const section = document.querySelector(id);
+                return section.offsetTop;
+            });
+            setOffsets(offsets);
+        }
+    }, [navListRef.current]);
+
+    const updateSection = useCallback(() => {
+        const index = getScrollLocation(window.pageYOffset, offsets);
+
+        if(active !== index) {
+            setActive(index);
+        }
+    }, [active, offsets]);
+
+    useEffect(() => {
+        window.addEventListener('resize', updateOffsets);
+        return () => {
+            window.removeEventListener('resize', updateOffsets);
+        }
+    }, [updateOffsets]);
+
+    useEffect(() => {
+        window.addEventListener('scroll', updateSection);
+        return () => {
+            window.removeEventListener('scroll', updateSection);
+        }
+    }, [updateSection]);
+
+    useEffect(() => {
+        setTimeout(() => { updateOffsets() }, 100);
+    }, [])
+
+    const onMenuButtonClick = () => { setIsOpen(!open) };
 
     return (
         <nav className={cn('nav__wrapper', `nav__wrapper_${theme.mode}`)}>
@@ -29,32 +88,37 @@ const Nav = ({ setIsPopupVisible, theme }) => {
                     </svg>
                 </Link>
             </div>
-            <div className={cn('nav__center')}>
-                <ul className={cn('nav__list')}>
-                    <li className={cn('nav__list-item')}>
-                        <Link to='/#1' className={cn('nav__link')}>
-                            О компании
-                        </Link>
-                    </li>
-                    <li className={cn('nav__list-item')}>
-                        <Link to='/#2' className={cn('nav__link')}>
-                            Беспилотник
-                        </Link>
-                    </li>
-                    <li className={cn('nav__list-item')}>
-                        <Link to='/#3' className={cn('nav__link')}>
-                            Карьера
-                        </Link>
-                    </li>
+            <div className={cn('nav__center', { nav__center_close: !open })}>
+                <ul className={cn('nav__list')} ref={navListRef}>
+                    {
+                        links.map(({ text, link, section }, i) => (
+                            <li key={i} data-section={section} className={cn('nav__list-item', { 'nav__list-item_active': active === i })}>
+                                <Link to={link} className={cn('nav__link')}>
+                                    {text}
+                                </Link>
+                            </li>
+                        ))
+                    }
                 </ul>
-            </div>
-            <div className={cn('nav__right')}>
                 <button
                     type="button"
                     className={cn('nav__accept-button')}
                     onClick={() => setIsPopupVisible(true)}
                 >
-                    Откликнуться
+                    Присоединиться
+                </button>
+            </div>
+            <div className={cn('nav__right')}>
+                <button className={cn('nav__menu-button')} onClick={onMenuButtonClick}>
+                    {isOpen ?
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M0.807665 17.4881C0.417141 17.8786 0.417141 18.5118 0.807665 18.9023C1.19819 19.2928 1.83135 19.2928 2.22188 18.9023L10.0001 11.1241L17.7782 18.9023C18.1688 19.2928 18.8019 19.2928 19.1924 18.9023C19.583 18.5118 19.583 17.8786 19.1924 17.4881L11.4143 9.70989L19.1924 1.93172C19.583 1.54119 19.583 0.908027 19.1924 0.517502C18.8019 0.126978 18.1688 0.126979 17.7782 0.517503L10.0001 8.29568L2.22188 0.517503C1.83135 0.126979 1.19819 0.126979 0.807663 0.517503C0.417139 0.908028 0.41714 1.54119 0.807664 1.93172L8.58584 9.70989L0.807665 17.4881Z" fill="#2E3840" />
+                        </svg>
+                        :
+                        <svg width="26" height="17" viewBox="0 0 26 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M0 1.70996C0 1.15768 0.447715 0.709961 1 0.709961H25C25.5523 0.709961 26 1.15768 26 1.70996C26 2.26225 25.5523 2.70996 25 2.70996H1C0.447716 2.70996 0 2.26225 0 1.70996ZM0 8.70996C0 8.15768 0.447715 7.70996 1 7.70996H25C25.5523 7.70996 26 8.15768 26 8.70996C26 9.26225 25.5523 9.70996 25 9.70996H1C0.447716 9.70996 0 9.26225 0 8.70996ZM1 14.71C0.447715 14.71 0 15.1577 0 15.71C0 16.2622 0.447716 16.71 1 16.71H25C25.5523 16.71 26 16.2622 26 15.71C26 15.1577 25.5523 14.71 25 14.71H1Z" fill="#2E3840" />
+                        </svg>
+                    }
                 </button>
             </div>
         </nav>
