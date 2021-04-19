@@ -40,13 +40,13 @@ const query = graphql`
 
 const IndexPage = () => {
     const data = useStaticQuery(query);
-    const blocks: Array<IBlock> = data.allStrapiBlock.edges.sort((a, b) => a.node.position - b.node.position);
+    const blocks = data.allStrapiBlock.edges.sort((a, b) => a.node.position - b.node.position);
 
     return (
         <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: 'white' }}>
             <ReactPageScroller>
-                {blocks.map((block, i: number) => (
-                    <MainPageBlock key={i} block={block} />
+                {blocks.map(({ node }: { node: IBlock }, i: number) => (
+                    <MainPageBlock key={i} block={node} />
                 ))}
             </ReactPageScroller>
         </Layout>
