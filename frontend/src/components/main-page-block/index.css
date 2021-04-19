@@ -2,11 +2,13 @@
 
     &__wrapper {
         position: relative;
+        height: 100vh;
     }
 
     &__image {
         width: 100%;
-        display: block;
+        height: 100%;
+        object-fit: cover;
     }
 
     &__link {
@@ -14,6 +16,7 @@
         z-index: 1;
         top: 80px;
         left: 20px;
+        text-align: center;
 
         &_border {
             padding: 17px 30px 21px;
@@ -26,7 +29,6 @@
         &_fill {
             background: #BDFFF8;
             min-width: 333px;
-            text-align: center;
             padding: 16px 0;
             border-radius: 15px;
             font-size: 30px;
@@ -42,6 +44,7 @@
         width: 100%;
         z-index: 1;
         display: flex;
+        align-items: flex-end;
     }
 
     &__text {
@@ -54,6 +57,47 @@
 
         span {
             color: #66DED2;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .block {
+
+        &__link {
+
+            &_border {
+                font-size: 31px;
+                line-height: 32px;
+                width: 275px;
+            }
+
+            &_fill {
+                min-width: 200px;
+            }
+        }
+
+        &__bottom {
+            bottom: 20px;
+            padding: 0 10px;
+            flex-direction: column;
+        }
+
+        &__text {
+             font-size: 27px;
+             line-height: 30px;
+        }
+    }
+}
+
+@media (max-height: 375px) {
+    .block {
+        &__link {
+            width: auto;
+        }
+
+        &__bottom {
+             flex-direction: row;
         }
     }
 }
