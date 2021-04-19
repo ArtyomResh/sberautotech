@@ -39,23 +39,15 @@ const query = graphql`
 
 const IndexPage = () => {
     const data = useStaticQuery(query);
-
-    const blocks = data.allStrapiBlock.edges.sort((a, b) => {
-      if (a.node.position > b.node.position) {
-        return 1;
-      }
-      return -1;
-    });
+    const blocks = data.allStrapiBlock.edges.sort((a, b) => (
+        a.node.position - b.node.position
+    ));
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'light', logoColor: 'white'}}>
-            {
-                blocks.map(
-                    ({ node }, i: number) => (
-                        <MainPageBlock key={i} data={node}/>
-                    )
-                )
-            }
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: 'white' }}>
+            {blocks.map(({ node }, i: number) => (
+                <MainPageBlock key={i} data={node} />
+            ))}
         </Layout>
     );
 };

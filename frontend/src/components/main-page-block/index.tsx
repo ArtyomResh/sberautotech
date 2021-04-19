@@ -22,6 +22,7 @@ interface IData {
 
 const MainPageBlock = ({ data }: { data: IData }) => {
     const cn = useClassnames(style);
+    const linkStyle = data.link?.style || 'border';
     const text = data.text.replace('{', '<span>').replace('}', '</span>');
 
     return (
@@ -29,7 +30,7 @@ const MainPageBlock = ({ data }: { data: IData }) => {
             <img src={data.background.publicURL} className={cn('block__image')} alt="" />
             {
                 data.link ? (
-                    <Link to={data.link.to} className={cn('block__link', `block__link_${data.link.style}`)}>
+                    <Link to={data.link.to} className={cn('block__link', `block__link_${linkStyle}`)}>
                         {data.link.text}
                     </Link>
                 ) : null
