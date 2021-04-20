@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react';
 import Swiper from 'swiper';
 
 import { useClassnames } from '../../hooks/use-classnames';
@@ -9,26 +9,27 @@ interface IProps {
     data: any
 }
 
-const Carousel :React.FC<IProps> = ({data}) => {
-    const cn = useClassnames(style)
+const Carousel: React.FC<IProps> = ({ data }) => {
+    const cn = useClassnames(style);
 
     useEffect(() => {
         const swiper = new Swiper('.carousel-container', {
-            loop: true,
+            loop          : true,
             centeredSlides: true,
-            slidesPerView: 1,
-            spaceBetween: 0,
+            slidesPerView : 1,
+            spaceBetween  : 0
         });
 
         return () => {
-            swiper.destroy()
-        }
-    },[])
+            swiper.destroy();
+        };
+    }, []);
+
 
     return (
         <div className={cn('carousel-container', 'carousel')}>
             <div className={cn('swiper-wrapper')}>
-                {data.map((slide:any) => (
+                {data.map((slide: any) => (
                     <div key={slide.header} className={cn('swiper-slide', 'carousel__slide')}>
                         <div className={cn('carousel__slide-container')}>
                             <div className={cn('carousel__img-container')}>
@@ -41,7 +42,7 @@ const Carousel :React.FC<IProps> = ({data}) => {
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Carousel
+export default Carousel;

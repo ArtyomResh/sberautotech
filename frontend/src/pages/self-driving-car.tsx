@@ -25,7 +25,9 @@ const query = graphql`
             id
             text
             textBottom
-
+            bottomVideo {
+              publicURL
+            }
             topBackground {
               publicURL
             }
