@@ -17,7 +17,9 @@ const query = graphql`
           id
           slider_items {
             background {
-              publicURL
+              localFile {
+                publicURL
+              }
             }
             header
             id
@@ -31,9 +33,11 @@ const query = graphql`
 
 const Career = () => {
     const data = useStaticQuery(query);
-    console.log(data)
+
+    console.log(data);
+
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
             <h1>CAREER</h1>
             <p>CAREER</p>
         </Layout>

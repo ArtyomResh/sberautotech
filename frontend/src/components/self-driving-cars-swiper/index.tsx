@@ -31,7 +31,7 @@ const SwiperComponent: React.FC<IProps> = ({ data }) => {
                 'swiper-slide': swipable
             })}
         >
-            <img src={slide.image.publicURL} className={cn('swiper__slide-img')} />
+            <img src={slide.image.localFile.publicURL} className={cn('swiper__slide-img')} />
             <h3 className={cn('swiper__slide-heading')}>{slide.header}</h3>
             <p className={cn('swiper__slide-text')}>{slide.text}</p>
         </div>

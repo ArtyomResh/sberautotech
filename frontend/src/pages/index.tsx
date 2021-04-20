@@ -19,7 +19,9 @@ const query = graphql`
           id
           text
           background {
-            publicURL
+            localFile {
+              publicURL
+            }
           }
           link {
             text
@@ -28,7 +30,9 @@ const query = graphql`
           cards {
             text
             image {
-              publicURL
+              localFile {
+                publicURL
+              }
             }
           }
           position

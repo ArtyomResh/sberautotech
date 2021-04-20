@@ -33,7 +33,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
                     <div key={slide.header} className={cn('swiper-slide', 'carousel__slide')}>
                         <div className={cn('carousel__slide-container')}>
                             <div className={cn('carousel__img-container')}>
-                                <img className={cn('carousel__img')} src={slide.background.publicURL} />
+                                <img className={cn('carousel__img')} src={slide.background.localFile.publicURL} />
                                 <p className={cn('carousel__header')}><a className={cn('carousel__link')} href="#">{slide.headerLink}</a>{slide.header}</p>
                             </div>
                             <p className={cn('carousel__text')}>{slide.text}</p>

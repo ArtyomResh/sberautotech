@@ -2,9 +2,9 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
 import Layout from '../components/layout';
-import MainBlock from '../components/self-driving-cars-main'
-import Swiper from '../components/self-driving-cars-swiper'
-import Carousel from '../components/self-driving-cars-carousel'
+import MainBlock from '../components/self-driving-cars-main';
+import Swiper from '../components/self-driving-cars-swiper';
+import Carousel from '../components/self-driving-cars-carousel';
 
 import 'swiper/swiper-bundle.css';
 
@@ -26,10 +26,14 @@ const query = graphql`
             text
             textBottom
             bottomVideo {
-              publicURL
+              localFile {
+                publicURL
+              }
             }
             topBackground {
-              publicURL
+              localFile {
+                publicURL
+              }
             }
           }
           story_cards {
@@ -37,7 +41,9 @@ const query = graphql`
             id
             text
             image {
-              publicURL
+              localFile {
+                publicURL
+              }
             }
           }
           slider_items {
@@ -46,7 +52,9 @@ const query = graphql`
             id
             text
             background {
-              publicURL
+              localFile {
+                publicURL
+              }
             }
           }
         }
@@ -57,14 +65,14 @@ const query = graphql`
 
 const SelfDrivingCar = () => {
     const data = useStaticQuery(query);
-    const {double_block, story_cards, slider_items } = data.allStrapiSelfDrivingCar.edges[0].node;
+    const { double_block, story_cards, slider_items } = data.allStrapiSelfDrivingCar.edges[0].node;
 
     return (
-        <>
-            <MainBlock data={double_block}/>
+        <React.Fragment>
+            <MainBlock data={double_block} />
             <Swiper data={story_cards} />
             <Carousel data={slider_items} />
-        </>
+        </React.Fragment>
     );
 };
 
