@@ -1,11 +1,18 @@
 .carousel {
     --color-text: #66ded2;
     --color-white: #fff;
+    --color-black: #000;
     overflow: hidden;
 
-    &__slide {
+    &__slide-container {
+        display: flex;
+        flex-direction: column;
+        height:100%;
+    }
+
+    &__img-container {
         position: relative;
-        overflow: hidden;
+        flex: 1 1 963px;
     }
 
     &__link {
@@ -13,27 +20,57 @@
     }
 
     &__img {
-        width: 100%;
+        position: absolute;
+    }
+
+    &__text {
+        line-height: 20.7px;
+        font-size: 18px;
+        color: var(--color-black);
+        z-index: 20;
+        padding: 20px 10px;
     }
 
     &__header {
         position: absolute;
-        top: 44px;
-        right: 502px;
-        font-size: 47px;
-        line-height: 48px;
+        left: 10px;
+        top: 20px;
+        max-width: 335px;
+        line-height: 30px;
+        font-size: 27px;
+        color: var(--color-white);
         z-index: 2;
-        color: var(--color-white);
-        max-width: 1045px;
     }
+}
 
-    &__text {
-        position: absolute;
-        left: 20px;
-        bottom: 40px;
-        max-width: 690px;
-        line-height: 20.7px;
-        font-size: 18px;
-        color: var(--color-white);
+@media screen and (min-width: 1400px) {
+
+    .carousel {
+        height: auto;
+
+        &__header {
+            top: 44px;
+            right: 100px;
+            left: unset;
+            font-size: 47px;
+            line-height: 48px;
+            max-width: 1045px;
+        }
+
+        &__text {
+            position: absolute;
+            left: 20px;
+            bottom: 40px;
+            top: unset;
+            font-size: 18px;
+            line-height: 20px;
+            color: var(--color-white);
+            max-width: 690px;
+        }
+
+        &__img {
+            position: static;
+            width: 100%;
+        }
     }
 }

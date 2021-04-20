@@ -10,8 +10,6 @@ interface IProps {
 }
 
 const Carousel :React.FC<IProps> = ({data}) => {
-    // FIXME: 
-    const FAKE_DATA = data.concat(data).concat(data)
     const cn = useClassnames(style)
 
     useEffect(() => {
@@ -32,9 +30,13 @@ const Carousel :React.FC<IProps> = ({data}) => {
             <div className={cn('swiper-wrapper')}>
                 {data.map((slide:any) => (
                     <div key={slide.header} className={cn('swiper-slide', 'carousel__slide')}>
-                        <img className={cn('carousel__img')} src={slide.background.publicURL} />
-                        <p className={cn('carousel__header')}><a className={cn('carousel__link')} href="#">{slide.headerLink}</a>{slide.header}</p>
-                        <p className={cn('carousel__text')}>{slide.text}</p>
+                        <div className={cn('carousel__slide-container')}>
+                            <div className={cn('carousel__img-container')}>
+                                <img className={cn('carousel__img')} src={slide.background.publicURL} />
+                                <p className={cn('carousel__header')}><a className={cn('carousel__link')} href="#">{slide.headerLink}</a>{slide.header}</p>
+                            </div>
+                            <p className={cn('carousel__text')}>{slide.text}</p>
+                        </div>
                     </div>
                 ))}
             </div>
