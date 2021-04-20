@@ -30,20 +30,13 @@
     }
 }
 
-
-.swiper-container {
+.swiper__container {
     margin: 40px 20px 156px;
 }
 
-/* .swiper-wrapper {
-    marging-left: -30%;
-} */
+@media screen and (min-width: 730px) {
 
-/* .swiper-slide {
-    padding: 0px 10px 0px 0px;
-} */
+    .swiper { display: grid; }
 
-@media  screen and (min-width: 730px) {
-    .swiper { display: grid }
-    .swiper-container { display: none }
+    .swiper__container { display: none; }
 }

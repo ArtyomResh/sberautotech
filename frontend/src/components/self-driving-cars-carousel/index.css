@@ -1,0 +1,39 @@
+.carousel {
+    --color-text: #66ded2;
+    --color-white: #fff;
+    overflow: hidden;
+
+    &__slide {
+        position: relative;
+        overflow: hidden;
+    }
+
+    &__link {
+        color: var(--color-text);
+    }
+
+    &__img {
+        width: 100%;
+    }
+
+    &__header {
+        position: absolute;
+        top: 44px;
+        right: 502px;
+        font-size: 47px;
+        line-height: 48px;
+        z-index: 2;
+        color: var(--color-white);
+        max-width: 1045px;
+    }
+
+    &__text {
+        position: absolute;
+        left: 20px;
+        bottom: 40px;
+        max-width: 690px;
+        line-height: 20.7px;
+        font-size: 18px;
+        color: var(--color-white);
+    }
+}
