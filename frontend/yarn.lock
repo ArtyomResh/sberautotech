@@ -11186,7 +11186,7 @@ react-moment@0.9.7:
   resolved "https://registry.yarnpkg.com/react-moment/-/react-moment-0.9.7.tgz#ca570466595b1aa4f7619e62da18b3bb2de8b6f3"
   integrity sha512-ifzUrUGF6KRsUN2pRG5k56kO0mJBr8kRkWb0wNvtFIsBIxOuPxhUpL1YlXwpbQCbHq23hUu6A0VEk64HsFxk9g==
 
-react-page-scroller@^2.1.0:
+react-page-scroller@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-page-scroller/-/react-page-scroller-2.1.0.tgz#cec3e24447a2ddbb75507df75c857abfd6433fc9"
   integrity sha512-o953DW7/q4kn/VONlzpZTJKBdfSZMPlF1EciOXgsfrl2vhQpO4buDzaVFTVUP+R2YQ9m1W51hGT+Aro8qqW7CA==
