@@ -3,7 +3,7 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 import ReactPageScroller from 'react-page-scroller';
 
 import Layout from '../components/layout';
-import MainPageBlock from '../components/main-page-block';
+import MainPageBlock, { IBlock } from '../components/main-page-block';
 
 const query = graphql`
   query {
@@ -40,15 +40,13 @@ const query = graphql`
 
 const IndexPage = () => {
     const data = useStaticQuery(query);
-    const blocks = data.allStrapiBlock.edges.sort((a, b) => (
-        a.node.position - b.node.position
-    ));
+    const blocks = data.allStrapiBlock.edges.sort((a, b) => a.node.position - b.node.position);
 
     return (
         <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: 'white' }}>
             <ReactPageScroller>
-                {blocks.map(({ node }, i: number) => (
-                    <MainPageBlock key={i} data={node} />
+                {blocks.map(({ node }: { node: IBlock }, i: number) => (
+                    <MainPageBlock key={i} block={node} />
                 ))}
             </ReactPageScroller>
         </Layout>
