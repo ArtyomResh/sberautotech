@@ -43,7 +43,7 @@ const IndexPage = () => {
     const data = useStaticQuery(query);
     const blocks = data.allStrapiBlock.edges.sort((a, b) => a.node.position - b.node.position);
 
-    const handlePageChange = (pageNumber) => {
+    const handlePageChange = (pageNumber: number) => {
         setPageNumber(pageNumber);
     };
 

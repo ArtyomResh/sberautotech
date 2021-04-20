@@ -5,7 +5,19 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-const Nav = ({ setIsPopupVisible, theme, links, pageNumber }) => {
+export interface INavItem {
+    text: string,
+    link: string
+}
+
+export interface INav {
+    setIsPopupVisible: boolean,
+    theme: any,
+    links: Array<INavItem>,
+    pageNumber: number
+}
+
+const Nav = ({ setIsPopupVisible, theme, links, pageNumber }: INav) => {
     const [isOpen, setIsOpen] = useState(false);
     const cn = useClassnames(style);
 
@@ -36,8 +48,8 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber }) => {
             <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
                 <ul className={cn('nav__list')}>
                     {
-                        links.map(({ text, link, section }, i) => (
-                            <li key={i} data-section={section} className={cn('nav__list-item', { 'nav__list-item_active': pageNumber === i })}>
+                        links.map(({ text, link }: INavItem, i: number) => (
+                            <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageNumber === i })}>
                                 <Link to={link} className={cn('nav__link')}>
                                     {text}
                                 </Link>

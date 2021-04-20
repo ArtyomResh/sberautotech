@@ -9,9 +9,9 @@ import { useClassnames } from '../../hooks/use-classnames';
 import style from './index.css';
 
 const LINKS = [
-    { text: 'О компании', link: '/#1', section: '#section1' },
-    { text: 'Беспилотник', link: '/#2', section: '#section2' },
-    { text: 'Карьера', link: '/career', section: '#section3' }
+    { text: 'О компании', link: '/#1' },
+    { text: 'Беспилотник', link: '/#2' },
+    { text: 'Карьера', link: '/career' }
 ];
 
 const Layout = ({ children, seo, theme, pageNumber }) => {
