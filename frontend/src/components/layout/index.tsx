@@ -8,30 +8,37 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-const Layout = ({ children, seo, theme }) => {
+const LINKS = [
+    { text: 'О компании', link: '/#1' },
+    { text: 'Беспилотник', link: '/#2' },
+    { text: 'Карьера', link: '/career' }
+];
+
+const Layout = ({ children, seo, theme, pageNumber }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const cn = useClassnames(style);
+
     return (
         <StaticQuery
             query={graphql`
-      query {
-        strapiHomepage {
-          seo {
-            metaTitle
-            metaDescription
-          }
-        }
-      }
-    `}
+              query {
+                strapiHomepage {
+                  seo {
+                    metaTitle
+                    metaDescription
+                  }
+                }
+              }
+            `}
             render={() => (
                 <div className={cn('app__wrapper')}>
                     <Seo seo={seo} />
-                    <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} />
+                    <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} />
                     <main>{children}</main>
                     {isPopupVisible ? (
-                      <React.Fragment>
-                        POPUP!
-                      </React.Fragment>
+                        <React.Fragment>
+                            POPUP!
+                        </React.Fragment>
                     ) : null}
                 </div>
             )}

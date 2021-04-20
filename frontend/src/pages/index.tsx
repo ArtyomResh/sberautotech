@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
+import ReactPageScroller from 'react-page-scroller';
 
 import Layout from '../components/layout';
-import MainPageBlock from '../components/main-page-block';
+import MainPageBlock, { IBlock } from '../components/main-page-block';
 
 const query = graphql`
   query {
@@ -38,24 +39,21 @@ const query = graphql`
 `;
 
 const IndexPage = () => {
+    const [pageNumber, setPageNumber] = useState(0);
     const data = useStaticQuery(query);
+    const blocks = data.allStrapiBlock.edges.sort((a, b) => a.node.position - b.node.position);
 
-    const blocks = data.allStrapiBlock.edges.sort((a, b) => {
-      if (a.node.position > b.node.position) {
-        return 1;
-      }
-      return -1;
-    });
+    const handlePageChange = (pageNumber: number) => {
+        setPageNumber(pageNumber);
+    };
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'light', logoColor: 'white'}}>
-            {
-                blocks.map(
-                    ({ node }, i: number) => (
-                        <MainPageBlock key={i} data={node}/>
-                    )
-                )
-            }
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: 'white' }} pageNumber={pageNumber}>
+            <ReactPageScroller pageOnChange={handlePageChange}>
+                {blocks.map(({ node }: { node: IBlock }, i: number) => (
+                    <MainPageBlock key={i} block={node} />
+                ))}
+            </ReactPageScroller>
         </Layout>
     );
 };
