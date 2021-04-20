@@ -4,6 +4,9 @@ import React from 'react';
 import Layout from '../components/layout';
 import MainBlock from '../components/self-driving-cars-main'
 import Swiper from '../components/self-driving-cars-swiper'
+import Carousel from '../components/self-driving-cars-carousel'
+
+import 'swiper/swiper-bundle.css';
 
 const query = graphql`
   query {
@@ -56,6 +59,7 @@ const SelfDrivingCar = () => {
     const {double_block, story_cards, slider_items } = data.allStrapiSelfDrivingCar.edges[0].node;
 
 
+
     // return (
     //     <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
     //         <MainBlock data={double_block}/>
@@ -66,6 +70,7 @@ const SelfDrivingCar = () => {
         <>
             <MainBlock data={double_block}/>
             <Swiper data={story_cards} />
+            <Carousel data={slider_items} />
         </>
     );
 };

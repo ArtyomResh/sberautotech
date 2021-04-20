@@ -4,7 +4,7 @@ import Swiper from 'swiper';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
-import 'swiper/swiper-bundle.css';
+
 interface IProps {
     data: any
 }
