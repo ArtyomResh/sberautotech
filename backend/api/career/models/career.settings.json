@@ -13,6 +13,9 @@
   "attributes": {
     "slider_items": {
       "collection": "slider-item"
+    },
+    "list": {
+      "model": "list"
     }
   }
 }

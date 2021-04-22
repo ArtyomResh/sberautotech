@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "list-items",
+  "info": {
+    "name": "ListItem"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "target": {
+      "type": "string"
+    },
+    "header": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "subDescriptionFirst": {
+      "type": "text"
+    },
+    "subDescriptionSecond": {
+      "type": "text"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    }
+  }
+}

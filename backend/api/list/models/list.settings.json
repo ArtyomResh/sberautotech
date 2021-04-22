@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lists",
+  "info": {
+    "name": "List",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "header": {
+      "type": "text"
+    },
+    "list_items": {
+      "columnName": "list_items",
+      "collection": "list-item"
+    }
+  }
+}

@@ -26,6 +26,7 @@ const query = graphql`
           link {
             text
             to
+            style
           }
           cards {
             text

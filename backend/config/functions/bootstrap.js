@@ -11,6 +11,8 @@ const {
   doubleBlocks,
   storyCards,
   sliderItems,
+  lists,
+  listItems,
   SelfDrivingCar,
   Career
 } = require("../../data/data.json");
@@ -204,6 +206,24 @@ async function importStoryCards(shouldImportSeedData) {
   });
 }
 
+async function importLists(shouldImportSeedData) {
+  return lists.map(async (list) => {
+    if (shouldImportSeedData) {
+      return await createEntry({ model: "list", entry: list });
+    }
+    return await updateEntry({ model: "list", entry: list });
+  });
+}
+
+async function importListItems(shouldImportSeedData) {
+  return listItems.map(async (listItem) => {
+    if (shouldImportSeedData) {
+      return await createEntry({ model: "list-item", entry: listItem });
+    }
+    return await updateEntry({ model: "list-item", entry: listItem });
+  });
+}
+
 async function importSeedData(shouldImportSeedData) {
   // Allow read of application content types
   await setPublicPermissions({
@@ -215,15 +235,19 @@ async function importSeedData(shouldImportSeedData) {
     card: ['find', 'findone'],
     'double-block': ['find', 'findone'],
     'slider-item': ['find', 'findone'],
-    'story-card': ['find', 'findone']
+    'story-card': ['find', 'findone'],
+    list: ['find', 'findone'],
+    'list-item': ['find', 'findone']
   });
 
   // Create or update all entries
-  await importCards(shouldImportSeedData);
   await importBlocks(shouldImportSeedData);
+  await importCards(shouldImportSeedData);
   await importSliderItems(shouldImportSeedData);
   await importStoryCards(shouldImportSeedData);
   await importDoubleBlocks(shouldImportSeedData);
+  await importLists(shouldImportSeedData);
+  await importListItems(shouldImportSeedData);
 
   // Create or update all pages
   await importHomepage(shouldImportSeedData);
@@ -235,14 +259,12 @@ async function importSeedData(shouldImportSeedData) {
 module.exports = async () => {
   const shouldImportSeedData = await isFirstRun();
 
-  // if (shouldImportSeedData) {
-    try {
-      console.log('Setting up your starter...');
-      await importSeedData(shouldImportSeedData);
-      console.log('Ready to go');
-    } catch (error) {
-      console.log('Could not import seed data');
-      console.error(error);
-    // }
+  try {
+    console.log('Setting up your starter...');
+    await importSeedData(shouldImportSeedData);
+    console.log('Ready to go');
+  } catch (error) {
+    console.log('Could not import seed data');
+    console.error(error);
   }
 };

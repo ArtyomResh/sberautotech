@@ -28,6 +28,27 @@ const query = graphql`
         }
       }
     }
+    allStrapiList(filter: {id: {eq: "List_1"}}) {
+      edges {
+        node {
+          list_items {
+            description
+            header
+            link {
+              style
+              text
+              to
+            }
+            id
+            subDescriptionFirst
+            subDescriptionSecond
+            target
+          }
+          header
+          id
+        }
+      }
+    }
   }
 `;
 
