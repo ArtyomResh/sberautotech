@@ -20,15 +20,18 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-helmet": "6.0.0",
+    "react-hook-form": "^7.2.3",
     "react-markdown": "4.3.1",
     "react-moment": "0.9.7",
-    "react-page-scroller": "2.1.0"
+    "react-page-scroller": "2.1.0",
+    "react-select": "^4.3.0"
   },
   "devDependencies": {
     "@types/classnames": "2.2.11",
     "@types/node": "14.14.37",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
+    "@types/react-select": "^4.0.15",
     "postcss": "8.2.9",
     "postcss-import": "14.0.0",
     "postcss-loader": "4.1.0",

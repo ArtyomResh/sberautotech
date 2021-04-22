@@ -1,0 +1,77 @@
+.field {
+
+    &__input {
+        width: 335px;
+        height: 80px;
+        border-radius: 15px;
+        box-sizing: border-box;
+        border: 1px solid #5D6D78;
+        background-color: transparent;
+        outline: none;
+        padding: 20px 15px 30px 15px;
+        font-size: 24px;
+        line-height: 125%;
+        letter-spacing: -0.01em;
+        color: #000000;
+
+        &_filled {
+            border: 2px solid #10181F;
+        }
+
+        &::placeholder {
+            font-size: 18px;
+            color: #43515C;
+            position: absolute;
+            left: 15px;
+            right: 15px;
+            top: 20px;
+        }
+
+        &:hover {
+            border: 2px solid #10181F;
+        }
+
+        &:focus {
+            border: 2px solid #10181F;
+
+            &::placeholder {
+                color: transparent;
+            }
+        }
+
+        &_file {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #43515C;
+            height: 60px;
+            width: 335px;
+            border-radius: 15px;
+            font-size: 22px;
+            line-height: 125%;
+            letter-spacing: -0.01em;
+            color: #FFFFFF;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 16px 16px 14px 16px;
+
+            &:hover {
+                background-color: #0E8AE8;
+            }
+        }
+
+        &_file-title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            height: 30px;
+            color: #C0CCD5;
+        }
+
+        &_file-ext {
+            color: #C0CCD5;
+            height: 30px;
+        }
+    }
+}

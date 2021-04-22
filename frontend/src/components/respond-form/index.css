@@ -1,0 +1,47 @@
+.respond-form {
+    background-color: #C0CCD5;
+    display: flex;
+    padding: 40px 20px 38px 20px;
+    justify-content: space-between;
+}
+
+.text-block {
+    width: 568px;
+    height: 147px;
+
+    &__title {
+        font-weight: 400;
+        font-size: 45px;
+        line-height: 105%;
+        letter-spacing: -0.02em;
+    }
+}
+
+.right-block {
+    display: flex;
+    flex-direction: column;
+
+    &__inputs {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__top-section, &__bottom-section {
+        display: flex;
+        margin-bottom: 20px;
+        justify-content: space-between;
+    }
+
+    &__checkbox-wrapper {
+        margin-top: 20px;
+    }
+
+    &__button-section {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.top {
+    
+}

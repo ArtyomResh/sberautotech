@@ -4,6 +4,7 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import Nav from '../nav';
 import Seo from '../seo';
+import RespondForm from '../respond-form';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
@@ -37,7 +38,7 @@ const Layout = ({ children, seo, theme, pageNumber }) => {
                     <main>{children}</main>
                     {isPopupVisible ? (
                         <React.Fragment>
-                            POPUP!
+                            <RespondForm/>
                         </React.Fragment>
                     ) : null}
                 </div>
