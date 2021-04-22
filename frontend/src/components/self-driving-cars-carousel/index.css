@@ -45,12 +45,8 @@
         color: var(--color-white);
         z-index: 2;
     }
-}
 
-@media screen and (min-width: 1400px) {
-
-    .carousel {
-        height: auto;
+    @media screen and (min-width: 1400px) {
 
         &__header {
             top: 44px;
