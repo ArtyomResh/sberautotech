@@ -6,7 +6,20 @@ import { useClassnames } from '../../hooks/use-classnames';
 import style from './index.css';
 
 interface IProps {
-    data: any
+    data: Array<ISliderItem>
+}
+
+export interface ILocalFile {
+    localFile: {
+        publicURL: string
+    }
+}
+interface ISliderItem {
+    id: number,
+    text: string,
+    header: string,
+    headerLink: string,
+    background: ILocalFile
 }
 
 const Carousel: React.FC<IProps> = ({ data }) => {
@@ -29,7 +42,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     return (
         <div className={cn('carousel-container', 'carousel')}>
             <div className={cn('swiper-wrapper')}>
-                {data.map((slide: any) => (
+                {data.map((slide) => (
                     <div key={slide.header} className={cn('swiper-slide', 'carousel__slide')}>
                         <div className={cn('carousel__slide-container')}>
                             <div className={cn('carousel__img-container')}>

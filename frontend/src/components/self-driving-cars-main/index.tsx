@@ -1,11 +1,20 @@
 import React, { useRef } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import { ILocalFile } from '../self-driving-cars-carousel';
 
 import style from './index.css';
 interface IProps {
-    data: any
+    data: {
+        header: string,
+        id: number,
+        text: string,
+        textBottom: string,
+        bottomVideo: ILocalFile,
+        topBackground: ILocalFile
+    }
 }
+
 
 const MainBlock: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
@@ -13,7 +22,11 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
 
     const toggleVideo = () => {
         if(videoRef.current) {
-            videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause();
+            if(videoRef.current.paused) {
+                return void videoRef.current.play();
+            }
+
+            void videoRef.current.pause();
         }
     };
 

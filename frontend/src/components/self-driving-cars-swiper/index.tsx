@@ -2,10 +2,18 @@ import React, { useEffect } from 'react';
 import Swiper from 'swiper';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import { ILocalFile } from '../self-driving-cars-carousel';
 
 import style from './index.css';
+
 interface IProps {
-    data: any
+    data: Array<ISlideItem>
+}
+interface ISlideItem{
+    id: number,
+    header: string,
+    text: string,
+    image: ILocalFile
 }
 
 const SwiperComponent: React.FC<IProps> = ({ data }) => {
@@ -25,7 +33,7 @@ const SwiperComponent: React.FC<IProps> = ({ data }) => {
         };
     }, []);
 
-    const slideEl = (swipable: boolean) => (slide: any, idx: number) => (
+    const slideEl = (swipable: boolean) => (slide: ISlideItem) => (
         <div
             key={slide.id} className={cn('swiper__slide', {
                 'swiper-slide': swipable
