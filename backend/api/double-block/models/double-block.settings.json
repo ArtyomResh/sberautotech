@@ -25,7 +25,10 @@
       "plugin": "upload",
       "required": false
     },
-    "bottomBackground": {
+    "text": {
+      "type": "string"
+    },
+    "bottomVideo": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
@@ -36,8 +39,8 @@
       "plugin": "upload",
       "required": false
     },
-    "text": {
-      "type": "text"
+    "textBottom": {
+      "type": "string"
     }
   }
 }

@@ -10,7 +10,7 @@ import style from './index.css';
 
 const LINKS = [
     { text: 'О компании', link: '/#1' },
-    { text: 'Беспилотник', link: '/#2' },
+    { text: 'Беспилотник', link: '/self-driving-car' },
     { text: 'Карьера', link: '/career' }
 ];
 
