@@ -2,6 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
 import Layout from '../components/layout';
+import Footer from '../components/footer';
 
 const query = graphql`
   query {
@@ -55,12 +56,11 @@ const query = graphql`
 const Career = () => {
     const data = useStaticQuery(query);
 
-    console.log(data);
-
     return (
         <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
             <h1>CAREER</h1>
             <p>CAREER</p>
+            <Footer />
         </Layout>
     );
 };

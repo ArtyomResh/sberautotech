@@ -24,8 +24,6 @@ export interface IBlock {
 
 const MainPageBlock = ({ block }: { block: IBlock }) => {
     const cn = useClassnames(style);
-
-    console.log(block);
     const linkStyle = block.link?.style || 'border';
     const text = useMemo(() => (
         block.text.replace('{', '<span>').replace('}', '</span>')

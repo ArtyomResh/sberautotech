@@ -14,7 +14,7 @@ const LINKS = [
     { text: 'Карьера', link: '/career' }
 ];
 
-const Layout = ({ children, seo, theme, pageNumber }) => {
+const Layout = ({ children, seo, theme }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const cn = useClassnames(style);
 
@@ -33,7 +33,7 @@ const Layout = ({ children, seo, theme, pageNumber }) => {
             render={() => (
                 <div className={cn('app__wrapper')}>
                     <Seo seo={seo} />
-                    <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} />
+                    <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} />
                     <main>{children}</main>
                     {isPopupVisible ? (
                         <React.Fragment>
