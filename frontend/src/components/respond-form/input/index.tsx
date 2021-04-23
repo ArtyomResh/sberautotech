@@ -9,23 +9,28 @@ import { useClassnames } from '../../../hooks/use-classnames';
 type TInputType = 'text' | 'email' | 'file';
 
 interface IProps {
-    type?: TInputType;
-    placeholder?: string;
-    ref?: React.Ref<HTMLInputElement>;
+    type?: TInputType,
+    placeholder?: string,
+    name?: string,
+    ref?: React.Ref<HTMLInputElement>
 }
 
-const Input = ({ type, placeholder, ref }: IProps) => {
+interface IState {
+    fileName: string | undefined,
+    fileExtension: string | undefined
+}
+
+const Input = ({ type, placeholder, ref, name }: IProps) => {
     const cn = useClassnames(style);
 
     const [fill, setFill] = useState<string | null>('');
-    const [file, setFile] = useState<string | undefined>('');
-    const [fileExtension, setFileExtension] = useState<string | undefined>('');
+    const [file, setFile] = useState<IState>({ fileName: '', fileExtension: '' });
 
-    const fillerHandler = useCallback((e: React.ChangeEvent) => setFill(e.target.value), [fill]);
+    const fillerHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => setFill(e.target.value), [fill]);
 
     const inputFile = useRef<HTMLInputElement>(null);
 
-    const handler = (e: React.ChangeEvent) => {
+    const handler = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
         if(inputFile.current) {
@@ -33,19 +38,18 @@ const Input = ({ type, placeholder, ref }: IProps) => {
         }
     };
 
-    const onChangeHandler = (e: React.ChangeEvent) => {
+    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target as HTMLInputElement;
         const inputFile: File | null = input.files ? input.files[0] : null;
         const fileExtension = inputFile?.name.split('.').pop();
         const fileName = inputFile?.name.split('.').shift();
 
-        setFile(fileName);
-        setFileExtension(fileExtension);
+        setFile({ fileName, fileExtension });
     };
 
-    const cancelFileHandler = (e) => {
+    const cancelFileHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
-        setFile('');
+        setFile({ fileName: '', fileExtension: '' });
     };
 
 
@@ -56,14 +60,15 @@ const Input = ({ type, placeholder, ref }: IProps) => {
                     type="file"
                     hidden={true}
                     ref={inputFile}
+                    name={name}
                     onChange={onChangeHandler}
                 />
                 <button
                     className={cn('field__input_file')}
                     onClick={handler}
-                ><span className={cn({ 'field__input_file-title': file })}>{file ? file : 'Прикрепить файл'}</span>
-                    <span className={cn('field__input_file-ext')}>{file ? `.${fileExtension}` : null}</span>
-                    <div className={cn('field__input_file-cross')} onClick={cancelFileHandler}>{file ? <Cross /> : null}</div>
+                ><span className={cn({ 'field__input_file-title': file.fileName })}>{file.fileName ? file.fileName : 'Прикрепить файл'}</span>
+                    <span className={cn('field__input_file-ext')}>{file.fileExtension ? `.${file.fileExtension}` : null}</span>
+                    <div className={cn('field__input_file-cross')} onClick={cancelFileHandler}>{file.fileName ? <Cross /> : null}</div>
                 </button>
             </div>
         );
@@ -76,6 +81,7 @@ const Input = ({ type, placeholder, ref }: IProps) => {
                 type={type}
                 placeholder={placeholder}
                 onChange={fillerHandler}
+                name={name}
                 ref={ref}
             />
         </div>
