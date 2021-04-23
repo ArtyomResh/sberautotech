@@ -170,7 +170,7 @@ async function importDoubleBlocks(shouldImportSeedData) {
   return doubleBlocks.map(async (block) => {
     const files = {
       topBackground: getFileData(block.topBackgroundName),
-      bottomBackground: getFileData(block.bottomBackgroundName),
+      bottomVideo: getFileData(block.bottomVideoName),
     };
     if (shouldImportSeedData) {
       return await createEntry({ model: "double-block", entry: block, files });

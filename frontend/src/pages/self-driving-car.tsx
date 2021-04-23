@@ -2,6 +2,11 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
 import Layout from '../components/layout';
+import MainBlock from '../components/self-driving-cars-main';
+import Swiper from '../components/self-driving-cars-swiper';
+import Carousel from '../components/self-driving-cars-carousel';
+
+import 'swiper/swiper-bundle.css';
 
 const query = graphql`
   query {
@@ -19,11 +24,16 @@ const query = graphql`
             header
             id
             text
-            bottomBackground {
-              publicURL
+            textBottom
+            bottomVideo {
+              localFile {
+                publicURL
+              }
             }
             topBackground {
-              publicURL
+              localFile {
+                publicURL
+              }
             }
           }
           story_cards {
@@ -31,15 +41,20 @@ const query = graphql`
             id
             text
             image {
-              publicURL
+              localFile {
+                publicURL
+              }
             }
           }
           slider_items {
+            headerLink
             header
             id
             text
             background {
-              publicURL
+              localFile {
+                publicURL
+              }
             }
           }
         }
@@ -50,11 +65,13 @@ const query = graphql`
 
 const SelfDrivingCar = () => {
     const data = useStaticQuery(query);
-    console.log(data)
+    const { double_block, story_cards, slider_items } = data.allStrapiSelfDrivingCar.edges[0].node;
+
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{mode: 'dark', logoColor: '#040A0A'}}>
-            <h1>SelfDrivingCar</h1>
-            <p>SelfDrivingCar</p>
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={1}>
+            <MainBlock data={double_block} />
+            <Swiper data={story_cards} />
+            <Carousel data={slider_items} />
         </Layout>
     );
 };

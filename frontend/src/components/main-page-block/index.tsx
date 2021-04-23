@@ -9,7 +9,9 @@ import style from './index.css';
 export interface IBlock {
     position: string,
     background: {
-        publicURL: string
+        localFile: {
+            publicURL: string
+        }
     },
     link?: {
         to: string,
@@ -29,7 +31,7 @@ const MainPageBlock = ({ block }: { block: IBlock }) => {
 
     return (
         <div className={cn('block__wrapper')} id={block.position}>
-            <img src={block.background.publicURL} className={cn('block__image')} alt="" />
+            <img src={block.background.localFile.publicURL} className={cn('block__image')} alt={block.link?.text} />
             {block.link && (
                 <Link to={block.link.to} className={cn('block__link', `block__link_${linkStyle}`)}>
                     {block.link.text}
