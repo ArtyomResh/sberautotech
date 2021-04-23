@@ -30,7 +30,7 @@
 
         &:checked {
             background-position: center;
-            background-image: url("./icon/checkbox-checked.svg");
+            /* background-image: url("./icon/checkbox-checked.svg"); */
         }
     }
 }

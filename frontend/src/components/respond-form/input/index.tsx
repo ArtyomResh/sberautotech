@@ -5,6 +5,7 @@ import style from './index.css';
 import Cross from './cross';
 
 import { useClassnames } from '../../../hooks/use-classnames';
+import { useFormContext } from 'react-hook-form';
 
 type TInputType = 'text' | 'email' | 'file';
 
@@ -21,6 +22,7 @@ interface IState {
 }
 
 const Input = ({ type, placeholder, ref, name }: IProps) => {
+    const { register } = useFormContext();
     const cn = useClassnames(style);
 
     const [fill, setFill] = useState<string | null>('');
@@ -58,18 +60,24 @@ const Input = ({ type, placeholder, ref, name }: IProps) => {
             <div className={cn('field')}>
                 <input
                     type="file"
+                    id="file"
                     hidden={true}
-                    ref={inputFile}
-                    name={name}
+                    // TODO VALIDATION
+                    {...register(name)}
                     onChange={onChangeHandler}
                 />
-                <button
+                <label htmlFor="file" className={cn('field__input_file')}>
+                    <span className={cn({ 'field__input_file-title': file.fileName })}>{file.fileName ? file.fileName : 'Прикрепить файл'}</span>
+                    <span className={cn('field__input_file-ext')}>{file.fileExtension ? `.${file.fileExtension}` : null}</span>
+                    <div className={cn('field__input_file-cross')} onClick={cancelFileHandler}>{file.fileName ? <Cross /> : null}</div>
+                </label>
+                {/* <button
                     className={cn('field__input_file')}
                     onClick={handler}
                 ><span className={cn({ 'field__input_file-title': file.fileName })}>{file.fileName ? file.fileName : 'Прикрепить файл'}</span>
                     <span className={cn('field__input_file-ext')}>{file.fileExtension ? `.${file.fileExtension}` : null}</span>
                     <div className={cn('field__input_file-cross')} onClick={cancelFileHandler}>{file.fileName ? <Cross /> : null}</div>
-                </button>
+                </button> */}
             </div>
         );
     }
@@ -80,9 +88,8 @@ const Input = ({ type, placeholder, ref, name }: IProps) => {
                 className={cn('field__input', { 'field__input_filled': fill })}
                 type={type}
                 placeholder={placeholder}
-                onChange={fillerHandler}
-                name={name}
-                ref={ref}
+                // TODO VALIDATION
+                {...register(name)}
             />
         </div>
     );

@@ -1,16 +1,16 @@
 import React from 'react';
-// import ReactSelect from 'react-select';
-// // import { customStyles } from './config';
+import ReactSelect from 'react-select';
+import { customStyles } from './config';
 
 import style from './index.css';
 
 import { useClassnames } from '../../../hooks/use-classnames';
 
-// const options = [
-//     { value: 'chocolate', label: 'Chocolate' },
-//     { value: 'strawberry', label: 'Strawberry' },
-//     { value: 'vanilla', label: 'Vanilla' }
-// ];
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+];
 
 // const customStyles = {
 //     option: (provided, state) => ({
@@ -61,21 +61,22 @@ const MyComponent = () => {
     const cn = useClassnames(style);
 
     return (
+        <div className={cn('field')} >
 
-        // <ReactSelect options={options} {...customStyles} />
-        <div className={cn('wrapper')} >
-            <select name="" id="" className={cn('select')}>
-                <option value="">One</option>
-                <option value="">Two</option>
-                <option value="">Three</option>
-                <option value="">Four</option>
-                <option value="">Five</option>s
-                <option value="">Six</option>
-                <option value="">Seven</option>
-                <option value="">Eight</option>
-                <option value="">Nine</option>
-                <option value="">Ten</option>
-            </select>
+
+            <ReactSelect options={options} styles={customStyles} />
+            {/* <select name="" id="" className={cn('select')}>
+                 <option value="">One</option>
+                 <option value="">Two</option>
+                 <option value="">Three</option>
+                 <option value="">Four</option>
+                 <option value="">Five</option>s
+                 <option value="">Six</option>
+                 <option value="">Seven</option>
+                 <option value="">Eight</option>
+                 <option value="">Nine</option>
+                 <option value="">Ten</option>
+             </select> */}
         </div>
     );
 };
