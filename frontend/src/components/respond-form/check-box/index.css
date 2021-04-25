@@ -1,4 +1,4 @@
-.radio-button {
+.check-box {
 
     &__label {
         display: inline-block;
@@ -28,9 +28,13 @@
         box-sizing: border-box;
         background-repeat: no-repeat;
 
+        &_error {
+            border: 1px solid #FF364D;
+        }
+
         &:checked {
             background-position: center;
-            /* background-image: url("./icon/checkbox-checked.svg"); */
+            background-image: url("./icon/checkbox-checked.svg");
         }
     }
 }

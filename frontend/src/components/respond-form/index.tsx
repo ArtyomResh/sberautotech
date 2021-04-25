@@ -14,7 +14,8 @@ import style from './index.css';
 const RespondForm = () => {
     const cn = useClassnames(style);
     const context = useForm({
-        mode            : 'onChange',
+        mode            : 'onSubmit',
+        reValidateMode  : 'onChange',
         shouldFocusError: true,
         defaultValues   : {}
     });
@@ -31,20 +32,20 @@ const RespondForm = () => {
                 <div className={cn('right-block')}>
                     <div className={cn('right-block__inputs')}>
                         <div className={cn('right-block__top-section')}>
-                            <Input type="text" placeholder="Имя" name="name" />
-                            <Input type="text" placeholder="Фамилия" name="surname" />
+                            <Input type="text" placeholder="Имя" name="name" pattern={/^[A-Za-z]+$/i} requiredValidation={true} />
+                            <Input type="text" placeholder="Фамилия" name="surname" pattern={/^[A-Za-z]+$/i} requiredValidation={true} />
                         </div>
                         <div className={cn('right-block__bottom-section')}>
-                            <Input type="email" placeholder="Почта" name="email" />
+                            <Input type="email" placeholder="Почта" name="email" pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} requiredValidation={true} />
                             <MyComponent />
                         </div>
                     </div>
-                    <Textarea placeholder="Опишите свой опыт" />
+                    <Textarea name="textarea" placeholder="Опишите свой опыт" />
                     <div className={cn('right-block__checkbox-wrapper')}>
-                        <CheckBox label="Я соглашаюсь передать свои персональные данные, содержащиеся в анкете и всех приложенных файлах" />
+                        <CheckBox name="acception" requiredValidation={true} label="Я соглашаюсь передать свои персональные данные, содержащиеся в анкете и всех приложенных файлах" />
                     </div>
                     <div className={cn('right-block__button-section')}>
-                        <Input type="file" placeholder="Фаил" name="file" />
+                        <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
                         <Button type="submit" label="Отправить" />
                     </div>
                 </div>
