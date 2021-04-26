@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Nav from '../nav';
 import Seo from '../seo';
+import RespondForm from '../respond-form';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
@@ -23,9 +24,7 @@ const Layout = ({ children, seo, theme, pageNumber }) => {
             <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} />
             <main>{children}</main>
             {isPopupVisible ? (
-                <React.Fragment>
-                    POPUP!
-                </React.Fragment>
+                <RespondForm setIsPopupVisible={setIsPopupVisible} />
             ) : null}
         </div>
     );
