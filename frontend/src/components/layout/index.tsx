@@ -37,9 +37,7 @@ const Layout = ({ children, seo, theme, pageNumber }) => {
                     <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} />
                     <main>{children}</main>
                     {isPopupVisible ? (
-                        <React.Fragment>
-                            <RespondForm/>
-                        </React.Fragment>
+                        <RespondForm setIsPopupVisible={setIsPopupVisible} />
                     ) : null}
                 </div>
             )}
