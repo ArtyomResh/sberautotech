@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_shared_double_blocks",
+  "info": {
+    "name": "DoubleBlock",
+    "icon": "check-double"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "string"
+    },
+    "topBackground": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "bottomVideo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "textBottom": {
+      "type": "text"
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}

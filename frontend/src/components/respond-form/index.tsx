@@ -70,7 +70,7 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
                             </div>
                         </div>
                     </div>
-                    <div className={cn('right-block__field-wrapper')}>
+                    <div className={cn('right-block__textarea-wrapper')}>
                         <Textarea name="textarea" placeholder="Опишите свой опыт" requiredValidation={true} />
                     </div>
                     <div className={cn('right-block__checkbox-wrapper')}>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import ReactPageScroller from 'react-page-scroller';
 
 import Layout from '../components/layout';
-import MainPageBlock, { IBlock } from '../components/main-page-block';
+import MainPageBlock from '../components/main-page-block';
 
 const query = graphql`
   query {
@@ -13,29 +13,74 @@ const query = graphql`
         metaDescription
       }
     }
-    allStrapiBlock {
+    allStrapiHomepage {
       edges {
         node {
-          id
-          text
-          background {
-            localFile {
-              publicURL
+          first_screen {
+            background {
+              localFile {
+                publicURL
+              }
+              id
             }
-          }
-          link {
             text
-            to
+            id
           }
-          cards {
+          second_screen {
+            background {
+              localFile {
+                publicURL
+              }
+              id
+            }
+            cards {
+              id
+              text
+              image {
+                localFile {
+                  publicURL
+                }
+                id
+              }
+            }
+            id
+            link {
+              style
+              text
+              to
+              id
+            }
             text
-            image {
+          }
+          third_screen {
+            background {
+              id
               localFile {
                 publicURL
               }
             }
+            header
+            id
+            subheader
+            text
           }
-          position
+          fourth_screen {
+            background {
+              localFile {
+                publicURL
+              }
+              id
+            }
+            text
+            link {
+              style
+              text
+              to
+              id
+            }
+            id
+          }
+          id
         }
       }
     }
@@ -45,7 +90,7 @@ const query = graphql`
 const IndexPage = () => {
     const [pageNumber, setPageNumber] = useState(0);
     const data = useStaticQuery(query);
-    const blocks = data.allStrapiBlock.edges.sort((a, b) => a.node.position - b.node.position);
+    const screens = data.allStrapiHomepage.edges[0].node;
 
     const handlePageChange = (pageNumber: number) => {
         setPageNumber(pageNumber);
@@ -53,10 +98,14 @@ const IndexPage = () => {
 
     return (
         <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: 'white' }} pageNumber={pageNumber}>
-            <ReactPageScroller pageOnChange={handlePageChange}>
-                {blocks.map(({ node }: { node: IBlock }, i: number) => (
-                    <MainPageBlock key={i} block={node} />
-                ))}
+            <ReactPageScroller
+                pageOnChange={handlePageChange}
+            >
+                <MainPageBlock block={screens.first_screen[0]} />
+                <MainPageBlock block={screens.second_screen[0]} />
+                {/* TODO Add new screen */}
+                {/* <MainPageBlock block={blocks.third_screen[0]} /> */}
+                <MainPageBlock block={screens.fourth_screen[0]} />
             </ReactPageScroller>
         </Layout>
     );

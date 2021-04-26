@@ -57,6 +57,20 @@ const query = graphql`
               }
             }
           }
+          footer {
+            description
+            disclaimer
+            firstPhone
+            header
+            link {
+              style
+              text
+              to
+            }
+            privacyPolicyLink
+            publicOfferLink
+            secondPhone
+          }
         }
       }
     }

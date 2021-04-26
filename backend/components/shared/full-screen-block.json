@@ -1,25 +1,20 @@
 {
-  "kind": "collectionType",
-  "collectionName": "blocks",
+  "collectionName": "components_shared_full_screen_blocks",
   "info": {
-    "name": "block",
-    "description": ""
+    "name": "FullScreenBlock",
+    "icon": "square-full"
   },
-  "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": false
-  },
+  "options": {},
   "attributes": {
     "text": {
-      "type": "text",
-      "required": true
+      "type": "string"
     },
     "background": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
         "images",
+        "files",
         "videos"
       ],
       "plugin": "upload",
@@ -31,11 +26,9 @@
       "component": "shared.link"
     },
     "cards": {
-      "collection": "card"
-    },
-    "position": {
-      "type": "integer",
-      "required": true
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.cards"
     }
   }
 }
