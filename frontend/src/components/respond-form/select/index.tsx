@@ -1,21 +1,30 @@
 import React from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
 import ReactSelect, { Props } from 'react-select';
 import { customStyles } from './config';
 
 
-const Select = ({ placeholder, name, ref, value, options }: Props) => {
+const Select = React.forwardRef(({ placeholder, name, value, options }: Props, ref) => {
+    const { control } = useFormContext();
+
     return (
-        <ReactSelect
-            placeholder={placeholder}
-            inputRef={ref}
-            value={value}
+        <Controller
+            control={control}
             name={name}
-            options={options}
-            styles={customStyles}
-            classNamePrefix="ui-select"
-            isSearchable={false}
+            render={({ field }) => (
+                <ReactSelect
+                    {...field}
+                    placeholder={placeholder}
+                    inputRef={ref}
+                    value={value}
+                    options={options}
+                    styles={customStyles}
+                    classNamePrefix="ui-select"
+                    isSearchable={false}
+                />
+            )}
         />
     );
-};
+});
 
 export default Select;

@@ -51,7 +51,6 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
                 <input
                     type="file"
                     id="file"
-                    hidden={true}
                     {...register(name, { required: props.requiredValidation })}
                     onChange={onChangeHandler}
                 />
