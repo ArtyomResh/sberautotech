@@ -11,19 +11,25 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "double_block": {
-      "model": "double-block"
-    },
-    "slider_items": {
-      "collection": "slider-item"
-    },
-    "story_cards": {
-      "collection": "story-card"
-    },
     "footer": {
       "type": "component",
       "repeatable": false,
       "component": "shared.footer"
+    },
+    "double_block": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.double-block"
+    },
+    "story_cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.story-card"
+    },
+    "slider_items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.slider-item"
     }
   }
 }

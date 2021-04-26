@@ -6,11 +6,6 @@ const mime = require("mime-types");
 const {
   homepage,
   global,
-  blocks,
-  cards,
-  doubleBlocks,
-  storyCards,
-  sliderItems,
   SelfDrivingCar,
   Career
 } = require("../../data/data.json");
@@ -107,6 +102,27 @@ async function importHomepage(shouldImportSeedData) {
   const files = {
     "seo.shareImage": getFileData("default-image.png"),
   };
+  homepage['first_screen'].map((screenItem, i) => {
+    files[`first_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    screenItem['cards'].map((cardItem, k) => {
+      files[`first_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
+    })
+  });
+  homepage['second_screen'].map((screenItem, i) => {
+    files[`second_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    screenItem['cards'].map((cardItem, k) => {
+      files[`second_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
+    })
+  });
+  homepage['third_screen'].map((item, i) => {
+    files[`third_screen.${i}.background`] = getFileData(item.backgroundName)
+  });
+  homepage['fourth_screen'].map((screenItem, i) => {
+    files[`fourth_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    screenItem['cards'].map((cardItem, k) => {
+      files[`fourth_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
+    })
+  });
     
   if (shouldImportSeedData) {
     await createEntry({ model: "homepage", entry: homepage, files });
@@ -127,10 +143,20 @@ async function importGlobal(shouldImportSeedData) {
 }
 
 async function importSelfDrivingCar(shouldImportSeedData) {
+  const files = {
+    "double_block.topBackground": getFileData(SelfDrivingCar['double_block'].topBackgroundName),
+    "double_block.bottomVideo": getFileData(SelfDrivingCar['double_block'].bottomVideoName)
+  };
+  SelfDrivingCar['story_cards'].map((item, i) => {
+    files[`story_cards.${i}.image`] = getFileData(item.imageName)
+  });
+  SelfDrivingCar['slider_items'].map((item, i) => {
+    files[`slider_items.${i}.background`] = getFileData(item.backgroundName)
+  });
   if (shouldImportSeedData) {
-    await createEntry({ model: "self-driving-car", entry: SelfDrivingCar });
+    await createEntry({ model: "self-driving-car", entry: SelfDrivingCar, files });
   }
-  await updateEntry({ model: "self-driving-car", entry: SelfDrivingCar });
+  await updateEntry({ model: "self-driving-car", entry: SelfDrivingCar, files });
 }
 
 async function importCareer(shouldImportSeedData) {
@@ -148,31 +174,6 @@ async function importCareer(shouldImportSeedData) {
     }
     await updateEntry({ model: "career", entry: Career, files });
 
-}
-
-async function importCards(shouldImportSeedData) {
-  cards.map(async (card) => {
-    const files = {
-      image: getFileData(card.imageName),
-    };
-    if (shouldImportSeedData) {
-      await createEntry({ model: "card", entry: card, files });
-    }
-    await updateEntry({ model: "card", entry: card, files });
-  });
-}
-
-async function importBlocks(shouldImportSeedData) {
-  blocks.map(async (block) => {
-    const files = {
-      background: getFileData(block.backgroundName),
-    };
-
-    if (shouldImportSeedData) {
-      await createEntry({ model: "block", entry: block, files });
-    }
-    await updateEntry({ model: "block", entry: block, files });
-  });
 }
 
 async function importDoubleBlocks(shouldImportSeedData) {
@@ -219,22 +220,8 @@ async function importSeedData(shouldImportSeedData) {
     global: ['find'],
     homepage: ['find'],
     'self-driving-car': ['find'],
-    career: ['find'],
-    block: ['find', 'findone'],
-    card: ['find', 'findone'],
-    'double-block': ['find', 'findone'],
-    'slider-item': ['find', 'findone'],
-    'story-card': ['find', 'findone']
+    career: ['find']
   });
-
-  // Create or update all entries
-  await importBlocks(shouldImportSeedData);
-  await importCards(shouldImportSeedData);
-  await importSliderItems(shouldImportSeedData);
-  await importStoryCards(shouldImportSeedData);
-  await importDoubleBlocks(shouldImportSeedData);
-
-  // Create or update all pages
   await importHomepage(shouldImportSeedData);
   await importGlobal(shouldImportSeedData);
   await importSelfDrivingCar(shouldImportSeedData);

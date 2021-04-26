@@ -29,12 +29,6 @@ const query = graphql`
               target
             }
           }
-          top_list {
-            header
-            list_items {
-              header
-            }
-          }
           top_slider {
             background {
               localFile {
@@ -78,10 +72,9 @@ const query = graphql`
 const Career = () => {
     const data = useStaticQuery(query);
 
-    console.log(data);
-
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={2}>
+            {/* TODO Render contetn from data */}
             <h1>CAREER</h1>
             <p>CAREER</p>
         </Layout>

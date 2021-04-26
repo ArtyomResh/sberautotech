@@ -33,7 +33,7 @@
     },
     "third_screen": {
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "component": "shared.accordeon"
     }
   }
