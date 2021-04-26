@@ -58,6 +58,7 @@
         justify-content: space-between;
     }
 }
+
 @media (max-width: 765px) {
 
     .text-block {
@@ -93,5 +94,20 @@
         &__field-wrapper {
             margin-bottom: 20px;
         }
-    }   
+    }
+    
+    .check-box {
+        display: flex;
+
+        &__label {
+            width: 100%;
+        }
+    }
+
+    .input-file {
+
+        &__label span {
+            text-align: center;
+        }
+    }
 }
