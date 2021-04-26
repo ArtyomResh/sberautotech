@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from './input';
-import MyComponent from './select';
+import Select from './select';
+import { FormSelect } from './select/form-select';
 import Textarea from './textarea';
 import Button from './button';
 import CheckBox from './check-box';
@@ -10,6 +11,12 @@ import { useClassnames } from '../../hooks/use-classnames';
 import { useForm, FormProvider } from 'react-hook-form';
 
 import style from './index.css';
+
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+];
 
 const RespondForm = () => {
     const cn = useClassnames(style);
@@ -32,21 +39,35 @@ const RespondForm = () => {
                 <div className={cn('right-block')}>
                     <div className={cn('right-block__inputs')}>
                         <div className={cn('right-block__top-section')}>
-                            <Input type="text" placeholder="Имя" name="name" pattern={/^[A-Za-z]+$/i} requiredValidation={true} />
-                            <Input type="text" placeholder="Фамилия" name="surname" pattern={/^[A-Za-z]+$/i} requiredValidation={true} />
+                            <div className={cn('right-block__field-wrapper')}>
+                                <Input type="text" placeholder="Имя" name="name" pattern={/^[A-Za-z]+$/i} requiredValidation={true} />
+                            </div>
+                            <div className={cn('right-block__field-wrapper')}>
+                                <Input type="text" placeholder="Фамилия" name="surname" pattern={/^[A-Za-z]+$/i} requiredValidation={true} />
+                            </div>
                         </div>
                         <div className={cn('right-block__bottom-section')}>
-                            <Input type="email" placeholder="Почта" name="email" pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} requiredValidation={true} />
-                            <MyComponent />
+                            <div className={cn('right-block__field-wrapper')}>
+                                <Input type="email" placeholder="Почта" name="email" pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} requiredValidation={true} />
+                            </div>
+                            <div className={cn('right-block__field-wrapper')}>
+                                <Select name="direction" placeholder="Выберите направление" options={options} />
+                            </div>
                         </div>
                     </div>
-                    <Textarea name="textarea" placeholder="Опишите свой опыт" />
+                    <div className={cn('right-block__field-wrapper')}>
+                        <Textarea name="textarea" placeholder="Опишите свой опыт" requiredValidation={true} />
+                    </div>
                     <div className={cn('right-block__checkbox-wrapper')}>
                         <CheckBox name="acception" requiredValidation={true} label="Я соглашаюсь передать свои персональные данные, содержащиеся в анкете и всех приложенных файлах" />
                     </div>
                     <div className={cn('right-block__button-section')}>
-                        <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
-                        <Button type="submit" label="Отправить" />
+                        <div className={cn('right-block__field-wrapper')}>
+                            <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
+                        </div>
+                        <div className={cn('right-block__field-wrapper')}>
+                            <Button type="submit" label="Отправить" />
+                        </div>
                     </div>
                 </div>
             </form>

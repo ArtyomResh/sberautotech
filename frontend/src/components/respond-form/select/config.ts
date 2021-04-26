@@ -1,115 +1,74 @@
-// import { IColorConfig, ICustomStyles, IColorsThemesSet } from './types';
-export const colors = {
-    input: {
-        disabled: 'var(--color-gray-2-hover)',
-        focused : 'var(--color-input-background-focused)',
-        hovered : 'var(--color-input-background-hover)',
-        static  : 'var(--color-gray-4-input-background)'
-    },
+import { StylesConfig } from 'react-select';
 
-    text: {
-        disabled: 'var(--color-black-3-disabled)',
-        focused : 'var(--color-text-input)',
-        hovered : 'var(--color-text-input)',
-        static  : 'var(--color-white-1)'
-    },
-
-    icon: {
-        disabled: 'var(--color-black-1)',
-        focused : 'var(--color-black-1)',
-        hovered : 'var(--color-black-1)',
-        static  : 'var(--color-input-background-focused)'
-    }
-};
-
-export const customStyles = {
-    multiValueRemove: (provided) => ({
+export const customStyles: StylesConfig = {
+    container: (provided) => ({
         ...provided,
-        'padding'       : 0,
-        'width'         : 20,
-        'justifyContent': 'center'
-    }),
-    container: (provided, { isDisabled, isFocused }) => ({
-        ...provided,
-        'fontFamily'               : 'var(--font-family-primary)',
-        'fontStyle'                : 'normal',
-        'fontWeight'               : 'normal',
-        'fontSize'                 : '14px',
-        'boxShadow'                : 'none',
-        '& .ui-select__placeholder': {
-            // color: getColor({ isDisabled, isFocused, kind: 'text', theme: 'darkTheme' })
-        },
-        '&:hover .ui-select__placeholder': {
-            // color: getColor({ isDisabled, isFocused, isHovered: true, kind: 'text', theme: 'darkTheme' })
+        'width'                            : '100%',
+        '.ui-select__control--menu-is-open': {
+            'border'      : '2px solid #10181F',
+            'borderBottom': 'none'
         }
     }),
-    control: (provided, { isFocused, isDisabled }) => ({
+    control: (provided) => ({
         ...provided,
         'padding'     : '18px 0',
-        'cursor'      : isDisabled ? 'not-allowed' : 'pointer',
-        'color'       : 'var(--color-text-input)',
-        'borderRadius': '12px',
+        'cursor'      : 'pointer',
+        'borderRadius': '15px',
         'borderWidth' : '0px',
         'boxShadow'   : 'none',
         'outline'     : 'none',
-        'fontSize'    : '14px',
-        // 'background'  : getColor({ isDisabled, isFocused, kind: 'input', theme: 'darkTheme' }),
-        '&:hover'     : {
-            // 'background': getColor({ isDisabled, isFocused, isHovered: true, kind: 'input', theme: 'darkTheme' })
+        'fontSize'    : '24px',
+        'border'      : '1px solid #4E565E',
+        'background'  : '#C0CCD5',
+
+        '&:hover': {
+            'border': '2px solid black'
         },
 
         '& .ui-select__single-value': {
-            // color: getColor({ isDisabled, isFocused, kind: 'text', theme: 'darkTheme' })
+            'color': 'black'
         },
-        '&:hover .ui-select__single-value': {
-            // color: getColor({ isDisabled, isFocused, isHovered: true, kind: 'text', theme: 'darkTheme' })
-        },
+
         '& .ui-select__dropdwon-icon': {
             'marginRight': '12px',
             'width'      : '12px',
             'height'     : '12px'
-        },
-        '& .ui-select__dropdwon-icon, & .search-icon': {
-            // fill: getColor({ isDisabled, isFocused, kind: 'icon', theme: 'darkTheme' })
-        },
-        '&:hover .ui-select__dropdwon-icon, &:hover .search-icon': {
-            // fill: getColor({ isDisabled, isFocused, isHovered: true, kind: 'icon', theme: 'darkTheme' })
         }
     }),
     placeholder: (provided) => ({
         ...provided,
-        color: 'var(--color-black-1)'
+        'color'        : '#43515C',
+        'paddingBottom': '20px',
+        'fontSize'     : '18px'
     }),
     menuList: (provided) => ({
         ...provided,
-        padding: '16px 0 16px 0'
-    }),
-    menu: (provided) => ({
-        ...provided,
-        'position'                   : 'absolute',
-        'top'                        : '48px',
-        'border'                     : 'none',
-        'borderRadius'               : '12px',
-        'boxShadow'                  : 'none',
-        'background'                 : 'var(--color-dropdown-background)',
-        '& .ui-select__group-heading': {
-            'color'        : 'var(--color-group-heading)',
-            'textTransform': 'capitalize',
-            'fontSize'     : '14px',
-            'paddingLeft'  : '16px',
-            'paddingRight' : '16px'
+        'padding'                         : '16px 0 16px 0',
+        'maxHeight'                       : '150px',
+        '& .ui-select__option--is-focused': {
+            'backgroundColor': '#43515C'
         },
-        '& .ui-select__group': {
-            'paddingBottom': 0
+        '& .ui-select__option--is-selected': {
+            'backgroundColor': '#43515C'
         }
     }),
-    option: (provided, { isSelected }) => ({
+    menu: (provided) => ({ ...provided,
+        'position'    : 'absolute',
+        'top'         : '35px',
+        'borderRadius': ' 0 0 15px 15px',
+        'boxShadow'   : 'none',
+        'border'      : '2px solid #10181F',
+        'borderTop'   : 'none',
+        'overflow'    : 'hidden',
+        'background'  : '#C0CCD5',
+        'marginTop'   : '25px',
+        'paddingTop'  : '10px' }),
+    option: (provided) => ({
         ...provided,
-        'cursor'    : 'pointer',
-        // 'color'     : isSelected ? colors.darkTheme.input.focused : colors.darkTheme.text.static,
-        'background': 'var(--color-dropdown-background)',
-        'fontSize'  : '16px',
-        'padding'   : '12px 16px'
+        'cursor'  : 'pointer',
+        'color'   : '#10181F',
+        'fontSize': '16px',
+        'padding' : '12px 16px'
     })
 };
 

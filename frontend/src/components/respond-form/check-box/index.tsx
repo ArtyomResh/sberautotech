@@ -10,22 +10,15 @@ import { useFormContext } from 'react-hook-form';
 
 export interface IRadioButtonProps {
     label: string,
-    name?: string,
+    name: string,
     inputRef?: React.Ref<HTMLInputElement>,
     checked?: boolean,
     className?: string,
     requiredValidation?: Message | ValidationRule<boolean>
-    // onChange?: (value: string) => void
 }
 
-const CheckBox: React.FC<IRadioButtonProps> = (props: IRadioButtonProps) => {
+const CheckBox: React.FC<IRadioButtonProps> = ({ label, name, ...props }: IRadioButtonProps) => {
     const { register, formState } = useFormContext();
-    const {
-        label, name
-    } = props;
-
-    console.log(formState.errors);
-    
 
     const cn = useClassnames(style);
 
@@ -34,7 +27,6 @@ const CheckBox: React.FC<IRadioButtonProps> = (props: IRadioButtonProps) => {
             <input
                 type="checkbox"
                 className={cn('check-box__input', { 'check-box__input_error': formState.errors?.[name] })}
-                // onChange={(e) => onChange?.(e.target.value)}
                 {...register(name, {
                     required: props.requiredValidation
                 })}
