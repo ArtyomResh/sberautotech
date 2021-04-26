@@ -14,16 +14,54 @@ const query = graphql`
     allStrapiCareer {
       edges {
         node {
-          id
-          slider_items {
+          top_list {
+            header
+            list_items {
+              description
+              header
+              link {
+                style
+                text
+                to
+              }
+              subDescriptionFirst
+              subDescriptionSecond
+              target
+            }
+          }
+          top_slider {
             background {
               localFile {
                 publicURL
               }
             }
             header
-            id
+            headerLink
             text
+          }
+          bottom_slider {
+            background {
+              localFile {
+                publicURL
+              }
+            }
+            header
+            headerLink
+            text
+          }
+          footer {
+            description
+            disclaimer
+            header
+            firstPhone
+            link {
+              style
+              text
+              to
+            }
+            privacyPolicyLink
+            publicOfferLink
+            secondPhone
           }
         }
       }
@@ -35,7 +73,8 @@ const Career = () => {
     const data = useStaticQuery(query);
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={2}>
+            {/* TODO Render contetn from data */}
             <h1>CAREER</h1>
             <p>CAREER</p>
         </Layout>

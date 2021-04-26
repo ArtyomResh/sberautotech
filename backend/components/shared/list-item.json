@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_list_items",
+  "info": {
+    "name": "ListItem",
+    "icon": "sitemap",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "target": {
+      "type": "string"
+    },
+    "header": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "subDescriptionFirst": {
+      "type": "text"
+    },
+    "subDescriptionSecond": {
+      "type": "text"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    }
+  }
+}

@@ -1,18 +1,13 @@
 {
-  "kind": "collectionType",
-  "collectionName": "cards",
+  "collectionName": "components_shared_story_cards",
   "info": {
-    "name": "Card",
-    "description": ""
+    "name": "StoryCard",
+    "icon": "window-restore"
   },
-  "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": false
-  },
+  "options": {},
   "attributes": {
-    "text": {
-      "type": "text"
+    "header": {
+      "type": "string"
     },
     "image": {
       "model": "file",
@@ -24,6 +19,9 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "text": {
+      "type": "text"
     }
   }
 }

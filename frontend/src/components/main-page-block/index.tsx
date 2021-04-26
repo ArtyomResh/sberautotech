@@ -7,7 +7,7 @@ import StoryCard, { ICard } from '../story-card';
 import style from './index.css';
 
 export interface IBlock {
-    position: string,
+    id: number,
     background: {
         localFile: {
             publicURL: string
@@ -19,7 +19,7 @@ export interface IBlock {
         style: 'border' | 'fill'
     },
     text: string,
-    cards: Array<ICard>
+    cards?: Array<ICard>
 }
 
 const MainPageBlock = ({ block }: { block: IBlock }) => {
@@ -30,7 +30,7 @@ const MainPageBlock = ({ block }: { block: IBlock }) => {
     ), [block.text]);
 
     return (
-        <div className={cn('block__wrapper')} id={block.position}>
+        <div className={cn('block__wrapper')} id={String(block.id)}>
             <img src={block.background.localFile.publicURL} className={cn('block__image')} alt={block.link?.text} />
             {block.link && (
                 <Link to={block.link.to} className={cn('block__link', `block__link_${linkStyle}`)}>
@@ -39,7 +39,7 @@ const MainPageBlock = ({ block }: { block: IBlock }) => {
             )}
             <div className={cn('block__bottom')}>
                 <span className={cn('block__text')} dangerouslySetInnerHTML={{ __html: text }} />
-                {block.cards.map((card, i) => (
+                {block.cards?.map((card, i) => (
                     <StoryCard key={i} card={card} />
                 ))}
             </div>

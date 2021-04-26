@@ -11,14 +11,25 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "double_block": {
-      "model": "double-block"
+    "footer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.footer"
     },
-    "slider_items": {
-      "collection": "slider-item"
+    "double_block": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.double-block"
     },
     "story_cards": {
-      "collection": "story-card"
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.story-card"
+    },
+    "slider_items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.slider-item"
     }
   }
 }
