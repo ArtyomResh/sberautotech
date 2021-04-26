@@ -11,8 +11,6 @@ const {
   doubleBlocks,
   storyCards,
   sliderItems,
-  lists,
-  listItems,
   SelfDrivingCar,
   Career
 } = require("../../data/data.json");
@@ -89,7 +87,7 @@ function getFileData(fileName) {
 // Create an entry and attach files if there are any
 async function createEntry({ model, entry, files }) {
   try {
-    return await strapi.entityService.create({ data: entry, files }, { model });
+    await strapi.entityService.create({ data: entry, files }, { model });
   } catch (e) {
     console.log('model', entry, e);
   }
@@ -99,7 +97,7 @@ async function updateEntry({ model, entry, files }) {
   try {
     const params = {id: entry.id}
     const previousEntry = await strapi.query(model).findOne(params)
-    return await strapi.entityService.update({ params, data: previousEntry, files }, { model });
+    await strapi.entityService.update({ params, data: previousEntry, files }, { model });
   } catch (e) {
     console.log('model', entry, e);
   }
@@ -111,9 +109,9 @@ async function importHomepage(shouldImportSeedData) {
   };
     
   if (shouldImportSeedData) {
-    return await createEntry({ model: "homepage", entry: homepage, files });
+    await createEntry({ model: "homepage", entry: homepage, files });
   }
-  return await updateEntry({ model: "homepage", entry: homepage, files });
+  await updateEntry({ model: "homepage", entry: homepage, files });
 }
 
 async function importGlobal(shouldImportSeedData) {
@@ -123,104 +121,95 @@ async function importGlobal(shouldImportSeedData) {
   };
 
   if (shouldImportSeedData) {
-    return await createEntry({ model: "global", entry: global, files });
+    await createEntry({ model: "global", entry: global, files });
   }
-  return await updateEntry({ model: "global", entry: global, files });
+  await updateEntry({ model: "global", entry: global, files });
 }
 
 async function importSelfDrivingCar(shouldImportSeedData) {
   if (shouldImportSeedData) {
-    return await createEntry({ model: "self-driving-car", entry: SelfDrivingCar });
+    await createEntry({ model: "self-driving-car", entry: SelfDrivingCar });
   }
-  return await updateEntry({ model: "self-driving-car", entry: SelfDrivingCar });
+  await updateEntry({ model: "self-driving-car", entry: SelfDrivingCar });
 }
 
 async function importCareer(shouldImportSeedData) {
-  if (shouldImportSeedData) {
-    return await createEntry({ model: "career", entry: Career });
-  }
-  return await updateEntry({ model: "career", entry: Career });
+    const files = {};
+    Career['top_slider'].map((item, i) => {
+      files[`top_slider.${i}.background`] = getFileData(item.backgroundName)
+    });
+
+    Career['bottom_slider'].map((item, i) => {
+      files[`bottom_slider.${i}.background`] = getFileData(item.backgroundName)
+    });
+
+    if (shouldImportSeedData) {
+      await createEntry({ model: "career", entry: Career, files });
+    }
+    await updateEntry({ model: "career", entry: Career, files });
+
 }
 
 async function importCards(shouldImportSeedData) {
-  return cards.map(async (card) => {
+  cards.map(async (card) => {
     const files = {
       image: getFileData(card.imageName),
     };
     if (shouldImportSeedData) {
-      return await createEntry({ model: "card", entry: card, files });
+      await createEntry({ model: "card", entry: card, files });
     }
-    return await updateEntry({ model: "card", entry: card, files });
-    
+    await updateEntry({ model: "card", entry: card, files });
   });
 }
 
 async function importBlocks(shouldImportSeedData) {
-  return blocks.map(async (block) => {
+  blocks.map(async (block) => {
     const files = {
       background: getFileData(block.backgroundName),
     };
 
     if (shouldImportSeedData) {
-      return await createEntry({ model: "block", entry: block, files });
+      await createEntry({ model: "block", entry: block, files });
     }
-    return await updateEntry({ model: "block", entry: block, files });
+    await updateEntry({ model: "block", entry: block, files });
   });
 }
 
 async function importDoubleBlocks(shouldImportSeedData) {
-  return doubleBlocks.map(async (block) => {
+  doubleBlocks.map(async (block) => {
     const files = {
       topBackground: getFileData(block.topBackgroundName),
       bottomVideo: getFileData(block.bottomVideoName),
     };
     if (shouldImportSeedData) {
-      return await createEntry({ model: "double-block", entry: block, files });
+      await createEntry({ model: "double-block", entry: block, files });
     }
-    return await updateEntry({ model: "double-block", entry: block, files });
+    await updateEntry({ model: "double-block", entry: block, files });
   });
 }
 
 async function importSliderItems(shouldImportSeedData) {
-  return sliderItems.map(async (item) => {
+  sliderItems.map(async (item) => {
     const files = {
       background: getFileData(item.backgroundName),
     };
 
     if (shouldImportSeedData) {
-      return await createEntry({ model: "slider-item", entry: item, files });
+      await createEntry({ model: "slider-item", entry: item, files });
     }
-    return await updateEntry({ model: "slider-item", entry: item, files });
+    await updateEntry({ model: "slider-item", entry: item, files });
   });
 }
 
 async function importStoryCards(shouldImportSeedData) {
-  return storyCards.map(async (card) => {
+  storyCards.map(async (card) => {
     const files = {
       image: getFileData(card.imageName),
     };
     if (shouldImportSeedData) {
-      return await createEntry({ model: "story-card", entry: card, files });
+      await createEntry({ model: "story-card", entry: card, files });
     }
-    return await updateEntry({ model: "story-card", entry: card, files });
-  });
-}
-
-async function importLists(shouldImportSeedData) {
-  return lists.map(async (list) => {
-    if (shouldImportSeedData) {
-      return await createEntry({ model: "list", entry: list });
-    }
-    return await updateEntry({ model: "list", entry: list });
-  });
-}
-
-async function importListItems(shouldImportSeedData) {
-  return listItems.map(async (listItem) => {
-    if (shouldImportSeedData) {
-      return await createEntry({ model: "list-item", entry: listItem });
-    }
-    return await updateEntry({ model: "list-item", entry: listItem });
+    await updateEntry({ model: "story-card", entry: card, files });
   });
 }
 
@@ -235,9 +224,7 @@ async function importSeedData(shouldImportSeedData) {
     card: ['find', 'findone'],
     'double-block': ['find', 'findone'],
     'slider-item': ['find', 'findone'],
-    'story-card': ['find', 'findone'],
-    list: ['find', 'findone'],
-    'list-item': ['find', 'findone']
+    'story-card': ['find', 'findone']
   });
 
   // Create or update all entries
@@ -246,8 +233,6 @@ async function importSeedData(shouldImportSeedData) {
   await importSliderItems(shouldImportSeedData);
   await importStoryCards(shouldImportSeedData);
   await importDoubleBlocks(shouldImportSeedData);
-  await importLists(shouldImportSeedData);
-  await importListItems(shouldImportSeedData);
 
   // Create or update all pages
   await importHomepage(shouldImportSeedData);

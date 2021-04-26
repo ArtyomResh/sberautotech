@@ -2,7 +2,6 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
 import Layout from '../components/layout';
-import Footer from '../components/footer';
 
 const query = graphql`
   query {
@@ -15,38 +14,61 @@ const query = graphql`
     allStrapiCareer {
       edges {
         node {
-          id
-          slider_items {
+          top_list {
+            header
+            list_items {
+              description
+              header
+              link {
+                style
+                text
+                to
+              }
+              subDescriptionFirst
+              subDescriptionSecond
+              target
+            }
+          }
+          top_list {
+            header
+            list_items {
+              header
+            }
+          }
+          top_slider {
             background {
               localFile {
                 publicURL
               }
             }
             header
-            id
+            headerLink
             text
           }
-        }
-      }
-    }
-    allStrapiList(filter: {id: {eq: "List_1"}}) {
-      edges {
-        node {
-          list_items {
-            description
+          bottom_slider {
+            background {
+              localFile {
+                publicURL
+              }
+            }
             header
+            headerLink
+            text
+          }
+          footer {
+            description
+            disclaimer
+            header
+            firstPhone
             link {
               style
               text
               to
             }
-            id
-            subDescriptionFirst
-            subDescriptionSecond
-            target
+            privacyPolicyLink
+            publicOfferLink
+            secondPhone
           }
-          header
-          id
         }
       }
     }
@@ -56,11 +78,12 @@ const query = graphql`
 const Career = () => {
     const data = useStaticQuery(query);
 
+    console.log(data);
+
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
             <h1>CAREER</h1>
             <p>CAREER</p>
-            <Footer />
         </Layout>
     );
 };

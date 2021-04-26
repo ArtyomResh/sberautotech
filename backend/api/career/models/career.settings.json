@@ -11,11 +11,30 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "slider_items": {
-      "collection": "slider-item"
+    "top_slider": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.slider-item"
     },
-    "list": {
-      "model": "list"
+    "top_list": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.list"
+    },
+    "bottom_slider": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.slider-item"
+    },
+    "bottom_list": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.list"
+    },
+    "footer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.footer"
     }
   }
 }

@@ -19,6 +19,11 @@
     },
     "story_cards": {
       "collection": "story-card"
+    },
+    "footer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.footer"
     }
   }
 }

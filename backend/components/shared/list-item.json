@@ -1,14 +1,11 @@
 {
-  "kind": "collectionType",
-  "collectionName": "list-items",
+  "collectionName": "components_shared_list_items",
   "info": {
-    "name": "ListItem"
+    "name": "ListItem",
+    "icon": "sitemap",
+    "description": ""
   },
-  "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": false
-  },
+  "options": {},
   "attributes": {
     "target": {
       "type": "string"

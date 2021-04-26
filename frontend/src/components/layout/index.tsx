@@ -9,12 +9,12 @@ import { useClassnames } from '../../hooks/use-classnames';
 import style from './index.css';
 
 const LINKS = [
-    { text: 'О компании', link: '/#1' },
+    { text: 'О компании', link: '/' },
     { text: 'Беспилотник', link: '/self-driving-car' },
     { text: 'Карьера', link: '/career' }
 ];
 
-const Layout = ({ children, seo, theme }) => {
+const Layout = ({ children, seo, theme, pageNumber }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const cn = useClassnames(style);
 
@@ -33,7 +33,7 @@ const Layout = ({ children, seo, theme }) => {
             render={() => (
                 <div className={cn('app__wrapper')}>
                     <Seo seo={seo} />
-                    <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} />
+                    <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} />
                     <main>{children}</main>
                     {isPopupVisible ? (
                         <React.Fragment>

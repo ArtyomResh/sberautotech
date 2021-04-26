@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_shared_footers",
+  "info": {
+    "name": "footer",
+    "icon": "grip-lines"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    },
+    "disclaimer": {
+      "type": "string"
+    },
+    "firstPhone": {
+      "type": "string"
+    },
+    "secondPhone": {
+      "type": "string"
+    },
+    "privacyPolicyLink": {
+      "type": "string"
+    },
+    "publicOfferLink": {
+      "type": "string"
+    }
+  }
+}

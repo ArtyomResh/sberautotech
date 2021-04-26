@@ -4,20 +4,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-const text = 'Команда беспилотных автомобилей в SberAutoTech расширяется  — узнайте, какие специалисты нам нужны и станьте одним из них!';
-const links = [{
-    text: 'Информация, опубликованная на Сайте предоставляется только в ознакомительных целях.',
-    to  : '/'
-}, {
-    text: 'Политика конфиденциальности',
-    to  : '/'
-}, {
-    text: 'Оферта',
-    to  : '/'
-}];
-const phones = ['+7 999 999 99', '+7 999 999 99'];
-
-const Footer = () => {
+const Footer = ({ text, links, phones }) => {
     const cn = useClassnames(style);
 
     return (
