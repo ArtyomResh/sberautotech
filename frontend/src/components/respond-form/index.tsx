@@ -1,7 +1,6 @@
 import React from 'react';
 import Input from './input';
 import Select from './select';
-import { FormSelect } from './select/form-select';
 import Textarea from './textarea';
 import Button from './button';
 import CheckBox from './check-box';
@@ -13,9 +12,10 @@ import { useForm, FormProvider } from 'react-hook-form';
 import style from './index.css';
 
 const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
+    { value: 'Product', label: 'Product' },
+    { value: 'Development', label: 'Development' },
+    { value: 'HR', label: 'HR' },
+    { value: 'Design', label: 'Design' }
 ];
 
 const RespondForm = () => {

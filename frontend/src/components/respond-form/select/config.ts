@@ -33,6 +33,9 @@ export const customStyles: StylesConfig = {
             'marginRight': '12px',
             'width'      : '12px',
             'height'     : '12px'
+        },
+        '& .ui-select__indicator svg': {
+            'fill': '#43515C'
         }
     }),
     placeholder: (provided) => ({
