@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Swiper from 'swiper';
 
 import { useClassnames } from '../../hooks/use-classnames';
@@ -24,30 +24,36 @@ interface ISliderItem {
 
 const Carousel: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
+    const $container = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const swiper = new Swiper('.carousel-container', {
-            loop          : true,
-            centeredSlides: true,
-            slidesPerView : 1,
-            spaceBetween  : 0
-        });
+        if($container.current) {
+            const swiper = new Swiper($container.current, {
+                loop          : true,
+                centeredSlides: true,
+                slidesPerView : 1,
+                spaceBetween  : 0
+            });
 
-        return () => {
-            swiper.destroy();
-        };
+            return () => {
+                swiper.destroy();
+            };
+        }
     }, []);
 
 
     return (
-        <div className={cn('carousel-container', 'carousel')}>
+        <div className={cn('carousel-container', 'carousel')} ref={$container}>
             <div className={cn('swiper-wrapper')}>
                 {data.map((slide) => (
-                    <div key={slide.header} className={cn('swiper-slide', 'carousel__slide')}>
+                    <div key={slide.id} className={cn('swiper-slide', 'carousel__slide')}>
                         <div className={cn('carousel__slide-container')}>
                             <div className={cn('carousel__img-container')}>
-                                <img className={cn('carousel__img')} src={slide.background.localFile.publicURL} />
-                                <p className={cn('carousel__header')}><a className={cn('carousel__link')} href="#">{slide.headerLink}</a>{slide.header}</p>
+                                <img className={cn('carousel__img')} alt={slide.header} src={slide.background.localFile.publicURL} />
+                                <p className={cn('carousel__header')}>
+                                    <a className={cn('carousel__link')} href="#">{slide.headerLink}</a>
+                                    {slide.header}
+                                </p>
                             </div>
                             <p className={cn('carousel__text')}>{slide.text}</p>
                         </div>

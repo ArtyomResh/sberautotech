@@ -4,6 +4,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import { ILocalFile } from '../self-driving-cars-carousel';
 
 import style from './index.css';
+
 interface IProps {
     data: {
         header: string,
@@ -14,7 +15,6 @@ interface IProps {
         topBackground: ILocalFile
     }
 }
-
 
 const MainBlock: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
@@ -33,21 +33,22 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
     return (
         <div className={cn('main-block')}>
             <div className={cn('main-block__top')}>
-                <img src={data.topBackground.localFile.publicURL} className={cn('main-block__image')} />
+                <img src={data.topBackground.localFile.publicURL} alt={data.header} className={cn('main-block__image')} />
                 <h3 className={cn('main-block__top-text')}>{data.header}</h3>
                 <p className={cn('main-block__info-top')}>
-                    <span>{data.text} </span>
+                    <span>{data.text}</span>
                     <span className={cn('main-block__info-bottom')}>{data.textBottom}</span>
                 </p>
             </div>
             <div className={cn('main-block__bottom')}>
-                <svg className={cn('main-block__bottom-play')} onClick={toggleVideo} width="47" height="53" viewBox="0 0 47 53" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M35.5344 18.7094C38.8899 20.6504 41.3057 22.0508 42.8969 23.3161C44.4808 24.5757 45.014 25.5205 45.014 26.5C45.014 27.4795 44.4808 28.4244 42.8969 29.6839C41.3057 30.9492 38.8899 32.3496 35.5343 34.2906L14.5063 46.4539C11.1426 48.3995 8.71795 49.7989 6.82351 50.5491C4.93741 51.2959 3.85083 51.2865 3.00141 50.7965C2.15198 50.3066 1.59977 49.3707 1.30188 47.3642C1.00267 45.3487 1 42.5492 1 38.6633L1 14.3367C1 10.4508 1.00267 7.65131 1.30188 5.63584C1.59978 3.62925 2.15198 2.69341 3.00141 2.20345C3.85083 1.71349 4.93741 1.70407 6.82351 2.45091C8.71795 3.20106 11.1426 4.60046 14.5063 6.54615L35.5344 18.7094Z" stroke="white" strokeWidth="2" />
+                <svg className={cn('main-block__bottom-play')} onClick={toggleVideo} width="47" height="53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M35.534 18.71c3.356 1.94 5.772 3.34 7.363 4.606 1.584 1.26 2.117 2.204 2.117 3.184s-.533 1.924-2.117 3.184c-1.591 1.265-4.007 2.666-7.363 4.607L14.506 46.454c-3.363 1.946-5.788 3.345-7.682 4.095-1.887.747-2.973.737-3.823.248-.849-.49-1.401-1.426-1.7-3.433C1.004 45.35 1 42.55 1 38.664V14.336c0-3.886.003-6.686.302-8.701.298-2.007.85-2.943 1.7-3.433.849-.49 1.935-.499 3.822.248 1.894.75 4.319 2.15 7.682 4.095L35.534 18.71z" stroke="#fff" />
                 </svg>
                 <video ref={videoRef} src={data.bottomVideo.localFile.publicURL} autoPlay={true} muted={true} loop={true} />
             </div>
         </div>
     );
 };
+
 
 export default MainBlock;
