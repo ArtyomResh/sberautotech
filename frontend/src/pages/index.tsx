@@ -54,18 +54,6 @@ const query = graphql`
           }
           third_screen {
             background {
-              id
-              localFile {
-                publicURL
-              }
-            }
-            header
-            id
-            subheader
-            text
-          }
-          fourth_screen {
-            background {
               localFile {
                 publicURL
               }
@@ -97,15 +85,13 @@ const IndexPage = () => {
     };
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: 'white' }} pageNumber={pageNumber}>
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber}>
             <ReactPageScroller
                 pageOnChange={handlePageChange}
             >
                 <MainPageBlock block={screens.first_screen[0]} />
                 <MainPageBlock block={screens.second_screen[0]} />
-                {/* TODO Add new screen */}
-                {/* <MainPageBlock block={blocks.third_screen[0]} /> */}
-                <MainPageBlock block={screens.fourth_screen[0]} />
+                <MainPageBlock block={screens.third_screen[0]} />
             </ReactPageScroller>
         </Layout>
     );

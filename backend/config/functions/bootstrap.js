@@ -114,11 +114,8 @@ async function importHomepage(shouldImportSeedData) {
       files[`second_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
-  homepage['third_screen'].map((item, i) => {
-    files[`third_screen.${i}.background`] = getFileData(item.backgroundName)
-  });
-  homepage['fourth_screen'].map((screenItem, i) => {
-    files[`fourth_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+  homepage['third_screen'].map((screenItem, i) => {
+    files[`third_screen.${i}.background`] = getFileData(screenItem.backgroundName)
     screenItem['cards'].map((cardItem, k) => {
       files[`fourth_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
@@ -174,44 +171,6 @@ async function importCareer(shouldImportSeedData) {
     }
     await updateEntry({ model: "career", entry: Career, files });
 
-}
-
-async function importDoubleBlocks(shouldImportSeedData) {
-  doubleBlocks.map(async (block) => {
-    const files = {
-      topBackground: getFileData(block.topBackgroundName),
-      bottomVideo: getFileData(block.bottomVideoName),
-    };
-    if (shouldImportSeedData) {
-      await createEntry({ model: "double-block", entry: block, files });
-    }
-    await updateEntry({ model: "double-block", entry: block, files });
-  });
-}
-
-async function importSliderItems(shouldImportSeedData) {
-  sliderItems.map(async (item) => {
-    const files = {
-      background: getFileData(item.backgroundName),
-    };
-
-    if (shouldImportSeedData) {
-      await createEntry({ model: "slider-item", entry: item, files });
-    }
-    await updateEntry({ model: "slider-item", entry: item, files });
-  });
-}
-
-async function importStoryCards(shouldImportSeedData) {
-  storyCards.map(async (card) => {
-    const files = {
-      image: getFileData(card.imageName),
-    };
-    if (shouldImportSeedData) {
-      await createEntry({ model: "story-card", entry: card, files });
-    }
-    await updateEntry({ model: "story-card", entry: card, files });
-  });
 }
 
 async function importSeedData(shouldImportSeedData) {
