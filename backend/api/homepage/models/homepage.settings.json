@@ -26,15 +26,10 @@
       "repeatable": true,
       "component": "shared.full-screen-block"
     },
-    "fourth_screen": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.full-screen-block"
-    },
     "third_screen": {
       "type": "component",
       "repeatable": true,
-      "component": "shared.accordeon"
+      "component": "shared.full-screen-block"
     }
   }
 }
