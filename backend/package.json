@@ -9,7 +9,8 @@
     "start:production": "NODE_ENV=production yarn start",
     "build": "strapi build",
     "build:production": "NODE_ENV=production yarn build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "database:start": "docker-compose -f ./data/docker-compose.yml up"
   },
   "dependencies": {
     "knex": "0.21.18",
