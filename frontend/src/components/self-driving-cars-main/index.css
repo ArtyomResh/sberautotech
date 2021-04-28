@@ -41,7 +41,7 @@
 
     &__video {
         width: 100%;
-        height: calc(100vh - var(--nav-height));
+        height: 100%;
         object-fit: cover;
     }
 
@@ -64,7 +64,7 @@
     &__image {
         position: absolute;
         width: 100%;
-        height: calc(100vh - var(--nav-height));
+        height: 100%;
         object-fit: cover;
     }
 
