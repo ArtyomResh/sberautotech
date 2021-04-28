@@ -141,18 +141,18 @@
     }
 
     &__bottom-block-accept-button {
-            margin-bottom: 39px;
-            cursor: pointer;
-            background: #bdfff8;
-            color: #040A0A;
-            border: none;
-            width: 100%;
-            height: 78px;
-            font-size: 27px;
-            line-height: 30px;
-            text-align: center;
-            letter-spacing: -0.01em;
-            border-radius: 15px;
+        margin-bottom: 39px;
+        cursor: pointer;
+        background: #bdfff8;
+        color: #040A0A;
+        border: none;
+        width: 100%;
+        height: 78px;
+        font-size: 27px;
+        line-height: 30px;
+        text-align: center;
+        letter-spacing: -0.01em;
+        border-radius: 15px;
 
         @media (min-width: 1024px) {
             display: none;
