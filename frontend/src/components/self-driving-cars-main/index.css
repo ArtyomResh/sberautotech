@@ -39,6 +39,12 @@
         }
     }
 
+    &__video {
+        width: 100%;
+        height: calc(100vh - var(--nav-height));
+        object-fit: cover;
+    }
+
     &__info-top {
         font-size: 27px;
         line-height: 30px;
@@ -57,7 +63,9 @@
 
     &__image {
         position: absolute;
-        right: 0;
+        width: 100%;
+        height: calc(100vh - var(--nav-height));
+        object-fit: cover;
     }
 
     @media screen and (min-width: 1400px) {

@@ -44,7 +44,7 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
                 <svg className={cn('main-block__bottom-play')} onClick={toggleVideo} width="47" height="53" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M35.534 18.71c3.356 1.94 5.772 3.34 7.363 4.606 1.584 1.26 2.117 2.204 2.117 3.184s-.533 1.924-2.117 3.184c-1.591 1.265-4.007 2.666-7.363 4.607L14.506 46.454c-3.363 1.946-5.788 3.345-7.682 4.095-1.887.747-2.973.737-3.823.248-.849-.49-1.401-1.426-1.7-3.433C1.004 45.35 1 42.55 1 38.664V14.336c0-3.886.003-6.686.302-8.701.298-2.007.85-2.943 1.7-3.433.849-.49 1.935-.499 3.822.248 1.894.75 4.319 2.15 7.682 4.095L35.534 18.71z" stroke="#fff" />
                 </svg>
-                <video ref={videoRef} src={data.bottomVideo.localFile.publicURL} autoPlay={true} muted={true} loop={true} />
+                <video className={cn('main-block__video')} ref={videoRef} src={data.bottomVideo.localFile.publicURL} autoPlay={true} muted={true} loop={true} />
             </div>
         </div>
     );
