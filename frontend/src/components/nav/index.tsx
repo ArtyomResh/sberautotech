@@ -76,8 +76,8 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber }: INav) => {
                         Информация, опубликованная на Сайте предоставляется только в ознакомительных целях.
                     </span>
                     <div className={cn('nav__link-block')}>
-                        <a className={cn('nav__link-bottom-block')} href="/">Политика конфиденциальности</a>
-                        <a className={cn('nav__link-bottom-block')} href="/">Оферта</a>
+                        <a className={cn('nav__link-bottom-block')} href="/" title="Политика конфиденциальности">Политика конфиденциальности</a>
+                        <a className={cn('nav__link-bottom-block')} href="/" title="Оферта">Оферта</a>
                     </div>
                 </div>
                 <button
