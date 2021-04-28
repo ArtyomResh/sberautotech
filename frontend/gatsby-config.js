@@ -12,6 +12,14 @@ module.exports = {
                 allExtensions: true
             }
         },
+        {
+            resolve: 'gatsby-plugin-react-svg',
+            options: {
+                rule: {
+                    include: /\.svg$/
+                }
+            }
+        },
         'gatsby-plugin-postcss',
         'gatsby-plugin-react-helmet',
         {
