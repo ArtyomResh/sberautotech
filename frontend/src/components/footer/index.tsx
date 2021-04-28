@@ -4,25 +4,42 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-const Footer = ({ text, links, phones }) => {
+interface IProps {
+    data: {
+        header: string
+        description: string
+        disclaimer: string
+        privacyPolicyLink: string
+        publicOfferLink: string
+        firstPhone: string
+        secondPhone: string
+        link: {
+            to: string
+            text: string
+        }
+    }
+}
+
+const Footer = ({ data }: IProps) => {
     const cn = useClassnames(style);
 
     return (
         <footer className={cn('footer__wrapper')}>
-            <div className={cn('footer__left')}>
-                <p>{text}</p>
+            <div className={cn('footer__top-block')}>
+                <div className={cn('footer__header')}>{data.header}</div>
+                <div className={cn('footer__description')}>{data.description}</div>
+                <Link className={cn('footer__link')} to={data.link.to}>{data.link.text}</Link>
             </div>
-            <div className={cn('footer__center')}>
-                {
-                    // TODO: формат ссылок
-                    links.map(({ text, to }, i) => <Link key={i} className={cn('footer__link')} to={to}>{text}</Link>)
-                }
-            </div>
-            <div className={cn('footer__right')}>
-                {
-                    // TODO: формат номеров
-                    phones.map((phone, i) => <a key={i} className={cn('footer__link')} href={`tel:${phone.replace(/ /g, '')}`}>{phone}</a>)
-                }
+            <div className={cn('footer__bottom-block')}>
+                <div className={cn('footer__bottom-block_left')}>
+                    <span className={cn('footer__disclaimer')}>{data.disclaimer}</span>
+                    <a className={cn('footer__documents-link')} href={data.privacyPolicyLink}>Политика конфиденциальности</a>
+                    <a className={cn('footer__documents-link')} href={data.publicOfferLink}>Оферта</a>
+                </div>
+                <div className={cn('footer__bottom-block_right')}>
+                    <a className={cn('footer__phone-link')} href={`tel:${data.firstPhone.replace(/ /g, '')}`}>{data.firstPhone}</a>
+                    <a className={cn('footer__phone-link')} href={`tel:${data.secondPhone.replace(/ /g, '')}`}>{data.secondPhone}</a>
+                </div>
             </div>
         </footer>
     );

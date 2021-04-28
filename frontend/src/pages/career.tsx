@@ -5,6 +5,7 @@ import Layout from '../components/layout';
 import Carousel from '../components/self-driving-cars-carousel';
 import ListAccordeon from '../components/list-accordeon';
 import AdvantagesList from '../components/advantages-list';
+import Footer from '../components/footer';
 
 const query = graphql`
   query {
@@ -88,6 +89,7 @@ const Career = () => {
             <ListAccordeon data={top_list} />
             <Carousel data={bottom_slider} />
             <AdvantagesList data={bottom_list} />
+            <Footer data={footer} />
         </Layout>
     );
 };
