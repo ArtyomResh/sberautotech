@@ -38,14 +38,9 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber }: INav) => {
     return (
         <nav className={cn('nav__wrapper', `nav__wrapper_${theme.mode}`, { 'nav__wrapper_open-menu': isOpen })}>
             <div className={cn('nav__left')}>
-                {pageNumber === 0 && !isOpen ? (
-                    <Link to="/" className={cn('nav__logo')}>
-                        <LogoWhite />
-                    </Link>
-                ) : (
-                    <Link to="/" className={cn('nav__logo')}>
-                        <LogoBlack />
-                    </Link>)}
+                <Link to="/" className={cn('nav__logo')}>
+                    {pageNumber === 0 && !isOpen ? <LogoWhite /> : <LogoBlack />}
+                </Link>
             </div>
             <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
                 <ul className={cn('nav__list')}>
