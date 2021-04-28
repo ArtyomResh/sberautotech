@@ -86,7 +86,7 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
                     </svg>
                 </div>
                 <div className={cn('text-block')}>
-                    <h1 className={cn('text-block__title')}>Присоединяйтесь к команде и создавайте будующее вместе с нами</h1>
+                    <h1 className={cn('text-block__title')}>Присоединяйтесь к команде и создавайте будущее вместе с нами</h1>
                 </div>
                 <div className={cn('right-block')}>
                     <div className={cn('right-block__inputs')}>
