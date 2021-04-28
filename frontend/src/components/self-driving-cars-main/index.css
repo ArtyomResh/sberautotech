@@ -37,6 +37,13 @@
         &:hover {
             cursor: pointer;
         }
+
+        @media (max-width: 1025px) {
+            right: 20px;
+            bottom: 20px;
+            top: unset;
+            left: unset;
+        }
     }
 
     &__video {
