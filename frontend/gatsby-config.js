@@ -37,14 +37,6 @@ module.exports = {
                 contentTypes: [],
                 singleTypes : ['homepage', 'global', 'self-driving-car', 'career']
             }
-        },
-        {
-            resolve: 'gatsby-plugin-react-svg',
-            options: {
-                rule: {
-                    include: /\.svg$/
-                }
-            }
         }
     ]
 };
