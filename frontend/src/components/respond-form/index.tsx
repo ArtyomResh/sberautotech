@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Input from './input';
 import Select from './select';
 import Textarea from './textarea';
@@ -6,6 +6,7 @@ import Button from './button';
 import CheckBox from './check-box';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import { toBase64 } from '../../utils';
 
 import { useForm, FormProvider } from 'react-hook-form';
 
@@ -18,11 +19,16 @@ const options = [
     { value: 'Design', label: 'Design' }
 ];
 
+// TODO: Можно ли прокинуть API_URL из gatsby-config.js?
+const HOST = process.env.API_URL || 'http://localhost:1337';
+const FORM_URL = `${HOST}/form`;
+
 interface IProps {
     setIsPopupVisible: boolean
 }
 
 const RespondForm = ({ setIsPopupVisible }: IProps) => {
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
     const cn = useClassnames(style);
 
     const context = useForm({
@@ -36,8 +42,39 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
         return setIsPopupVisible(false);
     };
 
-    const onSubmit = (data) => {
-        console.log(data, 'Получено');
+    const onSubmit = async (data) => {
+        setIsSubmitDisabled(true);
+
+        const formData = new FormData();
+        const file = data.file[0];
+        const base64 = await toBase64(file);
+
+        for(const name in data) {
+            if(data[name]) {
+                if(name === 'direction') {
+                    formData.append(name, data[name].label);
+                } else if(name === 'file') {
+                    formData.append('content', base64);
+                    formData.append('filename', file.name);
+                } else {
+                    formData.append(name, data[name]);
+                }
+            }
+        }
+
+        try {
+            const res = await fetch(FORM_URL, {
+                method: 'POST',
+                body  : formData
+            });
+
+            if(res.ok) {
+                setIsPopupVisible(false);
+                setIsSubmitDisabled(false);
+            }
+        } catch(err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -55,10 +92,10 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
                     <div className={cn('right-block__inputs')}>
                         <div className={cn('right-block__top-section')}>
                             <div className={cn('right-block__field-wrapper')}>
-                                <Input type="text" placeholder="Имя" name="name" pattern={/^[A-Za-z]+$/i} requiredValidation={true} />
+                                <Input type="text" placeholder="Имя" name="name" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
                             </div>
                             <div className={cn('right-block__field-wrapper')}>
-                                <Input type="text" placeholder="Фамилия" name="surname" pattern={/^[A-Za-z]+$/i} requiredValidation={true} />
+                                <Input type="text" placeholder="Фамилия" name="surname" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
                             </div>
                         </div>
                         <div className={cn('right-block__bottom-section')}>
@@ -81,7 +118,7 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
                             <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
                         </div>
                         <div className={cn('right-block__field-wrapper')}>
-                            <Button type="submit" label="Отправить" />
+                            <Button disabled={isSubmitDisabled} type="submit" label="Отправить" />
                         </div>
                     </div>
                 </div>
