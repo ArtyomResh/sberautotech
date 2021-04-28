@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Input from './input';
 import Select from './select';
 import Textarea from './textarea';
@@ -28,6 +28,7 @@ interface IProps {
 }
 
 const RespondForm = ({ setIsPopupVisible }: IProps) => {
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
     const cn = useClassnames(style);
 
     const context = useForm({
@@ -42,6 +43,8 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
     };
 
     const onSubmit = async (data) => {
+        setIsSubmitDisabled(true);
+
         const formData = new FormData();
         const file = data.file[0];
         const base64 = await toBase64(file);
@@ -67,6 +70,7 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
 
             if(res.ok) {
                 setIsPopupVisible(false);
+                setIsSubmitDisabled(false);
             }
         } catch(err) {
             console.error(err);
@@ -88,10 +92,10 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
                     <div className={cn('right-block__inputs')}>
                         <div className={cn('right-block__top-section')}>
                             <div className={cn('right-block__field-wrapper')}>
-                                <Input type="text" placeholder="Имя" name="name" pattern={/^[А-Яа-яA-Za-z]+$/i} requiredValidation={true} />
+                                <Input type="text" placeholder="Имя" name="name" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
                             </div>
                             <div className={cn('right-block__field-wrapper')}>
-                                <Input type="text" placeholder="Фамилия" name="surname" pattern={/^[А-Яа-яA-Za-z]+$/i} requiredValidation={true} />
+                                <Input type="text" placeholder="Фамилия" name="surname" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
                             </div>
                         </div>
                         <div className={cn('right-block__bottom-section')}>
@@ -114,7 +118,7 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
                             <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
                         </div>
                         <div className={cn('right-block__field-wrapper')}>
-                            <Button type="submit" label="Отправить" />
+                            <Button disabled={isSubmitDisabled} type="submit" label="Отправить" />
                         </div>
                     </div>
                 </div>
