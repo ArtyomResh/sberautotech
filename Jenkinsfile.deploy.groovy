@@ -94,7 +94,7 @@ timestamps {
 
                         try {
                             docker.withRegistry("https://${docker_registry.host}", docker_registry.creds) {
-                                frontend = docker.build("${image}", "--pull --build-arg DOCKER_REGISTRY=${docker_registry.host}/infra/docker --build-arg BACKEND_API_URL=${params.backend_url} -f frontend/Dockerfile .")
+                                frontend = docker.build("${image}", "--pull --no-cache --build-arg DOCKER_REGISTRY=${docker_registry.host}/infra/docker --build-arg BACKEND_API_URL=${params.backend_url} -f frontend/Dockerfile .")
                                 frontend.push()
                             }
                         } catch (buildError) {
