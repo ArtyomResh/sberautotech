@@ -38,14 +38,12 @@
     src: url("woff2/sb_sans_text_mono_bold.woff2") format("woff2");
 }
 
-/* ******************************************************************* */
-
 @font-face {
     font-family: "SB Sans Display";
     font-style: normal;
     font-weight: 100;
     font-display: swap;
-    src: url("otf/sb_sans_display_thin.woff2") format("woff2");
+    src: url("woff2/sb_sans_display_thin.woff2") format("woff2");
 }
 
 @font-face {
@@ -53,7 +51,7 @@
     font-style: normal;
     font-weight: 300;
     font-display: swap;
-    src: url("otf/sb_sans_display_light.woff2") format("woff2");
+    src: url("woff2/sb_sans_display_light.woff2") format("woff2");
 }
 
 @font-face {
@@ -61,7 +59,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("otf/sb_sans_display_regular.woff2") format("woff2");
+    src: url("woff2/sb_sans_display_regular.woff2") format("woff2");
 }
 
 @font-face {
@@ -69,7 +67,7 @@
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url("otf/sb_sans_display_semibold.woff2") format("woff2");
+    src: url("woff2/sb_sans_display_semibold.woff2") format("woff2");
 }
 
 @font-face {
@@ -77,7 +75,7 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url("otf/sb_sans_display_bold.woff2") format("woff2");
+    src: url("woff2/sb_sans_display_bold.woff2") format("woff2");
 }
 
 :root {
