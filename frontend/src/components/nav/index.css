@@ -20,6 +20,7 @@
         &_open-menu {
             background-color: #fff;
             color: #040A0A;
+            position: fixed;
         }
     }
 
