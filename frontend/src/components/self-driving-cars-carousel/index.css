@@ -5,7 +5,11 @@
     overflow: hidden;
 
     &:hover {
-        /* cursor: url("../../images/cursor.svg"); */
+        cursor: url("../../images/cursor-left.svg"), pointer;
+    }
+
+    &_right:hover {
+        cursor: url("../../images/cursor-right.svg"), pointer;
     }
 
     &__slide-container {
@@ -72,7 +76,6 @@
         }
 
         &__img {
-            position: static;
             width: 100%;
         }
     }

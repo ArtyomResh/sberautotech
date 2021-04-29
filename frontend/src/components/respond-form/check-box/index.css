@@ -34,7 +34,7 @@
 
         &:checked {
             background-position: center;
-            /* background-image: url("../../../images/checkbox-checked.svg"); */
+            background-image: url("../../../images/checkbox-checked.svg");
         }
     }
 }

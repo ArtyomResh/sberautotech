@@ -2,12 +2,12 @@ import React from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 
-import AdvatagesFisrtIcon from '../../images/advantages-1.svg';
-import AdvatagesSecondIcon from '../../images/advantages-2.svg';
-import AdvatagesThirdIcon from '../../images/advantages-3.svg';
-import AdvatagesFourthIcon from '../../images/advantages-4.svg';
-import AdvatagesFifthIcon from '../../images/advantages-5.svg';
-import AdvatagesSixthIcon from '../../images/advantages-6.svg';
+import AdvatagesFisrtIcon from '../../images/advantages-1.inline.svg';
+import AdvatagesSecondIcon from '../../images/advantages-2.inline.svg';
+import AdvatagesThirdIcon from '../../images/advantages-3.inline.svg';
+import AdvatagesFourthIcon from '../../images/advantages-4.inline.svg';
+import AdvatagesFifthIcon from '../../images/advantages-5.inline.svg';
+import AdvatagesSixthIcon from '../../images/advantages-6.inline.svg';
 
 const advatagesIcons = [
     <AdvatagesFisrtIcon />,

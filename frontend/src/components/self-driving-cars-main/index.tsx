@@ -5,8 +5,8 @@ import { ILocalFile } from '../self-driving-cars-carousel';
 
 import style from './index.css';
 
-import ButtonPlay from '../../images/play-button.svg';
-import ButtonPause from '../../images/pause-button.svg';
+import ButtonPlay from '../../images/play-button.inline.svg';
+import ButtonPause from '../../images/pause-button.inline.svg';
 
 interface IProps {
     data: {
