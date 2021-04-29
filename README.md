@@ -22,8 +22,7 @@
 `cd frontend && yarn develop`
 
 ## Запуск c использованием локального сервера
-Для использования локального сервера необходимо запустить базу данных PostreSQL. Для этого рекомендуется использовать Docker.
-`docker run -d -e POSTGRES_USER=user -e POSTGRES_PASSWORD=admin --name sberautotech -p 5432:5432  --restart=always postgres`
+Необходимо установить Docker.
 
 Далее необходимо убедиться, что в директории frontend не создан файл `.env`, или что в данном файле константа API_URL содержит адрес локального сервера.
 
