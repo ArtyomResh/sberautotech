@@ -195,6 +195,27 @@
         "background": null,
         "backgroundName": "office.jpg",
         "text": ""
+      },
+      {
+        "headerLink": "",
+        "header": "",
+        "background": null,
+        "backgroundName": "office-2.jpg",
+        "text": ""
+      },
+      {
+        "headerLink": "",
+        "header": "",
+        "background": null,
+        "backgroundName": "office-3.jpg",
+        "text": ""
+      },
+      {
+        "headerLink": "",
+        "header": "",
+        "background": null,
+        "backgroundName": "office-4.jpg",
+        "text": ""
       }
     ],
     "bottom_list": {
