@@ -1,3 +1,4 @@
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -7,14 +8,14 @@ metadata:
   namespace: {{ namespace }}
 spec:
   rules:
-  - host: {{ domain }}
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: {{ app_name }}-{{ package_name }}-kong
-          servicePort: {{ service_port }}
+    - host: {{ domain }}
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: {{ app_name }}-{{ package_name }}-kong
+            servicePort: {{ service_port }}
   tls:
-  - hosts:
-    - {{ domain }}
-    secretName: {{ cert_secret }}
+    - hosts:
+        - {{ domain }}
+      secretName: {{ cert_secret }}
