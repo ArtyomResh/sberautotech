@@ -9,6 +9,7 @@
 
     &__header {
         font-size: 18px;
+        font-family: var(--font-family-secondary);
         line-height: 115%;
         max-width: 800px;
         margin-bottom: 140px;
