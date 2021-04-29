@@ -5,10 +5,10 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-import LogoWhite from '../../images/logo-white.svg';
-import LogoBlack from '../../images/logo-black.svg';
-import Burger from '../../images/burger.svg';
-import Cross from '../../images/cross.svg';
+import LogoWhite from '../../images/logo-white.inline.svg';
+import LogoBlack from '../../images/logo-black.inline.svg';
+import Burger from '../../images/burger.inline.svg';
+import Cross from '../../images/cross.inline.svg';
 
 export interface INavItem {
     text: string,
@@ -39,7 +39,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber }: INav) => {
         <nav className={cn('nav__wrapper', `nav__wrapper_${theme.mode}`, { 'nav__wrapper_open-menu': isOpen })}>
             <div className={cn('nav__left')}>
                 <Link to="/" className={cn('nav__logo')}>
-                    {pageNumber === 0 && !isOpen ? <LogoWhite /> : <LogoBlack />}
+                    {theme.mode === 'light' && !isOpen ? <LogoWhite /> : <LogoBlack />}
                 </Link>
             </div>
             <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
@@ -79,7 +79,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber }: INav) => {
             </div>
             <div className={cn('nav__right')}>
                 <button className={cn('nav__menu-button')} onClick={onMenuButtonClick}>
-                    {isOpen ? <Cross fill="#040A0A" /> : <Burger fill={pageNumber === 0 ? '#FFF' : '#040A0A'} />}
+                    {isOpen ? <Cross fill="#040A0A" /> : <Burger fill={theme.mode === 'light' ? '#FFF' : '#040A0A'} />}
                 </button>
             </div>
         </nav>

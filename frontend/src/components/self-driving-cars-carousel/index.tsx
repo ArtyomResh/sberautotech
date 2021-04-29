@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Swiper from 'swiper';
 
 import { useClassnames } from '../../hooks/use-classnames';
@@ -25,6 +25,16 @@ interface ISliderItem {
 const Carousel: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
     const $container = useRef<HTMLDivElement>(null);
+    const [cursorPosition, setCursorPosition] = useState('left')
+
+    const observeCursor = useCallback((e)=> {
+        const containerWidth = e.target.clientWidth;
+        const currentPosition = e.clientX;
+        const newCursorPosition = containerWidth / 2 >= currentPosition ? 'right' : 'left';
+        if (newCursorPosition !== cursorPosition) {
+            setCursorPosition(newCursorPosition);
+        }
+    }, [cursorPosition])
 
     useEffect(() => {
         if($container.current) {
@@ -43,7 +53,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
 
 
     return (
-        <div className={cn('carousel-container', 'carousel')} ref={$container}>
+        <div className={cn('carousel-container', 'carousel', `carousel_${cursorPosition}`)} ref={$container} onMouseMove={observeCursor}>
             <div className={cn('swiper-wrapper')}>
                 {data.map((slide) => (
                     <div key={slide.id} className={cn('swiper-slide', 'carousel__slide')}>
@@ -55,7 +65,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
                                     {slide.header}
                                 </p>
                             </div>
-                            <p className={cn('carousel__text')}>{slide.text}</p>
+                            {(slide.text) ? <p className={cn('carousel__text')}>{slide.text}</p> : null}
                         </div>
                     </div>
                 ))}

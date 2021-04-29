@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useClassnames } from '../../hooks/use-classnames';
 import { IListAccoreonItem } from '../list-accordeon';
 
-import AccordeonHide from '../../images/accordeon-hide.svg';
-import AccordeonShow from '../../images/accordeon-show.svg';
+import AccordeonHide from '../../images/accordeon-hide.inline.svg';
+import AccordeonShow from '../../images/accordeon-show.inline.svg';
 
 import style from './index.css';
 
