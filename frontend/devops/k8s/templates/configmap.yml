@@ -9,7 +9,7 @@ metadata:
 data:
     nginx-conf: |
       server {
-          listen 8000;
+          listen {{ service_port }};
 
           server_name site;
           charset utf-8;
