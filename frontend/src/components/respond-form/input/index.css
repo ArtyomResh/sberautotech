@@ -48,9 +48,11 @@
 
 .input-file {
     width: 100%;
+    position: relative;
 
     input {
-        display: none;
+        position: absolute;
+        opacity: 0;
     }
 
     &__label {
