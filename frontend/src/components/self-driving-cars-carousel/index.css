@@ -37,6 +37,7 @@
     &__text {
         line-height: 20.7px;
         font-size: 18px;
+        font-family: var(--font-family-secondary);
         color: var(--color-black);
         z-index: 20;
         padding: 20px 10px;

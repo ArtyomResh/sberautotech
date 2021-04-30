@@ -45,6 +45,7 @@
     &__list-item {
         display: flex;
         flex-direction: column;
+        font-family: var(--font-family-secondary);
         max-width: 240px;
         margin-right: 20px;
         margin-bottom: 60px;
