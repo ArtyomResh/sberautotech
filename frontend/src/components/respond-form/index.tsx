@@ -20,7 +20,7 @@ const options = [
 ];
 
 // TODO: Можно ли прокинуть API_URL из gatsby-config.js?
-const HOST = process.env.API_URL || 'http://localhost:1337';
+const HOST = process.env.API_URL || 'http://sberautotech-backend.dev.fe.sbauto.tech';
 const FORM_URL = `${HOST}/form`;
 
 interface IProps {
