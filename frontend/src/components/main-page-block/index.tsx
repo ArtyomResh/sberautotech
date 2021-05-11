@@ -31,7 +31,13 @@ const MainPageBlock = ({ block }: { block: IBlock }) => {
 
     return (
         <div className={cn('block__wrapper')} id={String(block.id)}>
-            <img src={block.background.localFile.publicURL} className={cn('block__image')} alt={block.link?.text} />
+            {block.background.localFile.publicURL.search('.mp4') !== -1 ? (
+                <video src={block.background.localFile.publicURL} className={cn('block__image')} muted={true} loop={true} autoPlay={true} />
+            ) : (
+                <img src={block.background.localFile.publicURL} className={cn('block__image')} alt={block.link?.text} />
+            )}
+
+
             {block.link && (
                 <Link to={block.link.to} className={cn('block__link', `block__link_${linkStyle}`)}>
                     {block.link.text}
