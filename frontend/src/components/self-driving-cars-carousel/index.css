@@ -80,3 +80,23 @@
         }
     }
 }
+
+.career__carousel {
+    .carousel {
+        &__text {
+            color: var(--color-black);
+        }
+
+        @media screen and (min-width: 1400px) {
+            &__text {
+                font-size: 47px;
+                line-height: 48px;
+                letter-spacing: -0.01em;
+                color: var(--color-white);
+                z-index: 20;
+                padding: 20px 10px;
+                max-width: 785px;
+            }
+        }
+    }
+}

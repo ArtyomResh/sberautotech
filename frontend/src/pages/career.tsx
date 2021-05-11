@@ -85,7 +85,9 @@ const Career = () => {
 
     return (
         <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={2}>
-            <Carousel data={top_slider} />
+            <div className="career__carousel">
+                <Carousel data={top_slider} />
+            </div>
             <ListAccordeon data={top_list} />
             <Carousel data={bottom_slider} />
             <AdvantagesList data={bottom_list} />
