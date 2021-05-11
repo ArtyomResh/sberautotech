@@ -46,8 +46,8 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
                     <div className={cn('main-block__info-bottom')}>{data.textBottom}</div>
                 </p>
             </div>
-            <div className={cn('main-block__bottom')}>
-                {play ? <ButtonPlay className={cn('main-block__bottom-play')} onClick={toggleVideo} /> : <ButtonPause className={cn('main-block__bottom-play')} onClick={toggleVideo} /> }
+            <div className={cn('main-block__bottom')} onClick={toggleVideo}>
+                {play ? <ButtonPlay className={cn('main-block__bottom-play')} /> : <ButtonPause className={cn('main-block__bottom-play')} /> }
                 <video ref={videoRef} src={data.bottomVideo.localFile.publicURL} muted={true} loop={true} autoPlay={true} />
             </div>
         </div>

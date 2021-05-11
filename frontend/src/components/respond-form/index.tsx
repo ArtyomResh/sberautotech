@@ -19,8 +19,7 @@ const options = [
     { value: 'Design', label: 'Design' }
 ];
 
-// TODO: Можно ли прокинуть API_URL из gatsby-config.js?
-const HOST = process.env.API_URL || 'http://sberautotech-backend.dev.fe.sbauto.tech';
+const HOST = process.env.API_URL || '';
 const FORM_URL = `${HOST}/form`;
 
 interface IProps {

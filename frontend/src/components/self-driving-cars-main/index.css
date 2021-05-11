@@ -38,7 +38,7 @@
             cursor: pointer;
         }
 
-        @media (max-width: 1025px) {
+        @media (max-width: 1285px) {
             right: 20px;
             bottom: 20px;
             top: unset;
@@ -75,7 +75,7 @@
         object-fit: cover;
     }
 
-    @media screen and (min-width: 1400px) {
+    @media screen and (min-width: 1130px) {
 
         &__image {
             position: static;

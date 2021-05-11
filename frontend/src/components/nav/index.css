@@ -11,6 +11,14 @@
         color: #fff;
         z-index: 2;
 
+        @media (min-width: 1024px) {
+            &_light {
+                .nav__list-item_active {
+                    color: #fff;
+                }
+            }
+        }
+
         &_dark {
             color: #040a0a;
             background: #fff;
