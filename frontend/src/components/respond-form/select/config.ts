@@ -53,8 +53,7 @@ export const customStyles: StylesConfig = {
             'color'          : '#FFFF'
         },
         '& .ui-select__option--is-selected': {
-            'backgroundColor': '#43515C',
-            'color'          : '#FFFF'
+            'display': 'none'
         }
     }),
     menu: (provided) => ({ ...provided,
