@@ -10,6 +10,7 @@ import { useClassnames } from '../../../hooks/use-classnames';
 import { useFormContext } from 'react-hook-form';
 
 type TInputType = 'text' | 'email' | 'file';
+type TAutoCompleteType = 'on' | 'off';
 
 interface IProps {
     type?: TInputType,
@@ -17,7 +18,8 @@ interface IProps {
     name: string,
     ref?: React.Ref<HTMLInputElement>,
     pattern?: RegExp | ValidationValueMessage<RegExp>,
-    requiredValidation?: Message | ValidationRule<boolean>
+    requiredValidation?: Message | ValidationRule<boolean>,
+    autocomplete?: TAutoCompleteType
 }
 
 interface IState {
@@ -68,6 +70,7 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
             className={cn('input', { 'input_error': formState.errors?.[name] })}
             type={type}
             placeholder={placeholder}
+            autoComplete={props.autocomplete}
             {...register(name, { required: props.requiredValidation,
                 pattern : props.pattern })}
         />
