@@ -91,8 +91,8 @@ const IndexPage = () => {
     const data = useStaticQuery(query);
     const screens = data.allStrapiHomepage.edges[0].node;
 
-    const handleScroll = useCallback(throttle((e) => {
-        const deltaPage = e.deltaY > 0 ? 1 : -1;
+    const handleScroll = useCallback(throttle((deltaY: number) => {
+        const deltaPage = deltaY > 0 ? 1 : -1;
         const nextPageNumber = pageNumber + deltaPage;
         const hasNextPage = (nextPageNumber >= 0) && (nextPageNumber < PAGES_LENGTH);
 
@@ -106,10 +106,39 @@ const IndexPage = () => {
     }, ANIMATION_DURATION), [pageNumber, isScrolling]);
 
     useEffect(() => {
-        window.addEventListener('mousewheel', handleScroll);
+        const onMouseWheel = (e: Event) => {
+            handleScroll((e as WheelEvent).deltaY);
+        };
+
+        window.addEventListener('mousewheel', onMouseWheel);
+
+        let prevY = 0;
+
+        const onTouchMove = (e: TouchEvent) => {
+            const currY = e.touches[0].pageY;
+            const deltaY = prevY - currY;
+
+            handleScroll(deltaY);
+        };
+
+        const onTouchStart = (e: TouchEvent) => {
+            prevY = e.touches[0].pageY;
+
+            window.addEventListener('touchmove', onTouchMove);
+        };
+
+        const onTouchEnd = () => {
+            window.removeEventListener('touchmove', onTouchMove);
+        };
+
+        window.addEventListener('touchstart', onTouchStart);
+        window.addEventListener('touchend', onTouchEnd);
 
         return () => {
-            window.removeEventListener('mousewheel', handleScroll);
+            window.removeEventListener('mousewheel', onMouseWheel);
+            window.removeEventListener('touchstart', onTouchStart);
+            window.removeEventListener('touchmove', onTouchMove);
+            window.removeEventListener('touchend', onTouchEnd);
         };
     }, [handleScroll]);
 
