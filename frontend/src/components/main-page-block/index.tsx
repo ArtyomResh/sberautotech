@@ -22,15 +22,16 @@ export interface IBlock {
     cards?: Array<ICard>
 }
 
-const MainPageBlock = ({ block }: { block: IBlock }) => {
+const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: number, pageNumber: number }) => {
     const cn = useClassnames(style);
     const linkStyle = block.link?.style || 'border';
     const text = useMemo(() => (
         block.text.replace('{', '<span>').replace('}', '</span>')
     ), [block.text]);
+    const visibilityClassName = pageNumber >= index ? 'block__wrapper_visible' : 'block__wrapper_hidden';
 
     return (
-        <div className={cn('block__wrapper')} id={String(block.id)}>
+        <div className={cn('block__wrapper', visibilityClassName)} id={String(block.id)}>
             {block.background.localFile.publicURL.search('.mp4') !== -1 ? (
                 <video src={block.background.localFile.publicURL} className={cn('block__image')} muted={true} loop={true} autoPlay={true} />
             ) : (
