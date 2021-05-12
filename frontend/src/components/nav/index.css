@@ -40,6 +40,7 @@
         height: inherit;
         align-items: center;
         display: flex;
+        cursor: pointer;
     }
 
     &__center {

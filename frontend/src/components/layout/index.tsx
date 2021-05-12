@@ -14,14 +14,14 @@ const LINKS = [
     { text: 'Карьера', link: '/career' }
 ];
 
-const Layout = ({ children, seo, theme, pageNumber }) => {
+const Layout = ({ children, seo, theme, pageNumber, setPageNumber }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const cn = useClassnames(style);
 
     return (
         <div className={cn('app__wrapper')}>
             <Seo seo={seo} />
-            <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} />
+            <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} setPageNumber={setPageNumber} />
             <main>{children}</main>
             {isPopupVisible ? (
                 <RespondForm setIsPopupVisible={setIsPopupVisible} />
