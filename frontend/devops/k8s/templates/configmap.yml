@@ -8,6 +8,8 @@ metadata:
   namespace: {{ namespace }}
 data:
     nginx-conf: |
+      resolver 10.10.0.162 10.10.0.41;
+
       server {
           listen {{ service_port }};
 
@@ -21,5 +23,9 @@ data:
           location / {
               root   /usr/share/nginx/html;
               try_files $uri /index.html;
+          }
+
+          location /form {
+              proxy_pass https://sberautotech-backend.dev.fe.sbauto.tech;
           }
       }
