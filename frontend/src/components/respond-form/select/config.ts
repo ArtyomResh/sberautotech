@@ -46,13 +46,14 @@ export const customStyles: StylesConfig = {
     }),
     menuList: (provided) => ({
         ...provided,
-        'padding'                         : '16px 0 16px 0',
+        'padding'                         : '0',
         'maxHeight'                       : '150px',
         '& .ui-select__option--is-focused': {
-            'backgroundColor': '#43515C'
+            'backgroundColor': '#43515C',
+            'color'          : '#FFFF'
         },
         '& .ui-select__option--is-selected': {
-            'backgroundColor': '#43515C'
+            'display': 'none'
         }
     }),
     menu: (provided) => ({ ...provided,
@@ -64,14 +65,14 @@ export const customStyles: StylesConfig = {
         'borderTop'   : 'none',
         'overflow'    : 'hidden',
         'background'  : '#C0CCD5',
-        'marginTop'   : '25px',
+        'marginTop'   : '20px',
         'paddingTop'  : '10px' }),
     option: (provided) => ({
         ...provided,
         'cursor'  : 'pointer',
         'color'   : '#10181F',
         'fontSize': '16px',
-        'padding' : '12px 16px'
+        'padding' : '4px 16px'
     })
 };
 
