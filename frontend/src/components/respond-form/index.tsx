@@ -91,15 +91,15 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
                     <div className={cn('right-block__inputs')}>
                         <div className={cn('right-block__top-section')}>
                             <div className={cn('right-block__field-wrapper')}>
-                                <Input type="text" placeholder="Имя" name="name" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
+                                <Input type="text" placeholder="Имя" name="name" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
                             </div>
                             <div className={cn('right-block__field-wrapper')}>
-                                <Input type="text" placeholder="Фамилия" name="surname" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
+                                <Input type="text" placeholder="Фамилия" name="surname" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
                             </div>
                         </div>
                         <div className={cn('right-block__bottom-section')}>
                             <div className={cn('right-block__field-wrapper')}>
-                                <Input type="text" placeholder="Почта" name="email" pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} requiredValidation={true} />
+                                <Input type="text" placeholder="Почта" name="email" autocomplete="off" pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} requiredValidation={true} />
                             </div>
                             <div className={cn('right-block__field-wrapper')}>
                                 <Select name="direction" placeholder="Выберите направление" options={options} />
