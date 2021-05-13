@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import throttle from 'lodash/throttle';
 
 import { useClassnames } from '../hooks/use-classnames';
 
@@ -81,29 +80,35 @@ const query = graphql`
 
 const PAGES_LENGTH = 3;
 const ANIMATION_DURATION = 1000;
+const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 
 const IndexPage = () => {
     const cn = useClassnames(style);
 
     const [pageNumber, setPageNumber] = useState(0);
     const [isScrolling, setIsScrolling] = useState(false);
+    const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
 
     const data = useStaticQuery(query);
     const screens = data.allStrapiHomepage.edges[0].node;
 
-    const handleScroll = useCallback(throttle((deltaY: number) => {
+    const handleScroll = useCallback((deltaY: number) => {
         const deltaPage = deltaY > 0 ? 1 : -1;
         const nextPageNumber = pageNumber + deltaPage;
         const hasNextPage = (nextPageNumber >= 0) && (nextPageNumber < PAGES_LENGTH);
 
-        if(!isScrolling && hasNextPage) {
+        const timeFromLastScrollStart = Date.now() - lastScrollStartTime;
+        const isNewScroll = timeFromLastScrollStart > MAX_MOMENTUM_SCROLL_DURATION;
+
+        if(!isScrolling && hasNextPage && isNewScroll) {
+            setLastScrollStartTime(Date.now());
             setIsScrolling(true);
             setPageNumber(nextPageNumber);
             setTimeout(() => {
                 setIsScrolling(false);
             }, ANIMATION_DURATION);
         }
-    }, ANIMATION_DURATION), [pageNumber, isScrolling]);
+    }, [pageNumber, isScrolling, lastScrollStartTime]);
 
     useEffect(() => {
         const onMouseWheel = (e: Event) => {
