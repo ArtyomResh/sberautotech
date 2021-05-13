@@ -37,6 +37,11 @@
             font-size: 47px;
             line-height: 56px;
             color: #FFFFFF;
+
+            &:hover {
+                background-color: #0E8AE8;
+                border: 1px solid #0E8AE8;
+            }
         }
 
         &_fill {
@@ -46,6 +51,11 @@
             border-radius: 15px;
             font-size: 30px;
             line-height: 48px;
+
+            &:hover {
+                background-color: #0E8AE8;
+                color: #FFFF;
+            }
         }
     }
 

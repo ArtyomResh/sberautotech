@@ -5,7 +5,9 @@ import { useClassnames } from '../../hooks/use-classnames';
 import { IListAccoreonItem } from '../list-accordeon';
 
 import AccordeonHide from '../../images/accordeon-hide.inline.svg';
+import AccordeonHideHover from '../../images/accordeon-hide-hover.svg';
 import AccordeonShow from '../../images/accordeon-show.inline.svg';
+import AccordeonShowHover from '../../images/accordeon-show-hover.svg';
 
 import style from './index.css';
 

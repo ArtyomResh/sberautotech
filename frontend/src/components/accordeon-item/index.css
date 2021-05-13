@@ -5,7 +5,8 @@
     }
 
     &__toggle {
-        cursor: pointer
+        cursor: pointer;
+        fill: red;
     }
 
     &__link {
