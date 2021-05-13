@@ -111,11 +111,11 @@ const IndexPage = () => {
     }, [pageNumber, isScrolling, lastScrollStartTime]);
 
     useEffect(() => {
-        const onMouseWheel = (e: Event) => {
-            handleScroll((e as WheelEvent).deltaY);
+        const onWheel = (e: WheelEvent) => {
+            handleScroll(e.deltaY);
         };
 
-        window.addEventListener('mousewheel', onMouseWheel);
+        window.addEventListener('wheel', onWheel);
 
         let prevY = 0;
 
@@ -140,7 +140,7 @@ const IndexPage = () => {
         window.addEventListener('touchend', onTouchEnd);
 
         return () => {
-            window.removeEventListener('mousewheel', onMouseWheel);
+            window.removeEventListener('wheel', onWheel);
             window.removeEventListener('touchstart', onTouchStart);
             window.removeEventListener('touchmove', onTouchMove);
             window.removeEventListener('touchend', onTouchEnd);
