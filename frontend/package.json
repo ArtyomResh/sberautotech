@@ -16,7 +16,6 @@
     "gatsby-plugin-react-svg": "3.0.1",
     "gatsby-source-filesystem": "2.3.4",
     "gatsby-source-strapi": "1.0.0-alpha.0",
-    "lodash": "4.17.21",
     "moment": "2.26.0",
     "prop-types": "15.7.2",
     "react": "16.12.0",
