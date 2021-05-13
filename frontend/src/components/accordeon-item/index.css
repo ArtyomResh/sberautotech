@@ -6,7 +6,6 @@
 
     &__toggle {
         cursor: pointer;
-        fill: red;
     }
 
     &__link {
