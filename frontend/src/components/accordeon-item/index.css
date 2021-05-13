@@ -29,6 +29,7 @@
     &__header-wrapper {
         display: flex;
         margin: 23px 0px;
+        align-items: flex-start;
     }
 
     &__header {

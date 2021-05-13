@@ -1,13 +1,14 @@
 import { Link } from 'gatsby';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
+import { UseHover } from '../../hooks/use-hover';
 import { useClassnames } from '../../hooks/use-classnames';
 import { IListAccoreonItem } from '../list-accordeon';
 
 import AccordeonHide from '../../images/accordeon-hide.inline.svg';
-import AccordeonHideHover from '../../images/accordeon-hide-hover.svg';
+import AccordeonHideHover from '../../images/accordeon-hide-hover.inline.svg';
 import AccordeonShow from '../../images/accordeon-show.inline.svg';
-import AccordeonShowHover from '../../images/accordeon-show-hover.svg';
+import AccordeonShowHover from '../../images/accordeon-show-hover.inline.svg';
 
 import style from './index.css';
 
@@ -18,12 +19,26 @@ interface IProps {
 const AccoreonItem: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
     const [isOpen, setIsOpen] = useState(false);
+    const ref = useRef();
+    const hover = UseHover(ref);
+
+    const toggleHandler = () => {
+        if(isOpen) {
+            if(hover) {
+                return <AccordeonHideHover />;
+            }
+
+            return <AccordeonHide />;
+        }
+
+        return hover ? <AccordeonShowHover /> : <AccordeonShow />;
+    };
 
     return (
         <div className={cn('accordeon__wrapper')}>
             <div className={cn('accordeon__header-wrapper')}>
-                <div className={cn('accordeon__toggle')} onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <AccordeonHide /> : <AccordeonShow />}
+                <div ref={ref} className={cn('accordeon__toggle')} onClick={() => setIsOpen(!isOpen)}>
+                    {toggleHandler()}
                 </div>
                 <div className={cn('accordeon__header')}>
                     {data.header}
