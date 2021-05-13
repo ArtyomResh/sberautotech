@@ -23,6 +23,11 @@
 
         &_fill {
             background: #BDFFF8;
+
+            &:hover {
+                background: #0E8AE8;
+                color: #FFF;
+            }
         }
     }
 
