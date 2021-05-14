@@ -168,6 +168,11 @@
         letter-spacing: -0.01em;
         border-radius: 15px;
 
+        &:hover {
+            background-color: #0E8AE8;
+            color: #FFFF;
+        }
+
         @media (min-width: 1024px) {
             display: none;
         }
@@ -186,6 +191,11 @@
         line-height: 21px;
         letter-spacing: 0;
         margin-left: auto;
+
+        &:hover {
+            background-color: #0E8AE8;
+            color: #FFFF;
+        }
 
         @media (max-width: 1024px) {
             display: none;

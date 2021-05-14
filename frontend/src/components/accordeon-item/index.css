@@ -5,7 +5,7 @@
     }
 
     &__toggle {
-        cursor: pointer
+        cursor: pointer;
     }
 
     &__link {
@@ -22,12 +22,18 @@
 
         &_fill {
             background: #BDFFF8;
+
+            &:hover {
+                background: #0E8AE8;
+                color: #FFF;
+            }
         }
     }
 
     &__header-wrapper {
         display: flex;
         margin: 23px 0px;
+        align-items: flex-start;
     }
 
     &__header {

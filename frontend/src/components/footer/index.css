@@ -41,6 +41,11 @@
         line-height: 48px;
         letter-spacing: -0.01em;
         background: #BDFFF8;
+
+        &:hover {
+            background-color: #0E8AE8;
+            color: #FFFF;
+        }
     }
 
     &__bottom-block {
