@@ -24,10 +24,11 @@ export interface INav {
     setIsPopupVisible: Dispatch<SetStateAction<boolean>>,
     theme: ITheme,
     links: Array<INavItem>,
-    pageNumber: number
+    pageNumber: number,
+    setPageNumber: (page: number) => void
 }
 
-const Nav = ({ setIsPopupVisible, theme, links, pageNumber }: INav) => {
+const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INav) => {
     const [isOpen, setIsOpen] = useState(false);
     const cn = useClassnames(style);
 
@@ -35,10 +36,16 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber }: INav) => {
         setIsOpen(!isOpen);
     };
 
+    const redirectHandler = () => {
+        if(pageNumber) {
+            setPageNumber(0);
+        }
+    };
+
     return (
         <nav className={cn('nav__wrapper', `nav__wrapper_${theme.mode}`, { 'nav__wrapper_open-menu': isOpen })}>
             <div className={cn('nav__left')}>
-                <Link to="/" className={cn('nav__logo')}>
+                <Link className={cn('nav__logo')} to="/" onClick={redirectHandler}>
                     {theme.mode === 'light' && !isOpen ? <LogoWhite /> : <LogoBlack />}
                 </Link>
             </div>
