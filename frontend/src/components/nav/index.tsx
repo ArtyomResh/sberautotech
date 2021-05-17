@@ -37,20 +37,17 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
     };
 
     const redirectHandler = () => {
-        if(window.location.pathname === '/') {
+        if(pageNumber) {
             setPageNumber(0);
-
-            return;
         }
-        window.location.pathname = '/';
     };
 
     return (
         <nav className={cn('nav__wrapper', `nav__wrapper_${theme.mode}`, { 'nav__wrapper_open-menu': isOpen })}>
             <div className={cn('nav__left')}>
-                <span className={cn('nav__logo')} onClick={redirectHandler}>
+                <Link className={cn('nav__logo')} to="/" onClick={redirectHandler}>
                     {theme.mode === 'light' && !isOpen ? <LogoWhite /> : <LogoBlack />}
-                </span>
+                </Link>
             </div>
             <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
                 <ul className={cn('nav__list')}>
