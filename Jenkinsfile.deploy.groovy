@@ -76,7 +76,7 @@ timestamps {
 
                         try {
                             docker.withRegistry("https://${docker_registry.host}", docker_registry.creds) {
-                                backend = docker.build("${image}", "--pull --build-arg DOCKER_REGISTRY=${docker_registry.host}/infra/docker -f backend/Dockerfile .")
+                                backend = docker.build("${image}", "--pull --no-cache --build-arg DOCKER_REGISTRY=${docker_registry.host}/infra/docker -f backend/Dockerfile .")
                                 backend.push()
                             }
                         } catch (buildError) {
