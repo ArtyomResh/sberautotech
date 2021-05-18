@@ -11,6 +11,11 @@ const query = graphql`
         metaTitle
         metaDescription
       }
+      favicon {
+        localFile {
+          publicURL
+        }
+      }
     }
   }
 `;
@@ -91,13 +96,15 @@ const SEO = ({ seo = {} }) => {
         <Helmet
             title={fullSeo.metaTitle}
             titleTemplate={`%s | ${siteName}`}
+            meta={metaTags}
             link={[
                 {
-                    rel: 'icon'
-                    // href: favicon.publicURL,
+                    rel  : 'icon',
+                    type : 'image/png',
+                    sizes: '16x16',
+                    href : favicon.publicURL
                 }
             ]}
-            meta={metaTags}
         />
     );
 };

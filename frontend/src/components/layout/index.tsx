@@ -10,18 +10,18 @@ import style from './index.css';
 
 const LINKS = [
     { text: 'О компании', link: '/' },
-    { text: 'Беспилотник', link: '/self-driving-car' },
+    { text: 'Беспилотный транспорт', link: '/self-driving-car' },
     { text: 'Карьера', link: '/career' }
 ];
 
-const Layout = ({ children, seo, theme, pageNumber }) => {
+const Layout = ({ children, seo, theme, pageNumber, setPageNumber }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const cn = useClassnames(style);
 
     return (
         <div className={cn('app__wrapper')}>
             <Seo seo={seo} />
-            <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} />
+            <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} setPageNumber={setPageNumber} />
             <main>{children}</main>
             {isPopupVisible ? (
                 <RespondForm setIsPopupVisible={setIsPopupVisible} />

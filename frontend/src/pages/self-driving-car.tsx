@@ -31,6 +31,12 @@ const query = graphql`
                 publicURL
               }
             }
+            bottomVideoPoster {
+              localFile {
+                publicURL
+              }
+              id
+            }
             topBackground {
               localFile {
                 publicURL
@@ -61,7 +67,6 @@ const query = graphql`
           footer {
             description
             disclaimer
-            firstPhone
             header
             link {
               style
@@ -70,7 +75,7 @@ const query = graphql`
             }
             privacyPolicyLink
             publicOfferLink
-            secondPhone
+            email
           }
         }
       }

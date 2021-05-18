@@ -3,8 +3,17 @@ require('dotenv').config({
 });
 
 module.exports = {
-
     plugins: [
+        {
+            resolve: 'gatsby-plugin-manifest',
+            options: {
+                name      : 'SberAutoTech company web site',
+                short_name: 'SberAutoTech',
+                start_url : '/',
+                icon      : 'src/images/favicon.png',
+                display   : 'minimal-ui'
+            }
+        },
         {
             resolve: 'gatsby-plugin-typescript',
             options: {

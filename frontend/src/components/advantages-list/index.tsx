@@ -25,19 +25,19 @@ interface IProps {
 }
 
 interface IAdvantagesList {
-    header: string;
+    header: string,
     list_items: Array<IAdvantagesListItem>
 }
 
 interface IAdvantagesListItem {
-    header: string;
+    header: string
 }
 
 const AdvantagesList: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
 
     return (
-        <div  className={cn('advantages__wrapper')}>
+        <div className={cn('advantages__wrapper')}>
             <div className={cn('advantages__header')}>
                 {data.header}
             </div>
@@ -47,12 +47,12 @@ const AdvantagesList: React.FC<IProps> = ({ data }) => {
                 </div>
                 <ul className={cn('advantages__list')}>
                     {data.list_items.map((item, i) => (
-                        <div className={cn('advantages__list-item')}>
+                        <li key={i} className={cn('advantages__list-item')}>
                             <div className={cn('advantages__icon')}>
                                 {advatagesIcons[i]}
                             </div>
                             {item.header}
-                        </div>
+                        </li>
                     ))}
                 </ul>
             </div>

@@ -14,6 +14,7 @@
     "gatsby-plugin-postcss": "4.2.0",
     "gatsby-plugin-react-helmet": "3.3.1",
     "gatsby-plugin-react-svg": "3.0.1",
+    "gatsby-plugin-robots-txt": "1.6.2",
     "gatsby-source-filesystem": "2.3.4",
     "gatsby-source-strapi": "1.0.0-alpha.0",
     "moment": "2.26.0",
@@ -51,7 +52,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop --open",
+    "develop": "gatsby develop --open -H 0.0.0.0",
     "dev": "yarn develop",
     "lint:style": "stylelint \"src/**/*.{css,pcss}\"",
     "lint:es": "eslint --ext .ts,.tsx src/",

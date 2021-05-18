@@ -36,6 +36,12 @@ const query = graphql`
               }
               id
             }
+            backgroundPoster {
+              localFile {
+                publicURL
+              }
+              id
+            }
             cards {
               id
               text
@@ -47,16 +53,16 @@ const query = graphql`
               }
             }
             id
-            link {
-              style
-              text
-              to
-              id
-            }
             text
           }
           third_screen {
             background {
+              localFile {
+                publicURL
+              }
+              id
+            }
+            backgroundPoster {
               localFile {
                 publicURL
               }
@@ -148,7 +154,7 @@ const IndexPage = () => {
     }, [handleScroll]);
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber}>
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber} setPageNumber={setPageNumber}>
             <div className={cn('main-page-blocks')}>
                 <MainPageBlock block={screens.first_screen[0]} index={0} pageNumber={pageNumber} />
                 <MainPageBlock block={screens.second_screen[0]} index={1} pageNumber={pageNumber} />
