@@ -25,7 +25,7 @@ export interface INav {
     theme: ITheme,
     links: Array<INavItem>,
     pageNumber: number,
-    setPageNumber: (nextPageNumber: number) => void
+    setPageNumber: (page: number) => void
 }
 
 const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INav) => {
@@ -46,20 +46,20 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
         setIsOpen(!isOpen);
     };
 
+    const redirectHandler = () => {
+        if(pageNumber) {
+            setPageNumber(0);
+        }
+
+        if(isOpen) {
+            onMenuButtonClick();
+        }
+    };
+
     return (
         <nav className={cn('nav__wrapper', `nav__wrapper_${theme.mode}`, { 'nav__wrapper_open-menu': isOpen })}>
             <div className={cn('nav__left')}>
-                <Link
-                    to="/" className={cn('nav__logo')} onClick={() => {
-                        if(setPageNumber) {
-                            setPageNumber(0);
-                        }
-
-                        if(isOpen) {
-                            onMenuButtonClick();
-                        }
-                    }}
-                >
+                <Link className={cn('nav__logo')} to="/" onClick={redirectHandler}>
                     {theme.mode === 'light' && !isOpen ? <LogoWhite /> : <LogoBlack />}
                 </Link>
             </div>
