@@ -40,7 +40,7 @@
         font-size: 30px;
         line-height: 48px;
         letter-spacing: -0.01em;
-        background: #BDFFF8;
+        background: #94F7ED;
 
         &:hover {
             background-color: #0E8AE8;
@@ -80,7 +80,7 @@
         line-height: 108.1%;
     }
 
-    &__phone-link {
+    &__email-link {
         margin-left: 10px;
         font-size: 12px;
         line-height: 108.1%;

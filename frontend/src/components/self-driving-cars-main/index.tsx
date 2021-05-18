@@ -15,6 +15,7 @@ interface IProps {
         text: string,
         textBottom: string,
         bottomVideo: ILocalFile,
+        bottomVideoPoster: ILocalFile,
         topBackground: ILocalFile
     }
 }
@@ -48,7 +49,15 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
             </div>
             <div className={cn('main-block__bottom')} onClick={toggleVideo}>
                 {play ? <ButtonPlay className={cn('main-block__bottom-play')} /> : <ButtonPause className={cn('main-block__bottom-play')} /> }
-                <video ref={videoRef} src={data.bottomVideo.localFile.publicURL} muted={true} loop={true} autoPlay={true} />
+                <video
+                    ref={videoRef}
+                    src={data.bottomVideo.localFile.publicURL}
+                    poster={data.bottomVideoPoster?.localFile?.publicURL}
+                    muted={true}
+                    loop={true}
+                    autoPlay={true}
+                    playsInline={true}
+                />
             </div>
         </div>
     );

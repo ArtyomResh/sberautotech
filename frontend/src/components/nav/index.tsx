@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction, Dispatch } from 'react';
+import React, { useState, SetStateAction, Dispatch, useEffect } from 'react';
 import { Link } from 'gatsby';
 
 import { useClassnames } from '../../hooks/use-classnames';
@@ -30,7 +30,17 @@ export interface INav {
 
 const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INav) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [indicatorStyles, setIndicatorStyles] = useState({});
     const cn = useClassnames(style);
+
+    useEffect(() => {
+        const activeElement = document.querySelector(`.nav__link-${pageNumber}`);
+
+        setIndicatorStyles({
+            transform: `translateX(${activeElement?.offsetLeft - 20}px)`,
+            width    : activeElement?.offsetWidth
+        });
+    }, [pageNumber]);
 
     const onMenuButtonClick = () => {
         setIsOpen(!isOpen);
@@ -39,6 +49,10 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
     const redirectHandler = () => {
         if(pageNumber) {
             setPageNumber(0);
+        }
+
+        if(isOpen) {
+            onMenuButtonClick();
         }
     };
 
@@ -51,10 +65,11 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
             </div>
             <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
                 <ul className={cn('nav__list')}>
+                    <div className={cn('nav__indicator')} style={indicatorStyles} />
                     {
                         links.map(({ text, link }: INavItem, i: number) => (
                             <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageNumber === i })}>
-                                <Link to={link} className={cn('nav__link')}>
+                                <Link to={link} className={cn('nav__link', `nav__link-${i}`)}>
                                     {text}
                                 </Link>
                             </li>

@@ -104,20 +104,29 @@ async function importHomepage(shouldImportSeedData) {
   };
   homepage['first_screen'].map((screenItem, i) => {
     files[`first_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    if (screenItem.backgroundPosterName) {
+      files[`first_screen.${i}.backgroundPoster`] = getFileData(screenItem.backgroundPosterName)
+    }
     screenItem['cards'].map((cardItem, k) => {
       files[`first_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
   homepage['second_screen'].map((screenItem, i) => {
     files[`second_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    if (screenItem.backgroundPosterName) {
+      files[`second_screen.${i}.backgroundPoster`] = getFileData(screenItem.backgroundPosterName)
+    }
     screenItem['cards'].map((cardItem, k) => {
       files[`second_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
   homepage['third_screen'].map((screenItem, i) => {
     files[`third_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    if (screenItem.backgroundPosterName) {
+      files[`third_screen.${i}.backgroundPoster`] = getFileData(screenItem.backgroundPosterName)
+    }
     screenItem['cards'].map((cardItem, k) => {
-      files[`fourth_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
+      files[`third_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
     
@@ -142,7 +151,8 @@ async function importGlobal(shouldImportSeedData) {
 async function importSelfDrivingCar(shouldImportSeedData) {
   const files = {
     "double_block.topBackground": getFileData(SelfDrivingCar['double_block'].topBackgroundName),
-    "double_block.bottomVideo": getFileData(SelfDrivingCar['double_block'].bottomVideoName)
+    "double_block.bottomVideo": getFileData(SelfDrivingCar['double_block'].bottomVideoName),
+    "double_block.bottomVideoPoster": getFileData(SelfDrivingCar['double_block'].bottomVideoPosterName)
   };
   SelfDrivingCar['story_cards'].map((item, i) => {
     files[`story_cards.${i}.image`] = getFileData(item.imageName)
@@ -179,7 +189,8 @@ async function importSeedData(shouldImportSeedData) {
     global: ['find'],
     homepage: ['find'],
     'self-driving-car': ['find'],
-    career: ['find']
+    career: ['find'],
+    form: ['send']
   });
   await importHomepage(shouldImportSeedData);
   await importGlobal(shouldImportSeedData);

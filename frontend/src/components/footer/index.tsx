@@ -6,15 +6,14 @@ import style from './index.css';
 
 interface IProps {
     data: {
-        header: string
-        description: string
-        disclaimer: string
-        privacyPolicyLink: string
-        publicOfferLink: string
-        firstPhone: string
-        secondPhone: string
+        header: string,
+        description: string,
+        disclaimer: string,
+        privacyPolicyLink: string,
+        publicOfferLink: string,
+        email: string,
         link: {
-            to: string
+            to: string,
             text: string
         }
     }
@@ -28,7 +27,7 @@ const Footer = ({ data }: IProps) => {
             <div className={cn('footer__top-block')}>
                 <div className={cn('footer__header')}>{data.header}</div>
                 <div className={cn('footer__description')}>{data.description}</div>
-                <Link className={cn('footer__link')} to={data.link.to}>{data.link.text}</Link>
+                <a className={cn('footer__link')} href={data.link.to}>{data.link.text}</a>
             </div>
             <div className={cn('footer__bottom-block')}>
                 <div className={cn('footer__bottom-block_left')}>
@@ -37,8 +36,7 @@ const Footer = ({ data }: IProps) => {
                     <a className={cn('footer__documents-link')} href={data.publicOfferLink}>Оферта</a>
                 </div>
                 <div className={cn('footer__bottom-block_right')}>
-                    <a className={cn('footer__phone-link')} href={`tel:${data.firstPhone.replace(/ /g, '')}`}>{data.firstPhone}</a>
-                    <a className={cn('footer__phone-link')} href={`tel:${data.secondPhone.replace(/ /g, '')}`}>{data.secondPhone}</a>
+                    <a className={cn('footer__email-link')} href={`mailto:${data.email}`}>{data.email}</a>
                 </div>
             </div>
         </footer>

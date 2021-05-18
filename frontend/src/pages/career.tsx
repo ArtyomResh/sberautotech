@@ -63,7 +63,6 @@ const query = graphql`
             description
             disclaimer
             header
-            firstPhone
             link {
               style
               text
@@ -71,7 +70,7 @@ const query = graphql`
             }
             privacyPolicyLink
             publicOfferLink
-            secondPhone
+            email
           }
         }
       }

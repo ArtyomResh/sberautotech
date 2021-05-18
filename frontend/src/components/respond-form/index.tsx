@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import Input from './input';
 import Select from './select';
 import Textarea from './textarea';
@@ -23,7 +23,7 @@ const HOST = process.env.API_URL || '';
 const FORM_URL = `${HOST}/form`;
 
 interface IProps {
-    setIsPopupVisible: boolean
+    setIsPopupVisible: Dispatch<SetStateAction<boolean>>
 }
 
 const RespondForm = ({ setIsPopupVisible }: IProps) => {
