@@ -65,9 +65,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
             </div>
             <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
                 <ul className={cn('nav__list')}>
-                    <div className={cn('nav__indicator')} style={indicatorStyles}>
-
-                    </div>
+                    <div className={cn('nav__indicator')} style={indicatorStyles} />
                     {
                         links.map(({ text, link }: INavItem, i: number) => (
                             <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageNumber === i })}>
