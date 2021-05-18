@@ -2,7 +2,7 @@
   "homepage": {
     "seo": {
       "metaTitle": "SberAutoTech",
-      "metaDescription": "SberAutoTech company web site.",
+      "metaDescription": "СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
       "shareImage": null
     },
     "first_screen": [
@@ -338,10 +338,10 @@
     }
   },
   "global": {
-    "siteName":"SberAutoTech",
+    "siteName":"Sber Automotive Technologies",
     "defaultSeo":{
-      "metaTitle":"Page",
-      "metaDescription":"SberAutoTech company web site",
+      "metaTitle":"SberAutoTech",
+      "metaDescription":"СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
       "shareImage":null
     },
     "favicon":null

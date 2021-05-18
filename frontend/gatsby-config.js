@@ -7,7 +7,7 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-manifest',
             options: {
-                name      : 'SberAutoTech company web site',
+                name      : 'Sber Automotive Technologies',
                 short_name: 'SberAutoTech',
                 start_url : '/',
                 icon      : 'src/images/favicon.png',
