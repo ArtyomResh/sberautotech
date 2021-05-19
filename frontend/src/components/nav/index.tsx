@@ -5,6 +5,10 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
+const MINIMUM_SCROLL = 20;
+const TIMEOUT_DELAY = 0;
+
+import useDocumentScrollThrottled from './use-document-scroll-throttled';
 import LogoWhite from '../../images/logo-white.inline.svg';
 import LogoBlack from '../../images/logo-black.inline.svg';
 import Burger from '../../images/burger.inline.svg';
@@ -31,6 +35,7 @@ export interface INav {
 const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INav) => {
     const [isOpen, setIsOpen] = useState(false);
     const [indicatorStyles, setIndicatorStyles] = useState({});
+    const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const cn = useClassnames(style);
 
     useEffect(() => {
@@ -41,6 +46,16 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
             width    : activeElement?.offsetWidth
         });
     }, [pageNumber]);
+
+    useDocumentScrollThrottled((callbackData) => {
+        const { previousScrollTop, currentScrollTop } = callbackData;
+        const isScrolledDown = previousScrollTop < currentScrollTop;
+        const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
+
+        setTimeout(() => {
+            setShouldHideHeader(isScrolledDown && isMinimumScrolled);
+        }, TIMEOUT_DELAY);
+    });
 
     const onMenuButtonClick = () => {
         setIsOpen(!isOpen);
@@ -57,7 +72,14 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
     };
 
     return (
-        <nav className={cn('nav__wrapper', `nav__wrapper_${theme.mode}`, { 'nav__wrapper_open-menu': isOpen })}>
+        <nav
+            className={
+                cn('nav__wrapper', `nav__wrapper_${theme.mode}`, {
+                    'nav__wrapper_open-menu': isOpen,
+                    'nav__wrapper_hidden'   : shouldHideHeader
+                })
+            }
+        >
             <div className={cn('nav__left')}>
                 <Link className={cn('nav__logo')} to="/" onClick={redirectHandler}>
                     {theme.mode === 'light' && !isOpen ? <LogoWhite /> : <LogoBlack />}
