@@ -47,8 +47,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
         });
     }, [pageNumber]);
 
-    useDocumentScrollThrottled((callbackData) => {
-        const { previousScrollTop, currentScrollTop } = callbackData;
+    useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const isScrolledDown = previousScrollTop < currentScrollTop;
         const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
 
