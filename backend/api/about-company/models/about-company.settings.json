@@ -1,0 +1,48 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_companies",
+  "info": {
+    "name": "AboutCompany",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "headerBackground": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "headerText": {
+      "type": "string"
+    },
+    "list": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.list"
+    },
+    "slider_items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.slider-item"
+    },
+    "footer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.footer"
+    }
+  }
+}
