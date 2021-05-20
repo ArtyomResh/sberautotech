@@ -7,16 +7,16 @@ import { ILocalFile } from '../self-driving-cars-carousel';
 import style from './index.css';
 
 interface IProps {
-    data: IListAccoreon,
+    data: IListAccordeon,
     className?: string
 }
 
-interface IListAccoreon {
+interface IListAccordeon {
     header: string,
-    list_items: Array<IListAccoreonItem>
+    list_items: Array<IListAccordeonItem>
 }
 
-export interface IListAccoreonItem {
+export interface IListAccordeonItem {
     target?: string,
     description?: string,
     header: string,
@@ -30,7 +30,7 @@ export interface IListAccoreonItem {
     }
 }
 
-const ListAccoreon: React.FC<IProps> = ({ data, className }) => {
+const ListAccordeon: React.FC<IProps> = ({ data, className }) => {
     const cn = useClassnames(style);
 
     return (
@@ -41,7 +41,7 @@ const ListAccoreon: React.FC<IProps> = ({ data, className }) => {
                 </div>
             )}
             <ul className={cn('list-accordeon__list', { [`${className}`]: className })}>
-                {data.list_items.map((item: IListAccoreonItem, i: number) => (
+                {data.list_items.map((item: IListAccordeonItem, i: number) => (
                     <li key={i} className={cn('list-accordeon__list-item', { [`${className}-item`]: className })}>
                         <div className={cn('list-accordeon__target-wrapper', { [`${className}-target-wrapper`]: className })}>
                             {item.target}
@@ -55,4 +55,4 @@ const ListAccoreon: React.FC<IProps> = ({ data, className }) => {
     );
 };
 
-export default ListAccoreon;
+export default ListAccordeon;

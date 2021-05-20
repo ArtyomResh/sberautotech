@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import React, { useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
-import { IListAccoreonItem } from '../list-accordeon';
+import { IListAccordeonItem } from '../list-accordeon';
 
 import AccordeonHide from '../../images/accordeon-hide.inline.svg';
 import AccordeonShow from '../../images/accordeon-show.inline.svg';
@@ -10,11 +10,11 @@ import AccordeonShow from '../../images/accordeon-show.inline.svg';
 import style from './index.css';
 
 interface IProps {
-    data: IListAccoreonItem,
+    data: IListAccordeonItem,
     className?: string
 }
 
-const AccoreonItem: React.FC<IProps> = ({ data, className }) => {
+const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
     const cn = useClassnames(style);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -42,8 +42,8 @@ const AccoreonItem: React.FC<IProps> = ({ data, className }) => {
                     <div className={cn('accordeon__sub-description-wrapper')}>
                         {data.link && (
                             <div className={cn('accordeon__link-wrapper')}>
-                                <Link to={data.link?.to} className={cn('accordeon__link', `accordeon__link_${data.link?.style || 'border'}`)}>
-                                    {data.link?.text}
+                                <Link to={data.link.to} className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}>
+                                    {data.link.text}
                                 </Link>
                             </div>
                         )}
@@ -65,4 +65,4 @@ const AccoreonItem: React.FC<IProps> = ({ data, className }) => {
     );
 };
 
-export default AccoreonItem;
+export default AccordeonItem;

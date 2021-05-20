@@ -8,7 +8,7 @@ import Layout from '../components/layout';
 import style from './about-company.css';
 import Footer from '../components/footer';
 import Carousel from '../components/self-driving-cars-carousel';
-import ListAccoreon from '../components/list-accordeon';
+import ListAccordeon from '../components/list-accordeon';
 
 const query = graphql`
   query {
@@ -87,14 +87,7 @@ const AboutCompanyPage = () => {
                     <img className={cn('about-company__header-image')} src={headerBackground.localFile.publicURL} />
                     <p className={cn('about-company__header-text')}>{headerText}</p>
                 </div>
-                <ListAccoreon data={list} className={cn('about-company__list')} />
-                {/* <ul className={cn('about-company__list')}>
-                    {list.list_items.map((item, i: number) => (
-                        <li key={i} className={cn('about-company__list-item')}>
-                            <AccoreonItem data={item} />
-                        </li>
-                    ))}
-                </ul> */}
+                <ListAccordeon data={list} className={cn('about-company__list')} />
                 <Carousel data={slider_items} />
                 <Footer data={footer} />
             </div>
