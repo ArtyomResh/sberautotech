@@ -1,15 +1,21 @@
 .nav {
 
     &__wrapper {
-        display: flex;
         position: fixed;
+        display: flex;
         width: 100vw;
         height: var(--nav-height);
         align-items: center;
         justify-content: space-between;
         padding: 0 20px;
         color: #fff;
-        z-index: 2;
+        z-index: 100;
+        transform: translateY(0);
+        transition: transform 0.5s ease;
+
+        &_hidden {
+            transform: translateY(-110%);
+        }
 
         @media (min-width: 1024px) {
             &_light {
