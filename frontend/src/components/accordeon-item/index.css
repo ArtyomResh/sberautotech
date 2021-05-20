@@ -68,7 +68,7 @@
             letter-spacing: -0.01em;
         }
 
-        @media (max-width: 376px) {
+        @media (max-width: 600px) {
             margin-left: 15px;
             font-size: 27px;
             line-height: 30px;
