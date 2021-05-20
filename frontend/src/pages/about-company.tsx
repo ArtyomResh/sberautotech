@@ -5,9 +5,10 @@ import { useClassnames } from '../hooks/use-classnames';
 
 import Layout from '../components/layout';
 
-import style from './index.css';
+import style from './about-company.css';
 import Footer from '../components/footer';
 import Carousel from '../components/self-driving-cars-carousel';
+import ListAccoreon from '../components/list-accordeon';
 
 const query = graphql`
   query {
@@ -81,19 +82,22 @@ const AboutCompanyPage = () => {
 
     return (
         <Layout seo={data.strapiGlobal.defaultSeo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={0}>
-            <div>
-                <img src={headerBackground.localFile.publicURL} />
-                <p>{headerText}</p>
+            <div className={cn('about-company__wrapper')}>
+                <div className={cn('about-company__header-wrapper')}>
+                    <img className={cn('about-company__header-image')} src={headerBackground.localFile.publicURL} />
+                    <p className={cn('about-company__header-text')}>{headerText}</p>
+                </div>
+                <ListAccoreon data={list} className={cn('about-company__list')} />
+                {/* <ul className={cn('about-company__list')}>
+                    {list.list_items.map((item, i: number) => (
+                        <li key={i} className={cn('about-company__list-item')}>
+                            <AccoreonItem data={item} />
+                        </li>
+                    ))}
+                </ul> */}
+                <Carousel data={slider_items} />
+                <Footer data={footer} />
             </div>
-            <ul>
-                {list.list_items.map((item, i: number) => (
-                    <li key={i}>
-                        {item.target}
-                    </li>
-                ))}
-            </ul>
-            <Carousel data={slider_items} />
-            <Footer data={footer} />
         </Layout>
     );
 };

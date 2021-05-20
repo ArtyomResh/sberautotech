@@ -6,6 +6,24 @@
 
     &__toggle {
         cursor: pointer;
+        fill: #94F7ED;
+        stroke: #000000;
+
+        circle {
+            stroke: none;
+        }
+
+        rect {
+            fill: #000000;
+        }
+
+        &:hover {
+            fill: #fff;
+
+            circle {
+              stroke: #000000;
+            }
+        }
     }
 
     &__link {

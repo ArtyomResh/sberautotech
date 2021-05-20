@@ -1,0 +1,115 @@
+.about-company {
+    &__header {
+
+        &-wrapper {
+            position: relative;
+            height: 100vh;
+        }
+
+        &-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &-text {
+            position: absolute;
+            color: #fff;
+            font-family: SB Sans Text;
+            font-size: 47px;
+            line-height: 48px;
+            letter-spacing: -0.01em;
+            top: 120px;
+            right: 100px;
+            max-width: 845px;
+
+            @media (max-width: 1024px) {
+                top: 60px;
+                left: 10px;
+                right: 10px;
+            }
+
+            @media (max-width: 630px) {
+                font-size: 27px;
+                line-height: 29px;
+            }
+        }
+    }
+
+    &__list {
+        &-wrapper {
+            font-family: SB Sans Display;
+            background: #000;
+            color: #fff;
+            padding: 60px 20px !important;
+        }
+
+        &-target-wrapper {
+            font-size: 18px !important;
+            line-height: 115% !important;
+            margin-right: 45px !important;
+            min-width: 320px !important;
+            max-width: 320px !important;
+            margin-bottom: 60px;
+            opacity: 0.9;
+        }
+
+        &-item-wrapper {
+            border-top: none !important;
+        }
+
+        &-item-body {
+            margin-bottom: 0px !important;
+        }
+
+        &-item-header-wrapper {
+            margin: 0px 0px 30px 0px !important;
+        }
+
+        &-item-description {
+            display: flex;
+
+            @media (max-width: 520px) {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        &-item-image {
+            width: 215px;
+            height: 215px;
+            border-radius: 15px;
+            margin-right: 20px;
+
+            @media (max-width: 520px) {
+                margin-bottom: 20px;
+            }
+        }
+
+        
+        &-item-toggle {
+            circle {
+                stroke: none;
+            }
+    
+            rect {
+                fill: #fff;
+            }
+    
+            &:hover {
+                fill: #000 !important;
+                opacity: 0.9;
+
+                rect {
+                    fill: #fff !important;
+                    stroke: #fff !important;
+                }
+
+                circle {
+                  stroke: #fff !important;
+                }
+            }
+        }
+    }
+}

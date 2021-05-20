@@ -2,47 +2,51 @@ import React from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import AccordeonItem from '../accordeon-item';
+import { ILocalFile } from '../self-driving-cars-carousel';
 
 import style from './index.css';
 
 interface IProps {
-    data: IListAccoreon
+    data: IListAccoreon,
+    className?: string
 }
 
 interface IListAccoreon {
-    header: string
+    header: string,
     list_items: Array<IListAccoreonItem>
 }
 
 export interface IListAccoreonItem {
-    target?: string
-    description?: string
-    header: string
-    subDescriptionFirst?: string
-    subDescriptionSecond?: string
-    link: {
+    target?: string,
+    description?: string,
+    header: string,
+    subDescriptionFirst?: string,
+    subDescriptionSecond?: string,
+    image?: ILocalFile,
+    link?: {
         to: string,
         text: string,
         style: 'border' | 'fill'
     }
-
 }
 
-const ListAccoreon: React.FC<IProps> = ({ data }) => {
+const ListAccoreon: React.FC<IProps> = ({ data, className }) => {
     const cn = useClassnames(style);
 
     return (
-        <div className={cn('list-accordeon__wrapper')}>
-            <div className={cn('list-accordeon__header')}>
-                {data.header}
-            </div>
-            <ul className={cn('list-accordeon__list')}>
+        <div className={cn('list-accordeon__wrapper', { [`${className}-wrapper`]: className })}>
+            {data.header && (
+                <div className={cn('list-accordeon__header', { [`${className}-header`]: className })}>
+                    {data.header}
+                </div>
+            )}
+            <ul className={cn('list-accordeon__list', { [`${className}`]: className })}>
                 {data.list_items.map((item: IListAccoreonItem, i: number) => (
-                    <li key={i} className={cn('list-accordeon__list-item')}>
-                        <div className={cn('list-accordeon__target-wrapper')}>
+                    <li key={i} className={cn('list-accordeon__list-item', { [`${className}-item`]: className })}>
+                        <div className={cn('list-accordeon__target-wrapper', { [`${className}-target-wrapper`]: className })}>
                             {item.target}
                         </div>
-                        <AccordeonItem data={item} />
+                        <AccordeonItem data={item} className={className} />
                     </li>
                 ))}
 
