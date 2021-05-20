@@ -117,6 +117,18 @@ const IndexPage = () => {
     }, [pageNumber, isScrolling, lastScrollStartTime]);
 
     useEffect(() => {
+        const bodyElement = document.querySelector('body');
+
+        bodyElement.style.overflow = 'hidden';
+        bodyElement.style.position = 'fixed';
+
+        return () => {
+            bodyElement.style.overflow = 'unset';
+            bodyElement.style.position = 'unset';
+        };
+    }, []);
+
+    useEffect(() => {
         const onWheel = (e: WheelEvent) => {
             handleScroll(e.deltaY);
         };

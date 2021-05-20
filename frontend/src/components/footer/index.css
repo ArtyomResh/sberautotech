@@ -2,6 +2,7 @@
     &__wrapper {
         display: flex;
         flex-direction: column;
+        max-width: 100vw;
     }
 
     &__top-block {
@@ -42,8 +43,13 @@
         letter-spacing: -0.01em;
         background: #94F7ED;
 
+        @media (max-width: 600px) {
+            font-size: 25px;
+            line-height: 48px;
+        }
+
         &:hover {
-            background-color: #0E8AE8;
+            background-color: #67CFC9;
             color: #FFFF;
         }
     }

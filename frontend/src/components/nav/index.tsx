@@ -52,7 +52,9 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
         const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
 
         setTimeout(() => {
-            setShouldHideHeader(isScrolledDown && isMinimumScrolled);
+            if(theme.mode === 'dark') {
+                setShouldHideHeader(isScrolledDown && isMinimumScrolled);
+            }
         }, TIMEOUT_DELAY);
     });
 

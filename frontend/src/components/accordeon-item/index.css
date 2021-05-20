@@ -6,6 +6,24 @@
 
     &__toggle {
         cursor: pointer;
+        fill: #94F7ED;
+        stroke: #000000;
+
+        circle {
+            stroke: none;
+        }
+
+        rect {
+            fill: #000000;
+        }
+
+        &:hover {
+            fill: #fff;
+
+            circle {
+              stroke: #000000;
+            }
+        }
     }
 
     &__link {
@@ -24,7 +42,7 @@
             background: #94F7ED;
 
             &:hover {
-                background: #0E8AE8;
+                background: #67CFC9;
                 color: #FFF;
             }
         }
@@ -50,7 +68,7 @@
             letter-spacing: -0.01em;
         }
 
-        @media (max-width: 376px) {
+        @media (max-width: 600px) {
             margin-left: 15px;
             font-size: 27px;
             line-height: 30px;

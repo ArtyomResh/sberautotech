@@ -1,66 +1,62 @@
 import { Link } from 'gatsby';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
-import { UseHover } from '../../hooks/use-hover';
 import { useClassnames } from '../../hooks/use-classnames';
-import { IListAccoreonItem } from '../list-accordeon';
+import { IListAccordeonItem } from '../list-accordeon';
 
 import AccordeonHide from '../../images/accordeon-hide.inline.svg';
-import AccordeonHideHover from '../../images/accordeon-hide-hover.inline.svg';
 import AccordeonShow from '../../images/accordeon-show.inline.svg';
-import AccordeonShowHover from '../../images/accordeon-show-hover.inline.svg';
 
 import style from './index.css';
 
 interface IProps {
-    data: IListAccoreonItem
+    data: IListAccordeonItem,
+    className?: string
 }
 
-const AccoreonItem: React.FC<IProps> = ({ data }) => {
+const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
     const cn = useClassnames(style);
     const [isOpen, setIsOpen] = useState(false);
-    const ref = useRef();
-    const hover = UseHover(ref);
-
-    const toggleHandler = () => {
-        if(isOpen) {
-            if(hover) {
-                return <AccordeonHideHover />;
-            }
-
-            return <AccordeonHide />;
-        }
-
-        return hover ? <AccordeonShowHover /> : <AccordeonShow />;
-    };
 
     return (
-        <div className={cn('accordeon__wrapper')}>
-            <div className={cn('accordeon__header-wrapper')}>
-                <div ref={ref} className={cn('accordeon__toggle')} onClick={() => setIsOpen(!isOpen)}>
-                    {toggleHandler()}
+        <div className={cn('accordeon__wrapper', { [`${className}-item-wrapper`]: className })}>
+            <div className={cn('accordeon__header-wrapper', { [`${className}-item-header-wrapper`]: className })}>
+                <div className={cn('accordeon__toggle', { [`${className}-item-toggle`]: className })} onClick={() => setIsOpen(!isOpen)}>
+                    { isOpen ? <AccordeonHide /> : <AccordeonShow /> }
                 </div>
-                <div className={cn('accordeon__header')}>
+                <div className={cn('accordeon__header', { [`${className}-item-header`]: className })}>
                     {data.header}
                 </div>
             </div>
             {isOpen ? (
-                <div className={cn('accordeon__body')}>
-                    <div className={cn('accordeon__description')}>
+                <div className={cn('accordeon__body', { [`${className}-item-body`]: className })}>
+                    <div className={cn('accordeon__description', { [`${className}-item-description`]: className })}>
+                        {data.image && (
+                            <img
+                                src={data.image.localFile.publicURL}
+                                className={cn('accordeon__image', { [`${className}-item-image`]: className })}
+                            />
+                        )}
                         {data.description}
                     </div>
                     <div className={cn('accordeon__sub-description-wrapper')}>
-                        <div className={cn('accordeon__link-wrapper')}>
-                            <Link to={data.link.to} className={cn('accordeon__link', `accordeon__link_${data.link?.style || 'border'}`)}>
-                                {data.link.text}
-                            </Link>
-                        </div>
-                        <div className={cn('accordeon__sub-description')}>
-                            {data.subDescriptionFirst}
-                        </div>
-                        <div className={cn('accordeon__sub-description')}>
-                            {data.subDescriptionSecond}
-                        </div>
+                        {data.link && (
+                            <div className={cn('accordeon__link-wrapper')}>
+                                <Link to={data.link.to} className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}>
+                                    {data.link.text}
+                                </Link>
+                            </div>
+                        )}
+                        {data.subDescriptionFirst && (
+                            <div className={cn('accordeon__sub-description')}>
+                                {data.subDescriptionFirst}
+                            </div>
+                        )}
+                        {data.subDescriptionSecond && (
+                            <div className={cn('accordeon__sub-description')}>
+                                {data.subDescriptionSecond}
+                            </div>
+                        )}
                     </div>
                 </div>
             ) : null}
@@ -69,4 +65,4 @@ const AccoreonItem: React.FC<IProps> = ({ data }) => {
     );
 };
 
-export default AccoreonItem;
+export default AccordeonItem;
