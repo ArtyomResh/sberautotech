@@ -19,14 +19,13 @@ const query = graphql`
       edges {
         node {
           top_slider {
-            background {
-              localFile {
-                publicURL
-              }
-            }
             header
-            headerLink
-            text
+            header_position
+            slider_items {
+                localFile {
+                    publicURL
+                }
+            }
           }
           top_list {
             header
@@ -44,14 +43,13 @@ const query = graphql`
             }
           }
           bottom_slider {
-            background {
-              localFile {
-                publicURL
-              }
-            }
             header
-            headerLink
-            text
+            header_position
+            slider_items {
+                localFile {
+                    publicURL
+                }
+            }
           }
           bottom_list {
             header

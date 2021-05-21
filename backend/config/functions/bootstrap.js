@@ -153,13 +153,14 @@ async function importSelfDrivingCar(shouldImportSeedData) {
   const files = {
     "double_block.topBackground": getFileData(SelfDrivingCar['double_block'].topBackgroundName),
     "double_block.bottomVideo": getFileData(SelfDrivingCar['double_block'].bottomVideoName),
-    "double_block.bottomVideoPoster": getFileData(SelfDrivingCar['double_block'].bottomVideoPosterName)
+    "double_block.bottomVideoPoster": getFileData(SelfDrivingCar['double_block'].bottomVideoPosterName),
+    "slider.slider_items": []
   };
   SelfDrivingCar['story_cards'].map((item, i) => {
     files[`story_cards.${i}.image`] = getFileData(item.imageName)
   });
-  SelfDrivingCar['slider_items'].map((item, i) => {
-    files[`slider_items.${i}.background`] = getFileData(item.backgroundName)
+  SelfDrivingCar.slider.slider_items_names.map((item) => {
+    files[`slider.slider_items`].push(getFileData(item))
   });
   if (shouldImportSeedData) {
     await createEntry({ model: "self-driving-car", entry: SelfDrivingCar, files });
@@ -168,13 +169,16 @@ async function importSelfDrivingCar(shouldImportSeedData) {
 }
 
 async function importCareer(shouldImportSeedData) {
-    const files = {};
-    Career['top_slider'].map((item, i) => {
-      files[`top_slider.${i}.background`] = getFileData(item.backgroundName)
+    const files = {
+      "top_slider.slider_items": [],
+      "bottom_slider.slider_items": []
+    };
+    Career.top_slider.slider_items_names.map((item) => {
+      files[`top_slider.slider_items`].push(getFileData(item))
     });
 
-    Career['bottom_slider'].map((item, i) => {
-      files[`bottom_slider.${i}.background`] = getFileData(item.backgroundName)
+    Career.bottom_slider.slider_items_names.map((item) => {
+      files[`bottom_slider.slider_items`].push(getFileData(item))
     });
 
     if (shouldImportSeedData) {
@@ -186,13 +190,14 @@ async function importCareer(shouldImportSeedData) {
 async function importAboutCompany(shouldImportSeedData) {
   const files = {
     "headerBackground": getFileData(AboutCompany.headerBackgroundName),
+    "slider.slider_items": []
   };
   AboutCompany.list['list_items'].map((item, i) => {
     files[`list.list_items.${i}.image`] = getFileData(item.imageName)
   });
 
-  AboutCompany['slider_items'].map((item, i) => {
-    files[`slider_items.${i}.background`] = getFileData(item.backgroundName)
+  AboutCompany.slider.slider_items_names.map((item) => {
+    files[`slider.slider_items`].push(getFileData(item))
   });
 
   if (shouldImportSeedData) {
