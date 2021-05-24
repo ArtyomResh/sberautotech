@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import useFormattedText from '../../hooks/use-formatted-text';
 import StoryCard, { ICard } from '../story-card';
 
 import style from './index.css';
@@ -32,9 +33,7 @@ export interface IBlock {
 const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: number, pageNumber: number }) => {
     const cn = useClassnames(style);
     const linkStyle = block.link?.style || 'border';
-    const text = useMemo(() => (
-        block.text.replace('{', '<span>').replace('}', '</span>')
-    ), [block.text]);
+    const text = useFormattedText(block.text);
     const visibilityClassName = pageNumber >= index ? 'block__wrapper_visible' : 'block__wrapper_hidden';
 
     const renderLink = (link: ILink) => (
@@ -66,7 +65,7 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
             )}
             {block.link ? renderLink(block.link) : null }
             <div className={cn('block__bottom', pageNumber >= index ? 'block__bottom_showing' : 'block__bottom_hiding')}>
-                <span className={cn('block__text')} dangerouslySetInnerHTML={{ __html: text }} />
+                {text && <span className={cn('block__text')} dangerouslySetInnerHTML={{ __html: text }} />}
                 {block.cards?.map((card, i) => (
                     <StoryCard key={i} card={card} />
                 ))}

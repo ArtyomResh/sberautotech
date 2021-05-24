@@ -53,15 +53,15 @@ const query = graphql`
               }
             }
           }
-          slider_items {
-            headerLink
+          slider {
             header
-            id
+            header_position
             text
-            background {
-              localFile {
-                publicURL
-              }
+            text_position
+            slider_items {
+                localFile {
+                    publicURL
+                }
             }
           }
           footer {
@@ -85,13 +85,13 @@ const query = graphql`
 
 const SelfDrivingCar = () => {
     const data = useStaticQuery(query);
-    const { double_block, story_cards, slider_items, footer } = data.allStrapiSelfDrivingCar.edges[0].node;
+    const { double_block, story_cards, slider, footer } = data.allStrapiSelfDrivingCar.edges[0].node;
 
     return (
         <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={1}>
             <MainBlock data={double_block} />
             <Swiper data={story_cards} />
-            <Carousel data={slider_items} />
+            <Carousel data={slider} />
             <Footer data={footer} />
         </Layout>
     );

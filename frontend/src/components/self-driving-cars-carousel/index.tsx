@@ -2,11 +2,12 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Swiper from 'swiper';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import useFormattedText from '../../hooks/use-formatted-text';
 
 import style from './index.css';
 
 interface IProps {
-    data: Array<ISliderItem>
+    data: ISlider
 }
 
 export interface ILocalFile {
@@ -14,27 +15,33 @@ export interface ILocalFile {
         publicURL: string
     }
 }
-interface ISliderItem {
-    id: number,
-    text: string,
-    header: string,
-    headerLink: string,
-    background: ILocalFile
+
+interface ISlider {
+    id?: number,
+    header?: string,
+    header_position?: string,
+    text?: string,
+    text_position?: string,
+    slider_items: Array<ILocalFile>
 }
 
 const Carousel: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
     const $container = useRef<HTMLDivElement>(null);
-    const [cursorPosition, setCursorPosition] = useState('left')
+    const [cursorPosition, setCursorPosition] = useState('left');
 
-    const observeCursor = useCallback((e)=> {
+    const header = useFormattedText(data.header);
+    const text = useFormattedText(data.text);
+
+    const observeCursor = useCallback((e) => {
         const containerWidth = e.target.clientWidth;
         const currentPosition = e.clientX;
         const newCursorPosition = containerWidth / 2 >= currentPosition ? 'right' : 'left';
-        if (newCursorPosition !== cursorPosition) {
+
+        if(newCursorPosition !== cursorPosition) {
             setCursorPosition(newCursorPosition);
         }
-    }, [cursorPosition])
+    }, [cursorPosition]);
 
     useEffect(() => {
         if($container.current) {
@@ -51,21 +58,35 @@ const Carousel: React.FC<IProps> = ({ data }) => {
         }
     }, []);
 
-
     return (
         <div className={cn('carousel-container', 'carousel', `carousel_${cursorPosition}`)} ref={$container} onMouseMove={observeCursor}>
+            {header && (
+                <p
+                    className={cn('carousel__header',
+                        {
+                            [`carousel__header_${data.header_position?.replace('_', '-')}`]: data.header_position
+                        }
+                    )}
+                    dangerouslySetInnerHTML={{ __html: header }}
+                />
+            )}
+            {text && (
+                <p
+                    className={cn('carousel__text',
+                        {
+                            [`carousel__text_${data.text_position?.replace('_', '-')}`]: data.text_position
+                        }
+                    )}
+                    dangerouslySetInnerHTML={{ __html: text }}
+                />
+            )}
             <div className={cn('swiper-wrapper')}>
-                {data.map((slide) => (
-                    <div key={slide.id} className={cn('swiper-slide', 'carousel__slide')}>
+                {data.slider_items.map((slide, i) => (
+                    <div key={i} className={cn('swiper-slide', 'carousel__slide')}>
                         <div className={cn('carousel__slide-container')}>
                             <div className={cn('carousel__img-container')}>
-                                <img className={cn('carousel__img')} alt={slide.header} src={slide.background.localFile.publicURL} />
-                                <p className={cn('carousel__header')}>
-                                    <a className={cn('carousel__link')} href="#">{slide.headerLink}</a>
-                                    {slide.header}
-                                </p>
+                                <img className={cn('carousel__img')} src={slide.localFile.publicURL} />
                             </div>
-                            {(slide.text) ? <p className={cn('carousel__text')}>{slide.text}</p> : null}
                         </div>
                     </div>
                 ))}
