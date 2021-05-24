@@ -25,18 +25,32 @@ interface ISlider {
     slider_items: Array<ILocalFile>
 }
 
+enum ECursorPosition {
+    left = 'left',
+    right = 'right'
+}
+
 const Carousel: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
     const $container = useRef<HTMLDivElement>(null);
-    const [cursorPosition, setCursorPosition] = useState('left');
+    const [cursorPosition, setCursorPosition] = useState(ECursorPosition.left);
+    const [swiper, setSwiper] = useState<any>(null);
 
     const header = useFormattedText(data.header);
     const text = useFormattedText(data.text);
 
+    const onClick = useCallback(() => {
+        if(cursorPosition === ECursorPosition.right) {
+            swiper?.slidePrev();
+        } else if(cursorPosition === ECursorPosition.left) {
+            swiper?.slideNext();
+        }
+    }, [cursorPosition, swiper]);
+
     const observeCursor = useCallback((e) => {
         const containerWidth = e.target.clientWidth;
         const currentPosition = e.clientX;
-        const newCursorPosition = containerWidth / 2 >= currentPosition ? 'right' : 'left';
+        const newCursorPosition = containerWidth / 2 >= currentPosition ? ECursorPosition.right : ECursorPosition.left;
 
         if(newCursorPosition !== cursorPosition) {
             setCursorPosition(newCursorPosition);
@@ -52,6 +66,8 @@ const Carousel: React.FC<IProps> = ({ data }) => {
                 spaceBetween  : 0
             });
 
+            setSwiper(swiper);
+
             return () => {
                 swiper.destroy();
             };
@@ -59,7 +75,12 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     }, []);
 
     return (
-        <div className={cn('carousel-container', 'carousel', `carousel_${cursorPosition}`)} ref={$container} onMouseMove={observeCursor}>
+        <div
+            className={cn('carousel-container', 'carousel', `carousel_${cursorPosition}`)}
+            ref={$container}
+            onMouseMove={observeCursor}
+            onClick={onClick}
+        >
             {header && (
                 <p
                     className={cn('carousel__header',
