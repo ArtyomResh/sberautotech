@@ -62,7 +62,7 @@ module.exports = {
                 queryLimit  : 10000,
                 apiURL      : process.env.API_URL || 'http://localhost:1337',
                 contentTypes: [],
-                singleTypes : ['homepage', 'global', 'self-driving-car', 'career', 'about-company']
+                singleTypes : ['homepage', 'global', 'self-driving-car', 'career', 'about-company', 'flip']
             }
         }
     ]

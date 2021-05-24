@@ -8,7 +8,8 @@ const {
   global,
   SelfDrivingCar,
   Career,
-  AboutCompany
+  AboutCompany,
+  Flip
 } = require("../../data/data.json");
 
 async function isFirstRun() {
@@ -206,6 +207,25 @@ async function importAboutCompany(shouldImportSeedData) {
   await updateEntry({ model: "about-company", entry: AboutCompany, files });
 }
 
+async function importFlip(shouldImportSeedData) {
+  const files = {
+    // "headerBackground": getFileData(AboutCompany.headerBackgroundName),
+    // "slider.slider_items": []
+  };
+  // AboutCompany.list['list_items'].map((item, i) => {
+  //   files[`list.list_items.${i}.image`] = getFileData(item.imageName)
+  // });
+
+  // AboutCompany.slider.slider_items_names.map((item) => {
+  //   files[`slider.slider_items`].push(getFileData(item))
+  // });
+
+  if (shouldImportSeedData) {
+    await createEntry({ model: "flip", entry: Flip, files });
+  }
+  await updateEntry({ model: "flip", entry: Flip, files });
+}
+
 async function importSeedData(shouldImportSeedData) {
   // Allow read of application content types
   await setPublicPermissions({
@@ -214,6 +234,7 @@ async function importSeedData(shouldImportSeedData) {
     'self-driving-car': ['find'],
     career: ['find'],
     'about-company': ['find'],
+    flip: ['find'],
     form: ['send']
   });
   await importHomepage(shouldImportSeedData);
@@ -221,6 +242,7 @@ async function importSeedData(shouldImportSeedData) {
   await importSelfDrivingCar(shouldImportSeedData);
   await importCareer(shouldImportSeedData);
   await importAboutCompany(shouldImportSeedData);
+  await importFlip(shouldImportSeedData);
 }
 
 module.exports = async () => {

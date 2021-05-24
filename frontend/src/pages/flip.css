@@ -1,0 +1,10 @@
+.flip {
+
+    &__wrapper {
+        background: #030406;
+
+        .footer__wrapper {
+            background: #FFFFFF;
+        }
+    }
+}

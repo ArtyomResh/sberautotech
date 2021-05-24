@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_shared_flip_screen_blocks",
+  "info": {
+    "name": "FlipScreenBlock",
+    "icon": "bus-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "background": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "primary_header": {
+      "type": "string"
+    },
+    "secondary_header": {
+      "type": "string"
+    },
+    "primary_text": {
+      "type": "string"
+    },
+    "secondary_text": {
+      "type": "string"
+    },
+    "primary_text_float": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right"
+      ]
+    },
+    "secondary_text_float": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right"
+      ]
+    },
+    "backgroundPoster": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

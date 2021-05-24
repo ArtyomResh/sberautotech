@@ -10,7 +10,8 @@ import style from './index.css';
 
 const LINKS = [
     { text: 'О компании', link: '/about-company' },
-    { text: 'Беспилотный транспорт', link: '/self-driving-car' },
+    { text: 'ФЛИП', link: '/flip' },
+    { text: 'Беспилотный автомобиль', link: '/self-driving-car' },
     { text: 'Карьера', link: '/career' }
 ];
 
