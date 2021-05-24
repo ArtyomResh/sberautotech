@@ -85,8 +85,8 @@ const query = graphql`
 `;
 
 const PAGES_LENGTH = 3;
-const ANIMATION_DURATION = 1000;
-const MAX_MOMENTUM_SCROLL_DURATION = 1750;
+const ANIMATION_DURATION = 0;
+const MAX_MOMENTUM_SCROLL_DURATION = 750;
 
 const IndexPage = () => {
     const cn = useClassnames(style);
