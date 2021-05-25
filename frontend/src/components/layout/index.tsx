@@ -22,7 +22,7 @@ const Layout = ({ children, seo, theme, pageNumber, setPageNumber }) => {
     return (
         <div className={cn('app__wrapper')}>
             <Seo seo={seo} />
-            <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} setPageNumber={setPageNumber} />
+            <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} setPageNumber={setPageNumber} whiteLogoImportant={theme.whiteLogoImportant} />
             <main>{children}</main>
             {isPopupVisible ? (
                 <RespondForm setIsPopupVisible={setIsPopupVisible} />

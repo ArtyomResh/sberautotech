@@ -29,22 +29,25 @@ export interface INav {
     theme: ITheme,
     links: Array<INavItem>,
     pageNumber: number,
-    setPageNumber: (page: number) => void
+    setPageNumber: (page: number) => void,
+    whiteLogoImportant?: boolean
 }
 
-const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INav) => {
+const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, whiteLogoImportant }: INav) => {
     const [isOpen, setIsOpen] = useState(false);
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const cn = useClassnames(style);
 
     useEffect(() => {
-        const activeElement = document.querySelector(`.nav__link-${pageNumber}`);
+        setTimeout(() => {
+            const activeElement = document.querySelector(`.nav__link-${pageNumber}`);
 
-        setIndicatorStyles({
-            transform: `translateX(${activeElement?.offsetLeft - 20}px)`,
-            width    : activeElement?.offsetWidth
-        });
+            setIndicatorStyles({
+                transform: `translateX(${activeElement?.offsetLeft - 20}px)`,
+                width    : activeElement?.offsetWidth
+            });
+        }, 200);
     }, [pageNumber]);
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
@@ -83,7 +86,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
         >
             <div className={cn('nav__left')}>
                 <Link className={cn('nav__logo')} to="/" onClick={redirectHandler}>
-                    {theme.mode === 'light' && !isOpen ? <LogoWhite /> : <LogoBlack />}
+                    {(theme.mode === 'light' && !isOpen) || (whiteLogoImportant && !isOpen) ? <LogoWhite /> : <LogoBlack />}
                 </Link>
             </div>
             <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
@@ -124,7 +127,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
             </div>
             <div className={cn('nav__right')}>
                 <button className={cn('nav__menu-button')} onClick={onMenuButtonClick}>
-                    {isOpen ? <Cross fill="#040A0A" /> : <Burger fill={theme.mode === 'light' ? '#FFF' : '#040A0A'} />}
+                    {isOpen ? <Cross fill="#040A0A" /> : <Burger fill={theme.mode === 'light' || whiteLogoImportant ? '#FFF' : '#040A0A'} />}
                 </button>
             </div>
         </nav>

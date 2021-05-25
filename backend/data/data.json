@@ -337,8 +337,8 @@
       "mobileBackgroundPosterName": "flip-1-mobile.jpg",
       "primary_header": "Технологии {SberAutoTech}</br>открывают новые формы,</br>новые возможности, новый</br>вид мобильности",
       "secondary_header": "Транспортное</br>средство {нового</br>поколения}",
-      "primary_text": "Изначально спроектированный полностью беспилотным, FLIP обеспечивает принципиально иной уровень комфорта для размещения шести пассажиров, обладая стандартными габаритами легкового автомобиля.",
-      "secondary_text": "",
+      "primary_text": "",
+      "secondary_text": "Изначально спроектированный полностью беспилотным, FLIP обеспечивает принципиально иной уровень комфорта для размещения шести пассажиров, обладая стандартными габаритами легкового автомобиля.",
       "primary_text_float": "right",
       "secondary_text_float": "right"
     },
@@ -367,12 +367,12 @@
       "backgroundPosterName": "flip-3.jpg",
       "mobileBackgroundPoster": null,
       "mobileBackgroundPosterName": "flip-3-mobile.jpg",
-      "primary_header": "{Комплекс}</br>радаров, лидаров и сенсоров",
+      "primary_header": "{Комплекс}</br>радаров, лидаров</br>и сенсоров",
       "secondary_header": "",
-      "primary_text": "Обеспечивает обзор на 360 градусов, а скорость реакции компьютера на изменения дорожной обстановки — выше, чем у любого профессионального водителя.",
-      "secondary_text": "",
-      "primary_text_float": "left",
-      "secondary_text_float": "right"
+      "primary_text": "",
+      "secondary_text": "Обеспечивает обзор на 360 градусов, а скорость реакции компьютера на изменения дорожной обстановки — выше, чем у любого профессионального водителя.",
+      "primary_text_float": "right",
+      "secondary_text_float": "left"
     },
     "fourth_screen": {
       "background": null,
@@ -417,7 +417,7 @@
       "mobileBackgroundPosterName": "flip-6-mobile.jpg",
       "primary_header": "FLIP во время движения генерирует {огромный объем информации}, необходимой для обучения нейросетей и развития компьютерного зрения",
       "secondary_header": "",
-      "primary_text": "[до 2ТБ / день]</br>Эта информация необходима для обучения нейросетей и систем компьютерного зрения",
+      "primary_text": "[до 2ТБ / день]</br></br>Эта информация необходима для обучения нейросетей и систем компьютерного зрения",
       "secondary_text": "Хранение и обработка этого массива информации происходит на мощностях SberCloud — облачного провайдера услуг и сервисов, входящего в экосистему Сбера",
       "primary_text_float": "left",
       "secondary_text_float": "left"
