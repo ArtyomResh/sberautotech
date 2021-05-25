@@ -61,6 +61,13 @@
         line-height: 95%;
         letter-spacing: -0.02em;
 
+        @media (max-width: 1440px) {
+            margin-left: 40px;
+            font-size: 55px;
+            line-height: 60px;
+            letter-spacing: -0.01em;
+        }
+
         @media (max-width: 1024px) {
             margin-left: 40px;
             font-size: 47px;
