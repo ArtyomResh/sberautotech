@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../hooks/use-classnames';
+import useDeviceDetect from '../hooks/use-device-detect';
 
 import Layout from '../components/layout';
 import MainPageBlock from '../components/main-page-block';
@@ -87,6 +88,7 @@ const query = graphql`
 const PAGES_LENGTH = 3;
 const ANIMATION_DURATION = 1000;
 const MAX_MOMENTUM_SCROLL_DURATION = 1750;
+const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
 
 const IndexPage = () => {
     const cn = useClassnames(style);
@@ -94,6 +96,7 @@ const IndexPage = () => {
     const [pageNumber, setPageNumber] = useState(0);
     const [isScrolling, setIsScrolling] = useState(false);
     const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
+    const { isMobile } = useDeviceDetect();
 
     const data = useStaticQuery(query);
     const screens = data.allStrapiHomepage.edges[0].node;
@@ -104,7 +107,7 @@ const IndexPage = () => {
         const hasNextPage = (nextPageNumber >= 0) && (nextPageNumber < PAGES_LENGTH);
 
         const timeFromLastScrollStart = Date.now() - lastScrollStartTime;
-        const isNewScroll = timeFromLastScrollStart > MAX_MOMENTUM_SCROLL_DURATION;
+        const isNewScroll = timeFromLastScrollStart > (isMobile ? MAX_MOMENTUM_SCROLL_DURATION_MOBILE : MAX_MOMENTUM_SCROLL_DURATION);
 
         if(!isScrolling && hasNextPage && isNewScroll) {
             setLastScrollStartTime(Date.now());
