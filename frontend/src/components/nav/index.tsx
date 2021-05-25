@@ -7,6 +7,7 @@ import style from './index.css';
 
 const MINIMUM_SCROLL = 20;
 const TIMEOUT_DELAY = 0;
+const PADDING = 20;
 
 import useDocumentScrollThrottled from './use-document-scroll-throttled';
 import LogoWhite from '../../images/logo-white.inline.svg';
@@ -29,7 +30,7 @@ export interface INav {
     theme: ITheme,
     links: Array<INavItem>,
     pageNumber: number,
-    setPageNumber: (page: number) => void,
+    setPageNumber?: (page: number) => void,
     whiteLogoImportant?: boolean
 }
 
@@ -41,10 +42,10 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
 
     useEffect(() => {
         setTimeout(() => {
-            const activeElement = document.querySelector(`.nav__link-${pageNumber}`);
+            const activeElement = document.querySelector(`.nav__link-${pageNumber}`) as HTMLElement;
 
             setIndicatorStyles({
-                transform: `translateX(${activeElement?.offsetLeft - 20}px)`,
+                transform: `translateX(${activeElement?.offsetLeft - PADDING}px)`,
                 width    : activeElement?.offsetWidth
             });
         }, 200);
@@ -67,7 +68,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
 
     const redirectHandler = () => {
         if(pageNumber) {
-            setPageNumber(0);
+            setPageNumber?.(0);
         }
 
         if(isOpen) {

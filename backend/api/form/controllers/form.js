@@ -7,7 +7,7 @@ module.exports = {
     try {
       const res = await strapi.plugins['email'].services.email.send({
         //TODO: Можно ли указать в strapi?
-        to: 'hr@sberautotech.ru',
+        to: 'hr_sat@sberbank.ru',
         subject: 'Форма сайта - Резюме',
         html: `
           <p>${name} ${surname} - ${email}</p>

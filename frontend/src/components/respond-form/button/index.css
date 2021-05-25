@@ -8,6 +8,7 @@
     line-height: 125%;
     letter-spacing: -0.01em;
     color: #1F272E;
+    background: #FFFFFF;
 
     &:hover {
         background-color: #67CFC9;
