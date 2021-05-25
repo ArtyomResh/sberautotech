@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
+import { toUnescapedHTML } from '../../utils';
 
 import style from './index.css';
 
@@ -21,7 +22,7 @@ const StoryCard = ({ card }: { card: ICard }) => {
     return (
         <div className={cn('story__wrapper')}>
             <img src={card.image.localFile.publicURL} className={cn('story__image')} alt="" />
-            {text && <span className={cn('story__text')} dangerouslySetInnerHTML={{ __html: text }} />}
+            {text && <span className={cn('story__text')}>{toUnescapedHTML(text)}</span>}
         </div>
     );
 };
