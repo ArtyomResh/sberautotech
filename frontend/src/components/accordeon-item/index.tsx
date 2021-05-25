@@ -41,7 +41,14 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
                     <div className={cn('accordeon__sub-description-wrapper')}>
                         {data.link && (
                             <div className={cn('accordeon__link-wrapper')}>
-                                <a href={data.link.to} target="_blank" className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}>
+                                <a
+                                    target="_blank"
+                                    href={data.link.to}
+                                    className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}
+                                    onClick={() => {
+                                        window?.gtag?.('event', 'click', { event_category: 'accordeon_button_click', event_label: data.header });
+                                    }}
+                                >
                                     {data.link.text}
                                 </a>
                             </div>

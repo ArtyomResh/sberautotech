@@ -72,6 +72,11 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
         }
     };
 
+    const onClick = () => {
+        window?.gtag?.('event', 'click', { event_category: 'header_button_click', event_label: 'Join button' });
+        setIsPopupVisible(true);
+    };
+
     return (
         <nav
             className={
@@ -118,7 +123,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
                 <button
                     type="button"
                     className={cn('nav__accept-button')}
-                    onClick={() => setIsPopupVisible(true)}
+                    onClick={onClick}
                 >Присоединиться
                 </button>
             </div>

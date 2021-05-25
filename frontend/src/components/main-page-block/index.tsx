@@ -42,7 +42,14 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
                 {link.text}
             </Link>
         ) : (
-            <a href={link.to} target="_blank" className={cn('block__link', `block__link_${linkStyle}`)}>
+            <a
+                target="_blank"
+                href={link.to}
+                className={cn('block__link', `block__link_${linkStyle}`)}
+                onClick={() => {
+                    window?.gtag?.('event', 'click', { event_category: 'slide_button_click', event_label: 'Slide button' });
+                }}
+            >
                 {link.text}
             </a>
         )

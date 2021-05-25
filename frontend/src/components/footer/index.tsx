@@ -26,7 +26,16 @@ const Footer = ({ data }: IProps) => {
             <div className={cn('footer__top-block')}>
                 <div className={cn('footer__header')}>{data.header}</div>
                 <div className={cn('footer__description')}>{data.description}</div>
-                <a href={data.link.to} target="_blank" className={cn('footer__link')}>{data.link.text}</a>
+                <a
+                    target="_blank"
+                    href={data.link.to}
+                    className={cn('footer__link')}
+                    onClick={() => {
+                        window?.gtag?.('event', 'click', { event_category: 'footer_button_click', event_label: 'Footer button' });
+                    }}
+                >
+                    {data.link.text}
+                </a>
             </div>
             <div className={cn('footer__bottom-block')}>
                 <div className={cn('footer__bottom-block_left')}>
