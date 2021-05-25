@@ -26,10 +26,10 @@
       "repeatable": true,
       "component": "shared.story-card"
     },
-    "slider_items": {
+    "slider": {
       "type": "component",
-      "repeatable": true,
-      "component": "shared.slider-item"
+      "repeatable": false,
+      "component": "shared.slider"
     }
   }
 }

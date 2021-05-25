@@ -9,6 +9,7 @@ import style from './about-company.css';
 import Footer from '../components/footer';
 import Carousel from '../components/self-driving-cars-carousel';
 import ListAccordeon from '../components/list-accordeon';
+import useFormattedText from '../hooks/use-formatted-text';
 
 const query = graphql`
   query {
@@ -57,16 +58,14 @@ const query = graphql`
             }
             id
           }
-          slider_items {
-            background {
-              localFile {
-                publicURL
-              }
-            }
+          slider {
             header
-            headerLink
-            id
-            text
+            header_position
+            slider_items {
+                localFile {
+                    publicURL
+                }
+            }
           }
         }
       }
@@ -78,17 +77,24 @@ const query = graphql`
 const AboutCompanyPage = () => {
     const cn = useClassnames(style);
     const data = useStaticQuery(query);
-    const { headerBackground, headerText, list, slider_items, footer } = data.allStrapiAboutCompany.edges[0].node;
+    const { headerBackground, headerText, list, slider, footer } = data.allStrapiAboutCompany.edges[0].node;
+
+    const header = useFormattedText(headerText);
 
     return (
         <Layout seo={data.strapiGlobal.defaultSeo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={0}>
             <div className={cn('about-company__wrapper')}>
-                <div className={cn('about-company__header-wrapper')}>
-                    <img className={cn('about-company__header-image')} src={headerBackground.localFile.publicURL} />
-                    <p className={cn('about-company__header-text')}>{headerText}</p>
-                </div>
+                {header && (
+                    <div className={cn('about-company__header-wrapper')}>
+                        <img className={cn('about-company__header-image')} src={headerBackground.localFile.publicURL} />
+                        <p
+                            className={cn('about-company__header-text')}
+                            dangerouslySetInnerHTML={{ __html: header }}
+                        />
+                    </div>
+                )}
                 <ListAccordeon data={list} className={cn('about-company__list')} />
-                <Carousel data={slider_items} />
+                <Carousel data={slider} />
                 <Footer data={footer} />
             </div>
         </Layout>

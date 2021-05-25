@@ -24,6 +24,10 @@
             right: 100px;
             max-width: 845px;
 
+            span {
+                color: #94F7ED;
+            }
+
             @media (max-width: 1024px) {
                 top: 80px;
                 left: 10px;

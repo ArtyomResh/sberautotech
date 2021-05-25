@@ -81,43 +81,14 @@
         "text": "Скорость реакции роботизированной системы в 5 раз выше, чем у самого опытного водителя. По статистике, 93% аварий на дорогах в России происходят из-за потери водителем концентрации внимания. Беспилотные технологии, не подверженные усталости и эмоциям, помогут повысить безопасность на дорогах."
       }
     ],
-    "slider_items": [
-      {
-        "headerLink": "Первые беспилотные автомобили Sber Automotive Technologies",
-        "header": " выехали на улицы Москвы в декабре 2020 года для испытаний в условиях зимнего мегаполиса",
-        "background": null,
-        "backgroundName": "carWithLidar-day.jpg",
-        "text": "В соответствии с законодательством, за рулем каждой машины находится инженер-испытатель, готовый взять управление на себя в случае необходимости."
-      },
-      {
-        "headerLink": "Первые беспилотные автомобили Sber Automotive Technologies",
-        "header": " выехали на улицы Москвы в декабре 2020 года для испытаний в условиях зимнего мегаполиса",
-        "background": null,
-        "backgroundName": "carWithLidar-day-front.jpg",
-        "text": "В соответствии с законодательством, за рулем каждой машины находится инженер-испытатель, готовый взять управление на себя в случае необходимости.В соответствии с законодательством, за рулем каждой машины находится инженер-испытатель, готовый взять управление на себя в случае необходимости."
-      },
-      {
-        "headerLink": "Первые беспилотные автомобили Sber Automotive Technologies",
-        "header": " выехали на улицы Москвы в декабре 2020 года для испытаний в условиях зимнего мегаполиса",
-        "background": null,
-        "backgroundName": "carWithLidar-day-back.jpg",
-        "text": "В соответствии с законодательством, за рулем каждой машины находится инженер-испытатель, готовый взять управление на себя в случае необходимости."
-      },
-      {
-        "headerLink": "Первые беспилотные автомобили Sber Automotive Technologies",
-        "header": " выехали на улицы Москвы в декабре 2020 года для испытаний в условиях зимнего мегаполиса",
-        "background": null,
-        "backgroundName": "carWithLidar-day-front-second.jpg",
-        "text": "В соответствии с законодательством, за рулем каждой машины находится инженер-испытатель, готовый взять управление на себя в случае необходимости."
-      },
-      {
-        "headerLink": "Первые беспилотные автомобили Sber Automotive Technologies",
-        "header": " выехали на улицы Москвы в декабре 2020 года для испытаний в условиях зимнего мегаполиса",
-        "background": null,
-        "backgroundName": "carWithLidar-day-front-third.jpg",
-        "text": "В соответствии с законодательством, за рулем каждой машины находится инженер-испытатель, готовый взять управление на себя в случае необходимости."
-      }
-    ],
+    "slider": {
+      "header": "{Первые беспилотные автомобили Sber Automotive Technologies} выехали на улицы Москвы в декабре 2020 года для испытаний в условиях зимнего мегаполиса",
+      "header_position": "top_right",
+      "text": "В соответствии с законодательством, за рулем каждой машины находится инженер-испытатель, готовый взять управление на себя в случае необходимости.",
+      "text_position": "bottom_left",
+      "slider_items": [null, null, null, null, null],
+      "slider_items_names": ["carWithLidar-day.jpg", "carWithLidar-day-front.jpg", "carWithLidar-day-back.jpg", "carWithLidar-day-front-second.jpg", "carWithLidar-day-front-third.jpg"]
+    },
     "footer": {
       "header": "Вы хотите участвовать в нашем проекте по созданию будущего автомобильной индустрии, но пока не нашли подходящих вакансий?",
       "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
@@ -133,36 +104,14 @@
     }
   },
   "Career": {
-    "top_slider": [
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "engineer2.jpg",
-        "text": "Железо, код и люди. Сберавтотех собирает будущее в своих гаражах и офисах"
-      },
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "engineer3.jpg",
-        "text": "Железо, код и люди. Сберавтотех собирает будущее в своих гаражах и офисах"
-      },
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "engineer4.jpg",
-        "text": "Железо, код и люди. Сберавтотех собирает будущее в своих гаражах и офисах"
-      },
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "engineer5.jpg",
-        "text": "Железо, код и люди. Сберавтотех собирает будущее в своих гаражах и офисах"
-      }
-    ],
+    "top_slider": {
+      "header": "Железо, код и люди</br> Сберавтотех собирает будущее в своих гаражах и офисах",
+      "header_position": "bottom_left",
+      "text": null,
+      "text_position": "bottom_left",
+      "slider_items": [null, null, null, null],
+      "slider_items_names": [ "engineer2.jpg",  "engineer3.jpg",  "engineer4.jpg",  "engineer5.jpg"]
+    },
     "top_list": {
       "header": "Мир меняется не сам по себе. Его меняют люди, которые верят в технологии, в будущее и в свои силы. Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
       "list_items": [
@@ -240,36 +189,14 @@
         }
       ]
     },
-    "bottom_slider": [
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "office.jpg",
-        "text": ""
-      },
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "office-2.jpg",
-        "text": ""
-      },
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "office-3.jpg",
-        "text": ""
-      },
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "office-4.jpg",
-        "text": ""
-      }
-    ],
+    "bottom_slider": {
+      "header": "",
+      "header_position": "bottom_left",
+      "text": null,
+      "text_position": "bottom_left",
+      "slider_items": [null, null, null, null],
+      "slider_items_names": [ "office.jpg",  "office-2.jpg",  "office-3.jpg",  "office-4.jpg"]
+    },
     "bottom_list": {
       "header": "Достойная оплата труда, офис с парковкой и социальный пакет – базовые вещи. Мы предлагаем больше",
       "list_items": [
@@ -376,36 +303,14 @@
         }
       ]
     },
-    "slider_items": [
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "flip-prototype.jpg",
-        "text": "У компании три ключевые локации — офис разработки программного обеспечения, инженерно-испытательный центр и инжиниринговый офис в {Москве и Минске.}"
-      },
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "team.jpg",
-        "text": "У компании три ключевые локации — офис разработки программного обеспечения, инженерно-испытательный центр и инжиниринговый офис в {Москве и Минске.}"
-      },
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "engineer6.jpg",
-        "text": "У компании три ключевые локации — офис разработки программного обеспечения, инженерно-испытательный центр и инжиниринговый офис в {Москве и Минске.}"
-      },
-      {
-        "headerLink": "",
-        "header": "",
-        "background": null,
-        "backgroundName": "engineer7.jpg",
-        "text": "У компании три ключевые локации — офис разработки программного обеспечения, инженерно-испытательный центр и инжиниринговый офис в {Москве и Минске.}"
-      }
-    ],
+    "slider": {
+      "header": "У компании три ключевые локации — офис разработки программного обеспечения, инженерно-испытательный центр и инжиниринговый офис в {Москве и Минске.}",
+      "header_position": "bottom_right",
+      "text": null,
+      "text_position": "bottom_left",
+      "slider_items": [null, null, null, null],
+      "slider_items_names": [ "flip-prototype.jpg",  "team.jpg",  "engineer6.jpg",  "engineer7.jpg"]
+    },
     "footer": {
       "header": "Вы хотите участвовать в нашем проекте по созданию будущего автомобильной индустрии, но пока не нашли подходящих вакансий?",
       "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",

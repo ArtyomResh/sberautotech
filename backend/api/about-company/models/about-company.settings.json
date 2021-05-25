@@ -34,15 +34,15 @@
       "repeatable": false,
       "component": "shared.list"
     },
-    "slider_items": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.slider-item"
-    },
     "footer": {
       "type": "component",
       "repeatable": false,
       "component": "shared.footer"
+    },
+    "slider": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.slider"
     }
   }
 }

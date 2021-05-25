@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import useFormattedText from '../../hooks/use-formatted-text';
 
 import style from './index.css';
 
@@ -15,14 +16,12 @@ export interface ICard {
 
 const StoryCard = ({ card }: { card: ICard }) => {
     const cn = useClassnames(style);
-    const text = useMemo(() => (
-        card.text.replace('{', '<span>').replace('}', '</span>')
-    ), [card.text]);
+    const text = useFormattedText(card.text);
 
     return (
         <div className={cn('story__wrapper')}>
             <img src={card.image.localFile.publicURL} className={cn('story__image')} alt="" />
-            <span className={cn('story__text')} dangerouslySetInnerHTML={{ __html: text }} />
+            {text && <span className={cn('story__text')} dangerouslySetInnerHTML={{ __html: text }} />}
         </div>
     );
 };

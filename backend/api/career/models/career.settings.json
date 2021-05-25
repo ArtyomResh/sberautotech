@@ -13,8 +13,8 @@
   "attributes": {
     "top_slider": {
       "type": "component",
-      "repeatable": true,
-      "component": "shared.slider-item"
+      "repeatable": false,
+      "component": "shared.slider"
     },
     "top_list": {
       "type": "component",
@@ -23,8 +23,8 @@
     },
     "bottom_slider": {
       "type": "component",
-      "repeatable": true,
-      "component": "shared.slider-item"
+      "repeatable": false,
+      "component": "shared.slider"
     },
     "bottom_list": {
       "type": "component",

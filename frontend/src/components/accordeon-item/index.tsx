@@ -1,4 +1,3 @@
-import { Link } from 'gatsby';
 import React, { useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
@@ -42,9 +41,9 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
                     <div className={cn('accordeon__sub-description-wrapper')}>
                         {data.link && (
                             <div className={cn('accordeon__link-wrapper')}>
-                                <Link to={data.link.to} className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}>
+                                <a href={data.link.to} target="_blank" className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}>
                                     {data.link.text}
-                                </Link>
+                                </a>
                             </div>
                         )}
                         {data.subDescriptionFirst && (

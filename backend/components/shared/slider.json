@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_shared_sliders",
+  "info": {
+    "name": "Slider",
+    "icon": "angle-double-right"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "slider_items": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "header_position": {
+      "type": "enumeration",
+      "enum": [
+        "top_left",
+        "bottom_left",
+        "top_right",
+        "bottom_right"
+      ],
+      "default": "top_left"
+    },
+    "text_position": {
+      "type": "enumeration",
+      "enum": [
+        "top_left",
+        "bottom_left",
+        "top_right",
+        "bottom_right"
+      ],
+      "default": "top_left"
+    }
+  }
+}
