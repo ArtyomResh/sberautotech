@@ -1,0 +1,32 @@
+.privacy-policy {
+    &__wrapper {
+        max-width: 1272px;
+        margin: 0 auto;
+        margin-top: 100px;
+        padding-bottom: 60px;
+
+        & p{
+            margin-top: 18px;
+        }
+
+        & h3{
+            margin-top: 40px;
+        }
+
+        & a p {
+            color: red;
+
+            &:hover {
+                text-decoration: underline
+            }
+        }
+
+        @media (max-width: 1440px) {
+            padding: 0 60px 60px 60px;
+        }
+
+        @media (max-width: 450px) {
+            padding: 0 30px 30px 30px;
+        }
+    }
+}
