@@ -3,6 +3,7 @@ import Swiper from 'swiper';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
+import { toUnescapedHTML } from '../../utils';
 
 import style from './index.css';
 
@@ -34,7 +35,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
     const $container = useRef<HTMLDivElement>(null);
     const [cursorPosition, setCursorPosition] = useState(ECursorPosition.left);
-    const [swiper, setSwiper] = useState<any>(null);
+    const [swiper, setSwiper] = useState<Swiper | null>(null);
 
     const header = useFormattedText(data.header);
     const text = useFormattedText(data.text);
@@ -88,8 +89,9 @@ const Carousel: React.FC<IProps> = ({ data }) => {
                             [`carousel__header_${data.header_position?.replace('_', '-')}`]: data.header_position
                         }
                     )}
-                    dangerouslySetInnerHTML={{ __html: header }}
-                />
+                >
+                    {toUnescapedHTML(header)}
+                </p>
             )}
             {text && (
                 <p
@@ -98,8 +100,9 @@ const Carousel: React.FC<IProps> = ({ data }) => {
                             [`carousel__text_${data.text_position?.replace('_', '-')}`]: data.text_position
                         }
                     )}
-                    dangerouslySetInnerHTML={{ __html: text }}
-                />
+                >
+                    {toUnescapedHTML(text)}
+                </p>
             )}
             <div className={cn('swiper-wrapper')}>
                 {data.slider_items.map((slide, i) => (
