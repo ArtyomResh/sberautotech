@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
+import { toUnescapedHTML } from '../../utils';
 import StoryCard, { ICard } from '../story-card';
 
 import style from './index.css';
@@ -72,7 +73,7 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
             )}
             {block.link ? renderLink(block.link) : null }
             <div className={cn('block__bottom', pageNumber >= index ? 'block__bottom_showing' : 'block__bottom_hiding')}>
-                {text && <span className={cn('block__text')} dangerouslySetInnerHTML={{ __html: text }} />}
+                {text && <span className={cn('block__text')}>{toUnescapedHTML(text)}</span>}
                 {block.cards?.map((card, i) => (
                     <StoryCard key={i} card={card} />
                 ))}

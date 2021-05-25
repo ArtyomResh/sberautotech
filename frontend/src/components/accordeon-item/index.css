@@ -96,6 +96,7 @@
         margin-bottom: 40px;
         font-size: 18px;
         line-height: 115%;
+        font-family: var(--font-family-secondary);
 
         @media (max-width: 1024px) {
             margin-left: unset;
@@ -127,6 +128,7 @@
         line-height: 16px;
         letter-spacing: -0.01em;
         margin-bottom: 20px;
+        font-family: var(--font-family-secondary);
 
         @media (max-width: 1190px) {
             max-width: 300px;

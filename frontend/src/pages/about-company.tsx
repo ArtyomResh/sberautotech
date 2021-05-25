@@ -10,6 +10,7 @@ import Footer from '../components/footer';
 import Carousel from '../components/self-driving-cars-carousel';
 import ListAccordeon from '../components/list-accordeon';
 import useFormattedText from '../hooks/use-formatted-text';
+import { toUnescapedHTML } from '../utils';
 
 const query = graphql`
   query {
@@ -87,10 +88,7 @@ const AboutCompanyPage = () => {
                 {header && (
                     <div className={cn('about-company__header-wrapper')}>
                         <img className={cn('about-company__header-image')} src={headerBackground.localFile.publicURL} />
-                        <p
-                            className={cn('about-company__header-text')}
-                            dangerouslySetInnerHTML={{ __html: header }}
-                        />
+                        <p className={cn('about-company__header-text')}>{toUnescapedHTML(header)}</p>
                     </div>
                 )}
                 <ListAccordeon data={list} className={cn('about-company__list')} />

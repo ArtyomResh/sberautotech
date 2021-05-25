@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Nav from '../nav';
+import Nav, { INav } from '../nav';
 import Seo from '../seo';
 import RespondForm from '../respond-form';
 import { useClassnames } from '../../hooks/use-classnames';
@@ -14,7 +14,15 @@ const LINKS = [
     { text: 'Карьера', link: '/career' }
 ];
 
-const Layout = ({ children, seo, theme, pageNumber, setPageNumber }) => {
+interface IProps {
+    children: React.ReactNode,
+    seo: Record<string, unknown>,
+    theme: INav['theme'],
+    pageNumber: INav['pageNumber'],
+    setPageNumber?: INav['setPageNumber']
+}
+
+const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const cn = useClassnames(style);
 
