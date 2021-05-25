@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import { IListAccordeonItem } from '../list-accordeon';
+import { gtagClicked } from '../../utils';
 
 import AccordeonHide from '../../images/accordeon-hide.inline.svg';
 import AccordeonShow from '../../images/accordeon-show.inline.svg';
@@ -45,9 +46,7 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
                                     target="_blank"
                                     href={data.link.to}
                                     className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}
-                                    onClick={() => {
-                                        window?.gtag?.('event', 'click', { event_category: `accordeon_button_click_${data.id}`, event_label: 'Accordion button' });
-                                    }}
+                                    onClick={() => gtagClicked(`accordeon_button_click_${data.id}`, 'Accordion button')}
                                 >
                                     {data.link.text}
                                 </a>

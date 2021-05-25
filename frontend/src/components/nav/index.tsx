@@ -10,6 +10,7 @@ const TIMEOUT_DELAY = 0;
 const PADDING = 20;
 
 import useDocumentScrollThrottled from './use-document-scroll-throttled';
+import { gtagClicked } from '../../utils';
 import LogoWhite from '../../images/logo-white.inline.svg';
 import LogoBlack from '../../images/logo-black.inline.svg';
 import Burger from '../../images/burger.inline.svg';
@@ -74,7 +75,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
     };
 
     const onClick = () => {
-        window?.gtag?.('event', 'click', { event_category: 'header_button_click', event_label: 'Join button' });
+        gtagClicked('header_button_click', 'Join button');
         setIsPopupVisible(true);
     };
 

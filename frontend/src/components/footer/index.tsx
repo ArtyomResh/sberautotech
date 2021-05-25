@@ -1,5 +1,6 @@
 import React from 'react';
 import { useClassnames } from '../../hooks/use-classnames';
+import { gtagClicked } from '../../utils';
 
 import style from './index.css';
 
@@ -30,9 +31,7 @@ const Footer = ({ data }: IProps) => {
                     target="_blank"
                     href={data.link.to}
                     className={cn('footer__link')}
-                    onClick={() => {
-                        window?.gtag?.('event', 'click', { event_category: 'footer_button_click', event_label: 'Footer button' });
-                    }}
+                    onClick={() => gtagClicked('footer_button_click', 'Footer button')}
                 >
                     {data.link.text}
                 </a>
