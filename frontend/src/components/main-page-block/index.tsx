@@ -48,7 +48,7 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
                 target="_blank"
                 href={link.to}
                 className={cn('block__link', `block__link_${linkStyle}`)}
-                onClick={() => gtagClicked('slide_button_click', 'Slide button')}
+                onClick={() => gtagClicked('main_slide_button_click')}
             >
                 {link.text}
             </a>

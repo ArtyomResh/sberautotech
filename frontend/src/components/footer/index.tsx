@@ -31,7 +31,7 @@ const Footer = ({ data }: IProps) => {
                     target="_blank"
                     href={data.link.to}
                     className={cn('footer__link')}
-                    onClick={() => gtagClicked('footer_button_click', 'Footer button')}
+                    onClick={() => gtagClicked('footer_button_click')}
                 >
                     {data.link.text}
                 </a>

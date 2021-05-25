@@ -46,7 +46,7 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
                                     target="_blank"
                                     href={data.link.to}
                                     className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}
-                                    onClick={() => gtagClicked(`accordeon_button_click_${data.id}`, 'Accordion button')}
+                                    onClick={() => gtagClicked(`accordeon_button_click_${data.id}`)}
                                 >
                                     {data.link.text}
                                 </a>
