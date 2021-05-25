@@ -42,10 +42,8 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
         <div className={cn('main-block')}>
             <div className={cn('main-block__top')}>
                 <img src={data.topBackground.localFile.publicURL} alt={data.header} className={cn('main-block__image')} />
-                <p className={cn('main-block__info-top')}>
-                    <div>{data.text}</div>
-                    <div className={cn('main-block__info-bottom')}>{data.textBottom}</div>
-                </p>
+                <div className={cn('main-block__info-top')}>{data.text}</div>
+                <div className={cn('main-block__info-bottom')}>{data.textBottom}</div>
             </div>
             <div className={cn('main-block__bottom')} onClick={toggleVideo}>
                 {play ? <ButtonPlay className={cn('main-block__bottom-play')} /> : <ButtonPause className={cn('main-block__bottom-play')} /> }
