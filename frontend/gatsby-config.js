@@ -3,6 +3,9 @@ require('dotenv').config({
 });
 
 module.exports = {
+    siteMetadata: {
+        siteUrl: 'https://www.sberautotech.ru'
+    },
     plugins: [
         {
             resolve: 'gatsby-plugin-google-gtag',
@@ -63,6 +66,27 @@ module.exports = {
                 apiURL      : process.env.API_URL || 'http://localhost:1337',
                 contentTypes: [],
                 singleTypes : ['homepage', 'global', 'self-driving-car', 'career', 'about-company', 'flip']
+            }
+        },
+        {
+            resolve: 'gatsby-plugin-sitemap',
+            options: {
+                output: '/'
+            }
+        },
+        {
+            resolve: 'gatsby-plugin-robots-txt',
+            options: {
+                host   : 'https://sberautotech.ru',
+                sitemap: 'https://sberautotech.ru/sitemap-index.xml',
+                env    : {
+                    development: {
+                        policy: [{ userAgent: '*', disallow: ['/'] }]
+                    },
+                    production: {
+                        policy: [{ userAgent: '*', allow: '/' }]
+                    }
+                }
             }
         }
     ]

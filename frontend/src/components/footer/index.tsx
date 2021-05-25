@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
@@ -27,7 +26,7 @@ const Footer = ({ data }: IProps) => {
             <div className={cn('footer__top-block')}>
                 <div className={cn('footer__header')}>{data.header}</div>
                 <div className={cn('footer__description')}>{data.description}</div>
-                <a className={cn('footer__link')} href={data.link.to}>{data.link.text}</a>
+                <a href={data.link.to} target="_blank" className={cn('footer__link')}>{data.link.text}</a>
             </div>
             <div className={cn('footer__bottom-block')}>
                 <div className={cn('footer__bottom-block_left')}>
