@@ -209,16 +209,39 @@ async function importAboutCompany(shouldImportSeedData) {
 
 async function importFlip(shouldImportSeedData) {
   const files = {
-    // "headerBackground": getFileData(AboutCompany.headerBackgroundName),
-    // "slider.slider_items": []
+    "first_screen.background": getFileData(Flip.first_screen.backgroundName),
+    "first_screen.mobileBackground": getFileData(Flip.first_screen.mobileBackgroundName),
+    "first_screen.backgroundPoster": getFileData(Flip.first_screen.backgroundPosterName),
+    "first_screen.mobileBackgroundPoster": getFileData(Flip.first_screen.mobileBackgroundPosterName),
+    "second_screen.background": getFileData(Flip.second_screen.backgroundName),
+    "second_screen.mobileBackground": getFileData(Flip.second_screen.mobileBackgroundName),
+    "second_screen.backgroundPoster": getFileData(Flip.second_screen.backgroundPosterName),
+    "second_screen.mobileBackgroundPoster": getFileData(Flip.second_screen.mobileBackgroundPosterName),
+    "third_screen.background": getFileData(Flip.third_screen.backgroundName),
+    "third_screen.mobileBackground": getFileData(Flip.third_screen.mobileBackgroundName),
+    "third_screen.backgroundPoster": getFileData(Flip.third_screen.backgroundPosterName),
+    "third_screen.mobileBackgroundPoster": getFileData(Flip.third_screen.mobileBackgroundPosterName),
+    "fourth_screen.background": getFileData(Flip.fourth_screen.backgroundName),
+    "fourth_screen.mobileBackground": getFileData(Flip.fourth_screen.mobileBackgroundName),
+    "fourth_screen.backgroundPoster": getFileData(Flip.fourth_screen.backgroundPosterName),
+    "fourth_screen.mobileBackgroundPoster": getFileData(Flip.fourth_screen.mobileBackgroundPosterName),
+    "fifth_screen.background": getFileData(Flip.fifth_screen.backgroundName),
+    "fifth_screen.mobileBackground": getFileData(Flip.fifth_screen.mobileBackgroundName),
+    "fifth_screen.backgroundPoster": getFileData(Flip.fifth_screen.backgroundPosterName),
+    "fifth_screen.mobileBackgroundPoster": getFileData(Flip.fifth_screen.mobileBackgroundPosterName),
+    "sixth_screen.background": getFileData(Flip.sixth_screen.backgroundName),
+    "sixth_screen.mobileBackground": getFileData(Flip.sixth_screen.mobileBackgroundName),
+    "sixth_screen.backgroundPoster": getFileData(Flip.sixth_screen.backgroundPosterName),
+    "sixth_screen.mobileBackgroundPoster": getFileData(Flip.sixth_screen.mobileBackgroundPosterName),
+    "seventh_screen.background": getFileData(Flip.seventh_screen.backgroundName),
+    "seventh_screen.mobileBackground": getFileData(Flip.seventh_screen.mobileBackgroundName),
+    "seventh_screen.backgroundPoster": getFileData(Flip.seventh_screen.backgroundPosterName),
+    "seventh_screen.mobileBackgroundPoster": getFileData(Flip.seventh_screen.mobileBackgroundPosterName),
+    "eighth_screen.background": getFileData(Flip.eighth_screen.backgroundName),
+    "eighth_screen.mobileBackground": getFileData(Flip.eighth_screen.mobileBackgroundName),
+    "eighth_screen.backgroundPoster": getFileData(Flip.eighth_screen.backgroundPosterName),
+    "eighth_screen.mobileBackgroundPoster": getFileData(Flip.eighth_screen.mobileBackgroundPosterName)
   };
-  // AboutCompany.list['list_items'].map((item, i) => {
-  //   files[`list.list_items.${i}.image`] = getFileData(item.imageName)
-  // });
-
-  // AboutCompany.slider.slider_items_names.map((item) => {
-  //   files[`slider.slider_items`].push(getFileData(item))
-  // });
 
   if (shouldImportSeedData) {
     await createEntry({ model: "flip", entry: Flip, files });
@@ -227,7 +250,6 @@ async function importFlip(shouldImportSeedData) {
 }
 
 async function importSeedData(shouldImportSeedData) {
-  // Allow read of application content types
   await setPublicPermissions({
     global: ['find'],
     homepage: ['find'],
