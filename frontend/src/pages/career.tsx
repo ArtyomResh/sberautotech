@@ -30,6 +30,7 @@ const query = graphql`
           top_list {
             header
             list_items {
+              id
               description
               header
               link {
@@ -58,6 +59,7 @@ const query = graphql`
             }
           }
           footer {
+            id
             description
             disclaimer
             header

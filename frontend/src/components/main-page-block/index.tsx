@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
+import { gtagClicked } from '../../utils';
 import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
 import { toUnescapedHTML } from '../../utils';
@@ -43,7 +44,12 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
                 {link.text}
             </Link>
         ) : (
-            <a href={link.to} target="_blank" className={cn('block__link', `block__link_${linkStyle}`)}>
+            <a
+                target="_blank"
+                href={link.to}
+                className={cn('block__link', `block__link_${linkStyle}`)}
+                onClick={() => gtagClicked('main_slide_button_click')}
+            >
                 {link.text}
             </a>
         )

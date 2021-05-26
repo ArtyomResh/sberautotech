@@ -7,14 +7,8 @@
 * `git clone ssh://git@atlas.swec.sbercloud.ru:7999/fe/sberautotech.ru.git`
 * `git clone https://atlas.swec.sbercloud.ru/bitbucket/scm/fe/sberautotech.ru.git`
 
-Установить корневые зависимости
-`yarn`
-
-Установить зависимости backend
-`cd backend && yarn`
-
-Установить зависимости frontend
-`cd frontend && yarn`
+Установить корневые зависимости, зависимости backend и frontend
+`yarn inst`
 
 ## Запуск без использования локального сервера
 Необходимо в директории frontend создать файл `.env`, по аналогии с файлом `.env.example` и изменить переменную окружения API_URL на адрес удаленного сервера.

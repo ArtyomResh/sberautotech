@@ -10,6 +10,7 @@ const TIMEOUT_DELAY = 0;
 const PADDING = 20;
 
 import useDocumentScrollThrottled from './use-document-scroll-throttled';
+import { gtagClicked } from '../../utils';
 import LogoWhite from '../../images/logo-white.inline.svg';
 import LogoBlack from '../../images/logo-black.inline.svg';
 import Burger from '../../images/burger.inline.svg';
@@ -76,6 +77,11 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
         }
     };
 
+    const onClick = () => {
+        gtagClicked('header_button_click', 'Join button');
+        setIsPopupVisible(true);
+    };
+
     return (
         <nav
             className={
@@ -122,7 +128,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
                 <button
                     type="button"
                     className={cn('nav__accept-button')}
-                    onClick={() => setIsPopupVisible(true)}
+                    onClick={onClick}
                 >Присоединиться
                 </button>
             </div>
