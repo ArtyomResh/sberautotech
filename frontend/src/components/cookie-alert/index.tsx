@@ -20,6 +20,7 @@ const CookieAlert = () => {
             declineButtonClasses={cn('cookie-alert__button', 'cookie-alert__button_dark')}
             enableDeclineButton={true}
             flipButtons={true}
+            cookieName="gatsby-gdpr-google-analytics"
         >
             <h1 className={cn('cookie-alert__title')}>ПАО Сбербанк использует cookie</h1>
             <p className={cn('cookie-alert__text')}>
