@@ -17,6 +17,7 @@ interface IListAccordeon {
 }
 
 export interface IListAccordeonItem {
+    id?: string,
     target?: string,
     description?: string,
     header: string,
