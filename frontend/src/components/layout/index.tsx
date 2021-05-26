@@ -23,17 +23,9 @@ interface IProps {
     setPageNumber?: INav['setPageNumber']
 }
 
-const SHOW_COOKIE_POLICY = 'SHOW_COOKIE_POLICY';
-
 const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
-    const [isCookieVisible, setIsCookieVisible] = useState(Boolean(!localStorage.getItem(SHOW_COOKIE_POLICY)));
     const cn = useClassnames(style);
-
-    const onClick = () => {
-        setIsCookieVisible(false);
-        localStorage.setItem(SHOW_COOKIE_POLICY, 'false');
-    };
 
     return (
         <div className={cn('app__wrapper')}>
@@ -41,7 +33,7 @@ const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => 
             <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} setPageNumber={setPageNumber} />
             <main>{children}</main>
             {isPopupVisible && <RespondForm setIsPopupVisible={setIsPopupVisible} />}
-            {isCookieVisible && <CookieAlert onAcceptClick={onClick} onDeclineClick={onClick} />}
+            <CookieAlert />
         </div>
     );
 };
