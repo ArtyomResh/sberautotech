@@ -5,11 +5,11 @@
         margin-top: 100px;
         padding-bottom: 60px;
 
-        & p{
+        & p {
             margin-top: 18px;
         }
 
-        & h3{
+        & h3 {
             margin-top: 40px;
         }
 
@@ -17,7 +17,7 @@
             color: red;
 
             &:hover {
-                text-decoration: underline
+                text-decoration: underline;
             }
         }
 
