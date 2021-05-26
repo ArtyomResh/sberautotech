@@ -11,8 +11,8 @@ import style from './index.css';
 const LINKS = [
     { text: 'ФЛИП', link: '/flip' },
     { text: 'Беспилотный автомобиль', link: '/self-driving-car' },
-    { text: 'Карьера', link: '/career' },
-    { text: 'О компании', link: '/about-company' }
+    { text: 'О компании', link: '/about-company' },
+    { text: 'Карьера', link: '/career' }
 ];
 
 interface IProps {

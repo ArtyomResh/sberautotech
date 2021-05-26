@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../hooks/use-classnames';
 import useDeviceDetect from '../hooks/use-device-detect';
@@ -185,14 +185,24 @@ const IndexPage = () => {
     }, [handleScroll]);
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber} setPageNumber={setPageNumber}>
-            <div className={cn('main-page-blocks')}>
-                <MainPageBlock block={screens.second_screen[0]} index={0} pageNumber={pageNumber} />
-                <MainPageBlock block={screens.third_screen[0]} index={1} pageNumber={pageNumber} />
-                <MainPageBlock block={screens.fourth_screen[0]} index={2} pageNumber={pageNumber} />
-                <MainPageBlock block={screens.first_screen[0]} index={3} pageNumber={pageNumber} />
-            </div>
-        </Layout>
+        <div className={cn('main__page', `main__page_${pageNumber}`)}>
+            <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber} setPageNumber={setPageNumber}>
+                <div className={cn('main-page-blocks')}>
+                    <Link to="/flip">
+                        <MainPageBlock block={screens.second_screen[0]} index={0} pageNumber={pageNumber} />
+                    </Link>
+                    <Link to="/self-driving-car">
+                        <MainPageBlock block={screens.third_screen[0]} index={1} pageNumber={pageNumber} />
+                    </Link>
+                    <Link to="/about-company">
+                        <MainPageBlock block={screens.first_screen[0]} index={2} pageNumber={pageNumber} />
+                    </Link>
+                    <Link to="/career">
+                        <MainPageBlock block={screens.fourth_screen[0]} index={3} pageNumber={pageNumber} />
+                    </Link>
+                </div>
+            </Layout>
+        </div>
     );
 };
 

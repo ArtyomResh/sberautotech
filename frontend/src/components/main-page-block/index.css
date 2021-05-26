@@ -6,6 +6,7 @@
         width: 100vw;
         z-index: 1;
         transition: top 1s ease 0s;
+        cursor: pointer;
 
         &_visible {
             top: 0;
@@ -63,7 +64,7 @@
         }
 
         &_fill {
-            background: #94F7ED;
+            background: #BDFFF8;
             min-width: 333px;
             padding: 16px 0;
             border-radius: 15px;
@@ -126,7 +127,11 @@
         padding-right: 10px;
 
         span {
-            color: #94F7ED;
+            color: #BDFFF8;
+
+            &:hover {
+                color: #94F7ED;
+            }
         }
     }
 }

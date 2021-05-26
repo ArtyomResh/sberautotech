@@ -30,7 +30,6 @@ module.exports = {
             options: {
                 name      : 'Sber Automotive Technologies',
                 short_name: 'SberAutoTech',
-                start_url : '/',
                 icon      : 'src/images/favicon.png',
                 display   : 'minimal-ui'
             }

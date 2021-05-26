@@ -41,7 +41,7 @@
         font-size: 30px;
         line-height: 48px;
         letter-spacing: -0.01em;
-        background: #94F7ED;
+        background: #BDFFF8;
 
         @media (max-width: 600px) {
             font-size: 25px;

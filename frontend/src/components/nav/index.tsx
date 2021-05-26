@@ -23,7 +23,8 @@ export interface INavItem {
 
 export interface ITheme {
     mode: string,
-    logoColor: string
+    logoColor: string,
+    whiteLogoImportant?: boolean
 }
 
 export interface INav {

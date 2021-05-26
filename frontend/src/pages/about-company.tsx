@@ -14,10 +14,10 @@ import { toUnescapedHTML } from '../utils';
 
 const query = graphql`
   query {
-    strapiGlobal {
-      defaultSeo {
-        metaDescription
+    strapiAboutCompany {
+      seo {
         metaTitle
+        metaDescription
       }
     }
     allStrapiAboutCompany {
@@ -83,7 +83,7 @@ const AboutCompanyPage = () => {
     const header = useFormattedText(headerText);
 
     return (
-        <Layout seo={data.strapiGlobal.defaultSeo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
+        <Layout seo={data.strapiAboutCompany.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={2}>
             <div className={cn('about-company__wrapper')}>
                 {header && (
                     <div className={cn('about-company__header-wrapper')}>

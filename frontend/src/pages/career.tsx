@@ -9,7 +9,7 @@ import Footer from '../components/footer';
 
 const query = graphql`
   query {
-    strapiHomepage {
+    strapiCareer {
       seo {
         metaTitle
         metaDescription
@@ -83,7 +83,7 @@ const Career = () => {
     const { top_slider, top_list, bottom_slider, bottom_list, footer } = data.allStrapiCareer.edges[0].node;
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={2}>
+        <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
             <div className="career__carousel">
                 <Carousel data={top_slider} />
             </div>

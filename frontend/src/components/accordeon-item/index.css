@@ -6,7 +6,7 @@
 
     &__toggle {
         cursor: pointer;
-        fill: #94F7ED;
+        fill: #BDFFF8;
         stroke: #000000;
 
         circle {
@@ -39,7 +39,7 @@
         }
 
         &_fill {
-            background: #94F7ED;
+            background: #BDFFF8;
 
             &:hover {
                 background: #67CFC9;

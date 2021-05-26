@@ -61,6 +61,11 @@
     ]
   },
   "SelfDrivingCar": {
+    "seo": {
+      "metaTitle": "Беспилотный автомобиль SberAutoTech",
+      "metaDescription": "Беспилотник СберАвтоТех — собственные технологии автономного вождения",
+      "shareImage": null
+    },
     "double_block": {
       "header": "Беспилотный транспорт",
       "topBackground": null,
@@ -115,6 +120,11 @@
     }
   },
   "Career": {
+    "seo": {
+      "metaTitle": "Работа в SberAutoTech",
+      "metaDescription": "Карьера в сфере создания цифрового транспорта: безопасного, бесшумного и беспилотного",
+      "shareImage": null
+    },
     "top_slider": {
       "header": "Мир не меняется сам по себе.</br>Его меняют люди, которые верят в технологии, в будущее и в свои силы",
       "header_position": "bottom_left",
@@ -285,6 +295,11 @@
     "favicon":null
   },
   "AboutCompany": {
+    "seo": {
+      "metaTitle": "SberAutoTech — технологическая компания, занимающаяся разработками в сфере цифрового транспорта",
+      "metaDescription": "СберАвтоТех: создание беспилотных транспортных средств, операционной системы для управления флотами автомобилей и платформы connected",
+      "shareImage": null
+    },
     "headerText": "Sber Automotive Technologies создана в 2020 году для {развития автомобильных сервисов} Сбера на основе принципов мобильности, экологичности и безопасности",
     "headerBackground": null,
     "headerBackgroundName": "showRoom.jpg",
@@ -337,6 +352,11 @@
     }
   },
   "Flip": {
+    "seo": {
+      "metaTitle": "ФЛИП — новое средство мобильности от SberAutoTech",
+      "metaDescription": "ФЛИП от СберАвтоТех — полностью подключённое, автономное и безопасное транспортное средство на альтернативных видах топлива",
+      "shareImage": null
+    },
     "first_screen": {
       "background": null,
       "backgroundName": "flip-1.mp4",

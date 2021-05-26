@@ -16,10 +16,10 @@ import useDeviceDetect from '../hooks/use-device-detect';
 
 const query = graphql`
   query {
-    strapiGlobal {
-      defaultSeo {
-        metaDescription
+    strapiFlip {
+      seo {
         metaTitle
+        metaDescription
       }
     }
     allStrapiFlip {
@@ -369,7 +369,7 @@ const FlipPage = () => {
     if(isMobile) {
         return (
             <div className="flip__page">
-                <Layout seo={data.strapiGlobal.defaultSeo} theme={{ mode: 'dark', whiteLogoImportant: true }} pageNumber={1}>
+                <Layout seo={data.strapiFlip.seo} theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }} pageNumber={0}>
                     <div className={cn('flip__wrapper', 'flip__wrapper_mobile')}>
                         <div className={cn('flip__screen-wrapper')}>
                             <img className={cn('flip__logo')} src={FlipLogoIcon} />
@@ -549,14 +549,13 @@ const FlipPage = () => {
 
     return (
         <div className="flip__page">
-            <Layout seo={data.strapiGlobal.defaultSeo} theme={{ mode: 'dark', whiteLogoImportant: true }} pageNumber={0}>
+            <Layout seo={data.strapiFlip.seo} theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }} pageNumber={0}>
                 <div className={cn('flip__wrapper')}>
                     <div className={cn('flip__screen-wrapper')}>
                         <div id="bound-one" className="scroll-bound">
                             <div className="content">
                                 <video
                                     src={first_screen.background.localFile.publicURL}
-                                    poster={first_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -578,7 +577,6 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={second_screen.background.localFile.publicURL}
-                                    poster={second_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -600,7 +598,6 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={third_screen.background.localFile.publicURL}
-                                    poster={third_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -622,7 +619,6 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={fourth_screen.background.localFile.publicURL}
-                                    poster={fourth_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -648,7 +644,6 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={fifth_screen.background.localFile.publicURL}
-                                    poster={fifth_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -673,7 +668,6 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={sixth_screen.background.localFile.publicURL}
-                                    poster={sixth_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -699,7 +693,6 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={seventh_screen.background.localFile.publicURL}
-                                    poster={seventh_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -717,7 +710,6 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={eighth_screen.background.localFile.publicURL}
-                                    poster={eighth_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -728,8 +720,6 @@ const FlipPage = () => {
                                 </div>
                             </div>
                         </div>
-
-
                         <img className={cn('flip__logo')} src={FlipLogoIcon} />
                     </div>
                     <Footer data={footer} />

@@ -37,7 +37,16 @@
                 -webkit-transition: none;  
                 -ms-transition: none;  
                 -o-transition: none;  
-                transition: none;  
+                transition: none; 
+                background: #34B7AA; 
+            }
+
+            .nav__list-item_active {
+                color: #34B7AA;
+            }
+
+            .nav__list-item:hover {
+                color: #34B7AA !important;
             }
         }
 
@@ -103,7 +112,7 @@
 
     &__indicator {
         height: 5px;
-        background: #34B7AA;
+        background: #BDFFF8;
         position: absolute;
         top: -3px;
         left: 20px;
@@ -133,12 +142,12 @@
         align-self: baseline;
 
         &_active {
-            color: #34b7aa;
+            color: #BDFFF8;
         }
 
         &:hover {
-            color: #34b7aa;
-            outline-top: 5px solid #34b7aa;
+            color: #BDFFF8;
+            outline-top: 5px solid #BDFFF8;
         }
 
         @media (max-width: 1050px) {
@@ -186,7 +195,7 @@
         margin-bottom: 39px;
         font-family: var(--font-family-primary);
         cursor: pointer;
-        background: #94F7ED;
+        background: #BDFFF8;
         color: #040A0A;
         border: none;
         width: 100%;
@@ -209,7 +218,7 @@
     
     &__accept-button {
         cursor: pointer;
-        background: #94F7ED;
+        background: #BDFFF8;
         color: #040A0A;
         border: none;
         border-radius: 5px;

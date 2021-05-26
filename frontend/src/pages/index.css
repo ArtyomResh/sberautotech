@@ -4,3 +4,9 @@
     width: 100vw;
     overflow: hidden;
 }
+
+.main__page_3 {
+    .nav__accept-button {
+        visibility: hidden;
+    }
+}
