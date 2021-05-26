@@ -131,6 +131,15 @@ async function importHomepage(shouldImportSeedData) {
       files[`third_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
+  homepage['fourth_screen'].map((screenItem, i) => {
+    files[`fourth_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    if (screenItem.backgroundPosterName) {
+      files[`fourth_screen.${i}.backgroundPoster`] = getFileData(screenItem.backgroundPosterName)
+    }
+    screenItem['cards'].map((cardItem, k) => {
+      files[`fourth_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
+    })
+  });
     
   if (shouldImportSeedData) {
     await createEntry({ model: "homepage", entry: homepage, files });

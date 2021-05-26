@@ -9,10 +9,10 @@ import { useClassnames } from '../../hooks/use-classnames';
 import style from './index.css';
 
 const LINKS = [
-    { text: 'О компании', link: '/about-company' },
     { text: 'ФЛИП', link: '/flip' },
     { text: 'Беспилотный автомобиль', link: '/self-driving-car' },
-    { text: 'Карьера', link: '/career' }
+    { text: 'Карьера', link: '/career' },
+    { text: 'О компании', link: '/about-company' }
 ];
 
 interface IProps {

@@ -43,6 +43,22 @@ const query = graphql`
               }
               id
             }
+            text
+            id
+          }
+          third_screen {
+            background {
+              localFile {
+                publicURL
+              }
+              id
+            }
+            backgroundPoster {
+              localFile {
+                publicURL
+              }
+              id
+            }
             cards {
               id
               text
@@ -56,7 +72,7 @@ const query = graphql`
             id
             text
           }
-          third_screen {
+          fourth_screen {
             background {
               localFile {
                 publicURL
@@ -85,7 +101,7 @@ const query = graphql`
   }
 `;
 
-const PAGES_LENGTH = 3;
+const PAGES_LENGTH = 4;
 const ANIMATION_DURATION = 1000;
 const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
@@ -171,9 +187,10 @@ const IndexPage = () => {
     return (
         <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber} setPageNumber={setPageNumber}>
             <div className={cn('main-page-blocks')}>
-                <MainPageBlock block={screens.first_screen[0]} index={0} pageNumber={pageNumber} />
-                <MainPageBlock block={screens.second_screen[0]} index={1} pageNumber={pageNumber} />
-                <MainPageBlock block={screens.third_screen[0]} index={2} pageNumber={pageNumber} />
+                <MainPageBlock block={screens.second_screen[0]} index={0} pageNumber={pageNumber} />
+                <MainPageBlock block={screens.third_screen[0]} index={1} pageNumber={pageNumber} />
+                <MainPageBlock block={screens.fourth_screen[0]} index={2} pageNumber={pageNumber} />
+                <MainPageBlock block={screens.first_screen[0]} index={3} pageNumber={pageNumber} />
             </div>
         </Layout>
     );

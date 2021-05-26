@@ -12,6 +12,7 @@ import SberCloudLogoIcon from '../images/sbercloud-logo.svg';
 import style from './flip.css';
 import Footer from '../components/footer';
 import useFormattedText from '../hooks/use-formatted-text';
+import useDeviceDetect from '../hooks/use-device-detect';
 
 const query = graphql`
   query {
@@ -273,6 +274,7 @@ const FlipPage = () => {
     const cn = useClassnames(style);
     const data = useStaticQuery(query);
     const { first_screen, second_screen, third_screen, fourth_screen, fifth_screen, sixth_screen, seventh_screen, eighth_screen, footer } = data.allStrapiFlip.edges[0].node;
+    const { isMobile } = useDeviceDetect();
 
     const registerVideo = (boundSelector: string, videoSelector: string) => {
         const bound = document.querySelector(boundSelector);
@@ -320,6 +322,9 @@ const FlipPage = () => {
     };
 
     useEffect(() => {
+        if(isMobile) {
+            return;
+        }
         window.scrollTo({
             top     : 0,
             behavior: 'smooth'
@@ -361,15 +366,197 @@ const FlipPage = () => {
     const fifthScreenSecondaryText = useFormattedText(fifth_screen.secondary_text);
     const sixthScreenSecondaryText = useFormattedText(sixth_screen.secondary_text);
 
+    if(isMobile) {
+        return (
+            <div className="flip__page">
+                <Layout seo={data.strapiGlobal.defaultSeo} theme={{ mode: 'dark', whiteLogoImportant: true }} pageNumber={1}>
+                    <div className={cn('flip__wrapper', 'flip__wrapper_mobile')}>
+                        <div className={cn('flip__screen-wrapper')}>
+                            <img className={cn('flip__logo')} src={FlipLogoIcon} />
+                            <video
+                                src={first_screen.mobileBackground.localFile.publicURL}
+                                poster={first_screen.mobileBackgroundPoster.localFile.publicURL}
+                                className={cn('flip__screen-background')}
+                                muted={true}
+                                playsInline={true}
+                                autoPlay={true}
+                                loop={true}
+                            />
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
+                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: firstScreenHeader }} />
+                            </div>
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
+                                <span className={cn('flip__screen-header', 'flip__screen-header_secondary')} dangerouslySetInnerHTML={{ __html: firstScreenSecondaryHeader }} />
+                                <span
+                                    className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${first_screen.secondary_text_float}`)}
+                                    dangerouslySetInnerHTML={{ __html: firstScreenSecondaryText }}
+                                />
+                            </div>
+                        </div>
+                        <div className={cn('flip__screen-wrapper')}>
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
+                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: secondScreenHeader }} />
+                            </div>
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
+
+                                <span className={cn('flip__screen-header', 'flip__screen-header_secondary')} />
+                                <span className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${second_screen.secondary_text_float}`)}>
+                                    <img src={FlipSelfDrivingLevelIcon} />
+                                </span>
+                            </div>
+                            <video
+                                src={second_screen.mobileBackground.localFile.publicURL}
+                                poster={second_screen.mobileBackgroundPoster.localFile.publicURL}
+                                className={cn('flip__screen-background')}
+                                muted={true}
+                                playsInline={true}
+                                autoPlay={true}
+                                loop={true}
+                            />
+                        </div>
+                        <div className={cn('flip__screen-wrapper')}>
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
+                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: thirdScreenHeader }} />
+
+                            </div>
+                            <video
+                                src={third_screen.mobileBackground.localFile.publicURL}
+                                poster={third_screen.mobileBackgroundPoster.localFile.publicURL}
+                                className={cn('flip__screen-background')}
+                                muted={true}
+                                playsInline={true}
+                                autoPlay={true}
+                                loop={true}
+                            />
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
+                                <span
+                                    className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${third_screen.secondary_text_float}`)}
+                                    dangerouslySetInnerHTML={{ __html: thirdScreenSecondaryText }}
+                                />
+                            </div>
+                        </div>
+                        <div className={cn('flip__screen-wrapper')}>
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
+                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: fourthScreenHeader }} />
+                            </div>
+                            <video
+                                src={fourth_screen.mobileBackground.localFile.publicURL}
+                                poster={fourth_screen.mobileBackgroundPoster.localFile.publicURL}
+                                className={cn('flip__screen-background')}
+                                muted={true}
+                                playsInline={true}
+                                autoPlay={true}
+                                loop={true}
+                            />
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
+                                <span
+                                    className={cn('flip__screen-text', 'flip__screen-text_primary', `flip__screen-text_${fourth_screen.primary_text_float}`)}
+                                    dangerouslySetInnerHTML={{ __html: fourthScreenText }}
+                                />
+                                <span
+                                    className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${fourth_screen.secondary_text_float}`)}
+                                    dangerouslySetInnerHTML={{ __html: fourthScreenSecondaryText }}
+                                />
+                            </div>
+                        </div>
+                        <div className={cn('flip__screen-wrapper')}>
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
+                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: fifthScreenHeader }} />
+                            </div>
+
+                            <video
+                                src={fifth_screen.mobileBackground.localFile.publicURL}
+                                poster={fifth_screen.mobileBackgroundPoster.localFile.publicURL}
+                                className={cn('flip__screen-background')}
+                                muted={true}
+                                playsInline={true}
+                                autoPlay={true}
+                                loop={true}
+                            />
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
+                                <span
+                                    className={cn('flip__screen-text', 'flip__screen-text_primary', `flip__screen-text_${fifth_screen.primary_text_float}`)}
+                                    dangerouslySetInnerHTML={{ __html: fifthScreenText }}
+                                />
+                                <span
+                                    className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${fifth_screen.secondary_text_float}`)}
+                                    dangerouslySetInnerHTML={{ __html: fifthScreenSecondaryText }}
+                                />
+                            </div>
+                        </div>
+                        <div className={cn('flip__screen-wrapper')}>
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
+                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: sixthScreenHeader }} />
+                            </div>
+                            <video
+                                src={sixth_screen.mobileBackground.localFile.publicURL}
+                                poster={sixth_screen.mobileBackgroundPoster.localFile.publicURL}
+                                className={cn('flip__screen-background')}
+                                muted={true}
+                                playsInline={true}
+                                autoPlay={true}
+                                loop={true}
+                            />
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
+                                <span
+                                    className={cn('flip__screen-text', 'flip__screen-text_primary', `flip__screen-text_${sixth_screen.primary_text_float}`)}
+                                    dangerouslySetInnerHTML={{ __html: sixthScreenText }}
+                                />
+                                <span
+                                    className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${sixth_screen.secondary_text_float}`)}
+                                    dangerouslySetInnerHTML={{ __html: sixthScreenSecondaryText }}
+                                />
+                                <span><img className={cn('flip__screen-logo')} src={SberCloudLogoIcon} /></span>
+                            </div>
+                        </div>
+                        <div className={cn('flip__screen-wrapper')}>
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
+                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: seventhScreenHeader }} />
+                            </div>
+                            <video
+                                src={seventh_screen.mobileBackground.localFile.publicURL}
+                                poster={seventh_screen.mobileBackgroundPoster.localFile.publicURL}
+                                className={cn('flip__screen-background')}
+                                muted={true}
+                                playsInline={true}
+                                autoPlay={true}
+                                loop={true}
+                            />
+                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
+                                <span className={cn('flip__screen-header', 'flip__screen-header_secondary')} dangerouslySetInnerHTML={{ __html: seventhScreenSecondaryHeader }} />
+                            </div>
+                        </div>
+                        <div className={cn('flip__screen-wrapper')}>
+                            <div className={cn('flip__text-wrapper')}>
+                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: eighthScreenHeader }} />
+                            </div>
+                            <video
+                                src={eighth_screen.mobileBackground.localFile.publicURL}
+                                poster={eighth_screen.mobileBackgroundPoster.localFile.publicURL}
+                                className={cn('flip__screen-background')}
+                                muted={true}
+                                playsInline={true}
+                                autoPlay={true}
+                                loop={true}
+                            />
+                        </div>
+                        <Footer data={footer} />
+                    </div>
+                </Layout>
+            </div>
+        );
+    }
+
     return (
         <div className="flip__page">
-            <Layout seo={data.strapiGlobal.defaultSeo} theme={{ mode: 'dark', whiteLogoImportant: true }} pageNumber={1}>
+            <Layout seo={data.strapiGlobal.defaultSeo} theme={{ mode: 'dark', whiteLogoImportant: true }} pageNumber={0}>
                 <div className={cn('flip__wrapper')}>
                     <div className={cn('flip__screen-wrapper')}>
                         <div id="bound-one" className="scroll-bound">
                             <div className="content">
                                 <video
                                     src={first_screen.background.localFile.publicURL}
+                                    poster={first_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -391,6 +578,7 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={second_screen.background.localFile.publicURL}
+                                    poster={second_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -412,6 +600,7 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={third_screen.background.localFile.publicURL}
+                                    poster={third_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -433,6 +622,7 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={fourth_screen.background.localFile.publicURL}
+                                    poster={fourth_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -458,6 +648,7 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={fifth_screen.background.localFile.publicURL}
+                                    poster={fifth_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -482,6 +673,7 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={sixth_screen.background.localFile.publicURL}
+                                    poster={sixth_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -499,7 +691,7 @@ const FlipPage = () => {
                                         className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${sixth_screen.secondary_text_float}`)}
                                         dangerouslySetInnerHTML={{ __html: sixthScreenSecondaryText }}
                                     />
-                                    <span> <img src={SberCloudLogoIcon} /></span>
+                                    <span><img src={SberCloudLogoIcon} /></span>
                                 </div>
                             </div>
                         </div>
@@ -507,6 +699,7 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={seventh_screen.background.localFile.publicURL}
+                                    poster={seventh_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
@@ -524,6 +717,7 @@ const FlipPage = () => {
                             <div className="content">
                                 <video
                                     src={eighth_screen.background.localFile.publicURL}
+                                    poster={eighth_screen.backgroundPoster.localFile.publicURL}
                                     className={cn('flip__screen-background')}
                                     muted={true}
                                     playsInline={true}
