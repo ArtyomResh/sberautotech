@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Nav, { INav } from '../nav';
 import Seo from '../seo';
 import RespondForm from '../respond-form';
+import CookieAlert from '../cookie-alert';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
@@ -32,9 +33,8 @@ const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => 
             <Seo seo={seo} />
             <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} setPageNumber={setPageNumber} whiteLogoImportant={theme.whiteLogoImportant} />
             <main>{children}</main>
-            {isPopupVisible ? (
-                <RespondForm setIsPopupVisible={setIsPopupVisible} />
-            ) : null}
+            {isPopupVisible && <RespondForm setIsPopupVisible={setIsPopupVisible} />}
+            <CookieAlert />
         </div>
     );
 };
