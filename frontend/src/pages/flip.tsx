@@ -341,19 +341,19 @@ const FlipPage = () => {
         requestAnimationFrame(scrollVideo);
     };
 
-    const preloadVideos = [
-        fetch(first_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-        fetch(second_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-        fetch(third_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-        fetch(fourth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-        fetch(fifth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-        fetch(sixth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-        fetch(seventh_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-        fetch(eighth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob())
-    ];
-
     useEffect(() => {
         if(isMobile !== null) {
+            const preloadVideos = [
+                fetch(first_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
+                fetch(second_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
+                fetch(third_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
+                fetch(fourth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
+                fetch(fifth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
+                fetch(sixth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
+                fetch(seventh_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
+                fetch(eighth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob())
+            ];
+
             Promise.all(preloadVideos).then((data) => {
                 setIsLoading(false);
                 registerVideo('#bound-one', '#bound-one video', URL.createObjectURL(data[0]));
