@@ -1,6 +1,17 @@
 .flip {
 
     &__page {
+        background: black;
+
+        .loader__wrapper {
+            min-height: 100vh;
+            min-width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            stroke: #BDFFF8;
+        }
+
         .nav__wrapper {
             &:not(.nav__wrapper_open-menu) {
                 background-color: rgba(0, 0, 0, 0.7);

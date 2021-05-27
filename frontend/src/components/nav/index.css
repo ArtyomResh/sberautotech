@@ -54,6 +54,10 @@
             background-color: #fff;
             color: #040A0A;
             position: fixed;
+
+            .nav__list-item_active {
+                color: #34B7AA !important;
+            }
         }
     }
 

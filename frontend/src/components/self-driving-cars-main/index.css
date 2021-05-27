@@ -26,6 +26,12 @@
         height: 888px;
         position: relative;
         overflow: hidden;
+
+        video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
     }
 
     &__bottom-play {

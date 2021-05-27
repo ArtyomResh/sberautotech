@@ -126,6 +126,10 @@
         max-width: 1030px;
         padding-right: 10px;
 
+        &:hover {
+            opacity: 0.5;
+        }
+
         span {
             color: #BDFFF8;
 
