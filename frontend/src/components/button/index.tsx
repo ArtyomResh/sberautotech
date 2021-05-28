@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './index.css';
 
-import { useClassnames } from '../../../hooks/use-classnames';
+import { useClassnames } from '../../hooks/use-classnames';
 
 type TButtonType = 'reset' | 'submit' | 'button';
 interface IProps {

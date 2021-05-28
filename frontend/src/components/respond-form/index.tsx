@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import Input from './input';
 import Select from './select';
 import Textarea from './textarea';
-import Button from './button';
+import Button from '../button';
 import CheckBox from './check-box';
 
 import { useClassnames } from '../../hooks/use-classnames';

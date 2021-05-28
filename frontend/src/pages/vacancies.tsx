@@ -79,6 +79,7 @@ const query = graphql`
 
 const vacanciesList = {
     vacancies_list: [{
+        id        : 1,
         title     : 'Эксперт по подбору персонала на проект SberAutoTech',
         location  : 'Москва',
         type      : 'Полная занятость',
@@ -123,7 +124,6 @@ const Vacancies = () => {
             </div>
 
             <VacanciesList data={vacanciesList} />
-
 
             <Footer data={footer} />
         </Layout>
