@@ -4,12 +4,14 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 import VacanciesItem from './item';
+import Button from '../button';
 
 interface IProps {
     data: IVacanciesList
 }
 
 interface IVacanciesList {
+    company: string,
     vacancies_list: Array<IVacanciesListItem>
 }
 
@@ -32,8 +34,11 @@ const VacanciesList: React.FC<IProps> = ({ data }) => {
         <div className={cn('vacancies__wrap')}>
             <div className={cn('vacancies__list')}>
                 {data.vacancies_list.map((item, i) => (
-                    <VacanciesItem data={item} key={`vacancy-item-${i}`} />
+                    <VacanciesItem data={item} company={data.company} key={`vacancy-item-${i}`} />
                 ))}
+            </div>
+            <div className={cn('vacancies__btn-more')}>
+                <Button label="Загрузить еще вакансии" />
             </div>
         </div>
     );

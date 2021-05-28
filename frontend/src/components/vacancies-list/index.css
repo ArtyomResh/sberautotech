@@ -32,7 +32,8 @@
 
         &-top {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 0.65fr 1.35fr;
+            grid-gap: 20px;
         }
 
         &-title {
@@ -51,6 +52,14 @@
             margin-top: 20px;
             border-top: 1px solid #5D6D78;
             padding-top: 20px;
+            display: grid;
+            grid-template-columns: 0.65fr 1.35fr;
+            grid-gap: 20px;
+            padding-bottom: 60px;
+        }
+
+        &-full-content-left {
+            max-width: 70%;
         }
 
         &-full-content-row:not(:last-child) {
@@ -60,5 +69,9 @@
         &-list-title {
             margin-bottom: 15px;
         }
+    }
+
+    &__btn-more {
+        margin-top: 60px;
     }
 }
