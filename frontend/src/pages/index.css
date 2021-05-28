@@ -2,6 +2,15 @@
     width: 100vw;
     height: 100vh;
     background: black;
+
+    .loader__wrapper {
+        min-height: 100vh;
+        min-width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        stroke: #BDFFF8;
+    }
 }
 .main-page-blocks {
     position: relative;
