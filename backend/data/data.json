@@ -13,7 +13,11 @@
         "background": null,
         "backgroundName": "car.jpg",
         "backgroundPoster": null,
-        "backgroundPosterName": null
+        "backgroundPosterName": null,
+        "mobileBackground": null,
+        "mobileBackgroundName": "car.jpg",
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": null
       }
     ],
     "second_screen": [
@@ -22,9 +26,13 @@
         "link": null,
         "cards": [],
         "background": null,
-        "backgroundName": "flip-6.mp4",
+        "backgroundName": "flip.mp4",
         "backgroundPoster": null,
-        "backgroundPosterName": "flip-6.jpg"
+        "backgroundPosterName": "flip.jpg",
+        "mobileBackground": null,
+        "mobileBackgroundName": "flip-mobile.mp4",
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": "flip.jpg"
       }
     ],
     "third_screen": [
@@ -41,7 +49,11 @@
         "background": null,
         "backgroundName": "video-cover.mp4",
         "backgroundPoster": null,
-        "backgroundPosterName": "video-cover.jpg"
+        "backgroundPosterName": "video-cover.jpg",
+        "mobileBackground": null,
+        "mobileBackgroundName": "video-cover-mobile.mp4",
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": "video-cover.jpg"
       }
     ],
     "fourth_screen": [
@@ -56,7 +68,11 @@
         "background": null,
         "backgroundName": "garage.mp4",
         "backgroundPoster": null,
-        "backgroundPosterName": "engineer.jpg"
+        "backgroundPosterName": "garage.jpg",
+        "mobileBackground": null,
+        "mobileBackgroundName": "garage-mobile.mp4",
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": "garage.jpg"
       }
     ]
   },
@@ -347,7 +363,7 @@
       },
       "disclaimer": "Информация, опубликованная на Сайте предоставляется только в ознакомительных целях.",
       "email": "contact@sberautotech.ru",
-      "privacyPolicyLink": "/",
+      "privacyPolicyLink": "/privacy-policy",
       "publicOfferLink": "/"
     }
   },

@@ -73,23 +73,38 @@
         font-family: SB Sans Text;
         padding: 20px 50px 50px 50px;
         bottom: 0px;
+        top: unset;
         display: flex;
         align-items: flex-start;
         width: 100%;
         justify-content: space-between;
 
-        -moz-transition: transform 1s, top 1s; 
-        -webkit-transition: transform 1s, top 1s;  
-        -ms-transition: transform 1s, top 1s;  
-        -o-transition: transform 1s, top 1s;  
-        transition: transform 1s, top 1s;  
+        -moz-transition: transform 1s; 
+        -webkit-transition: transform 1s;  
+        -ms-transition: transform 1s;  
+        -o-transition: transform 1s;  
+        transition: transform 1s;  
 
         @media (max-width: 850px) {
             padding: 10px;
         }
 
+        .flip__screen-text_primary {
+            -moz-transition: opacity 0.5s ease-in-out; 
+            -webkit-transition: opacity 0.5s ease-in-out;  
+            -ms-transition: opacity 0.5s ease-in-out;  
+            -o-transition: opacity 0.5s ease-in-out;  
+            transition: opacity 0.5s ease-in-out; 
+        }
+
         &_secondary {
-            display: none;
+            opacity: 0;
+
+            -moz-transition: opacity 0.5s ease-in-out; 
+            -webkit-transition: opacity 0.5s ease-in-out;  
+            -ms-transition: opacity 0.5s ease-in-out;  
+            -o-transition: opacity 0.5s ease-in-out;  
+            transition: opacity 0.5s ease-in-out; 
         }
     }
 
@@ -152,6 +167,7 @@
             line-height: 48px;
             letter-spacing: -0.01em;
             margin-bottom: 10px;
+            font-weight: 300;
         }
 
         img {

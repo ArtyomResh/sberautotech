@@ -87,14 +87,7 @@ module.exports = {
             options: {
                 host   : 'https://sberautotech.ru',
                 sitemap: 'https://sberautotech.ru/sitemap-index.xml',
-                env    : {
-                    development: {
-                        policy: [{ userAgent: '*', disallow: ['/'] }]
-                    },
-                    production: {
-                        policy: [{ userAgent: '*', allow: '/' }]
-                    }
-                }
+                policy : [{ userAgent: '*', allow: '/' }]
             }
         }
     ]

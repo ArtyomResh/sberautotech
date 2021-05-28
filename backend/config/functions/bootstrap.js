@@ -106,8 +106,12 @@ async function importHomepage(shouldImportSeedData) {
   };
   homepage['first_screen'].map((screenItem, i) => {
     files[`first_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    files[`first_screen.${i}.mobileBackground`] = getFileData(screenItem.mobileBackgroundName)
     if (screenItem.backgroundPosterName) {
       files[`first_screen.${i}.backgroundPoster`] = getFileData(screenItem.backgroundPosterName)
+    }
+    if (screenItem.backgroundPosterName) {
+      files[`first_screen.${i}.mobileBackgroundPoster`] = getFileData(screenItem.mobileBackgroundPosterName)
     }
     screenItem['cards'].map((cardItem, k) => {
       files[`first_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
@@ -115,8 +119,12 @@ async function importHomepage(shouldImportSeedData) {
   });
   homepage['second_screen'].map((screenItem, i) => {
     files[`second_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    files[`second_screen.${i}.mobileBackground`] = getFileData(screenItem.mobileBackgroundName)
     if (screenItem.backgroundPosterName) {
       files[`second_screen.${i}.backgroundPoster`] = getFileData(screenItem.backgroundPosterName)
+    }
+    if (screenItem.backgroundPosterName) {
+      files[`second_screen.${i}.mobileBackgroundPoster`] = getFileData(screenItem.mobileBackgroundPosterName)
     }
     screenItem['cards'].map((cardItem, k) => {
       files[`second_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
@@ -124,8 +132,12 @@ async function importHomepage(shouldImportSeedData) {
   });
   homepage['third_screen'].map((screenItem, i) => {
     files[`third_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    files[`third_screen.${i}.mobileBackground`] = getFileData(screenItem.mobileBackgroundName)
     if (screenItem.backgroundPosterName) {
       files[`third_screen.${i}.backgroundPoster`] = getFileData(screenItem.backgroundPosterName)
+    }
+    if (screenItem.backgroundPosterName) {
+      files[`third_screen.${i}.mobileBackgroundPoster`] = getFileData(screenItem.mobileBackgroundPosterName)
     }
     screenItem['cards'].map((cardItem, k) => {
       files[`third_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
@@ -133,8 +145,12 @@ async function importHomepage(shouldImportSeedData) {
   });
   homepage['fourth_screen'].map((screenItem, i) => {
     files[`fourth_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    files[`fourth_screen.${i}.mobileBackground`] = getFileData(screenItem.mobileBackgroundName)
     if (screenItem.backgroundPosterName) {
       files[`fourth_screen.${i}.backgroundPoster`] = getFileData(screenItem.backgroundPosterName)
+    }
+    if (screenItem.backgroundPosterName) {
+      files[`fourth_screen.${i}.mobileBackgroundPoster`] = getFileData(screenItem.mobileBackgroundPosterName)
     }
     screenItem['cards'].map((cardItem, k) => {
       files[`fourth_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)

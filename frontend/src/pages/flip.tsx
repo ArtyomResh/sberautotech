@@ -313,20 +313,19 @@ const FlipPage = () => {
 
                 if(primaryTextBlock && secondaryTextBlock) {
                     if(percentScrolled >= 0.5) {
-                        primaryTextBlock.style.top = '66px';
-                        primaryTextBlock.style.bottom = 'unset';
-                        secondaryTextBlock.style.display = 'flex';
+                        console.log(primaryTextBlock.offsetTop);
+                        primaryTextBlock.style.transform = `translateY(-${primaryTextBlock.offsetTop - 60}px)`;
+                        secondaryTextBlock.style.opacity = 1;
 
                         if(primaryText) {
-                            primaryText.style.display = 'none';
+                            primaryText.style.opacity = 0;
                         }
                     } else {
-                        primaryTextBlock.style.top = 'unset';
-                        primaryTextBlock.style.bottom = '0px';
-                        secondaryTextBlock.style.display = 'none';
+                        primaryTextBlock.style.transform = 'translateY(0px)';
+                        secondaryTextBlock.style.opacity = 0;
 
                         if(primaryText) {
-                            primaryText.style.display = 'block';
+                            primaryText.style.opacity = 1;
                         }
                     }
                 }
