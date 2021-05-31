@@ -46,6 +46,10 @@ const VacanciesList: React.FC<IProps> = ({ data }) => {
         defaultValues   : {}
     });
 
+    const onSubmit = () => {
+        console.log('!!!submit');
+    };
+
     return (
         <FormProvider {...context}>
             <form onSubmit={context.handleSubmit(onSubmit)}>
