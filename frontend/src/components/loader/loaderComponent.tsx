@@ -16,7 +16,7 @@ const Loader: FC<IProps> = (props) => {
 
     return (
         <div className={cn('loader')}>
-            <LoaderIcon stopColor={props.stopColor} svg={{ className: cn('loader__icon') }} />
+            <LoaderIcon stopColor={props.stopColor} svg={{ className: cn('loader__icon'), width: 80, height: 80 }} />
         </div>
     );
 };

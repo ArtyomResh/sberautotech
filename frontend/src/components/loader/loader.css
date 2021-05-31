@@ -9,9 +9,9 @@
 
         & > circle {
             fill: none;
-            stroke-dasharray: 200;
-            stroke-dashoffset: 40;
-            stroke-width: 12;
+            stroke-dasharray: 170;
+            stroke-dashoffset: 20;
+            stroke-width: 4;
             stroke-linecap: square;
             transform-origin: center;
         }

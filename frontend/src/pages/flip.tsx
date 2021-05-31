@@ -32,17 +32,7 @@ const query = graphql`
                 publicURL
               }
             }
-            backgroundPoster {
-              localFile {
-                publicURL
-              }
-            }
             mobileBackground {
-              localFile {
-                publicURL
-              }
-            }
-            mobileBackgroundPoster {
               localFile {
                 publicURL
               }
@@ -60,17 +50,7 @@ const query = graphql`
                 publicURL
               }
             }
-            backgroundPoster {
-              localFile {
-                publicURL
-              }
-            }
             mobileBackground {
-              localFile {
-                publicURL
-              }
-            }
-            mobileBackgroundPoster {
               localFile {
                 publicURL
               }
@@ -88,17 +68,7 @@ const query = graphql`
                 publicURL
               }
             }
-            backgroundPoster {
-              localFile {
-                publicURL
-              }
-            }
             mobileBackground {
-              localFile {
-                publicURL
-              }
-            }
-            mobileBackgroundPoster {
               localFile {
                 publicURL
               }
@@ -129,17 +99,7 @@ const query = graphql`
                 publicURL
               }
             }
-            backgroundPoster {
-              localFile {
-                publicURL
-              }
-            }
             mobileBackground {
-              localFile {
-                publicURL
-              }
-            }
-            mobileBackgroundPoster {
               localFile {
                 publicURL
               }
@@ -157,17 +117,7 @@ const query = graphql`
                 publicURL
               }
             }
-            backgroundPoster {
-              localFile {
-                publicURL
-              }
-            }
             mobileBackground {
-              localFile {
-                publicURL
-              }
-            }
-            mobileBackgroundPoster {
               localFile {
                 publicURL
               }
@@ -185,17 +135,7 @@ const query = graphql`
                 publicURL
               }
             }
-            backgroundPoster {
-              localFile {
-                publicURL
-              }
-            }
             mobileBackground {
-              localFile {
-                publicURL
-              }
-            }
-            mobileBackgroundPoster {
               localFile {
                 publicURL
               }
@@ -209,16 +149,6 @@ const query = graphql`
           }
           sixth_screen {
             background {
-              localFile {
-                publicURL
-              }
-            }
-            backgroundPoster {
-              localFile {
-                publicURL
-              }
-            }
-            mobileBackgroundPoster {
               localFile {
                 publicURL
               }

@@ -13,7 +13,7 @@
         transform: translateY(0);
         transition: transform 0.5s ease;
 
-        &_hidden {
+        &_hidden:not(.nav__wrapper_open-menu) {
             transform: translateY(-110%);
         }
 
@@ -208,7 +208,7 @@
         line-height: 30px;
         text-align: center;
         letter-spacing: -0.01em;
-        border-radius: 15px;
+        border-radius: 50px;
 
         &:hover {
             background-color: #67CFC9;
