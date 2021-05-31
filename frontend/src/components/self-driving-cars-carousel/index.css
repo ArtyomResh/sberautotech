@@ -7,9 +7,24 @@
     overflow: hidden;
     position: relative;
 
-    &:hover {
-        cursor: url("../../images/cursor-left.svg"), pointer;
+    &__cursor {
+        position: absolute;
+        background-color: red;
+        z-index: 150;
+        width: 100px;
+        height: 100px;
+        top: 0;
+        left: 0;
     }
+
+    &_left:hover {
+        cursor: url("../../images/cursor-left.svg"), pointer;
+        /* animation: 0.7s linear 0s normal rotation; */
+
+        
+    }
+
+    /* @keyframes rotation {{ from { cursor: none; } to { cursor:url("../../images/cursor-left.svg"), pointer; }  }} */
 
     &_right:hover {
         cursor: url("../../images/cursor-right.svg"), pointer;
