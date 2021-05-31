@@ -8,14 +8,15 @@ type TButtonType = 'reset' | 'submit' | 'button';
 interface IProps {
     label?: string,
     disabled?: boolean,
-    type?: TButtonType
+    type?: TButtonType,
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-const Button = ({ label, type, disabled }: IProps) => {
+const Button = ({ label, type, disabled, onClick }: IProps) => {
     const cn = useClassnames(style);
 
     return (
-        <button className={cn('button')} type={type} disabled={disabled}>{label}</button>
+        <button className={cn('button')} onClick={onClick} type={type} disabled={disabled}>{label}</button>
     );
 };
 

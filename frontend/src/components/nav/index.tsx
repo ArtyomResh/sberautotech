@@ -28,7 +28,7 @@ export interface ITheme {
 }
 
 export interface INav {
-    setIsPopupVisible: Dispatch<SetStateAction<boolean>>,
+    setIsPopupVisible: Dispatch<SetStateAction<boolean | null>>,
     theme: ITheme,
     links: Array<INavItem>,
     pageNumber: number,
@@ -123,7 +123,6 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
                     </span>
                     <div className={cn('nav__link-block')}>
                         <a className={cn('nav__link-bottom-block')} href="/" title="Политика конфиденциальности">Политика конфиденциальности</a>
-                        <a className={cn('nav__link-bottom-block')} href="/" title="Оферта">Оферта</a>
                     </div>
                 </div>
                 <button

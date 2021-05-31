@@ -243,7 +243,6 @@ const FlipPage = () => {
 
                 if(primaryTextBlock && secondaryTextBlock) {
                     if(percentScrolled >= 0.5) {
-                        console.log(primaryTextBlock.offsetTop);
                         primaryTextBlock.style.transform = `translateY(-${primaryTextBlock.offsetTop - 60}px)`;
                         secondaryTextBlock.style.opacity = 1;
 

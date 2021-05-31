@@ -28,7 +28,7 @@
 
     &__button {
         cursor: pointer;
-        min-width: 335px;
+        min-width: 280px;
         height: 60px;
         border-radius: 15px;
         border: none;
@@ -57,6 +57,16 @@
 @media (max-width: 1024px) {
     .cookie-alert {
         flex-direction: column;
+
+        &__title {
+            font-weight: 400;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+    
+        &__text {
+            font-size: 14px;
+        }
 
         &__right {
             margin-left: 0;

@@ -25,7 +25,7 @@ interface IProps {
 }
 
 const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => {
-    const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [isPopupVisible, setIsPopupVisible] = useState<boolean | null>(null);
     const cn = useClassnames(style);
 
     return (
@@ -33,7 +33,7 @@ const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => 
             <Seo seo={seo} />
             <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} setPageNumber={setPageNumber} whiteLogoImportant={theme.whiteLogoImportant} />
             <main>{children}</main>
-            {isPopupVisible && <RespondForm setIsPopupVisible={setIsPopupVisible} />}
+            <RespondForm setIsPopupVisible={setIsPopupVisible} isPopupVisible={isPopupVisible} />
             <CookieAlert />
         </div>
     );
