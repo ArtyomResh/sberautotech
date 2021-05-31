@@ -74,4 +74,18 @@
     &__btn-more {
         margin-top: 60px;
     }
+
+    &__filters-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
+
+        .ui-select__control {
+            height: 100%;
+        }
+    }
+
+    &__total-count {
+        margin: 100px 0 10px;
+    }
 }
