@@ -33,6 +33,8 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
     const [isError, setIsError] = useState(false);
     const cn = useClassnames(style);
 
+    let closeTimeout;
+
     const context = useForm({
         mode            : 'onSubmit',
         reValidateMode  : 'onChange',
@@ -60,10 +62,17 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
 
     const preventClosePopup = useCallback((e) => {
         e.stopPropagation();
+
+        if(closeTimeout) {
+            clearTimeout(closeTimeout);
+        }
+
         setIsSended(false);
         setIsSubmitDisabled(false);
         setIsPopupVisible(true);
-    }, [])
+        context.reset();
+
+    }, [closeTimeout])
 
     const onSubmit = async (data) => {
         setIsSubmitDisabled(true);
@@ -98,7 +107,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
             if(res.ok) {
                 setIsSended(true)
 
-                setTimeout(() => {
+                closeTimeout = setTimeout(() => {
                     setIsSended(false);
                     setIsPopupVisible(false);
                     setIsSubmitDisabled(false);
@@ -170,7 +179,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
                                     <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
                                 </div>
                                 <div className={cn('right-block__field-wrapper')}>
-                                    <Button disabled={isSubmitDisabled} type="submit" label="Отправить" />
+                                    <Button type="submit" label="Отправить" />
                                 </div>
                             </div>
                         </div>
