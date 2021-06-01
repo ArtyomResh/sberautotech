@@ -35,24 +35,24 @@ enum ECursorPosition {
 const Carousel: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
     const $container = useRef<HTMLDivElement>(null);
-    const [cursorPosition, setCursorPosition] = useState({ prev: '', actual: ECursorPosition.none });
+    const [cursorPosition, setCursorPosition] = useState(ECursorPosition.none);
     const [cursorCoordinates, setCursorCoordinates] = useState({ currentPositionX: 0, currentPositionY: 0 });
     const [swiper, setSwiper] = useState<any>(null);
 
     const header = useFormattedText(data.header);
     const text = useFormattedText(data.text);
 
-    const hoverListener = () => {
-        setCursorPosition({ prev: cursorPosition.actual, actual: ECursorPosition.none });
+    const hoverListener = (e) => {
+        setCursorPosition(ECursorPosition.none);
     };
 
     const onClick = useCallback(() => {
-        if(cursorPosition.actual === ECursorPosition.right) {
+        if(cursorPosition === ECursorPosition.right) {
             swiper?.slidePrev();
-        } else if(cursorPosition.actual === ECursorPosition.left) {
+        } else if(cursorPosition === ECursorPosition.left) {
             swiper?.slideNext();
         }
-    }, [cursorPosition.actual, swiper]);
+    }, [cursorPosition, swiper]);
 
     const observeCursor = useCallback((e) => {
         const containerWidth = e.target?.closest('.carousel-container')?.clientWidth;
@@ -66,7 +66,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
         const { top, bottom } = e.target?.closest('.carousel-container')?.getBoundingClientRect();
 
         if(currentPositionY < top || currentPositionY > bottom) {
-            setCursorPosition({ prev: cursorPosition.actual, actual: ECursorPosition.none });
+            setCursorPosition(ECursorPosition.none);
 
             return;
         }
@@ -75,10 +75,10 @@ const Carousel: React.FC<IProps> = ({ data }) => {
 
         const newCursorPosition = containerWidth / 2 >= cursorCoordinates.currentPositionX ? ECursorPosition.left : ECursorPosition.right;
 
-        if(newCursorPosition !== cursorPosition.actual) {
-            setCursorPosition({ prev: cursorPosition.actual, actual: newCursorPosition });
+        if(newCursorPosition !== cursorPosition) {
+            setCursorPosition(newCursorPosition);
         }
-    }, [cursorPosition.actual, cursorCoordinates]);
+    }, [cursorPosition, cursorCoordinates]);
 
     useEffect(() => {
         if($container.current) {
@@ -115,25 +115,25 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     //         }
     //     };
 
-    //     if(cursorPosition.actual === 'left') {
+    //     if(cursorPosition === 'left') {
     //         rotator(cursorPosition);
-    //     } else if(cursorPosition.actual === 'right') {
+    //     } else if(cursorPosition === 'right') {
     //         // rotator(cursorPosition);
     //     }
     // }, [cursorPosition]);
 
     const elCursor = useMemo(() => {
-        return <div className={cn('carousel__cursor', `carousel__cursor_${cursorPosition.actual}`)} style={{ top: cursorCoordinates.currentPositionY, left: cursorCoordinates.currentPositionX }}></div>;
-    }, [cursorPosition.actual, cursorCoordinates]);
-
-    console.log(cursorPosition);
-    
+        return <div className={cn('carousel__cursor', `carousel__cursor_${cursorPosition}`)} style={{ top: cursorCoordinates.currentPositionY, left: cursorCoordinates.currentPositionX }}></div>;
+    }, [cursorPosition, cursorCoordinates]);
 
     return (
         <div
             className={cn('carousel-container', 'carousel')}
             ref={$container}
             onMouseMove={observeCursor}
+            onMouseLeave={() => {
+                setCursorPosition(ECursorPosition.none);
+            }}
             onClick={onClick}
         >
             {elCursor}
