@@ -3,6 +3,10 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
+{% if cert_issuer == 'infra-letsencrypt' %}
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: {{ cert_issuer }}
+{% endif %}
     kubernetes.io/ingress.class: kong
   name: {{ app_name }}-{{ package_name }}-kong
   namespace: {{ namespace }}
@@ -18,4 +22,8 @@ spec:
   tls:
     - hosts:
         - {{ domain }}
+{% if cert_issuer == 'infra-letsencrypt' %}
+      secretName: {{ app_name }}-{{ package_name }}-kong
+{% else %}
       secretName: {{ cert_secret }}
+{% endif %}

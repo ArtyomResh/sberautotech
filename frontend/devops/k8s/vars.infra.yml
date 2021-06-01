@@ -1,0 +1,12 @@
+namespace: infra
+domain: sberautotech.ru
+service_account: infra-sa
+
+cert_issuer: infra-letsencrypt
+cert_secret: sberautotech-ru
+
+replicas: 3
+
+requests:
+  cpu: '50m'
+  memory: '50Mi'

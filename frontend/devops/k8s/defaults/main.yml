@@ -1,0 +1,4 @@
+k8s_config: '~/.kube/config'
+image_pull_secret: docker-registries
+deploy_timeout: 300
+service_port: 8080

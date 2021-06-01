@@ -8,6 +8,7 @@ metadata:
   namespace: {{ namespace }}
 data:
     nginx-conf: |
+{% if stand == 'dev' %}
       resolver 10.10.0.162 10.10.0.41;
 
       server {
@@ -29,3 +30,11 @@ data:
               proxy_pass https://sberautotech-backend.dev.fe.sbauto.tech;
           }
       }
+{% endif %}
+
+{% if stand == 'infra' %}
+      server {
+        listen {{ service_port }};
+        return 302 https://sberautotech.com;
+      }
+{% endif %}
