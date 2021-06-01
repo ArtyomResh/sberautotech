@@ -5,7 +5,7 @@ const useFormattedText = (text: string | undefined) => useMemo(() => {
         return null;
     }
 
-    return text.replace('{', '<span>').replace('}', '</span>');
+    return text.replace('{', '<span>').replace('}', '</span>').replace('[', '<b>').replace(']', '</b>');
 }, [text]);
 
 export default useFormattedText;

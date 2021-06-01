@@ -13,10 +13,29 @@
         "background": null,
         "backgroundName": "car.jpg",
         "backgroundPoster": null,
-        "backgroundPosterName": null
+        "backgroundPosterName": null,
+        "mobileBackground": null,
+        "mobileBackgroundName": "car.jpg",
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": null
       }
     ],
     "second_screen": [
+      {
+        "text": "{Технологии SberAutoTech} открывают новые формы, новые возможности, новый вид мобильности",
+        "link": null,
+        "cards": [],
+        "background": null,
+        "backgroundName": "flip.mp4",
+        "backgroundPoster": null,
+        "backgroundPosterName": "flip.jpg",
+        "mobileBackground": null,
+        "mobileBackgroundName": "flip-mobile.mp4",
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": "flip.jpg"
+      }
+    ],
+    "third_screen": [
       {
         "text": "Собственная технология беспилотного вождения: {полный контроль ситуации на дороге} и реакция быстрее, чем у любого водителя",
         "link": null,
@@ -30,12 +49,16 @@
         "background": null,
         "backgroundName": "video-cover.mp4",
         "backgroundPoster": null,
-        "backgroundPosterName": "video-cover.jpg"
+        "backgroundPosterName": "video-cover.jpg",
+        "mobileBackground": null,
+        "mobileBackgroundName": "video-cover-mobile.mp4",
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": "video-cover.jpg"
       }
     ],
-    "third_screen": [
+    "fourth_screen": [
       {
-        "text": "Наша команда расширяется — {узнайте о наших вакансиях и присоединитесь} к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
+        "text": "Создание транспорта будущего — увлекательная задача, и {мы с радостью примем в нашу команду единомышленников}. Нам нужны идеи, опыт и желание менять мир.",
         "link": {
           "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
           "text": "Вакансии",
@@ -45,11 +68,20 @@
         "background": null,
         "backgroundName": "garage.mp4",
         "backgroundPoster": null,
-        "backgroundPosterName": "engineer.jpg"
+        "backgroundPosterName": "garage.jpg",
+        "mobileBackground": null,
+        "mobileBackgroundName": "garage-mobile.mp4",
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": "garage.jpg"
       }
     ]
   },
   "SelfDrivingCar": {
+    "seo": {
+      "metaTitle": "Беспилотный автомобиль SberAutoTech",
+      "metaDescription": "Беспилотник СберАвтоТех — собственные технологии автономного вождения",
+      "shareImage": null
+    },
     "double_block": {
       "header": "Беспилотный транспорт",
       "topBackground": null,
@@ -58,15 +90,15 @@
       "bottomVideoName": "video-cover.mp4",
       "bottomVideoPoster": null,
       "bottomVideoPosterName": "video-cover.jpg",
-      "textBottom": "роботизированная система управления полностью контролирует дорогу и обеспечивает моментальную реакцию на любые изменения обстановки.",
+      "textBottom": "роботизированная система управления полностью контролирует дорогу и обеспечивает моментальную реакцию на любые изменения обстановки",
       "text": "Технологии, которые обеспечат прорыв в безопасности дорожного движения:"
     },
     "story_cards": [
       {
-        "header": "Без слепых зон: обзор в 360 градусов",
+        "header": "Без слепых зон: обзор в 360°",
         "image": null,
         "imageName": "torpedo.jpg",
-        "text": "Радары, лидары и сенсоры обеспечивают автомобилю обзор в 360 градусов - вокруг него нет слепых зон. Беспилотник умеет распознавать и отличать друг от друга все возможные объекты, перестраиваться, тормозить, объезжать препятствия и предвидеть действия других участников дорожного движения."
+        "text": "Радары, лидары и сенсоры обеспечивают автомобилю обзор в 360° - вокруг него нет слепых зон. Беспилотник умеет распознавать и отличать друг от друга все возможные объекты, перестраиваться, тормозить, объезжать препятствия и предвидеть действия других участников дорожного движения."
       },
       {
         "header": "Бесшовная интеграция с экосистемой",
@@ -90,7 +122,7 @@
       "slider_items_names": ["carWithLidar-day.jpg", "carWithLidar-day-front.jpg", "carWithLidar-day-back.jpg", "carWithLidar-day-front-second.jpg", "carWithLidar-day-front-third.jpg"]
     },
     "footer": {
-      "header": "Вы хотите участвовать в нашем проекте по созданию будущего автомобильной индустрии, но пока не нашли подходящих вакансий?",
+      "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
       "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
       "link": {
         "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
@@ -104,16 +136,21 @@
     }
   },
   "Career": {
+    "seo": {
+      "metaTitle": "Работа в SberAutoTech",
+      "metaDescription": "Карьера в сфере создания цифрового транспорта: безопасного, бесшумного и беспилотного",
+      "shareImage": null
+    },
     "top_slider": {
-      "header": "Железо, код и люди</br> Сберавтотех собирает будущее в своих гаражах и офисах",
+      "header": "Мир не меняется сам по себе.</br>Его меняют люди, которые верят в технологии, в будущее и в свои силы",
       "header_position": "bottom_left",
       "text": null,
       "text_position": "bottom_left",
-      "slider_items": [null, null, null, null],
-      "slider_items_names": [ "engineer2.jpg",  "engineer3.jpg",  "engineer4.jpg",  "engineer5.jpg"]
+      "slider_items": [null, null, null],
+      "slider_items_names": [ "engineer2.jpg",  "engineer4.jpg",  "engineer5.jpg"]
     },
     "top_list": {
-      "header": "Мир меняется не сам по себе. Его меняют люди, которые верят в технологии, в будущее и в свои силы. Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
+      "header": "Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
       "list_items": [
         {
           "target": "Сделать все необходимые сервисы доступными прямо в салоне авто",
@@ -251,7 +288,7 @@
       ]
     },
     "footer": {
-      "header": "Вы хотите участвовать в нашем проекте по созданию будущего автомобильной индустрии, но пока не нашли подходящих вакансий?",
+      "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
       "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
       "link": {
         "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
@@ -274,7 +311,12 @@
     "favicon":null
   },
   "AboutCompany": {
-    "headerText": "Компания создана в 2020 году, чтобы построить технологическую инфраструктуру для {создания и развития автомобильных сервисов} в экосистеме Сбера.",
+    "seo": {
+      "metaTitle": "SberAutoTech — технологическая компания, занимающаяся разработками в сфере цифрового транспорта",
+      "metaDescription": "СберАвтоТех: создание беспилотных транспортных средств, операционной системы для управления флотами автомобилей и платформы connected",
+      "shareImage": null
+    },
+    "headerText": "Sber Automotive Technologies создана в 2020 году для {развития автомобильных сервисов} Сбера на основе принципов мобильности, экологичности и безопасности",
     "headerBackground": null,
     "headerBackgroundName": "showRoom.jpg",
     "list": {
@@ -283,21 +325,21 @@
         {
           "target": "Обеспечить безопасность с помощью системы, которая реагирует на любые события быстрее профессионального водителя",
           "header": "Безопасность",
-          "description": "Наши инженеры оснастили автомобиль оптимальной комбинацией радаров, лидаров и камер, благодаря которым беспилотник непрерывно контролирует происходящее на дороге и за ее пределами. Обзор беспилотника — 360 градусов, у него нет слепых зон и он реагируют на любое изменение дорожной обстановки в 5 раз быстрее самого опытного водителя, он не подвержен эмоциям и не нарушает правила. Вот почему технологии автономного вождения помогут снизить число аварий и повысить безопасность на дорогах.",
+          "description": "Наши инженеры оснастили автомобиль оптимальной комбинацией радаров, лидаров и камер, благодаря которым беспилотник непрерывно контролирует происходящее на дороге и за ее пределами. Обзор беспилотника — 360°, у него нет слепых зон и он реагируют на любое изменение дорожной обстановки в 5 раз быстрее самого опытного водителя, он не подвержен эмоциям и не нарушает правила. Вот почему технологии автономного вождения помогут снизить число аварий и повысить безопасность на дорогах.",
           "image": null,
           "imageName": "lidar-top.jpg"
         },
         {
           "target": "Сделать поездки и перевозки удобным сервисом, доступным в один клик",
           "header": "Мобильность",
-          "description": "Цифровизация транспорта выводит нас на новый уровень эффективности в использовании коммерческих парков. Оптимальное распределение задач и маршрутов, безопасность, комфорт, повышение производительности – всё это можно реализовать с помощью разрабатываемых нами технологий. Беспилотный транспорт сотрет грань между такси и каршерингом, а умные системы управления обеспечат комфорт пользователей. Логистика жизни в большом городе станет удобнее, а мы получим еще больше свободного времени.",
+          "description": "Мы повышаем уровень эффективности коммерческих парков. Оптимальное распределение задач и маршрутов, безопасность, комфорт, повышение производительности — всё это возможно с помощью разрабатываемых нами технологий. Беспилотный транспорт сотрет грань между такси и каршерингом, а умные системы управления обеспечат комфорт пользователей.",
           "image": null,
           "imageName": "flip-top.jpg"
         },
         {
-          "target": "Перейти к сбережению ресурсов через использование альтернативных видов энергии",
+          "target": "Придерживаться принципов устойчивого развития",
           "header": "Экологичность",
-          "description": "Электродвигатели имеют меньшую стоимость владения — это отвечает разделяемой нами концепции разумного потребления и сбережения ресурсов. В условиях мегаполисов электрические транспортные средства помогут нам сократить выбросы газов и уровень шума. А автономность нового транспорта даст возможность по-новому переосмыслить использование городских пространств, сделав их более комфортными для человека.",
+          "description": "В условиях мегаполисов электрические транспортные средства помогут сократить выбросы газов и уровень шума. Они имеют меньшую стоимость владения — это отвечает разделяемой нами концепции разумного потребления и сбережения ресурсов. А автономность нового транспорта позволит сделать городское пространство более комфортным для человека.",
           "image": null,
           "imageName": "computer.jpg"
         }
@@ -308,11 +350,159 @@
       "header_position": "bottom_right",
       "text": null,
       "text_position": "bottom_left",
-      "slider_items": [null, null, null, null],
-      "slider_items_names": [ "flip-prototype.jpg",  "team.jpg",  "engineer6.jpg",  "engineer7.jpg"]
+      "slider_items": [null, null],
+      "slider_items_names": ["engineer6.jpg",  "engineer7.jpg"]
     },
     "footer": {
-      "header": "Вы хотите участвовать в нашем проекте по созданию будущего автомобильной индустрии, но пока не нашли подходящих вакансий?",
+      "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
+      "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
+      "link": {
+        "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
+        "text": "Вакансии",
+        "style": "fill"
+      },
+      "disclaimer": "Информация, опубликованная на Сайте предоставляется только в ознакомительных целях.",
+      "email": "contact@sberautotech.ru",
+      "privacyPolicyLink": "/privacy-policy",
+      "publicOfferLink": "/"
+    }
+  },
+  "Flip": {
+    "seo": {
+      "metaTitle": "ФЛИП — новое средство мобильности от SberAutoTech",
+      "metaDescription": "ФЛИП от СберАвтоТех — полностью подключённое, автономное и безопасное транспортное средство на альтернативных видах топлива",
+      "shareImage": null
+    },
+    "first_screen": {
+      "background": null,
+      "backgroundName": "flip-1.mp4",
+      "mobileBackground": null,
+      "mobileBackgroundName": "flip-1-mobile.mp4",
+      "backgroundPoster": null,
+      "backgroundPosterName": "flip-1.jpg",
+      "mobileBackgroundPoster": null,
+      "mobileBackgroundPosterName": "flip-1-mobile.jpg",
+      "primary_header": "ФЛИП — транспорт</br>нового поколения",
+      "secondary_header": "",
+      "primary_text": "",
+      "secondary_text": "Спроектированный электрическим и полностью беспилотным, ФЛИП обладает габаритами стандартного легкового автомобиля и обеспечивает высокий уровень комфорта для шести пассажиров",
+      "primary_text_float": "right",
+      "secondary_text_float": "right"
+    },
+    "second_screen": {
+      "background": null,
+      "backgroundName": "flip-2.mp4",
+      "mobileBackground": null,
+      "mobileBackgroundName": "flip-2-mobile.mp4",
+      "backgroundPoster": null,
+      "backgroundPosterName": "flip-2.jpg",
+      "mobileBackgroundPoster": null,
+      "mobileBackgroundPosterName": "flip-2-mobile.jpg",
+      "primary_header": "{Соответствует пятому},</br>максимальному уровню</br>автономности",
+      "secondary_header": "",
+      "primary_text": "",
+      "secondary_text": "",
+      "primary_text_float": "right",
+      "secondary_text_float": "right"
+    },
+    "third_screen": {
+      "background": null,
+      "backgroundName": "flip-3.mp4",
+      "mobileBackground": null,
+      "mobileBackgroundName": "flip-3-mobile.mp4",
+      "backgroundPoster": null,
+      "backgroundPosterName": "flip-3.jpg",
+      "mobileBackgroundPoster": null,
+      "mobileBackgroundPosterName": "flip-3-mobile.jpg",
+      "primary_header": "{Комплекс}</br>радаров, лидаров</br>и сенсоров",
+      "secondary_header": "",
+      "primary_text": "",
+      "secondary_text": "Обеспечивает обзор на 360°, а скорость реакции компьютера — выше, чем у любого профессионального водителя",
+      "primary_text_float": "right",
+      "secondary_text_float": "left"
+    },
+    "fourth_screen": {
+      "background": null,
+      "backgroundName": "flip-4.mp4",
+      "mobileBackground": null,
+      "mobileBackgroundName": "flip-4-mobile.mp4",
+      "backgroundPoster": null,
+      "backgroundPosterName": "flip-4.jpg",
+      "mobileBackgroundPoster": null,
+      "mobileBackgroundPosterName": "flip-4-mobile.jpg",
+      "primary_header": "{ФЛИП} — электрический,</br>бесшумный и экологичный",
+      "secondary_header": "",
+      "primary_text": "Позволит сделать городское пространство более комфортным для человека",
+      "secondary_text": "Компоновка батарей и электродвигателей предусматривают как пассажирскую, так и грузовую модификации",
+      "primary_text_float": "right",
+      "secondary_text_float": "right"
+    },
+    "fifth_screen": {
+      "background": null,
+      "backgroundName": "flip-5.mp4",
+      "mobileBackground": null,
+      "mobileBackgroundName": "flip-5-mobile.mp4",
+      "backgroundPoster": null,
+      "backgroundPosterName": "flip-5.jpg",
+      "mobileBackgroundPoster": null,
+      "mobileBackgroundPosterName": "flip-5-mobile.jpg",
+      "primary_header": "ФЛИП использует</br>{сменные батареи}",
+      "secondary_header": "",
+      "primary_text": "В сочетании с сервисом по лизингу это полностью меняет экономику использования транспортных средств",
+      "secondary_text": "Нет задержки техники на время зарядки, нет высоких требований к зарядной инфраструктуре, нет необходимости покупать дорогостоящие батареи",
+      "primary_text_float": "right",
+      "secondary_text_float": "left"
+    },
+    "sixth_screen": {
+      "background": null,
+      "backgroundName": "flip-6.mp4",
+      "mobileBackground": null,
+      "mobileBackgroundName": "flip-6-mobile.mp4",
+      "backgroundPoster": null,
+      "backgroundPosterName": "flip-6.jpg",
+      "mobileBackgroundPoster": null,
+      "mobileBackgroundPosterName": "flip-6-mobile.jpg",
+      "primary_header": "ФЛИП генерирует</br>{огромный объем}</br>информации",
+      "secondary_header": "",
+      "primary_text": "[до 2ТБ / день]</br></br>Эти данные необходимы для обучения нейросетей и систем компьютерного зрения",
+      "secondary_text": "Хранение и обработка этого массива информации происходит на мощностях SberCloud — облачного провайдера услуг и сервисов, входящего в экосистему Сбера",
+      "primary_text_float": "left",
+      "secondary_text_float": "left"
+    },
+    "seventh_screen": {
+      "background": null,
+      "backgroundName": "flip-7.mp4",
+      "mobileBackground": null,
+      "mobileBackgroundName": "flip-7-mobile.mp4",
+      "backgroundPoster": null,
+      "backgroundPosterName": "flip-7.jpg",
+      "mobileBackgroundPoster": null,
+      "mobileBackgroundPosterName": "flip-7-mobile.jpg",
+      "primary_header": "ФЛИП {полностью</br>подключенный}",
+      "secondary_header": "ФЛИП интегрирован</br>в {экосистему Сбера}",
+      "primary_text": "",
+      "secondary_text": "",
+      "primary_text_float": "right",
+      "secondary_text_float": "right"
+    },
+    "eighth_screen": {
+      "background": null,
+      "backgroundName": "flip-8.mp4",
+      "mobileBackground": null,
+      "mobileBackgroundName": "flip-8-mobile.mp4",
+      "backgroundPoster": null,
+      "backgroundPosterName": "flip-8.jpg",
+      "mobileBackgroundPoster": null,
+      "mobileBackgroundPosterName": "flip-8-mobile.jpg",
+      "primary_header": "Как {инструмент новой мобильности}, ФЛИП готов к интеграции в ваши бизнес-процессы и IT-инфраструктуру",
+      "secondary_header": "",
+      "primary_text": "",
+      "secondary_text": "",
+      "primary_text_float": "right",
+      "secondary_text_float": "right"
+    },
+    "footer": {
+      "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
       "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
       "link": {
         "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",

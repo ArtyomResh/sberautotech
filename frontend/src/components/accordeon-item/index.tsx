@@ -52,16 +52,12 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
                                 </a>
                             </div>
                         )}
-                        {data.subDescriptionFirst && (
-                            <div className={cn('accordeon__sub-description')}>
-                                {data.subDescriptionFirst}
-                            </div>
-                        )}
-                        {data.subDescriptionSecond && (
-                            <div className={cn('accordeon__sub-description')}>
-                                {data.subDescriptionSecond}
-                            </div>
-                        )}
+                        <div className={cn('accordeon__sub-description')}>
+                                {data.subDescriptionFirst ? data.subDescriptionFirst : ''}
+                        </div>
+                        <div className={cn('accordeon__sub-description')}>
+                            {data.subDescriptionSecond ? data.subDescriptionSecond : ''}
+                        </div>
                     </div>
                 </div>
             ) : null}

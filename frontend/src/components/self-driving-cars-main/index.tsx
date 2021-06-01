@@ -41,6 +41,7 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
     return (
         <div className={cn('main-block')}>
             <div className={cn('main-block__top')}>
+                <div className={cn('main-block__header')}>{data.header}</div>
                 <img src={data.topBackground.localFile.publicURL} alt={data.header} className={cn('main-block__image')} />
                 <div className={cn('main-block__info-top')}>{data.text}</div>
                 <div className={cn('main-block__info-bottom')}>{data.textBottom}</div>
