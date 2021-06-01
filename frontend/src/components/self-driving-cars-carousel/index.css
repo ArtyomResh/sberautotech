@@ -6,29 +6,51 @@
     height: 100vh;
     overflow: hidden;
     position: relative;
+    /* cursor: none; */
+
+    /* &:hover {
+        .carousel__cursor {
+            background-color: blue;
+        }
+    } */
 
     &__cursor {
-        position: absolute;
-        background-color: red;
+        position: fixed;
         z-index: 150;
         width: 100px;
         height: 100px;
         top: 0;
         left: 0;
+        /* transform: rotate(90deg); */
+        
+        &_none {
+            display: none;
+        }
+
+        &_left {
+            background-color: red;
+            display: block;
+            /* transform: rotate(10deg); */
+        }
+
+        &_right {
+            background-color: orange;
+            display: block;
+        }
     }
 
-    &_left:hover {
+    /* &_left:hover {
         cursor: url("../../images/cursor-left.svg"), pointer;
         /* animation: 0.7s linear 0s normal rotation; */
 
         
-    }
+    /* } */
 
     /* @keyframes rotation {{ from { cursor: none; } to { cursor:url("../../images/cursor-left.svg"), pointer; }  }} */
 
-    &_right:hover {
+    /* &_right:hover {
         cursor: url("../../images/cursor-right.svg"), pointer;
-    }
+    } */
 
     &__slide-container {
         display: flex;

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import Swiper from 'swiper';
 // import GetCursorPosition from 'cursor-position';
 
@@ -27,6 +27,7 @@ interface ISlider {
 }
 
 enum ECursorPosition {
+    none = 'none',
     left = 'left',
     right = 'right'
 }
@@ -34,56 +35,50 @@ enum ECursorPosition {
 const Carousel: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
     const $container = useRef<HTMLDivElement>(null);
-    const [cursorPosition, setCursorPosition] = useState(ECursorPosition.left);
-    const [cursorCoordinates, setCursorCoordinates] = useState({ currentPositionX: 0, currentPositionY: 0, scroll: 0 });
-    // const [scroll, setScroll] = useState(0);
+    const [cursorPosition, setCursorPosition] = useState({ prev: '', actual: ECursorPosition.none });
+    const [cursorCoordinates, setCursorCoordinates] = useState({ currentPositionX: 0, currentPositionY: 0 });
     const [swiper, setSwiper] = useState<any>(null);
 
     const header = useFormattedText(data.header);
     const text = useFormattedText(data.text);
 
+    const hoverListener = () => {
+        setCursorPosition({ prev: cursorPosition.actual, actual: ECursorPosition.none });
+    };
+
     const onClick = useCallback(() => {
-        if(cursorPosition === ECursorPosition.right) {
+        if(cursorPosition.actual === ECursorPosition.right) {
             swiper?.slidePrev();
-        } else if(cursorPosition === ECursorPosition.left) {
+        } else if(cursorPosition.actual === ECursorPosition.left) {
             swiper?.slideNext();
         }
-    }, [cursorPosition, swiper]);
+    }, [cursorPosition.actual, swiper]);
 
     const observeCursor = useCallback((e) => {
-        const containerWidth = e.target.clientWidth;
-        // const currentPositionX = e.clientX;
-        // const currentPositionY = e.clientY;
+        const containerWidth = e.target?.closest('.carousel-container')?.clientWidth;
 
-        // console.log(e.pageYOffset);
-
-
-        // console.log('scroll', scroll, 'cursor', currentPositionY);
-
-
-        // currentPositionY = Number(currentPositionY);
-        // currentPositionY = Number(currentPositionY) + (Number(currentPositionY) - scroll);
-        // const cursorEl = document.querySelector('.carousel__cursor');
-        // console.log(e);
-
-
-        // console.log(cursorEl.style.top = `${currentPositionY}px`);
-        // console.log(cursorEl.style.left = `${currentPositionX}px`);
-
-        // cursorEl.style.top = currentPositionX;
-
-
-        setCursorCoordinates({ currentPositionX: e.clientX, currentPositionY: e.clientY });
-
-        // console.log(cursorCoordinates);
-
-
-        const newCursorPosition = containerWidth / 2 >= cursorCoordinates.currentPositionX ? ECursorPosition.right : ECursorPosition.left;
-
-        if(newCursorPosition !== cursorPosition) {
-            setCursorPosition(newCursorPosition);
+        if(!containerWidth) {
+            return;
         }
-    }, [cursorPosition]);
+
+        const currentPositionX = e.clientX;
+        const currentPositionY = e.clientY;
+        const { top, bottom } = e.target?.closest('.carousel-container')?.getBoundingClientRect();
+
+        if(currentPositionY < top || currentPositionY > bottom) {
+            setCursorPosition({ prev: cursorPosition.actual, actual: ECursorPosition.none });
+
+            return;
+        }
+
+        setCursorCoordinates({ currentPositionX, currentPositionY });
+
+        const newCursorPosition = containerWidth / 2 >= cursorCoordinates.currentPositionX ? ECursorPosition.left : ECursorPosition.right;
+
+        if(newCursorPosition !== cursorPosition.actual) {
+            setCursorPosition({ prev: cursorPosition.actual, actual: newCursorPosition });
+        }
+    }, [cursorPosition.actual, cursorCoordinates]);
 
     useEffect(() => {
         if($container.current) {
@@ -103,47 +98,45 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     }, []);
 
     useEffect(() => {
-        // document.addEventListener('mousemove', (e) => {
-        //     // setScroll(window.pageYOffset);
-        //     console.log(e.clientX, e.clientY);
+        window.addEventListener('scroll', hoverListener);
 
+        return () => {
+            window.removeEventListener('scroll', hoverListener);
+        };
+    }, []);
 
-        //     setCursorCoordinates({ ...cursorCoordinates, currentPositionX: e.clientX, currentPositionY: e.clientY });
-        // });
+    // useEffect(() => {
+    //     const cursor = document.querySelector('.carousel__cursor');
+    //     const rotator = (direction) => {
+    //         let deg;
 
-        document.addEventListener('scroll', () => {
-            // console.log(window.pageYOffset);
-            // setScroll(window.pageYOffset);
-            setCursorCoordinates(cursorCoordinates.scroll: window.pageYOffset);
-            console.log(cursorCoordinates.scroll);
-        });
+    //         if(direction === 'left') {
 
+    //         }
+    //     };
 
-        // console.log(scroll, cursorCoordinates);
+    //     if(cursorPosition.actual === 'left') {
+    //         rotator(cursorPosition);
+    //     } else if(cursorPosition.actual === 'right') {
+    //         // rotator(cursorPosition);
+    //     }
+    // }, [cursorPosition]);
 
+    const elCursor = useMemo(() => {
+        return <div className={cn('carousel__cursor', `carousel__cursor_${cursorPosition.actual}`)} style={{ top: cursorCoordinates.currentPositionY, left: cursorCoordinates.currentPositionX }}></div>;
+    }, [cursorPosition.actual, cursorCoordinates]);
 
-        // console.log(container);
-
-        // body.addEventListener('mousemove', () => {
-
-        // });
-        // setScroll(window.pageYOffset);
-
-        // document.body.addEventListener('scroll', (e) => {
-        //     console.log(e.clientY);
-        // });
-
-        // console.log('scroll', scroll, 'cursor', cursorCoordinates.currentPositionY);
-    }, [cursorCoordinates.scroll]);
+    console.log(cursorPosition);
+    
 
     return (
         <div
-            className={cn('carousel-container', 'carousel', `carousel_${cursorPosition}`)}
+            className={cn('carousel-container', 'carousel')}
             ref={$container}
             onMouseMove={observeCursor}
             onClick={onClick}
         >
-            <div className={cn('carousel__cursor')} style={{ top: cursorCoordinates.currentPositionY, left: cursorCoordinates.currentPositionX }}></div>
+            {elCursor}
             {text && (
                 <p
                     className={cn('carousel__text',
