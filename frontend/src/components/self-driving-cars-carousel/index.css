@@ -91,7 +91,7 @@
         }
 
         &_top-left {
-            left: 20px;
+            left: 10px;
             right: 10px;
             top: 40px;
         }
@@ -103,7 +103,7 @@
         }
 
         &_bottom-left {
-            left: 20px;
+            left: 10px;
             right: 10px;
             bottom: 40px;
         }

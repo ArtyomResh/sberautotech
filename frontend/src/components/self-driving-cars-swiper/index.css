@@ -4,7 +4,7 @@
     grid-template-columns: repeat(auto-fill, 335px);
     grid-auto-rows: 1fr;
     justify-items: stretch;
-    padding: 40px 20px 156px;
+    padding: 40px 10px 156px;
 
     &__container {
         margin: 40px 20px 156px;
@@ -19,7 +19,7 @@
     &__slide-heading {
         font-size: 24px;
         line-height: 28px;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
     }
 
     &__slide-img {
@@ -38,5 +38,10 @@
         & { display: grid; }
 
         &__container { display: none; }
+    }
+
+    @media screen and (max-width: 730px) {
+
+        &__container { margin: 20px 20px 120px; }
     }
 }

@@ -78,8 +78,10 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         setIsSubmitDisabled(true);
 
         const formData = new FormData();
-        const file = data.file[0];
+        const fileInput = document.querySelector('#file')
+        const file = data.file[0] ||  fileInput?.files[0];
         const base64 = await toBase64(file);
+
 
         for(const name in data) {
             if(data[name]) {
@@ -97,9 +99,13 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         try {
             const res = await fetch(FORM_URL, {
                 method: 'POST',
-                body  : formData
+                body  : formData,
+                headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  mode: 'cors'
             });
-
+            
             if(!res.ok) {
                 throw new Error(res.statusText)
             }
@@ -129,7 +135,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         <FormProvider {...context}>
             <form onSubmit={context.handleSubmit(onSubmit)} className={cn('respond-form', {
                 'respond-form_visible': isPopupVisible
-            })} >
+            })} encType="multipart/form-data" >
                 {isSended ? (
                     <div className={cn('respond-form__send-block')}>
                         <div className={cn('text-block')}>

@@ -5,6 +5,8 @@
     }
 
     &__toggle {
+        display: flex;
+        align-items: flex-start;;
         cursor: pointer;
         fill: #BDFFF8;
         stroke: #000000;
@@ -51,10 +53,12 @@
     &__header-wrapper {
         display: flex;
         margin: 23px 0px;
-        align-items: flex-start;
+        /* align-items: center; */
     }
 
     &__header {
+        display: flex;
+        align-items: center;
         margin-left: 55px;
         font-family: var(--font-family-secondary);
         font-size: 70px;

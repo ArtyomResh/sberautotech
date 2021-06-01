@@ -124,6 +124,9 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
                     <div className={cn('nav__link-block')}>
                         <a className={cn('nav__link-bottom-block')} href="/" title="Политика конфиденциальности">Политика конфиденциальности</a>
                     </div>
+                    <div className={cn('nav__link-block')}>
+                        <a className={cn('nav__link-bottom-block')} href={`mailto:contact@sberautotech.ru`}>contact@sberautotech.ru</a>
+                    </div>
                 </div>
                 <button
                     type="button"

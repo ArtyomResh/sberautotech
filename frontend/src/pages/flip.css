@@ -202,8 +202,9 @@
     .flip__logo {
         position: relative;
         right: unset;
-        width: 300px;
-        max-width: 300px;
+        width: 100%;
+        padding: 0px 10px;
+        max-width: 400px;
         margin-bottom: 80px;
     }
     .flip__text-wrapper {
@@ -240,6 +241,7 @@
         }
     }
     .footer__wrapper {
+        margin-top: 50px;
         background: black;
         color: white;
 
