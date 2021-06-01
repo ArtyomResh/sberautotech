@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import Input from './input';
-import Select from './select';
+import Select from '../select';
 import Textarea from './textarea';
-import Button from './button';
+import Button from '../button';
 import CheckBox from './check-box';
 
 import { useClassnames } from '../../hooks/use-classnames';
@@ -117,7 +117,7 @@ const RespondForm = ({ setIsPopupVisible }: IProps) => {
                             <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
                         </div>
                         <div className={cn('right-block__field-wrapper')}>
-                            <Button disabled={isSubmitDisabled} type="submit" label="Отправить" />
+                            <Button styleType="secondary" disabled={isSubmitDisabled} type="submit" label="Отправить" />
                         </div>
                     </div>
                 </div>
