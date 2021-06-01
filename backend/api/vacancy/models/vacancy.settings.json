@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vacancies",
+  "info": {
+    "name": "Vacancy",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "city": {
+      "type": "enumeration",
+      "enum": [
+        "moscow",
+        "minsk"
+      ]
+    },
+    "jobType": {
+      "type": "enumeration",
+      "enum": [
+        "full",
+        "part"
+      ]
+    },
+    "publicationDate": {
+      "type": "date"
+    },
+    "division": {
+      "type": "string"
+    },
+    "about": {
+      "type": "text"
+    },
+    "conditions": {
+      "type": "richtext"
+    },
+    "whatToDo": {
+      "type": "richtext"
+    },
+    "whatWaitingFor": {
+      "type": "richtext"
+    }
+  }
+}
