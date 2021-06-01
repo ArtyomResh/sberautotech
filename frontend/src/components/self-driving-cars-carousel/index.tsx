@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import Swiper from 'swiper';
-// import GetCursorPosition from 'cursor-position';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
+
+import CursorRight from '../../images/cursor-right.inline.svg';
+import CursorLeft from '../../images/cursor-left.inline.svg';
 
 import style from './index.css';
 
@@ -26,7 +28,7 @@ interface ISlider {
     slider_items: Array<ILocalFile>
 }
 
-enum ECursorPosition {
+enum ECursorDirection {
     none = 'none',
     left = 'left',
     right = 'right'
@@ -35,25 +37,23 @@ enum ECursorPosition {
 const Carousel: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
     const $container = useRef<HTMLDivElement>(null);
-    const [cursorPosition, setCursorPosition] = useState({ prevPos: '', actualPos: ECursorPosition.none });
-    const [spinner, setSpinner] = useState(true);
-    const [cursorCoordinates, setCursorCoordinates] = useState({ currentPositionX: 0, currentPositionY: 0 });
+    const [cursorDirection, setCursorDirection] = useState({ prevDir: '', actualDir: ECursorDirection.none });
+    const [cursorCoordinates, setCursorCoordinates] = useState({ currentCoordinateX: 0, currentCoordinateY: 0 });
     const [swiper, setSwiper] = useState<any>(null);
 
-    // const header = useFormattedText(data.header);
     const text = useFormattedText(data.text);
 
     const hoverListener = () => {
-        setCursorPosition({ prevPos: cursorPosition.actualPos, actualPos: ECursorPosition.none });
+        setCursorDirection({ prevDir: cursorDirection.actualDir, actualDir: ECursorDirection.none });
     };
 
     const onClick = useCallback(() => {
-        if(cursorPosition.actualPos === ECursorPosition.right) {
+        if(cursorDirection.actualDir === ECursorDirection.right) {
             swiper?.slidePrev();
-        } else if(cursorPosition.actualPos === ECursorPosition.left) {
+        } else if(cursorDirection.actualDir === ECursorDirection.left) {
             swiper?.slideNext();
         }
-    }, [cursorPosition.actualPos, swiper]);
+    }, [cursorDirection.actualDir, swiper]);
 
     const observeCursor = useCallback((e) => {
         const containerWidth = e.target?.closest('.carousel-container')?.clientWidth;
@@ -62,24 +62,24 @@ const Carousel: React.FC<IProps> = ({ data }) => {
             return;
         }
 
-        const currentPositionX = e.clientX;
-        const currentPositionY = e.clientY;
+        const currentCoordinateX = e.clientX;
+        const currentCoordinateY = e.clientY;
         const { top, bottom } = e.target?.closest('.carousel-container')?.getBoundingClientRect();
 
-        if(currentPositionY < top || currentPositionY > bottom) {
-            setCursorPosition({ prevPos: cursorPosition.actualPos, actualPos: ECursorPosition.none });
+        if(currentCoordinateY < top || currentCoordinateY > bottom) {
+            setCursorDirection({ prevDir: cursorDirection.actualDir, actualDir: ECursorDirection.none });
 
             return;
         }
 
-        setCursorCoordinates({ currentPositionX, currentPositionY });
+        setCursorCoordinates({ currentCoordinateX, currentCoordinateY });
 
-        const newCursorPosition = containerWidth / 2 >= cursorCoordinates.currentPositionX ? ECursorPosition.left : ECursorPosition.right;
+        const newCursorPosition = containerWidth / 2 >= cursorCoordinates.currentCoordinateX ? ECursorDirection.left : ECursorDirection.right;
 
-        if(newCursorPosition !== cursorPosition.actualPos) {
-            setCursorPosition({ prevPos: cursorPosition.actualPos, actualPos: newCursorPosition });
+        if(newCursorPosition !== cursorDirection.actualDir) {
+            setCursorDirection({ prevDir: cursorDirection.actualDir, actualDir: newCursorPosition });
         }
-    }, [cursorPosition.actualPos, cursorCoordinates]);
+    }, [cursorDirection.actualDir, cursorCoordinates]);
 
     useEffect(() => {
         if($container.current) {
@@ -106,38 +106,12 @@ const Carousel: React.FC<IProps> = ({ data }) => {
         };
     }, []);
 
-    useEffect(() => {
-        const cursor = document.querySelector('.carousel__cursor');
-        const rotator = () => {
-            let i = 0;
-            const howManyTimes = 180;
-            console.log(spinner, '<<<<<<<<<<<<');
-            (function f() {
-                cursor.style.transform = `rotate(${i}deg)`;
-                console.log(i);
-                i++;
-
-                if(i < howManyTimes) {
-                    setTimeout(f, 0.05);
-                    setSpinner(false);
-                }
-            })();
-            i = 0;
-            console.log(spinner, i, '>>>>>>>>>>>>>>>');
-        };
-
-        if(cursorPosition.prevPos === 'left' && cursorPosition.actualPos === 'right' && spinner) {
-            rotator();
-        } else if(cursorPosition.prevPos === 'right' && cursorPosition.actualPos === 'left' && spinner) {
-            rotator();
-        }
-    }, [cursorPosition]);
-
     const elCursor = useMemo(() => {
-        return <div className={cn('carousel__cursor', `carousel__cursor_${cursorPosition.actualPos}`)} style={{ top: cursorCoordinates.currentPositionY, left: cursorCoordinates.currentPositionX }}></div>;
-    }, [cursorPosition.actualPos, cursorCoordinates]);
-
-    // console.log(cursorPosition);
+        return (
+            <div className={cn('carousel__cursor', `carousel__cursor_${cursorDirection.actualDir}`)} style={{ top: cursorCoordinates.currentCoordinateY, left: cursorCoordinates.currentCoordinateX }}>
+                {cursorDirection.actualDir === 'right' ? <CursorRight /> : <CursorLeft />}
+            </div>);
+    }, [cursorDirection.actualDir, cursorCoordinates]);
 
     return (
         <div
@@ -145,7 +119,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
             ref={$container}
             onMouseMove={observeCursor}
             onMouseLeave={() => {
-                setCursorPosition({ prevPos: cursorPosition.actualPos, actualPos: ECursorPosition.none });
+                setCursorDirection({ prevDir: cursorDirection.actualDir, actualDir: ECursorDirection.none });
             }}
             onClick={onClick}
         >
