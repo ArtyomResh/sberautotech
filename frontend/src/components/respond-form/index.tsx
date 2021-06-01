@@ -99,11 +99,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         try {
             const res = await fetch(FORM_URL, {
                 method: 'POST',
-                body  : formData,
-                headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  mode: 'cors'
+                body  : formData
             });
             
             if(!res.ok) {
@@ -135,7 +131,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         <FormProvider {...context}>
             <form onSubmit={context.handleSubmit(onSubmit)} className={cn('respond-form', {
                 'respond-form_visible': isPopupVisible
-            })} encType="multipart/form-data" >
+            })}>
                 {isSended ? (
                     <div className={cn('respond-form__send-block')}>
                         <div className={cn('text-block')}>
