@@ -1,7 +1,7 @@
 .cookie-alert {
     background-color: #C0CCD5;
     display: flex;
-    padding: 20px 20px 30px 20px;
+    padding: 10px;
     justify-content: space-between;
     position: fixed;
     bottom: 0;
@@ -11,31 +11,46 @@
 
     &__right {
         display: flex;
-        flex-direction: column;
-        align-self: center;
-        margin-left: 40px;
+        flex-direction: row-reverse;
+        align-self: flex-end;
+
+        @media (max-width: 768px) {
+            justify-content: space-between;
+        }
     }
 
     &__title {
         font-weight: 400;
-        font-size: 47px;
-        margin-bottom: 20px;
+        font-size: 26px;
+        line-height: 29px;
+        letter-spacing: -0.04em;
+        margin-bottom: 15px;
+        max-width: 920px;
     }
 
     &__text {
-        font-size: 24px;
+        font-size: 14px;
+        line-height: 17px;
+        letter-spacing: -0.03em;
+        max-width: 550px;
     }
 
     &__button {
         cursor: pointer;
-        min-width: 280px;
+        min-width: 217px;
         height: 60px;
-        border-radius: 15px;
+        border-radius: 55px;
         border: none;
         font-size: 22px;
-        margin-top: 20px;
         color: #1F272E;
         background: #FFFFFF;
+        margin-left: 20px;
+        margin-top: 16px;
+
+        @media (max-width: 768px) {
+            min-width: 48%;
+            margin-left: 0px;
+        }
 
         &:hover {
             background-color: #67CFC9;
