@@ -190,7 +190,7 @@ const IndexPage = () => {
     }, [isMobile]);
 
     useEffect(() => {
-        const bodyElement = document.querySelector('body');
+        const bodyElement = document.querySelector('body') as HTMLBodyElement;
 
         bodyElement.style.overflow = 'hidden';
         bodyElement.style.position = 'fixed';

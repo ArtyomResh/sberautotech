@@ -5,26 +5,28 @@ export const customStyles: StylesConfig = {
         ...provided,
         'width'                            : '100%',
         '.ui-select__control--menu-is-open': {
-            'border'    : '1px solid #10181F',
-            'box-shadow': '0px 0px 0px 1px #10181F'
+            'border'                 : '1px solid #10181F',
+            'borderBottomColor'      : 'transparent',
+            'boxShadow'              : '0px 0px 0px 1px #10181F',
+            'borderBottomLeftRadius' : '0',
+            'borderBottomRightRadius': '0'
         }
     }),
     control: (provided, state) => ({
         ...provided,
-        'padding'     : '18px 0',
+        'padding'     : '12px 0',
         'cursor'      : 'pointer',
         'borderRadius': '15px',
         'borderWidth' : '0px',
-        'boxShadow'   : 'none',
         'outline'     : 'none',
         'fontSize'    : '24px',
         'border'      : state.hasValue ? '1px solid #4E565E' : '1px solid #10181F',
-        'box-shadow'  : state.hasValue ? '0px 0px 0px 1px #4E565E' : 'none',
-        'background'  : '#C0CCD5',
+        'boxShadow'   : state.hasValue ? '0px 0px 0px 1px #4E565E' : 'none',
+        'background'  : 'transparent',
 
         '&:hover': {
-            'border'    : '1px solid #10181F',
-            'box-shadow': '0px 0px 0px 1px #10181F'
+            'border'   : '1px solid #10181F',
+            'boxShadow': '0px 0px 0px 1px #10181F'
         },
 
         '& .ui-select__single-value': {
@@ -42,17 +44,22 @@ export const customStyles: StylesConfig = {
     }),
     placeholder: (provided) => ({
         ...provided,
-        'color'        : '#43515C',
-        'paddingBottom': '20px',
-        'fontSize'     : '18px'
+        'color'    : '#43515C',
+        'top'      : 'auto',
+        'fontSize' : '18px',
+        'position' : 'static',
+        'transform': 'none',
+        '& + input': {
+            'height': 0
+        }
     }),
     menuList: (provided) => ({
         ...provided,
         'padding'                         : '0',
         'maxHeight'                       : '150px',
         '& .ui-select__option--is-focused': {
-            'backgroundColor': '#43515C',
-            'color'          : '#FFFF'
+            'backgroundColor': '#FFF',
+            'color'          : 'black'
         },
         '& .ui-select__option--is-selected': {
             'display': 'none'
@@ -60,14 +67,14 @@ export const customStyles: StylesConfig = {
     }),
     menu: (provided) => ({ ...provided,
         'position'    : 'absolute',
-        'top'         : '35px',
+        'top'         : 'calc(100% - 2px)',
         'borderRadius': ' 0 0 15px 15px',
         'boxShadow'   : 'none',
         'border'      : '2px solid #10181F',
         'borderTop'   : 'none',
         'overflow'    : 'hidden',
-        'background'  : '#C0CCD5',
-        'marginTop'   : '20px',
+        'background'  : '#FFF',
+        'marginTop'   : '0',
         'paddingTop'  : '10px',
         'width'       : 'calc(100% + 2px)',
         'left'        : '-1px' }),
@@ -77,6 +84,10 @@ export const customStyles: StylesConfig = {
         'color'   : '#10181F',
         'fontSize': '16px',
         'padding' : '4px 16px'
+    }),
+    valueContainer: (provided) => ({
+        ...provided,
+        'padding': '0 8px'
     })
 };
 
