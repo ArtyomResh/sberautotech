@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import Nav, { INav } from '../nav';
 import Seo from '../seo';
 import RespondForm from '../respond-form';
+import CookieAlert from '../cookie-alert';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
 const LINKS = [
+    { text: 'ФЛИП', link: '/flip' },
+    { text: 'Беспилотный автомобиль', link: '/self-driving-car' },
     { text: 'О компании', link: '/about-company' },
-    { text: 'Беспилотный транспорт', link: '/self-driving-car' },
     { text: 'Карьера', link: '/career' }
 ];
 
@@ -23,17 +25,16 @@ interface IProps {
 }
 
 const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => {
-    const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [isPopupVisible, setIsPopupVisible] = useState<boolean | null>(null);
     const cn = useClassnames(style);
 
     return (
         <div className={cn('app__wrapper')}>
             <Seo seo={seo} />
-            <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} setPageNumber={setPageNumber} />
+            <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} setPageNumber={setPageNumber} whiteLogoImportant={theme.whiteLogoImportant} />
             <main>{children}</main>
-            {isPopupVisible ? (
-                <RespondForm setIsPopupVisible={setIsPopupVisible} />
-            ) : null}
+            <RespondForm setIsPopupVisible={setIsPopupVisible} isPopupVisible={isPopupVisible} />
+            <CookieAlert />
         </div>
     );
 };

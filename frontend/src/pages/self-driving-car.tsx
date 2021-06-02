@@ -11,7 +11,7 @@ import 'swiper/swiper-bundle.css';
 
 const query = graphql`
   query {
-    strapiHomepage {
+    strapiSelfDrivingCar {
       seo {
         metaTitle
         metaDescription
@@ -88,7 +88,7 @@ const SelfDrivingCar = () => {
     const { double_block, story_cards, slider, footer } = data.allStrapiSelfDrivingCar.edges[0].node;
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={1}>
+        <Layout seo={data.strapiSelfDrivingCar.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={1}>
             <MainBlock data={double_block} />
             <Swiper data={story_cards} />
             <Carousel data={slider} />

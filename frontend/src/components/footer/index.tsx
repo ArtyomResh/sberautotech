@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import React from 'react';
 import { useClassnames } from '../../hooks/use-classnames';
 import { gtagClicked } from '../../utils';
@@ -26,7 +27,6 @@ const Footer = ({ data }: IProps) => {
         <footer className={cn('footer__wrapper')}>
             <div className={cn('footer__top-block')}>
                 <div className={cn('footer__header')}>{data.header}</div>
-                <div className={cn('footer__description')}>{data.description}</div>
                 <a
                     target="_blank"
                     href={data.link.to}
@@ -39,8 +39,7 @@ const Footer = ({ data }: IProps) => {
             <div className={cn('footer__bottom-block')}>
                 <div className={cn('footer__bottom-block_left')}>
                     <span className={cn('footer__disclaimer')}>{data.disclaimer}</span>
-                    <a className={cn('footer__documents-link')} href={data.privacyPolicyLink}>Политика конфиденциальности</a>
-                    <a className={cn('footer__documents-link')} href={data.publicOfferLink}>Оферта</a>
+                    <Link className={cn('footer__documents-link')} to={data.privacyPolicyLink}>Политика конфиденциальности</Link>
                 </div>
                 <div className={cn('footer__bottom-block_right')}>
                     <a className={cn('footer__email-link')} href={`mailto:${data.email}`}>{data.email}</a>

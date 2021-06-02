@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/flip",
+      "handler": "flip.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/flip",
+      "handler": "flip.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/flip",
+      "handler": "flip.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -23,30 +23,34 @@ export interface INavItem {
 
 export interface ITheme {
     mode: string,
-    logoColor: string
+    logoColor: string,
+    whiteLogoImportant?: boolean
 }
 
 export interface INav {
-    setIsPopupVisible: Dispatch<SetStateAction<boolean>>,
+    setIsPopupVisible: Dispatch<SetStateAction<boolean | null>>,
     theme: ITheme,
     links: Array<INavItem>,
     pageNumber: number,
-    setPageNumber?: (page: number) => void
+    setPageNumber?: (page: number) => void,
+    whiteLogoImportant?: boolean
 }
 
-const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INav) => {
+const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, whiteLogoImportant }: INav) => {
     const [isOpen, setIsOpen] = useState(false);
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const cn = useClassnames(style);
 
     useEffect(() => {
-        const activeElement = document.querySelector(`.nav__link-${pageNumber}`) as HTMLElement;
+        setTimeout(() => {
+            const activeElement = document.querySelector(`.nav__link-${pageNumber}`) as HTMLElement;
 
-        setIndicatorStyles({
-            transform: `translateX(${activeElement?.offsetLeft - PADDING}px)`,
-            width    : activeElement?.offsetWidth
-        });
+            setIndicatorStyles({
+                transform: `translateX(${activeElement?.offsetLeft - PADDING}px)`,
+                width    : activeElement?.offsetWidth
+            });
+        }, 200);
     }, [pageNumber]);
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
@@ -90,7 +94,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
         >
             <div className={cn('nav__left')}>
                 <Link className={cn('nav__logo')} to="/" onClick={redirectHandler}>
-                    {theme.mode === 'light' && !isOpen ? <LogoWhite /> : <LogoBlack />}
+                    {(theme.mode === 'light' && !isOpen) || (whiteLogoImportant && !isOpen) ? <LogoWhite /> : <LogoBlack />}
                 </Link>
             </div>
             <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
@@ -119,7 +123,9 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
                     </span>
                     <div className={cn('nav__link-block')}>
                         <a className={cn('nav__link-bottom-block')} href="/" title="Политика конфиденциальности">Политика конфиденциальности</a>
-                        <a className={cn('nav__link-bottom-block')} href="/" title="Оферта">Оферта</a>
+                    </div>
+                    <div className={cn('nav__link-block')}>
+                        <a className={cn('nav__link-bottom-block')} href={`mailto:contact@sberautotech.ru`}>contact@sberautotech.ru</a>
                     </div>
                 </div>
                 <button
@@ -131,7 +137,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber }: INa
             </div>
             <div className={cn('nav__right')}>
                 <button className={cn('nav__menu-button')} onClick={onMenuButtonClick}>
-                    {isOpen ? <Cross fill="#040A0A" /> : <Burger fill={theme.mode === 'light' ? '#FFF' : '#040A0A'} />}
+                    {isOpen ? <Cross fill="#040A0A" /> : <Burger fill={theme.mode === 'light' || whiteLogoImportant ? '#FFF' : '#040A0A'} />}
                 </button>
             </div>
         </nav>
