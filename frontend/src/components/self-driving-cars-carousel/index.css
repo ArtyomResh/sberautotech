@@ -6,6 +6,7 @@
     height: 100vh;
     overflow: hidden;
     position: relative;
+    background: black;
 
     &:hover {
         cursor: url("../../images/cursor-left.svg"), pointer;
@@ -64,12 +65,12 @@
 
         &_bottom-left {
             left: 10px;
-            bottom: 40px;
+            bottom: 10px;
         }
 
         &_bottom-right {
             right: 10px;
-            bottom: 40px;
+            bottom: 10px;
         }
 
         @media (max-width: 400px) {
@@ -99,20 +100,20 @@
         &_top-right {
             left: 10px;
             right: 100px;
-            top: 40px;
+            top: 10px;
         }
 
         &_bottom-left {
             left: 10px;
             right: 10px;
-            bottom: 40px;
+            bottom: 10px;
         }
 
         &_bottom-right {
             max-width: 1000px;
             right: 70px;
             left: 10px;
-            bottom: 40px;
+            bottom: 10px;
         }
 
         @media (max-width: 630px) {
@@ -124,5 +125,11 @@
             font-size: 20px;
             line-height: 22px;
         }
+    }
+}
+
+.career__carousel {
+    .carousel__header_bottom-left {
+        max-width: 765px;
     }
 }

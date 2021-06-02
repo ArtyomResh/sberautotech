@@ -6,8 +6,7 @@
 
     &__toggle {
         display: flex;
-        align-items: flex-start;;
-        cursor: pointer;
+        align-items: flex-start;
         fill: #BDFFF8;
         stroke: #000000;
 
@@ -19,7 +18,7 @@
             fill: #000000;
         }
 
-        &:hover {
+        &_hide {
             fill: #fff;
 
             circle {
@@ -53,7 +52,7 @@
     &__header-wrapper {
         display: flex;
         margin: 23px 0px;
-        /* align-items: center; */
+        cursor: pointer;
     }
 
     &__header {

@@ -209,7 +209,7 @@ const FlipPage = () => {
 
     const {
         first_screen,
-        second_screen,
+        // second_screen,
         third_screen,
         fourth_screen,
         fifth_screen,
@@ -273,7 +273,7 @@ const FlipPage = () => {
         if(isMobile !== null) {
             const preloadVideos = [
                 fetch(first_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-                fetch(second_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
+                // fetch(second_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
                 fetch(third_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
                 fetch(fourth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
                 fetch(fifth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
@@ -285,13 +285,13 @@ const FlipPage = () => {
             Promise.all(preloadVideos).then((data) => {
                 setIsLoading(false);
                 registerVideo('#bound-one', '#bound-one video', URL.createObjectURL(data[0]));
-                registerVideo('#bound-two', '#bound-two video', URL.createObjectURL(data[1]));
-                registerVideo('#bound-three', '#bound-three video', URL.createObjectURL(data[2]));
-                registerVideo('#bound-four', '#bound-four video', URL.createObjectURL(data[3]));
-                registerVideo('#bound-five', '#bound-five video', URL.createObjectURL(data[4]));
-                registerVideo('#bound-six', '#bound-six video', URL.createObjectURL(data[5]));
-                registerVideo('#bound-seven', '#bound-seven video', URL.createObjectURL(data[6]));
-                registerVideo('#bound-eight', '#bound-eight video', URL.createObjectURL(data[7]));
+                // registerVideo('#bound-two', '#bound-two video', URL.createObjectURL(data[1]));
+                registerVideo('#bound-three', '#bound-three video', URL.createObjectURL(data[1]));
+                registerVideo('#bound-four', '#bound-four video', URL.createObjectURL(data[2]));
+                registerVideo('#bound-five', '#bound-five video', URL.createObjectURL(data[3]));
+                registerVideo('#bound-six', '#bound-six video', URL.createObjectURL(data[4]));
+                registerVideo('#bound-seven', '#bound-seven video', URL.createObjectURL(data[5]));
+                registerVideo('#bound-eight', '#bound-eight video', URL.createObjectURL(data[6]));
             }).catch((e) => console.log(e));
         }
     }, [isMobile]);
@@ -299,7 +299,7 @@ const FlipPage = () => {
 
     // Primary Headers
     const firstScreenHeader = useFormattedText(first_screen.primary_header);
-    const secondScreenHeader = useFormattedText(second_screen.primary_header);
+    // const secondScreenHeader = useFormattedText(second_screen.primary_header);
     const thirdScreenHeader = useFormattedText(third_screen.primary_header);
     const fourthScreenHeader = useFormattedText(fourth_screen.primary_header);
     const fifthScreenHeader = useFormattedText(fifth_screen.primary_header);
@@ -360,7 +360,7 @@ const FlipPage = () => {
                                 />
                             </div>
                         </div>
-                        <div className={cn('flip__screen-wrapper')} id="bound-two">
+                        {/* <div className={cn('flip__screen-wrapper')} id="bound-two">
                             <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
                                 <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: secondScreenHeader }} />
                             </div>
@@ -378,7 +378,7 @@ const FlipPage = () => {
                                 autoPlay={true}
                                 loop={true}
                             />
-                        </div>
+                        </div> */}
                         <div className={cn('flip__screen-wrapper')} id="bound-three">
                             <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
                                 <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: thirdScreenHeader }} />
@@ -524,7 +524,7 @@ const FlipPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div id="bound-two" className="scroll-bound">
+                        {/* <div id="bound-two" className="scroll-bound">
                             <div className="content">
                                 <video
                                     className={cn('flip__screen-background')}
@@ -542,7 +542,7 @@ const FlipPage = () => {
                                     </span>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div id="bound-three" className="scroll-bound">
                             <div className="content">
                                 <video
