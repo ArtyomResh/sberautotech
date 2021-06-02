@@ -31,7 +31,7 @@ const VacanciesListItem: React.FC<IProps> = ({ data }) => {
                             <div>{EJobType[jobType]}</div>
                         </div>
                         <div>
-                            {publicationDate}
+                            {publicationDate.split('-').reverse().join('.')}
                         </div>
                     </div>
                     <div className={cn('vacancies__list-item-top-column')}>
