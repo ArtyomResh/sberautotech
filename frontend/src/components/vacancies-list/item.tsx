@@ -60,7 +60,7 @@ const VacanciesListItem = ({ data, company }: { data: IVacanciesListItem, compan
                             <div className={cn('vacancies__list-item-full-content-row')}>
                                 <div className={cn('vacancies__list-item-list-title')}>Мы ожидаем, что у вас есть</div>
                                 <div>
-                                    {data.work_list.map((item, index) => (
+                                    {data.expect.map((item, index) => (
                                         <div key={`${data.id}-expect-${index}`}>&mdash; {item}</div>
                                     ))}
                                 </div>

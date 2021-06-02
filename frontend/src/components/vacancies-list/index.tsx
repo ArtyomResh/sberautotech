@@ -47,6 +47,7 @@ const VacanciesList: React.FC<IProps> = ({ data }) => {
     });
 
     const onSubmit = () => {
+        // todo сделать отправку данных на бек
         console.log('!!!submit');
     };
 
@@ -55,11 +56,11 @@ const VacanciesList: React.FC<IProps> = ({ data }) => {
             <form onSubmit={context.handleSubmit(onSubmit)}>
                 <div className={cn('vacancies__wrap')}>
                     <div className={cn('vacancies__filters-wrap')}>
-                        <Select name="" placeholder="Функциональная сфера" options={options} />
-                        <Select name="" placeholder="Регион" options={options} />
-                        <Select name="" placeholder="График" options={options} />
+                        <Select name="activity" placeholder="Функциональная сфера" options={options} />
+                        <Select name="region" placeholder="Регион" options={options} />
+                        <Select name="schedule" placeholder="График" options={options} />
                     </div>
-                    <div className={cn('vacancies__total-count')}>99 вакансий найдено</div>
+                    <div className={cn('vacancies__total-count')}>{data.vacancies_list?.length || 0} вакансий найдено</div>
                     <div className={cn('vacancies__list')}>
                         {data.vacancies_list.map((item, i) => (
                             <VacanciesItem data={item} company={data.company} key={`vacancy-item-${i}`} />

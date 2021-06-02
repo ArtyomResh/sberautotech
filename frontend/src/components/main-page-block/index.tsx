@@ -59,8 +59,6 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
         <div className={cn('block__wrapper', visibilityClassName)} id={String(block.id)}>
             {block.background.localFile.publicURL.search('.mp4') !== -1 ? (
                 <video
-                    src={block.background.localFile.publicURL}
-                    poster={block.backgroundPoster?.localFile?.publicURL}
                     className={cn('block__image')}
                     muted={true}
                     loop={true}

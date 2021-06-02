@@ -6,6 +6,7 @@
         width: 100vw;
         z-index: 1;
         transition: top 1s ease 0s;
+        cursor: pointer;
 
         &_visible {
             top: 0;
@@ -51,7 +52,7 @@
         &_border {
             padding: 17px 30px 21px;
             border: 1px solid #FFFFFF;
-            border-radius: 23px;
+            border-radius: 50px;
             font-size: 47px;
             line-height: 56px;
             color: #FFFFFF;
@@ -63,10 +64,10 @@
         }
 
         &_fill {
-            background: #94F7ED;
+            background: #BDFFF8;
             min-width: 333px;
             padding: 16px 0;
-            border-radius: 15px;
+            border-radius: 50px;
             font-size: 30px;
             line-height: 48px;
 
@@ -125,8 +126,16 @@
         max-width: 1030px;
         padding-right: 10px;
 
+        &:hover {
+            opacity: 0.5;
+        }
+
         span {
-            color: #94F7ED;
+            color: #BDFFF8;
+
+            &:hover {
+                color: #94F7ED;
+            }
         }
     }
 }

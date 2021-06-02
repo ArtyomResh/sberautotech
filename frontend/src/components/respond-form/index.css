@@ -1,20 +1,62 @@
 .respond-form {
     background-color: #C0CCD5;
-    display: flex;
-    padding: 40px 20px 64px 20px;
+    padding: 55px 20px 64px 20px;
     justify-content: space-between;
     position: fixed;
-    bottom: 0;
+    display: flex;
+    bottom: -100vh;
     z-index: 3;
     overflow: hidden;
     width: 100%;
+
+    -webkit-animation: 0.5s ease-out slideOut;
+        -moz-animation: 0.5s ease-out slideOut;
+          -o-animation: 0.5s ease-out slideOut;
+             animation: 0.5s ease-out slideOut;
+
+    @media screen and (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+
+    &_visible {
+        bottom: 0;
+
+        -webkit-animation: 0.5s ease-out slideIn;
+        -moz-animation: 0.5s ease-out slideIn;
+          -o-animation: 0.5s ease-out slideIn;
+             animation: 0.5s ease-out slideIn;
+    }
 
     &__close-btn {
         display: inline-block;
         position: absolute;
         cursor: pointer;
-        right: 10px;
-        top: 10px;
+        right: 20px;
+        top: 20px;
+    }
+
+    &__send-block {
+        display: flex;
+        align-items: center;
+        width: inherit;
+        justify-content: space-between;
+
+        @media (max-width: 600px) {
+            flex-direction: column;
+        }
+
+        .right-block {
+            flex-direction: unset;
+            justify-content: flex-end;
+
+            @media (max-width: 600px) {
+                justify-content: flex-start;
+            }
+        }
+
+        .button {
+            max-width: 300px;
+        }
     }
 }
 
@@ -138,3 +180,13 @@
         }
     }
 }
+
+@-webkit-keyframes slideIn { from { bottom: -100vh; } to { bottom: 0; }  }
+   @-moz-keyframes slideIn { from { bottom: -100vh; } to { bottom: 0; }  }
+     @-o-keyframes slideIn { from { bottom: -100vh; } to { bottom: 0; }  }
+        @keyframes slideIn { from { bottom: -100vh; } to { bottom: 0; }  }
+
+@-webkit-keyframes slideOut { from { bottom: 0; } to { bottom: -100vh; }  }
+    @-moz-keyframes slideOut { from { bottom: 0; } to { bottom: -100vh; }  }
+      @-o-keyframes slideOut { from { bottom: 0; } to { bottom: -100vh; }  }
+         @keyframes slideOut { from { bottom: 0; } to { bottom: -100vh; }  }
