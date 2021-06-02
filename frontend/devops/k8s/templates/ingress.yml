@@ -6,6 +6,8 @@ metadata:
 {% if cert_issuer == 'infra-letsencrypt' %}
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: {{ cert_issuer }}
+    konghq.com/https-redirect-status-code: "301"
+    konghq.com/protocols: https
 {% endif %}
     kubernetes.io/ingress.class: kong
   name: {{ app_name }}-{{ package_name }}-kong

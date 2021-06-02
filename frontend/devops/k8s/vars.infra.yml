@@ -8,5 +8,5 @@ cert_secret: sberautotech-ru
 replicas: 3
 
 requests:
-  cpu: '50m'
+  cpu: '100m'
   memory: '50Mi'
