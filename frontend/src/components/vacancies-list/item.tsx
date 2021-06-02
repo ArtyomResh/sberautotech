@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useClassnames } from '../../hooks/use-classnames';
 import IconPlus from '../../images/plus.inline.svg';
 import Button from '../button';
+import { toUnescapedHTML } from '../../utils';
 
 import style from './index.css';
 import { IVacanciesListItem, ECities, EJobType } from './index';
@@ -46,13 +47,13 @@ const VacanciesListItem: React.FC<IProps> = ({ data }) => {
                         </div>
                         <div className={cn('vacancies__list-item-full-content-right')}>
                             <div className={cn('vacancies__list-item-full-content-row')}>
-                                <div dangerouslySetInnerHTML={{ __html: conditions }} />
+                                {toUnescapedHTML(conditions)}
                             </div>
                             <div className={cn('vacancies__list-item-full-content-row')}>
-                                <div dangerouslySetInnerHTML={{ __html: whatToDo }} />
+                                {toUnescapedHTML(whatToDo)}
                             </div>
                             <div className={cn('vacancies__list-item-full-content-row')}>
-                                <div dangerouslySetInnerHTML={{ __html: whatWaitingFor }} />
+                                {toUnescapedHTML(whatWaitingFor)}
                             </div>
                             <Button label="Откликнуться" />
                         </div>
