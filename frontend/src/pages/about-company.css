@@ -110,7 +110,7 @@
 
             @media (max-width: 520px) {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
             }
 
             @media (max-width: 376px) {
@@ -121,7 +121,7 @@
         &-item-image {
             width: 215px;
             height: 215px;
-            border-radius: 15px;
+            border-radius: 20px;
             margin-right: 20px;
 
             @media (max-width: 520px) {
@@ -142,8 +142,8 @@
             rect {
                 fill: #fff;
             }
-    
-            &:hover {
+
+            .accordeon__toggle_hide {
                 fill: #000 !important;
                 opacity: 0.9;
 
