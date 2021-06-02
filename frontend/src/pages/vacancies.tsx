@@ -7,7 +7,7 @@ import Footer from '../components/footer';
 import VacanciesList from '../components/vacancies-list';
 
 const query = graphql`
-  query {
+  query($city: StringQueryOperatorInput, $jobType: StringQueryOperatorInput) {
     strapiHomepage {
       seo {
         metaTitle
@@ -74,6 +74,22 @@ const query = graphql`
         }
       }
     }
+    allStrapiVacancies(filter: { city: $city, jobType: $jobType }) {
+      edges {
+        node {
+          id
+          title
+          division
+          conditions
+          city
+          about
+          jobType
+          publicationDate
+          whatWaitingFor
+          whatToDo
+        }
+      }
+    }
   }
 `;
 
@@ -117,6 +133,7 @@ const vacanciesList = {
 const Vacancies = () => {
     const data = useStaticQuery(query);
     const { top_slider, footer } = data.allStrapiCareer.edges[0].node;
+    const vacanciesList = data.allStrapiVacancies.edges.map((edge) => edge.node);
 
     return (
         <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={2}>

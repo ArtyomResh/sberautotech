@@ -34,6 +34,15 @@
     "division": {
       "type": "string"
     },
+    "area": {
+      "type": "enumeration",
+      "enum": [
+        "product",
+        "development",
+        "hr",
+        "design"
+      ]
+    },
     "about": {
       "type": "text"
     },

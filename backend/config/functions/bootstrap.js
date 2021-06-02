@@ -223,7 +223,7 @@ async function importSeedData(shouldImportSeedData) {
     career: ['find'],
     'about-company': ['find'],
     form: ['send'],
-    vacancy: ['find']
+    vacancy: ['find', 'findOne']
   });
   await importHomepage(shouldImportSeedData);
   await importGlobal(shouldImportSeedData);
