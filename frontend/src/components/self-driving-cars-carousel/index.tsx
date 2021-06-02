@@ -3,6 +3,7 @@ import Swiper from 'swiper';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
+import { toUnescapedHTML } from '../../utils';
 
 import CursorRight from '../../images/cursor-right.inline.svg';
 import CursorLeft from '../../images/cursor-left.inline.svg';
@@ -39,9 +40,9 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     const $container = useRef<HTMLDivElement>(null);
     const [cursorDirection, setCursorDirection] = useState({ prevDir: '', actualDir: ECursorDirection.none });
     const [cursorCoordinates, setCursorCoordinates] = useState({ currentCoordinateX: 0, currentCoordinateY: 0 });
-    const [swiper, setSwiper] = useState<any>(null);
+    const [swiper, setSwiper] = useState<Swiper | null>(null);
 
-    const text = useFormattedText(data.text);
+    const header = useFormattedText(data.text);
 
     const hoverListener = () => {
         setCursorDirection({ prevDir: cursorDirection.actualDir, actualDir: ECursorDirection.none });
@@ -124,15 +125,16 @@ const Carousel: React.FC<IProps> = ({ data }) => {
             onClick={onClick}
         >
             {elCursor}
-            {text && (
+            {header && (
                 <p
-                    className={cn('carousel__text',
+                    className={cn('carousel__header',
                         {
-                            [`carousel__text_${data.text_position?.replace('_', '-')}`]: data.text_position
+                            [`carousel__header_${data.header_position?.replace('_', '-')}`]: data.header_position
                         }
                     )}
-                    dangerouslySetInnerHTML={{ __html: text }}
-                />
+                >
+                    {toUnescapedHTML(header)}
+                </p>
             )}
             <div className={cn('swiper-wrapper')}>
                 {data.slider_items.map((slide, i) => (

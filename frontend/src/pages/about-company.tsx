@@ -10,13 +10,14 @@ import Footer from '../components/footer';
 import Carousel from '../components/self-driving-cars-carousel';
 import ListAccordeon from '../components/list-accordeon';
 import useFormattedText from '../hooks/use-formatted-text';
+import { toUnescapedHTML } from '../utils';
 
 const query = graphql`
   query {
-    strapiGlobal {
-      defaultSeo {
-        metaDescription
+    strapiAboutCompany {
+      seo {
         metaTitle
+        metaDescription
       }
     }
     allStrapiAboutCompany {
@@ -82,22 +83,22 @@ const AboutCompanyPage = () => {
     const header = useFormattedText(headerText);
 
     return (
-        <Layout seo={data.strapiGlobal.defaultSeo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={0}>
-            <div className={cn('about-company__wrapper')}>
-                {header && (
-                    <div className={cn('about-company__header-wrapper')}>
-                        <img className={cn('about-company__header-image')} src={headerBackground.localFile.publicURL} />
-                        <p
-                            className={cn('about-company__header-text')}
-                            dangerouslySetInnerHTML={{ __html: header }}
-                        />
-                    </div>
-                )}
-                <ListAccordeon data={list} className={cn('about-company__list')} />
-                <Carousel data={slider} />
-                <Footer data={footer} />
-            </div>
-        </Layout>
+        <div className={cn('about-company__page')}>
+            <Layout seo={data.strapiAboutCompany.seo} theme={{ mode: 'dark', logoColor: '#040A0A', whiteLogoImportant: true }} pageNumber={2}>
+                <div className={cn('about-company__wrapper')}>
+                    {header && (
+                        <div className={cn('about-company__header-wrapper')}>
+                            <img className={cn('about-company__header-image')} src={headerBackground.localFile.publicURL} />
+                            <p className={cn('about-company__header-text')}>{toUnescapedHTML(header)}</p>
+                        </div>
+                    )}
+                    <ListAccordeon data={list} className={cn('about-company__list')} />
+                    <Carousel data={slider} />
+                    <Footer data={footer} />
+                </div>
+            </Layout>
+        </div>
+
     );
 };
 

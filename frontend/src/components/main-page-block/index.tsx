@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
+import { gtagClicked } from '../../utils';
 import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
+import { toUnescapedHTML } from '../../utils';
 import StoryCard, { ICard } from '../story-card';
 
 import style from './index.css';
@@ -42,7 +44,12 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
                 {link.text}
             </Link>
         ) : (
-            <a href={link.to} target="_blank" className={cn('block__link', `block__link_${linkStyle}`)}>
+            <a
+                target="_blank"
+                href={link.to}
+                className={cn('block__link', `block__link_${linkStyle}`)}
+                onClick={() => gtagClicked('main_slide_button_click')}
+            >
                 {link.text}
             </a>
         )
@@ -52,8 +59,6 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
         <div className={cn('block__wrapper', visibilityClassName)} id={String(block.id)}>
             {block.background.localFile.publicURL.search('.mp4') !== -1 ? (
                 <video
-                    src={block.background.localFile.publicURL}
-                    poster={block.backgroundPoster?.localFile?.publicURL}
                     className={cn('block__image')}
                     muted={true}
                     loop={true}
@@ -65,7 +70,7 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
             )}
             {block.link ? renderLink(block.link) : null }
             <div className={cn('block__bottom', pageNumber >= index ? 'block__bottom_showing' : 'block__bottom_hiding')}>
-                {text && <span className={cn('block__text')} dangerouslySetInnerHTML={{ __html: text }} />}
+                {text && <span className={cn('block__text')}>{toUnescapedHTML(text)}</span>}
                 {block.cards?.map((card, i) => (
                     <StoryCard key={i} card={card} />
                 ))}

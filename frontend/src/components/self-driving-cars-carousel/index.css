@@ -1,5 +1,5 @@
 .carousel {
-    --color-text: #94F7ED;
+    --color-text: #BDFFF8;
     --color-white: #fff;
     --color-black: #000;
     width: 100vw;
@@ -64,7 +64,7 @@
         z-index: 20;
 
         span {
-            color: #94F7ED;
+            color: #BDFFF8;
         }
 
         &_top-left {
@@ -102,11 +102,11 @@
         z-index: 2;
 
         span {
-            color: #94F7ED;
+            color: #BDFFF8;
         }
 
         &_top-left {
-            left: 20px;
+            left: 10px;
             right: 10px;
             top: 40px;
         }
@@ -118,7 +118,7 @@
         }
 
         &_bottom-left {
-            left: 20px;
+            left: 10px;
             right: 10px;
             bottom: 40px;
         }

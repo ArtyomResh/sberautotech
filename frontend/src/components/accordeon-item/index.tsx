@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import { IListAccordeonItem } from '../list-accordeon';
+import { gtagClicked } from '../../utils';
 
 import AccordeonHide from '../../images/accordeon-hide.inline.svg';
 import AccordeonShow from '../../images/accordeon-show.inline.svg';
@@ -41,21 +42,22 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
                     <div className={cn('accordeon__sub-description-wrapper')}>
                         {data.link && (
                             <div className={cn('accordeon__link-wrapper')}>
-                                <a href={data.link.to} target="_blank" className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}>
+                                <a
+                                    target="_blank"
+                                    href={data.link.to}
+                                    className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}
+                                    onClick={() => gtagClicked(`accordeon_button_click_${data.id}`)}
+                                >
                                     {data.link.text}
                                 </a>
                             </div>
                         )}
-                        {data.subDescriptionFirst && (
-                            <div className={cn('accordeon__sub-description')}>
-                                {data.subDescriptionFirst}
-                            </div>
-                        )}
-                        {data.subDescriptionSecond && (
-                            <div className={cn('accordeon__sub-description')}>
-                                {data.subDescriptionSecond}
-                            </div>
-                        )}
+                        <div className={cn('accordeon__sub-description')}>
+                                {data.subDescriptionFirst ? data.subDescriptionFirst : ''}
+                        </div>
+                        <div className={cn('accordeon__sub-description')}>
+                            {data.subDescriptionSecond ? data.subDescriptionSecond : ''}
+                        </div>
                     </div>
                 </div>
             ) : null}
