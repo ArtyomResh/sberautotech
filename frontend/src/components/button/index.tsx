@@ -11,10 +11,11 @@ interface IProps {
     disabled?: boolean,
     type?: TButtonType,
     styleType?: TButtonStyleType,
-    className?: string
+    className?: string,
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-const Button = ({ label, type, disabled, styleType, className }: IProps) => {
+const Button = ({ label, type, disabled, styleType, className, onClick }: IProps) => {
     const cn = useClassnames(style);
 
     return (
@@ -22,6 +23,7 @@ const Button = ({ label, type, disabled, styleType, className }: IProps) => {
             className={cn('button', `button__${styleType}`, className)}
             type={type}
             disabled={disabled}
+            onClick={onClick}
         >
             {label}
         </button>
