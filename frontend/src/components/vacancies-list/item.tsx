@@ -5,9 +5,14 @@ import IconPlus from '../../images/plus.inline.svg';
 import Button from '../button';
 
 import style from './index.css';
-import { IVacanciesListItem } from './index';
+import { IVacanciesListItem, ECities, EJobType } from './index';
 
-const VacanciesListItem = ({ data, company }: { data: IVacanciesListItem, company: string }) => {
+interface IProps {
+    data: IVacanciesListItem
+}
+
+const VacanciesListItem: React.FC<IProps> = ({ data }) => {
+    const { title, division, city, about, jobType, publicationDate, conditions, whatWaitingFor, whatToDo } = data;
     const cn = useClassnames(style);
     const [isViewFull, toggleView] = useState(false);
 
@@ -18,52 +23,36 @@ const VacanciesListItem = ({ data, company }: { data: IVacanciesListItem, compan
     return (
         <div className={cn('vacancies__list-item')}>
             <span className={cn('vacancies__list-item-icon')} onClick={onClickToggle}><IconPlus /></span>
-
             <div className={cn('vacancies__list-item-content')}>
                 <div className={cn('vacancies__list-item-top')}>
                     <div className={cn('vacancies__list-item-top-column')}>
                         <div>
-                            <div>{data.location}</div>
-                            <div>{data.type}</div>
+                            <div>{ECities[city]}</div>
+                            <div>{EJobType[jobType]}</div>
                         </div>
                         <div>
-                            {data.created_at}
+                            {publicationDate}
                         </div>
                     </div>
                     <div className={cn('vacancies__list-item-top-column')}>
-                        <div className={cn('vacancies__list-item-title')}>{data.title}</div>
-                        <div>{data.author}</div>
+                        <div className={cn('vacancies__list-item-title')}>{title}</div>
+                        <div>{division}</div>
                     </div>
                 </div>
                 {isViewFull && (
                     <div className={cn('vacancies__list-item-full-content')}>
                         <div className={cn('vacancies__list-item-full-content-left')}>
-                            {company}
+                            {about}
                         </div>
                         <div className={cn('vacancies__list-item-full-content-right')}>
                             <div className={cn('vacancies__list-item-full-content-row')}>
-                                <div className={cn('vacancies__list-item-list-title')}>Условия</div>
-                                <div>
-                                    {data.conditions.map((item, index) => (
-                                        <div key={`${data.id}-condition-${index}`}>&mdash; {item}</div>
-                                    ))}
-                                </div>
+                                <div dangerouslySetInnerHTML={{ __html: conditions }} />
                             </div>
                             <div className={cn('vacancies__list-item-full-content-row')}>
-                                <div className={cn('vacancies__list-item-list-title')}>Что необходимо делать</div>
-                                <div>
-                                    {data.work_list.map((item, index) => (
-                                        <div key={`${data.id}-work-${index}`}>&mdash; {item}</div>
-                                    ))}
-                                </div>
+                                <div dangerouslySetInnerHTML={{ __html: whatToDo }} />
                             </div>
                             <div className={cn('vacancies__list-item-full-content-row')}>
-                                <div className={cn('vacancies__list-item-list-title')}>Мы ожидаем, что у вас есть</div>
-                                <div>
-                                    {data.expect.map((item, index) => (
-                                        <div key={`${data.id}-expect-${index}`}>&mdash; {item}</div>
-                                    ))}
-                                </div>
+                                <div dangerouslySetInnerHTML={{ __html: whatWaitingFor }} />
                             </div>
                             <Button label="Откликнуться" />
                         </div>
