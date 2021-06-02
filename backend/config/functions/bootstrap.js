@@ -180,6 +180,8 @@ async function importSelfDrivingCar(shouldImportSeedData) {
     "double_block.topBackground": getFileData(SelfDrivingCar['double_block'].topBackgroundName),
     "double_block.bottomVideo": getFileData(SelfDrivingCar['double_block'].bottomVideoName),
     "double_block.bottomVideoPoster": getFileData(SelfDrivingCar['double_block'].bottomVideoPosterName),
+    "double_block.mobileBackground": getFileData(SelfDrivingCar['double_block'].mobileBackgroundName),
+    "double_block.mobileBackgroundPoster": getFileData(SelfDrivingCar['double_block'].mobileBackgroundPosterName),
     "slider.slider_items": []
   };
   SelfDrivingCar['story_cards'].map((item, i) => {

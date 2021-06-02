@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import useDeviceDetect from '../../hooks/use-device-detect';
 import { ILocalFile } from '../self-driving-cars-carousel';
 
 import style from './index.css';
@@ -16,12 +17,15 @@ interface IProps {
         textBottom: string,
         bottomVideo: ILocalFile,
         bottomVideoPoster: ILocalFile,
-        topBackground: ILocalFile
+        topBackground: ILocalFile,
+        mobileBackground: ILocalFile,
+        mobileBackgroundPoster: ILocalFile
     }
 }
 
 const MainBlock: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
+    const { isMobile } = useDeviceDetect();
     const videoRef = useRef<HTMLVideoElement>(null);
     const [play, setPlay] = useState(true);
 
@@ -50,8 +54,8 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
                 {play ? <ButtonPlay className={cn('main-block__bottom-play')} /> : <ButtonPause className={cn('main-block__bottom-play')} /> }
                 <video
                     ref={videoRef}
-                    src={data.bottomVideo.localFile.publicURL}
-                    poster={data.bottomVideoPoster?.localFile?.publicURL}
+                    src={isMobile ? data.mobileBackground.localFile.publicURL : data.bottomVideo.localFile.publicURL}
+                    poster={isMobile ? data.mobileBackgroundPoster.localFile.publicURL : data.bottomVideoPoster?.localFile?.publicURL}
                     muted={true}
                     loop={true}
                     autoPlay={true}

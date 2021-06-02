@@ -20,9 +20,9 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
 
     return (
         <div className={cn('accordeon__wrapper', { [`${className}-item-wrapper`]: className })}>
-            <div className={cn('accordeon__header-wrapper', { [`${className}-item-header-wrapper`]: className })}>
-                <div className={cn('accordeon__toggle', { [`${className}-item-toggle`]: className })} onClick={() => setIsOpen(!isOpen)}>
-                    { isOpen ? <AccordeonHide /> : <AccordeonShow /> }
+            <div className={cn('accordeon__header-wrapper', { [`${className}-item-header-wrapper`]: className })} onClick={() => setIsOpen(!isOpen)}>
+                <div className={cn('accordeon__toggle', { [`${className}-item-toggle`]: className })}>
+                    { isOpen ? <AccordeonHide className={cn('accordeon__toggle_hide')} /> : <AccordeonShow className={cn('accordeon__toggle_show')}/> }
                 </div>
                 <div className={cn('accordeon__header', { [`${className}-item-header`]: className })}>
                     {data.header}

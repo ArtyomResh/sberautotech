@@ -37,6 +37,16 @@ const query = graphql`
               }
               id
             }
+            mobileBackground {
+              localFile {
+                publicURL
+              }
+            }
+            mobileBackgroundPoster {
+              localFile {
+                publicURL
+              }
+            }
             topBackground {
               localFile {
                 publicURL

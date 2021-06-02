@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
 import Input from './input';
 import Select from './select';
 import Textarea from './textarea';
@@ -32,8 +32,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
     const [isSended, setIsSended] = useState(false);
     const [isError, setIsError] = useState(false);
     const cn = useClassnames(style);
-
-    let closeTimeout;
+    const timeoutId = useRef<number>();
 
     const context = useForm({
         mode            : 'onSubmit',
@@ -63,8 +62,8 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
     const preventClosePopup = useCallback((e) => {
         e.stopPropagation();
 
-        if(closeTimeout) {
-            clearTimeout(closeTimeout);
+        if(timeoutId) {
+            clearTimeout(timeoutId.current);
         }
 
         setIsSended(false);
@@ -72,7 +71,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         setIsPopupVisible(true);
         context.reset();
 
-    }, [closeTimeout])
+    }, [timeoutId])
 
     const onSubmit = async (data) => {
         setIsSubmitDisabled(true);
@@ -109,7 +108,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
             if(res.ok) {
                 setIsSended(true)
 
-                closeTimeout = setTimeout(() => {
+                timeoutId.current = setTimeout(() => {
                     setIsSended(false);
                     setIsPopupVisible(false);
                     setIsSubmitDisabled(false);
@@ -119,6 +118,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
             setIsSended(true);
             setIsError(true);
             setIsSubmitDisabled(false);
+
             console.error(err);
         }
     };
