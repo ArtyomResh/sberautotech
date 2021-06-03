@@ -119,7 +119,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
                         Присоединиться
                     </button>
                     <span className={cn('nav__disclaimer')}>
-                        Информация, опубликованная на Сайте предоставляется только в ознакомительных целях.
+                        Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.
                     </span>
                     <div className={cn('nav__link-block')}>
                         <a className={cn('nav__link-bottom-block')} href="/" title="Политика конфиденциальности">Политика конфиденциальности</a>

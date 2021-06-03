@@ -10,6 +10,10 @@
     &__top {
         height: 878px;
         position: relative;
+
+        @media screen and (max-width: 600px) {
+            height: 130vw;
+        }
     }
 
     &__header {
@@ -84,6 +88,11 @@
         z-index: 1;
         padding: 0 30px 0 10px;
         width: 70%;
+
+        @media screen and (max-width: 415px) {
+            font-size: 22px;
+            line-height: 24px;
+        }
     }
 
     &__info-top {
@@ -94,22 +103,26 @@
     &__info-bottom {
         color: var(--color-white);
         top: 878px;
+
+        @media screen and (max-width: 600px) {
+            top: 130vw;
+        }
     }
 
     &__image {
         position: absolute;
         height: 100%;
         object-fit: cover;
-        right: -240px;
+        width: 100%;
+
+        @media screen and (max-width: 600px) {
+            height: 130vw;
+            right: -64vw;
+            width: unset;
+        }
     }
 
     @media screen and (min-width: 1133px) {
-
-        &__image {
-            position: static;
-            width: 100%;
-        }
-
         &__info-top, &__info-bottom {
             font-size: 47px;
             max-width: 995px;
@@ -126,6 +139,18 @@
 
         &__info-bottom {
             top: 879px;
+        }
+
+    }
+
+    @media screen and (min-width: 1850px) {        
+        &__info-top {
+            bottom: -140px;
+            color: white;
+        }
+
+        &__info-bottom {
+            top: 1019px;
         }
 
     }

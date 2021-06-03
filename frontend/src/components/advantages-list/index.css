@@ -5,7 +5,7 @@
         padding-right: 10px;
         padding-top: 35px;
 
-        @media (max-width: 376px) {
+        @media (max-width: 600px) {
             padding-left: 10px;
         }
     }
@@ -36,10 +36,6 @@
     &__list {
         display: flex;
         flex-wrap: wrap;
-
-        @media (max-width: 376px) {
-            justify-content: center;
-        }
     }
 
     &__list-item {
@@ -49,6 +45,14 @@
         max-width: 240px;
         margin-right: 20px;
         margin-bottom: 60px;
+
+        @media (max-width: 540px) {
+            max-width: 180px;
+        }
+
+        @media (max-width: 420px) {
+            max-width: 100%;
+        }
     }
 
     &__icon {

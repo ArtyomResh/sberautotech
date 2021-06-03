@@ -58,7 +58,7 @@
     ],
     "fourth_screen": [
       {
-        "text": "Создание транспорта будущего — увлекательная задача, и {мы с радостью примем в нашу команду единомышленников}. Нам нужны идеи, опыт и желание менять мир.",
+        "text": "Создание транспорта будущего — увлекательная задача, и {мы с радостью примем в нашу команду единомышленников}. Нам нужны идеи, опыт и желание менять мир",
         "link": {
           "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
           "text": "Вакансии",
@@ -83,13 +83,17 @@
       "shareImage": null
     },
     "double_block": {
-      "header": "Беспилотный транспорт",
+      "header": "Беспилотный автомобиль",
       "topBackground": null,
       "topBackgroundName": "carWithLidar-profile.jpg",
       "bottomVideo": null,
       "bottomVideoName": "video-cover.mp4",
       "bottomVideoPoster": null,
       "bottomVideoPosterName": "video-cover.jpg",
+      "mobileBackground": null,
+      "mobileBackgroundName": "video-cover-mobile.mp4",
+      "mobileBackgroundPoster": null,
+      "mobileBackgroundPosterName": "video-cover.jpg",
       "textBottom": "роботизированная система управления полностью контролирует дорогу и обеспечивает моментальную реакцию на любые изменения обстановки",
       "text": "Технологии, которые обеспечат прорыв в безопасности дорожного движения:"
     },
@@ -129,7 +133,7 @@
         "text": "Вакансии",
         "style": "fill"
       },
-      "disclaimer": "Информация, опубликованная на Сайте предоставляется только в ознакомительных целях.",
+      "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.",
       "email": "contact@sberautotech.ru",
       "privacyPolicyLink": "/privacy-policy",
       "publicOfferLink": "/"
@@ -142,12 +146,12 @@
       "shareImage": null
     },
     "top_slider": {
-      "header": "Мир не меняется сам по себе.</br>Его меняют люди, которые верят в технологии, в будущее и в свои силы",
+      "header": "Мир не меняется сам по себе. Его меняют люди, которые верят в технологии, в будущее и в свои силы",
       "header_position": "bottom_left",
       "text": null,
       "text_position": "bottom_left",
-      "slider_items": [null, null, null],
-      "slider_items_names": [ "engineer2.jpg",  "engineer4.jpg",  "engineer5.jpg"]
+      "slider_items": [null, null],
+      "slider_items_names": ["engineer2.jpg", "engineer5.jpg"]
     },
     "top_list": {
       "header": "Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
@@ -247,7 +251,7 @@
         },
         {
           "target": "",
-          "header": "Конкурентная зарплата конкурентная, по итогам работы – премии и повышения",
+          "header": "Конкурентная зарплата, по итогам работы – премии и повышения",
           "description": "",
           "subDescriptionFirst": "",
           "subDescriptionSecond": "",
@@ -295,7 +299,7 @@
         "text": "Вакансии",
         "style": "fill"
       },
-      "disclaimer": "Информация, опубликованная на Сайте предоставляется только в ознакомительных целях.",
+      "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.",
       "email": "contact@sberautotech.ru",
       "privacyPolicyLink": "/privacy-policy",
       "publicOfferLink": "/"
@@ -361,7 +365,7 @@
         "text": "Вакансии",
         "style": "fill"
       },
-      "disclaimer": "Информация, опубликованная на Сайте предоставляется только в ознакомительных целях.",
+      "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.",
       "email": "contact@sberautotech.ru",
       "privacyPolicyLink": "/privacy-policy",
       "publicOfferLink": "/"
@@ -509,7 +513,7 @@
         "text": "Вакансии",
         "style": "fill"
       },
-      "disclaimer": "Информация, опубликованная на Сайте предоставляется только в ознакомительных целях.",
+      "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.",
       "email": "contact@sberautotech.ru",
       "privacyPolicyLink": "/privacy-policy",
       "publicOfferLink": "/"

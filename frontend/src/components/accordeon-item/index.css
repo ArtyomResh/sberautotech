@@ -2,12 +2,15 @@
     &__wrapper {
         width: 100%;
         border-top: 1px solid #AEAEAE;
+
+        @media (max-width: 1024px) {
+            margin-bottom: 40px;
+        }
     }
 
     &__toggle {
         display: flex;
-        align-items: flex-start;;
-        cursor: pointer;
+        align-items: flex-start;
         fill: #BDFFF8;
         stroke: #000000;
 
@@ -19,7 +22,7 @@
             fill: #000000;
         }
 
-        &:hover {
+        &_hide {
             fill: #fff;
 
             circle {
@@ -53,7 +56,7 @@
     &__header-wrapper {
         display: flex;
         margin: 23px 0px;
-        /* align-items: center; */
+        cursor: pointer;
     }
 
     &__header {
