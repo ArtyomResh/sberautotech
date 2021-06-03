@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
 import Input from './input';
-import Select from './select';
+import Select from '../select';
 import Textarea from './textarea';
-import Button from './button';
+import Button from '../button';
 import CheckBox from './check-box';
 
 import { useClassnames } from '../../hooks/use-classnames';
@@ -100,7 +100,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
                 method: 'POST',
                 body  : formData
             });
-            
+
             if(!res.ok) {
                 throw new Error(res.statusText)
             }
@@ -181,7 +181,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
                                     <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
                                 </div>
                                 <div className={cn('right-block__field-wrapper')}>
-                                    <Button type="submit" label="Отправить" />
+                                    <Button type="submit" label="Отправить" styleType="secondary" />
                                 </div>
                             </div>
                         </div>

@@ -5,6 +5,9 @@
   connection: local
 
   tasks:
+  - name: Load defaults
+    include_vars: defaults/main.yml
+
   - name: Load variables
     include_vars: "vars.{{ stand }}.yml"
 
@@ -46,7 +49,7 @@
       definition: "{{ lookup('template', 'templates/certificate.yml') }}"
       validate:
         fail_on_error: no
-    when: certificate.stat.exists
+    when: certificate.stat.exists and stand == 'dev'
 
   - name: Apply configmap
     k8s:
