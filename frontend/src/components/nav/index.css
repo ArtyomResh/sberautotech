@@ -95,6 +95,17 @@
                 display: none;
             }
         }
+
+        @media (max-width: 500px) {
+            padding: 50px 10px 10px 10px;
+
+        }
+
+        @media (max-width: 1050px & orientation: landscape) {
+            padding: 10px 10px 80px 10px;
+            max-height: 100vh;
+            overflow-x: scroll;
+        }
     }
 
     &__right {
@@ -216,6 +227,13 @@
 
         @media (min-width: 1050px) {
             display: none;
+        }
+
+        @media (max-width: 1050px & orientation: landscape) {
+           margin-bottom: 10px;
+           font-size: 20px;
+           line-height: 22px;
+           height: 40px;
         }
     }
     
