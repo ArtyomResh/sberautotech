@@ -27,7 +27,7 @@ timestamps {
 
                 repo_name = repository.address.split('/')[4].replace('.git', '')
                 app_name = repo_name.replaceAll("_|\\.", "-")
-                info = "*${repo_name}*: PROD deploy\n\nVersion: *${params.version}*\nJob URL: ${env.BUILD_URL}\nStatus: "
+                info = "*${repo_name}*: Deploy on PROD\n\nVersion: *${params.version}*\nJob URL: ${env.BUILD_URL}\nStatus: "
             }
 
             try {
@@ -87,12 +87,12 @@ timestamps {
                     }
                 }
             } catch (Exception e) {
-                //publishToSlack(config.slack.platform_hook, info)
+                publishToSlack(config.slack.frontend_hook, info)
                 throw e
             }
 
             info += ":ok_hand:"
-            //publishToSlack(config.slack.platform_hook, info)
+            publishToSlack(config.slack.frontend_hook, info)
         }
     }
 }
