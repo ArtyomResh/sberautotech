@@ -13,7 +13,7 @@ data:
       server {
           listen {{ service_port }};
 
-          server_name site;
+          server_name {{ domain }};
           charset utf-8;
 
           gzip on;
