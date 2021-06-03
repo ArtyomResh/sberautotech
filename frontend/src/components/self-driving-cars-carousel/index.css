@@ -6,14 +6,29 @@
     height: 100vh;
     overflow: hidden;
     position: relative;
+    cursor: none;
     background: black;
 
-    &:hover {
-        cursor: url("../../images/cursor-left.svg"), pointer;
-    }
+    &__cursor {
+        position: fixed;
+        z-index: 3;
+        top: 0;
+        left: 0;
+        
+        &_none {
+            display: none;
+        }
 
-    &_right:hover {
-        cursor: url("../../images/cursor-right.svg"), pointer;
+        &_left {
+            animation: 0.3s linear 0s normal rotation-left;
+        }
+
+        &_right {
+            animation: 0.3s linear 0s normal rotation-right;
+        }
+
+        @keyframes rotation-left {{ from { transform: rotate(180deg); } to { transform: rotate(0deg); } }}
+        @keyframes rotation-right {{ from { transform: rotate(-180deg); } to { transform: rotate(0deg); } }}
     }
 
     &__slide-container {

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import IconPlus from '../../images/plus.inline.svg';
+import IconMinus from '../../images/minus.inline.svg';
 import Button from '../button';
 import { toUnescapedHTML } from '../../utils';
 
@@ -23,7 +24,15 @@ const VacanciesListItem: React.FC<IProps> = ({ data }) => {
 
     return (
         <div className={cn('vacancies__list-item')}>
-            <span className={cn('vacancies__list-item-icon')} onClick={onClickToggle}><IconPlus /></span>
+            <span
+                className={cn('vacancies__list-item-icon', {
+                    'vacancies__list-item-icon_minus': isViewFull
+                })}
+                onClick={onClickToggle}
+            >
+                {isViewFull ? <IconMinus /> : <IconPlus /> }
+            </span>
+
             <div className={cn('vacancies__list-item-content')}>
                 <div className={cn('vacancies__list-item-top')}>
                     <div className={cn('vacancies__list-item-top-column')}>
