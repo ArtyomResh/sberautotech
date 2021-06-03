@@ -15,8 +15,6 @@ FROM ${DOCKER_REGISTRY}/nginx:1.19.5-alpine
 
 COPY --from=builder /home/builder/public /usr/share/nginx/html
 
-RUN sed -i 's/80;/8080;/g' /etc/nginx/conf.d/default.conf
-
 RUN touch /var/run/nginx.pid \
     && chown -R nginx:nginx /var/run/nginx.pid \
     && chown -R nginx:nginx /var/log/nginx/ \
