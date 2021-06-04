@@ -351,8 +351,8 @@
       "header_position": "bottom_right",
       "text": null,
       "text_position": "bottom_left",
-      "slider_items": [null],
-      "slider_items_names": [ "engineer7.jpg"]
+      "slider_items": [null, null],
+      "slider_items_names": ["engineer6.jpg",  "engineer7.jpg"]
     },
     "footer": {
       "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
