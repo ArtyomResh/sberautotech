@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { debounce } from 'lodash';
+import { isMobileOnly, isSafari } from 'react-device-detect';
 
 import { useClassnames } from '../hooks/use-classnames';
 
@@ -13,7 +14,6 @@ import style from './flip.css';
 import Footer from '../components/footer';
 import Loader from '../components/loader/loaderComponent';
 import useFormattedText from '../hooks/use-formatted-text';
-import useDeviceDetect from '../hooks/use-device-detect';
 
 const query = graphql`
   query {
@@ -28,6 +28,11 @@ const query = graphql`
         node {
           first_screen {
             background {
+              localFile {
+                publicURL
+              }
+            }
+            backgroundOgg {
               localFile {
                 publicURL
               }
@@ -50,6 +55,11 @@ const query = graphql`
                 publicURL
               }
             }
+            backgroundOgg {
+              localFile {
+                publicURL
+              }
+            }
             mobileBackground {
               localFile {
                 publicURL
@@ -64,6 +74,11 @@ const query = graphql`
           }
           fifth_screen {
             background {
+              localFile {
+                publicURL
+              }
+            }
+            backgroundOgg {
               localFile {
                 publicURL
               }
@@ -99,6 +114,11 @@ const query = graphql`
                 publicURL
               }
             }
+            backgroundOgg {
+              localFile {
+                publicURL
+              }
+            }
             mobileBackground {
               localFile {
                 publicURL
@@ -113,6 +133,11 @@ const query = graphql`
           }
           second_screen {
             background {
+              localFile {
+                publicURL
+              }
+            }
+            backgroundOgg {
               localFile {
                 publicURL
               }
@@ -135,6 +160,11 @@ const query = graphql`
                 publicURL
               }
             }
+            backgroundOgg {
+              localFile {
+                publicURL
+              }
+            }
             mobileBackground {
               localFile {
                 publicURL
@@ -149,6 +179,11 @@ const query = graphql`
           }
           sixth_screen {
             background {
+              localFile {
+                publicURL
+              }
+            }
+            backgroundOgg {
               localFile {
                 publicURL
               }
@@ -171,17 +206,12 @@ const query = graphql`
                 publicURL
               }
             }
-            backgroundPoster {
+            backgroundOgg {
               localFile {
                 publicURL
               }
             }
             mobileBackground {
-              localFile {
-                publicURL
-              }
-            }
-            mobileBackgroundPoster {
               localFile {
                 publicURL
               }
@@ -204,9 +234,9 @@ const DEBOUNCE_TIMER = 50;
 const FlipPage = () => {
     const cn = useClassnames(style);
     const data = useStaticQuery(query);
-    const { isMobile } = useDeviceDetect();
     const [isLoading, setIsLoading] = useState(true);
 
+    console.log(isSafari)
     const {
         first_screen,
         // second_screen,
@@ -225,7 +255,7 @@ const FlipPage = () => {
 
         video?.setAttribute('src', videoBlob);
 
-        if(isMobile) {
+        if(isMobileOnly) {
             return;
         }
 
@@ -270,16 +300,16 @@ const FlipPage = () => {
     };
 
     useEffect(() => {
-        if(isMobile !== null) {
+        if(isMobileOnly !== null) {
             const preloadVideos = [
-                fetch(first_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-                // fetch(second_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-                fetch(third_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-                fetch(fourth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-                fetch(fifth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-                fetch(sixth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-                fetch(seventh_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-                fetch(eighth_screen[isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob())
+                fetch(first_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                // fetch(second_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(third_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(fourth_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(fifth_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(sixth_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(seventh_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(eighth_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob())
             ];
 
             Promise.all(preloadVideos).then((data) => {
@@ -294,7 +324,7 @@ const FlipPage = () => {
                 registerVideo('#bound-eight', '#bound-eight video', URL.createObjectURL(data[6]));
             }).catch((e) => console.log(e));
         }
-    }, [isMobile]);
+    }, [isMobileOnly]);
 
 
     // Primary Headers
@@ -335,7 +365,7 @@ const FlipPage = () => {
         );
     }
 
-    if(isMobile) {
+    if(isMobileOnly) {
         return (
             <div className="flip__page">
                 <Layout seo={data.strapiFlip.seo} theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }} pageNumber={0}>

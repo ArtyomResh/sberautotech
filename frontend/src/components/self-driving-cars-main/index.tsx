@@ -14,10 +14,8 @@ interface IProps {
         header: string,
         id: number,
         text: string,
-        textBottom: string,
-        bottomVideo: ILocalFile,
-        bottomVideoPoster: ILocalFile,
-        topBackground: ILocalFile,
+        background: ILocalFile,
+        backgroundPoster: ILocalFile,
         mobileBackground: ILocalFile,
         mobileBackgroundPoster: ILocalFile
     }
@@ -43,25 +41,20 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
     };
 
     return (
-        <div className={cn('main-block')}>
-            <div className={cn('main-block__top')}>
-                <div className={cn('main-block__header')}>{data.header}</div>
-                <img src={data.topBackground.localFile.publicURL} alt={data.header} className={cn('main-block__image')} />
-                <div className={cn('main-block__info-top')}>{data.text}</div>
-                <div className={cn('main-block__info-bottom')}>{data.textBottom}</div>
-            </div>
-            <div className={cn('main-block__bottom')} onClick={toggleVideo}>
-                {play ? <ButtonPlay className={cn('main-block__bottom-play')} /> : <ButtonPause className={cn('main-block__bottom-play')} /> }
-                <video
-                    ref={videoRef}
-                    src={isMobile ? data.mobileBackground.localFile.publicURL : data.bottomVideo.localFile.publicURL}
-                    poster={isMobile ? data.mobileBackgroundPoster.localFile.publicURL : data.bottomVideoPoster?.localFile?.publicURL}
-                    muted={true}
-                    loop={true}
-                    autoPlay={true}
-                    playsInline={true}
-                />
-            </div>
+        <div className={cn('main-block')} onClick={toggleVideo}>
+            <div className={cn('main-block__header')}>{data.header}</div>
+            {play ? <ButtonPlay className={cn('main-block__play')} /> : <ButtonPause className={cn('main-block__play')} /> }
+            <video
+                className={cn('main-block__video')}
+                ref={videoRef}
+                src={isMobile ? data.mobileBackground.localFile.publicURL : data.background.localFile.publicURL}
+                poster={isMobile ? data.mobileBackgroundPoster.localFile.publicURL : data.backgroundPoster?.localFile?.publicURL}
+                muted={true}
+                loop={true}
+                autoPlay={true}
+                playsInline={true}
+            />
+            <div className={cn('main-block__text')}>{data.text}</div>
         </div>
     );
 };

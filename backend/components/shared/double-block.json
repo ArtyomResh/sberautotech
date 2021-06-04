@@ -10,7 +10,7 @@
     "header": {
       "type": "string"
     },
-    "topBackground": {
+    "background": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
@@ -20,25 +20,11 @@
       ],
       "plugin": "upload",
       "required": false
-    },
-    "bottomVideo": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
-    "textBottom": {
-      "type": "text"
     },
     "text": {
       "type": "text"
     },
-    "bottomVideoPoster": {
+    "backgroundPoster": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
