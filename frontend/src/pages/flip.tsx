@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { debounce } from 'lodash';
-import { isMobileOnly, isSafari } from 'react-device-detect';
+import { isMobile, isSafari } from 'react-device-detect';
 
 import { useClassnames } from '../hooks/use-classnames';
 
@@ -255,7 +255,7 @@ const FlipPage = () => {
 
         video?.setAttribute('src', videoBlob);
 
-        if(isMobileOnly) {
+        if(isMobile) {
             return;
         }
 
@@ -300,16 +300,16 @@ const FlipPage = () => {
     };
 
     useEffect(() => {
-        if(isMobileOnly !== null) {
+        if(isMobile !== null) {
             const preloadVideos = [
-                fetch(first_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(first_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
                 // fetch(second_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(third_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(fourth_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(fifth_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(sixth_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(seventh_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(eighth_screen[isMobileOnly ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob())
+                fetch(third_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(fourth_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(fifth_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(sixth_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(seventh_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
+                fetch(eighth_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob())
             ];
 
             Promise.all(preloadVideos).then((data) => {
@@ -324,7 +324,7 @@ const FlipPage = () => {
                 registerVideo('#bound-eight', '#bound-eight video', URL.createObjectURL(data[6]));
             }).catch((e) => console.log(e));
         }
-    }, [isMobileOnly]);
+    }, [isMobile]);
 
 
     // Primary Headers
@@ -365,7 +365,7 @@ const FlipPage = () => {
         );
     }
 
-    if(isMobileOnly) {
+    if(isMobile) {
         return (
             <div className="flip__page">
                 <Layout seo={data.strapiFlip.seo} theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }} pageNumber={0}>
