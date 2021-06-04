@@ -177,9 +177,8 @@ async function importGlobal(shouldImportSeedData) {
 
 async function importSelfDrivingCar(shouldImportSeedData) {
   const files = {
-    "double_block.topBackground": getFileData(SelfDrivingCar['double_block'].topBackgroundName),
-    "double_block.bottomVideo": getFileData(SelfDrivingCar['double_block'].bottomVideoName),
-    "double_block.bottomVideoPoster": getFileData(SelfDrivingCar['double_block'].bottomVideoPosterName),
+    "double_block.background": getFileData(SelfDrivingCar['double_block'].backgroundName),
+    "double_block.backgroundPoster": getFileData(SelfDrivingCar['double_block'].backgroundPosterName),
     "double_block.mobileBackground": getFileData(SelfDrivingCar['double_block'].mobileBackgroundName),
     "double_block.mobileBackgroundPoster": getFileData(SelfDrivingCar['double_block'].mobileBackgroundPosterName),
     "slider.slider_items": []
@@ -238,36 +237,28 @@ async function importFlip(shouldImportSeedData) {
   const files = {
     "first_screen.background": getFileData(Flip.first_screen.backgroundName),
     "first_screen.mobileBackground": getFileData(Flip.first_screen.mobileBackgroundName),
-    "first_screen.backgroundPoster": getFileData(Flip.first_screen.backgroundPosterName),
-    "first_screen.mobileBackgroundPoster": getFileData(Flip.first_screen.mobileBackgroundPosterName),
+    "first_screen.backgroundOgg": getFileData(Flip.first_screen.backgroundOggName),
     "second_screen.background": getFileData(Flip.second_screen.backgroundName),
     "second_screen.mobileBackground": getFileData(Flip.second_screen.mobileBackgroundName),
-    "second_screen.backgroundPoster": getFileData(Flip.second_screen.backgroundPosterName),
-    "second_screen.mobileBackgroundPoster": getFileData(Flip.second_screen.mobileBackgroundPosterName),
+    "second_screen.backgroundOgg": getFileData(Flip.second_screen.backgroundOggName),
     "third_screen.background": getFileData(Flip.third_screen.backgroundName),
     "third_screen.mobileBackground": getFileData(Flip.third_screen.mobileBackgroundName),
-    "third_screen.backgroundPoster": getFileData(Flip.third_screen.backgroundPosterName),
-    "third_screen.mobileBackgroundPoster": getFileData(Flip.third_screen.mobileBackgroundPosterName),
+    "third_screen.backgroundOgg": getFileData(Flip.third_screen.backgroundOggName),
     "fourth_screen.background": getFileData(Flip.fourth_screen.backgroundName),
     "fourth_screen.mobileBackground": getFileData(Flip.fourth_screen.mobileBackgroundName),
-    "fourth_screen.backgroundPoster": getFileData(Flip.fourth_screen.backgroundPosterName),
-    "fourth_screen.mobileBackgroundPoster": getFileData(Flip.fourth_screen.mobileBackgroundPosterName),
+    "fourth_screen.backgroundOgg": getFileData(Flip.fourth_screen.backgroundOggName),
     "fifth_screen.background": getFileData(Flip.fifth_screen.backgroundName),
     "fifth_screen.mobileBackground": getFileData(Flip.fifth_screen.mobileBackgroundName),
-    "fifth_screen.backgroundPoster": getFileData(Flip.fifth_screen.backgroundPosterName),
-    "fifth_screen.mobileBackgroundPoster": getFileData(Flip.fifth_screen.mobileBackgroundPosterName),
+    "fifth_screen.backgroundOgg": getFileData(Flip.fifth_screen.backgroundOggName),
     "sixth_screen.background": getFileData(Flip.sixth_screen.backgroundName),
     "sixth_screen.mobileBackground": getFileData(Flip.sixth_screen.mobileBackgroundName),
-    "sixth_screen.backgroundPoster": getFileData(Flip.sixth_screen.backgroundPosterName),
-    "sixth_screen.mobileBackgroundPoster": getFileData(Flip.sixth_screen.mobileBackgroundPosterName),
+    "sixth_screen.backgroundOgg": getFileData(Flip.sixth_screen.backgroundOggName),
     "seventh_screen.background": getFileData(Flip.seventh_screen.backgroundName),
     "seventh_screen.mobileBackground": getFileData(Flip.seventh_screen.mobileBackgroundName),
-    "seventh_screen.backgroundPoster": getFileData(Flip.seventh_screen.backgroundPosterName),
-    "seventh_screen.mobileBackgroundPoster": getFileData(Flip.seventh_screen.mobileBackgroundPosterName),
+    "seventh_screen.backgroundOgg": getFileData(Flip.seventh_screen.backgroundOggName),
     "eighth_screen.background": getFileData(Flip.eighth_screen.backgroundName),
     "eighth_screen.mobileBackground": getFileData(Flip.eighth_screen.mobileBackgroundName),
-    "eighth_screen.backgroundPoster": getFileData(Flip.eighth_screen.backgroundPosterName),
-    "eighth_screen.mobileBackgroundPoster": getFileData(Flip.eighth_screen.mobileBackgroundPosterName)
+    "eighth_screen.backgroundOgg": getFileData(Flip.eighth_screen.backgroundOggName)
   };
 
   if (shouldImportSeedData) {

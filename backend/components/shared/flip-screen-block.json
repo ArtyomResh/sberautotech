@@ -43,15 +43,6 @@
         "right"
       ]
     },
-    "backgroundPoster": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
     "mobileBackground": {
       "model": "file",
       "via": "related",
@@ -62,11 +53,12 @@
       "plugin": "upload",
       "required": false
     },
-    "mobileBackgroundPoster": {
+    "backgroundOgg": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
-        "images"
+        "images",
+        "videos"
       ],
       "plugin": "upload",
       "required": false

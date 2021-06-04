@@ -25,13 +25,12 @@ const query = graphql`
             header
             id
             text
-            textBottom
-            bottomVideo {
+            background {
               localFile {
                 publicURL
               }
             }
-            bottomVideoPoster {
+            backgroundPoster {
               localFile {
                 publicURL
               }
@@ -43,11 +42,6 @@ const query = graphql`
               }
             }
             mobileBackgroundPoster {
-              localFile {
-                publicURL
-              }
-            }
-            topBackground {
               localFile {
                 publicURL
               }
