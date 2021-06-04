@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import { enumToValues } from '../../utils';
 import Button from '../button';
 import Select from '../select';
 
@@ -9,32 +10,38 @@ import style from './index.css';
 import VacanciesItem from './item';
 
 interface IProps {
-    data: IVacanciesList
-}
-
-interface IVacanciesList {
-    company: string,
-    vacancies_list: Array<IVacanciesListItem>
+    data: Array<IVacanciesListItem>
 }
 
 export interface IVacanciesListItem {
-    id: number,
+    id: string,
     title: string,
-    location: string,
-    type: string,
-    created_at: string,
-    author: string,
-    conditions: Array<string>,
-    work_list: Array<string>,
-    expect: Array<string>
+    division: string,
+    conditions: string,
+    city: string,
+    about: string,
+    jobType: string,
+    publicationDate: string,
+    whatWaitingFor: string,
+    whatToDo: string
 }
 
-const options = [
-    { value: 'Product', label: 'Product' },
-    { value: 'Development', label: 'Development' },
-    { value: 'HR', label: 'HR' },
-    { value: 'Design', label: 'Design' }
-];
+export enum ECities {
+    moscow = 'Москва',
+    minsk = 'Минск'
+}
+
+export enum EJobType {
+    full = 'Полная занятость',
+    part = 'Частичная занятость'
+}
+
+export enum ESphere {
+    product = 'Product',
+    development = 'Development',
+    hr = 'HR',
+    design = 'Design'
+}
 
 const VacanciesList: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
@@ -56,19 +63,21 @@ const VacanciesList: React.FC<IProps> = ({ data }) => {
             <form onSubmit={context.handleSubmit(onSubmit)}>
                 <div className={cn('vacancies__wrap')}>
                     <div className={cn('vacancies__filters-wrap')}>
-                        <Select name="activity" placeholder="Функциональная сфера" options={options} />
-                        <Select name="region" placeholder="Регион" options={options} />
-                        <Select name="schedule" placeholder="График" options={options} />
+                        <Select name="activity" placeholder="Функциональная сфера" options={enumToValues(ESphere)} />
+                        <Select name="region" placeholder="Регион" options={enumToValues(ECities)} />
+                        <Select name="schedule" placeholder="График" options={enumToValues(EJobType)} />
                     </div>
-                    <div className={cn('vacancies__total-count')}>{data.vacancies_list?.length || 0} вакансий найдено</div>
+                    <div className={cn('vacancies__total-count')}>{data.length || 0} вакансий найдено</div>
                     <div className={cn('vacancies__list')}>
-                        {data.vacancies_list.map((item, i) => (
-                            <VacanciesItem data={item} company={data.company} key={`vacancy-item-${i}`} />
+                        {data.map((item) => (
+                            <VacanciesItem key={item.id} data={item} />
                         ))}
                     </div>
+                    {/*
                     <div className={cn('vacancies__btn-more')}>
                         <Button label="Загрузить еще вакансии" />
                     </div>
+                    */}
                 </div>
             </form>
         </FormProvider>
