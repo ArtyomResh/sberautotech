@@ -271,8 +271,6 @@ const FlipPage = () => {
                 const rawPercentScrolled = ((window.scrollY * 2) - distanceFromTop) / (boundScrollHeight - window.innerHeight);
                 const percentScrolled = Math.min(Math.max(rawPercentScrolled, 0), 1);
 
-                console.log(percentScrolled)
-
                 if(primaryTextBlock && secondaryTextBlock) {
                     if(percentScrolled >= 0.5) {
                         primaryTextBlock.style.transform = `translateY(-${primaryTextBlock.offsetTop - 60}px)`;
