@@ -2,7 +2,7 @@ import React, { useEffect, useRef, Fragment } from 'react';
 import Swiper from 'swiper';
 
 import { useClassnames } from '../../hooks/use-classnames';
-import { ILocalFile } from '../self-driving-cars-carousel';
+import { ILocalFile } from '../carousel';
 
 import style from './index.css';
 
