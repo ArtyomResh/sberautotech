@@ -3,8 +3,8 @@ import React from 'react';
 
 import Layout from '../components/layout';
 import MainBlock from '../components/self-driving-cars-main';
-import Swiper from '../components/self-driving-cars-swiper';
-import Carousel from '../components/self-driving-cars-carousel';
+import Swiper from '../components/swiper';
+import Carousel from '../components/carousel';
 import Footer from '../components/footer';
 
 import 'swiper/swiper-bundle.css';

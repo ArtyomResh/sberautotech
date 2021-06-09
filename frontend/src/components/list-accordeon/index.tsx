@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import AccordeonItem from '../accordeon-item';
-import { ILocalFile } from '../self-driving-cars-carousel';
+import { ILocalFile } from '../carousel';
 
 import style from './index.css';
 

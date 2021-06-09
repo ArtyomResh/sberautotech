@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { debounce } from 'lodash';
 import { isMobile, isSafari } from 'react-device-detect';
@@ -6,14 +6,14 @@ import { isMobile, isSafari } from 'react-device-detect';
 import { useClassnames } from '../hooks/use-classnames';
 
 import Layout from '../components/layout';
+import Footer from '../components/footer';
+import Loader from '../components/loader/loaderComponent';
+import FlipScreen from '../components/flip-screen';
+
 import FlipLogoIcon from '../images/flip-logo.svg';
-import FlipSelfDrivingLevelIcon from '../images/flip-self-driving-level.svg';
 import SberCloudLogoIcon from '../images/sbercloud-logo.svg';
 
 import style from './flip.css';
-import Footer from '../components/footer';
-import Loader from '../components/loader/loaderComponent';
-import useFormattedText from '../hooks/use-formatted-text';
 
 const query = graphql`
   query {
@@ -235,11 +235,10 @@ const FlipPage = () => {
     const cn = useClassnames(style);
     const data = useStaticQuery(query);
     const [isLoading, setIsLoading] = useState(true);
+    const videoSource = useMemo(() => isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg', []);
 
-    console.log(isSafari)
     const {
         first_screen,
-        // second_screen,
         third_screen,
         fourth_screen,
         fifth_screen,
@@ -249,9 +248,9 @@ const FlipPage = () => {
         footer
     } = data.allStrapiFlip.edges[0].node;
 
-    const registerVideo = (boundSelector: string, videoSelector: string, videoBlob: string) => {
+    const registerVideo = useCallback((boundSelector: string, videoBlob: string) => {
         const bound = document.querySelector(boundSelector);
-        const video = document.querySelector(videoSelector);
+        const video = document.querySelector(`${boundSelector} video`);
 
         video?.setAttribute('src', videoBlob);
 
@@ -279,13 +278,14 @@ const FlipPage = () => {
                         if(primaryText) {
                             primaryText.style.opacity = 0;
                         }
-                    } else {
-                        primaryTextBlock.style.transform = 'translateY(0px)';
-                        secondaryTextBlock.style.opacity = 0;
+                        return;
+                    }
 
-                        if(primaryText) {
-                            primaryText.style.opacity = 1;
-                        }
+                    primaryTextBlock.style.transform = 'translateY(0px)';
+                    secondaryTextBlock.style.opacity = 0;
+
+                    if(primaryText) {
+                        primaryText.style.opacity = 1;
                     }
                 }
 
@@ -297,400 +297,49 @@ const FlipPage = () => {
         }, DEBOUNCE_TIMER);
 
         requestAnimationFrame(scrollVideo);
-    };
+    }, []);
 
     useEffect(() => {
         if(isMobile !== null) {
             const preloadVideos = [
-                fetch(first_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                // fetch(second_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(third_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(fourth_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(fifth_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(sixth_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(seventh_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob()),
-                fetch(eighth_screen[isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'].localFile.publicURL).then((response) => response.blob())
+                fetch(first_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
+                fetch(third_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
+                fetch(fourth_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
+                fetch(fifth_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
+                fetch(sixth_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
+                fetch(seventh_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
+                fetch(eighth_screen[videoSource].localFile.publicURL).then((response) => response.blob())
             ];
 
             Promise.all(preloadVideos).then((data) => {
                 setIsLoading(false);
-                registerVideo('#bound-one', '#bound-one video', URL.createObjectURL(data[0]));
-                // registerVideo('#bound-two', '#bound-two video', URL.createObjectURL(data[1]));
-                registerVideo('#bound-three', '#bound-three video', URL.createObjectURL(data[1]));
-                registerVideo('#bound-four', '#bound-four video', URL.createObjectURL(data[2]));
-                registerVideo('#bound-five', '#bound-five video', URL.createObjectURL(data[3]));
-                registerVideo('#bound-six', '#bound-six video', URL.createObjectURL(data[4]));
-                registerVideo('#bound-seven', '#bound-seven video', URL.createObjectURL(data[5]));
-                registerVideo('#bound-eight', '#bound-eight video', URL.createObjectURL(data[6]));
+                data.map((screen, i) => registerVideo(`#bound-${i + 1}`, URL.createObjectURL(screen)))
             }).catch((e) => console.log(e));
         }
     }, [isMobile]);
 
-
-    // Primary Headers
-    const firstScreenHeader = useFormattedText(first_screen.primary_header);
-    // const secondScreenHeader = useFormattedText(second_screen.primary_header);
-    const thirdScreenHeader = useFormattedText(third_screen.primary_header);
-    const fourthScreenHeader = useFormattedText(fourth_screen.primary_header);
-    const fifthScreenHeader = useFormattedText(fifth_screen.primary_header);
-    const sixthScreenHeader = useFormattedText(sixth_screen.primary_header);
-    const seventhScreenHeader = useFormattedText(seventh_screen.primary_header);
-    const eighthScreenHeader = useFormattedText(eighth_screen.primary_header);
-
-    // Secondary Headers
-    const firstScreenSecondaryHeader = useFormattedText(first_screen.secondary_header);
-    const seventhScreenSecondaryHeader = useFormattedText(seventh_screen.secondary_header);
-
-    // Primary Texts
-    const fourthScreenText = useFormattedText(fourth_screen.primary_text);
-    const fifthScreenText = useFormattedText(fifth_screen.primary_text);
-    const sixthScreenText = useFormattedText(sixth_screen.primary_text);
-
-    // Secondary Texts
-    const firstScreenSecondaryText = useFormattedText(first_screen.secondary_text);
-    const thirdScreenSecondaryText = useFormattedText(third_screen.secondary_text);
-    const fourthScreenSecondaryText = useFormattedText(fourth_screen.secondary_text);
-    const fifthScreenSecondaryText = useFormattedText(fifth_screen.secondary_text);
-    const sixthScreenSecondaryText = useFormattedText(sixth_screen.secondary_text);
-
-
-    if(isLoading) {
-        return (
-            <div className="flip__page">
-                <Layout seo={data.strapiFlip.seo} theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }} pageNumber={0}>
-                    <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
-                </Layout>
-            </div>
-
-        );
-    }
-
-    if(isMobile) {
-        return (
-            <div className="flip__page">
-                <Layout seo={data.strapiFlip.seo} theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }} pageNumber={0}>
-                    <div className={cn('flip__wrapper', 'flip__wrapper_mobile')}>
-                        <div className={cn('flip__screen-wrapper')} id="bound-one">
-                            <img className={cn('flip__logo')} src={FlipLogoIcon} />
-                            <video
-                                className={cn('flip__screen-background')}
-                                muted={true}
-                                playsInline={true}
-                                autoPlay={true}
-                                loop={true}
-                            />
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: firstScreenHeader }} />
-                            </div>
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                <span className={cn('flip__screen-header', 'flip__screen-header_secondary')} dangerouslySetInnerHTML={{ __html: firstScreenSecondaryHeader }} />
-                                <span
-                                    className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${first_screen.secondary_text_float}`)}
-                                    dangerouslySetInnerHTML={{ __html: firstScreenSecondaryText }}
-                                />
-                            </div>
-                        </div>
-                        {/* <div className={cn('flip__screen-wrapper')} id="bound-two">
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: secondScreenHeader }} />
-                            </div>
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-
-                                <span className={cn('flip__screen-header', 'flip__screen-header_secondary')} />
-                                <span className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${second_screen.secondary_text_float}`)}>
-                                    <img src={FlipSelfDrivingLevelIcon} />
-                                </span>
-                            </div>
-                            <video
-                                className={cn('flip__screen-background')}
-                                muted={true}
-                                playsInline={true}
-                                autoPlay={true}
-                                loop={true}
-                            />
-                        </div> */}
-                        <div className={cn('flip__screen-wrapper')} id="bound-three">
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: thirdScreenHeader }} />
-
-                            </div>
-                            <video
-                                className={cn('flip__screen-background')}
-                                muted={true}
-                                playsInline={true}
-                                autoPlay={true}
-                                loop={true}
-                            />
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                <span
-                                    className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${third_screen.secondary_text_float}`)}
-                                    dangerouslySetInnerHTML={{ __html: thirdScreenSecondaryText }}
-                                />
-                            </div>
-                        </div>
-                        <div className={cn('flip__screen-wrapper')} id="bound-four">
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: fourthScreenHeader }} />
-                            </div>
-                            <video
-                                className={cn('flip__screen-background')}
-                                muted={true}
-                                playsInline={true}
-                                autoPlay={true}
-                                loop={true}
-                            />
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                <span
-                                    className={cn('flip__screen-text', 'flip__screen-text_primary', `flip__screen-text_${fourth_screen.primary_text_float}`)}
-                                    dangerouslySetInnerHTML={{ __html: fourthScreenText }}
-                                />
-                                <span
-                                    className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${fourth_screen.secondary_text_float}`)}
-                                    dangerouslySetInnerHTML={{ __html: fourthScreenSecondaryText }}
-                                />
-                            </div>
-                        </div>
-                        <div className={cn('flip__screen-wrapper')} id="bound-five">
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: fifthScreenHeader }} />
-                            </div>
-
-                            <video
-                                className={cn('flip__screen-background')}
-                                muted={true}
-                                playsInline={true}
-                                autoPlay={true}
-                                loop={true}
-                            />
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                <span
-                                    className={cn('flip__screen-text', 'flip__screen-text_primary', `flip__screen-text_${fifth_screen.primary_text_float}`)}
-                                    dangerouslySetInnerHTML={{ __html: fifthScreenText }}
-                                />
-                                <span
-                                    className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${fifth_screen.secondary_text_float}`)}
-                                    dangerouslySetInnerHTML={{ __html: fifthScreenSecondaryText }}
-                                />
-                            </div>
-                        </div>
-                        <div className={cn('flip__screen-wrapper')} id="bound-six">
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: sixthScreenHeader }} />
-                            </div>
-                            <video
-                                className={cn('flip__screen-background')}
-                                muted={true}
-                                playsInline={true}
-                                autoPlay={true}
-                                loop={true}
-                            />
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                <span
-                                    className={cn('flip__screen-text', 'flip__screen-text_primary', `flip__screen-text_${sixth_screen.primary_text_float}`)}
-                                    dangerouslySetInnerHTML={{ __html: sixthScreenText }}
-                                />
-                                <span
-                                    className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${sixth_screen.secondary_text_float}`)}
-                                    dangerouslySetInnerHTML={{ __html: sixthScreenSecondaryText }}
-                                />
-                                <span><img className={cn('flip__screen-logo')} src={SberCloudLogoIcon} /></span>
-                            </div>
-                        </div>
-                        <div className={cn('flip__screen-wrapper')} id="bound-seven">
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: seventhScreenHeader }} />
-                            </div>
-                            <video
-                                className={cn('flip__screen-background')}
-                                muted={true}
-                                playsInline={true}
-                                autoPlay={true}
-                                loop={true}
-                            />
-                            <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                <span className={cn('flip__screen-header', 'flip__screen-header_secondary')} dangerouslySetInnerHTML={{ __html: seventhScreenSecondaryHeader }} />
-                            </div>
-                        </div>
-                        <div className={cn('flip__screen-wrapper')} id="bound-eight">
-                            <div className={cn('flip__text-wrapper')}>
-                                <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: eighthScreenHeader }} />
-                            </div>
-                            <video
-                                className={cn('flip__screen-background')}
-                                muted={true}
-                                playsInline={true}
-                                autoPlay={true}
-                                loop={true}
-                            />
-                        </div>
-                        <Footer data={footer} />
-                    </div>
-                </Layout>
-            </div>
-        );
-    }
-
     return (
         <div className="flip__page">
-            <Layout seo={data.strapiFlip.seo} theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }} pageNumber={0}>
-                <div className={cn('flip__wrapper')}>
-                    <div className={cn('flip__screen-wrapper')}>
-                        <div id="bound-one" className="scroll-bound">
-                            <div className="content">
-                                <video
-                                    className={cn('flip__screen-background')}
-                                    muted={true}
-                                    playsInline={true}
-                                />
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: firstScreenHeader }} />
-                                </div>
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_secondary')} dangerouslySetInnerHTML={{ __html: firstScreenSecondaryHeader }} />
-                                    <span
-                                        className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${first_screen.secondary_text_float}`)}
-                                        dangerouslySetInnerHTML={{ __html: firstScreenSecondaryText }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        {/* <div id="bound-two" className="scroll-bound">
-                            <div className="content">
-                                <video
-                                    className={cn('flip__screen-background')}
-                                    muted={true}
-                                    playsInline={true}
-                                />
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: secondScreenHeader }} />
-                                </div>
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_secondary')} />
-                                    <span className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${second_screen.secondary_text_float}`)}>
-                                        <img src={FlipSelfDrivingLevelIcon} />
-                                    </span>
-                                </div>
-                            </div>
-                        </div> */}
-                        <div id="bound-three" className="scroll-bound">
-                            <div className="content">
-                                <video
-                                    className={cn('flip__screen-background')}
-                                    muted={true}
-                                    playsInline={true}
-                                />
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: thirdScreenHeader }} />
-
-                                </div>
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                    <span
-                                        className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${third_screen.secondary_text_float}`)}
-                                        dangerouslySetInnerHTML={{ __html: thirdScreenSecondaryText }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div id="bound-four" className="scroll-bound">
-                            <div className="content">
-                                <video
-                                    className={cn('flip__screen-background')}
-                                    muted={true}
-                                    playsInline={true}
-                                />
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: fourthScreenHeader }} />
-                                    <span
-                                        className={cn('flip__screen-text', 'flip__screen-text_primary', `flip__screen-text_${fourth_screen.primary_text_float}`)}
-                                        dangerouslySetInnerHTML={{ __html: fourthScreenText }}
-                                    />
-                                </div>
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_secondary')} />
-                                    <span
-                                        className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${fourth_screen.secondary_text_float}`)}
-                                        dangerouslySetInnerHTML={{ __html: fourthScreenSecondaryText }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div id="bound-five" className="scroll-bound">
-                            <div className="content">
-                                <video
-                                    className={cn('flip__screen-background')}
-                                    muted={true}
-                                    playsInline={true}
-                                />
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: fifthScreenHeader }} />
-                                    <span
-                                        className={cn('flip__screen-text', 'flip__screen-text_primary', `flip__screen-text_${fifth_screen.primary_text_float}`)}
-                                        dangerouslySetInnerHTML={{ __html: fifthScreenText }}
-                                    />
-                                </div>
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                    <span
-                                        className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${fifth_screen.secondary_text_float}`)}
-                                        dangerouslySetInnerHTML={{ __html: fifthScreenSecondaryText }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div id="bound-six" className="scroll-bound">
-                            <div className="content">
-                                <video
-                                    className={cn('flip__screen-background')}
-                                    muted={true}
-                                    playsInline={true}
-                                />
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: sixthScreenHeader }} />
-                                    <span
-                                        className={cn('flip__screen-text', 'flip__screen-text_primary', `flip__screen-text_${sixth_screen.primary_text_float}`)}
-                                        dangerouslySetInnerHTML={{ __html: sixthScreenText }}
-                                    />
-                                </div>
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                    <span
-                                        className={cn('flip__screen-text', 'flip__screen-text_secondary', `flip__screen-text_${sixth_screen.secondary_text_float}`)}
-                                        dangerouslySetInnerHTML={{ __html: sixthScreenSecondaryText }}
-                                    />
-                                    <span><img src={SberCloudLogoIcon} /></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="bound-seven" className="scroll-bound">
-                            <div className="content">
-                                <video
-                                    className={cn('flip__screen-background')}
-                                    muted={true}
-                                    playsInline={true}
-                                />
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_primary')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: seventhScreenHeader }} />
-                                </div>
-                                <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_secondary')} dangerouslySetInnerHTML={{ __html: seventhScreenSecondaryHeader }} />
-                                </div>
-                            </div>
-                        </div>
-                        <div id="bound-eight" className="scroll-bound">
-                            <div className="content">
-                                <video
-                                    className={cn('flip__screen-background')}
-                                    muted={true}
-                                    playsInline={true}
-                                />
-                                <div className={cn('flip__text-wrapper')}>
-                                    <span className={cn('flip__screen-header', 'flip__screen-header_primary')} dangerouslySetInnerHTML={{ __html: eighthScreenHeader }} />
-                                </div>
-                            </div>
-                        </div>
-                        <img className={cn('flip__logo')} src={FlipLogoIcon} />
-                    </div>
+            <Layout
+                seo={data.strapiFlip.seo} 
+                theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }} 
+                pageNumber={0}
+            >
+              {isLoading ? (
+                <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
+              ) : (
+                <div className={cn('flip__wrapper', {'flip__wrapper_mobile': isMobile})}>
+                    <FlipScreen data={first_screen} id="bound-1" />
+                    <FlipScreen data={third_screen} id="bound-2" />
+                    <FlipScreen data={fourth_screen} id="bound-3" />
+                    <FlipScreen data={fifth_screen} id="bound-4" />
+                    <FlipScreen data={sixth_screen} id="bound-5" icon={SberCloudLogoIcon} />
+                    <FlipScreen data={seventh_screen} id="bound-6" />
+                    <FlipScreen data={eighth_screen} id="bound-7" />
+                    <img className={cn('flip__logo')} src={FlipLogoIcon} />
                     <Footer data={footer} />
                 </div>
+              )}
             </Layout>
         </div>
     );

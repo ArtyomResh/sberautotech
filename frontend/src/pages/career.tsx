@@ -2,7 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
 import Layout from '../components/layout';
-import Carousel from '../components/self-driving-cars-carousel';
+import Carousel from '../components/carousel';
 import ListAccordeon from '../components/list-accordeon';
 import AdvantagesList from '../components/advantages-list';
 import Footer from '../components/footer';
