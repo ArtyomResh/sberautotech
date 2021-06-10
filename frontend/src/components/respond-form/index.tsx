@@ -1,14 +1,14 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
+import { useForm, FormProvider } from 'react-hook-form';
+import Recaptcha from 'react-recaptcha';
+
 import Input from './input';
 import Select from '../select';
 import Textarea from './textarea';
 import Button from '../button';
 import CheckBox from './check-box';
-
 import { useClassnames } from '../../hooks/use-classnames';
 import { toBase64 } from '../../utils';
-
-import { useForm, FormProvider } from 'react-hook-form';
 
 import style from './index.css';
 
@@ -28,11 +28,13 @@ interface IProps {
 }
 
 const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
-    const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+    const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(false);
     const [isSended, setIsSended] = useState(false);
     const [isError, setIsError] = useState(false);
     const cn = useClassnames(style);
     const timeoutId = useRef<number>();
+    const recaptchaInstance = useRef<Recaptcha | null>();
 
     const context = useForm({
         mode            : 'onSubmit',
@@ -123,6 +125,10 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         }
     };
 
+    const verifyCallback = useCallback(() => {
+        setIsRecaptchaConfirmed(true)
+    }, [])
+
     if (isPopupVisible === null) {
         return <React.Fragment></React.Fragment>
     }
@@ -180,9 +186,20 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
                                 <div className={cn('right-block__field-wrapper')}>
                                     <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
                                 </div>
-                                <div className={cn('right-block__field-wrapper')}>
-                                    <Button type="submit" label="Отправить" styleType="secondary" />
-                                </div>
+                                {isRecaptchaConfirmed ? (
+                                    <div className={cn('right-block__field-wrapper')}>
+                                        <Button type="submit" label="Отправить" styleType="secondary" />
+                                    </div>
+                                ) : (
+                                    <Recaptcha
+                                        className={cn('right-block__grecaptcha')}
+                                        ref={e => recaptchaInstance.current = e}
+                                        sitekey="6LcxFCQbAAAAAPk5ZtW8P4LTJFuMUTHMh65Oap4n"
+                                        render="explicit"
+                                        hl="ru"
+                                        verifyCallback={verifyCallback}
+                                    />
+                                )}
                             </div>
                         </div>
                     </React.Fragment>

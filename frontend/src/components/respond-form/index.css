@@ -159,6 +159,11 @@
         &__button-section {
             flex-direction: column;
         }
+
+        &__grecaptcha {
+            display: flex;
+            justify-content: center;
+        }
     }
     
     .check-box {

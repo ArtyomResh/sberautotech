@@ -89,6 +89,14 @@ module.exports = {
                 sitemap: 'https://sberautotech.ru/sitemap-index.xml',
                 policy : [{ userAgent: '*', allow: '/' }]
             }
-        }
+        },
+        {
+            resolve: `gatsby-plugin-recaptcha`,
+            options: {
+               async: false,
+               defer: false,
+               args: `?onload=onloadCallback&render=explicit`,
+            },
+         }
     ]
 };
