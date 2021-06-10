@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import useDeviceDetect from '../../hooks/use-device-detect';
-import { ILocalFile } from '../self-driving-cars-carousel';
+import { ILocalFile } from '../carousel';
 
 import style from './index.css';
 
