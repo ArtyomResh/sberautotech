@@ -278,14 +278,13 @@ const FlipPage = () => {
                         if(primaryText) {
                             primaryText.style.opacity = 0;
                         }
-                        return;
-                    }
-
-                    primaryTextBlock.style.transform = 'translateY(0px)';
-                    secondaryTextBlock.style.opacity = 0;
-
-                    if(primaryText) {
-                        primaryText.style.opacity = 1;
+                    } else {
+                      primaryTextBlock.style.transform = 'translateY(0px)';
+                      secondaryTextBlock.style.opacity = 0;
+  
+                      if(primaryText) {
+                          primaryText.style.opacity = 1;
+                      }
                     }
                 }
 
