@@ -10,31 +10,61 @@
     "timestamps": true,
     "draftAndPublish": false
   },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "footer": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.footer"
+      "component": "shared.footer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "double_block": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.double-block"
+      "component": "shared.double-block",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "story_cards": {
       "type": "component",
       "repeatable": true,
-      "component": "shared.story-card"
+      "component": "shared.story-card",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "slider": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.slider"
+      "component": "shared.slider",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "seo": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.seo"
+      "component": "shared.seo",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

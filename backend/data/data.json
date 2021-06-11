@@ -1,5 +1,6 @@
 {
   "homepage": {
+    "locale": "ru",
     "seo": {
       "metaTitle": "SberAutoTech",
       "metaDescription": "СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
@@ -77,6 +78,7 @@
     ]
   },
   "SelfDrivingCar": {
+    "locale": "ru",
     "seo": {
       "metaTitle": "Беспилотный автомобиль SberAutoTech",
       "metaDescription": "Беспилотник СберАвтоТех — собственные технологии автономного вождения",
@@ -137,6 +139,7 @@
     }
   },
   "Career": {
+    "locale": "ru",
     "seo": {
       "metaTitle": "Работа в SberAutoTech",
       "metaDescription": "Карьера в сфере создания цифрового транспорта: безопасного, бесшумного и беспилотного",
@@ -303,6 +306,7 @@
     }
   },
   "global": {
+    "locale": "ru",
     "siteName":"Sber Automotive Technologies",
     "defaultSeo":{
       "metaTitle":"SberAutoTech",
@@ -312,6 +316,7 @@
     "favicon":null
   },
   "AboutCompany": {
+    "locale": "ru",
     "seo": {
       "metaTitle": "SberAutoTech — технологическая компания, занимающаяся разработками в сфере цифрового транспорта",
       "metaDescription": "СберАвтоТех: создание беспилотных транспортных средств, операционной системы для управления флотами автомобилей и платформы connected",
@@ -369,6 +374,7 @@
     }
   },
   "Flip": {
+    "locale": "ru",
     "seo": {
       "metaTitle": "ФЛИП — новое средство мобильности от SberAutoTech",
       "metaDescription": "ФЛИП от СберАвтоТех — полностью подключённое, автономное и безопасное транспортное средство на альтернативных видах топлива",
@@ -501,6 +507,7 @@
     }
   },
   "Vacancy": {
+    "locale": "ru",
     "title": "Сборщик компьютеров",
     "city": "moscow",
     "jobType": "full",
