@@ -16,6 +16,14 @@ const {
   AboutCompanyEn,
   FlipRu,
   FlipEn,
+  NavPanelRu,
+  NavPanelEn,
+  FooterRu,
+  FooterEn,
+  PrivacyPolicyRu,
+  PrivacyPolicyEn,
+  RespondFormRu,
+  RespondFormEn,
   Vacancies
 } = require("../../data/data.json");
 
@@ -286,6 +294,42 @@ async function importFlip(shouldImportSeedData) {
   await updateEntry({ model: "flip", entry: FlipEn, files });
 }
 
+async function importNavPanel(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    await createEntry({ model: "nav-panel", entry: NavPanelRu });
+    await createEntry({ model: "nav-panel", entry: NavPanelEn });
+  }
+  await updateEntry({ model: "nav-panel", entry: NavPanelRu });
+  await updateEntry({ model: "nav-panel", entry: NavPanelEn });
+}
+
+async function importPrivacyPolicy(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    await createEntry({ model: "privacy-policy", entry: PrivacyPolicyRu });
+    await createEntry({ model: "privacy-policy", entry: PrivacyPolicyEn });
+  }
+  await updateEntry({ model: "privacy-policy", entry: PrivacyPolicyRu });
+  await updateEntry({ model: "privacy-policy", entry: PrivacyPolicyEn });
+}
+
+async function importRespondForm(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    await createEntry({ model: "respond-form", entry: RespondFormRu });
+    await createEntry({ model: "respond-form", entry: RespondFormEn });
+  }
+  await updateEntry({ model: "respond-form", entry: RespondFormRu });
+  await updateEntry({ model: "respond-form", entry: RespondFormEn });
+}
+
+async function importFooter(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    await createEntry({ model: "footer", entry: FooterRu });
+    await createEntry({ model: "footer", entry: FooterEn });
+  }
+  await updateEntry({ model: "footer", entry: FooterRu });
+  await updateEntry({ model: "footer", entry: FooterEn });
+}
+
 async function importVacancies(shouldImportSeedData) {
   Vacancies.data.map(async (item, i) => {
     if (shouldImportSeedData) {
@@ -303,6 +347,10 @@ async function importSeedData(shouldImportSeedData) {
     career: ['find'],
     'about-company': ['find'],
     flip: ['find'],
+    'nav-panel': ['find'],
+    footer: ['find'],
+    'privacy-policy': ['find'],
+    'respond-form': ['find'],
     form: ['send'],
     vacancy: ['find', 'findOne']
   });
@@ -312,7 +360,11 @@ async function importSeedData(shouldImportSeedData) {
   await importCareer(shouldImportSeedData);
   await importAboutCompany(shouldImportSeedData);
   await importFlip(shouldImportSeedData);
-  await importVacancies(shouldImportSeedData)
+  await importNavPanel(shouldImportSeedData);
+  await importFooter(shouldImportSeedData);
+  await importPrivacyPolicy(shouldImportSeedData);
+  await importRespondForm(shouldImportSeedData);
+  await importVacancies(shouldImportSeedData);
 }
 
 module.exports = async () => {

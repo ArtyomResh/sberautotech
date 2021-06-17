@@ -6,11 +6,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 const query = graphql`
   query {
     strapiGlobal {
-      siteName
-      defaultSeo {
-        metaTitle
-        metaDescription
-      }
       favicon {
         localFile {
           publicURL
@@ -22,45 +17,42 @@ const query = graphql`
 
 const SEO = ({ seo = {} }) => {
     const { strapiGlobal } = useStaticQuery(query);
-    const { defaultSeo, siteName, favicon } = strapiGlobal;
-
-    // Merge default and page-specific SEO values
-    const fullSeo = { ...defaultSeo, ...seo };
+    const { siteName, favicon } = strapiGlobal;
 
     const getMetaTags = () => {
         const tags = [];
 
-        if(fullSeo.metaTitle) {
+        if(seo.metaTitle) {
             tags.push(
                 {
                     property: 'og:title',
-                    content : fullSeo.metaTitle
+                    content : seo.metaTitle
                 },
                 {
                     name   : 'twitter:title',
-                    content: fullSeo.metaTitle
+                    content: seo.metaTitle
                 }
             );
         }
 
-        if(fullSeo.metaDescription) {
+        if(seo.metaDescription) {
             tags.push(
                 {
                     name   : 'description',
-                    content: fullSeo.metaDescription
+                    content: seo.metaDescription
                 },
                 {
                     property: 'og:description',
-                    content : fullSeo.metaDescription
+                    content : seo.metaDescription
                 },
                 {
                     name   : 'twitter:description',
-                    content: fullSeo.metaDescription
+                    content: seo.metaDescription
                 }
             );
         }
 
-        if(fullSeo.shareImage) {
+        if(seo.shareImage) {
             const imageUrl = (process.env.GATSBY_ROOT_URL || 'http://localhost:8000');
 
             tags.push(
@@ -79,7 +71,7 @@ const SEO = ({ seo = {} }) => {
             );
         }
 
-        if(fullSeo.article) {
+        if(seo.article) {
             tags.push({
                 property: 'og:type',
                 content : 'article'
@@ -94,8 +86,8 @@ const SEO = ({ seo = {} }) => {
 
     return (
         <Helmet
-            title={fullSeo.metaTitle}
-            titleTemplate={`%s | ${siteName}`}
+            title={seo.metaTitle}
+            titleTemplate={`%s`}
             meta={metaTags}
             link={[
                 {

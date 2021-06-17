@@ -56,16 +56,6 @@
         }
       }
     },
-    "footer": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.footer",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "seo": {
       "type": "component",
       "repeatable": false,

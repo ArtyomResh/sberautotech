@@ -16,16 +16,6 @@
     }
   },
   "attributes": {
-    "footer": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.footer",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "double_block": {
       "type": "component",
       "repeatable": false,

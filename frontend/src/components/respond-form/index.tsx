@@ -11,6 +11,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import { toBase64 } from '../../utils';
 
 import style from './index.css';
+import { graphql, useStaticQuery } from 'gatsby';
 
 const options = [
     { value: 'Product', label: 'Product' },
@@ -27,7 +28,33 @@ interface IProps {
     isPopupVisible: boolean | null
 }
 
+const query = graphql`
+  query {
+    allStrapiRespondForm {
+      edges {
+        node {
+          consent
+          direction
+          email
+          errorButtonText
+          errorSend
+          experience
+          file
+          header
+          locale
+          name
+          successButtonText
+          successSend
+          surname
+          buttonText
+        }
+      }
+    }
+  }
+`;
+
 const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
+    const data = useStaticQuery(query);
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
     const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(false);
     const [isSended, setIsSended] = useState(false);
@@ -35,6 +62,21 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
     const cn = useClassnames(style);
     const timeoutId = useRef<number>();
     const recaptchaInstance = useRef<Recaptcha | null>();
+
+    const { consent,
+        direction,
+        email,
+        errorButtonText,
+        errorSend,
+        experience,
+        file,
+        header,
+        locale,
+        name,
+        successButtonText,
+        successSend,
+        buttonText,
+        surname } = data.allStrapiRespondForm.edges[0].node;
 
     const context = useForm({
         mode            : 'onSubmit',
@@ -141,10 +183,10 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
                 {isSended ? (
                     <div className={cn('respond-form__send-block')}>
                         <div className={cn('text-block')}>
-                            <h1 className={cn('text-block__title')}>{isError ? 'Произошла ошибка. Попробуйте позднее' : 'Ваше резюме отправлено! Спасибо'}</h1>
+                            <h1 className={cn('text-block__title')}>{isError ? errorSend : successSend}</h1>
                         </div>
                         <div className={cn('right-block')}>
-                            <Button type="button" onClick={preventClosePopup} label={isError ? 'Открыть форму' : 'Отправить еще одно'} />
+                            <Button type="button" onClick={preventClosePopup} label={isError ? errorButtonText : successButtonText} />
                         </div>
                     </div>
                 ) : (
@@ -155,40 +197,40 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
                             </svg>
                         </div>
                         <div className={cn('text-block')}>
-                            <h1 className={cn('text-block__title')}>Присоединяйтесь к команде и создавайте будущее вместе с нами</h1>
+                            <h1 className={cn('text-block__title')}>{header}</h1>
                         </div>
                         <div className={cn('right-block')}>
                             <div className={cn('right-block__inputs')}>
                                 <div className={cn('right-block__top-section')}>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type="text" placeholder="Имя" name="name" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
+                                        <Input type="text" placeholder={name} name="name" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
                                     </div>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type="text" placeholder="Фамилия" name="surname" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
+                                        <Input type="text" placeholder={surname} name="surname" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
                                     </div>
                                 </div>
                                 <div className={cn('right-block__bottom-section')}>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type="text" placeholder="Почта" name="email" autocomplete="off" pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} requiredValidation={true} />
+                                        <Input type="text" placeholder={email} name="email" autocomplete="off" pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} requiredValidation={true} />
                                     </div>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Select name="direction" placeholder="Выберите направление" options={options} />
+                                        <Select name="direction" placeholder={direction} options={options} />
                                     </div>
                                 </div>
                             </div>
                             <div className={cn('right-block__textarea-wrapper')}>
-                                <Textarea name="textarea" placeholder="Опишите свой опыт" requiredValidation={true} />
+                                <Textarea name="textarea" placeholder={experience} requiredValidation={true} />
                             </div>
                             <div className={cn('right-block__checkbox-wrapper')}>
-                                <CheckBox name="acception" requiredValidation={true} label="Я соглашаюсь передать свои персональные данные, содержащиеся в анкете и всех приложенных файлах" />
+                                <CheckBox name="acception" requiredValidation={true} label={consent} />
                             </div>
                             <div className={cn('right-block__button-section')}>
                                 <div className={cn('right-block__field-wrapper')}>
-                                    <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
+                                    <Input type="file" placeholder={file} name="file" requiredValidation={true} />
                                 </div>
                                 {isRecaptchaConfirmed ? (
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Button type="submit" label="Отправить" styleType="secondary" />
+                                        <Button type="submit" label={buttonText} styleType="secondary" />
                                     </div>
                                 ) : (
                                     <Recaptcha
@@ -196,7 +238,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
                                         ref={e => recaptchaInstance.current = e}
                                         sitekey="6LcxFCQbAAAAAPk5ZtW8P4LTJFuMUTHMh65Oap4n"
                                         render="explicit"
-                                        hl="ru"
+                                        hl={locale}
                                         verifyCallback={verifyCallback}
                                     />
                                 )}

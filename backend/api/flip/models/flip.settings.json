@@ -26,16 +26,6 @@
         }
       }
     },
-    "footer": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.footer",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "first_screen": {
       "type": "component",
       "repeatable": false,

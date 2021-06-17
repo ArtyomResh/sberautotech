@@ -95,19 +95,6 @@ const query = graphql`
             secondary_text
             secondary_text_float
           }
-          footer {
-            description
-            disclaimer
-            email
-            header
-            link {
-              style
-              text
-              to
-            }
-            privacyPolicyLink
-            publicOfferLink
-          }
           fourth_screen {
             background {
               localFile {
@@ -245,7 +232,6 @@ const FlipPage = () => {
         sixth_screen,
         seventh_screen,
         eighth_screen,
-        footer
     } = data.allStrapiFlip.edges[0].node;
 
     const registerVideo = useCallback((boundSelector: string, videoBlob: string) => {
@@ -336,7 +322,7 @@ const FlipPage = () => {
                     <FlipScreen data={seventh_screen} id="bound-6" />
                     <FlipScreen data={eighth_screen} id="bound-7" />
                     <img className={cn('flip__logo')} src={FlipLogoIcon} />
-                    <Footer data={footer} />
+                    <Footer />
                 </div>
               )}
             </Layout>

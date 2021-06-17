@@ -1,5 +1,5 @@
 import React, { useState, SetStateAction, Dispatch, useEffect } from 'react';
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../../hooks/use-classnames';
 
@@ -18,7 +18,7 @@ import Cross from '../../images/cross.inline.svg';
 
 export interface INavItem {
     text: string,
-    link: string
+    to: string
 }
 
 export interface ITheme {
@@ -30,17 +30,52 @@ export interface ITheme {
 export interface INav {
     setIsPopupVisible: Dispatch<SetStateAction<boolean | null>>,
     theme: ITheme,
-    links: Array<INavItem>,
     pageNumber: number,
     setPageNumber?: (page: number) => void,
     whiteLogoImportant?: boolean
 }
 
-const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, whiteLogoImportant }: INav) => {
+const query = graphql`
+  query {
+    allStrapiNavPanel {
+      edges {
+        node {
+          links {
+              text
+              to
+          }
+          joinButtonText
+        }
+      }
+    }
+    allStrapiFooter {
+        edges {
+          node {
+            header
+            description
+            disclaimer
+            privacyPolicyLink
+            privacyPolicyText
+            email
+            link {
+                text
+                to
+            }
+          }
+        }
+      }
+  }
+`;
+
+const Nav = ({ setIsPopupVisible, theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => {
+    const data = useStaticQuery(query);
     const [isOpen, setIsOpen] = useState(false);
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const cn = useClassnames(style);
+
+    const { links, joinButtonText } = data.allStrapiNavPanel.edges[0].node;
+    const { disclaimer, privacyPolicyLink, privacyPolicyText, email } = data.allStrapiFooter.edges[0].node;
 
     useEffect(() => {
         setTimeout(() => {
@@ -101,9 +136,9 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
                 <ul className={cn('nav__list')}>
                     <div className={cn('nav__indicator')} style={indicatorStyles} />
                     {
-                        links.map(({ text, link }: INavItem, i: number) => (
+                        links.map(({ text, to }: INavItem, i: number) => (
                             <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageNumber === i })}>
-                                <Link to={link} className={cn('nav__link', `nav__link-${i}`)}>
+                                <Link to={to} className={cn('nav__link', `nav__link-${i}`)}>
                                     {text}
                                 </Link>
                             </li>
@@ -116,23 +151,23 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
                         className={cn('nav__bottom-block-accept-button')}
                         onClick={() => setIsPopupVisible(true)}
                     >
-                        Присоединиться
+                        {joinButtonText}
                     </button>
                     <span className={cn('nav__disclaimer')}>
-                        Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.
+                        {disclaimer}
                     </span>
                     <div className={cn('nav__link-block')}>
-                        <a className={cn('nav__link-bottom-block')} href="/" title="Политика конфиденциальности">Политика конфиденциальности</a>
+                        <Link className={cn('nav__link-bottom-block')} to={privacyPolicyLink} title={privacyPolicyText}>{privacyPolicyText}</Link>
                     </div>
                     <div className={cn('nav__link-block')}>
-                        <a className={cn('nav__link-bottom-block')} href={`mailto:contact@sberautotech.ru`}>contact@sberautotech.ru</a>
+                        <a className={cn('nav__link-bottom-block')} href={`mailto:${email}`}>{email}</a>
                     </div>
                 </div>
                 <button
                     type="button"
                     className={cn('nav__accept-button')}
                     onClick={onClick}
-                >Присоединиться
+                >{joinButtonText}
                 </button>
             </div>
             <div className={cn('nav__right')}>

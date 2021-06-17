@@ -23,21 +23,6 @@ const query = graphql`
     allStrapiAboutCompany {
       edges {
         node {
-          footer {
-            description
-            disclaimer
-            email
-            header
-            id
-            link {
-              id
-              style
-              text
-              to
-            }
-            privacyPolicyLink
-            publicOfferLink
-          }
           headerBackground {
             localFile {
               publicURL
@@ -78,7 +63,7 @@ const query = graphql`
 const AboutCompanyPage = () => {
     const cn = useClassnames(style);
     const data = useStaticQuery(query);
-    const { headerBackground, headerText, list, slider, footer } = data.allStrapiAboutCompany.edges[0].node;
+    const { headerBackground, headerText, list, slider } = data.allStrapiAboutCompany.edges[0].node;
 
     const header = useFormattedText(headerText);
 
@@ -94,7 +79,7 @@ const AboutCompanyPage = () => {
                     )}
                     <ListAccordeon data={list} className={cn('about-company__list')} />
                     <Carousel data={slider} />
-                    <Footer data={footer} />
+                    <Footer />
                 </div>
             </Layout>
         </div>
