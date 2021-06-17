@@ -266,8 +266,8 @@ const FlipPage = () => {
             if(video?.duration) {
                 const boundClientRectTop = bound?.getBoundingClientRect().top || 0;
                 const boundScrollHeight = bound?.scrollHeight || 0;
-                const distanceFromTop = (window.scrollY * 2) + boundClientRectTop;
-                const rawPercentScrolled = ((window.scrollY * 2) - distanceFromTop) / (boundScrollHeight - window.innerHeight);
+                const distanceFromTop = window.scrollY + boundClientRectTop;
+                const rawPercentScrolled = (window.scrollY - distanceFromTop) / (boundScrollHeight - window.innerHeight);
                 const percentScrolled = Math.min(Math.max(rawPercentScrolled, 0), 1);
 
                 if(primaryTextBlock && secondaryTextBlock) {
@@ -278,14 +278,13 @@ const FlipPage = () => {
                         if(primaryText) {
                             primaryText.style.opacity = 0;
                         }
-                        return;
-                    }
-
-                    primaryTextBlock.style.transform = 'translateY(0px)';
-                    secondaryTextBlock.style.opacity = 0;
-
-                    if(primaryText) {
-                        primaryText.style.opacity = 1;
+                    } else {
+                      primaryTextBlock.style.transform = 'translateY(0px)';
+                      secondaryTextBlock.style.opacity = 0;
+  
+                      if(primaryText) {
+                          primaryText.style.opacity = 1;
+                      }
                     }
                 }
 

@@ -48,7 +48,7 @@
 
         &:not(.flip__wrapper_mobile) {
             .scroll-bound {
-                height: 550vh;
+                height: 275vh;
                 
                 .content {
                     height: 100vh;
