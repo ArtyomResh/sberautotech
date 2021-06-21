@@ -24,7 +24,8 @@ const {
   PrivacyPolicyEn,
   RespondFormRu,
   RespondFormEn,
-  Vacancies
+  Vacancies,
+  Tags
 } = require("../../data/data.json");
 
 async function isFirstRun() {
@@ -339,6 +340,15 @@ async function importVacancies(shouldImportSeedData) {
   });
 }
 
+async function importTags(shouldImportSeedData) {
+  Tags.data.map(async (item, i) => {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "tag", entry: item });
+    }
+    await updateEntry({ model: "tag", entry: item });
+  });
+}
+
 async function importSeedData(shouldImportSeedData) {
   await setPublicPermissions({
     global: ['find'],
@@ -352,7 +362,8 @@ async function importSeedData(shouldImportSeedData) {
     'privacy-policy': ['find'],
     'respond-form': ['find'],
     form: ['send'],
-    vacancy: ['find', 'findOne']
+    vacancy: ['find', 'findOne'],
+    tag: ['find', 'findOne']
   });
   await importHomepage(shouldImportSeedData);
   await importGlobal(shouldImportSeedData);
@@ -365,6 +376,7 @@ async function importSeedData(shouldImportSeedData) {
   await importPrivacyPolicy(shouldImportSeedData);
   await importRespondForm(shouldImportSeedData);
   await importVacancies(shouldImportSeedData);
+  await importTags(shouldImportSeedData);
 }
 
 module.exports = async () => {

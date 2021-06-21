@@ -76,6 +76,10 @@ module.exports = {
                     {
                         name: `vacancy`,
                         api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `tag`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     }
                 ],
                 singleTypes : [

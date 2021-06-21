@@ -898,7 +898,59 @@
         "whatWaitingFor": "<p>We expect that you have</p><ul><li>Education is not lower than secondary vocational;</li><li>Experience in the field of repair of electronic devices, computers, etc.</li></ul>"
       }
     ]
-  },  
+  },
+  "Tags": {
+    "data": [
+      {
+        "id": 1,
+        "locale": "ru",
+        "text": "C++",
+        "value": "c++"
+      },
+      {
+        "id": 1,
+        "locale": "en",
+        "text": "C++",
+        "value": "c++"
+      },
+      {
+        "id": 2,
+        "locale": "ru",
+        "text": "Python",
+        "value": "python"
+      },
+      {
+        "id": 2,
+        "locale": "en",
+        "text": "Python",
+        "value": "python"
+      },
+      {
+        "id": 3,
+        "locale": "ru",
+        "text": "Go",
+        "value": "go"
+      },
+      {
+        "id": 3,
+        "locale": "en",
+        "text": "Go",
+        "value": "go"
+      },
+      {
+        "id": 4,
+        "locale": "ru",
+        "text": "Маркетинг",
+        "value": "marketing"
+      },
+      {
+        "id": 4,
+        "locale": "en",
+        "text": "Marketing",
+        "value": "marketing"
+      }
+    ]
+  },
   "NavPanelRu": {
     "id": 1,
     "locale": "ru",
