@@ -1,5 +1,7 @@
 {
-  "homepage": {
+  "homepageRu": {
+    "id": 1,
+    "locale": "ru",
     "seo": {
       "metaTitle": "SberAutoTech",
       "metaDescription": "СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
@@ -60,7 +62,7 @@
       {
         "text": "Создание транспорта будущего — увлекательная задача, и {мы с радостью примем в нашу команду единомышленников}. Нам нужны идеи, опыт и желание менять мир",
         "link": {
-          "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
+          "to": "/vacancies",
           "text": "Вакансии",
           "style": "fill"
         },
@@ -76,7 +78,73 @@
       }
     ]
   },
-  "SelfDrivingCar": {
+  "homepageEn": {
+    "id": 1,
+    "locale": "en",
+    "seo": {
+      "metaTitle": "SberAutoTech",
+      "metaDescription": "SberAutoTech is a technology company that creates the transport of the future: unmanned, safe and comfortable",
+      "shareImage": null
+    },
+    "first_screen": [
+      {
+        "text": "Save and self driving — {transportation of the future will change the logistics of megacities} and help us better manage our most valuable resource - time",
+        "link": null,
+        "cards": [],
+        "background": null,
+        "backgroundPoster": null,
+        "backgroundPosterName": null,
+        "mobileBackground": null,
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": null
+      }
+    ],
+    "second_screen": [
+      {
+        "text": "{SberAutoTech technologies} open up new forms, new possibilities, a new kind of mobility",
+        "link": null,
+        "cards": [],
+        "background": null,
+        "backgroundPoster": null,
+        "mobileBackground": null,
+        "mobileBackgroundPoster": null
+      }
+    ],
+    "third_screen": [
+      {
+        "text": "Proprietary self-driving technology: {full control of the situation on the road} and reaction faster than any driver",
+        "link": null,
+        "cards": [
+          {
+            "text": "{The first generation of drones} took to the roads of Moscow for testing in December 2020",
+            "image": null
+          }
+        ],
+        "background": null,
+        "backgroundPoster": null,
+        "mobileBackground": null,
+        "mobileBackgroundPoster": null
+      }
+    ],
+    "fourth_screen": [
+      {
+        "text": "Building the transport of the future is an exciting challenge and {we will gladly welcome like-minded people to our team}. We need ideas, experience and a desire to change the world",
+        "link": {
+          "to": "/vacancies",
+          "text": "Vacancies",
+          "style": "fill"
+        },
+        "cards": [],
+        "background": null,
+        "backgroundPoster": null,
+        "mobileBackground": null,
+        "mobileBackgroundPoster": null
+      }
+    ]
+  },
+  "SelfDrivingCarRu": {
+    "id": 1,
+    "locale": "ru",
     "seo": {
       "metaTitle": "Беспилотный автомобиль SberAutoTech",
       "metaDescription": "Беспилотник СберАвтоТех — собственные технологии автономного вождения",
@@ -121,22 +189,52 @@
       "text_position": "bottom_left",
       "slider_items": [null, null, null, null, null],
       "slider_items_names": ["carWithLidar-day.jpg", "carWithLidar-day-front.jpg", "carWithLidar-day-back.jpg", "carWithLidar-day-front-second.jpg", "carWithLidar-day-front-third.jpg"]
-    },
-    "footer": {
-      "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
-      "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
-      "link": {
-        "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
-        "text": "Вакансии",
-        "style": "fill"
-      },
-      "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.",
-      "email": "contact@sberautotech.ru",
-      "privacyPolicyLink": "/privacy-policy",
-      "publicOfferLink": "/"
     }
   },
-  "Career": {
+  "SelfDrivingCarEn": {
+    "id": 1,
+    "locale": "en",
+    "seo": {
+      "metaTitle": "Unmanned vehicle SberAutoTech",
+      "metaDescription": "SberAutoTech drone - own technologies of autonomous driving",
+      "shareImage": null
+    },
+    "double_block": {
+      "header": "Technologies that will provide a breakthrough in road safety",
+      "background": null,
+      "backgroundPoster": null,
+      "mobileBackground": null,
+      "mobileBackgroundPoster": null,
+      "text": "The robotic control system fully controls the road and provides an instant response to any changes in the situation"
+    },
+    "story_cards": [
+      {
+        "header": "No blind spots: 360° view",
+        "image": null,
+        "text": "Radars, lidars and sensors provide the vehicle with a 360 ° view - no blind spots around it. The drone is able to recognize and distinguish from each other all possible objects, rebuild, brake, avoid obstacles and anticipate the actions of other road users."
+      },
+      {
+        "header": "Seamless integration with the ecosystem",
+        "image": null,
+        "text": "The on-board computer of our own design uses 2GIS cartography, another company in the Sberbank ecosystem. We use all possible elements of the ecosystem for deep and seamless integration with our products."
+      },
+      {
+        "header": "Inhuman speed of reaction",
+        "image": null,
+        "text": "The reaction speed of the robotic system is 5 times faster than that of the most experienced driver. According to statistics, 93% of road accidents in Russia are due to the driver's loss of concentration. Self-driving technology that is not subject to fatigue and emotion will help improve road safety."
+      }
+    ],
+    "slider": {
+      "header": "{The first unmanned vehicles from Sber Automotive Technologies} hit the streets of Moscow in December 2020 for testing in a winter metropolis",
+      "header_position": "top_right",
+      "text": "By law, each vehicle is driven by a test engineer, ready to take over if necessary.",
+      "text_position": "bottom_left",
+      "slider_items": [null, null, null, null, null]
+    }
+  },
+  "CareerRu": {
+    "id": 1,
+    "locale": "ru",
     "seo": {
       "metaTitle": "Работа в SberAutoTech",
       "metaDescription": "Карьера в сфере создания цифрового транспорта: безопасного, бесшумного и беспилотного",
@@ -160,7 +258,7 @@
           "subDescriptionFirst": "Чтобы сделать это реальностью нам нужны мобильные и системные разработчики от junior до senior: с опытом работы с AOSP (либо желанием разобраться в этом), пониманием архитектурных подходов, алгоритмической базой и знанием Java и Kotlin. Опыт работы с Linux будет плюсом.",
           "subDescriptionSecond": "",
           "link": {
-            "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
+            "to": "/vacancies",
             "text": "Вакансии",
             "style": "fill"
           }
@@ -172,7 +270,7 @@
           "subDescriptionFirst": "Команда Planning занимается построением траектории для беспилотника и передает эти данные команде Control, которая преобразует знание о пути в движение автомобиля. Для работы к команде Control важны знания физики и математики, C++, для команды Planning - классические алгоритмы и C++. Направление Localization отвечает за местонахождение автомобиля, используя камеры и лидары. В эту команду мы ищем разработчиков со знанием C++, линейной алгебры, теории вероятностей.",
           "subDescriptionSecond": "Для команды Perception, которая занимается распознаванием дорог, людей, машин и всего, что происходит вокруг, важно умение писать на Python и бэкграунд в компьютерном зрении. Данные, которые генерирует Perception, переходят к ребятам из команды Prediction. Их задача — предсказать, как участники дорожного движения будут вести себя в будущем. Для этого нужно знать C++ и/или уметь обучать рекуррентные нейросети. Команда симулятора воспроизводит нашу машину и все окружение вокруг. Здесь пригодиться С++. Также плюсом будет опыт в GameDev.",
           "link": {
-            "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
+            "to": "/vacancies",
             "text": "Вакансии",
             "style": "fill"
           }
@@ -184,7 +282,7 @@
           "subDescriptionFirst": "Сейчас команда практически укомплектована, но нам все еще нужно несколько крутых Product Owner и UX/UI дизайнеров. Опыт работы в Automotive необязателен — мы ищем людей на стыке этой индустрии с другими, например с IoT, мобильной индустрией, Smart TV. Не забудьте захватить портфолио и свою готовность менять мир!",
           "subDescriptionSecond": "Мы будем рады найти нестандартно мыслящих специалистов. Важное отличие в развитии наших устройств и систем — мы создаем принципиально новые продукты, которым еще только предстоит перевернуть представление от транспорте и передвижения в пространстве. Приготовьтесь к тому, что не всегда можно будет провести кастдев или A/B тест — нужно быть визионером, работать на опережение, придумывать каркас будущего продукта и чувствовать его место на рынке будущего. Если ты давно хотел не \"допилить фичу\", а сделать все с нуля самостоятельно — это к нам.",
           "link": {
-            "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
+            "to": "/vacancies",
             "text": "Вакансии",
             "style": "fill"
           }
@@ -196,7 +294,7 @@
           "subDescriptionFirst": "Прежде, чем беспилотный автомобиль выйдет на улицы, он отрабатывает в симуляторе все возможные ситуации, с которыми предстоит столкнуться на дороге. Для тестирования в симуляторе специалистам потребуется моделировать такие ситуации. Здесь пригодится хорошее знание Python и понимание алгоритмов. Нам также необходимы люди для тестирования софта на Android. Необходимо хорошее знакомство с самой ОС, а для автоматизаторов — умение уверенно работать с Appium.",
           "subDescriptionSecond": "Ручным тестировщикам потребуются навыки работы с Linux, Docker и базовые знания по сетям. Мы также приглашаем к сотрудничеству специалистов по backend- и frontend-тестированию (Python, REST API, Selenium). Если же ты мечтаешь о решении нестандартных задач, то мы ищем тестировщиков на «железо». Для этого планируется создавать целую испытательную лабораторию для оценки качества работы устройств в различных условиях эксплуатации. Творческие и инженерные способности будут задействованы чуть больше, чем полностью!",
           "link": {
-            "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
+            "to": "/vacancies",
             "text": "Вакансии",
             "style": "fill"
           }
@@ -208,7 +306,7 @@
           "subDescriptionFirst": "Нашей команде нужны люди, которые обладают экспертизой как в Automotive, так и в IT-секторе, готовы участвовать в формировании B2B, B2B2C и B2C решений, основанных на новейших технологиях и разработках SberAutoTech. Скорость принятия решений, умение достигать поставленных целей в установленные сроки и опыт работы с кросс-функциональными командами позволит стать причастными к созданию транспорта будущего.",
           "subDescriptionSecond": "Создание транспорта будущего — огромный проект, который требует совместных усилий. Поэтому мы готовы к сотрудничеству с компаниями, которые уверенно чувствуют себя в сфере цифровых решений, с производителями автомобилей и электронных компонентов. Если ты видишь новые возможности в сфере цифрового транспорта, умеешь находить точки соприкосновения интересов разных на первый взгляд компаний, то тебе точно стоит работать в нашей команде.",
           "link": {
-            "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
+            "to": "/vacancies",
             "text": "Вакансии",
             "style": "fill"
           }
@@ -220,7 +318,7 @@
           "subDescriptionFirst": "Нам нужны маркетологи с опытом работы в digital, разбирающиеся в коммуникационных стратегиях, IT-рынке, настройке и анализе рекламных кампаний, умеющие коммуницировать с экспертным сообществом. У тебя может быть профильное образование в сфере маркетинга или PR, но едва ли не важнее быть активным, открытым всему новому и готовым к нестандартным ходам.",
           "subDescriptionSecond": "",
           "link": {
-            "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
+            "to": "/vacancies",
             "text": "Вакансии",
             "style": "fill"
           }
@@ -287,22 +385,164 @@
           "link": null
         }
       ]
-    },
-    "footer": {
-      "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
-      "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
-      "link": {
-        "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
-        "text": "Вакансии",
-        "style": "fill"
-      },
-      "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.",
-      "email": "contact@sberautotech.ru",
-      "privacyPolicyLink": "/privacy-policy",
-      "publicOfferLink": "/"
     }
   },
-  "global": {
+  "CareerEn": {
+    "id": 1,
+    "locale": "en",
+    "seo": {
+      "metaTitle": "Work in SberAutoTech",
+      "metaDescription": "A career in digital transport: safe, quiet and unmanned",
+      "shareImage": null
+    },
+    "top_slider": {
+      "header": "The world does not change by itself. It is changed by people who believe in technology, in the future and in their own strength.",
+      "header_position": "bottom_left",
+      "text": null,
+      "text_position": "bottom_left",
+      "slider_items": [null, null]
+    },
+    "top_list": {
+      "header": "We are proud to represent the SberAutoTech team. Each of us today is working to change the world for the better tomorrow. \nWe believe in each other.",
+      "list_items": [
+        {
+          "target": "Make all the necessary services available right in the car salon",
+          "header": "Smart car and embedded systems",
+          "description": "Our team is developing an Android-based embedded car system to provide access to all the services the driver needs right in the cabin. First of all, this is navigation, route planning, music and a voice assistant, thanks to which you will not have to be distracted from the road to control the system. In the future, we want a car equipped with a smart OS to become not just a means of transportation, but also a full-fledged assistant: the system can customize the seat or climate control for a specific driver, help with booking movie tickets and making necessary purchases.",
+          "subDescriptionFirst": "To make this a reality, we need mobile and system developers from junior to senior: with experience with AOSP (or a desire to figure it out), an understanding of architectural approaches, an algorithmic base, and knowledge of Java and Kotlin. Experience with Linux will be a plus.",
+          "subDescriptionSecond": "",
+          "link": {
+            "to": "/vacancies",
+            "text": "Vacancies",
+            "style": "fill"
+          }
+        },
+        {
+          "target": "Teach a car to autonomously drive in an urban environment",
+          "header": "Creation of an unmanned vehicle",
+          "description": "We are more than a team - a whole department for the creation of an unmanned vehicle, which includes 6 directions.",
+          "subDescriptionFirst": "The Planning team builds the trajectory for the drone and transmits this data to the Control team, which converts the knowledge about the path into the movement of the car. To work for the Control team, knowledge of physics and mathematics, C ++ is important, for the Planning team - classical algorithms and C ++. Direction Localization is responsible for locating the vehicle using cameras and lidars. For this team we are looking for developers with knowledge of C ++, linear algebra, probability theory.",
+          "subDescriptionSecond": "For the Perception team, which is engaged in recognizing roads, people, cars and everything that happens around, the ability to write in Python and the background in computer vision are important. The data generated by Perception goes to the guys from the Prediction team. Their task is to predict how road users will behave in the future. To do this, you need to know C ++ and / or be able to train recurrent neural networks. The simulator team reproduces our car and the entire environment around it. This is where C ++ comes in handy. Experience with GameDev will also be a plus.",
+          "link": {
+            "to": "/vacancies",
+            "text": "Vacancies",
+            "style": "fill"
+          }
+        },
+        {
+          "target": "Create fundamentally new products",
+          "header": "Product and design",
+          "description": "Our team forms the vision of the future product, which is implemented by our colleagues. We create a description of what the market and the user need, filling the work backlog for other teams. Our credo is to look at the car as a part of a person's life. We want a person to find themselves not in a steel cocoon, but in the big world, in touch with relatives and colleagues, with access to all the services they are used to, when sitting in a salon.",
+          "subDescriptionFirst": "Now the team is almost complete, but we still need some awesome Product Owner and UX / UI designers. Experience in Automotive is optional - we are looking for people at the intersection of this industry with others, for example, IoT, mobile industry, Smart TV. Don't forget to grab your portfolio and your willingness to change the world!",
+          "subDescriptionSecond": "We will be happy to find non-standard-minded specialists. An important difference in the development of our devices and systems is that we create fundamentally new products that have yet to transform the concept of transport and movement in space. Get ready for the fact that it will not always be possible to conduct a custom or A / B test - you need to be a visionary, stay ahead of the curve, come up with a framework for a future product and feel its place in the market of the future. If you have long wanted not to finish the feature, but to do everything from scratch on your own - this is us.",
+          "link": {
+            "to": "/vacancies",
+            "text": "Vacancies",
+            "style": "fill"
+          }
+        },
+        {
+          "target": "Simulate situations, conduct tests and test a product",
+          "header": "Testing",
+          "description": "We are inviting testers to join our team, who will work closely with our developers and other professionals who create the transport of the future and unmanned technologies.",
+          "subDescriptionFirst": "Before the unmanned vehicle takes to the streets, it works out in the simulator all possible situations that will face on the road. To test in a simulator, technicians will need to simulate such situations. This is where a good knowledge of Python and an understanding of algorithms come in handy. We also need people to test software on Android. You need a good acquaintance with the OS itself, and for automators - the ability to confidently work with Appium.",
+          "subDescriptionSecond": "Manual testers will need Linux, Docker and basic networking skills. We also invite backend and frontend testing specialists (Python, REST API, Selenium) for cooperation. If you dream of solving non-standard problems, then we are looking for testers for \"hardware\". For this, it is planned to create an entire testing laboratory to assess the quality of the devices in various operating conditions. Creative and engineering skills will be used a little more than fully!",
+          "link": {
+            "to": "/vacancies",
+            "text": "Vacancies",
+            "style": "fill"
+          }
+        },
+        {
+          "target": "Build relationships with partners in search of common solutions",
+          "header": "Project management and business development",
+          "description": "For more than 100 years of development, the classic Automotive has perfected its main competence - the production of vehicles under the control of people. However, the development of digital technologies has shown the whole world that familiar tasks can be solved easier, faster and more efficiently. It's time to change the car too. And this can only be done together with those who know how to look into the future, understand the development trends of related industries and have the skill of translating ideas into real projects.",
+          "subDescriptionFirst": "Our team needs people who have expertise in both the Automotive and the IT sector, ready to participate in the formation of B2B, B2B2C and B2C solutions based on the latest technologies and developments of SberAutoTech. The speed of decision-making, the ability to achieve the set goals on time and the experience of working with cross-functional teams will allow you to become involved in the creation of the transport of the future.",
+          "subDescriptionSecond": "Building the transport of the future is a huge project that requires joint efforts. Therefore, we are ready to cooperate with companies that feel confident in the field of digital solutions, with manufacturers of cars and electronic components. If you see new opportunities in the field of digital transport, you know how to find common ground of interests of different companies at first glance, then you should definitely work in our team.",
+          "link": {
+            "to": "/vacancies",
+            "text": "Vacancies",
+            "style": "fill"
+          }
+        },
+        {
+          "target": "Share the benefits of our developments and technologies",
+          "header": "Marketing",
+          "description": "We are building the transport of the future that will make people's lives more convenient and safer. To accomplish this task, we need to constantly share news about our products and know-how, talk about what we do, and show our designs in action. It is important for us that as many people as possible learn about how “smart” technologies can change our lives for the better. Media and social networks, official platforms and blogs - our voice should be heard everywhere.",
+          "subDescriptionFirst": "We need marketers with experience in digital, who are versed in communication strategies, the IT market, setting up and analyzing advertising campaigns, who are able to communicate with the expert community. You may have a specialized education in marketing or PR, but it is almost more important to be active, open to everything new and ready for non-standard moves.",
+          "subDescriptionSecond": "",
+          "link": {
+            "to": "/vacancies",
+            "text": "Vacancies",
+            "style": "fill"
+          }
+        }
+      ]
+    },
+    "bottom_slider": {
+      "header": "",
+      "header_position": "bottom_left",
+      "text": null,
+      "text_position": "bottom_left",
+      "slider_items": [null, null, null, null]
+    },
+    "bottom_list": {
+      "header": "Decent wages, an office with parking and a social package are basic things. We offer more",
+      "list_items": [
+        {
+          "target": "",
+          "header": "The combination of the flexibility of a startup and the reliability of a company from the TOP-5 of the country",
+          "description": "",
+          "subDescriptionFirst": "",
+          "subDescriptionSecond": "",
+          "link": null
+        },
+        {
+          "target": "",
+          "header": "Competitive salary, based on the results of work - bonuses and increases",
+          "description": "",
+          "subDescriptionFirst": "",
+          "subDescriptionSecond": "",
+          "link": null
+        },
+        {
+          "target": "",
+          "header": "Full social package, VHI, for family members - discounts on health care work - bonuses and increases",
+          "description": "",
+          "subDescriptionFirst": "",
+          "subDescriptionSecond": "",
+          "link": null
+        },
+        {
+          "target": "",
+          "header": "Modern office and engineering center with parking, convenient location in the center of Moscow",
+          "description": "",
+          "subDescriptionFirst": "",
+          "subDescriptionSecond": "",
+          "link": null
+        },
+        {
+          "target": "",
+          "header": "Programs for training and professional development of employees",
+          "description": "",
+          "subDescriptionFirst": "",
+          "subDescriptionSecond": "",
+          "link": null
+        },
+        {
+          "target": "",
+          "header": "Opportunity to participate in international conferences: CVPR, NeurlPS, Droidcon and others",
+          "description": "",
+          "subDescriptionFirst": "",
+          "subDescriptionSecond": "",
+          "link": null
+        }
+      ]
+    }
+  },
+  "globalRu": {
+    "id": 1,
+    "locale": "ru",
     "siteName":"Sber Automotive Technologies",
     "defaultSeo":{
       "metaTitle":"SberAutoTech",
@@ -311,7 +551,20 @@
     },
     "favicon":null
   },
-  "AboutCompany": {
+  "globalEn": {
+    "id": 1,
+    "locale": "en",
+    "siteName":"Sber Automotive Technologies",
+    "defaultSeo":{
+      "metaTitle":"SberAutoTech",
+      "metaDescription":"SberAutoTech",
+      "shareImage":null
+    },
+    "favicon":null
+  },
+  "AboutCompanyRu": {
+    "id": 1,
+    "locale": "ru",
     "seo": {
       "metaTitle": "SberAutoTech — технологическая компания, занимающаяся разработками в сфере цифрового транспорта",
       "metaDescription": "СберАвтоТех: создание беспилотных транспортных средств, операционной системы для управления флотами автомобилей и платформы connected",
@@ -353,22 +606,52 @@
       "text_position": "bottom_left",
       "slider_items": [null, null],
       "slider_items_names": ["engineer6.jpg",  "engineer7.jpg"]
-    },
-    "footer": {
-      "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
-      "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
-      "link": {
-        "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
-        "text": "Вакансии",
-        "style": "fill"
-      },
-      "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.",
-      "email": "contact@sberautotech.ru",
-      "privacyPolicyLink": "/privacy-policy",
-      "publicOfferLink": "/"
     }
   },
-  "Flip": {
+  "AboutCompanyEn": {
+    "id": 1,
+    "locale": "en",
+    "seo": {
+      "metaTitle": "SberAutoTech is a digital transportation technology company",
+      "metaDescription": "SberAutoTech: development of unmanned vehicles, an operating system for managing fleets of vehicles and a connected platform",
+      "shareImage": null
+    },
+    "headerText": "Sber Automotive Technologies was established in 2020 to {develop automotive services} by Sber based on the principles of mobility, environmental friendliness and safety",
+    "headerBackground": null,
+    "list": {
+      "header": null,
+      "list_items": [
+        {
+          "target": "Ensure safety with a system that reacts to any event faster than a professional driver",
+          "header": "Safety",
+          "description": "Our engineers have equipped the car with the optimal combination of radars, lidars and cameras, thanks to which the drone continuously monitors what is happening on the road and beyond. The drone has a 360 ° view, it has no blind spots and it reacts to any change in the traffic situation 5 times faster than the most experienced driver, it is not subject to emotions and does not break the rules. This is why autonomous driving technologies can help reduce accidents and improve road safety.",
+          "image": null
+        },
+        {
+          "target": "Make travel and transportation a convenient one-click service",
+          "header": "Mobility",
+          "description": "We are improving the efficiency of commercial parks. Optimal distribution of tasks and routes, safety, comfort, increased productivity - all this is possible with the help of technologies we develop. Self-driving vehicles will erase the line between taxi and car sharing, and smart control systems will ensure user comfort.",
+          "image": null
+        },
+        {
+          "target": "Adhere to the principles of sustainable development",
+          "header": "Environmental friendliness",
+          "description": "In metropolitan areas, electric vehicles will help reduce gas emissions and noise levels. They have a lower cost of ownership - this is in line with our shared concept of wise consumption and resource conservation. And the autonomy of the new transport will make the urban space more comfortable for humans.",
+          "image": null
+        }
+      ]
+    },
+    "slider": {
+      "header": "The company has three key locations - a software development office, an engineering test center and an engineering office in {Moscow and Minsk.}",
+      "header_position": "bottom_right",
+      "text": null,
+      "text_position": "bottom_left",
+      "slider_items": [null, null]
+    }
+  },
+  "FlipRu": {
+    "id": 1,
+    "locale": "ru",
     "seo": {
       "metaTitle": "ФЛИП — новое средство мобильности от SberAutoTech",
       "metaDescription": "ФЛИП от СберАвтоТех — полностью подключённое, автономное и безопасное транспортное средство на альтернативных видах топлива",
@@ -485,31 +768,263 @@
       "secondary_text": "",
       "primary_text_float": "right",
       "secondary_text_float": "right"
-    },
-    "footer": {
-      "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
-      "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
-      "link": {
-        "to": "https://my.sbertalents.ru/#/search?keywords=SberAutoTech",
-        "text": "Вакансии",
-        "style": "fill"
-      },
-      "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.",
-      "email": "contact@sberautotech.ru",
-      "privacyPolicyLink": "/privacy-policy",
-      "publicOfferLink": "/"
     }
   },
-  "Vacancy": {
-    "title": "Сборщик компьютеров",
-    "city": "moscow",
-    "jobType": "full",
-    "area": "development",
-    "publicationDate": "2021-06-01T09:00:00.000Z",
-    "division": "Управление персоналом ПАО Сбербанк",
-    "about": "Sber Automotive Technologies – компания, которая строит транспорт, думая о людях. Время – главный ресурс современного человека. Мы научились им управлять благодаря гаджетам. Задача нашей команды – превратить в такой же удобный гаджет автомобиль. Наша команда состоит из лучших специалистов с опытом работы в ведущих компаниях сразу двух рынков: IT и Automotive. Если ты хочешь качественно изменить транспорт и знаешь, что для этого нужно, – ждём тебя в SberAutoTech. Предлагаем сочетание гибкости стартапа и надежности компании. Возможности для самореализации и роста есть для каждого. В нашей команде открыта вакансия сборщика компьютеров для автомобилей.",
-    "conditions": "<p>Условия</p><ul><li>Работа в команде профессионалов;</li><li>Трудоустройство согласно ТК РФ.</li></ul>",
-    "whatToDo": "<p>Что необходимо делать</p><ul><li>Уметь аккуратно собирать элементную базу компьютеров (материнские платы, оперативная память, процессоры и прочее), понимать логику подключения;</li><li>Уметь разбираться в техдокументации к электронным компонентам на оборудование.</li></ul>",
-    "whatWaitingFor": "<p>Мы ожидаем, что у вас</p><ul><li>Образование не ниже средне-специального;</li><li>Опыт работы в области ремонта радиоэлектронных приборов, компьютеров и тп.</li></ul>"
+  "FlipEn": {
+    "id": 1,
+    "locale": "en",
+    "seo": {
+      "metaTitle": "FLIP - the new mobility tool from SberAutoTech",
+      "metaDescription": "FLIP from SberAutoTech is a fully connected, autonomous and safe vehicle running on alternative fuels",
+      "shareImage": null
+    },
+    "first_screen": {
+      "background": null,
+      "mobileBackground": null,
+      "backgroundOgg": null,
+      "primary_header": "FLIP - new generation transport",
+      "secondary_header": "",
+      "primary_text": "",
+      "secondary_text": "Designed to be electric and fully self-driving, the FLIP is the size of a standard passenger car and offers a high level of comfort for six passengers.",
+      "primary_text_float": "right",
+      "secondary_text_float": "right"
+    },
+    "second_screen": {
+      "background": null,
+      "mobileBackground": null,
+      "backgroundOgg": null,
+      "primary_header": "{Corresponds to the fifth}, </br> maximum level </br> autonomy",
+      "secondary_header": "",
+      "primary_text": "",
+      "secondary_text": "",
+      "primary_text_float": "right",
+      "secondary_text_float": "right"
+    },
+    "third_screen": {
+      "background": null,
+      "mobileBackground": null,
+      "backgroundOgg": null,
+      "primary_header": "{Complex} </br> radars, lidars </br> and sensors",
+      "secondary_header": "",
+      "primary_text": "",
+      "secondary_text": "Provides 360° visibility and computer responsiveness faster than any professional driver",
+      "primary_text_float": "right",
+      "secondary_text_float": "left"
+    },
+    "fourth_screen": {
+      "background": null,
+      "mobileBackground": null,
+      "backgroundOgg": null,
+      "primary_header": "{FLIP} - electric, </br> silent and eco-friendly",
+      "secondary_header": "",
+      "primary_text": "Will make the urban space more comfortable for humans",
+      "secondary_text": "The arrangement of batteries and electric motors provides for both passenger and cargo modifications.",
+      "primary_text_float": "right",
+      "secondary_text_float": "right"
+    },
+    "fifth_screen": {
+      "background": null,
+      "mobileBackground": null,
+      "backgroundOgg": null,
+      "primary_header": "FLIP uses </br> {replaceable batteries}",
+      "secondary_header": "",
+      "primary_text": "In combination with a leasing service, this completely changes the economics of using vehicles.",
+      "secondary_text": "There is no delay of equipment during charging, there are no high requirements for the charging infrastructure, there is no need to buy expensive batteries",
+      "primary_text_float": "right",
+      "secondary_text_float": "left"
+    },
+    "sixth_screen": {
+      "background": null,
+      "mobileBackground": null,
+      "backgroundOgg": null,
+      "primary_header": "FLIP generates </br> {huge amount} </br> of information",
+      "secondary_header": "",
+      "primary_text": "[up to 2TB / day] </br> </br> This data is necessary for training neural networks and computer vision systems",
+      "secondary_text": "The storage and processing of this array of information occurs at the facilities of SberCloud - a cloud provider of services and services included in the Sberbank ecosystem",
+      "primary_text_float": "left",
+      "secondary_text_float": "left"
+    },
+    "seventh_screen": {
+      "background": null,
+      "mobileBackground": null,
+      "backgroundOgg": null,
+      "primary_header": "FLIP {fully </br> connected}",
+      "secondary_header": "FLIP is integrated </br> into the {Sberbank ecosystem}",
+      "primary_text": "",
+      "secondary_text": "",
+      "primary_text_float": "right",
+      "secondary_text_float": "right"
+    },
+    "eighth_screen": {
+      "background": null,
+      "mobileBackground": null,
+      "backgroundOgg": null,
+      "primary_header": "As a {tool for new mobility}, FLIP is ready to integrate into your business processes and IT infrastructure",
+      "secondary_header": "",
+      "primary_text": "",
+      "secondary_text": "",
+      "primary_text_float": "right",
+      "secondary_text_float": "right"
+    }
+  },  
+  "Vacancies": {
+    "data": [
+      {
+        "id": 1,
+        "locale": "ru",
+        "title": "Сборщик компьютеров",
+        "city": "moscow",
+        "jobType": "full",
+        "area": "development",
+        "publicationDate": "2021-06-01T09:00:00.000Z",
+        "division": "Управление персоналом ПАО Сбербанк",
+        "about": "Sber Automotive Technologies – компания, которая строит транспорт, думая о людях. Время – главный ресурс современного человека. Мы научились им управлять благодаря гаджетам. Задача нашей команды – превратить в такой же удобный гаджет автомобиль. Наша команда состоит из лучших специалистов с опытом работы в ведущих компаниях сразу двух рынков: IT и Automotive. Если ты хочешь качественно изменить транспорт и знаешь, что для этого нужно, – ждём тебя в SberAutoTech. Предлагаем сочетание гибкости стартапа и надежности компании. Возможности для самореализации и роста есть для каждого. В нашей команде открыта вакансия сборщика компьютеров для автомобилей.",
+        "conditions": "<p>Условия</p><ul><li>Работа в команде профессионалов;</li><li>Трудоустройство согласно ТК РФ.</li></ul>",
+        "whatToDo": "<p>Что необходимо делать</p><ul><li>Уметь аккуратно собирать элементную базу компьютеров (материнские платы, оперативная память, процессоры и прочее), понимать логику подключения;</li><li>Уметь разбираться в техдокументации к электронным компонентам на оборудование.</li></ul>",
+        "whatWaitingFor": "<p>Мы ожидаем, что у вас</p><ul><li>Образование не ниже средне-специального;</li><li>Опыт работы в области ремонта радиоэлектронных приборов, компьютеров и тп.</li></ul>"
+      },
+      {
+        "id": 1,
+        "locale": "en",
+        "title": "Computer assembler",
+        "city": "moscow",
+        "jobType": "full",
+        "area": "development",
+        "publicationDate": "2021-06-01T09:00:00.000Z",
+        "division": "Personnel management of PJSC Sberbank",
+        "about": "Sber Automotive Technologies is a company that builds vehicles with people in mind. Time is the main resource of a modern person. We learned how to manage it thanks to gadgets. The task of our team is to turn a car into an equally convenient gadget. Our team consists of the best specialists with experience in leading companies in two markets at once: IT and Automotive. If you want to qualitatively change the transport and you know what is needed for this, we are waiting for you at SberAutoTech. We offer a combination of startup flexibility and company reliability. There are opportunities for self-realization and growth for everyone. There is a vacancy in our team for the assembler of computers for cars.",
+        "conditions": "<p>Conditions</p><ul><li> Working in a team of professionals;</li><li>Employment according to the Labor Code of the Russian Federation.</li></ul>",
+        "whatToDo": "<p>What needs to be done</p><ul><li>Be able to accurately assemble the element base of computers (motherboards, RAM, processors, etc.), understand the connection logic;</li><li>Be able to understand the technical documentation for electronic components for equipment.</li></ul>",
+        "whatWaitingFor": "<p>We expect that you have</p><ul><li>Education is not lower than secondary vocational;</li><li>Experience in the field of repair of electronic devices, computers, etc.</li></ul>"
+      }
+    ]
+  },  
+  "NavPanelRu": {
+    "id": 1,
+    "locale": "ru",
+    "links": [
+      {
+        "text": "ФЛИП",
+        "to": "/flip",
+        "style": "fill"
+      },
+      {
+        "text": "Беспилотный автомобиль",
+        "to": "/self-driving-car",
+        "style": "fill"
+      },
+      {
+        "text": "О компании",
+        "to": "/about-company",
+        "style": "fill"
+      },
+      {
+        "text": "Карьера",
+        "to": "/career",
+        "style": "fill"
+      }
+    ],
+    "joinButtonText": "Присоединиться"
+  },  
+  "NavPanelEn": {
+    "id": 1,
+    "locale": "en",
+    "links": [
+      {
+        "text": "FLIP",
+        "to": "/flip",
+        "style": "fill"
+      },
+      {
+        "text": "Self-driving vehicle",
+        "to": "/self-driving-car",
+        "style": "fill"
+      },
+      {
+        "text": "About us",
+        "to": "/about-company",
+        "style": "fill"
+      },
+      {
+        "text": "Careers",
+        "to": "/career",
+        "style": "fill"
+      }
+    ],
+    "joinButtonText": "Join us"
+  },
+  "FooterRu": {
+    "id": 1,
+    "locale": "ru",
+    "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
+    "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
+    "link": {
+      "to": "/vacancies",
+      "text": "Вакансии",
+      "style": "fill"
+    },
+    "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.",
+    "email": "contact@sberautotech.ru",
+    "privacyPolicyLink": "/privacy-policy",
+    "privacyPolicyText": "Политика конфиденциальности"
+  },
+  "FooterEn": {
+    "id": 1,
+    "locale": "en",
+    "header": "Our team is expanding - find out about our vacancies and join specialists with rich experience in both IT and Automotive",
+    "description": "We are only at the beginning of the path and cannot reveal all the plans. Fill out a questionnaire about yourself, send it and we will contact you as soon as there is an opportunity to take you to the team.",
+    "link": {
+      "to": "/vacancies",
+      "text": "Vacancies",
+      "style": "fill"
+    },
+    "disclaimer": "The information published on the Site is provided for informational purposes only.",
+    "email": "contact@sberautotech.ru",
+    "privacyPolicyLink": "/privacy-policy",
+    "privacyPolicyText": "Privacy policy"
+  },
+  "PrivacyPolicyRu": {
+    "id": 1,
+    "locale": "ru",
+    "privacyPolicyText": "<h3>Согласие на обработку персональных данных для посетителей сайта</h3><p>Продолжая работу на сайте, я выражаю свое согласие ПАО Сбербанк (адрес: 117977, г. Москва, ул. Вавилова, д.19) на автоматизированную обработку моих персональных данных (файлы cookie, сведения о действиях пользователя на сайте, сведения об оборудовании пользователя, дата и время сессии), в т.ч. с использованием метрических программ Яндекс.Метрика, Google Analytics, Firebas Google, Tune, Amplitude, Сегменто, с совершением действий: сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, обезличивание, блокирование, удаление, уничтожение, передача (предоставление, доступ), в том числе трансграничная, партнёрам Сбербанка, предоставляющим сервис по указанным метрическим программам. Обработка персональных данных осуществляется в целях улучшения работы сайта, совершенствования продуктов и услуг банка, определения предпочтений пользователя, предоставления целевой информации по продуктам и услугам Сбербанка и его партнёров.</p><p>Настоящее согласие действует с момента его предоставления и в течение всего периода использования сайта.</p><p>В случае отказа от обработки персональных данных метрическими программами я проинформирован о необходимости прекратить использование сайта или отключить файлы cookie в настройках браузера.</p><h3>Условия и принципы обработки персональных данных в соответствии с GDPR*</h3><p>Сбербанк очень серьезно относится к вопросам конфиденциальности и безопасности информации. Защита ваших персональных данных** — один из наших ключевых приоритетов.</p><p>Мы обрабатываем ваши персональные данные, собранные на законных основаниях и в рамках четко сформулированных целей, характерных для взаимодействия Сбербанка со всеми сторонами:<br></br>— клиентами, потенциальными клиентами, их родственниками или представителями;<br></br>— контрагентами и партнерами (как существующими, так и потенциальными);<br></br>— сотрудниками (включая их родственников) и соискателями.<br></br</p><p>Мы можем собирать ваши персональные данные, информацию о предпочтениях, совершенных действиях и транзакциях и т.п. при помощи веб-сайта и мобильных приложений Сбербанка для заранее определенных и законных целей.</p><p>Мы можем передавать ваши персональные данные, в том числе трансгранично, строго при соблюдении требований законодательства.</p><p>Мы уважаем ваши права и свободы, в частности, связанные с вопросами обработки ваших персональных данных.</p><p>С вопросами, связанными с обработкой персональных данных, обращайтесь по адресу pdn-org@sberbank.ru или телефону +7 495 665-56-00 доб. 48-133.</p><a href=\"https://www.sber.ru/personal_policy/gdpr\"><p>Подробная информация об условиях и принципах обработки персональных данных.</p></a><p>*GDPR – Регламент №2016/679 Европейского парламента и Совета Европейского Союза «О защите физических лиц при обработке персональных данных и о свободном обращении таких данных» General Data Protection Regulation.</p><p>**Под термином «персональные данные» понимается любая информация, относящаяся к идентифицированному или идентифицируемому физическому лицу («субъект данных»). В состав персональных данных могут входить фамилия, имя, отчество, номер телефона, почтовый адрес, паспортные данные, сведения об образовании, доходах, предыдущих местах работы, а также другая информация, например, файлы cookie.</p>"
+  },
+  "PrivacyPolicyEn": {
+    "id": 1,
+    "locale": "en",
+    "privacyPolicyText": "<h3>Consent to the processing of personal data for site visitors</h3><p>Продолжая работу на сайте, я выражаю свое согласие ПАО Сбербанк (адрес: 117977, г. Москва, ул. Вавилова, д.19) на автоматизированную обработку моих персональных данных (файлы cookie, сведения о действиях пользователя на сайте, сведения об оборудовании пользователя, дата и время сессии), в т.ч. с использованием метрических программ Яндекс.Метрика, Google Analytics, Firebas Google, Tune, Amplitude, Сегменто, с совершением действий: сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, обезличивание, блокирование, удаление, уничтожение, передача (предоставление, доступ), в том числе трансграничная, партнёрам Сбербанка, предоставляющим сервис по указанным метрическим программам. Обработка персональных данных осуществляется в целях улучшения работы сайта, совершенствования продуктов и услуг банка, определения предпочтений пользователя, предоставления целевой информации по продуктам и услугам Сбербанка и его партнёров.</p><p>Настоящее согласие действует с момента его предоставления и в течение всего периода использования сайта.</p><p>В случае отказа от обработки персональных данных метрическими программами я проинформирован о необходимости прекратить использование сайта или отключить файлы cookie в настройках браузера.</p><h3>Условия и принципы обработки персональных данных в соответствии с GDPR*</h3><p>Сбербанк очень серьезно относится к вопросам конфиденциальности и безопасности информации. Защита ваших персональных данных** — один из наших ключевых приоритетов.</p><p>Мы обрабатываем ваши персональные данные, собранные на законных основаниях и в рамках четко сформулированных целей, характерных для взаимодействия Сбербанка со всеми сторонами:<br></br>— клиентами, потенциальными клиентами, их родственниками или представителями;<br></br>— контрагентами и партнерами (как существующими, так и потенциальными);<br></br>— сотрудниками (включая их родственников) и соискателями.<br></br</p><p>Мы можем собирать ваши персональные данные, информацию о предпочтениях, совершенных действиях и транзакциях и т.п. при помощи веб-сайта и мобильных приложений Сбербанка для заранее определенных и законных целей.</p><p>Мы можем передавать ваши персональные данные, в том числе трансгранично, строго при соблюдении требований законодательства.</p><p>Мы уважаем ваши права и свободы, в частности, связанные с вопросами обработки ваших персональных данных.</p><p>С вопросами, связанными с обработкой персональных данных, обращайтесь по адресу pdn-org@sberbank.ru или телефону +7 495 665-56-00 доб. 48-133.</p><a href=\"https://www.sber.ru/personal_policy/gdpr\"><p>Подробная информация об условиях и принципах обработки персональных данных.</p></a><p>*GDPR – Регламент №2016/679 Европейского парламента и Совета Европейского Союза «О защите физических лиц при обработке персональных данных и о свободном обращении таких данных» General Data Protection Regulation.</p><p>**Под термином «персональные данные» понимается любая информация, относящаяся к идентифицированному или идентифицируемому физическому лицу («субъект данных»). В состав персональных данных могут входить фамилия, имя, отчество, номер телефона, почтовый адрес, паспортные данные, сведения об образовании, доходах, предыдущих местах работы, а также другая информация, например, файлы cookie.</p>"
+  },
+  "RespondFormRu": {
+    "id": 1,
+    "locale": "ru",
+    "header": "Присоединяйтесь к команде и создавайте будущее вместе с нами",
+    "name": "Имя",
+    "surname": "Фамилия",
+    "email": "Почта",
+    "direction": "Направление",
+    "experience": "Опыт",
+    "consent": "Я соглашаюсь передать свои персональные данные, содержащиеся в анкете и всех приложенных файлах",
+    "file": "Прикрепить файл",
+    "successSend": "Ваше резюме отправлено! Спасибо",
+    "errorSend": "Произошла ошибка. Попробуйте позднее",
+    "errorButtonText": "Открыть форму",
+    "successButtonText": "Отправить еще одно",
+    "buttonText": "Отправить"
+  },
+  "RespondFormEn": {
+    "id": 1,
+    "locale": "en",
+    "header": "Join the team and create the future with us",
+    "name": "Name",
+    "surname": "Surname",
+    "email": "Email",
+    "direction": "Direction",
+    "experience": "Experience",
+    "consent": "I agree to transfer my personal data contained in the questionnaire and all attached files",
+    "file": "Add file",
+    "successSend": "Your resume has been sent! Thank you",
+    "errorSend": "An error has occurred. Try again later",
+    "errorButtonText": "Open the form",
+    "successButtonText": "Send another one",
+    "buttonText": "Send"
   }
 }

@@ -26,51 +26,6 @@ const query = graphql`
                 }
             }
           }
-          top_list {
-            header
-            list_items {
-              id
-              description
-              header
-              link {
-                style
-                text
-                to
-              }
-              subDescriptionFirst
-              subDescriptionSecond
-              target
-            }
-          }
-          bottom_slider {
-            header
-            header_position
-            slider_items {
-                localFile {
-                    publicURL
-                }
-            }
-          }
-          bottom_list {
-            header
-            list_items {
-              header
-            }
-          }
-          footer {
-            id
-            description
-            disclaimer
-            header
-            link {
-              style
-              text
-              to
-            }
-            privacyPolicyLink
-            publicOfferLink
-            email
-          }
         }
       }
     }
@@ -95,18 +50,18 @@ const query = graphql`
 
 const Vacancies = () => {
     const data = useStaticQuery(query);
-    const { top_slider, footer } = data.allStrapiCareer.edges[0].node;
+    const { top_slider } = data.allStrapiCareer.edges[0].node;
     const vacanciesList = data.allStrapiVacancies.edges.map((edge) => edge.node);
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={2}>
+        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
             <div className="career__carousel">
                 <Carousel data={top_slider} />
             </div>
 
             <VacanciesList data={vacanciesList} />
 
-            <Footer data={footer} />
+            <Footer />
         </Layout>
     );
 };

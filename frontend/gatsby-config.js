@@ -72,8 +72,58 @@ module.exports = {
             options: {
                 queryLimit  : 10000,
                 apiURL      : process.env.API_URL || 'http://localhost:1337',
-                contentTypes: ['vacancy'],
-                singleTypes : ['homepage', 'global', 'self-driving-car', 'career', 'about-company', 'flip', 'vacancies']
+                contentTypes: [
+                    {
+                        name: `vacancy`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    }
+                ],
+                singleTypes : [
+                    {
+                        name: `homepage`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `global`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `self-driving-car`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `career`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `about-company`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `flip`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `vacancies`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `nav-panel`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `footer`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `privacy-policy`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `respond-form`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    }
+                ]
             }
         },
         {

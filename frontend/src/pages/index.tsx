@@ -12,15 +12,13 @@ import Loader from '../components/loader/loaderComponent';
 
 const query = graphql`
   query {
-    strapiHomepage {
-      seo {
-        metaTitle
-        metaDescription
-      }
-    }
     allStrapiHomepage {
       edges {
         node {
+          seo {
+            metaTitle
+            metaDescription
+          }
           first_screen {
             background {
               localFile {
@@ -170,17 +168,17 @@ const IndexPage = () => {
     useEffect(() => {
         if(isMobile !== null) {
             const preloadVideos = [
-                fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.publicURL).then((response) => response.blob()),
                 fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
                 fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
-                fetch(screens.fourth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob())
+                fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.publicURL).then((response) => response.blob()),
+                fetch(screens.fourth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.publicURL).then((response) => response.blob()),
             ];
 
             Promise.all(preloadVideos).then((data) => {
                 setIsLoading(false);
 
                 data.forEach((blob, i) => {
-                    const bound = document.getElementById(String(i + 1));
+                    const bound = document.getElementById(String(i));
                     const video = bound.querySelector('video');
 
                     video?.setAttribute('src', URL.createObjectURL(blob));
@@ -240,7 +238,7 @@ const IndexPage = () => {
 
     return (
         <div className={cn('main__page', `main__page_${pageNumber}`)}>
-            <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber} setPageNumber={setPageNumber}>
+            <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber} setPageNumber={setPageNumber}>
                 {isLoading ? (
                     <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
                 ) : (

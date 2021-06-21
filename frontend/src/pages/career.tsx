@@ -58,20 +58,6 @@ const query = graphql`
               header
             }
           }
-          footer {
-            id
-            description
-            disclaimer
-            header
-            link {
-              style
-              text
-              to
-            }
-            privacyPolicyLink
-            publicOfferLink
-            email
-          }
         }
       }
     }
@@ -80,7 +66,7 @@ const query = graphql`
 
 const Career = () => {
     const data = useStaticQuery(query);
-    const { top_slider, top_list, bottom_slider, bottom_list, footer } = data.allStrapiCareer.edges[0].node;
+    const { top_slider, top_list, bottom_slider, bottom_list } = data.allStrapiCareer.edges[0].node;
 
     return (
         <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
@@ -90,7 +76,7 @@ const Career = () => {
             <ListAccordeon data={top_list} />
             <Carousel data={bottom_slider} />
             <AdvantagesList data={bottom_list} />
-            <Footer data={footer} />
+            <Footer />
         </Layout>
     );
 };
