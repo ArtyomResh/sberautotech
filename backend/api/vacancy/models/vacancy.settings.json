@@ -24,62 +24,8 @@
         }
       }
     },
-    "city": {
-      "type": "enumeration",
-      "enum": [
-        "moscow",
-        "minsk"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "jobType": {
-      "type": "enumeration",
-      "enum": [
-        "full",
-        "part"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "publicationDate": {
       "type": "date",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "division": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "area": {
-      "type": "enumeration",
-      "enum": [
-        "product",
-        "development",
-        "hr",
-        "design"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "about": {
-      "type": "text",
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -109,6 +55,37 @@
           "localized": true
         }
       }
+    },
+    "city": {
+      "model": "city"
+    },
+    "direction": {
+      "model": "direction"
+    },
+    "tags": {
+      "collection": "tag"
+    },
+    "jobType": {
+      "model": "job-type"
+    },
+    "area": {
+      "model": "area"
+    },
+    "about": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
+    },
+    "customDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
     }
   }
 }

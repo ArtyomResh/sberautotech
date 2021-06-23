@@ -7,7 +7,7 @@ import Footer from '../components/footer';
 import VacanciesList from '../components/vacancies-list';
 
 const query = graphql`
-  query($city: StringQueryOperatorInput, $jobType: StringQueryOperatorInput) {
+  query {
     strapiHomepage {
       seo {
         metaTitle
@@ -29,19 +29,21 @@ const query = graphql`
         }
       }
     }
-    allStrapiVacancies(filter: { city: $city, jobType: $jobType }) {
+    allStrapiVacancies {
       edges {
         node {
           id
           title
-          division
           conditions
-          city
+          city {
+            text
+          }
           about
-          jobType
+          jobType {
+            text
+          }
+          customDescription
           publicationDate
-          whatWaitingFor
-          whatToDo
         }
       }
     }
@@ -58,9 +60,7 @@ const Vacancies = () => {
             <div className="career__carousel">
                 <Carousel data={top_slider} />
             </div>
-
             <VacanciesList data={vacanciesList} />
-
             <Footer />
         </Layout>
     );

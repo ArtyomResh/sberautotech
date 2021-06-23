@@ -1,7 +1,6 @@
 "use strict";
 
 const fs = require("fs");
-const path = require("path");
 const mime = require("mime-types");
 const {
   homepageRu,
@@ -25,7 +24,11 @@ const {
   RespondFormRu,
   RespondFormEn,
   Vacancies,
-  Tags
+  Tags,
+  Directions,
+  Cities,
+  Areas,
+  JobTypes
 } = require("../../data/data.json");
 
 async function isFirstRun() {
@@ -100,7 +103,7 @@ function getFileData(fileName) {
 // Create an entry and attach files if there are any
 async function createEntry({ model, entry, files }) {
   try {
-    await strapi.entityService.create({ data: entry, files }, { model });
+    return await strapi.entityService.create({ data: entry, files }, { model });
   } catch (e) {
     console.log('model', entry, e);
   }
@@ -110,9 +113,63 @@ async function updateEntry({ model, entry, files }) {
   try {
     const params = {id: entry.id}
     const previousEntry = await strapi.query(model).findOne(params)
-    await strapi.entityService.update({ params, data: previousEntry, files }, { model });
+    return await strapi.entityService.update({ params, data: previousEntry, files }, { model });
   } catch (e) {
     console.log('model', entry, e);
+  }
+}
+
+async function importTags(shouldImportSeedData) {
+  for (const item of Tags.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "tag", entry: item });
+    }
+    await updateEntry({ model: "tag", entry: item });
+  }
+}
+
+async function importDirections(shouldImportSeedData) {
+  for (const item of Directions.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "direction", entry: item });
+    }
+    await updateEntry({ model: "direction", entry: item });
+  }
+}
+
+async function importCities(shouldImportSeedData) {
+  for (const item of Cities.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "city", entry: item });
+    }
+    await updateEntry({ model: "city", entry: item });
+  }
+}
+
+async function importAreas(shouldImportSeedData) {
+  for (const item of Areas.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "area", entry: item });
+    }
+    await updateEntry({ model: "area", entry: item });
+  }
+}
+
+async function importJobTypes(shouldImportSeedData) {
+  for (const item of JobTypes.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "job-type", entry: item });
+    }
+    await updateEntry({ model: "job-type", entry: item });
+  }
+}
+
+async function importVacancies(shouldImportSeedData) {
+  for (const item of Vacancies.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "vacancy", entry: item });
+    }
+    await updateEntry({ model: "vacancy", entry: item });
   }
 }
 
@@ -331,24 +388,6 @@ async function importFooter(shouldImportSeedData) {
   await updateEntry({ model: "footer", entry: FooterEn });
 }
 
-async function importVacancies(shouldImportSeedData) {
-  Vacancies.data.map(async (item, i) => {
-    if (shouldImportSeedData) {
-      await createEntry({ model: "vacancy", entry: item });
-    }
-    await updateEntry({ model: "vacancy", entry: item });
-  });
-}
-
-async function importTags(shouldImportSeedData) {
-  Tags.data.map(async (item, i) => {
-    if (shouldImportSeedData) {
-      await createEntry({ model: "tag", entry: item });
-    }
-    await updateEntry({ model: "tag", entry: item });
-  });
-}
-
 async function importSeedData(shouldImportSeedData) {
   await setPublicPermissions({
     global: ['find'],
@@ -362,9 +401,19 @@ async function importSeedData(shouldImportSeedData) {
     'privacy-policy': ['find'],
     'respond-form': ['find'],
     form: ['send'],
-    vacancy: ['find', 'findOne'],
-    tag: ['find', 'findOne']
+    vacancy: ['find', 'findone'],
+    tag: ['find', 'findone'],
+    direction: ['find', 'findone'],
+    city: ['find', 'findone'],
+    area: ['find', 'findone'],
+    'job-type': ['find', 'findone']
   });
+  await importTags(shouldImportSeedData);
+  await importDirections(shouldImportSeedData);
+  await importCities(shouldImportSeedData);
+  await importAreas(shouldImportSeedData);
+  await importJobTypes(shouldImportSeedData);
+  await importVacancies(shouldImportSeedData);
   await importHomepage(shouldImportSeedData);
   await importGlobal(shouldImportSeedData);
   await importSelfDrivingCar(shouldImportSeedData);
@@ -375,8 +424,6 @@ async function importSeedData(shouldImportSeedData) {
   await importFooter(shouldImportSeedData);
   await importPrivacyPolicy(shouldImportSeedData);
   await importRespondForm(shouldImportSeedData);
-  await importVacancies(shouldImportSeedData);
-  await importTags(shouldImportSeedData);
 }
 
 module.exports = async () => {

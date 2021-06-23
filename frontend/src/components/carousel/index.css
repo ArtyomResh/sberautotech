@@ -27,6 +27,10 @@
             animation: 0.3s linear 0s normal rotation-right;
         }
 
+        &_no-animation {
+            animation: none;
+        }
+
         @keyframes rotation-left {{ from { transform: rotate(180deg); } to { transform: rotate(0deg); } }}
         @keyframes rotation-right {{ from { transform: rotate(-180deg); } to { transform: rotate(0deg); } }}
     }
