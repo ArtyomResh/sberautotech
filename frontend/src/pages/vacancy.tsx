@@ -11,6 +11,20 @@ export const query = graphql`
             metaTitle
             metaDescription
           }
+          headerBottom
+          textBottom
+          count
+          countText
+          video {
+            localFile {
+              publicURL
+            }
+          }
+          videoPoster {
+            localFile {
+              publicURL
+            }
+          }
         }
       }
     }
