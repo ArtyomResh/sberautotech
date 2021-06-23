@@ -138,6 +138,18 @@ module.exports = {
                     {
                         name: `directions`,
                         api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `cities`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `areas`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `job-types`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     }
                 ]
             }

@@ -16,7 +16,6 @@ interface IProps {
 export interface IVacanciesListItem {
     id: string,
     title: string,
-    division: string,
     conditions: string,
     city: string,
     about: string,
