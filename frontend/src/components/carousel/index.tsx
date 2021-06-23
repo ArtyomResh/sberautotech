@@ -40,6 +40,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     const $container = useRef<HTMLDivElement>(null);
     const [cursorDirection, setCursorDirection] = useState({ prev: '', actual: ECursorDirection.none });
     const [cursorCoordinates, setCursorCoordinates] = useState({ сoordinateX: 0, сoordinateY: 0 });
+    const [isAnimation, setIsAnimation] = useState<boolean>(false);
     const [swiper, setSwiper] = useState<Swiper | null>(null);
 
     const header = useFormattedText(data.text);
@@ -83,6 +84,16 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     }, [cursorDirection.actual, cursorCoordinates]);
 
     useEffect(() => {
+        if((cursorDirection.actual === 'left' || cursorDirection.actual === 'right') && cursorDirection.prev === 'none') {
+            setIsAnimation(true);
+        }
+
+        return () => {
+            setIsAnimation(false);
+        };
+    }, [cursorDirection]);
+
+    useEffect(() => {
         if($container.current) {
             const swiper = new Swiper($container.current, {
                 loop          : true,
@@ -109,7 +120,10 @@ const Carousel: React.FC<IProps> = ({ data }) => {
 
     const elCursor = useMemo(() => {
         return (
-            <div className={cn('carousel__cursor', `carousel__cursor_${cursorDirection.actual}`)} style={{ top: cursorCoordinates.сoordinateY, left: cursorCoordinates.сoordinateX }}>
+            <div
+                className={cn('carousel__cursor', `carousel__cursor_${cursorDirection.actual}`, { 'carousel__cursor_no-animation': isAnimation })}
+                style={{ top: cursorCoordinates.сoordinateY, left: cursorCoordinates.сoordinateX }}
+            >
                 {cursorDirection.actual === 'right' ? <CursorRight /> : <CursorLeft />}
             </div>);
     }, [cursorDirection.actual, cursorCoordinates]);
