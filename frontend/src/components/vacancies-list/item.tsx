@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const VacanciesListItem: React.FC<IProps> = ({ data }) => {
-    const { title, division, city, about, jobType, publicationDate, conditions, whatWaitingFor, whatToDo } = data;
+    const { title, city, about, jobType, publicationDate, conditions, whatWaitingFor, whatToDo } = data;
     const cn = useClassnames(style);
     const [isViewFull, toggleView] = useState(false);
 
@@ -46,7 +46,6 @@ const VacanciesListItem: React.FC<IProps> = ({ data }) => {
                     </div>
                     <div className={cn('vacancies__list-item-top-column')}>
                         <div className={cn('vacancies__list-item-title')}>{title}</div>
-                        <div>{division}</div>
                     </div>
                 </div>
                 {isViewFull && (
