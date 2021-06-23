@@ -2,29 +2,16 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
 import Layout from '../components/layout';
-import Carousel from '../components/carousel';
-import Footer from '../components/footer';
 import VacanciesList from '../components/vacancies-list';
 
 const query = graphql`
   query {
-    strapiHomepage {
-      seo {
-        metaTitle
-        metaDescription
-      }
-    }
-    allStrapiCareer {
+    allStrapiVacanciesPage {
       edges {
         node {
-          top_slider {
-            header
-            header_position
-            slider_items {
-                localFile {
-                    publicURL
-                }
-            }
+          seo {
+            metaTitle
+            metaDescription
           }
         }
       }
@@ -32,17 +19,27 @@ const query = graphql`
     allStrapiVacancies {
       edges {
         node {
-          id
-          title
-          conditions
+          area {
+            text
+            value
+          }
           city {
             text
+            value
           }
-          about
           jobType {
             text
+            value
           }
-          customDescription
+          tags {
+            text
+            value
+          }
+          title
+          direction {
+            header
+          }
+          strapiId
           publicationDate
         }
       }
@@ -52,16 +49,11 @@ const query = graphql`
 
 const Vacancies = () => {
     const data = useStaticQuery(query);
-    const { top_slider } = data.allStrapiCareer.edges[0].node;
     const vacanciesList = data.allStrapiVacancies.edges.map((edge) => edge.node);
 
     return (
-        <Layout seo={data.strapiHomepage.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
-            <div className="career__carousel">
-                <Carousel data={top_slider} />
-            </div>
+        <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
             <VacanciesList data={vacanciesList} />
-            <Footer />
         </Layout>
     );
 };

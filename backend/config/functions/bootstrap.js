@@ -23,6 +23,10 @@ const {
   PrivacyPolicyEn,
   RespondFormRu,
   RespondFormEn,
+  VacanciesPageRu,
+  VacanciesPageEn,
+  VacancyPageRu,
+  VacancyPageEn,
   Vacancies,
   Tags,
   Directions,
@@ -352,6 +356,28 @@ async function importFlip(shouldImportSeedData) {
   await updateEntry({ model: "flip", entry: FlipEn, files });
 }
 
+async function importVacanciesPage(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    await createEntry({ model: "vacancies-page", entry: VacanciesPageRu });
+    await createEntry({ model: "vacancies-page", entry: VacanciesPageEn });
+  }
+  await updateEntry({ model: "vacancies-page", entry: VacanciesPageRu });
+  await updateEntry({ model: "vacancies-page", entry: VacanciesPageEn });
+}
+
+async function importVacancyPage(shouldImportSeedData) {
+  const files = {
+    "video": getFileData(VacancyPageRu.videoName),
+    "videoPoster": getFileData(VacancyPageRu.videoPosterName)
+  };
+  if (shouldImportSeedData) {
+    await createEntry({ model: "vacancy-page", entry: VacancyPageRu, files });
+    await createEntry({ model: "vacancy-page", entry: VacancyPageEn, files });
+  }
+  await updateEntry({ model: "vacancy-page", entry: VacancyPageRu, files });
+  await updateEntry({ model: "vacancy-page", entry: VacancyPageEn, files });
+}
+
 async function importNavPanel(shouldImportSeedData) {
   if (shouldImportSeedData) {
     await createEntry({ model: "nav-panel", entry: NavPanelRu });
@@ -397,6 +423,8 @@ async function importSeedData(shouldImportSeedData) {
     'about-company': ['find'],
     flip: ['find'],
     'nav-panel': ['find'],
+    'vacancies-page': ['find'],
+    'vacancy-page': ['find'],
     footer: ['find'],
     'privacy-policy': ['find'],
     'respond-form': ['find'],
@@ -424,6 +452,8 @@ async function importSeedData(shouldImportSeedData) {
   await importFooter(shouldImportSeedData);
   await importPrivacyPolicy(shouldImportSeedData);
   await importRespondForm(shouldImportSeedData);
+  await importVacanciesPage(shouldImportSeedData);
+  await importVacancyPage(shouldImportSeedData);
 }
 
 module.exports = async () => {

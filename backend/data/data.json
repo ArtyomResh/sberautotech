@@ -562,6 +562,58 @@
     },
     "favicon":null
   },
+  "VacanciesPageRu": {
+    "id": 1,
+    "locale": "ru",
+    "seo":{
+      "metaTitle":"SberAutoTech Вакансии",
+      "metaDescription":"СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
+      "shareImage":null
+    }
+  },
+  "VacanciesPageEn": {
+    "id": 1,
+    "locale": "en",
+    "seo":{
+      "metaTitle":"SberAutoTech Vacancies",
+      "metaDescription":"SberAutoTech",
+      "shareImage":null
+    }
+  },
+  "VacancyPageRu": {
+    "id": 1,
+    "locale": "ru",
+    "seo":{
+      "metaTitle":"SberAutoTech Вакансия",
+      "metaDescription":"СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
+      "shareImage":null
+    },
+    "headerBottom": "Мы – компания {Sber Automotive Technologies}. Мы создаём продукты для цифрового транспорта, которые произведут революцию в перемещении пассажиров и грузов.",
+    "textBottom": "Люди научились управлять самым главным ресурсом — временем — с помощью гаджетов. Задача нашей команды – превратить автомобиль в удобный гаджет с интуитивно понятным управлением. Так мы сделаем вождение простым и комфортным, а в перспективе поручим его беспилотным технологиям. Логистика жизни в большом городе станет удобнее, а люди получат еще больше свободного времени.",
+    "count": 300,
+    "countText": "лучших специалистов с опытом работы в ведущих компаниях сразу двух рынков: IT и Automotive",
+    "video": null,
+    "videoName": "garage.mp4",
+    "videoPoster": null,
+    "videoPosterName": "garage.jpg"
+  },
+  "VacancyPageEn": {
+    "id": 1,
+    "locale": "en",
+    "seo":{
+      "metaTitle":"SberAutoTech Vacancy",
+      "metaDescription":"SberAutoTech",
+      "shareImage":null
+    },
+    "headerBottom": "We are {Sber Automotive Technologies}. We are creating digital transport products that will revolutionize the movement of passengers and goods.",
+    "textBottom": "People have learned to manage the most important resource - time - with the help of gadgets. The task of our team is to turn the car into a convenient gadget with intuitive controls. This way we will make driving easy and comfortable, and in the future we will entrust it to unmanned technologies. The logistics of life in a big city will become more convenient, and people will get even more free time.",
+    "count": 300,
+    "countText": "the best specialists with experience in leading companies in two markets at once: IT and Automotive",
+    "video": null,
+    "videoName": "garage.mp4",
+    "videoPoster": null,
+    "videoPosterName": "garage.jpg"
+  },
   "AboutCompanyRu": {
     "id": 1,
     "locale": "ru",
