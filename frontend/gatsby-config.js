@@ -80,6 +80,10 @@ module.exports = {
                     {
                         name: `tag`,
                         api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `direction`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     }
                 ],
                 singleTypes : [
@@ -108,10 +112,6 @@ module.exports = {
                         api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `vacancies`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
-                    },
-                    {
                         name: `nav-panel`,
                         api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
@@ -125,6 +125,18 @@ module.exports = {
                     },
                     {
                         name: `respond-form`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `vacancies`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `tags`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `directions`,
                         api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     }
                 ]
