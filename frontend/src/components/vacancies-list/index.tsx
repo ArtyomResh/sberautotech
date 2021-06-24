@@ -22,7 +22,8 @@ export interface IVacanciesListItem {
     jobType: string,
     publicationDate: string,
     whatWaitingFor: string,
-    whatToDo: string
+    whatToDo: string,
+    strapiId: number
 }
 
 export enum ECities {

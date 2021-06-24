@@ -8,13 +8,14 @@ import { toUnescapedHTML } from '../../utils';
 
 import style from './index.css';
 import { IVacanciesListItem, ECities, EJobType } from './index';
+import { Link } from 'gatsby';
 
 interface IProps {
     data: IVacanciesListItem
 }
 
 const VacanciesListItem: React.FC<IProps> = ({ data }) => {
-    const { title, city, about, jobType, publicationDate, conditions, whatWaitingFor, whatToDo } = data;
+    const { title, city, about, jobType, publicationDate, conditions, whatWaitingFor, whatToDo, strapiId } = data;
     const cn = useClassnames(style);
     const [isViewFull, toggleView] = useState(false);
 
@@ -45,7 +46,7 @@ const VacanciesListItem: React.FC<IProps> = ({ data }) => {
                         </div>
                     </div>
                     <div className={cn('vacancies__list-item-top-column')}>
-                        <div className={cn('vacancies__list-item-title')}>{title}</div>
+                        <Link to={`/vacancies/${strapiId}`} className={cn('vacancies__list-item-title')}>{title}</Link>
                     </div>
                 </div>
                 {isViewFull && (
