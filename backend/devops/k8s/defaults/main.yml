@@ -6,3 +6,7 @@ vault:
   path: "k8s/fe-{{ stand }}"
   role: "fe-{{ stand }}-sa"
   url: https://vault.int.sbauto.tech:8200
+
+k8s_config: '~/.kube/config'
+image_pull_secret: docker-registries
+deploy_timeout: 300
