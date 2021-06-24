@@ -288,9 +288,7 @@ const FlipPage = () => {
                     }
                 }
 
-                if(percentScrolled) {
-                    video.currentTime = video.duration * percentScrolled;
-                }
+                video.currentTime = video.duration * percentScrolled;
             }
             requestAnimationFrame(scrollVideo);
         }, DEBOUNCE_TIMER);
