@@ -124,6 +124,14 @@ module.exports = {
                         api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
+                        name: `vacancies-page`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
+                        name: `vacancy-page`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
                         name: `respond-form`,
                         api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
