@@ -2,7 +2,7 @@
 
     &__text-wrapper {
         position: absolute;
-        z-index: 100000;
+        z-index: 2;
         color: #FFFFFF;
         font-family: SB Sans Text;
         padding: 20px 50px 50px 50px;

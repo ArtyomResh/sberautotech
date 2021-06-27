@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link, graphql } from 'gatsby';
 import { useClassnames } from '../hooks/use-classnames';
+import { toUnescapedHTML } from '../utils';
 
 import style from './vacancy.css';
 
@@ -76,6 +77,16 @@ export const query = graphql`
 
 const VacancyPage = ({ data }: any) => {
     const cn = useClassnames(style);
+    const { about, area, city, conditions, customDescription, direction, jobType, publicationDate, tags, title, whatToDo, whatWaitingFor } = data.strapiVacancies;
+
+    console.log(data);
+
+    const getDate = useCallback((date) => {
+        const parsedDate = new Date(date);
+        const monthList = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+        return `${parsedDate.getDate()} ${monthList[parsedDate.getMonth()]}`;
+    }, []);
 
     return (
         <Layout seo={data.allStrapiVacancyPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
@@ -88,13 +99,13 @@ const VacancyPage = ({ data }: any) => {
                         <h1>Вакансия</h1>
                     </div>
                     <div className={cn('vacancy__left-block-main')}>
-                        <div className={cn('vacancy__title-wrapper')}>
-                            <span >Москва</span>
-                            <span>5-ти дневная рабочая неделя</span>
-                            <span>Полная занятость</span>
-                            <span>Офис</span>
+                        <ul className={cn('vacancy__title-wrapper')}>
+                            <li>{city.text}</li>
+                            <li>{jobType.duration}</li>
+                            <li>{jobType.text}</li>
+                            <li>Офис</li>
                             <Button className={cn('vacancy__respond-button')} label="Откликнуться" />
-                        </div>
+                        </ul>
                     </div>
                     <div className={cn('vacancy__left-block-bottom')}>
                         <div className={cn('vacancy__link-wrapper')}>
@@ -105,36 +116,39 @@ const VacancyPage = ({ data }: any) => {
                         </div>
                     </div>
                 </div>
-                <div className={cn('vacancy__left-block-fake')}></div>
                 <div className={cn('vacancy__right-block')}>
                     <div className={cn('vacancy__header')}>
                         <div className={cn('vacancy__date-and-direction')}>
-                            <span>1 июня</span>
-                            <span>Умный автомобиль и встраиваемые системы</span>
+                            <span>{getDate(publicationDate)}</span>
+                            <span>{direction.header}</span>
                         </div>
                         <div className={cn('vacancy__title')}>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
+                            <h1>{title}</h1>
                         </div>
-                        <div className={cn('vacancy__title')}>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-                            <h1>Руководитель направления технической поддержки SberAutoTech</h1>
-
+                        <div className={cn('vacancy__area')}>
+                            <p>{area.text}</p>
+                        </div>
+                        <div className={cn('vacancy__tags-wrapper')}>
+                            {tags.map((el, i) => <span key={i} className={cn('vacancy__tag')}>{el.text}</span>)}
+                        </div>
+                        <div className={cn('vacancy__about-wrapper')}>
+                            {toUnescapedHTML(about)}
+                        </div>
+                        <div className={cn('vacancy__text-wrapper')}>
+                            <h1>Кого мы ищем</h1>
+                            {toUnescapedHTML(customDescription)}
+                        </div>
+                        <div className={cn('vacancy__text-wrapper')}>
+                            <h1>Обзанности</h1>
+                            {toUnescapedHTML(whatToDo)}
+                        </div>
+                        <div className={cn('vacancy__text-wrapper')}>
+                            <h1>Требования</h1>
+                            {toUnescapedHTML(whatWaitingFor)}
+                        </div>
+                        <div className={cn('vacancy__text-wrapper')}>
+                            <h1>Условия</h1>
+                            {toUnescapedHTML(conditions)}
                         </div>
                     </div>
                 </div>

@@ -63,7 +63,7 @@ spec:
               name: envs
       containers:
         - name: {{ app_name }}-{{ package_name }}
-          image: "{{ docker_registry }}/{{ package_name }}:{{ app_version }}"
+          image: "{{ image }}"
           imagePullPolicy: Always
           ports:
             - containerPort: {{ service_port }}
