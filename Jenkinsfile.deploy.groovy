@@ -49,7 +49,6 @@ timestamps {
                             commitSha = (commitSha == null) ? sh(script: 'git rev-parse HEAD', returnStdout: true).trim() : commitSha
                             changelog = sh(script: 'git --no-pager log HEAD~1..HEAD | sed -rn "s/[[:space:]]{6}(.*)/* \\1/p"', returnStdout: true)
                             manager.addBadge('orange-square.png', "Commit #${commitSha}", commitSha)
-                            notifyBitbucketStatus('INPROGRESS', config.bitbucket, commitSha)
 
                             version = branch.replaceAll("/|-", "_") + "-" + commitSha.take(6) + "-${env.BUILD_ID}"
                             log.info("Checked out branch: ${branch}, generate version ${version}")
