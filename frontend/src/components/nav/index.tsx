@@ -2,6 +2,7 @@ import React, { useState, SetStateAction, Dispatch, useEffect } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import useWindowSize from '../../hooks/use-window-resize';
 
 import style from './index.css';
 
@@ -72,6 +73,7 @@ const Nav = ({ setIsPopupVisible, theme, pageNumber, setPageNumber, whiteLogoImp
     const [isOpen, setIsOpen] = useState(false);
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
+    const [width, height] = useWindowSize();
     const cn = useClassnames(style);
 
     const { links, joinButtonText } = data.allStrapiNavPanel.edges[0].node;
@@ -86,7 +88,7 @@ const Nav = ({ setIsPopupVisible, theme, pageNumber, setPageNumber, whiteLogoImp
                 width    : activeElement?.offsetWidth
             });
         }, 200);
-    }, [pageNumber]);
+    }, [pageNumber, width, height]);
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const isScrolledDown = previousScrollTop < currentScrollTop;
