@@ -2,6 +2,7 @@ import React, { useState, SetStateAction, Dispatch, useEffect } from 'react';
 import { Link } from 'gatsby';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import useWindowSize from '../../hooks/use-window-resize';
 
 import style from './index.css';
 
@@ -40,6 +41,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
     const [isOpen, setIsOpen] = useState(false);
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
+    const [width, height] = useWindowSize();
     const cn = useClassnames(style);
 
     useEffect(() => {
@@ -51,7 +53,7 @@ const Nav = ({ setIsPopupVisible, theme, links, pageNumber, setPageNumber, white
                 width    : activeElement?.offsetWidth
             });
         }, 200);
-    }, [pageNumber]);
+    }, [pageNumber, width, height]);
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const isScrolledDown = previousScrollTop < currentScrollTop;
