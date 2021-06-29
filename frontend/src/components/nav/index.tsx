@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction, Dispatch, useEffect } from 'react';
+import React, { useState, SetStateAction, Dispatch, useEffect, useContext } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../../hooks/use-classnames';
@@ -11,6 +11,8 @@ const PADDING = 20;
 
 import useDocumentScrollThrottled from './use-document-scroll-throttled';
 import { gtagClicked } from '../../utils';
+import { appContext } from '../../context/context';
+
 import LogoWhite from '../../images/logo-white.inline.svg';
 import LogoBlack from '../../images/logo-black.inline.svg';
 import Burger from '../../images/burger.inline.svg';
@@ -67,11 +69,12 @@ const query = graphql`
   }
 `;
 
-const Nav = ({ setIsPopupVisible, theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => {
+const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => {
     const data = useStaticQuery(query);
     const [isOpen, setIsOpen] = useState(false);
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
+    const { setIsPopupVisible } = useContext(appContext);
     const cn = useClassnames(style);
 
     const { links, joinButtonText } = data.allStrapiNavPanel.edges[0].node;
