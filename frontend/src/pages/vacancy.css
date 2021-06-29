@@ -106,6 +106,7 @@ ul {
             position: fixed;
             bottom: 10px;
             width: 90vw;
+            border-radius: 64px;
 
             @media screen and (min-width: 1051px) {
                 display: none;
