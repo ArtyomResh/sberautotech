@@ -351,7 +351,7 @@
         line-height: 48px;
         letter-spacing: -0.01em;
 
-        & p {
+        & span {
             color: #34b7aa;
             display: inline;
         }
