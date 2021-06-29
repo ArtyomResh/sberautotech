@@ -11,6 +11,7 @@ import PlayButton from '../images/play-button-vacancy.inline.svg';
 
 import Layout from '../components/layout';
 import LeftBlockVacancyPage from '../components/left-block-vacancy-page';
+import ButtonWrapper from '../components/button-wrapper';
 
 export const query = graphql`
   query VacancyPage($id: Int) {
@@ -73,7 +74,25 @@ export const query = graphql`
   }
 `;
 
-interface INodes {
+interface IProps {
+    data: IData
+}
+
+interface IEdges {
+    edges: Array<INodes>
+}
+
+interface IData {
+    strapiVacancies: IStrapiVacancies,
+    allStrapiVacancyPage: IEdges
+}
+
+interface ISeo {
+    metaTitle: string,
+    metaDescription: string
+}
+
+interface IStrapiVacancies {
     about: string,
     area: IArea,
     city: ICity,
@@ -82,15 +101,24 @@ interface INodes {
     direction: IDirection,
     jobType: IJobType,
     publicationDate: string,
-    tags: ITags,
+    tags: Array<ITag>,
     title: string,
     whatToDo: string,
-    whatWaitingFor: string,
-    headerBottom: string,
+    whatWaitingFor: string
+}
+
+interface INodes {
+    node: INode
+}
+
+interface INode {
+    count: string,
     countText: string,
+    headerBottom: string,
+    seo: ISeo,
     textBottom: string,
-    video: string,
-    videoPoster: string
+    video: ILocalFile,
+    videoPoster: ILocalFile
 }
 
 interface IArea {
@@ -109,20 +137,26 @@ interface IJobType {
     duration: string,
     text: string
 }
-
-interface ITags {
+interface ITag {
     text: string,
     value: string
 }
 
+interface IPublicUrl {
+    publicURL: string
+}
 
-const VacancyPage = ({ data }) => {
+interface ILocalFile {
+    localFile: IPublicUrl
+}
+
+const VacancyPage: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [play, setPlay] = useState<boolean>(false);
 
-    const { about, area, city, conditions, customDescription, direction, jobType, publicationDate, tags, title, whatToDo, whatWaitingFor }: INodes = data.strapiVacancies;
-    const { headerBottom, countText, textBottom, video, videoPoster }: INodes = data.allStrapiVacancyPage.edges[0].node;
+    const { about, area, city, conditions, customDescription, direction, jobType, publicationDate, tags, title, whatToDo, whatWaitingFor } = data.strapiVacancies;
+    const { headerBottom, countText, textBottom, video, videoPoster } = data.allStrapiVacancyPage.edges[0].node;
 
     const toggleVideo = useCallback(() => {
         if(videoRef.current) {
@@ -167,7 +201,7 @@ const VacancyPage = ({ data }) => {
                             <p>{area.text}</p>
                         </div>
                         <div className={cn('vacancy__tags-wrapper')}>
-                            {tags.map((el, i) => <span key={i} className={cn('vacancy__tag')}>{el.text}</span>)}
+                            {tags.map((el: ITag, i: number) => <span key={i} className={cn('vacancy__tag')}>{el.text}</span>)}
                         </div>
                         <div className={cn('vacancy__left-block-main', 'vacancy__left-block-main_mobile')}>
                             <ul className={cn('vacancy__title-wrapper')}>
@@ -224,6 +258,7 @@ const VacancyPage = ({ data }) => {
                         </div>
                     </div>
                 </div>
+                <ButtonWrapper className={cn('vacancy__respond-button_mobile')} label="Откликнуться" />
             </div>
         </Layout>
     );

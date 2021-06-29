@@ -2,6 +2,10 @@
     --vacancy-padding-top: 32px;
 }
 
+ul {
+    padding-left: 18px;
+}
+
 .vacancy {
     margin-top: calc(var(--nav-height));
     padding-top: 32px;
@@ -97,6 +101,16 @@
         margin-top: 20px;
         border-radius: 64px;
         height: 56px;
+
+        &_mobile {
+            position: fixed;
+            bottom: 10px;
+            width: 90vw;
+
+            @media screen and (min-width: 1051px) {
+                display: none;
+            }
+        }
     }
 
     &__left-block-bottom {
@@ -109,6 +123,10 @@
         grid-column: content;
         display: flex;
         flex-wrap: nowrap;
+
+        & a {
+            cursor: pointer;
+        }
 
         & a svg:hover {
 
@@ -294,7 +312,7 @@
         grid-template-columns: 30vw 1fr;
 
         @media screen and (max-width: 1050px) {
-            margin: 20px 10px;
+            margin: 20px 10px 85px;
             display: flex;
             flex-direction: column;
             max-width: 690px;
