@@ -116,7 +116,7 @@ interface ITags {
 }
 
 
-const VacancyPage = (data: IProps) => {
+const VacancyPage = ({ data }) => {
     const cn = useClassnames(style);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [play, setPlay] = useState<boolean>(false);
