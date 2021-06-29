@@ -1,0 +1,23 @@
+.tag {
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    color: #758794;
+    border: 1px solid #C0CCD5;
+    border-radius: 32px;
+    padding: 5px 8px;
+    margin-right: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover {
+        background: #C0CCD5;
+        border: 1px solid #758794;
+    }
+
+    &_active {
+        color: #1F272E !important;
+        background: #BDFFF8 !important;
+        border: 1px solid #BDFFF8 !important;
+    }
+}

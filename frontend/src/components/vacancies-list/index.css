@@ -1,147 +1,69 @@
 .vacancies {
-
     &__wrap {
-        padding: 20px;
-        font-size: 18px;
-        line-height: 20px;
-
-        @media screen and (max-width: 639px) {
-            font-size: 14px;
-            line-height: 16px;
-        }
-    }
-
-    &__list {
-        border-top: 1px solid #5D6D78;
+        width: 100%;
     }
 
     &__list-item {
-        border-bottom: 1px solid #5D6D78;
-        display: grid;
-        grid-template-columns: 56px 1fr;
-        grid-gap: 60px;
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #E0E6EB;
         padding: 20px 0;
 
+        .tags-list {
+            padding-bottom: 0px !important;
+        }
+    }
+
+    &__list-item-block {
+        display: flex;
+        justify-content: space-between;
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__info-wrapper {
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.01em;
+        color: #34B7AA;
+    }
+
+    &__info-data {
+        margin-right: 16px;
+    }
+
+    &__info-city {
+        color: #758794;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.01em;
+    }
+
+    &__title {
+        font-size: 26px;
+        line-height: 30px;
+        letter-spacing: -0.04em;
+        color: #05080A;
+
         @media screen and (max-width: 1023px) {
-            grid-gap: 30px;
+            font-size: 32px;
         }
 
         @media screen and (max-width: 639px) {
-            grid-gap: 20px;
+            font-size: 24px;
         }
 
-        &-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background-color: #94F7ED;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-sizing: border-box;
-
-            &_minus {
-                background-color: transparent;
-                border: 1px solid #404040;
-            }
-
-            &:hover {
-                opacity: 0.8;
-            }
-        }
-
-        &-top {
-            display: grid;
-            grid-template-columns: 0.65fr 1.35fr;
-            grid-gap: 20px;
-
-            @media screen and (max-width: 639px) {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        &-title {
-            font-size: 48px;
-            line-height: 1;
-
-            @media screen and (max-width: 1023px) {
-                font-size: 32px;
-            }
-
-            @media screen and (max-width: 639px) {
-                font-size: 24px;
-            }
-
-            @media screen and (max-width: 479px) {
-                font-size: 20px;
-            }
-        }
-
-        &-top-column {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        &-full-content {
-            margin-top: 20px;
-            border-top: 1px solid #5D6D78;
-            padding-top: 20px;
-            display: grid;
-            grid-template-columns: 0.65fr 1.35fr;
-            grid-gap: 20px;
-            padding-bottom: 60px;
-
-            @media screen and (max-width: 767px) {
-                grid-template-columns: 1fr;
-                padding-bottom: 30px;
-            }
-        }
-
-        &-full-content-left {
-            max-width: 70%;
-            font-size: 14px;
-            line-height: 16px;
-
-            @media screen and (max-width: 767px) {
-                max-width: 100%;
-            }
-        }
-
-        &-full-content-row:not(:last-child) {
-            margin-bottom: 40px;
-        }
-
-        &-list-title {
-            margin-bottom: 15px;
+        @media screen and (max-width: 479px) {
+            font-size: 20px;
         }
     }
 
-    &__btn-more {
-        margin-top: 60px;
-    }
-
-    &__filters-wrap {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 20px;
-
-        .ui-select__control {
-            height: 100%;
-        }
-
-        @media screen and (max-width: 639px) {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    &__total-count {
-        margin: 100px 0 10px;
-
-        @media screen and (max-width: 840px) {
-            margin: 50px 0 10px;
-        }
+    &__area {
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.01em;
+        color: #05080A;
     }
 }

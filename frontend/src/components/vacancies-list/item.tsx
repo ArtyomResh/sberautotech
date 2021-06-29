@@ -1,73 +1,42 @@
 import React, { useState } from 'react';
+import moment from 'moment/min/moment-with-locales';
 
 import { useClassnames } from '../../hooks/use-classnames';
-import IconPlus from '../../images/plus.inline.svg';
-import IconMinus from '../../images/minus.inline.svg';
-import Button from '../button';
+import TagsList from '../tags-list';
 import { toUnescapedHTML } from '../../utils';
 
 import style from './index.css';
-import { IVacanciesListItem, ECities, EJobType } from './index';
+import { IVacanciesListItem } from './index';
 import { Link } from 'gatsby';
 
 interface IProps {
-    data: IVacanciesListItem
+    data: IVacanciesListItem,
+    activeTags: Array<any>
 }
 
-const VacanciesListItem: React.FC<IProps> = ({ data }) => {
-    const { title, city, about, jobType, publicationDate, conditions, whatWaitingFor, whatToDo, strapiId } = data;
+const VacanciesListItem: React.FC<IProps> = ({ data, activeTags }) => {
+    const { title, city, about, jobType, publicationDate, area, direction, tags, strapiId, locale } = data;
     const cn = useClassnames(style);
-    const [isViewFull, toggleView] = useState(false);
-
-    const onClickToggle = () => {
-        toggleView(!isViewFull);
-    };
 
     return (
         <div className={cn('vacancies__list-item')}>
-            <span
-                className={cn('vacancies__list-item-icon', {
-                    'vacancies__list-item-icon_minus': isViewFull
-                })}
-                onClick={onClickToggle}
-            >
-                {isViewFull ? <IconMinus /> : <IconPlus /> }
-            </span>
-
-            <div className={cn('vacancies__list-item-content')}>
-                <div className={cn('vacancies__list-item-top')}>
-                    <div className={cn('vacancies__list-item-top-column')}>
-                        <div>
-                            <div>{ECities[city]}</div>
-                            <div>{EJobType[jobType]}</div>
-                        </div>
-                        <div>
-                            {publicationDate.split('-').reverse().join('.')}
-                        </div>
-                    </div>
-                    <div className={cn('vacancies__list-item-top-column')}>
-                        <Link to={`/vacancies/${strapiId}`} className={cn('vacancies__list-item-title')}>{title}</Link>
-                    </div>
+            <div className={cn('vacancies__list-item-block')}>
+                <div className={cn('vacancies__info-wrapper')}>
+                    <span className={cn('vacancies__info-data')}>{moment(publicationDate).locale(locale).format('DD MMMM')}</span>
+                    <span className={cn('vacancies__info-direction')}>{direction.header}</span>
                 </div>
-                {isViewFull && (
-                    <div className={cn('vacancies__list-item-full-content')}>
-                        <div className={cn('vacancies__list-item-full-content-left')}>
-                            {about}
-                        </div>
-                        <div className={cn('vacancies__list-item-full-content-right')}>
-                            <div className={cn('vacancies__list-item-full-content-row')}>
-                                {toUnescapedHTML(conditions)}
-                            </div>
-                            <div className={cn('vacancies__list-item-full-content-row')}>
-                                {toUnescapedHTML(whatToDo)}
-                            </div>
-                            <div className={cn('vacancies__list-item-full-content-row')}>
-                                {toUnescapedHTML(whatWaitingFor)}
-                            </div>
-                            <Button label="Откликнуться" />
-                        </div>
-                    </div>
-                )}
+                <div className={cn('vacancies__info-city')}>
+                    {city.text}
+                </div>
+            </div>
+            <div className={cn('vacancies__list-item-block')}>
+                <Link to={`/vacancies/${strapiId}`} className={cn('vacancies__title')}>{title}</Link>
+            </div>
+            <div className={cn('vacancies__list-item-block')}>
+                <span className={cn('vacancies__area')}>{area.text}</span>
+            </div>
+            <div className={cn('vacancies__list-item-block')}>
+                <TagsList tags={tags} activeTags={activeTags} onClickTag={() => { }} />
             </div>
         </div>
     );

@@ -1,0 +1,40 @@
+.directions {
+
+    &__wrapper {
+        display: flex;
+        flex-direction: row;
+        position: sticky;
+        top: 115px;
+        margin-right: 150px;
+        max-height: 90vh;
+        min-width: 280px;
+    }
+
+    &__back {
+        margin-right: 90px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+
+    &__header {
+        font-size: 26px;
+        line-height: 30px;
+        letter-spacing: -0.04em;
+        color: #05080A;
+        margin-bottom: 110px;
+    }
+
+    &__list-item {
+        /* max-width: 170px; */
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.01em;
+        color: #758794;
+        margin-bottom: 10px;
+        cursor: pointer;
+
+        &_active {
+            color: #34B7AA;
+        }
+    }
+}
