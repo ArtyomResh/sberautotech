@@ -155,8 +155,11 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [play, setPlay] = useState<boolean>(false);
 
+    console.log(data);
+
+
     const { about, area, city, conditions, customDescription, direction, jobType, publicationDate, tags, title, whatToDo, whatWaitingFor } = data.strapiVacancies;
-    const { headerBottom, countText, textBottom, video, videoPoster } = data.allStrapiVacancyPage.edges[0].node;
+    const { count, headerBottom, countText, textBottom, video, videoPoster } = data.allStrapiVacancyPage.edges[0].node;
 
     const toggleVideo = useCallback(() => {
         if(videoRef.current) {
@@ -244,8 +247,8 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                 </div>
                 <div className={cn('vacancy__bottom-block')}>
                     <div className={cn('vacancy__left-side')}>
-                        <ThreeHundredIcon />
-                        <p>{countText}</p>
+                        <span className={cn('vacancy__count')}>{count}</span>
+                        <p className={cn('vacancy__count-text')}>{countText}</p>
                     </div>
                     <div className={cn('vacancy__right-side')}>
                         <div className={cn('vacancy__slogan')}>

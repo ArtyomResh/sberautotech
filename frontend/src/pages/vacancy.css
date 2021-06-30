@@ -323,17 +323,23 @@ ul {
     &__left-side {
         margin-left: 20px;
 
-        & p {
-            font-size: 14px;
-            line-height: 18px;
-            letter-spacing: -0.01em;
-            max-width: 290px;
-            margin-top: 12px;
-        }
-
         @media screen and (max-width: 1050px) {
             margin-left: 0;
         }
+    }
+
+    &__count {
+        font-family: var(--font-family-digits);
+        font-size: 125px;
+        line-height: 0.4;
+    }
+
+    &__count-text {
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.01em;
+        max-width: 290px;
+        margin-top: 12px;
     }
 
     &__right-side {
