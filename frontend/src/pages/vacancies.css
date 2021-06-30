@@ -1,0 +1,47 @@
+.vacancies {
+
+    &-page__wrapper {
+        padding: 120px 25px 0px 25px;
+        display: flex;
+        max-width: 100vw;
+    }
+
+    &__search-wrapper {
+        display: flex;
+    }
+
+    &__search {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 26px;
+        line-height: 30px;
+        letter-spacing: -0.04em;
+        font-feature-settings: 'tnum' on, 'lnum' on;
+        color: #758794;
+        padding: 0;
+    }
+
+    &__search-icon {
+        cursor: pointer;
+    }
+
+    &__result-wrapper {
+        margin-top: 5px;
+        border-bottom: 1px solid #E0E6EB;
+        margin-bottom: 10px;
+        min-height: 33px;
+    }
+
+    &__result {
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: -0.02em;
+        color: #758794;
+        margin-bottom: 18px;
+    }
+
+    &__wrapper {
+        overflow: auto;
+    }
+}

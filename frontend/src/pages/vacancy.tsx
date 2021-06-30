@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useRef } from 'react';
 
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { useClassnames } from '../hooks/use-classnames';
 import { toUnescapedHTML } from '../utils';
 
@@ -66,6 +66,7 @@ export const query = graphql`
         tags {
           text
           value
+          id
         }
         title
         whatToDo
@@ -75,197 +76,194 @@ export const query = graphql`
 `;
 
 interface IProps {
-    data: IData
+  data: IData
 }
 
 interface IEdges {
-    edges: Array<INodes>
+  edges: Array<INodes>
 }
 
 interface IData {
-    strapiVacancies: IStrapiVacancies,
-    allStrapiVacancyPage: IEdges
+  strapiVacancies: IStrapiVacancies,
+  allStrapiVacancyPage: IEdges
 }
 
 interface ISeo {
-    metaTitle: string,
-    metaDescription: string
+  metaTitle: string,
+  metaDescription: string
 }
 
 interface IStrapiVacancies {
-    about: string,
-    area: IArea,
-    city: ICity,
-    conditions: string,
-    customDescription: string,
-    direction: IDirection,
-    jobType: IJobType,
-    publicationDate: string,
-    tags: Array<ITag>,
-    title: string,
-    whatToDo: string,
-    whatWaitingFor: string
+  about: string,
+  area: IArea,
+  city: ICity,
+  conditions: string,
+  customDescription: string,
+  direction: IDirection,
+  jobType: IJobType,
+  publicationDate: string,
+  tags: Array<ITag>,
+  title: string,
+  whatToDo: string,
+  whatWaitingFor: string
 }
 
 interface INodes {
-    node: INode
+  node: INode
 }
 
 interface INode {
-    count: string,
-    countText: string,
-    headerBottom: string,
-    seo: ISeo,
-    textBottom: string,
-    video: ILocalFile,
-    videoPoster: ILocalFile
+  count: string,
+  countText: string,
+  headerBottom: string,
+  seo: ISeo,
+  textBottom: string,
+  video: ILocalFile,
+  videoPoster: ILocalFile
 }
 
 interface IArea {
-    text: string
+  text: string
 }
 
 interface IDirection {
-    header: string
+  header: string
 }
 
 interface ICity {
-    text: string
+  text: string
 }
 
 interface IJobType {
-    duration: string,
-    text: string
+  duration: string,
+  text: string
 }
 interface ITag {
-    text: string,
-    value: string
+  text: string,
+  value: string,
+  id: number
 }
 
 interface IPublicUrl {
-    publicURL: string
+  publicURL: string
 }
 
 interface ILocalFile {
-    localFile: IPublicUrl
+  localFile: IPublicUrl
 }
 
 const VacancyPage: React.FC<IProps> = ({ data }) => {
-    const cn = useClassnames(style);
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const [play, setPlay] = useState<boolean>(false);
+  const cn = useClassnames(style);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [play, setPlay] = useState<boolean>(false);
 
-    console.log(data);
+  const { about, area, city, conditions, customDescription, direction, jobType, publicationDate, tags, title, whatToDo, whatWaitingFor } = data.strapiVacancies;
+  const { count, headerBottom, countText, textBottom, video, videoPoster } = data.allStrapiVacancyPage.edges[0].node;
 
+  const toggleVideo = useCallback(() => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        void videoRef.current.play().then(() => setPlay(true));
 
-    const { about, area, city, conditions, customDescription, direction, jobType, publicationDate, tags, title, whatToDo, whatWaitingFor } = data.strapiVacancies;
-    const { count, headerBottom, countText, textBottom, video, videoPoster } = data.allStrapiVacancyPage.edges[0].node;
+        return;
+      }
 
-    const toggleVideo = useCallback(() => {
-        if(videoRef.current) {
-            if(videoRef.current.paused) {
-                void videoRef.current.play().then(() => setPlay(true));
+      videoRef.current.pause();
+      setPlay(false);
+    }
+  }, []);
 
-                return;
-            }
+  const backToPreviousPage = useCallback(() => {
+    window.history.back();
+  }, []);
 
-            videoRef.current.pause();
-            setPlay(false);
-        }
-    }, []);
+  const getDate = useCallback((date) => {
+    const parsedDate = new Date(date);
+    const monthList = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 
-    const backToPreviousPage = useCallback(() => {
-        window.history.back();
-    }, []);
+    return `${parsedDate.getDate()} ${monthList[parsedDate.getMonth()]}`;
+  }, []);
 
-    const getDate = useCallback((date) => {
-        const parsedDate = new Date(date);
-        const monthList = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-
-        return `${parsedDate.getDate()} ${monthList[parsedDate.getMonth()]}`;
-    }, []);
-
-    return (
-        <Layout seo={data.allStrapiVacancyPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
-            <div className={cn('vacancy')}>
-                <div className={cn('vacancy__wrapper')}>
-                    <div className={cn('vacancy__left-block')}>
-                        <LeftBlockVacancyPage city={city} jobType={jobType} backToPreviousPage={backToPreviousPage} />
-                    </div>
-                    <div className={cn('vacancy__right-block')}>
-                        <div className={cn('vacancy__date-and-direction')}>
-                            <span>{getDate(publicationDate)}</span>
-                            <span>{direction.header}</span>
-                        </div>
-                        <div className={cn('vacancy__title')}>
-                            <h1>{title}</h1>
-                        </div>
-                        <div className={cn('vacancy__area')}>
-                            <p>{area.text}</p>
-                        </div>
-                        <div className={cn('vacancy__tags-wrapper')}>
-                            {tags.map((el: ITag, i: number) => <span key={i} className={cn('vacancy__tag')}>{el.text}</span>)}
-                        </div>
-                        <div className={cn('vacancy__left-block-main', 'vacancy__left-block-main_mobile')}>
-                            <ul className={cn('vacancy__title-wrapper')}>
-                                <li>{city.text}</li>
-                                <li>{jobType.duration}</li>
-                                <li>{jobType.text}</li>
-                                <li>Офис</li>
-                            </ul>
-                        </div>
-                        <div className={cn('vacancy__about-wrapper')}>
-                            {toUnescapedHTML(about)}
-                        </div>
-                        <div className={cn('vacancy__text-wrapper')}>
-                            <h1>Кого мы ищем</h1>
-                            {toUnescapedHTML(customDescription)}
-                        </div>
-                        <div className={cn('vacancy__text-wrapper')}>
-                            <h1>Обязанности</h1>
-                            {toUnescapedHTML(whatToDo)}
-                        </div>
-                        <div className={cn('vacancy__text-wrapper')}>
-                            <h1>Требования</h1>
-                            {toUnescapedHTML(whatWaitingFor)}
-                        </div>
-                        <div className={cn('vacancy__text-wrapper')}>
-                            <h1>Условия</h1>
-                            {toUnescapedHTML(conditions)}
-                        </div>
-                    </div>
-                </div>
-                <div className={cn('vacancy__video-wrapper')} onClick={toggleVideo}>
-                    <PlayButton className={cn('vacancy__play-button', { 'vacancy__play-button_hidden': play })} />
-                    <video
-                        className={cn('vacancy__video')}
-                        ref={videoRef}
-                        src={video.localFile.publicURL}
-                        poster={videoPoster.localFile.publicURL}
-                    >
-                    </video>
-                </div>
-                <div className={cn('vacancy__bottom-block')}>
-                    <div className={cn('vacancy__left-side')}>
-                        <span className={cn('vacancy__count')}>{count}</span>
-                        <p className={cn('vacancy__count-text')}>{countText}</p>
-                    </div>
-                    <div className={cn('vacancy__right-side')}>
-                        <div className={cn('vacancy__slogan')}>
-                            <p>{textBottom}</p>
-                        </div>
-                        <div className={cn('vacancy__big-slogan')}>
-                            <p className={cn('vacancy__external-part')}>
-                                {toUnescapedHTML(headerBottom.replace('{', '<span>').replace('}', '</span>'))}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <ButtonWrapper className={cn('vacancy__respond-button_mobile')} label="Откликнуться" />
+  return (
+    <Layout seo={data.allStrapiVacancyPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
+      <div className={cn('vacancy')}>
+        <div className={cn('vacancy__wrapper')}>
+          <div className={cn('vacancy__left-block')}>
+            <LeftBlockVacancyPage city={city} jobType={jobType} backToPreviousPage={backToPreviousPage} />
+          </div>
+          <div className={cn('vacancy__right-block')}>
+            <div className={cn('vacancy__date-and-direction')}>
+              <span>{getDate(publicationDate)}</span>
+              <span>{direction.header}</span>
             </div>
-        </Layout>
-    );
+            <div className={cn('vacancy__title')}>
+              <h1>{title}</h1>
+            </div>
+            <div className={cn('vacancy__area')}>
+              <p>{area.text}</p>
+            </div>
+            <div className={cn('vacancy__tags-wrapper')}>
+              {tags.map((el: ITag, i: number) => <Link to={`/vacancies?tags=${el.id}`}><span key={i} className={cn('vacancy__tag')}>{el.text}</span></Link>)}
+            </div>
+            <div className={cn('vacancy__left-block-main', 'vacancy__left-block-main_mobile')}>
+              <ul className={cn('vacancy__title-wrapper')}>
+                <li>{city.text}</li>
+                <li>{jobType.duration}</li>
+                <li>{jobType.text}</li>
+                <li>Офис</li>
+              </ul>
+            </div>
+            <div className={cn('vacancy__about-wrapper')}>
+              {toUnescapedHTML(about)}
+            </div>
+            <div className={cn('vacancy__text-wrapper')}>
+              <h1>Кого мы ищем</h1>
+              {toUnescapedHTML(customDescription)}
+            </div>
+            <div className={cn('vacancy__text-wrapper')}>
+              <h1>Обязанности</h1>
+              {toUnescapedHTML(whatToDo)}
+            </div>
+            <div className={cn('vacancy__text-wrapper')}>
+              <h1>Требования</h1>
+              {toUnescapedHTML(whatWaitingFor)}
+            </div>
+            <div className={cn('vacancy__text-wrapper')}>
+              <h1>Условия</h1>
+              {toUnescapedHTML(conditions)}
+            </div>
+          </div>
+        </div>
+        <div className={cn('vacancy__video-wrapper')} onClick={toggleVideo}>
+          <PlayButton className={cn('vacancy__play-button', { 'vacancy__play-button_hidden': play })} />
+          <video
+            className={cn('vacancy__video')}
+            ref={videoRef}
+            src={video.localFile.publicURL}
+            poster={videoPoster.localFile.publicURL}
+          >
+          </video>
+        </div>
+        <div className={cn('vacancy__bottom-block')}>
+          <div className={cn('vacancy__left-side')}>
+            <span className={cn('vacancy__count')}>{count}</span>
+            <p className={cn('vacancy__count-text')}>{countText}</p>
+          </div>
+          <div className={cn('vacancy__right-side')}>
+            <div className={cn('vacancy__slogan')}>
+              <p>{textBottom}</p>
+            </div>
+            <div className={cn('vacancy__big-slogan')}>
+              <p className={cn('vacancy__external-part')}>
+                {toUnescapedHTML(headerBottom.replace('{', '<span>').replace('}', '</span>'))}
+              </p>
+            </div>
+          </div>
+        </div>
+        <ButtonWrapper className={cn('vacancy__respond-button_mobile')} label="Откликнуться" />
+      </div>
+    </Layout>
+  );
 };
 
 export default VacancyPage;
-
