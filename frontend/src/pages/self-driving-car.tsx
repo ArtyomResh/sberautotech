@@ -68,19 +68,6 @@ const query = graphql`
                 }
             }
           }
-          footer {
-            description
-            disclaimer
-            header
-            link {
-              style
-              text
-              to
-            }
-            privacyPolicyLink
-            publicOfferLink
-            email
-          }
         }
       }
     }
@@ -89,14 +76,14 @@ const query = graphql`
 
 const SelfDrivingCar = () => {
     const data = useStaticQuery(query);
-    const { double_block, story_cards, slider, footer } = data.allStrapiSelfDrivingCar.edges[0].node;
+    const { double_block, story_cards, slider } = data.allStrapiSelfDrivingCar.edges[0].node;
 
     return (
         <Layout seo={data.strapiSelfDrivingCar.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={1}>
             <MainBlock data={double_block} />
             <Swiper data={story_cards} />
             <Carousel data={slider} />
-            <Footer data={footer} />
+            <Footer />
         </Layout>
     );
 };

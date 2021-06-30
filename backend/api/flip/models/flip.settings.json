@@ -10,56 +10,101 @@
     "timestamps": true,
     "draftAndPublish": false
   },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "seo": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.seo"
-    },
-    "footer": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.footer"
+      "component": "shared.seo",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "first_screen": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.flip-screen-block"
+      "component": "shared.flip-screen-block",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "second_screen": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.flip-screen-block"
+      "component": "shared.flip-screen-block",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "third_screen": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.flip-screen-block"
+      "component": "shared.flip-screen-block",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "fourth_screen": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.flip-screen-block"
+      "component": "shared.flip-screen-block",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "fifth_screen": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.flip-screen-block"
+      "component": "shared.flip-screen-block",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "sixth_screen": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.flip-screen-block"
+      "component": "shared.flip-screen-block",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "seventh_screen": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.flip-screen-block"
+      "component": "shared.flip-screen-block",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "eighth_screen": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.flip-screen-block"
+      "component": "shared.flip-screen-block",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

@@ -9,13 +9,6 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
 
-const LINKS = [
-    { text: 'ФЛИП', link: '/flip' },
-    { text: 'Беспилотный автомобиль', link: '/self-driving-car' },
-    { text: 'О компании', link: '/about-company' },
-    { text: 'Карьера', link: '/career' }
-];
-
 interface IProps {
     children: React.ReactNode,
     seo: Record<string, unknown>,
@@ -31,7 +24,7 @@ const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => 
     return (
         <div className={cn('app__wrapper')}>
             <Seo seo={seo} />
-            <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} links={LINKS} pageNumber={pageNumber} setPageNumber={setPageNumber} whiteLogoImportant={theme.whiteLogoImportant} />
+            <Nav setIsPopupVisible={setIsPopupVisible} theme={theme} pageNumber={pageNumber} setPageNumber={setPageNumber} whiteLogoImportant={theme.whiteLogoImportant} />
             <main>{children}</main>
             <RespondForm setIsPopupVisible={setIsPopupVisible} isPopupVisible={isPopupVisible} />
             <CookieAlert />

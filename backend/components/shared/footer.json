@@ -24,7 +24,7 @@
     "privacyPolicyLink": {
       "type": "string"
     },
-    "publicOfferLink": {
+    "privacyPolicyText": {
       "type": "string"
     },
     "email": {

@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/respond-form",
+      "handler": "respond-form.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/respond-form",
+      "handler": "respond-form.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/respond-form",
+      "handler": "respond-form.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
