@@ -63,7 +63,7 @@ const DirectionsList = ({ directions, count, activeDirection, onClickDirection }
                     )
                     ))}
                 </ul>
-                <p>{count}</p>
+                <span className={cn('directions__count')}>{count}</span>
             </div>
         </div>
 

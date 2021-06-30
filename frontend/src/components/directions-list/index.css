@@ -61,4 +61,10 @@
             color: #34B7AA;
         }
     }
+
+    &__count {
+        font-family: var(--font-family-digits);
+        font-size: 125px;
+        line-height: 0.4;
+    }
 }
