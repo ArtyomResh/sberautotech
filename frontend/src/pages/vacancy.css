@@ -2,6 +2,10 @@
     --vacancy-padding-top: 32px;
 }
 
+ul {
+    padding-left: 18px;
+}
+
 .vacancy {
     margin-top: calc(var(--nav-height));
     padding-top: 32px;
@@ -97,6 +101,17 @@
         margin-top: 20px;
         border-radius: 64px;
         height: 56px;
+
+        &_mobile {
+            position: fixed;
+            bottom: 10px;
+            width: 90vw;
+            border-radius: 64px;
+
+            @media screen and (min-width: 1051px) {
+                display: none;
+            }
+        }
     }
 
     &__left-block-bottom {
@@ -109,6 +124,10 @@
         grid-column: content;
         display: flex;
         flex-wrap: nowrap;
+
+        & a {
+            cursor: pointer;
+        }
 
         & a svg:hover {
 
@@ -294,7 +313,7 @@
         grid-template-columns: 30vw 1fr;
 
         @media screen and (max-width: 1050px) {
-            margin: 20px 10px;
+            margin: 20px 10px 85px;
             display: flex;
             flex-direction: column;
             max-width: 690px;
@@ -304,17 +323,23 @@
     &__left-side {
         margin-left: 20px;
 
-        & p {
-            font-size: 14px;
-            line-height: 18px;
-            letter-spacing: -0.01em;
-            max-width: 290px;
-            margin-top: 12px;
-        }
-
         @media screen and (max-width: 1050px) {
             margin-left: 0;
         }
+    }
+
+    &__count {
+        font-family: var(--font-family-digits);
+        font-size: 125px;
+        line-height: 0.4;
+    }
+
+    &__count-text {
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.01em;
+        max-width: 290px;
+        margin-top: 12px;
     }
 
     &__right-side {
@@ -351,7 +376,7 @@
         line-height: 48px;
         letter-spacing: -0.01em;
 
-        & p {
+        & span {
             color: #34b7aa;
             display: inline;
         }
