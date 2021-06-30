@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import Button from '../button';
 
 import style from './index.css';
 import VacanciesItem from './item';
 
 interface IProps {
     data: Array<IVacanciesListItem>,
-    activeTags: Array<any>
+    activeTags: Array<any>,
+    onClickTag: any
 }
 
 export interface IVacanciesListItem {
@@ -35,16 +37,29 @@ export interface IVacanciesListItem {
     strapiId: number
 }
 
-const VacanciesList: React.FC<IProps> = ({ data, activeTags }) => {
+const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag }) => {
     const cn = useClassnames(style);
+    const [isMobileFilterVisible, setIsMobileFilterVisible] = useState(false);
 
     return (
         <div className={cn('vacancies__wrap')}>
             <div className={cn('vacancies__list')}>
                 {data.map((item) => (
-                    <VacanciesItem key={item.id} data={item} activeTags={activeTags} />
+                    <VacanciesItem key={item.id} data={item} activeTags={activeTags} onClickTag={onClickTag} />
                 ))}
             </div>
+            <div className={cn('vacancies__filter-wrapper', {
+                'vacancies__filter-wrapper_visible': isMobileFilterVisible
+            })}>
+                <p>HERE!!!!</p>
+            </div>
+            <Button
+                styleType="primary"
+                type="button"
+                className={cn('vacancies__filter-button')}
+                label={"Фильтровать"}
+                onClick={() => setIsMobileFilterVisible(!isMobileFilterVisible)}
+            />
         </div>
     );
 };

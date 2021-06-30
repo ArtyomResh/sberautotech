@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Layout from '../components/layout';
 import VacanciesList from '../components/vacancies-list';
@@ -59,15 +59,6 @@ const query = graphql`
         }
       }
     }
-    allStrapiTags {
-      edges {
-        node {
-          text
-          value
-          strapiId
-        }
-      }
-    }
     allStrapiDirections {
       edges {
         node {
@@ -79,38 +70,49 @@ const query = graphql`
   }
 `;
 
-const THROTTLE = 2500;
-
-const Vacancies = () => {
+const Vacancies = ({ location }) => {
   const cn = useClassnames(style);
   const data = useStaticQuery(query);
+  const params = new URLSearchParams(location.search);
+  const directionParam = params.get("direction");
+  const tagsParam = params.get("tags")?.split(',').map(item => Number(item)) || [];
 
   const $container = useRef<HTMLInputElement>(null);
 
-  const [searchString, setSearchString] = useState('')
+  const [searchString, setSearchString] = useState('');
 
   const vacanciesList = data.allStrapiVacancies.edges.map((edge) => edge.node);
-  const tags = data.allStrapiTags.edges.map((tag) => tag.node);
   const directions = data.allStrapiDirections.edges.map((direction) => direction.node);
 
-  const [activeDirections, setActiveDirections] = useState<Array<number>>([])
-  const [activeTags, setActiveTags] = useState<Array<number>>([])
-  const [filteredVacancies, setFilteredVacancies] = useState<Array<any>>(vacanciesList)
+  const [activeDirection, setActiveDirection] = useState<number | null>(Number(directionParam));
+  const [activeTags, setActiveTags] = useState<Array<number>>(tagsParam);
+  const [filteredVacancies, setFilteredVacancies] = useState<Array<any>>(vacanciesList);
+
+  const filteredTags = useMemo(() => {
+    return filteredVacancies.reduce((acc, item) => {
+      item.tags.forEach(tag => {
+        if (!acc.find(tagInAcc => tagInAcc.id === tag.id)) {
+          acc.push(tag)
+        }
+      })
+      return acc;
+    }, [])
+  }, [filteredVacancies])
 
   const onClickDirection = useCallback((e) => {
     const selectedDirectionId = Number(e.target.getAttribute('data-id'));
     if (!selectedDirectionId) {
-      setActiveDirections([])
+      setActiveDirection(null)
       return;
     }
 
-    if (!activeDirections.includes(selectedDirectionId)) {
-      setActiveDirections([...activeDirections, selectedDirectionId])
+    if (activeDirection !== selectedDirectionId) {
+      setActiveDirection(selectedDirectionId)
       return;
     }
 
-    setActiveDirections(activeDirections.filter(item => item !== selectedDirectionId));
-  }, [activeDirections])
+    setActiveDirection(null);
+  }, [activeDirection])
 
   const onClickTag = useCallback((e) => {
     const selectedTagId = Number(e.target.getAttribute('data-id'));
@@ -124,37 +126,31 @@ const Vacancies = () => {
   }, [activeTags])
 
   useEffect(() => {
-    console.log('HERE', searchString, activeDirections, activeTags, vacanciesList)
-
-
-
     const newFilteredVacancies = vacanciesList.filter((vacancy) => {
 
-      if (activeDirections.length && !activeDirections.includes(vacancy.direction.id)) {
+      if (activeDirection && activeDirection !== vacancy.direction.id) {
         return false;
       }
 
-      if (searchString.length && !vacancy.title.toLowerCase().includes(searchString.toLowerCase())) {
+      if (searchString.length && !vacancy.title.toLowerCase().includes(searchString.toLowerCase().trim())) {
         return false;
       }
 
       if (activeTags.length) {
-        return vacancy.tags.filter(({ id }) => activeTags.includes(id)).length ? true : false;
+        return vacancy.tags.filter(({ id }) => activeTags.includes(id)).length === activeTags.length ? true : false;
       }
 
-      console.log(vacancy)
-
       return true;
-    })
+    });
 
     setFilteredVacancies(newFilteredVacancies);
 
-  }, [searchString, activeDirections, activeTags])
+  }, [searchString, activeDirection, activeTags])
 
   return (
     <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
       <div className={cn('vacancies-page__wrapper')}>
-        <DirectionsList directions={directions} count={vacanciesList.length} activeDirections={activeDirections} onClickDirection={onClickDirection} />
+        <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
         <div className={cn('vacancies__wrapper')}>
           <div className={cn('vacancies__search-wrapper')}>
             <input
@@ -175,24 +171,33 @@ const Vacancies = () => {
           <div className={cn('vacancies__result-wrapper')}>
             {(searchString) ? (
               <p className={cn('vacancies__result')}>
-                Найдено {filteredVacancies.length} ваканси{(() => {
-                  if (filteredVacancies.length === 0 || filteredVacancies.length > 4) {
-                    return 'й'
-                  }
-                  if (filteredVacancies.length === 1) {
-                    return 'я'
-                  }
-                  if (filteredVacancies.length > 1 && filteredVacancies.length < 5) {
-                    return 'и'
-                  }
-                })()}
+                Найден{
+                  (() => {
+                    if (filteredVacancies.length === 1) {
+                      return 'a'
+                    }
+                    return 'о'
+                  })()
+                } {filteredVacancies.length} ваканси{
+                  (() => {
+                    if (filteredVacancies.length === 0 || filteredVacancies.length > 4) {
+                      return 'й'
+                    }
+                    if (filteredVacancies.length === 1) {
+                      return 'я'
+                    }
+                    if (filteredVacancies.length > 1 && filteredVacancies.length < 5) {
+                      return 'и'
+                    }
+                  })()
+                }
               </p>
             ) : null}
           </div>
           <div className={cn('vacancies__tags-wrapper')}>
-            <TagsList tags={tags} activeTags={activeTags} onClickTag={onClickTag} />
+            <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
           </div>
-          <VacanciesList data={filteredVacancies} activeTags={activeTags} />
+          <VacanciesList data={filteredVacancies} activeTags={activeTags} onClickTag={onClickTag} />
         </div>
       </div>
     </Layout>

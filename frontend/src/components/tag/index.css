@@ -7,8 +7,12 @@
     border-radius: 32px;
     padding: 5px 8px;
     margin-right: 8px;
+    margin-bottom: 10px;
     cursor: pointer;
     white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 
     &:hover {
         background: #C0CCD5;

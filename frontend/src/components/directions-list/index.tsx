@@ -17,18 +17,16 @@ interface IProps {
         strapiId: number
     }>,
     count: number,
-    activeDirections: Array<number>,
+    activeDirection: number | null,
     onClickDirection: any
 }
 
-const DirectionsList = ({ directions, count, activeDirections, onClickDirection }: IProps) => {
+const DirectionsList = ({ directions, count, activeDirection, onClickDirection }: IProps) => {
     const cn = useClassnames(style);
 
     const backToPreviousPage = useCallback(() => {
         window.history.back()
     }, []);
-
-    console.log(activeDirections, directions)
 
     return (
         <div className={cn('directions__wrapper')}>
@@ -43,7 +41,7 @@ const DirectionsList = ({ directions, count, activeDirections, onClickDirection 
                     <li
                         className={
                             cn('directions__list-item', {
-                                'directions__list-item_active': !activeDirections.length
+                                'directions__list-item_active': !activeDirection
                             })
                         }
                         onClick={onClickDirection}
@@ -54,7 +52,7 @@ const DirectionsList = ({ directions, count, activeDirections, onClickDirection 
                         <li
                             className={
                                 cn('directions__list-item', {
-                                    'directions__list-item_active': activeDirections?.includes(direction.strapiId)
+                                    'directions__list-item_active': activeDirection === direction.strapiId
                                 })
                             }
                             data-id={direction.strapiId}

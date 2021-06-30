@@ -13,7 +13,7 @@ interface IProps {
 
 const TagsList = ({ tags, activeTags, onClickTag }: IProps) => {
     const cn = useClassnames(style);
-    console.log('THERE', tags)
+
     return (
         <ul className={cn('tags-list')}>
             {tags.map(

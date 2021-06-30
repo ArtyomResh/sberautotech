@@ -12,7 +12,7 @@ interface IProps {
 
 const Tag = ({ text, strapiId, isActive, onClickTag }: IProps) => {
     const cn = useClassnames(style);
-    console.log(text, strapiId)
+
     return (
         <li className={
             cn('tag',

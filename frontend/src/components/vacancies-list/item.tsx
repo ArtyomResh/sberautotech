@@ -11,10 +11,11 @@ import { Link } from 'gatsby';
 
 interface IProps {
     data: IVacanciesListItem,
-    activeTags: Array<any>
+    activeTags: Array<any>,
+    onClickTag: any
 }
 
-const VacanciesListItem: React.FC<IProps> = ({ data, activeTags }) => {
+const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag }) => {
     const { title, city, about, jobType, publicationDate, area, direction, tags, strapiId, locale } = data;
     const cn = useClassnames(style);
 
@@ -36,7 +37,7 @@ const VacanciesListItem: React.FC<IProps> = ({ data, activeTags }) => {
                 <span className={cn('vacancies__area')}>{area.text}</span>
             </div>
             <div className={cn('vacancies__list-item-block')}>
-                <TagsList tags={tags} activeTags={activeTags} onClickTag={() => { }} />
+                <TagsList tags={tags} activeTags={activeTags} onClickTag={onClickTag} />
             </div>
         </div>
     );

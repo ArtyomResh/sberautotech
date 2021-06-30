@@ -252,73 +252,43 @@
       "header": "Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
       "list_items": [
         {
-          "target": "Сделать все необходимые сервисы доступными прямо в салоне авто",
-          "header": "Умный автомобиль и встраиваемые системы",
-          "description": "Наша команда занимается разработкой встраиваемой автомобильной системы на базе Android, чтобы обеспечить доступ ко всем необходимым водителю сервисам прямо в салоне. В первую очередь это навигация, построение маршрутов, музыка и голосовой помощник, благодаря которому для управления системой не придется отвлекаться от дороги. Мы хотим, чтобы в будущем оснащенный умной ОС автомобиль стал не просто средством передвижения, но и полноценным помощником: система может настраивать под конкретного водителя сиденье или климат-контроль, помогать с заказом билетов в кино и необходимыми покупками.",
-          "subDescriptionFirst": "Чтобы сделать это реальностью нам нужны мобильные и системные разработчики от junior до senior: с опытом работы с AOSP (либо желанием разобраться в этом), пониманием архитектурных подходов, алгоритмической базой и знанием Java и Kotlin. Опыт работы с Linux будет плюсом.",
-          "subDescriptionSecond": "",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=1",
             "text": "Вакансии",
             "style": "fill"
           }
         },
         {
-          "target": "Научить автомобиль автономной езде в городской среде",
-          "header": "Создание беспилотного автомобиля",
-          "description": "Мы больше, чем команда — целый департамент по созданию беспилотного автомобиля, в который входит 6 направлений. ",
-          "subDescriptionFirst": "Команда Planning занимается построением траектории для беспилотника и передает эти данные команде Control, которая преобразует знание о пути в движение автомобиля. Для работы к команде Control важны знания физики и математики, C++, для команды Planning - классические алгоритмы и C++. Направление Localization отвечает за местонахождение автомобиля, используя камеры и лидары. В эту команду мы ищем разработчиков со знанием C++, линейной алгебры, теории вероятностей.",
-          "subDescriptionSecond": "Для команды Perception, которая занимается распознаванием дорог, людей, машин и всего, что происходит вокруг, важно умение писать на Python и бэкграунд в компьютерном зрении. Данные, которые генерирует Perception, переходят к ребятам из команды Prediction. Их задача — предсказать, как участники дорожного движения будут вести себя в будущем. Для этого нужно знать C++ и/или уметь обучать рекуррентные нейросети. Команда симулятора воспроизводит нашу машину и все окружение вокруг. Здесь пригодиться С++. Также плюсом будет опыт в GameDev.",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=3",
             "text": "Вакансии",
             "style": "fill"
           }
         },
         {
-          "target": "Создавать принципиально новые продукты",
-          "header": "Продукт и дизайн",
-          "description": "Наша команда формирует видение будущего продукта, который реализуют наши коллеги. Мы создаем описание того, что нужно рынку и пользователю, наполняя бэклог работ для других команд. Наше кредо — смотреть на автомобиль как на часть жизни человека. Мы хотим, чтобы, садясь в салон, человек оказывался не в стальном коконе, а в большом мире, на связи с близкими и коллегами, с доступом ко всем привычным ему сервисам.",
-          "subDescriptionFirst": "Сейчас команда практически укомплектована, но нам все еще нужно несколько крутых Product Owner и UX/UI дизайнеров. Опыт работы в Automotive необязателен — мы ищем людей на стыке этой индустрии с другими, например с IoT, мобильной индустрией, Smart TV. Не забудьте захватить портфолио и свою готовность менять мир!",
-          "subDescriptionSecond": "Мы будем рады найти нестандартно мыслящих специалистов. Важное отличие в развитии наших устройств и систем — мы создаем принципиально новые продукты, которым еще только предстоит перевернуть представление от транспорте и передвижения в пространстве. Приготовьтесь к тому, что не всегда можно будет провести кастдев или A/B тест — нужно быть визионером, работать на опережение, придумывать каркас будущего продукта и чувствовать его место на рынке будущего. Если ты давно хотел не \"допилить фичу\", а сделать все с нуля самостоятельно — это к нам.",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=5",
             "text": "Вакансии",
             "style": "fill"
           }
         },
         {
-          "target": "Моделировать ситуации, проводить испытания и тестировать продукт",
-          "header": "Тестирование",
-          "description": "Мы приглашаем в свою команду тестировщиков, которые будут работать в тесном сотрудничестве с нашими разработчиками и другими специалистами, создающими транспорт будущего и беспилотные технологии.",
-          "subDescriptionFirst": "Прежде, чем беспилотный автомобиль выйдет на улицы, он отрабатывает в симуляторе все возможные ситуации, с которыми предстоит столкнуться на дороге. Для тестирования в симуляторе специалистам потребуется моделировать такие ситуации. Здесь пригодится хорошее знание Python и понимание алгоритмов. Нам также необходимы люди для тестирования софта на Android. Необходимо хорошее знакомство с самой ОС, а для автоматизаторов — умение уверенно работать с Appium.",
-          "subDescriptionSecond": "Ручным тестировщикам потребуются навыки работы с Linux, Docker и базовые знания по сетям. Мы также приглашаем к сотрудничеству специалистов по backend- и frontend-тестированию (Python, REST API, Selenium). Если же ты мечтаешь о решении нестандартных задач, то мы ищем тестировщиков на «железо». Для этого планируется создавать целую испытательную лабораторию для оценки качества работы устройств в различных условиях эксплуатации. Творческие и инженерные способности будут задействованы чуть больше, чем полностью!",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=7",
             "text": "Вакансии",
             "style": "fill"
           }
         },
         {
-          "target": "Выстраивать отношения с партнерами в поиске общих решений",
-          "header": "Управление проектами и развитие бизнеса",
-          "description": "Классический Automotive за более чем 100 лет развития довел до совершенства свою главную компетенцию — производство транспортных средств под управлением людей. Однако развитие цифровых технологий показало всему миру, что привычные задачи можно решать легче, быстрее и эффективнее. Пришло время менять и автомотив. И сделать это можно только вместе с теми, кто умеет смотреть в будущее, понимает тренды развития смежных индустрий и обладает навыком воплощения идей в реальные проекты.",
-          "subDescriptionFirst": "Нашей команде нужны люди, которые обладают экспертизой как в Automotive, так и в IT-секторе, готовы участвовать в формировании B2B, B2B2C и B2C решений, основанных на новейших технологиях и разработках SberAutoTech. Скорость принятия решений, умение достигать поставленных целей в установленные сроки и опыт работы с кросс-функциональными командами позволит стать причастными к созданию транспорта будущего.",
-          "subDescriptionSecond": "Создание транспорта будущего — огромный проект, который требует совместных усилий. Поэтому мы готовы к сотрудничеству с компаниями, которые уверенно чувствуют себя в сфере цифровых решений, с производителями автомобилей и электронных компонентов. Если ты видишь новые возможности в сфере цифрового транспорта, умеешь находить точки соприкосновения интересов разных на первый взгляд компаний, то тебе точно стоит работать в нашей команде.",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=9",
             "text": "Вакансии",
             "style": "fill"
           }
         },
         {
-          "target": "Рассказывать о преимуществах наших разработок и технологий",
-          "header": "Маркетинг",
-          "description": "Мы строим транспорт будущего, который сделает жизнь людей удобнее и безопаснее. Чтобы выполнить эту задачу, нам нужно постоянно делиться новостями о своих продуктах и ноу-хау, рассказывать о том, что мы делаем, и показывать свои разработки в действии. Для нас важно, чтобы как можно больше людей узнали о том, как «умные» технологии могут изменить нашу жизнь к лучшему. СМИ и социальные сети, официальные площадки и блоги — наш голос должен быть слышен везде.",
-          "subDescriptionFirst": "Нам нужны маркетологи с опытом работы в digital, разбирающиеся в коммуникационных стратегиях, IT-рынке, настройке и анализе рекламных кампаний, умеющие коммуницировать с экспертным сообществом. У тебя может быть профильное образование в сфере маркетинга или PR, но едва ли не важнее быть активным, открытым всему новому и готовым к нестандартным ходам.",
-          "subDescriptionSecond": "",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=11",
             "text": "Вакансии",
             "style": "fill"
           }
@@ -406,73 +376,43 @@
       "header": "We are proud to represent the SberAutoTech team. Each of us today is working to change the world for the better tomorrow. \nWe believe in each other.",
       "list_items": [
         {
-          "target": "Make all the necessary services available right in the car salon",
-          "header": "Smart car and embedded systems",
-          "description": "Our team is developing an Android-based embedded car system to provide access to all the services the driver needs right in the cabin. First of all, this is navigation, route planning, music and a voice assistant, thanks to which you will not have to be distracted from the road to control the system. In the future, we want a car equipped with a smart OS to become not just a means of transportation, but also a full-fledged assistant: the system can customize the seat or climate control for a specific driver, help with booking movie tickets and making necessary purchases.",
-          "subDescriptionFirst": "To make this a reality, we need mobile and system developers from junior to senior: with experience with AOSP (or a desire to figure it out), an understanding of architectural approaches, an algorithmic base, and knowledge of Java and Kotlin. Experience with Linux will be a plus.",
-          "subDescriptionSecond": "",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=2",
             "text": "Vacancies",
             "style": "fill"
           }
         },
         {
-          "target": "Teach a car to autonomously drive in an urban environment",
-          "header": "Creation of an unmanned vehicle",
-          "description": "We are more than a team - a whole department for the creation of an unmanned vehicle, which includes 6 directions.",
-          "subDescriptionFirst": "The Planning team builds the trajectory for the drone and transmits this data to the Control team, which converts the knowledge about the path into the movement of the car. To work for the Control team, knowledge of physics and mathematics, C ++ is important, for the Planning team - classical algorithms and C ++. Direction Localization is responsible for locating the vehicle using cameras and lidars. For this team we are looking for developers with knowledge of C ++, linear algebra, probability theory.",
-          "subDescriptionSecond": "For the Perception team, which is engaged in recognizing roads, people, cars and everything that happens around, the ability to write in Python and the background in computer vision are important. The data generated by Perception goes to the guys from the Prediction team. Their task is to predict how road users will behave in the future. To do this, you need to know C ++ and / or be able to train recurrent neural networks. The simulator team reproduces our car and the entire environment around it. This is where C ++ comes in handy. Experience with GameDev will also be a plus.",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=4",
             "text": "Vacancies",
             "style": "fill"
           }
         },
         {
-          "target": "Create fundamentally new products",
-          "header": "Product and design",
-          "description": "Our team forms the vision of the future product, which is implemented by our colleagues. We create a description of what the market and the user need, filling the work backlog for other teams. Our credo is to look at the car as a part of a person's life. We want a person to find themselves not in a steel cocoon, but in the big world, in touch with relatives and colleagues, with access to all the services they are used to, when sitting in a salon.",
-          "subDescriptionFirst": "Now the team is almost complete, but we still need some awesome Product Owner and UX / UI designers. Experience in Automotive is optional - we are looking for people at the intersection of this industry with others, for example, IoT, mobile industry, Smart TV. Don't forget to grab your portfolio and your willingness to change the world!",
-          "subDescriptionSecond": "We will be happy to find non-standard-minded specialists. An important difference in the development of our devices and systems is that we create fundamentally new products that have yet to transform the concept of transport and movement in space. Get ready for the fact that it will not always be possible to conduct a custom or A / B test - you need to be a visionary, stay ahead of the curve, come up with a framework for a future product and feel its place in the market of the future. If you have long wanted not to finish the feature, but to do everything from scratch on your own - this is us.",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=6",
             "text": "Vacancies",
             "style": "fill"
           }
         },
         {
-          "target": "Simulate situations, conduct tests and test a product",
-          "header": "Testing",
-          "description": "We are inviting testers to join our team, who will work closely with our developers and other professionals who create the transport of the future and unmanned technologies.",
-          "subDescriptionFirst": "Before the unmanned vehicle takes to the streets, it works out in the simulator all possible situations that will face on the road. To test in a simulator, technicians will need to simulate such situations. This is where a good knowledge of Python and an understanding of algorithms come in handy. We also need people to test software on Android. You need a good acquaintance with the OS itself, and for automators - the ability to confidently work with Appium.",
-          "subDescriptionSecond": "Manual testers will need Linux, Docker and basic networking skills. We also invite backend and frontend testing specialists (Python, REST API, Selenium) for cooperation. If you dream of solving non-standard problems, then we are looking for testers for \"hardware\". For this, it is planned to create an entire testing laboratory to assess the quality of the devices in various operating conditions. Creative and engineering skills will be used a little more than fully!",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=8",
             "text": "Vacancies",
             "style": "fill"
           }
         },
         {
-          "target": "Build relationships with partners in search of common solutions",
-          "header": "Project management and business development",
-          "description": "For more than 100 years of development, the classic Automotive has perfected its main competence - the production of vehicles under the control of people. However, the development of digital technologies has shown the whole world that familiar tasks can be solved easier, faster and more efficiently. It's time to change the car too. And this can only be done together with those who know how to look into the future, understand the development trends of related industries and have the skill of translating ideas into real projects.",
-          "subDescriptionFirst": "Our team needs people who have expertise in both the Automotive and the IT sector, ready to participate in the formation of B2B, B2B2C and B2C solutions based on the latest technologies and developments of SberAutoTech. The speed of decision-making, the ability to achieve the set goals on time and the experience of working with cross-functional teams will allow you to become involved in the creation of the transport of the future.",
-          "subDescriptionSecond": "Building the transport of the future is a huge project that requires joint efforts. Therefore, we are ready to cooperate with companies that feel confident in the field of digital solutions, with manufacturers of cars and electronic components. If you see new opportunities in the field of digital transport, you know how to find common ground of interests of different companies at first glance, then you should definitely work in our team.",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=10",
             "text": "Vacancies",
             "style": "fill"
           }
         },
         {
-          "target": "Share the benefits of our developments and technologies",
-          "header": "Marketing",
-          "description": "We are building the transport of the future that will make people's lives more convenient and safer. To accomplish this task, we need to constantly share news about our products and know-how, talk about what we do, and show our designs in action. It is important for us that as many people as possible learn about how “smart” technologies can change our lives for the better. Media and social networks, official platforms and blogs - our voice should be heard everywhere.",
-          "subDescriptionFirst": "We need marketers with experience in digital, who are versed in communication strategies, the IT market, setting up and analyzing advertising campaigns, who are able to communicate with the expert community. You may have a specialized education in marketing or PR, but it is almost more important to be active, open to everything new and ready for non-standard moves.",
-          "subDescriptionSecond": "",
           "link": {
-            "to": "/vacancies",
+            "to": "/vacancies?direction=12",
             "text": "Vacancies",
             "style": "fill"
           }
