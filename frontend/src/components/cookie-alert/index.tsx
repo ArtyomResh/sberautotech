@@ -13,7 +13,7 @@ const query = graphql`
         title
         description
         decline
-        accept      
+        accept
       }
     }
   }
