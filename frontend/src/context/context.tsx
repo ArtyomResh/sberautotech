@@ -1,15 +1,18 @@
 import React, { createContext, ReactElement, useState, useContext } from 'react';
 
-const appContext = createContext<{isPopupVisible: boolean, setIsPopupVisible: null | React.Dispatch<React.SetStateAction<boolean>>}>({
+const appContext = createContext<{isPopupVisible: boolean, setIsPopupVisible: null | React.Dispatch<React.SetStateAction<boolean>>, vacancyTitle: string, setVacancyTitle: null | React.Dispatch<React.SetStateAction<string>>}>({
     isPopupVisible   : false,
-    setIsPopupVisible: null
+    setIsPopupVisible: null,
+    vacancyTitle     : '',
+    setVacancyTitle  : null
 });
 const { Provider } = appContext;
 
 const AppProvider = ({ children }: { children: ReactElement }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [vacancyTitle, setVacancyTitle] = useState('');
 
-    return <Provider value={{ isPopupVisible, setIsPopupVisible }} >{children}</Provider>;
+    return <Provider value={{ isPopupVisible, setIsPopupVisible, vacancyTitle, setVacancyTitle }} >{children}</Provider>;
 };
 
 const useAppContext = () => useContext(appContext);

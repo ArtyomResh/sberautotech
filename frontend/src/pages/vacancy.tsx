@@ -189,7 +189,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
             <div className={cn('vacancy')}>
                 <div className={cn('vacancy__wrapper')}>
                     <div className={cn('vacancy__left-block')}>
-                        <LeftBlockVacancyPage city={city} jobType={jobType} backToPreviousPage={backToPreviousPage} />
+                        <LeftBlockVacancyPage city={city} jobType={jobType} backToPreviousPage={backToPreviousPage} title={title} />
                     </div>
                     <div className={cn('vacancy__right-block')}>
                         <div className={cn('vacancy__date-and-direction')}>
@@ -260,7 +260,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                         </div>
                     </div>
                 </div>
-                <ButtonWrapper className={cn('vacancy__respond-button_mobile')} label="Откликнуться" />
+                <ButtonWrapper className={cn('vacancy__respond-button_mobile')} label="Откликнуться" title={title} />
             </div>
         </Layout>
     );

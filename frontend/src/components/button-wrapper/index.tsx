@@ -12,14 +12,15 @@ interface IProps {
     type?: TButtonType,
     styleType?: TButtonStyleType,
     className?: string,
-    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+    title: string
 }
 
-const ButtonWrapper = ({ className, label, disabled, type, styleType, onClick }: IProps) => {
-    const { setIsPopupVisible } = useContext(appContext);
+const ButtonWrapper = ({ className, label, disabled, type, styleType, title }: IProps) => {
+    const { setIsPopupVisible, setVacancyTitle } = useContext(appContext);
 
     const setIsPopupVisibleHandler = () => {
         setIsPopupVisible(true);
+        setVacancyTitle(title);
     };
 
     return (

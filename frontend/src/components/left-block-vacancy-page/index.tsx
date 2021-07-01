@@ -13,10 +13,10 @@ import TwitterIcon from '../../images/twitter-icon.inline.svg';
 import VKIcon from '../../images/vk-icon.inline.svg';
 import ShareLinkIcon from '../../images/share-link-icon.inline.svg';
 
-const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage }) => {
+const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }) => {
     const cn = useClassnames(style);
 
-    const { setIsPopupVisible } = useContext(appContext);
+    const { setIsPopupVisible, setVacancyTitle } = useContext(appContext);
 
     const urlHref = useMemo(() => (typeof window !== 'undefined' ? window.location.href : ''), []);
 
@@ -40,7 +40,10 @@ const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage }) => {
                     <li>{jobType.text}</li>
                     <li>Офис</li>
                     <Button
-                        onClick={() => setIsPopupVisible(true)}
+                        onClick={() => {
+                            setVacancyTitle(title);
+                            setIsPopupVisible(true);
+                        }}
                         className={cn('vacancy__respond-button')}
                         label="Откликнуться"
                     />
