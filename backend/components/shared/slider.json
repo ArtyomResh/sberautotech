@@ -28,7 +28,8 @@
         "top_left",
         "bottom_left",
         "top_right",
-        "bottom_right"
+        "bottom_right",
+        "bottom_center"
       ],
       "default": "top_left"
     },
@@ -38,7 +39,8 @@
         "top_left",
         "bottom_left",
         "top_right",
-        "bottom_right"
+        "bottom_right",
+        "bottom_center"
       ],
       "default": "top_left"
     }
