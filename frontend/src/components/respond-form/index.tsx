@@ -231,11 +231,11 @@ const RespondForm = () => {
                                 <div className={cn('right-block__field-wrapper')}>
                                     <Input type="file" placeholder={file} name="file" requiredValidation={true} />
                                 </div>
-                                {/* {isRecaptchaConfirmed ? ( */}
-                                <div className={cn('right-block__field-wrapper')}>
-                                    <Button type="submit" label={buttonText} styleType="secondary" />
-                                </div>
-                                {/* ) : (
+                                {isRecaptchaConfirmed ? (
+                                    <div className={cn('right-block__field-wrapper')}>
+                                        <Button type="submit" label={buttonText} styleType="secondary" />
+                                    </div>
+                                ) : (
                                     <Recaptcha
                                         className={cn('right-block__grecaptcha')}
                                         ref={(e) => recaptchaInstance.current = e}
@@ -244,7 +244,7 @@ const RespondForm = () => {
                                         hl={locale}
                                         verifyCallback={verifyCallback}
                                     />
-                                )} */}
+                                )}
                             </div>
                         </div>
                     </React.Fragment>

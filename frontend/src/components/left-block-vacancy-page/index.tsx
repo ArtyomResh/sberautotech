@@ -7,13 +7,19 @@ import style from '../../pages/vacancy.css';
 
 import Button from '../button';
 
+import { IStrapiVacancies } from '../../pages/vacancy';
+
 import ArrowLeft from '../../images/arrow-left.inline.svg';
 import FaceBookIcon from '../../images/facebook-icon.inline.svg';
 import TwitterIcon from '../../images/twitter-icon.inline.svg';
 import VKIcon from '../../images/vk-icon.inline.svg';
 import ShareLinkIcon from '../../images/share-link-icon.inline.svg';
 
-const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }) => {
+interface IProps {
+    backToPreviousPage: () => void
+}
+
+const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }: IStrapiVacancies & IProps) => {
     const cn = useClassnames(style);
 
     const { setIsPopupVisible, setVacancyTitle, vacancyTitle } = useContext(appContext);
@@ -27,14 +33,11 @@ const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }) => {
     const setIsPopupVisibleHandler = useCallback(() => {
         setIsPopupVisible(true);
         setVacancyTitle(title);
-        console.log(vacancyTitle ? vacancyTitle : Boolean(vacancyTitle), 'Колбэк', 'leftBlock');
     }, [vacancyTitle]);
 
     useEffect(() => {
-        
         return () => {
             setVacancyTitle('');
-            console.log(vacancyTitle ? vacancyTitle : Boolean(vacancyTitle), 'ЮЗэффект', 'leftBlock');
         };
     }, [vacancyTitle]);
 

@@ -129,40 +129,39 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     }, [cursorDirection.actual, cursorCoordinates]);
 
     return (
-        // <div
-        //     className={cn('carousel-container', 'carousel')}
-        //     ref={$container}
-        //     onMouseMove={observeCursor}
-        //     onMouseLeave={() => {
-        //         setCursorDirection({ prev: cursorDirection.actual, actual: ECursorDirection.none });
-        //     }}
-        //     onClick={onClick}
-        // >
-        //     {elCursor}
-        //     {header && (
-        //         <p
-        //             className={cn('carousel__header',
-        //                 {
-        //                     [`carousel__header_${data.header_position?.replace('_', '-')}`]: data.header_position
-        //                 }
-        //             )}
-        //         >
-        //             {toUnescapedHTML(header)}
-        //         </p>
-        //     )}
-        //     <div className={cn('swiper-wrapper')}>
-        //         {data.slider_items.map((slide, i) => (
-        //             <div key={i} className={cn('swiper-slide', 'carousel__slide')}>
-        //                 <div className={cn('carousel__slide-container')}>
-        //                     <div className={cn('carousel__img-container')}>
-        //                         <img className={cn('carousel__img')} src={slide.localFile.publicURL} />
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         ))}
-        //     </div>
-        // </div>
-        null
+        <div
+            className={cn('carousel-container', 'carousel')}
+            ref={$container}
+            onMouseMove={observeCursor}
+            onMouseLeave={() => {
+                setCursorDirection({ prev: cursorDirection.actual, actual: ECursorDirection.none });
+            }}
+            onClick={onClick}
+        >
+            {elCursor}
+            {header && (
+                <p
+                    className={cn('carousel__header',
+                        {
+                            [`carousel__header_${data.header_position?.replace('_', '-')}`]: data.header_position
+                        }
+                    )}
+                >
+                    {toUnescapedHTML(header)}
+                </p>
+            )}
+            <div className={cn('swiper-wrapper')}>
+                {data.slider_items.map((slide, i) => (
+                    <div key={i} className={cn('swiper-slide', 'carousel__slide')}>
+                        <div className={cn('carousel__slide-container')}>
+                            <div className={cn('carousel__img-container')}>
+                                <img className={cn('carousel__img')} src={slide.localFile.publicURL} />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 };
 

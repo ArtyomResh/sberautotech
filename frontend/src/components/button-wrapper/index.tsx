@@ -21,13 +21,11 @@ const ButtonWrapper = ({ className, label, disabled, type, styleType, title }: I
     const setIsPopupVisibleHandler = useCallback(() => {
         setIsPopupVisible(true);
         setVacancyTitle(title);
-        console.log(vacancyTitle ? vacancyTitle : Boolean(vacancyTitle), 'Колбэк', 'кнопка');
     }, [vacancyTitle]);
 
     useEffect(() => {
         return () => {
             setVacancyTitle('');
-            console.log(vacancyTitle ? vacancyTitle : Boolean(vacancyTitle), 'ЮЗэффект', 'кнопка');
         };
     }, [vacancyTitle]);
 

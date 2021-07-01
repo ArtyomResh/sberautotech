@@ -98,7 +98,7 @@ interface ISeo {
     metaDescription: string
 }
 
-interface IStrapiVacancies {
+export interface IStrapiVacancies {
     about: string,
     area: IArea,
     city: ICity,
