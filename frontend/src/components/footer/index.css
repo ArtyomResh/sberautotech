@@ -57,9 +57,11 @@
             padding: 10px;
         }
 
-        &:hover {
-            background-color: #67CFC9;
-            color: #FFFF;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background-color: #67CFC9;
+                color: #FFFF;
+            }
         }
     }
 

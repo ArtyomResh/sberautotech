@@ -53,7 +53,7 @@ const query = graphql`
 const RespondForm = () => {
     const data = useStaticQuery(query);
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
-    const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(false);
+    const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(true);
     const [isSended, setIsSended] = useState(false);
     const [isError, setIsError] = useState(false);
     const { isPopupVisible, setIsPopupVisible } = useContext(appContext);

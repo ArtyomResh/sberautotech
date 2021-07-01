@@ -63,6 +63,13 @@
 
     &__left {
         display: flex;
+        min-width: 197px;
+        width: 25%;
+        max-width: 380px;
+
+        @media (max-width: 1120px) {
+            width: 20%;
+        }
     }
 
     &__logo {
@@ -74,7 +81,7 @@
 
     &__center {
         background-color: inherit;
-        flex-grow: 0.8;
+        flex-grow: 1;
         align-items: center;
         display: flex;
         font-family: var(--font-family-secondary);
@@ -119,6 +126,7 @@
     &__list {
         display: flex;
         position: relative;
+        width: 100%;
 
         @media (max-width: 1050px) {
             flex-direction: column;
@@ -160,9 +168,11 @@
             color: #BDFFF8;
         }
 
-        &:hover {
-            color: #BDFFF8;
-            outline-top: 5px solid #BDFFF8;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: #BDFFF8;
+                outline-top: 5px solid #BDFFF8;
+            }
         }
 
         @media (max-width: 1050px) {
@@ -220,9 +230,11 @@
         letter-spacing: -0.01em;
         border-radius: 50px;
 
-        &:hover {
-            background-color: #67CFC9;
-            color: #FFFF;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background-color: #67CFC9;
+                color: #FFFF;
+            }
         }
 
         @media (min-width: 1050px) {
@@ -251,9 +263,11 @@
         letter-spacing: 0;
         margin-left: auto;
 
-        &:hover {
-            background-color: #67CFC9;
-            color: #FFFF;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background-color: #67CFC9;
+                color: #FFFF;
+            }
         }
 
         @media (max-width: 1050px) {

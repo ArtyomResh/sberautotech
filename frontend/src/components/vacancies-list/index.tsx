@@ -39,27 +39,14 @@ export interface IVacanciesListItem {
 
 const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag }) => {
     const cn = useClassnames(style);
-    const [isMobileFilterVisible, setIsMobileFilterVisible] = useState(false);
 
     return (
         <div className={cn('vacancies__wrap')}>
             <div className={cn('vacancies__list')}>
-                {data.map((item) => (
+                {data?.length ? data.map((item) => (
                     <VacanciesItem key={item.id} data={item} activeTags={activeTags} onClickTag={onClickTag} />
-                ))}
+                )) : <p className={cn('vacancies__empty-text')}>Нет вакансий</p>}
             </div>
-            <div className={cn('vacancies__filter-wrapper', {
-                'vacancies__filter-wrapper_visible': isMobileFilterVisible
-            })}>
-                <p>HERE!!!!</p>
-            </div>
-            <Button
-                styleType="primary"
-                type="button"
-                className={cn('vacancies__filter-button')}
-                label={"Фильтровать"}
-                onClick={() => setIsMobileFilterVisible(!isMobileFilterVisible)}
-            />
         </div>
     );
 };

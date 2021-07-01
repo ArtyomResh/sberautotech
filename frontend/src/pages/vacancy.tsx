@@ -6,7 +6,6 @@ import { toUnescapedHTML } from '../utils';
 
 import style from './vacancy.css';
 
-import ThreeHundredIcon from '../images/three-hundred.inline.svg';
 import PlayButton from '../images/play-button-vacancy.inline.svg';
 
 import Layout from '../components/layout';
@@ -71,6 +70,12 @@ export const query = graphql`
         title
         whatToDo
         whatWaitingFor
+        customDescriptionHeader
+        conditionsHeader
+        plussesHeader
+        plusses
+        whatToDoHeader
+        whatWaitingForHeader
     }
   }
 `;
@@ -177,13 +182,6 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
     window.history.back();
   }, []);
 
-  const getDate = useCallback((date) => {
-    const parsedDate = new Date(date);
-    const monthList = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-
-    return `${parsedDate.getDate()} ${monthList[parsedDate.getMonth()]}`;
-  }, []);
-
   return (
     <Layout seo={data.allStrapiVacancyPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
       <div className={cn('vacancy')}>
@@ -193,7 +191,6 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
           </div>
           <div className={cn('vacancy__right-block')}>
             <div className={cn('vacancy__date-and-direction')}>
-              <span>{getDate(publicationDate)}</span>
               <span>{direction.header}</span>
             </div>
             <div className={cn('vacancy__title')}>
@@ -241,6 +238,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
             ref={videoRef}
             src={video.localFile.publicURL}
             poster={videoPoster.localFile.publicURL}
+            loop={true}
           >
           </video>
         </div>

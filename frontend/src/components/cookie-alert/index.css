@@ -52,18 +52,22 @@
             margin-left: 0px;
         }
 
-        &:hover {
-            background-color: #67CFC9;
-            color: #FFFF;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background-color: #67CFC9;
+                color: #FFFF;
+            }
         }
 
         &_dark {
             color: #FFFF;
             background: #43515C;
 
-            &:hover {
-                background-color: #67CFC9;
-                color: #FFFF;
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    background-color: #67CFC9;
+                    color: #FFFF;
+                }
             }
         }
     }
