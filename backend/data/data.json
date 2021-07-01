@@ -549,6 +549,12 @@
       "metaDescription":"СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
       "shareImage":null
     },
+    "cookieBanner": {
+      "title": "Мы используем файлы cookies (куки-файлы) c целью повышения удобства пользования веб-сайтом.",
+      "description": "Если Вы не хотите, чтобы Ваши пользовательские данные обрабатывались, пожалуйста, ограничьте их использование в своём браузере.",
+      "decline": "Нет",
+      "accept": "Принять"
+    },
     "favicon":null
   },
   "globalEn": {
@@ -559,6 +565,12 @@
       "metaTitle":"SberAutoTech",
       "metaDescription":"SberAutoTech",
       "shareImage":null
+    },
+    "cookieBanner": {
+      "title": "We use cookies to improve the usability of the website.",
+      "description": "If you do not want your user data to be processed, please limit their use in your browser.",
+      "decline": "No",
+      "accept": "Accept"
     },
     "favicon":null
   },
@@ -918,7 +930,7 @@
       "primary_text_float": "right",
       "secondary_text_float": "right"
     }
-  },  
+  },
   "Vacancies": {
     "data": [
       {
@@ -1133,7 +1145,7 @@
         "text": "Полная занятость",
         "value": "full",
         "duration": "5-ти дневная рабочая неделя",
-        "place": "Офис", 
+        "place": "Офис",
         "localizations": [
           {
             "id": 2,
@@ -1147,7 +1159,7 @@
         "text": "Full-time",
         "value": "full",
         "duration": "5-day work week",
-        "place": "Office", 
+        "place": "Office",
         "localizations": [
           {
             "id": 1,
@@ -1427,7 +1439,7 @@
       }
     ],
     "joinButtonText": "Присоединиться"
-  },  
+  },
   "NavPanelEn": {
     "id": 1,
     "locale": "en",
