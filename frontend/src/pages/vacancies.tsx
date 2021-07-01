@@ -12,6 +12,7 @@ import SearchIcon from '../images/search.svg';
 import CrossIcon from '../images/cross.svg';
 
 import style from './vacancies.css';
+import Button from '../components/button';
 
 const query = graphql`
   query {
@@ -87,6 +88,7 @@ const Vacancies = ({ location }) => {
   const [activeDirection, setActiveDirection] = useState<number | null>(Number(directionParam));
   const [activeTags, setActiveTags] = useState<Array<number>>(tagsParam);
   const [filteredVacancies, setFilteredVacancies] = useState<Array<any>>(vacanciesList);
+  const [isMobileFilterVisible, setIsMobileFilterVisible] = useState(false);
 
   const filteredTags = useMemo(() => {
     return filteredVacancies.reduce((acc, item) => {
@@ -150,55 +152,113 @@ const Vacancies = ({ location }) => {
   return (
     <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
       <div className={cn('vacancies-page__wrapper')}>
-        <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
-        <div className={cn('vacancies__wrapper')}>
-          <div className={cn('vacancies__search-wrapper')}>
-            <input
-              ref={$container}
-              className={cn('vacancies__search')}
-              value={searchString}
-              type="text"
-              placeholder="Поиск"
-              onChange={(e) => setSearchString(e.target.value)}
-            />
-            {(searchString) ? (
-              <img className={cn('vacancies__search-icon')} src={CrossIcon} onClick={() => setSearchString('')} />
-            ) : (
-                <img className={cn('vacancies__search-icon')} src={SearchIcon} onClick={() => $container.current?.focus()} />
-              )
-            }
-          </div>
-          <div className={cn('vacancies__result-wrapper')}>
-            {(searchString) ? (
-              <p className={cn('vacancies__result')}>
-                Найден{
-                  (() => {
-                    if (filteredVacancies.length === 1) {
-                      return 'a'
-                    }
-                    return 'о'
-                  })()
-                } {filteredVacancies.length} ваканси{
-                  (() => {
+        {
+          !isMobileFilterVisible ? (
+            <>
+              <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
+              <div className={cn('vacancies__wrapper')}>
+                <div className={cn('vacancies__search-wrapper')}>
+                  <input
+                    ref={$container}
+                    className={cn('vacancies__search')}
+                    value={searchString}
+                    type="text"
+                    placeholder="Поиск"
+                    onChange={(e) => setSearchString(e.target.value)}
+                  />
+                  {(searchString) ? (
+                    <img className={cn('vacancies__search-icon')} src={CrossIcon} onClick={() => setSearchString('')} />
+                  ) : (
+                      <img className={cn('vacancies__search-icon')} src={SearchIcon} onClick={() => $container.current?.focus()} />
+                    )
+                  }
+                </div>
+                <div className={cn('vacancies__result-wrapper')}>
+                  {(searchString) ? (
+                    <p className={cn('vacancies__result')}>
+                      Найден{
+                        (() => {
+                          if (filteredVacancies.length === 1) {
+                            return 'a'
+                          }
+                          return 'о'
+                        })()
+                      } {filteredVacancies.length} ваканси{
+                        (() => {
+                          if (filteredVacancies.length === 0 || filteredVacancies.length > 4) {
+                            return 'й'
+                          }
+                          if (filteredVacancies.length === 1) {
+                            return 'я'
+                          }
+                          if (filteredVacancies.length > 1 && filteredVacancies.length < 5) {
+                            return 'и'
+                          }
+                        })()
+                      }
+                    </p>
+                  ) : null}
+                </div>
+                <div className={cn('vacancies__tags-wrapper')}>
+                  <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
+                </div>
+                <VacanciesList data={filteredVacancies} activeTags={activeTags} onClickTag={onClickTag} />
+              </div>
+              <Button
+                styleType="primary"
+                type="button"
+                className={cn('vacancies__button', 'vacancies__filter-button', {
+                  'vacancies__filter-button_hidden': isMobileFilterVisible
+                })}
+                label={`Фильтровать`}
+                count={(activeDirection ? 1 : 0) + activeTags?.length || 0}
+                onClick={() => setIsMobileFilterVisible(!isMobileFilterVisible)}
+              />
+            </>
+          ) : (
+              <div className={cn('vacancies__filter-wrapper', {
+                'vacancies__filter-wrapper_visible': isMobileFilterVisible
+              })}>
+                <p className={cn('vacancies__filter-header')}>Фильтр</p>
+                <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
+                <p className={cn('vacancies__filter-header')}>Теги</p>
+                <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
+                <Button
+                  styleType="primary"
+                  type="button"
+                  className={cn('vacancies__button', 'vacancies__show-button', {
+                    'vacancies__show-button_visible': isMobileFilterVisible
+                  })}
+                  label={`Смотреть ${filteredVacancies.length} результат${(() => {
                     if (filteredVacancies.length === 0 || filteredVacancies.length > 4) {
-                      return 'й'
-                    }
-                    if (filteredVacancies.length === 1) {
-                      return 'я'
+                      return 'ов'
                     }
                     if (filteredVacancies.length > 1 && filteredVacancies.length < 5) {
-                      return 'и'
+                      return 'а'
                     }
+
+                    return ''
                   })()
-                }
-              </p>
-            ) : null}
-          </div>
-          <div className={cn('vacancies__tags-wrapper')}>
-            <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
-          </div>
-          <VacanciesList data={filteredVacancies} activeTags={activeTags} onClickTag={onClickTag} />
-        </div>
+                    }`}
+                  onClick={() => setIsMobileFilterVisible(!isMobileFilterVisible)}
+                />
+                <Button
+                  styleType="primary"
+                  type="button"
+                  className={cn('vacancies__button', 'vacancies__reset-button', {
+                    'vacancies__reset-button_visible': isMobileFilterVisible
+                  })}
+                  label="Сбросить"
+                  count={(activeDirection ? 1 : 0) + activeTags?.length || 0}
+                  onClick={() => {
+                    setActiveDirection(null);
+                    setActiveTags([]);
+                    setIsMobileFilterVisible(!isMobileFilterVisible)
+                  }}
+                />
+              </div>
+            )
+        }
       </div>
     </Layout>
   );

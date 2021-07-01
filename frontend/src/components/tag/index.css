@@ -14,14 +14,17 @@
     -moz-user-select: none;
     -ms-user-select: none;
 
-    &:hover {
-        background: #C0CCD5;
-        border: 1px solid #758794;
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            color: #05080A;
+            background: #66DED2;
+            border: 1px solid #66DED2;
+        }
     }
 
     &_active {
-        color: #1F272E !important;
-        background: #BDFFF8 !important;
-        border: 1px solid #BDFFF8 !important;
+        color: #1F272E;
+        background: #BDFFF8;
+        border: 1px solid #BDFFF8;
     }
 }

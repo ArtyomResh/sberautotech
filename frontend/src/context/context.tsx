@@ -1,6 +1,6 @@
 import React, { createContext, ReactElement, useState, useContext } from 'react';
 
-const appContext = createContext<{isPopupVisible: boolean, setIsPopupVisible: null | React.Dispatch<React.SetStateAction<boolean>>, vacancyTitle: string, setVacancyTitle: null | React.Dispatch<React.SetStateAction<string>>}>({
+const appContext = createContext<{isPopupVisible: boolean, setIsPopupVisible: React.Dispatch<React.SetStateAction<boolean>>, vacancyTitle: string, setVacancyTitle: React.Dispatch<React.SetStateAction<string>>}>({
     isPopupVisible   : false,
     setIsPopupVisible: null,
     vacancyTitle     : '',

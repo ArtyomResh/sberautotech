@@ -21,9 +21,8 @@ const options = [
     { value: 'Design', label: 'Design' }
 ];
 
-const HOST = process.env.API_URL || '';
+const HOST = process.env.API_URL || 'http://localhost:1337';
 const FORM_URL = `${HOST}/form`;
-
 
 const query = graphql`
   query {
@@ -53,13 +52,15 @@ const query = graphql`
 const RespondForm = () => {
     const data = useStaticQuery(query);
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
-    const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(false);
+    const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(true);
     const [isSended, setIsSended] = useState(false);
     const [isError, setIsError] = useState(false);
+    const { vacancyTitle } = useContext(appContext);
     const { isPopupVisible, setIsPopupVisible } = useContext(appContext);
     const cn = useClassnames(style);
     const timeoutId = useRef<number>();
     const recaptchaInstance = useRef<Recaptcha | null>();
+
 
     const { consent,
         direction,
@@ -117,14 +118,14 @@ const RespondForm = () => {
     const onSubmit = async (data) => {
         setIsSubmitDisabled(true);
 
-        console.log(data);
-
-
         const formData = new FormData();
         const fileInput = document.querySelector('#file');
         const file = data.file[0] || fileInput?.files[0];
         const base64 = await toBase64(file);
 
+        if(vacancyTitle) {
+            formData.append('vacancy', vacancyTitle);
+        }
 
         for(const name in data) {
             if(data[name]) {

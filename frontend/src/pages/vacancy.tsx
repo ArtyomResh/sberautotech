@@ -6,7 +6,6 @@ import { toUnescapedHTML } from '../utils';
 
 import style from './vacancy.css';
 
-import ThreeHundredIcon from '../images/three-hundred.inline.svg';
 import PlayButton from '../images/play-button-vacancy.inline.svg';
 
 import Layout from '../components/layout';
@@ -71,6 +70,12 @@ export const query = graphql`
         title
         whatToDo
         whatWaitingFor
+        customDescriptionHeader
+        conditionsHeader
+        plussesHeader
+        plusses
+        whatToDoHeader
+        whatWaitingForHeader
     }
   }
 `;
@@ -105,7 +110,13 @@ interface IStrapiVacancies {
     tags: Array<ITag>,
     title: string,
     whatToDo: string,
-    whatWaitingFor: string
+    whatWaitingFor: string,
+    customDescriptionHeader: string,
+    conditionsHeader: string,
+    plussesHeader: string,
+    plusses: string,
+    whatToDoHeader: string,
+    whatWaitingForHeader: string
 }
 
 interface INodes {
@@ -157,7 +168,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [play, setPlay] = useState<boolean>(false);
 
-    const { about, area, city, conditions, customDescription, direction, jobType, publicationDate, tags, title, whatToDo, whatWaitingFor } = data.strapiVacancies;
+    const { about, area, city, conditions, customDescription, direction, jobType, tags, title, whatToDo, whatWaitingFor, customDescriptionHeader, conditionsHeader, plussesHeader, plusses, whatToDoHeader, whatWaitingForHeader } = data.strapiVacancies;
     const { count, headerBottom, countText, textBottom, video, videoPoster } = data.allStrapiVacancyPage.edges[0].node;
 
     const toggleVideo = useCallback(() => {
@@ -177,13 +188,6 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
         window.history.back();
     }, []);
 
-    const getDate = useCallback((date) => {
-        const parsedDate = new Date(date);
-        const monthList = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-
-        return `${parsedDate.getDate()} ${monthList[parsedDate.getMonth()]}`;
-    }, []);
-
     return (
         <Layout seo={data.allStrapiVacancyPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
             <div className={cn('vacancy')}>
@@ -193,7 +197,6 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                     </div>
                     <div className={cn('vacancy__right-block')}>
                         <div className={cn('vacancy__date-and-direction')}>
-                            <span>{getDate(publicationDate)}</span>
                             <span>{direction.header}</span>
                         </div>
                         <div className={cn('vacancy__title')}>
@@ -216,20 +219,26 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                         <div className={cn('vacancy__about-wrapper')}>
                             {toUnescapedHTML(about)}
                         </div>
+                        {customDescription ? (
+                            <div className={cn('vacancy__text-wrapper')}>
+                                <h1>{customDescriptionHeader}</h1>
+                                {toUnescapedHTML(customDescription)}
+                            </div>) : null}
                         <div className={cn('vacancy__text-wrapper')}>
-                            <h1>Кого мы ищем</h1>
-                            {toUnescapedHTML(customDescription)}
-                        </div>
-                        <div className={cn('vacancy__text-wrapper')}>
-                            <h1>Обязанности</h1>
+                            <h1>{whatToDoHeader}</h1>
                             {toUnescapedHTML(whatToDo)}
                         </div>
                         <div className={cn('vacancy__text-wrapper')}>
-                            <h1>Требования</h1>
+                            <h1>{whatWaitingForHeader}</h1>
                             {toUnescapedHTML(whatWaitingFor)}
                         </div>
+                        {plusses ? (
+                            <div className={cn('vacancy__text-wrapper')}>
+                                <h1>{plussesHeader}</h1>
+                                {toUnescapedHTML(plusses)}
+                            </div>) : null}
                         <div className={cn('vacancy__text-wrapper')}>
-                            <h1>Условия</h1>
+                            <h1>{conditionsHeader}</h1>
                             {toUnescapedHTML(conditions)}
                         </div>
                     </div>
@@ -241,6 +250,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                         ref={videoRef}
                         src={video.localFile.publicURL}
                         poster={videoPoster.localFile.publicURL}
+                        loop={true}
                     >
                     </video>
                 </div>

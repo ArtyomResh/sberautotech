@@ -46,9 +46,11 @@
         &_fill {
             background: #BDFFF8;
 
-            &:hover {
-                background: #67CFC9;
-                color: #FFF;
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    background: #67CFC9;
+                    color: #FFF;
+                }
             }
         }
     }
@@ -161,6 +163,11 @@
             max-width: 355px;
             min-width: 355px;
         }
+
+        @media (max-width: 330px) {
+            max-width: 310px;
+            min-width: 310px;
+        }
     }
 
     &__link-wrapper {
@@ -179,6 +186,10 @@
 
         @media (max-width: 376px) {
             padding: 16px 105px;
+        }
+
+        @media (max-width: 330px) {
+            padding: 16px 80px;
         }
     }
 }

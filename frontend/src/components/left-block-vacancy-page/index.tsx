@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo, useEffect } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import { appContext } from '../../context/context';
@@ -16,13 +16,27 @@ import ShareLinkIcon from '../../images/share-link-icon.inline.svg';
 const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }) => {
     const cn = useClassnames(style);
 
-    const { setIsPopupVisible, setVacancyTitle } = useContext(appContext);
+    const { setIsPopupVisible, setVacancyTitle, vacancyTitle } = useContext(appContext);
 
     const urlHref = useMemo(() => (typeof window !== 'undefined' ? window.location.href : ''), []);
 
     const URLCopier = useCallback(() => {
         void navigator.clipboard.writeText(urlHref);
     }, []);
+
+    const setIsPopupVisibleHandler = useCallback(() => {
+        setIsPopupVisible(true);
+        setVacancyTitle(title);
+        console.log(vacancyTitle ? vacancyTitle : Boolean(vacancyTitle), 'Колбэк', 'leftBlock');
+    }, [vacancyTitle]);
+
+    useEffect(() => {
+        
+        return () => {
+            setVacancyTitle('');
+            console.log(vacancyTitle ? vacancyTitle : Boolean(vacancyTitle), 'ЮЗэффект', 'leftBlock');
+        };
+    }, [vacancyTitle]);
 
     return (
         <React.Fragment>
@@ -40,10 +54,7 @@ const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }) => {
                     <li>{jobType.text}</li>
                     <li>Офис</li>
                     <Button
-                        onClick={() => {
-                            setVacancyTitle(title);
-                            setIsPopupVisible(true);
-                        }}
+                        onClick={setIsPopupVisibleHandler}
                         className={cn('vacancy__respond-button')}
                         label="Откликнуться"
                     />

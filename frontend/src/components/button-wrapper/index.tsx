@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useCallback } from 'react';
 
 import Button from '../button';
 import { appContext } from '../../context/context';
@@ -16,12 +16,20 @@ interface IProps {
 }
 
 const ButtonWrapper = ({ className, label, disabled, type, styleType, title }: IProps) => {
-    const { setIsPopupVisible, setVacancyTitle } = useContext(appContext);
+    const { setIsPopupVisible, setVacancyTitle, vacancyTitle } = useContext(appContext);
 
-    const setIsPopupVisibleHandler = () => {
+    const setIsPopupVisibleHandler = useCallback(() => {
         setIsPopupVisible(true);
         setVacancyTitle(title);
-    };
+        console.log(vacancyTitle ? vacancyTitle : Boolean(vacancyTitle), 'Колбэк', 'кнопка');
+    }, [vacancyTitle]);
+
+    useEffect(() => {
+        return () => {
+            setVacancyTitle('');
+            console.log(vacancyTitle ? vacancyTitle : Boolean(vacancyTitle), 'ЮЗэффект', 'кнопка');
+        };
+    }, [vacancyTitle]);
 
     return (
         <Button
