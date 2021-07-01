@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_cookie_banners",
+  "info": {
+    "name": "CookieBanner",
+    "icon": "anchor"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "accept": {
+      "type": "string"
+    },
+    "decline": {
+      "type": "string"
+    }
+  }
+}
