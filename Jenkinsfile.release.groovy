@@ -14,26 +14,23 @@ timestamps {
                     config = readJSON file: configFile
                 }
 
-                withCredentials([string(credentialsId: config.slack.frontend_secret_id, variable: 'slackHook')]) {
-                    config.slack.frontend_hook = slackHook
-                }
-
                 repository = [
                     'address': scm.getUserRemoteConfigs()[0].getUrl(),
                     'source_branch': scm.getBranches()[0].toString(),
                     'target_branch': scm.getBranches()[0].toString(),
-                    'credentials': config.bitbucket.ssh_credentials
+                    'credentials': config.gitlab.ssh_credentials
                 ]
 
                 repo_name = repository.address.split('/')[4].replace('.git', '')
                 app_name = repo_name.replaceAll("_|\\.", "-")
+                manager.addBadge('orange-square.png', "Version #${params.version}", params.version)
                 info = "*${repo_name}*: Deploy on PROD\n\nVersion: *${params.version}*\nJob URL: ${env.BUILD_URL}\nStatus: "
             }
 
             try {
-                stage('Checkout') {
+                stage('Clone source') {
                     try {
-                        checkoutBitbucket(repository, false)
+                        gitUtils.checkoutRepository(repository, false)
                     } catch (checkoutError) {
                         log.error("Checkout Failed")
                         info += ":x: checkout faled"
@@ -41,16 +38,14 @@ timestamps {
                     }
 
                     log.info("Checked out branch: ${params.version}")
-                    manager.addBadge('orange-square.png', "Version #${params.version}", params.version)
                 }
 
                 stage('Check image') {
                     image = "${config.docker_registry.host}/${config.docker_registry.dir}/${repo_name}/${params.package}:${version}"
                     log.info("Pull image ${image}")
-
                     docker.withRegistry("https://${config.docker_registry.host}", config.docker_registry.credentials) {
                         try {
-                            sh(script: "docker pull ${image}", returnStatus: true)
+                            sh("docker pull ${image}")
                         } catch (pullError) {
                             log.error("Failed to pull release image: ${pullError}")
                             info += ":warning:"
@@ -62,7 +57,6 @@ timestamps {
                 stage('Deploy') {
                     stand = 'infra'
                     log.info("Deploy ${image} on PROD")
-
                     dir("${WORKSPACE}/${params.package}/devops/k8s") {
                         try {
                             withCredentials([file(credentialsId: config.k8s[stand].credentials, variable: 'k8sConfig')]) {
@@ -87,12 +81,13 @@ timestamps {
                     }
                 }
             } catch (Exception e) {
-                publishToSlack(config.slack.frontend_hook, info)
+                currentBuild.result = "FAILURE"
+                slackSend(channel: config.slack.frontend_channel, message: info)
                 throw e
             }
 
             info += ":ok_hand:"
-            publishToSlack(config.slack.frontend_hook, info)
+            slackSend(channel: config.slack.frontend_channel, message: info)
         }
     }
 }
