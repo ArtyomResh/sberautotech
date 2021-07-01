@@ -653,7 +653,7 @@
     },
     "slider": {
       "header": "У компании три ключевые локации — офис разработки программного обеспечения, инженерно-испытательный центр и инжиниринговый офис в {Москве и Минске.}",
-      "header_position": "bottom_right",
+      "header_position": "bottom_center",
       "text": null,
       "text_position": "bottom_left",
       "slider_items": [null, null],
@@ -918,7 +918,7 @@
       "primary_text_float": "right",
       "secondary_text_float": "right"
     }
-  },  
+  },
   "Vacancies": {
     "data": [
       {
@@ -1133,7 +1133,7 @@
         "text": "Полная занятость",
         "value": "full",
         "duration": "5-ти дневная рабочая неделя",
-        "place": "Офис", 
+        "place": "Офис",
         "localizations": [
           {
             "id": 2,
@@ -1147,7 +1147,7 @@
         "text": "Full-time",
         "value": "full",
         "duration": "5-day work week",
-        "place": "Office", 
+        "place": "Office",
         "localizations": [
           {
             "id": 1,
@@ -1427,7 +1427,7 @@
       }
     ],
     "joinButtonText": "Присоединиться"
-  },  
+  },
   "NavPanelEn": {
     "id": 1,
     "locale": "en",
