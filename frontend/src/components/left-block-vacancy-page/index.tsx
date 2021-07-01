@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo, useEffect } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import { appContext } from '../../context/context';
@@ -7,22 +7,39 @@ import style from '../../pages/vacancy.css';
 
 import Button from '../button';
 
+import { IStrapiVacancies } from '../../pages/vacancy';
+
 import ArrowLeft from '../../images/arrow-left.inline.svg';
 import FaceBookIcon from '../../images/facebook-icon.inline.svg';
 import TwitterIcon from '../../images/twitter-icon.inline.svg';
 import VKIcon from '../../images/vk-icon.inline.svg';
 import ShareLinkIcon from '../../images/share-link-icon.inline.svg';
 
-const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage }) => {
+interface IProps {
+    backToPreviousPage: () => void
+}
+
+const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }: IStrapiVacancies & IProps) => {
     const cn = useClassnames(style);
 
-    const { setIsPopupVisible } = useContext(appContext);
+    const { setIsPopupVisible, setVacancyTitle, vacancyTitle } = useContext(appContext);
 
     const urlHref = useMemo(() => (typeof window !== 'undefined' ? window.location.href : ''), []);
 
     const URLCopier = useCallback(() => {
         void navigator.clipboard.writeText(urlHref);
     }, []);
+
+    const setIsPopupVisibleHandler = useCallback(() => {
+        setIsPopupVisible(true);
+        setVacancyTitle(title);
+    }, [vacancyTitle]);
+
+    useEffect(() => {
+        return () => {
+            setVacancyTitle('');
+        };
+    }, [vacancyTitle]);
 
     return (
         <React.Fragment>
@@ -40,7 +57,7 @@ const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage }) => {
                     <li>{jobType.text}</li>
                     <li>Офис</li>
                     <Button
-                        onClick={() => setIsPopupVisible(true)}
+                        onClick={setIsPopupVisibleHandler}
                         className={cn('vacancy__respond-button')}
                         label="Откликнуться"
                     />

@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "A Strapi application",
   "scripts": {
-    "develop": "strapi develop",
+    "develop": "STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=ru strapi develop",
     "start": "strapi start",
     "start:production": "NODE_ENV=production yarn start",
     "build": "strapi build",

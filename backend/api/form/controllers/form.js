@@ -2,13 +2,13 @@
 
 module.exports = {
   async send(ctx) {
-    const { acception, name, surname, email, direction, textarea, content, filename } = ctx.request.body;
+    const { acception, name, surname, email, direction, textarea, content, filename, vacancy } = ctx.request.body;
 
     try {
       const res = await strapi.plugins['email'].services.email.send({
         //TODO: Можно ли указать в strapi?
         to: 'hr_sat@sberbank.ru',
-        subject: 'Форма сайта - Резюме',
+        subject: vacancy ? `Вакансия: ${vacancy}` : 'Отклик не по конкретной вакансии',
         html: `
           <p>${name} ${surname} - ${email}</p>
           <p>Направление: ${direction}</p>
