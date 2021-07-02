@@ -73,9 +73,9 @@
 
     &__filter-wrapper {
         display: none;
-        position: fixed;
+        position: absolute;
         width: calc(100% - 40px);
-        height: 100%;
+        height: calc(100% + 300px);
         background: white;
         top: 0;
         left: 0;

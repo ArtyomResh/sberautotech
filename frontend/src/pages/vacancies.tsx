@@ -93,7 +93,7 @@ const Vacancies = ({ location }) => {
   const filteredTags = useMemo(() => {
     return filteredVacancies.reduce((acc, item) => {
       item.tags.forEach(tag => {
-        if (!acc.find(tagInAcc => tagInAcc.id === tag.id) && activeDirection) {
+        if (!acc.find(tagInAcc => tagInAcc.id === tag.id) && (activeDirection || activeTags.length)) {
           acc.push(tag)
         }
       })
