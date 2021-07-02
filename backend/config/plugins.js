@@ -5,8 +5,8 @@ module.exports = ({ env }) => ({
       host: env('SMTP_HOST', 'smtp.office365.com'),
       port: env('SMTP_PORT', 587),
       auth: {
-        user: 'no-reply-dev@sbauto.tech',
-        pass: 'Hjg8Bj*@jr7',
+        user: env('SMTP_USERNAME'),
+        pass: env('SMTP_PASSWORD'),
       }
     },
     settings: {
