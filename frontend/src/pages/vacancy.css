@@ -76,7 +76,7 @@ ul {
 
             @media screen and (max-width: 880px) {
                 display: block;
-                margin-top: 20px;
+                margin-top: 8px;
             }
         }
     }
@@ -210,6 +210,10 @@ ul {
         margin-top: 16px;
         display: flex;
         flex-wrap: wrap;
+
+        a {
+            margin-bottom: 12px;
+        }
 
         @media screen and (max-width: 1024px) {
             margin-top: 12px;

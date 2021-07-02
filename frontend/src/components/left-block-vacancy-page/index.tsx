@@ -65,9 +65,9 @@ const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }: IStr
             </div>
             <div className={cn('vacancy__left-block-bottom')}>
                 <div className={cn('vacancy__link-wrapper')}>
-                    <a href={`http://www.facebook.com/share.php?u=${urlHref}`}><FaceBookIcon /></a>
-                    <a href={`http://twitter.com/intent/tweet?status=${urlHref}`}><TwitterIcon /></a>
-                    <a href={`http://vk.com/share.php?url=${urlHref}`}><VKIcon /></a>
+                    <a target="_blank" href={`http://www.facebook.com/share.php?u=${urlHref}`}><FaceBookIcon /></a>
+                    <a target="_blank" href={`http://twitter.com/intent/tweet?status=${urlHref}`}><TwitterIcon /></a>
+                    <a target="_blank" href={`http://vk.com/share.php?url=${urlHref}`}><VKIcon /></a>
                     <a onClick={URLCopier} ><ShareLinkIcon /></a>
                 </div>
             </div>

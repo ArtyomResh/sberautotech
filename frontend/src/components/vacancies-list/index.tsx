@@ -45,7 +45,7 @@ const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag }) => {
             <div className={cn('vacancies__list')}>
                 {data?.length ? data.map((item) => (
                     <VacanciesItem key={item.id} data={item} activeTags={activeTags} onClickTag={onClickTag} />
-                )) : <p className={cn('vacancies__empty-text')}>Нет вакансий</p>}
+                )) : <p className={cn('vacancies__empty-text')}>Нет вакансий, но вы все равно можете связаться с нами</p>}
             </div>
         </div>
     );

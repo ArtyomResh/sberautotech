@@ -93,7 +93,7 @@ const Vacancies = ({ location }) => {
   const filteredTags = useMemo(() => {
     return filteredVacancies.reduce((acc, item) => {
       item.tags.forEach(tag => {
-        if (!acc.find(tagInAcc => tagInAcc.id === tag.id)) {
+        if (!acc.find(tagInAcc => tagInAcc.id === tag.id) && activeDirection) {
           acc.push(tag)
         }
       })
@@ -130,7 +130,7 @@ const Vacancies = ({ location }) => {
   useEffect(() => {
     const newFilteredVacancies = vacanciesList.filter((vacancy) => {
 
-      if (activeDirection && activeDirection !== vacancy.direction.id) {
+      if (activeDirection && activeDirection !== vacancy.direction?.id) {
         return false;
       }
 
@@ -221,23 +221,28 @@ const Vacancies = ({ location }) => {
               })}>
                 <p className={cn('vacancies__filter-header')}>Фильтр</p>
                 <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
-                <p className={cn('vacancies__filter-header')}>Теги</p>
-                <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
+                {filteredTags?.length ? (
+                  <>
+                    <p className={cn('vacancies__filter-header')}>Теги</p>
+                    <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
+                  </>
+                ) : null}
                 <Button
                   styleType="primary"
                   type="button"
                   className={cn('vacancies__button', 'vacancies__show-button', {
                     'vacancies__show-button_visible': isMobileFilterVisible
                   })}
-                  label={`Смотреть ${filteredVacancies.length} результат${(() => {
+                  label={`Смотреть ${filteredVacancies.length} ваканси${(() => {
                     if (filteredVacancies.length === 0 || filteredVacancies.length > 4) {
-                      return 'ов'
+                      return 'й'
+                    }
+                    if (filteredVacancies.length === 1) {
+                      return 'ю'
                     }
                     if (filteredVacancies.length > 1 && filteredVacancies.length < 5) {
-                      return 'а'
+                      return 'и'
                     }
-
-                    return ''
                   })()
                     }`}
                   onClick={() => setIsMobileFilterVisible(!isMobileFilterVisible)}

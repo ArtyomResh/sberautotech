@@ -8,7 +8,7 @@ module.exports = {
       const res = await strapi.plugins['email'].services.email.send({
         //TODO: Можно ли указать в strapi?
         to: 'hr_sat@sberbank.ru',
-        subject: vacancy ? `Вакансия: ${vacancy}` : 'Отклик не по конкретной вакансии',
+        subject: vacancy ? `Отклик: ${vacancy}` : 'Отклик не по конкретной вакансии',
         html: `
           <p>${name} ${surname} - ${email}</p>
           <p>Направление: ${direction}</p>

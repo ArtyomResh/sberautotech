@@ -23,7 +23,7 @@ const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag }) =
         <div className={cn('vacancies__list-item')}>
             <div className={cn('vacancies__list-item-block')}>
                 <div className={cn('vacancies__info-wrapper')}>
-                    <span className={cn('vacancies__info-direction')}>{direction.header}</span>
+                    <span className={cn('vacancies__info-direction')}>{direction?.header}</span>
                 </div>
                 <div className={cn('vacancies__info-city')}>
                     {city.text}
