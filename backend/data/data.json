@@ -605,7 +605,7 @@
     },
     "slider": {
       "header": "У компании три ключевые локации — офис разработки программного обеспечения, инженерно-испытательный центр и инжиниринговый офис в {Москве и Минске.}",
-      "header_position": "bottom_right",
+      "header_position": "bottom_center",
       "text": null,
       "text_position": "bottom_left",
       "slider_items": [null, null],
