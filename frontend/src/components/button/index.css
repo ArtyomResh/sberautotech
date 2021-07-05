@@ -9,18 +9,33 @@
     letter-spacing: -0.01em;
     color: #1F272E;
     background-color: #94F7ED;
+    position: relative;
 
-    &:hover {
-        background-color: #67CFC9;
-        color: #FFFF;
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background-color: #67CFC9;
+            color: #FFFF;
+        }
     }
 
     &_secondary {
         background-color: #FFF;
 
-        &:hover {
-            background-color: #67CFC9;
-            color: #FFFF;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background-color: #67CFC9;
+                color: #FFFF;
+            }
         }
+    }
+
+    &__count {
+        position: absolute;
+        right: 20px;
+        padding: 5px 10px;
+        background: #BDFFF8;
+        border-radius: 50px;
+        font-size: 14px;
+        line-height: 18px;
     }
 }

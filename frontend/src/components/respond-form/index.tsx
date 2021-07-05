@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState, useContext } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import Recaptcha from 'react-recaptcha';
 
@@ -9,6 +9,7 @@ import Button from '../button';
 import CheckBox from './check-box';
 import { useClassnames } from '../../hooks/use-classnames';
 import { toBase64 } from '../../utils';
+import { appContext } from '../../context/context';
 
 import style from './index.css';
 import { graphql, useStaticQuery } from 'gatsby';
@@ -20,13 +21,8 @@ const options = [
     { value: 'Design', label: 'Design' }
 ];
 
-const HOST = process.env.API_URL || '';
+const HOST = process.env.API_URL || 'http://localhost:1337';
 const FORM_URL = `${HOST}/form`;
-
-interface IProps {
-    setIsPopupVisible: Dispatch<SetStateAction<boolean | null>>,
-    isPopupVisible: boolean | null
-}
 
 const query = graphql`
   query {
@@ -53,15 +49,18 @@ const query = graphql`
   }
 `;
 
-const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
+const RespondForm = () => {
     const data = useStaticQuery(query);
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
-    const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(false);
+    const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(true);
     const [isSended, setIsSended] = useState(false);
     const [isError, setIsError] = useState(false);
+    const { vacancyTitle } = useContext(appContext);
+    const { isPopupVisible, setIsPopupVisible } = useContext(appContext);
     const cn = useClassnames(style);
     const timeoutId = useRef<number>();
     const recaptchaInstance = useRef<Recaptcha | null>();
+
 
     const { consent,
         direction,
@@ -86,18 +85,18 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
     });
 
     const outsideClickHandler = useCallback((e) => {
-        if(isPopupVisible && !e.target.closest(".respond-form") && !e.target.classList.contains('ui-select__option')) {
-            setIsPopupVisible(false)
+        if(isPopupVisible && !e.target.closest('.respond-form') && !e.target.classList.contains('ui-select__option')) {
+            setIsPopupVisible(false);
         }
-    }, [isPopupVisible])
+    }, [isPopupVisible]);
 
     useEffect(() => {
-        window.addEventListener('click', outsideClickHandler)
+        window.addEventListener('click', outsideClickHandler);
 
         return () => {
-            window.removeEventListener('click', outsideClickHandler)
-        }
-    })
+            window.removeEventListener('click', outsideClickHandler);
+        };
+    });
 
     const closeHandler = () => {
         return setIsPopupVisible(false);
@@ -114,17 +113,19 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         setIsSubmitDisabled(false);
         setIsPopupVisible(true);
         context.reset();
-
-    }, [timeoutId])
+    }, [timeoutId]);
 
     const onSubmit = async (data) => {
         setIsSubmitDisabled(true);
 
         const formData = new FormData();
-        const fileInput = document.querySelector('#file')
-        const file = data.file[0] ||  fileInput?.files[0];
+        const fileInput = document.querySelector('#file');
+        const file = data.file[0] || fileInput?.files[0];
         const base64 = await toBase64(file);
 
+        if(vacancyTitle) {
+            formData.append('vacancy', vacancyTitle);
+        }
 
         for(const name in data) {
             if(data[name]) {
@@ -146,17 +147,17 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
             });
 
             if(!res.ok) {
-                throw new Error(res.statusText)
+                throw new Error(res.statusText);
             }
 
             if(res.ok) {
-                setIsSended(true)
+                setIsSended(true);
 
                 timeoutId.current = setTimeout(() => {
                     setIsSended(false);
                     setIsPopupVisible(false);
                     setIsSubmitDisabled(false);
-                }, 3000)
+                }, 3000);
             }
         } catch(err) {
             setIsSended(true);
@@ -168,18 +169,20 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
     };
 
     const verifyCallback = useCallback(() => {
-        setIsRecaptchaConfirmed(true)
-    }, [])
+        setIsRecaptchaConfirmed(true);
+    }, []);
 
-    if (isPopupVisible === null) {
-        return <React.Fragment></React.Fragment>
+    if(!isPopupVisible) {
+        return <React.Fragment></React.Fragment>;
     }
 
     return (
         <FormProvider {...context}>
-            <form onSubmit={context.handleSubmit(onSubmit)} className={cn('respond-form', {
-                'respond-form_visible': isPopupVisible
-            })}>
+            <form
+                onSubmit={context.handleSubmit(onSubmit)} className={cn('respond-form', {
+                    'respond-form_visible': isPopupVisible
+                })}
+            >
                 {isSended ? (
                     <div className={cn('respond-form__send-block')}>
                         <div className={cn('text-block')}>
@@ -235,7 +238,7 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
                                 ) : (
                                     <Recaptcha
                                         className={cn('right-block__grecaptcha')}
-                                        ref={e => recaptchaInstance.current = e}
+                                        ref={(e) => recaptchaInstance.current = e}
                                         sitekey="6LcxFCQbAAAAAPk5ZtW8P4LTJFuMUTHMh65Oap4n"
                                         render="explicit"
                                         hl={locale}

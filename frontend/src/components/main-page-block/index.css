@@ -57,9 +57,11 @@
             line-height: 56px;
             color: #FFFFFF;
 
-            &:hover {
-                background-color: #67CFC9;
-                border: 1px solid #67CFC9;
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    background-color: #67CFC9;
+                    border: 1px solid #67CFC9;
+                }
             }
         }
 
@@ -71,9 +73,11 @@
             font-size: 30px;
             line-height: 48px;
 
-            &:hover {
-                background-color: #67CFC9;
-                color: #FFFF;
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    background-color: #67CFC9;
+                    color: #FFFF;
+                }
             }
         }
     }
@@ -126,15 +130,21 @@
         max-width: 1030px;
         padding-right: 10px;
 
-        &:hover {
-            opacity: 0.5;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                opacity: 0.5;
+            }
         }
+
+
 
         span {
             color: #BDFFF8;
 
-            &:hover {
-                color: #94F7ED;
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    color: #94F7ED;
+                }
             }
         }
     }
