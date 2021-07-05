@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useCallback } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
-import Button from '../button';
+
+import { appContext } from '../../context/context';
 
 import style from './index.css';
 import VacanciesItem from './item';
@@ -40,12 +41,21 @@ export interface IVacanciesListItem {
 const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag }) => {
     const cn = useClassnames(style);
 
+    const { setIsPopupVisible } = useContext(appContext);
+
+    const linkPopupHandler = useCallback(() => {
+        setIsPopupVisible(true);
+    }, []);
+
     return (
         <div className={cn('vacancies__wrap')}>
             <div className={cn('vacancies__list')}>
                 {data?.length ? data.map((item) => (
                     <VacanciesItem key={item.id} data={item} activeTags={activeTags} onClickTag={onClickTag} />
-                )) : <p className={cn('vacancies__empty-text')}>Нет вакансий, но вы все равно можете связаться с нами</p>}
+                )) : (
+                    <div className={cn('vacancies__empty-text')}>
+                        <p>Нет вакансий, но вы все равно можете <p className={cn('vacancies__inner-text-link')} onClick={linkPopupHandler}>связаться с нами</p></p>
+                    </div>)}
             </div>
         </div>
     );
