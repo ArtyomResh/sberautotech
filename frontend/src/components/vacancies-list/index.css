@@ -29,8 +29,11 @@
             border-bottom: 1px solid transparent;
             transition: none;
 
-            &:hover {
-                border-bottom: 1px solid #34b7aa;
+            @media (hover: hover) and (pointer: fine) {
+
+                &:hover {
+                    border-bottom: 1px solid #34b7aa;
+                }
             }
         }
     }
@@ -42,8 +45,11 @@
         border-bottom: 1px solid transparent;
         transition: border-bottom 0.5s;
 
-        &:hover {
-            border-bottom: 1px solid #34b7aa;
+        @media (hover: hover) and (pointer: fine) {
+
+            &:hover {
+                border-bottom: 1px solid #34b7aa;
+            }
         }
     }
 
