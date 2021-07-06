@@ -38,8 +38,12 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
         const inputFile: File | null = input.files ? input.files[0] : null;
         const fileExtension = inputFile?.name.split('.').pop();
         const fileName = inputFile?.name.split('.').shift();
+        const fileSize = inputFile?.size ?? 0;
 
-        setFile({ fileName, fileExtension });
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+        if(fileSize / 1024 / 1024 < 1) {
+            setFile({ fileName, fileExtension });
+        }
     };
 
     const cancelFileHandler = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -53,6 +57,7 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
                 <input
                     type="file"
                     id="file"
+                    accept="application/pdf"
                     {...register(name, { required: props.requiredValidation })}
                     onChange={onChangeHandler}
                 />

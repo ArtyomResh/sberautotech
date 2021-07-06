@@ -121,10 +121,9 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         setIsSubmitDisabled(true);
 
         const formData = new FormData();
-        const fileInput = document.querySelector('#file')
-        const file = data.file[0] ||  fileInput?.files[0];
+        const fileInput = document.querySelector('#file');
+        const file = data.file[0] || fileInput?.files[0];
         const base64 = await toBase64(file);
-
 
         for(const name in data) {
             if(data[name]) {
