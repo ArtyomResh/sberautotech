@@ -1,13 +1,24 @@
+const axios = require('axios');
+const FormData = require('form-data');
 const packagejson = require('../../../package.json');
 
 const HUNTFLOW_API = process.env.HUNTFLOW_API || 'https://api.huntflow.ru';
 const HUNTFLOW_TOKEN = process.env.HUNTFLOW_TOKEN || '';
 const HUNTFLOW_ACCOUNT_ID = process.env.HUNTFLOW_ACCOUNT_ID || '';
 
+const req = axios.create({
+  baseURL: HUNTFLOW_API
+});
+
+req.defaults.headers.common['Authorization'] = `Bearer ${HUNTFLOW_TOKEN}`;
+req.defaults.headers.common['User-Agent'] = `SberAutoTech/${packagejson.version}`;
+
+
 module.exports = {
   async send(ctx) {
     const { acception, name, surname, email, direction, textarea, content, filename, vacancy } = ctx.request.body;
 
+    /*
     try {
       const res = await strapi.plugins['email'].services.email.send({
         //TODO: Можно ли указать в strapi?
@@ -23,24 +34,34 @@ module.exports = {
     } catch (err) {
       console.error(err);
     }
+    */
 
     try {
-      const formData = new FormData();
-      formData.append('file', content);
+      const accounts = await req.get('/accounts');
 
-      const upload = await fetch(`${HUNTFLOW_API}/account/${HUNTFLOW_ACCOUNT_ID}/upload`, {
-        method: 'POST',
-        body  : formData,
+      console.log('Accounts: ', accounts.data);
+      const { items: account_items } = accounts.data;
+      const account_id = account_items[0].id;
+
+      const sources = await req.get(`/account/${account_id}/applicant/sources`);
+
+      console.log('Sources: ', sources.data);
+      const { items: source_items } = sources.data;
+      const source_id = (source_items.filter((item) => /сайт/ig.test(item.name)))[0].id;
+
+      const form = new FormData();
+      form.append('file', content);
+
+      console.log('FormHeaders: ', form.getHeaders());
+
+      const upload = await req.post(`/account/${account_id}/upload`, form,{
         headers: {
-          'Authorization': `Bearer ${HUNTFLOW_TOKEN}`,
-          'X-File-Parse': true,
-          'User-Agent': `SberAutoTech/${packagejson.version}`
+          ...form.getHeaders(),
+          'X-File-Parse': true
         }
       });
 
-      if(!upload.ok) {
-        throw new Error(upload.statusText);
-      }
+      console.log('File: ', upload.data);
 
       const {
         id,
@@ -53,11 +74,10 @@ module.exports = {
           phones,
           birthdate: { month, day, year }
         }
-      } = await upload.json();
+      } = upload.data;
 
-      const save = await fetch(`${HUNTFLOW_API}/account/${HUNTFLOW_ACCOUNT_ID}/applicants`, {
-        method: 'POST',
-        body  : {
+      const save = await req.post(`/account/${HUNTFLOW_ACCOUNT_ID}/applicants`, {
+        data: {
           last_name: last ?? surname,
           first_name: first ?? name,
           middle_name: middle,
@@ -70,17 +90,13 @@ module.exports = {
           birthday_year: year,
           photo: photo_id,
           externals: [{
-            files: [{ id }]
+            files: [{ id }],
+            account_source: source_id
           }]
-        },
-        headers: {
-          'Authorization': `Bearer ${HUNTFLOW_TOKEN}`
         }
       });
 
-      if(!save.ok) {
-        throw new Error(save.statusText);
-      }
+      console.log(save.data);
     } catch (err) {
       console.error(err);
     }
