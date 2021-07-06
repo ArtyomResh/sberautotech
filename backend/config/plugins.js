@@ -21,9 +21,9 @@ module.exports = ({ env }) => ({
       secretAccessKey: env('S3_ACCESS_SECRET') || 'mQeBl13v4Hj9wAfc7peypn7Rns9HD7r2cIu6gkG2',
       region: env('S3_REGION') || 'ru-moscow-1',
       params: {
-        Bucket: env('S3_BUCKET') || 'sberautotech.ru-bucket',
+        Bucket: env('S3_BUCKET') || 'sberautotech-site-bucket',
       },
-      accessLevel: env('ACCESS_LEVEL') || 'public-read', // Default set to: 'public-read'
+      accessLevel: env('ACCESS_LEVEL') || 'public-read'
     },
   }
 });
