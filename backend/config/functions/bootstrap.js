@@ -113,74 +113,43 @@ async function createEntry({ model, entry, files }) {
   }
 }
 
-async function updateEntry({ model, entry, files }) {
-  try {
-    const params = {id: entry.id}
-    const previousEntry = await strapi.query(model).findOne(params)
-    if (previousEntry) {
-      return await strapi.entityService.update({ params, data: previousEntry, files }, { model });
-    }
-    return await strapi.entityService.create({ data: entry, files }, { model });
-  } catch (e) {
-    console.log('model', entry, e);
-  }
-}
-
-async function importTags(shouldImportSeedData) {
+async function importTags() {
   for (const item of Tags.data) {
-    if (shouldImportSeedData) {
-      await createEntry({ model: "tag", entry: item });
-    }
-    await updateEntry({ model: "tag", entry: item });
+    await createEntry({ model: "tag", entry: item });
   }
 }
 
-async function importDirections(shouldImportSeedData) {
+async function importDirections() {
   for (const item of Directions.data) {
-    if (shouldImportSeedData) {
-      await createEntry({ model: "direction", entry: item });
-    }
-    await updateEntry({ model: "direction", entry: item });
+    await createEntry({ model: "direction", entry: item });
   }
 }
 
-async function importCities(shouldImportSeedData) {
+async function importCities() {
   for (const item of Cities.data) {
-    if (shouldImportSeedData) {
-      await createEntry({ model: "city", entry: item });
-    }
-    await updateEntry({ model: "city", entry: item });
+    await createEntry({ model: "city", entry: item });
   }
 }
 
-async function importAreas(shouldImportSeedData) {
+async function importAreas() {
   for (const item of Areas.data) {
-    if (shouldImportSeedData) {
-      await createEntry({ model: "area", entry: item });
-    }
-    await updateEntry({ model: "area", entry: item });
+    await createEntry({ model: "area", entry: item });
   }
 }
 
-async function importJobTypes(shouldImportSeedData) {
+async function importJobTypes() {
   for (const item of JobTypes.data) {
-    if (shouldImportSeedData) {
-      await createEntry({ model: "job-type", entry: item });
-    }
-    await updateEntry({ model: "job-type", entry: item });
+    await createEntry({ model: "job-type", entry: item });
   }
 }
 
-async function importVacancies(shouldImportSeedData) {
+async function importVacancies() {
   for (const item of Vacancies.data) {
-    if (shouldImportSeedData) {
-      await createEntry({ model: "vacancy", entry: item });
-    }
-    await updateEntry({ model: "vacancy", entry: item });
+    await createEntry({ model: "vacancy", entry: item });
   }
 }
 
-async function importHomepage(shouldImportSeedData) {
+async function importHomepage() {
   const files = {
     "seo.shareImage": getFileData("default-image.png"),
   };
@@ -236,30 +205,20 @@ async function importHomepage(shouldImportSeedData) {
       files[`fourth_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
-
-  if (shouldImportSeedData) {
-    await createEntry({ model: "homepage", entry: homepageRu, files });
-    await createEntry({ model: "homepage", entry: homepageEn, files });
-  }
-  await updateEntry({ model: "homepage", entry: homepageRu, files });
-  await updateEntry({ model: "homepage", entry: homepageEn, files });
+  await createEntry({ model: "homepage", entry: homepageRu, files });
+  await createEntry({ model: "homepage", entry: homepageEn, files });
 }
 
-async function importGlobal(shouldImportSeedData) {
+async function importGlobal() {
   const files = {
     "favicon": getFileData("favicon.png"),
     "defaultSeo.shareImage": getFileData("default-image.png"),
   };
-
-  if (shouldImportSeedData) {
-    await createEntry({ model: "global", entry: globalRu, files });
-    await createEntry({ model: "global", entry: globalEn, files });
-  }
-  await updateEntry({ model: "global", entry: globalRu, files });
-  await updateEntry({ model: "global", entry: globalEn, files });
+  await createEntry({ model: "global", entry: globalRu, files });
+  await createEntry({ model: "global", entry: globalEn, files });
 }
 
-async function importSelfDrivingCar(shouldImportSeedData) {
+async function importSelfDrivingCar() {
   const files = {
     "double_block.background": getFileData(SelfDrivingCarRu['double_block'].backgroundName),
     "double_block.backgroundPoster": getFileData(SelfDrivingCarRu['double_block'].backgroundPosterName),
@@ -273,15 +232,11 @@ async function importSelfDrivingCar(shouldImportSeedData) {
   SelfDrivingCarRu.slider.slider_items_names.map((item) => {
     files[`slider.slider_items`].push(getFileData(item))
   });
-  if (shouldImportSeedData) {
-    await createEntry({ model: "self-driving-car", entry: SelfDrivingCarRu, files });
-    await createEntry({ model: "self-driving-car", entry: SelfDrivingCarEn, files });
-  }
-  await updateEntry({ model: "self-driving-car", entry: SelfDrivingCarRu, files });
-  await updateEntry({ model: "self-driving-car", entry: SelfDrivingCarEn, files });
+  await createEntry({ model: "self-driving-car", entry: SelfDrivingCarRu, files });
+  await createEntry({ model: "self-driving-car", entry: SelfDrivingCarEn, files });
 }
 
-async function importCareer(shouldImportSeedData) {
+async function importCareer() {
     const files = {
       "top_slider.slider_items": [],
       "bottom_slider.slider_items": []
@@ -293,16 +248,11 @@ async function importCareer(shouldImportSeedData) {
     CareerRu.bottom_slider.slider_items_names.map((item) => {
       files[`bottom_slider.slider_items`].push(getFileData(item))
     });
-
-    if (shouldImportSeedData) {
-      await createEntry({ model: "career", entry: CareerRu, files });
-      await createEntry({ model: "career", entry: CareerEn, files });
-    }
-    await updateEntry({ model: "career", entry: CareerRu, files });
-    await updateEntry({ model: "career", entry: CareerEn, files });
+    await createEntry({ model: "career", entry: CareerRu, files });
+    await createEntry({ model: "career", entry: CareerEn, files });
 }
 
-async function importAboutCompany(shouldImportSeedData) {
+async function importAboutCompany() {
   const files = {
     "headerBackground": getFileData(AboutCompanyRu.headerBackgroundName),
     "slider.slider_items": []
@@ -314,16 +264,11 @@ async function importAboutCompany(shouldImportSeedData) {
   AboutCompanyRu.slider.slider_items_names.map((item) => {
     files[`slider.slider_items`].push(getFileData(item))
   });
-
-  if (shouldImportSeedData) {
-    await createEntry({ model: "about-company", entry: AboutCompanyRu, files });
-    await createEntry({ model: "about-company", entry: AboutCompanyEn, files });
-  }
-  await updateEntry({ model: "about-company", entry: AboutCompanyRu, files });
-  await updateEntry({ model: "about-company", entry: AboutCompanyEn, files });
+  await createEntry({ model: "about-company", entry: AboutCompanyRu, files });
+  await createEntry({ model: "about-company", entry: AboutCompanyEn, files });
 }
 
-async function importFlip(shouldImportSeedData) {
+async function importFlip() {
   const files = {
     "first_screen.background": getFileData(FlipRu.first_screen.backgroundName),
     "first_screen.mobileBackground": getFileData(FlipRu.first_screen.mobileBackgroundName),
@@ -350,74 +295,45 @@ async function importFlip(shouldImportSeedData) {
     "eighth_screen.mobileBackground": getFileData(FlipRu.eighth_screen.mobileBackgroundName),
     "eighth_screen.backgroundOgg": getFileData(FlipRu.eighth_screen.backgroundOggName)
   };
-
-  if (shouldImportSeedData) {
-    await createEntry({ model: "flip", entry: FlipRu, files });
-    await createEntry({ model: "flip", entry: FlipEn, files });
-  }
-  await updateEntry({ model: "flip", entry: FlipRu, files });
-  await updateEntry({ model: "flip", entry: FlipEn, files });
+  await createEntry({ model: "flip", entry: FlipRu, files });
+  await createEntry({ model: "flip", entry: FlipEn, files });
 }
 
-async function importVacanciesPage(shouldImportSeedData) {
-  if (shouldImportSeedData) {
-    await createEntry({ model: "vacancies-page", entry: VacanciesPageRu });
-    await createEntry({ model: "vacancies-page", entry: VacanciesPageEn });
-  }
-  await updateEntry({ model: "vacancies-page", entry: VacanciesPageRu });
-  await updateEntry({ model: "vacancies-page", entry: VacanciesPageEn });
+async function importVacanciesPage() {
+  await createEntry({ model: "vacancies-page", entry: VacanciesPageRu });
+  await createEntry({ model: "vacancies-page", entry: VacanciesPageEn });
 }
 
-async function importVacancyPage(shouldImportSeedData) {
+async function importVacancyPage() {
   const files = {
     "video": getFileData(VacancyPageRu.videoName),
     "videoPoster": getFileData(VacancyPageRu.videoPosterName)
   };
-  if (shouldImportSeedData) {
-    await createEntry({ model: "vacancy-page", entry: VacancyPageRu, files });
-    await createEntry({ model: "vacancy-page", entry: VacancyPageEn, files });
-  }
-  await updateEntry({ model: "vacancy-page", entry: VacancyPageRu, files });
-  await updateEntry({ model: "vacancy-page", entry: VacancyPageEn, files });
+  await createEntry({ model: "vacancy-page", entry: VacancyPageRu, files });
+  await createEntry({ model: "vacancy-page", entry: VacancyPageEn, files });
 }
 
-async function importNavPanel(shouldImportSeedData) {
-  if (shouldImportSeedData) {
-    await createEntry({ model: "nav-panel", entry: NavPanelRu });
-    await createEntry({ model: "nav-panel", entry: NavPanelEn });
-  }
-  await updateEntry({ model: "nav-panel", entry: NavPanelRu });
-  await updateEntry({ model: "nav-panel", entry: NavPanelEn });
+async function importNavPanel() {
+  await createEntry({ model: "nav-panel", entry: NavPanelRu });
+  await createEntry({ model: "nav-panel", entry: NavPanelEn });
 }
 
-async function importPrivacyPolicy(shouldImportSeedData) {
-  if (shouldImportSeedData) {
-    await createEntry({ model: "privacy-policy", entry: PrivacyPolicyRu });
-    await createEntry({ model: "privacy-policy", entry: PrivacyPolicyEn });
-  }
-  await updateEntry({ model: "privacy-policy", entry: PrivacyPolicyRu });
-  await updateEntry({ model: "privacy-policy", entry: PrivacyPolicyEn });
+async function importPrivacyPolicy() {
+  await createEntry({ model: "privacy-policy", entry: PrivacyPolicyRu });
+  await createEntry({ model: "privacy-policy", entry: PrivacyPolicyEn });
 }
 
-async function importRespondForm(shouldImportSeedData) {
-  if (shouldImportSeedData) {
-    await createEntry({ model: "respond-form", entry: RespondFormRu });
-    await createEntry({ model: "respond-form", entry: RespondFormEn });
-  }
-  await updateEntry({ model: "respond-form", entry: RespondFormRu });
-  await updateEntry({ model: "respond-form", entry: RespondFormEn });
+async function importRespondForm() {
+  await createEntry({ model: "respond-form", entry: RespondFormRu });
+  await createEntry({ model: "respond-form", entry: RespondFormEn });
 }
 
-async function importFooter(shouldImportSeedData) {
-  if (shouldImportSeedData) {
-    await createEntry({ model: "footer", entry: FooterRu });
-    await createEntry({ model: "footer", entry: FooterEn });
-  }
-  await updateEntry({ model: "footer", entry: FooterRu });
-  await updateEntry({ model: "footer", entry: FooterEn });
+async function importFooter() {
+  await createEntry({ model: "footer", entry: FooterRu });
+  await createEntry({ model: "footer", entry: FooterEn });
 }
 
-async function importSeedData(shouldImportSeedData) {
+async function importSeedData() {
   await setPublicPermissions({
     global: ['find'],
     homepage: ['find'],
@@ -439,43 +355,41 @@ async function importSeedData(shouldImportSeedData) {
     area: ['find', 'findone'],
     'job-type': ['find', 'findone']
   });
-  await importTags(shouldImportSeedData);
-  await importDirections(shouldImportSeedData);
-  await importCities(shouldImportSeedData);
-  await importAreas(shouldImportSeedData);
-  await importJobTypes(shouldImportSeedData);
-  await importVacancies(shouldImportSeedData);
-  await importHomepage(shouldImportSeedData);
-  await importGlobal(shouldImportSeedData);
-  await importSelfDrivingCar(shouldImportSeedData);
-  await importCareer(shouldImportSeedData);
-  await importAboutCompany(shouldImportSeedData);
-  await importFlip(shouldImportSeedData);
-  await importNavPanel(shouldImportSeedData);
-  await importFooter(shouldImportSeedData);
-  await importPrivacyPolicy(shouldImportSeedData);
-  await importRespondForm(shouldImportSeedData);
-  await importVacanciesPage(shouldImportSeedData);
-  await importVacancyPage(shouldImportSeedData);
+  await importTags();
+  await importDirections();
+  await importCities();
+  await importAreas();
+  await importJobTypes();
+  await importVacancies();
+  await importHomepage();
+  await importGlobal();
+  await importSelfDrivingCar();
+  await importCareer();
+  await importAboutCompany();
+  await importFlip();
+  await importNavPanel();
+  await importFooter();
+  await importPrivacyPolicy();
+  await importRespondForm();
+  await importVacanciesPage();
+  await importVacancyPage();
 }
 
 module.exports = async () => {
-  const shouldImportSeedData = await isFirstRun();
-
-  if (shouldImportSeedData) {
+  if (await isFirstRun()) {
     await strapi.query('locale', 'i18n').create({
       id: 2,
       code: 'en',
       name: 'English (en)'
     })
-  }
 
-  try {
-    console.log('Setting up your starter...');
-    await importSeedData(shouldImportSeedData);
-    console.log('Ready to go');
-  } catch (error) {
-    console.log('Could not import seed data');
-    console.error(error);
+    try {
+      console.log('Setting up your starter...');
+      await importSeedData();
+      console.log('Ready to go');
+    } catch (error) {
+      console.log('Could not import seed data');
+      console.error(error);
+    }
   }
 };
