@@ -1,16 +1,18 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
-import Input from './input';
-import Select from './select';
-import Textarea from './textarea';
-import Button from './button';
-import CheckBox from './check-box';
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState, useContext } from 'react';
+import { useForm, FormProvider } from 'react-hook-form';
+import Recaptcha from 'react-recaptcha';
 
+import Input from './input';
+import Select from '../select';
+import Textarea from './textarea';
+import Button from '../button';
+import CheckBox from './check-box';
 import { useClassnames } from '../../hooks/use-classnames';
 import { toBase64 } from '../../utils';
-
-import { useForm, FormProvider } from 'react-hook-form';
+import { appContext } from '../../context/context';
 
 import style from './index.css';
+import { graphql, useStaticQuery } from 'gatsby';
 
 const options = [
     { value: 'Product', label: 'Product' },
@@ -19,20 +21,61 @@ const options = [
     { value: 'Design', label: 'Design' }
 ];
 
-const HOST = process.env.API_URL || '';
+const HOST = process.env.API_URL || 'http://localhost:1337';
 const FORM_URL = `${HOST}/form`;
 
-interface IProps {
-    setIsPopupVisible: Dispatch<SetStateAction<boolean | null>>,
-    isPopupVisible: boolean | null
-}
+const query = graphql`
+  query {
+    allStrapiRespondForm {
+      edges {
+        node {
+          consent
+          direction
+          email
+          errorButtonText
+          errorSend
+          experience
+          file
+          header
+          locale
+          name
+          successButtonText
+          successSend
+          surname
+          buttonText
+        }
+      }
+    }
+  }
+`;
 
-const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
-    const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+const RespondForm = () => {
+    const data = useStaticQuery(query);
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+    const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(true);
     const [isSended, setIsSended] = useState(false);
     const [isError, setIsError] = useState(false);
+    const { vacancyTitle } = useContext(appContext);
+    const { isPopupVisible, setIsPopupVisible } = useContext(appContext);
     const cn = useClassnames(style);
     const timeoutId = useRef<number>();
+    const recaptchaInstance = useRef<Recaptcha | null>();
+
+
+    const { consent,
+        direction,
+        email,
+        errorButtonText,
+        errorSend,
+        experience,
+        file,
+        header,
+        locale,
+        name,
+        successButtonText,
+        successSend,
+        buttonText,
+        surname } = data.allStrapiRespondForm.edges[0].node;
 
     const context = useForm({
         mode            : 'onSubmit',
@@ -42,18 +85,18 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
     });
 
     const outsideClickHandler = useCallback((e) => {
-        if(isPopupVisible && !e.target.closest(".respond-form") && !e.target.classList.contains('ui-select__option')) {
-            setIsPopupVisible(false)
+        if(isPopupVisible && !e.target.closest('.respond-form') && !e.target.classList.contains('ui-select__option')) {
+            setIsPopupVisible(false);
         }
-    }, [isPopupVisible])
+    }, [isPopupVisible]);
 
     useEffect(() => {
-        window.addEventListener('click', outsideClickHandler)
+        window.addEventListener('click', outsideClickHandler);
 
         return () => {
-            window.removeEventListener('click', outsideClickHandler)
-        }
-    })
+            window.removeEventListener('click', outsideClickHandler);
+        };
+    });
 
     const closeHandler = () => {
         return setIsPopupVisible(false);
@@ -70,17 +113,19 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         setIsSubmitDisabled(false);
         setIsPopupVisible(true);
         context.reset();
-
-    }, [timeoutId])
+    }, [timeoutId]);
 
     const onSubmit = async (data) => {
         setIsSubmitDisabled(true);
 
         const formData = new FormData();
-        const fileInput = document.querySelector('#file')
-        const file = data.file[0] ||  fileInput?.files[0];
+        const fileInput = document.querySelector('#file');
+        const file = data.file[0] || fileInput?.files[0];
         const base64 = await toBase64(file);
 
+        if(vacancyTitle) {
+            formData.append('vacancy', vacancyTitle);
+        }
 
         for(const name in data) {
             if(data[name]) {
@@ -100,19 +145,19 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
                 method: 'POST',
                 body  : formData
             });
-            
+
             if(!res.ok) {
-                throw new Error(res.statusText)
+                throw new Error(res.statusText);
             }
 
             if(res.ok) {
-                setIsSended(true)
+                setIsSended(true);
 
                 timeoutId.current = setTimeout(() => {
                     setIsSended(false);
                     setIsPopupVisible(false);
                     setIsSubmitDisabled(false);
-                }, 3000)
+                }, 3000);
             }
         } catch(err) {
             setIsSended(true);
@@ -123,22 +168,28 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
         }
     };
 
-    if (isPopupVisible === null) {
-        return <React.Fragment></React.Fragment>
+    const verifyCallback = useCallback(() => {
+        setIsRecaptchaConfirmed(true);
+    }, []);
+
+    if(!isPopupVisible) {
+        return <React.Fragment></React.Fragment>;
     }
 
     return (
         <FormProvider {...context}>
-            <form onSubmit={context.handleSubmit(onSubmit)} className={cn('respond-form', {
-                'respond-form_visible': isPopupVisible
-            })}>
+            <form
+                onSubmit={context.handleSubmit(onSubmit)} className={cn('respond-form', {
+                    'respond-form_visible': isPopupVisible
+                })}
+            >
                 {isSended ? (
                     <div className={cn('respond-form__send-block')}>
                         <div className={cn('text-block')}>
-                            <h1 className={cn('text-block__title')}>{isError ? 'Произошла ошибка. Попробуйте позднее' : 'Ваше резюме отправлено! Спасибо'}</h1>
+                            <h1 className={cn('text-block__title')}>{isError ? errorSend : successSend}</h1>
                         </div>
                         <div className={cn('right-block')}>
-                            <Button type="button" onClick={preventClosePopup} label={isError ? 'Открыть форму' : 'Отправить еще одно'} />
+                            <Button type="button" onClick={preventClosePopup} label={isError ? errorButtonText : successButtonText} />
                         </div>
                     </div>
                 ) : (
@@ -149,40 +200,51 @@ const RespondForm = ({ setIsPopupVisible, isPopupVisible }: IProps) => {
                             </svg>
                         </div>
                         <div className={cn('text-block')}>
-                            <h1 className={cn('text-block__title')}>Присоединяйтесь к команде и создавайте будущее вместе с нами</h1>
+                            <h1 className={cn('text-block__title')}>{header}</h1>
                         </div>
                         <div className={cn('right-block')}>
                             <div className={cn('right-block__inputs')}>
                                 <div className={cn('right-block__top-section')}>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type="text" placeholder="Имя" name="name" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
+                                        <Input type="text" placeholder={name} name="name" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
                                     </div>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type="text" placeholder="Фамилия" name="surname" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
+                                        <Input type="text" placeholder={surname} name="surname" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z]+$/i} requiredValidation={true} />
                                     </div>
                                 </div>
                                 <div className={cn('right-block__bottom-section')}>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type="text" placeholder="Почта" name="email" autocomplete="off" pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} requiredValidation={true} />
+                                        <Input type="text" placeholder={email} name="email" autocomplete="off" pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} requiredValidation={true} />
                                     </div>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Select name="direction" placeholder="Выберите направление" options={options} />
+                                        <Select name="direction" placeholder={direction} options={options} />
                                     </div>
                                 </div>
                             </div>
                             <div className={cn('right-block__textarea-wrapper')}>
-                                <Textarea name="textarea" placeholder="Опишите свой опыт" requiredValidation={true} />
+                                <Textarea name="textarea" placeholder={experience} requiredValidation={true} />
                             </div>
                             <div className={cn('right-block__checkbox-wrapper')}>
-                                <CheckBox name="acception" requiredValidation={true} label="Я соглашаюсь передать свои персональные данные, содержащиеся в анкете и всех приложенных файлах" />
+                                <CheckBox name="acception" requiredValidation={true} label={consent} />
                             </div>
                             <div className={cn('right-block__button-section')}>
                                 <div className={cn('right-block__field-wrapper')}>
-                                    <Input type="file" placeholder="Фаил" name="file" requiredValidation={true} />
+                                    <Input type="file" placeholder={file} name="file" requiredValidation={true} />
                                 </div>
-                                <div className={cn('right-block__field-wrapper')}>
-                                    <Button type="submit" label="Отправить" />
-                                </div>
+                                {isRecaptchaConfirmed ? (
+                                    <div className={cn('right-block__field-wrapper')}>
+                                        <Button type="submit" label={buttonText} styleType="secondary" />
+                                    </div>
+                                ) : (
+                                    <Recaptcha
+                                        className={cn('right-block__grecaptcha')}
+                                        ref={(e) => recaptchaInstance.current = e}
+                                        sitekey="6LcxFCQbAAAAAPk5ZtW8P4LTJFuMUTHMh65Oap4n"
+                                        render="explicit"
+                                        hl={locale}
+                                        verifyCallback={verifyCallback}
+                                    />
+                                )}
                             </div>
                         </div>
                     </React.Fragment>

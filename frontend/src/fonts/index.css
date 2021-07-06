@@ -78,8 +78,16 @@
     src: url("woff2/sb_sans_display_bold.woff2") format("woff2");
 }
 
+@font-face {
+    font-family: "SAT Numbers Test Font";
+    font-style: normal;
+    font-display: swap;
+    src: url("woff2/SATNumbersTestFont-Regular.woff2") format("woff2");
+}
+
 :root {
     --font-family-primary: "SB Sans Text", sans-serif;
     --font-family-secondary: "SB Sans Display", sans-serif;
+    --font-family-digits: "SAT Numbers Test Font";
     --nav-height: 66px;
 }

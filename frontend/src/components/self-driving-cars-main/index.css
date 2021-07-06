@@ -35,8 +35,10 @@
         bottom: 10px;
         z-index: 6;
 
-        &:hover {
-            cursor: pointer;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 

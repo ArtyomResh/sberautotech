@@ -1,15 +1,38 @@
 "use strict";
 
 const fs = require("fs");
-const path = require("path");
 const mime = require("mime-types");
 const {
-  homepage,
-  global,
-  SelfDrivingCar,
-  Career,
-  AboutCompany,
-  Flip
+  homepageRu,
+  homepageEn,
+  globalRu,
+  globalEn,
+  SelfDrivingCarRu,
+  SelfDrivingCarEn,
+  CareerRu,
+  CareerEn,
+  AboutCompanyRu,
+  AboutCompanyEn,
+  FlipRu,
+  FlipEn,
+  NavPanelRu,
+  NavPanelEn,
+  FooterRu,
+  FooterEn,
+  PrivacyPolicyRu,
+  PrivacyPolicyEn,
+  RespondFormRu,
+  RespondFormEn,
+  VacanciesPageRu,
+  VacanciesPageEn,
+  VacancyPageRu,
+  VacancyPageEn,
+  Vacancies,
+  Tags,
+  Directions,
+  Cities,
+  Areas,
+  JobTypes
 } = require("../../data/data.json");
 
 async function isFirstRun() {
@@ -84,7 +107,7 @@ function getFileData(fileName) {
 // Create an entry and attach files if there are any
 async function createEntry({ model, entry, files }) {
   try {
-    await strapi.entityService.create({ data: entry, files }, { model });
+    return await strapi.entityService.create({ data: entry, files }, { model });
   } catch (e) {
     console.log('model', entry, e);
   }
@@ -94,9 +117,66 @@ async function updateEntry({ model, entry, files }) {
   try {
     const params = {id: entry.id}
     const previousEntry = await strapi.query(model).findOne(params)
-    await strapi.entityService.update({ params, data: previousEntry, files }, { model });
+    if (previousEntry) {
+      return await strapi.entityService.update({ params, data: previousEntry, files }, { model });
+    }
+    return await strapi.entityService.create({ data: entry, files }, { model });
   } catch (e) {
     console.log('model', entry, e);
+  }
+}
+
+async function importTags(shouldImportSeedData) {
+  for (const item of Tags.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "tag", entry: item });
+    }
+    await updateEntry({ model: "tag", entry: item });
+  }
+}
+
+async function importDirections(shouldImportSeedData) {
+  for (const item of Directions.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "direction", entry: item });
+    }
+    await updateEntry({ model: "direction", entry: item });
+  }
+}
+
+async function importCities(shouldImportSeedData) {
+  for (const item of Cities.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "city", entry: item });
+    }
+    await updateEntry({ model: "city", entry: item });
+  }
+}
+
+async function importAreas(shouldImportSeedData) {
+  for (const item of Areas.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "area", entry: item });
+    }
+    await updateEntry({ model: "area", entry: item });
+  }
+}
+
+async function importJobTypes(shouldImportSeedData) {
+  for (const item of JobTypes.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "job-type", entry: item });
+    }
+    await updateEntry({ model: "job-type", entry: item });
+  }
+}
+
+async function importVacancies(shouldImportSeedData) {
+  for (const item of Vacancies.data) {
+    if (shouldImportSeedData) {
+      await createEntry({ model: "vacancy", entry: item });
+    }
+    await updateEntry({ model: "vacancy", entry: item });
   }
 }
 
@@ -104,7 +184,7 @@ async function importHomepage(shouldImportSeedData) {
   const files = {
     "seo.shareImage": getFileData("default-image.png"),
   };
-  homepage['first_screen'].map((screenItem, i) => {
+  homepageRu['first_screen'].map((screenItem, i) => {
     files[`first_screen.${i}.background`] = getFileData(screenItem.backgroundName)
     files[`first_screen.${i}.mobileBackground`] = getFileData(screenItem.mobileBackgroundName)
     if (screenItem.backgroundPosterName) {
@@ -117,7 +197,7 @@ async function importHomepage(shouldImportSeedData) {
       files[`first_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
-  homepage['second_screen'].map((screenItem, i) => {
+  homepageRu['second_screen'].map((screenItem, i) => {
     files[`second_screen.${i}.background`] = getFileData(screenItem.backgroundName)
     files[`second_screen.${i}.mobileBackground`] = getFileData(screenItem.mobileBackgroundName)
     if (screenItem.backgroundPosterName) {
@@ -130,7 +210,7 @@ async function importHomepage(shouldImportSeedData) {
       files[`second_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
-  homepage['third_screen'].map((screenItem, i) => {
+  homepageRu['third_screen'].map((screenItem, i) => {
     files[`third_screen.${i}.background`] = getFileData(screenItem.backgroundName)
     files[`third_screen.${i}.mobileBackground`] = getFileData(screenItem.mobileBackgroundName)
     if (screenItem.backgroundPosterName) {
@@ -143,7 +223,7 @@ async function importHomepage(shouldImportSeedData) {
       files[`third_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
-  homepage['fourth_screen'].map((screenItem, i) => {
+  homepageRu['fourth_screen'].map((screenItem, i) => {
     files[`fourth_screen.${i}.background`] = getFileData(screenItem.backgroundName)
     files[`fourth_screen.${i}.mobileBackground`] = getFileData(screenItem.mobileBackgroundName)
     if (screenItem.backgroundPosterName) {
@@ -156,11 +236,13 @@ async function importHomepage(shouldImportSeedData) {
       files[`fourth_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
-    
+
   if (shouldImportSeedData) {
-    await createEntry({ model: "homepage", entry: homepage, files });
+    await createEntry({ model: "homepage", entry: homepageRu, files });
+    await createEntry({ model: "homepage", entry: homepageEn, files });
   }
-  await updateEntry({ model: "homepage", entry: homepage, files });
+  await updateEntry({ model: "homepage", entry: homepageRu, files });
+  await updateEntry({ model: "homepage", entry: homepageEn, files });
 }
 
 async function importGlobal(shouldImportSeedData) {
@@ -170,29 +252,33 @@ async function importGlobal(shouldImportSeedData) {
   };
 
   if (shouldImportSeedData) {
-    await createEntry({ model: "global", entry: global, files });
+    await createEntry({ model: "global", entry: globalRu, files });
+    await createEntry({ model: "global", entry: globalEn, files });
   }
-  await updateEntry({ model: "global", entry: global, files });
+  await updateEntry({ model: "global", entry: globalRu, files });
+  await updateEntry({ model: "global", entry: globalEn, files });
 }
 
 async function importSelfDrivingCar(shouldImportSeedData) {
   const files = {
-    "double_block.background": getFileData(SelfDrivingCar['double_block'].backgroundName),
-    "double_block.backgroundPoster": getFileData(SelfDrivingCar['double_block'].backgroundPosterName),
-    "double_block.mobileBackground": getFileData(SelfDrivingCar['double_block'].mobileBackgroundName),
-    "double_block.mobileBackgroundPoster": getFileData(SelfDrivingCar['double_block'].mobileBackgroundPosterName),
+    "double_block.background": getFileData(SelfDrivingCarRu['double_block'].backgroundName),
+    "double_block.backgroundPoster": getFileData(SelfDrivingCarRu['double_block'].backgroundPosterName),
+    "double_block.mobileBackground": getFileData(SelfDrivingCarRu['double_block'].mobileBackgroundName),
+    "double_block.mobileBackgroundPoster": getFileData(SelfDrivingCarRu['double_block'].mobileBackgroundPosterName),
     "slider.slider_items": []
   };
-  SelfDrivingCar['story_cards'].map((item, i) => {
+  SelfDrivingCarRu['story_cards'].map((item, i) => {
     files[`story_cards.${i}.image`] = getFileData(item.imageName)
   });
-  SelfDrivingCar.slider.slider_items_names.map((item) => {
+  SelfDrivingCarRu.slider.slider_items_names.map((item) => {
     files[`slider.slider_items`].push(getFileData(item))
   });
   if (shouldImportSeedData) {
-    await createEntry({ model: "self-driving-car", entry: SelfDrivingCar, files });
+    await createEntry({ model: "self-driving-car", entry: SelfDrivingCarRu, files });
+    await createEntry({ model: "self-driving-car", entry: SelfDrivingCarEn, files });
   }
-  await updateEntry({ model: "self-driving-car", entry: SelfDrivingCar, files });
+  await updateEntry({ model: "self-driving-car", entry: SelfDrivingCarRu, files });
+  await updateEntry({ model: "self-driving-car", entry: SelfDrivingCarEn, files });
 }
 
 async function importCareer(shouldImportSeedData) {
@@ -200,71 +286,135 @@ async function importCareer(shouldImportSeedData) {
       "top_slider.slider_items": [],
       "bottom_slider.slider_items": []
     };
-    Career.top_slider.slider_items_names.map((item) => {
+    CareerRu.top_slider.slider_items_names.map((item) => {
       files[`top_slider.slider_items`].push(getFileData(item))
     });
 
-    Career.bottom_slider.slider_items_names.map((item) => {
+    CareerRu.bottom_slider.slider_items_names.map((item) => {
       files[`bottom_slider.slider_items`].push(getFileData(item))
     });
 
     if (shouldImportSeedData) {
-      await createEntry({ model: "career", entry: Career, files });
+      await createEntry({ model: "career", entry: CareerRu, files });
+      await createEntry({ model: "career", entry: CareerEn, files });
     }
-    await updateEntry({ model: "career", entry: Career, files });
+    await updateEntry({ model: "career", entry: CareerRu, files });
+    await updateEntry({ model: "career", entry: CareerEn, files });
 }
 
 async function importAboutCompany(shouldImportSeedData) {
   const files = {
-    "headerBackground": getFileData(AboutCompany.headerBackgroundName),
+    "headerBackground": getFileData(AboutCompanyRu.headerBackgroundName),
     "slider.slider_items": []
   };
-  AboutCompany.list['list_items'].map((item, i) => {
+  AboutCompanyRu.list['list_items'].map((item, i) => {
     files[`list.list_items.${i}.image`] = getFileData(item.imageName)
   });
 
-  AboutCompany.slider.slider_items_names.map((item) => {
+  AboutCompanyRu.slider.slider_items_names.map((item) => {
     files[`slider.slider_items`].push(getFileData(item))
   });
 
   if (shouldImportSeedData) {
-    await createEntry({ model: "about-company", entry: AboutCompany, files });
+    await createEntry({ model: "about-company", entry: AboutCompanyRu, files });
+    await createEntry({ model: "about-company", entry: AboutCompanyEn, files });
   }
-  await updateEntry({ model: "about-company", entry: AboutCompany, files });
+  await updateEntry({ model: "about-company", entry: AboutCompanyRu, files });
+  await updateEntry({ model: "about-company", entry: AboutCompanyEn, files });
 }
 
 async function importFlip(shouldImportSeedData) {
   const files = {
-    "first_screen.background": getFileData(Flip.first_screen.backgroundName),
-    "first_screen.mobileBackground": getFileData(Flip.first_screen.mobileBackgroundName),
-    "first_screen.backgroundOgg": getFileData(Flip.first_screen.backgroundOggName),
-    "second_screen.background": getFileData(Flip.second_screen.backgroundName),
-    "second_screen.mobileBackground": getFileData(Flip.second_screen.mobileBackgroundName),
-    "second_screen.backgroundOgg": getFileData(Flip.second_screen.backgroundOggName),
-    "third_screen.background": getFileData(Flip.third_screen.backgroundName),
-    "third_screen.mobileBackground": getFileData(Flip.third_screen.mobileBackgroundName),
-    "third_screen.backgroundOgg": getFileData(Flip.third_screen.backgroundOggName),
-    "fourth_screen.background": getFileData(Flip.fourth_screen.backgroundName),
-    "fourth_screen.mobileBackground": getFileData(Flip.fourth_screen.mobileBackgroundName),
-    "fourth_screen.backgroundOgg": getFileData(Flip.fourth_screen.backgroundOggName),
-    "fifth_screen.background": getFileData(Flip.fifth_screen.backgroundName),
-    "fifth_screen.mobileBackground": getFileData(Flip.fifth_screen.mobileBackgroundName),
-    "fifth_screen.backgroundOgg": getFileData(Flip.fifth_screen.backgroundOggName),
-    "sixth_screen.background": getFileData(Flip.sixth_screen.backgroundName),
-    "sixth_screen.mobileBackground": getFileData(Flip.sixth_screen.mobileBackgroundName),
-    "sixth_screen.backgroundOgg": getFileData(Flip.sixth_screen.backgroundOggName),
-    "seventh_screen.background": getFileData(Flip.seventh_screen.backgroundName),
-    "seventh_screen.mobileBackground": getFileData(Flip.seventh_screen.mobileBackgroundName),
-    "seventh_screen.backgroundOgg": getFileData(Flip.seventh_screen.backgroundOggName),
-    "eighth_screen.background": getFileData(Flip.eighth_screen.backgroundName),
-    "eighth_screen.mobileBackground": getFileData(Flip.eighth_screen.mobileBackgroundName),
-    "eighth_screen.backgroundOgg": getFileData(Flip.eighth_screen.backgroundOggName)
+    "first_screen.background": getFileData(FlipRu.first_screen.backgroundName),
+    "first_screen.mobileBackground": getFileData(FlipRu.first_screen.mobileBackgroundName),
+    "first_screen.backgroundOgg": getFileData(FlipRu.first_screen.backgroundOggName),
+    "second_screen.background": getFileData(FlipRu.second_screen.backgroundName),
+    "second_screen.mobileBackground": getFileData(FlipRu.second_screen.mobileBackgroundName),
+    "second_screen.backgroundOgg": getFileData(FlipRu.second_screen.backgroundOggName),
+    "third_screen.background": getFileData(FlipRu.third_screen.backgroundName),
+    "third_screen.mobileBackground": getFileData(FlipRu.third_screen.mobileBackgroundName),
+    "third_screen.backgroundOgg": getFileData(FlipRu.third_screen.backgroundOggName),
+    "fourth_screen.background": getFileData(FlipRu.fourth_screen.backgroundName),
+    "fourth_screen.mobileBackground": getFileData(FlipRu.fourth_screen.mobileBackgroundName),
+    "fourth_screen.backgroundOgg": getFileData(FlipRu.fourth_screen.backgroundOggName),
+    "fifth_screen.background": getFileData(FlipRu.fifth_screen.backgroundName),
+    "fifth_screen.mobileBackground": getFileData(FlipRu.fifth_screen.mobileBackgroundName),
+    "fifth_screen.backgroundOgg": getFileData(FlipRu.fifth_screen.backgroundOggName),
+    "sixth_screen.background": getFileData(FlipRu.sixth_screen.backgroundName),
+    "sixth_screen.mobileBackground": getFileData(FlipRu.sixth_screen.mobileBackgroundName),
+    "sixth_screen.backgroundOgg": getFileData(FlipRu.sixth_screen.backgroundOggName),
+    "seventh_screen.background": getFileData(FlipRu.seventh_screen.backgroundName),
+    "seventh_screen.mobileBackground": getFileData(FlipRu.seventh_screen.mobileBackgroundName),
+    "seventh_screen.backgroundOgg": getFileData(FlipRu.seventh_screen.backgroundOggName),
+    "eighth_screen.background": getFileData(FlipRu.eighth_screen.backgroundName),
+    "eighth_screen.mobileBackground": getFileData(FlipRu.eighth_screen.mobileBackgroundName),
+    "eighth_screen.backgroundOgg": getFileData(FlipRu.eighth_screen.backgroundOggName)
   };
 
   if (shouldImportSeedData) {
-    await createEntry({ model: "flip", entry: Flip, files });
+    await createEntry({ model: "flip", entry: FlipRu, files });
+    await createEntry({ model: "flip", entry: FlipEn, files });
   }
-  await updateEntry({ model: "flip", entry: Flip, files });
+  await updateEntry({ model: "flip", entry: FlipRu, files });
+  await updateEntry({ model: "flip", entry: FlipEn, files });
+}
+
+async function importVacanciesPage(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    await createEntry({ model: "vacancies-page", entry: VacanciesPageRu });
+    await createEntry({ model: "vacancies-page", entry: VacanciesPageEn });
+  }
+  await updateEntry({ model: "vacancies-page", entry: VacanciesPageRu });
+  await updateEntry({ model: "vacancies-page", entry: VacanciesPageEn });
+}
+
+async function importVacancyPage(shouldImportSeedData) {
+  const files = {
+    "video": getFileData(VacancyPageRu.videoName),
+    "videoPoster": getFileData(VacancyPageRu.videoPosterName)
+  };
+  if (shouldImportSeedData) {
+    await createEntry({ model: "vacancy-page", entry: VacancyPageRu, files });
+    await createEntry({ model: "vacancy-page", entry: VacancyPageEn, files });
+  }
+  await updateEntry({ model: "vacancy-page", entry: VacancyPageRu, files });
+  await updateEntry({ model: "vacancy-page", entry: VacancyPageEn, files });
+}
+
+async function importNavPanel(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    await createEntry({ model: "nav-panel", entry: NavPanelRu });
+    await createEntry({ model: "nav-panel", entry: NavPanelEn });
+  }
+  await updateEntry({ model: "nav-panel", entry: NavPanelRu });
+  await updateEntry({ model: "nav-panel", entry: NavPanelEn });
+}
+
+async function importPrivacyPolicy(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    await createEntry({ model: "privacy-policy", entry: PrivacyPolicyRu });
+    await createEntry({ model: "privacy-policy", entry: PrivacyPolicyEn });
+  }
+  await updateEntry({ model: "privacy-policy", entry: PrivacyPolicyRu });
+  await updateEntry({ model: "privacy-policy", entry: PrivacyPolicyEn });
+}
+
+async function importRespondForm(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    await createEntry({ model: "respond-form", entry: RespondFormRu });
+    await createEntry({ model: "respond-form", entry: RespondFormEn });
+  }
+  await updateEntry({ model: "respond-form", entry: RespondFormRu });
+  await updateEntry({ model: "respond-form", entry: RespondFormEn });
+}
+
+async function importFooter(shouldImportSeedData) {
+  if (shouldImportSeedData) {
+    await createEntry({ model: "footer", entry: FooterRu });
+    await createEntry({ model: "footer", entry: FooterEn });
+  }
+  await updateEntry({ model: "footer", entry: FooterRu });
+  await updateEntry({ model: "footer", entry: FooterEn });
 }
 
 async function importSeedData(shouldImportSeedData) {
@@ -275,18 +425,50 @@ async function importSeedData(shouldImportSeedData) {
     career: ['find'],
     'about-company': ['find'],
     flip: ['find'],
-    form: ['send']
+    'nav-panel': ['find'],
+    'vacancies-page': ['find'],
+    'vacancy-page': ['find'],
+    footer: ['find'],
+    'privacy-policy': ['find'],
+    'respond-form': ['find'],
+    form: ['send'],
+    vacancy: ['find', 'findone'],
+    tag: ['find', 'findone'],
+    direction: ['find', 'findone'],
+    city: ['find', 'findone'],
+    area: ['find', 'findone'],
+    'job-type': ['find', 'findone']
   });
+  await importTags(shouldImportSeedData);
+  await importDirections(shouldImportSeedData);
+  await importCities(shouldImportSeedData);
+  await importAreas(shouldImportSeedData);
+  await importJobTypes(shouldImportSeedData);
+  await importVacancies(shouldImportSeedData);
   await importHomepage(shouldImportSeedData);
   await importGlobal(shouldImportSeedData);
   await importSelfDrivingCar(shouldImportSeedData);
   await importCareer(shouldImportSeedData);
   await importAboutCompany(shouldImportSeedData);
   await importFlip(shouldImportSeedData);
+  await importNavPanel(shouldImportSeedData);
+  await importFooter(shouldImportSeedData);
+  await importPrivacyPolicy(shouldImportSeedData);
+  await importRespondForm(shouldImportSeedData);
+  await importVacanciesPage(shouldImportSeedData);
+  await importVacancyPage(shouldImportSeedData);
 }
 
 module.exports = async () => {
   const shouldImportSeedData = await isFirstRun();
+
+  if (shouldImportSeedData) {
+    await strapi.query('locale', 'i18n').create({
+      id: 2,
+      code: 'en',
+      name: 'English (en)'
+    })
+  }
 
   try {
     console.log('Setting up your starter...');

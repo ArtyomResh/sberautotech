@@ -1,4 +1,4 @@
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { useClassnames } from '../../hooks/use-classnames';
 import { gtagClicked } from '../../utils';
@@ -11,7 +11,7 @@ interface IProps {
         description: string,
         disclaimer: string,
         privacyPolicyLink: string,
-        publicOfferLink: string,
+        privacyPolicyText: string,
         email: string,
         link: {
             to: string,
@@ -20,29 +20,52 @@ interface IProps {
     }
 }
 
-const Footer = ({ data }: IProps) => {
+const query = graphql`
+  query {
+    allStrapiFooter {
+      edges {
+        node {
+          header
+          description
+          disclaimer
+          privacyPolicyLink
+          privacyPolicyText
+          email
+          link {
+              text
+              to
+          }
+        }
+      }
+    }
+  }
+`;
+
+const Footer = () => {
     const cn = useClassnames(style);
+    const data = useStaticQuery(query);
+
+    const { header, link, disclaimer, privacyPolicyLink, privacyPolicyText, email } = data.allStrapiFooter.edges[0].node;
 
     return (
         <footer className={cn('footer__wrapper')}>
             <div className={cn('footer__top-block')}>
-                <div className={cn('footer__header')}>{data.header}</div>
-                <a
-                    target="_blank"
-                    href={data.link.to}
+                <div className={cn('footer__header')}>{header}</div>
+                <Link
+                    to={link.to}
                     className={cn('footer__link')}
                     onClick={() => gtagClicked('footer_button_click')}
                 >
-                    {data.link.text}
-                </a>
+                    {link.text}
+                </Link>
             </div>
             <div className={cn('footer__bottom-block')}>
                 <div className={cn('footer__bottom-block_left')}>
-                    <span className={cn('footer__disclaimer')}>{data.disclaimer}</span>
-                    <Link className={cn('footer__documents-link')} to={data.privacyPolicyLink}>Политика конфиденциальности</Link>
+                    <span className={cn('footer__disclaimer')}>{disclaimer}</span>
+                    <Link className={cn('footer__documents-link')} to={privacyPolicyLink}>{privacyPolicyText}</Link>
                 </div>
                 <div className={cn('footer__bottom-block_right')}>
-                    <a className={cn('footer__email-link')} href={`mailto:${data.email}`}>{data.email}</a>
+                    <a className={cn('footer__email-link')} href={`mailto:${email}`}>{email}</a>
                 </div>
             </div>
         </footer>

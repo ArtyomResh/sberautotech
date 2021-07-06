@@ -1,9 +1,12 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import Swiper from 'swiper';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
 import { toUnescapedHTML } from '../../utils';
+
+import CursorRight from '../../images/cursor-right.inline.svg';
+import CursorLeft from '../../images/cursor-left.inline.svg';
 
 import style from './index.css';
 
@@ -26,7 +29,8 @@ interface ISlider {
     slider_items: Array<ILocalFile>
 }
 
-enum ECursorPosition {
+enum ECursorDirection {
+    none = 'none',
     left = 'left',
     right = 'right'
 }
@@ -34,29 +38,60 @@ enum ECursorPosition {
 const Carousel: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
     const $container = useRef<HTMLDivElement>(null);
-    const [cursorPosition, setCursorPosition] = useState(ECursorPosition.left);
+    const [cursorDirection, setCursorDirection] = useState({ prev: '', actual: ECursorDirection.none });
+    const [cursorCoordinates, setCursorCoordinates] = useState({ сoordinateX: 0, сoordinateY: 0 });
+    const [isAnimation, setIsAnimation] = useState<boolean>(false);
     const [swiper, setSwiper] = useState<Swiper | null>(null);
 
-    const header = useFormattedText(data.header);
-    const text = useFormattedText(data.text);
+    const header = useFormattedText(data.text);
+
+    const hoverListener = () => {
+        setCursorDirection({ prev: cursorDirection.actual, actual: ECursorDirection.none });
+    };
 
     const onClick = useCallback(() => {
-        if(cursorPosition === ECursorPosition.right) {
-            swiper?.slidePrev();
-        } else if(cursorPosition === ECursorPosition.left) {
+        if(cursorDirection.actual === ECursorDirection.right) {
             swiper?.slideNext();
+        } else if(cursorDirection.actual === ECursorDirection.left) {
+            swiper?.slidePrev();
         }
-    }, [cursorPosition, swiper]);
+    }, [cursorDirection.actual, swiper]);
 
     const observeCursor = useCallback((e) => {
-        const containerWidth = e.target.clientWidth;
-        const currentPosition = e.clientX;
-        const newCursorPosition = containerWidth / 2 >= currentPosition ? ECursorPosition.right : ECursorPosition.left;
+        const containerWidth = e.target?.closest('.carousel-container')?.clientWidth;
 
-        if(newCursorPosition !== cursorPosition) {
-            setCursorPosition(newCursorPosition);
+        if(!containerWidth) {
+            return;
         }
-    }, [cursorPosition]);
+
+        const сoordinateX = e.clientX;
+        const сoordinateY = e.clientY;
+        const { top, bottom } = e.target?.closest('.carousel-container')?.getBoundingClientRect();
+
+        if(сoordinateY < top || сoordinateY > bottom) {
+            setCursorDirection({ prev: cursorDirection.actual, actual: ECursorDirection.none });
+
+            return;
+        }
+
+        setCursorCoordinates({ сoordinateX, сoordinateY });
+
+        const newCursorDirection = containerWidth / 2 >= cursorCoordinates.сoordinateX ? ECursorDirection.left : ECursorDirection.right;
+
+        if(newCursorDirection !== cursorDirection.actual) {
+            setCursorDirection({ prev: cursorDirection.actual, actual: newCursorDirection });
+        }
+    }, [cursorDirection.actual, cursorCoordinates]);
+
+    useEffect(() => {
+        if((cursorDirection.actual === 'left' || cursorDirection.actual === 'right') && cursorDirection.prev === 'none') {
+            setIsAnimation(true);
+        }
+
+        return () => {
+            setIsAnimation(false);
+        };
+    }, [cursorDirection]);
 
     useEffect(() => {
         if($container.current) {
@@ -75,13 +110,35 @@ const Carousel: React.FC<IProps> = ({ data }) => {
         }
     }, []);
 
+    useEffect(() => {
+        window.addEventListener('scroll', hoverListener);
+
+        return () => {
+            window.removeEventListener('scroll', hoverListener);
+        };
+    }, []);
+
+    const elCursor = useMemo(() => {
+        return (
+            <div
+                className={cn('carousel__cursor', `carousel__cursor_${cursorDirection.actual}`, { 'carousel__cursor_no-animation': isAnimation })}
+                style={{ top: cursorCoordinates.сoordinateY, left: cursorCoordinates.сoordinateX }}
+            >
+                {cursorDirection.actual === 'right' ? <CursorRight /> : <CursorLeft />}
+            </div>);
+    }, [cursorDirection.actual, cursorCoordinates]);
+
     return (
         <div
-            className={cn('carousel-container', 'carousel', `carousel_${cursorPosition}`)}
+            className={cn('carousel-container', 'carousel')}
             ref={$container}
             onMouseMove={observeCursor}
+            onMouseLeave={() => {
+                setCursorDirection({ prev: cursorDirection.actual, actual: ECursorDirection.none });
+            }}
             onClick={onClick}
         >
+            {elCursor}
             {header && (
                 <p
                     className={cn('carousel__header',
@@ -91,17 +148,6 @@ const Carousel: React.FC<IProps> = ({ data }) => {
                     )}
                 >
                     {toUnescapedHTML(header)}
-                </p>
-            )}
-            {text && (
-                <p
-                    className={cn('carousel__text',
-                        {
-                            [`carousel__text_${data.text_position?.replace('_', '-')}`]: data.text_position
-                        }
-                    )}
-                >
-                    {toUnescapedHTML(text)}
                 </p>
             )}
             <div className={cn('swiper-wrapper')}>

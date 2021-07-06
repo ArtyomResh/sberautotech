@@ -15,6 +15,19 @@ const query = graphql`
         metaDescription
       }
     }
+    allStrapiDirections {
+      edges {
+        node {
+          description
+          header
+          id
+          subDescriptionFirst
+          subDescriptionSecond
+          target
+          strapiId
+        }
+      }
+    }
     allStrapiCareer {
       edges {
         node {
@@ -30,17 +43,11 @@ const query = graphql`
           top_list {
             header
             list_items {
-              id
-              description
-              header
               link {
                 style
                 text
                 to
               }
-              subDescriptionFirst
-              subDescriptionSecond
-              target
             }
           }
           bottom_slider {
@@ -58,41 +65,43 @@ const query = graphql`
               header
             }
           }
-          footer {
-            id
-            description
-            disclaimer
-            header
-            link {
-              style
-              text
-              to
-            }
-            privacyPolicyLink
-            publicOfferLink
-            email
-          }
         }
       }
     }
   }
 `;
 
-const Career = () => {
-    const data = useStaticQuery(query);
-    const { top_slider, top_list, bottom_slider, bottom_list, footer } = data.allStrapiCareer.edges[0].node;
+interface IDirection {
+  node: {
+    target: string,
+    header: string,
+    description: string,
+    subDescriptionFirst: string,
+    subDescriptionSecond: string,
+  }
+}
 
-    return (
-        <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
-            <div className="career__carousel">
-                <Carousel data={top_slider} />
-            </div>
-            <ListAccordeon data={top_list} />
-            <Carousel data={bottom_slider} />
-            <AdvantagesList data={bottom_list} />
-            <Footer data={footer} />
-        </Layout>
-    );
+const Career = () => {
+  const data = useStaticQuery(query);
+  const { top_slider, top_list, bottom_slider, bottom_list } = data.allStrapiCareer.edges[0].node;
+  const directions = data.allStrapiDirections.edges
+    .sort((a, b) => a.node.strapiId - b.node.strapiId)
+    .map((direction: IDirection, i: number) => ({
+      ...top_list.list_items[i],
+      ...direction.node
+    }));
+
+  return (
+    <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
+      <div className="career__carousel">
+        <Carousel data={top_slider} />
+      </div>
+      <ListAccordeon data={{ header: top_list.header, list_items: directions }} />
+      <Carousel data={bottom_slider} />
+      <AdvantagesList data={bottom_list} />
+      <Footer />
+    </Layout>
+  );
 };
 
 export default Career;

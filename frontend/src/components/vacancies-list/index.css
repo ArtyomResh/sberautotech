@@ -1,0 +1,114 @@
+.vacancies {
+
+    &__wrap {
+        width: 100%;
+    }
+
+    &__list {
+        width: 100%;
+    }
+
+    &__empty-text {
+        font-size: 26px;
+        line-height: 30px;
+        letter-spacing: -0.04em;
+        color: #758794;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+    }
+
+    @media screen and (prefers-reduced-motion: reduce) {
+
+        &__inner-text-link {
+            cursor: pointer;
+            color: #34b7aa;
+            display: inline-block;
+            border-bottom: 1px solid transparent;
+            transition: none;
+
+            @media (hover: hover) and (pointer: fine) {
+
+                &:hover {
+                    border-bottom: 1px solid #34b7aa;
+                }
+            }
+        }
+    }
+
+    &__inner-text-link {
+        cursor: pointer;
+        color: #34b7aa;
+        display: inline-block;
+        border-bottom: 1px solid transparent;
+        transition: border-bottom 0.5s;
+
+        @media (hover: hover) and (pointer: fine) {
+
+            &:hover {
+                border-bottom: 1px solid #34b7aa;
+            }
+        }
+    }
+
+    &__list-item {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #e0e6eb;
+        padding: 20px 0 10px;
+
+        .tag {
+            margin-bottom: 10px !important;
+        }
+    }
+
+    &__list-item-block {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__info-wrapper {
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.01em;
+        color: #34b7aa;
+        display: flex;
+    }
+
+    &__info-data {
+        margin-right: 16px;
+    }
+
+    &__info-city {
+        color: #758794;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.01em;
+    }
+
+    &__title {
+        font-size: 26px;
+        line-height: 30px;
+        letter-spacing: -0.04em;
+        color: #05080a;
+
+        @media (max-width: 330px) {
+            font-size: 20px;
+            line-height: 26px;
+        }
+    }
+
+    &__area {
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.01em;
+        color: #05080a;
+    }
+}

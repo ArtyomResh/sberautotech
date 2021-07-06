@@ -35,9 +35,12 @@
                 color: #BDFFF8;
             }
     
-            .nav__list-item{
-                &:hover {
-                    color: #BDFFF8 !important;
+            .nav__list-item {
+
+                @media (hover: hover) and (pointer: fine) {
+                    &:hover {
+                        color: #BDFFF8 !important;
+                    }
                 }
             }
         }

@@ -13,3 +13,10 @@ export const toUnescapedHTML = (text: string) => {
 };
 
 export const gtagClicked = (event_category: string) => window?.gtag?.('event', 'click', { event_category, event_label: window?.location.pathname });
+
+export const enumToValues = (en) => {
+    const values = Object.values(en);
+    const keys = Object.keys(en);
+
+    return keys.map((key, index) => ({ value: key, label: values[index] }));
+};

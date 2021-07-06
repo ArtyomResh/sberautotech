@@ -39,24 +39,17 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
     const visibilityClassName = pageNumber >= index ? 'block__wrapper_visible' : 'block__wrapper_hidden';
 
     const renderLink = (link: ILink) => (
-        link.to.search('http') !== 0 ? (
-            <Link to={link.to} className={cn('block__link', `block__link_${linkStyle}`)}>
-                {link.text}
-            </Link>
-        ) : (
-            <a
-                target="_blank"
-                href={link.to}
-                className={cn('block__link', `block__link_${linkStyle}`)}
-                onClick={() => gtagClicked('main_slide_button_click')}
-            >
-                {link.text}
-            </a>
-        )
+        <Link 
+            to={link.to} 
+            className={cn('block__link', `block__link_${linkStyle}`)} 
+            onClick={() => gtagClicked('main_slide_button_click')}
+        >
+            {link.text}
+        </Link>
     );
 
     return (
-        <div className={cn('block__wrapper', visibilityClassName)} id={String(block.id)}>
+        <div className={cn('block__wrapper', visibilityClassName)} id={String(index)}>
             {block.background.localFile.publicURL.search('.mp4') !== -1 ? (
                 <video
                     className={cn('block__image')}

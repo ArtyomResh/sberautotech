@@ -4,10 +4,10 @@
   "version": "0.0.1",
   "description": "A Strapi application",
   "scripts": {
-    "develop": "strapi develop",
-    "start": "strapi start",
+    "develop": "STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=ru strapi develop",
+    "start": "STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=ru strapi start",
     "start:production": "NODE_ENV=production yarn start",
-    "build": "strapi build",
+    "build": "STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=ru strapi build",
     "build:production": "NODE_ENV=production yarn build",
     "strapi": "strapi",
     "database:start": "docker-compose -f ./data/docker-compose.yml up"
@@ -16,17 +16,18 @@
     "knex": "0.21.18",
     "mime-types": "2.1.27",
     "pg": "8.5.1",
-    "strapi": "3.5.4",
-    "strapi-admin": "3.5.4",
-    "strapi-connector-bookshelf": "3.5.4",
-    "strapi-plugin-content-manager": "3.5.4",
-    "strapi-plugin-content-type-builder": "3.5.4",
-    "strapi-plugin-email": "3.5.4",
-    "strapi-plugin-graphql": "3.5.4",
-    "strapi-plugin-upload": "3.5.4",
-    "strapi-plugin-users-permissions": "3.5.4",
-    "strapi-provider-email-nodemailer": "3.6.0",
-    "strapi-utils": "3.5.4"
+    "strapi": "3.6.3",
+    "strapi-admin": "3.6.3",
+    "strapi-connector-bookshelf": "3.6.3",
+    "strapi-plugin-content-manager": "3.6.3",
+    "strapi-plugin-content-type-builder": "3.6.3",
+    "strapi-plugin-email": "3.6.3",
+    "strapi-plugin-graphql": "3.6.3",
+    "strapi-plugin-i18n": "3.6.3",
+    "strapi-plugin-upload": "3.6.3",
+    "strapi-plugin-users-permissions": "3.6.3",
+    "strapi-provider-email-nodemailer": "3.6.3",
+    "strapi-utils": "3.6.3"
   },
   "author": {
     "name": "A Strapi developer"

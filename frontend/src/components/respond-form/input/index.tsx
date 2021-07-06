@@ -57,7 +57,7 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
                     onChange={onChangeHandler}
                 />
                 <label htmlFor="file" className={cn('input-file__label', { 'input-file__label_error': formState.errors?.[name] })}>
-                    <span className={cn({ 'input-file__title': file.fileName })}>{file.fileName ? file.fileName : 'Прикрепить файл'}</span>
+                    <span className={cn({ 'input-file__title': file.fileName })}>{file.fileName ? file.fileName : placeholder}</span>
                     <span className={cn('input-file__ext')}>{file.fileExtension ? `.${file.fileExtension}` : null}</span>
                     <div className={cn('input-file__cross')} onClick={cancelFileHandler}>{file.fileName ? <Cross /> : null}</div>
                 </label>
