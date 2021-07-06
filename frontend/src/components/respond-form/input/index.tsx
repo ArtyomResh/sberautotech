@@ -57,7 +57,7 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
                 <input
                     type="file"
                     id="file"
-                    accept="application/pdf"
+                    accept="application/pdf, application/msword, application/vnd.oasis.opendocument.text, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/rtf, .pdf, .doc, .docx, .rtf"
                     {...register(name, { required: props.requiredValidation })}
                     onChange={onChangeHandler}
                 />
