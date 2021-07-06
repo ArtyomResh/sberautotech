@@ -117,7 +117,10 @@ async function updateEntry({ model, entry, files }) {
   try {
     const params = {id: entry.id}
     const previousEntry = await strapi.query(model).findOne(params)
-    return await strapi.entityService.update({ params, data: previousEntry, files }, { model });
+    if (previousEntry) {
+      return await strapi.entityService.update({ params, data: previousEntry, files }, { model });
+    }
+    return await strapi.entityService.create({ data: entry, files }, { model });
   } catch (e) {
     console.log('model', entry, e);
   }

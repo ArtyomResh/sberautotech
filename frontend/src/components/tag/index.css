@@ -1,0 +1,30 @@
+.tag {
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    color: #758794;
+    border: 1px solid #C0CCD5;
+    border-radius: 32px;
+    padding: 5px 8px;
+    margin-right: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            color: #05080A;
+            background: #66DED2;
+            border: 1px solid #66DED2;
+        }
+    }
+
+    &_active {
+        color: #1F272E;
+        background: #BDFFF8;
+        border: 1px solid #BDFFF8;
+    }
+}

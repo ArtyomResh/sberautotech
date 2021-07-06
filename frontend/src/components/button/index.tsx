@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import style from './index.css';
 
@@ -13,9 +13,10 @@ interface IProps {
     styleType?: TButtonStyleType,
     className?: string,
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+    count?: number
 }
 
-const Button = ({ label, type, disabled, styleType, className, onClick }: IProps) => {
+const Button = ({ label, type, disabled, styleType, className, onClick, count }: IProps) => {
     const cn = useClassnames(style);
 
     return (
@@ -25,7 +26,15 @@ const Button = ({ label, type, disabled, styleType, className, onClick }: IProps
             disabled={disabled}
             onClick={onClick}
         >
-            {label}
+            <span>
+                {label}
+
+                {count ? (
+                    <span className={cn('button__count')}>
+                        {count}
+                    </span>
+                ) : null}
+            </span>
         </button>
     );
 };
