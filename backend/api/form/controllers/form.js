@@ -39,6 +39,12 @@ module.exports = {
     */
 
     try {
+      const me = await req.get('/me');
+
+      console.log('ME: ', me.data);
+
+      ctx.send(me.data);
+
       const buffer = Buffer.from(content.split(',')[1], 'base64');
       const stream = Readable.from(buffer.toString());
       const form = new FormData();
@@ -93,7 +99,6 @@ module.exports = {
 
       console.log(save.data);
 
-      ctx.send();
     } catch (err) {
       console.error(err);
       ctx.send(err);
