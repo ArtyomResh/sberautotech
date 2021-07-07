@@ -5,7 +5,7 @@ const packagejson = require('../../../package.json');
 
 const HUNTFLOW_API = process.env.HUNTFLOW_API || 'https://api.huntflow.ru';
 const HUNTFLOW_TOKEN = process.env.HUNTFLOW_TOKEN || '';
-const HUNTFLOW_ACCOUNT_ID = process.env.HUNTFLOW_ACCOUNT_ID || '83078';
+const HUNTFLOW_ACCOUNT_ID = process.env.HUNTFLOW_ACCOUNT_ID || '83078'; // id компании с ХФ
 const HUNTFLOW_SOURCE_ID = process.env.HUNTFLOW_SOURCE_ID || '331342'; // Сайт sberautotech.ru
 
 const req = axios.create({
