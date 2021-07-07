@@ -1,10 +1,12 @@
+const { Readable } = require('stream');
 const axios = require('axios');
 const FormData = require('form-data');
 const packagejson = require('../../../package.json');
 
 const HUNTFLOW_API = process.env.HUNTFLOW_API || 'https://api.huntflow.ru';
 const HUNTFLOW_TOKEN = process.env.HUNTFLOW_TOKEN || '';
-const HUNTFLOW_ACCOUNT_ID = process.env.HUNTFLOW_ACCOUNT_ID || '';
+const HUNTFLOW_ACCOUNT_ID = process.env.HUNTFLOW_ACCOUNT_ID || '83078';
+const HUNTFLOW_SOURCE_ID = process.env.HUNTFLOW_SOURCE_ID || '331342'; // Сайт sberautotech.ru
 
 const req = axios.create({
   baseURL: HUNTFLOW_API
@@ -37,31 +39,24 @@ module.exports = {
     */
 
     try {
-      const accounts = await req.get('/accounts');
-
-      console.log('Accounts: ', accounts.data);
-      const { items: account_items } = accounts.data;
-      const account_id = account_items[0].id;
-
-      const sources = await req.get(`/account/${account_id}/applicant/sources`);
-
-      console.log('Sources: ', sources.data);
-      const { items: source_items } = sources.data;
-      const source_id = (source_items.filter((item) => /сайт/ig.test(item.name)))[0].id;
-
+      const buffer = Buffer.from(content.split(',')[1], 'base64');
+      const stream = Readable.from(buffer.toString());
       const form = new FormData();
-      form.append('file', content);
+
+      console.log('Stream: ', stream);
+
+      form.append('file', stream, filename);
 
       console.log('FormHeaders: ', form.getHeaders());
 
-      const upload = await req.post(`/account/${account_id}/upload`, form,{
+      const upload = await req.post(`/account/${HUNTFLOW_ACCOUNT_ID}/upload`, form,{
         headers: {
-          ...form.getHeaders(),
+          'content-type': 'multipart/form-data',
           'X-File-Parse': true
         }
       });
 
-      console.log('File: ', upload.data);
+      console.log(upload.data);
 
       const {
         id,
@@ -91,7 +86,7 @@ module.exports = {
           photo: photo_id,
           externals: [{
             files: [{ id }],
-            account_source: source_id
+            account_source: HUNTFLOW_SOURCE_ID
           }]
         }
       });
