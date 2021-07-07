@@ -92,10 +92,12 @@ module.exports = {
       });
 
       console.log(save.data);
+
+      ctx.send();
     } catch (err) {
       console.error(err);
+      ctx.send(err);
     }
 
-    ctx.send();
   }
 };
