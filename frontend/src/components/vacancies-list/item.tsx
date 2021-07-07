@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import moment from 'moment/min/moment-with-locales';
+import React, { useMemo } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import TagsList from '../tags-list';
@@ -12,12 +11,29 @@ import { Link } from 'gatsby';
 interface IProps {
     data: IVacanciesListItem,
     activeTags: Array<any>,
-    onClickTag: any
+    onClickTag: any,
+    searchString: string
 }
 
-const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag }) => {
-    const { title, city, about, jobType, publicationDate, area, direction, tags, strapiId, locale } = data;
+const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag, searchString }) => {
+    const { title, city, area, direction, tags, strapiId } = data;
     const cn = useClassnames(style);
+
+    const titleWithSubstrGenerator = useMemo(() => {
+        if(searchString.length > 1) {
+            const titleWithSubstr = title.split('');
+
+            const firstIndex = title.toLowerCase().indexOf(searchString.trim());
+            const lastIndex = searchString.trim().length + firstIndex + 1;
+
+            titleWithSubstr.splice(firstIndex, 0, '<p class=vacancies__substr-title>');
+            titleWithSubstr.splice(lastIndex, 0, '<p>');
+
+            return titleWithSubstr.join('');
+        }
+
+        return title;
+    }, [searchString]);
 
     return (
         <div className={cn('vacancies__list-item')}>
@@ -30,7 +46,7 @@ const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag }) =
                 </div>
             </div>
             <div className={cn('vacancies__list-item-block')}>
-                <Link to={`/vacancies/${strapiId}`} className={cn('vacancies__title')}>{title}</Link>
+                <Link to={`/vacancies/${strapiId}`} className={cn('vacancies__title')}>{toUnescapedHTML(titleWithSubstrGenerator)}</Link>
             </div>
             <div className={cn('vacancies__list-item-block')}>
                 <span className={cn('vacancies__area')}>{area.text}</span>

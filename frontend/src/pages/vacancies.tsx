@@ -138,12 +138,12 @@ const Vacancies = ({ location }) => {
                 return false;
             }
 
-            if(searchString.length && !vacancy.title.toLowerCase().includes(searchString.toLowerCase().trim())) {
-                return false;
-            }
-
             if(activeTags.length) {
                 return vacancy.tags.filter(({ id }) => activeTags.includes(id)).length === activeTags.length;
+            }
+
+            if(searchString.length && !vacancy.title.toLowerCase().includes(searchString.toLowerCase().trim())) {
+                return false;
             }
 
             return true;
@@ -207,7 +207,7 @@ const Vacancies = ({ location }) => {
                                 <div className={cn('vacancies__tags-wrapper')}>
                                     <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
                                 </div>
-                                <VacanciesList data={filteredVacancies} activeTags={activeTags} onClickTag={onClickTag} />
+                                <VacanciesList searchString={searchString} data={filteredVacancies} activeTags={activeTags} onClickTag={onClickTag} />
                             </div>
                             <Button
                                 styleType="primary"

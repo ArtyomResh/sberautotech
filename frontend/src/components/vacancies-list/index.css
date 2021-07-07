@@ -103,6 +103,14 @@
             font-size: 20px;
             line-height: 26px;
         }
+
+        & p {
+            display: inline;
+        }
+    }
+
+    &__substr-title {
+        color: red;
     }
 
     &__area {
