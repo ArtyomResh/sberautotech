@@ -138,12 +138,12 @@ const Vacancies = ({ location }) => {
                 return false;
             }
 
-            if(activeTags.length) {
-                return vacancy.tags.filter(({ id }) => activeTags.includes(id)).length === activeTags.length;
-            }
-
             if(searchString.length && !vacancy.title.toLowerCase().includes(searchString.toLowerCase().trim())) {
                 return false;
+            }
+
+            if(activeTags.length) {
+                return vacancy.tags.filter(({ id }) => activeTags.includes(id)).length === activeTags.length;
             }
 
             return true;

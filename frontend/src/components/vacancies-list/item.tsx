@@ -20,7 +20,7 @@ const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag, sea
     const cn = useClassnames(style);
 
     const titleWithSubstrGenerator = useMemo(() => {
-        if(searchString.length > 1) {
+        if(searchString.length > 1 && title.toLowerCase().includes(searchString.toLowerCase().trim())) {
             const titleWithSubstr = title.split('');
 
             const firstIndex = title.toLowerCase().indexOf(searchString.trim());
