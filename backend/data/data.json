@@ -241,15 +241,15 @@
       "shareImage": null
     },
     "top_slider": {
-      "header": "Мир не меняется сам по себе. Его меняют люди, которые верят в технологии, в будущее и в свои силы",
-      "header_position": "bottom_left",
+      "header": "Железо, код и люди.</br>Сберавтотех собирает будующее в своих гаражах и офисах",
+      "header_position": "top_left",
       "text": null,
       "text_position": "bottom_left",
       "slider_items": [null, null],
       "slider_items_names": ["engineer2.jpg", "engineer5.jpg"]
     },
     "top_list": {
-      "header": "Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
+      "header": "Мир меняется не сам по себе. Его меняют люди, которые верят в технологии, в будущее и в свои силы. Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
       "list_items": [
         {
           "link": {
@@ -367,7 +367,7 @@
     },
     "top_slider": {
       "header": "The world does not change by itself. It is changed by people who believe in technology, in the future and in their own strength.",
-      "header_position": "bottom_left",
+      "header_position": "top_left",
       "text": null,
       "text_position": "bottom_left",
       "slider_items": [null, null]
