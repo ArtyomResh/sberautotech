@@ -27,12 +27,12 @@ export const query = graphql`
           countText
           video {
             localFile {
-              publicURL
+              url
             }
           }
           videoPoster {
             localFile {
-              publicURL
+              url
             }
           }
         }
@@ -155,12 +155,12 @@ interface ITag {
   id: number
 }
 
-interface IPublicUrl {
-  publicURL: string
+interface IUrl {
+  url: string
 }
 
 interface ILocalFile {
-  localFile: IPublicUrl
+  localFile: IUrl
 }
 
 const VacancyPage: React.FC<IProps> = ({ data }) => {
@@ -248,8 +248,8 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
           <video
             className={cn('vacancy__video')}
             ref={videoRef}
-            src={video.localFile.publicURL}
-            poster={videoPoster.localFile.publicURL}
+            src={video.localFile.url}
+            poster={videoPoster.localFile.url}
             loop={true}
           >
           </video>

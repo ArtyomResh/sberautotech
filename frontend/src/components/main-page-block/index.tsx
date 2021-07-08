@@ -19,12 +19,12 @@ export interface IBlock {
     id: number,
     background: {
         localFile: {
-            publicURL: string
+            url: string
         }
     },
     backgroundPoster?: {
         localFile: {
-            publicURL: string
+            url: string
         }
     },
     link?: ILink,
@@ -39,9 +39,9 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
     const visibilityClassName = pageNumber >= index ? 'block__wrapper_visible' : 'block__wrapper_hidden';
 
     const renderLink = (link: ILink) => (
-        <Link 
-            to={link.to} 
-            className={cn('block__link', `block__link_${linkStyle}`)} 
+        <Link
+            to={link.to}
+            className={cn('block__link', `block__link_${linkStyle}`)}
             onClick={() => gtagClicked('main_slide_button_click')}
         >
             {link.text}
@@ -50,7 +50,7 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
 
     return (
         <div className={cn('block__wrapper', visibilityClassName)} id={String(index)}>
-            {block.background.localFile.publicURL.search('.mp4') !== -1 ? (
+            {block.background.localFile.url.search('.mp4') !== -1 ? (
                 <video
                     className={cn('block__image')}
                     muted={true}
@@ -59,9 +59,9 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
                     playsInline={true}
                 />
             ) : (
-                <img src={block.background.localFile.publicURL} className={cn('block__image')} alt={block.link?.text} />
-            )}
-            {block.link ? renderLink(block.link) : null }
+                    <img src={block.background.localFile.url} className={cn('block__image')} alt={block.link?.text} />
+                )}
+            {block.link ? renderLink(block.link) : null}
             <div className={cn('block__bottom', pageNumber >= index ? 'block__bottom_showing' : 'block__bottom_hiding')}>
                 {text && <span className={cn('block__text')}>{toUnescapedHTML(text)}</span>}
                 {block.cards?.map((card, i) => (

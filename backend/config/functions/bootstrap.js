@@ -221,9 +221,7 @@ async function importGlobal() {
 async function importSelfDrivingCar() {
   const files = {
     "double_block.background": getFileData(SelfDrivingCarRu['double_block'].backgroundName),
-    "double_block.backgroundPoster": getFileData(SelfDrivingCarRu['double_block'].backgroundPosterName),
     "double_block.mobileBackground": getFileData(SelfDrivingCarRu['double_block'].mobileBackgroundName),
-    "double_block.mobileBackgroundPoster": getFileData(SelfDrivingCarRu['double_block'].mobileBackgroundPosterName),
     "slider.slider_items": []
   };
   SelfDrivingCarRu['story_cards'].map((item, i) => {

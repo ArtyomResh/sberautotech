@@ -23,7 +23,7 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
         <div className={cn('accordeon__wrapper', { [`${className}-item-wrapper`]: className })}>
             <div className={cn('accordeon__header-wrapper', { [`${className}-item-header-wrapper`]: className })} onClick={() => setIsOpen(!isOpen)}>
                 <div className={cn('accordeon__toggle', { [`${className}-item-toggle`]: className })}>
-                    { isOpen ? <AccordeonHide className={cn('accordeon__toggle_hide')} /> : <AccordeonShow className={cn('accordeon__toggle_show')}/> }
+                    {isOpen ? <AccordeonHide className={cn('accordeon__toggle_hide')} /> : <AccordeonShow className={cn('accordeon__toggle_show')} />}
                 </div>
                 <div className={cn('accordeon__header', { [`${className}-item-header`]: className })}>
                     {data.header}
@@ -34,7 +34,7 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
                     <div className={cn('accordeon__description', { [`${className}-item-description`]: className })}>
                         {data.image && (
                             <img
-                                src={data.image.localFile.publicURL}
+                                src={data.image.localFile.url}
                                 className={cn('accordeon__image', { [`${className}-item-image`]: className })}
                             />
                         )}
@@ -53,7 +53,7 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
                             </div>
                         )}
                         <div className={cn('accordeon__sub-description')}>
-                                {data.subDescriptionFirst ? data.subDescriptionFirst : ''}
+                            {data.subDescriptionFirst ? data.subDescriptionFirst : ''}
                         </div>
                         <div className={cn('accordeon__sub-description')}>
                             {data.subDescriptionSecond ? data.subDescriptionSecond : ''}

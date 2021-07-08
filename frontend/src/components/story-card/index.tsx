@@ -9,7 +9,7 @@ import style from './index.css';
 export interface ICard {
     image: {
         localFile: {
-            publicURL: string
+            url: string
         }
     },
     text: string
@@ -21,7 +21,7 @@ const StoryCard = ({ card }: { card: ICard }) => {
 
     return (
         <div className={cn('story__wrapper')}>
-            <img src={card.image.localFile.publicURL} className={cn('story__image')} alt="" />
+            <img src={card.image.localFile.url} className={cn('story__image')} alt="" />
             {text && <span className={cn('story__text')}>{toUnescapedHTML(text)}</span>}
         </div>
     );

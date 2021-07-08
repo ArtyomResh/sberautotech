@@ -16,7 +16,7 @@ interface IProps {
 
 export interface ILocalFile {
     localFile: {
-        publicURL: string
+        url: string
     }
 }
 
@@ -50,9 +50,9 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     };
 
     const onClick = useCallback(() => {
-        if(cursorDirection.actual === ECursorDirection.right) {
+        if (cursorDirection.actual === ECursorDirection.right) {
             swiper?.slideNext();
-        } else if(cursorDirection.actual === ECursorDirection.left) {
+        } else if (cursorDirection.actual === ECursorDirection.left) {
             swiper?.slidePrev();
         }
     }, [cursorDirection.actual, swiper]);
@@ -60,7 +60,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     const observeCursor = useCallback((e) => {
         const containerWidth = e.target?.closest('.carousel-container')?.clientWidth;
 
-        if(!containerWidth) {
+        if (!containerWidth) {
             return;
         }
 
@@ -68,7 +68,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
         const сoordinateY = e.clientY;
         const { top, bottom } = e.target?.closest('.carousel-container')?.getBoundingClientRect();
 
-        if(сoordinateY < top || сoordinateY > bottom) {
+        if (сoordinateY < top || сoordinateY > bottom) {
             setCursorDirection({ prev: cursorDirection.actual, actual: ECursorDirection.none });
 
             return;
@@ -78,13 +78,13 @@ const Carousel: React.FC<IProps> = ({ data }) => {
 
         const newCursorDirection = containerWidth / 2 >= cursorCoordinates.сoordinateX ? ECursorDirection.left : ECursorDirection.right;
 
-        if(newCursorDirection !== cursorDirection.actual) {
+        if (newCursorDirection !== cursorDirection.actual) {
             setCursorDirection({ prev: cursorDirection.actual, actual: newCursorDirection });
         }
     }, [cursorDirection.actual, cursorCoordinates]);
 
     useEffect(() => {
-        if((cursorDirection.actual === 'left' || cursorDirection.actual === 'right') && cursorDirection.prev === 'none') {
+        if ((cursorDirection.actual === 'left' || cursorDirection.actual === 'right') && cursorDirection.prev === 'none') {
             setIsAnimation(true);
         }
 
@@ -94,12 +94,12 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     }, [cursorDirection]);
 
     useEffect(() => {
-        if($container.current) {
+        if ($container.current) {
             const swiper = new Swiper($container.current, {
-                loop          : true,
+                loop: true,
                 centeredSlides: true,
-                slidesPerView : 1,
-                spaceBetween  : 0
+                slidesPerView: 1,
+                spaceBetween: 0
             });
 
             setSwiper(swiper);
@@ -155,7 +155,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
                     <div key={i} className={cn('swiper-slide', 'carousel__slide')}>
                         <div className={cn('carousel__slide-container')}>
                             <div className={cn('carousel__img-container')}>
-                                <img className={cn('carousel__img')} src={slide.localFile.publicURL} />
+                                <img className={cn('carousel__img')} src={slide.localFile.url} />
                             </div>
                         </div>
                     </div>
