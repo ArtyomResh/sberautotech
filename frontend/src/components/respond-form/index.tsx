@@ -21,7 +21,7 @@ const options = [
     { value: 'Design', label: 'Design' }
 ];
 
-const HOST = process.env.API_URL || 'http://localhost:1337';
+const HOST = process.env.GATSBY_API_URL;
 const FORM_URL = `${HOST}/form`;
 
 const query = graphql`

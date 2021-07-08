@@ -1,10 +1,9 @@
-const { Readable } = require('stream');
 const axios = require('axios');
 const FormData = require('form-data');
 const packagejson = require('../../../package.json');
 
 const HUNTFLOW_API = process.env.HUNTFLOW_API || 'https://api.huntflow.ru';
-const HUNTFLOW_TOKEN = process.env.HUNTFLOW_TOKEN || '';
+const HUNTFLOW_TOKEN = process.env.HUNTFLOW_TOKEN;
 const HUNTFLOW_ACCOUNT_ID = process.env.HUNTFLOW_ACCOUNT_ID || '83078'; // id компании с ХФ
 const HUNTFLOW_SOURCE_ID = process.env.HUNTFLOW_SOURCE_ID || '331342'; // Сайт sberautotech.ru
 
@@ -20,7 +19,6 @@ module.exports = {
   async send(ctx) {
     const { acception, name, surname, email, direction, textarea, content, filename, vacancy } = ctx.request.body;
 
-    /*
     try {
       const res = await strapi.plugins['email'].services.email.send({
         //TODO: Можно ли указать в strapi?
@@ -36,68 +34,58 @@ module.exports = {
     } catch (err) {
       console.error(err);
     }
-    */
 
     try {
       const buffer = Buffer.from(content.split(',')[1], 'base64');
-      const stream = Readable.from(buffer.toString());
       const form = new FormData();
-
-      console.log('Stream: ', stream);
-
-      form.append('file', stream, filename);
-
-      console.log('FormHeaders: ', form.getHeaders());
+      form.append('file', buffer, filename);
 
       const upload = await req.post(`/account/${HUNTFLOW_ACCOUNT_ID}/upload`, form,{
         headers: {
-          'content-type': 'multipart/form-data',
+          ...form.getHeaders(),
           'X-File-Parse': true
         }
       });
 
-      console.log(upload.data);
-
       const {
         id,
-        photo: { id: photo_id },
+        text,
+        photo,
         fields: {
           position,
-          email,
+          email: dataEmail,
           salary,
-          name: { middle, last, first },
+          name: dataName,
           phones,
-          birthdate: { month, day, year }
+          birthdate
         }
       } = upload.data;
 
       const save = await req.post(`/account/${HUNTFLOW_ACCOUNT_ID}/applicants`, {
-        data: {
-          last_name: last ?? surname,
-          first_name: first ?? name,
-          middle_name: middle,
-          phone: phones?.[0],
-          email,
-          position: position ?? direction,
-          money: salary,
-          birthday_day: day,
-          birthday_month: month,
-          birthday_year: year,
-          photo: photo_id,
-          externals: [{
-            files: [{ id }],
-            account_source: HUNTFLOW_SOURCE_ID
-          }]
-        }
+        last_name: dataName?.last ?? surname,
+        first_name: dataName?.first ?? name,
+        middle_name: dataName?.middle,
+        phone: phones?.[0],
+        email: dataEmail ?? email,
+        position: position ?? direction,
+        money: salary ?? '-',
+        birthday_day: birthdate?.day,
+        birthday_month: birthdate?.month,
+        birthday_year: birthdate?.year,
+        photo: photo?.id,
+        externals: [{
+          data: {
+            body: text ?? textarea
+          },
+          auth_type: 'NATIVE',
+          files: [{ id }],
+          account_source: HUNTFLOW_SOURCE_ID
+        }]
       });
-
-      console.log(save.data);
-
-      ctx.send();
     } catch (err) {
       console.error(err);
-      ctx.send(err);
     }
 
+    ctx.send();
   }
 };

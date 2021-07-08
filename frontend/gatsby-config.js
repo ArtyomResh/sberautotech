@@ -1,5 +1,5 @@
 require('dotenv').config({
-    path: '.env'
+    path: `.env.${process.env.NODE_ENV}`
 });
 
 module.exports = {
@@ -71,7 +71,7 @@ module.exports = {
             resolve: 'gatsby-source-strapi',
             options: {
                 queryLimit  : 10000,
-                apiURL      : process.env.API_URL || 'http://localhost:1337',
+                apiURL      : process.env.GATSBY_API_URL || 'http://localhost:1337',
                 contentTypes: [
                     {
                         name: `vacancy`,
