@@ -71,7 +71,7 @@ module.exports = {
             resolve: 'gatsby-source-strapi',
             options: {
                 queryLimit  : 10000,
-                apiURL      : process.env.GATSBY_API_URL || 'http://localhost:1337',
+                apiURL      : process.env.GATSBY_API_URL,
                 contentTypes: [
                     {
                         name: `vacancy`,
