@@ -68,6 +68,7 @@
         display: flex;
         justify-content: space-between;
         position: relative;
+        color: #05080a;
 
         &:not(:last-child) {
             margin-bottom: 10px;
@@ -104,19 +105,30 @@
             line-height: 26px;
         }
 
-        & p {
-            display: inline;
+        &_searched {
+            color: #758794;
+        }
+
+        &_hovered {
+            color: #34b7aa;
+
+            & span {
+                color: #34b7aa;
+            }
         }
     }
 
     &__substr-title {
-        color: red;
+        color: #05080a;
     }
 
     &__area {
         font-size: 14px;
         line-height: 18px;
         letter-spacing: -0.01em;
-        color: #05080a;
+
+        &_hovered {
+            color: #34b7aa;
+        }
     }
 }
