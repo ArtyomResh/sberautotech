@@ -10,7 +10,8 @@ import VacanciesItem from './item';
 interface IProps {
     data: Array<IVacanciesListItem>,
     activeTags: Array<any>,
-    onClickTag: any
+    onClickTag: any,
+    searchString: string
 }
 
 export interface IVacanciesListItem {
@@ -38,7 +39,7 @@ export interface IVacanciesListItem {
     strapiId: number
 }
 
-const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag }) => {
+const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag, searchString }) => {
     const cn = useClassnames(style);
 
     const { setIsPopupVisible } = useContext(appContext);
@@ -51,7 +52,7 @@ const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag }) => {
         <div className={cn('vacancies__wrap')}>
             <div className={cn('vacancies__list')}>
                 {data?.length ? data.map((item) => (
-                    <VacanciesItem key={item.id} data={item} activeTags={activeTags} onClickTag={onClickTag} />
+                    <VacanciesItem key={item.id} data={item} activeTags={activeTags} onClickTag={onClickTag} searchString={searchString} />
                 )) : (
                     <div className={cn('vacancies__empty-text')}>
                         <p>Нет вакансий, но вы все равно можете <p className={cn('vacancies__inner-text-link')} onClick={linkPopupHandler}>связаться с нами</p></p>
