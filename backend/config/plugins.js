@@ -4,14 +4,14 @@ module.exports = ({ env }) => {
     config.upload = {
       provider: 'aws-s3-enhanced',
       providerOptions: {
-        endpoint: env('S3_ENDPOINT'),
+        endpoint: env('S3_ENDPOINT') || 'https://obs.ru-moscow-1.hc.sbercloud.ru',
         accessKeyId: env('S3_ACCESS_KEY_ID'),
         secretAccessKey: env('S3_ACCESS_SECRET'),
-        region: env('S3_REGION'),
+        region: env('S3_REGION') || 'ru-moscow-1',
         params: {
-          Bucket: env('S3_BUCKET'),
+          Bucket: env('S3_BUCKET') || 'sberautotech-site-bucket',
         },
-        accessLevel: env('ACCESS_LEVEL')
+        accessLevel: env('ACCESS_LEVEL') || 'public-read'
       }
     }
   };
