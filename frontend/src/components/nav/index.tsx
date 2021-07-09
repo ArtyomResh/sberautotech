@@ -75,6 +75,7 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
     const [isOpen, setIsOpen] = useState(false);
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
+    const [shouldAddShadow, setShouldAddShadow] = useState(false);
     const { setIsPopupVisible } = useContext(appContext);
     const [width, height] = useWindowSize();
     const cn = useClassnames(style);
@@ -100,6 +101,7 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
         setTimeout(() => {
             if(theme.mode === 'dark') {
                 setShouldHideHeader(isScrolledDown && isMinimumScrolled);
+                setShouldAddShadow(isMinimumScrolled);
             }
         }, TIMEOUT_DELAY);
     });
@@ -128,7 +130,8 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
             className={
                 cn('nav__wrapper', `nav__wrapper_${theme.mode}`, {
                     'nav__wrapper_open-menu': isOpen,
-                    'nav__wrapper_hidden'   : shouldHideHeader
+                    'nav__wrapper_hidden'   : shouldHideHeader,
+                    'nav__wrapper_shadow'   : shouldAddShadow
                 })
             }
         >
