@@ -241,15 +241,15 @@
       "shareImage": null
     },
     "top_slider": {
-      "header": "Железо, код и люди.</br>Сберавтотех собирает будующее в своих гаражах и офисах",
+      "header": "Мир не меняется сам по себе.</br>Его меняют люди, которые верят в технологии, в будущее и в свои силы",
       "header_position": "top_left",
       "text": null,
       "text_position": "bottom_left",
       "slider_items": [null, null],
-      "slider_items_names": ["engineer2.jpg", "programmer.jpg", "engineer5.jpg", "garage2.jpg", "engineer8.jpg"]
+      "slider_items_names": ["engineer2.jpg", "programmer.jpg", "team.jpg", "engineer8.jpg"]
     },
     "top_list": {
-      "header": "Мир меняется не сам по себе. Его меняют люди, которые верят в технологии, в будущее и в свои силы. Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
+      "header": "Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
       "list_items": [
         {
           "link": {
@@ -543,7 +543,7 @@
     "headerBottom": "Мы — команда {Sber Automotive Technologies}. Мы создаём безопасное беспилотное будущее",
     "textBottom": "С помощью гаджетов люди научились управлять самым главным ресурсом — временем. Финансы, развлечения, бронирование билетов и многое другое теперь доступно в один клик. Настало время превратить в удобный гаджет и автомобиль. Взаимодействие с ним станет интуитивно понятным и комфортным, а вождение — беспилотным. Так люди получат больше свободы, а города — гибкую логистику для доставки товаров и грузов.",
     "count": 300,
-    "countText": "лучших специалистов, имеющих опыт работы в ведущих компаниях сразу двух рынков, IT и Automotive",
+    "countText": "лучших специалистов, имеющих опыт работы в ведущих компаниях сразу двух рынков: IT и Automotive",
     "video": null,
     "videoName": "garage.mp4",
     "videoPoster": null,
@@ -609,7 +609,7 @@
       "text": null,
       "text_position": "bottom_left",
       "slider_items": [null, null],
-      "slider_items_names": ["engineer6.jpg",  "engineer7.jpg", "brainstorm.jpg", "team.jpg"]
+      "slider_items_names": ["engineer6.jpg",  "engineer7.jpg", "engineer5.jpg"]
     }
   },
   "AboutCompanyEn": {
