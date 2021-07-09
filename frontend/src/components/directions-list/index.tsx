@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 
-import BackIcon from '../../images/back.svg';
+import BackIcon from '../../images/back.inline.svg';
 
 import style from './index.css';
 
@@ -25,13 +25,13 @@ const DirectionsList = ({ directions, count, activeDirection, onClickDirection }
     const cn = useClassnames(style);
 
     const backToPreviousPage = useCallback(() => {
-        window.history.back()
+        window.history.back();
     }, []);
 
     return (
         <div className={cn('directions__wrapper')}>
             <div className={cn('directions__back')}>
-                <img className={cn('directions__back-icon')} src={BackIcon} onClick={backToPreviousPage} />
+                <BackIcon className={cn('directions__back-icon')} onClick={backToPreviousPage} />
             </div>
             <div>
                 <div className={cn('directions__header')}>
@@ -48,8 +48,9 @@ const DirectionsList = ({ directions, count, activeDirection, onClickDirection }
                     >
                         Все
                     </li>
-                    {directions.map((direction => (
+                    {directions.map(((direction, i) => (
                         <li
+                            key={i}
                             className={
                                 cn('directions__list-item', {
                                     'directions__list-item_active': activeDirection === direction.strapiId

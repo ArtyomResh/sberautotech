@@ -2,6 +2,7 @@
 
     &__wrap {
         width: 100%;
+        padding-top: 10px;
     }
 
     &__list {
@@ -57,10 +58,14 @@
         display: flex;
         flex-direction: column;
         border-bottom: 1px solid #e0e6eb;
-        padding: 20px 0 10px;
+        padding: 32px 0;
 
         .tag {
             margin-bottom: 10px !important;
+        }
+
+        &:first-child {
+            padding: 20px 0 32px;
         }
     }
 
@@ -68,6 +73,7 @@
         display: flex;
         justify-content: space-between;
         position: relative;
+        color: #05080a;
 
         &:not(:last-child) {
             margin-bottom: 10px;
@@ -103,12 +109,31 @@
             font-size: 20px;
             line-height: 26px;
         }
+
+        &_searched {
+            color: #758794;
+        }
+
+        &_hovered {
+            color: #34b7aa;
+
+            & span {
+                color: #34b7aa;
+            }
+        }
+    }
+
+    &__substr-title {
+        color: #05080a;
     }
 
     &__area {
         font-size: 14px;
         line-height: 18px;
         letter-spacing: -0.01em;
-        color: #05080a;
+
+        &_hovered {
+            color: #34b7aa;
+        }
     }
 }
