@@ -241,15 +241,15 @@
       "shareImage": null
     },
     "top_slider": {
-      "header": "Мир не меняется сам по себе. Его меняют люди, которые верят в технологии, в будущее и в свои силы",
-      "header_position": "bottom_left",
+      "header": "Железо, код и люди.</br>Сберавтотех собирает будующее в своих гаражах и офисах",
+      "header_position": "top_left",
       "text": null,
       "text_position": "bottom_left",
       "slider_items": [null, null],
-      "slider_items_names": ["engineer2.jpg", "engineer5.jpg"]
+      "slider_items_names": ["engineer2.jpg", "programmer.jpg", "engineer5.jpg", "garage2.jpg", "engineer8.jpg"]
     },
     "top_list": {
-      "header": "Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
+      "header": "Мир меняется не сам по себе. Его меняют люди, которые верят в технологии, в будущее и в свои силы. Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
       "list_items": [
         {
           "link": {
@@ -367,7 +367,7 @@
     },
     "top_slider": {
       "header": "The world does not change by itself. It is changed by people who believe in technology, in the future and in their own strength.",
-      "header_position": "bottom_left",
+      "header_position": "top_left",
       "text": null,
       "text_position": "bottom_left",
       "slider_items": [null, null]
@@ -540,10 +540,10 @@
       "metaDescription":"СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
       "shareImage":null
     },
-    "headerBottom": "Мы – компания {Sber Automotive Technologies}. Мы создаём продукты для цифрового транспорта, которые произведут революцию в перемещении пассажиров и грузов.",
-    "textBottom": "Люди научились управлять самым главным ресурсом — временем — с помощью гаджетов. Задача нашей команды – превратить автомобиль в удобный гаджет с интуитивно понятным управлением. Так мы сделаем вождение простым и комфортным, а в перспективе поручим его беспилотным технологиям. Логистика жизни в большом городе станет удобнее, а люди получат еще больше свободного времени.",
+    "headerBottom": "Мы — команда {Sber Automotive Technologies}. Мы создаём безопасное беспилотное будущее",
+    "textBottom": "С помощью гаджетов люди научились управлять самым главным ресурсом — временем. Финансы, развлечения, бронирование билетов и многое другое теперь доступно в один клик. Настало время превратить в удобный гаджет и автомобиль. Взаимодействие с ним станет интуитивно понятным и комфортным, а вождение — беспилотным. Так люди получат больше свободы, а города — гибкую логистику для доставки товаров и грузов.",
     "count": 300,
-    "countText": "лучших специалистов с опытом работы в ведущих компаниях сразу двух рынков: IT и Automotive",
+    "countText": "лучших специалистов, имеющих опыт работы в ведущих компаниях сразу двух рынков, IT и Automotive",
     "video": null,
     "videoName": "garage.mp4",
     "videoPoster": null,
@@ -605,11 +605,11 @@
     },
     "slider": {
       "header": "У компании три ключевые локации — офис разработки программного обеспечения, инженерно-испытательный центр и инжиниринговый офис в {Москве и Минске.}",
-      "header_position": "bottom_center",
+      "header_position": "bottom_left",
       "text": null,
       "text_position": "bottom_left",
       "slider_items": [null, null],
-      "slider_items_names": ["engineer6.jpg",  "engineer7.jpg"]
+      "slider_items_names": ["engineer6.jpg",  "engineer7.jpg", "brainstorm.jpg", "team.jpg"]
     }
   },
   "AboutCompanyEn": {

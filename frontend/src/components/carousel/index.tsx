@@ -43,7 +43,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     const [isAnimation, setIsAnimation] = useState<boolean>(false);
     const [swiper, setSwiper] = useState<Swiper | null>(null);
 
-    const header = useFormattedText(data.text);
+    const header = useFormattedText(data.header);
 
     const hoverListener = () => {
         setCursorDirection({ prev: cursorDirection.actual, actual: ECursorDirection.none });

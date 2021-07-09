@@ -6,7 +6,7 @@ import useWindowSize from '../../hooks/use-window-resize';
 
 import style from './index.css';
 
-const MINIMUM_SCROLL = 20;
+const MINIMUM_SCROLL = 5;
 const TIMEOUT_DELAY = 0;
 const PADDING = 20;
 
@@ -89,7 +89,7 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
 
             setIndicatorStyles({
                 transform: `translateX(${activeElement?.offsetLeft - PADDING}px)`,
-                width    : activeElement?.offsetWidth
+                width: activeElement?.offsetWidth
             });
         }, 200);
     }, [pageNumber, width, height]);
@@ -99,7 +99,7 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
         const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
 
         setTimeout(() => {
-            if(theme.mode === 'dark') {
+            if (theme.mode === 'dark') {
                 setShouldHideHeader(isScrolledDown && isMinimumScrolled);
                 setShouldAddShadow(isMinimumScrolled);
             }
@@ -111,11 +111,11 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
     };
 
     const redirectHandler = () => {
-        if(pageNumber) {
+        if (pageNumber) {
             setPageNumber?.(0);
         }
 
-        if(isOpen) {
+        if (isOpen) {
             onMenuButtonClick();
         }
     };
@@ -130,8 +130,8 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
             className={
                 cn('nav__wrapper', `nav__wrapper_${theme.mode}`, {
                     'nav__wrapper_open-menu': isOpen,
-                    'nav__wrapper_hidden'   : shouldHideHeader,
-                    'nav__wrapper_shadow'   : shouldAddShadow
+                    'nav__wrapper_hidden': shouldHideHeader,
+                    'nav__wrapper_shadow': shouldAddShadow
                 })
             }
         >

@@ -203,6 +203,7 @@ ul {
 
     &__area {
         margin-top: 20px;
+        display: none;
 
         & p {
             letter-spacing: -0.01em;

@@ -131,6 +131,7 @@
         font-size: 14px;
         line-height: 18px;
         letter-spacing: -0.01em;
+        display: none;
 
         &_hovered {
             color: #34b7aa;
