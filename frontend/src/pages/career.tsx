@@ -36,7 +36,7 @@ const query = graphql`
             header_position
             slider_items {
                 localFile {
-                    publicURL
+                    url
                 }
             }
           }
@@ -55,7 +55,7 @@ const query = graphql`
             header_position
             slider_items {
                 localFile {
-                    publicURL
+                    url
                 }
             }
           }

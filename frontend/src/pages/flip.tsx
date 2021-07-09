@@ -29,17 +29,17 @@ const query = graphql`
           first_screen {
             background {
               localFile {
-                publicURL
+                url
               }
             }
             backgroundOgg {
               localFile {
-                publicURL
+                url
               }
             }
             mobileBackground {
               localFile {
-                publicURL
+                url
               }
             }
             primary_header
@@ -52,17 +52,17 @@ const query = graphql`
           eighth_screen {
             background {
               localFile {
-                publicURL
+                url
               }
             }
             backgroundOgg {
               localFile {
-                publicURL
+                url
               }
             }
             mobileBackground {
               localFile {
-                publicURL
+                url
               }
             }
             primary_header
@@ -75,17 +75,17 @@ const query = graphql`
           fifth_screen {
             background {
               localFile {
-                publicURL
+                url
               }
             }
             backgroundOgg {
               localFile {
-                publicURL
+                url
               }
             }
             mobileBackground {
               localFile {
-                publicURL
+                url
               }
             }
             primary_header
@@ -98,17 +98,17 @@ const query = graphql`
           fourth_screen {
             background {
               localFile {
-                publicURL
+                url
               }
             }
             backgroundOgg {
               localFile {
-                publicURL
+                url
               }
             }
             mobileBackground {
               localFile {
-                publicURL
+                url
               }
             }
             primary_header
@@ -121,17 +121,17 @@ const query = graphql`
           second_screen {
             background {
               localFile {
-                publicURL
+                url
               }
             }
             backgroundOgg {
               localFile {
-                publicURL
+                url
               }
             }
             mobileBackground {
               localFile {
-                publicURL
+                url
               }
             }
             primary_header
@@ -144,17 +144,17 @@ const query = graphql`
           seventh_screen {
             background {
               localFile {
-                publicURL
+                url
               }
             }
             backgroundOgg {
               localFile {
-                publicURL
+                url
               }
             }
             mobileBackground {
               localFile {
-                publicURL
+                url
               }
             }
             primary_header
@@ -167,17 +167,17 @@ const query = graphql`
           sixth_screen {
             background {
               localFile {
-                publicURL
+                url
               }
             }
             backgroundOgg {
               localFile {
-                publicURL
+                url
               }
             }
             mobileBackground {
               localFile {
-                publicURL
+                url
               }
             }
             primary_header
@@ -190,17 +190,17 @@ const query = graphql`
           third_screen {
             background {
               localFile {
-                publicURL
+                url
               }
             }
             backgroundOgg {
               localFile {
-                publicURL
+                url
               }
             }
             mobileBackground {
               localFile {
-                publicURL
+                url
               }
             }
             primary_header
@@ -219,113 +219,113 @@ const query = graphql`
 const DEBOUNCE_TIMER = 50;
 
 const FlipPage = () => {
-    const cn = useClassnames(style);
-    const data = useStaticQuery(query);
-    const [isLoading, setIsLoading] = useState(true);
-    const videoSource = useMemo(() => isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg', []);
+  const cn = useClassnames(style);
+  const data = useStaticQuery(query);
+  const [isLoading, setIsLoading] = useState(true);
+  const videoSource = useMemo(() => isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg', []);
 
-    const {
-        first_screen,
-        third_screen,
-        fourth_screen,
-        fifth_screen,
-        sixth_screen,
-        seventh_screen,
-        eighth_screen,
-    } = data.allStrapiFlip.edges[0].node;
+  const {
+    first_screen,
+    third_screen,
+    fourth_screen,
+    fifth_screen,
+    sixth_screen,
+    seventh_screen,
+    eighth_screen,
+  } = data.allStrapiFlip.edges[0].node;
 
-    const registerVideo = useCallback((boundSelector: string, videoBlob: string) => {
-        const bound = document.querySelector(boundSelector);
-        const video = document.querySelector(`${boundSelector} video`);
+  const registerVideo = useCallback((boundSelector: string, videoBlob: string) => {
+    const bound = document.querySelector(boundSelector);
+    const video = document.querySelector(`${boundSelector} video`);
 
-        video?.setAttribute('src', videoBlob);
+    video?.setAttribute('src', videoBlob);
 
-        if(isMobile) {
-            return;
-        }
+    if (isMobile) {
+      return;
+    }
 
-        const primaryTextBlock = bound?.querySelector('.flip__text-wrapper_primary');
-        const primaryText = primaryTextBlock?.querySelector('.flip__screen-text');
-        const secondaryTextBlock = bound?.querySelector('.flip__text-wrapper_secondary');
+    const primaryTextBlock = bound?.querySelector('.flip__text-wrapper_primary');
+    const primaryText = primaryTextBlock?.querySelector('.flip__screen-text');
+    const secondaryTextBlock = bound?.querySelector('.flip__text-wrapper_secondary');
 
-        const scrollVideo = debounce(() => {
-            if(video?.duration) {
-                const boundClientRectTop = bound?.getBoundingClientRect().top || 0;
-                const boundScrollHeight = bound?.scrollHeight || 0;
-                const distanceFromTop = window.scrollY + boundClientRectTop;
-                const rawPercentScrolled = (window.scrollY - distanceFromTop) / (boundScrollHeight - window.innerHeight);
-                const percentScrolled = Math.min(Math.max(rawPercentScrolled, 0), 1);
+    const scrollVideo = debounce(() => {
+      if (video?.duration) {
+        const boundClientRectTop = bound?.getBoundingClientRect().top || 0;
+        const boundScrollHeight = bound?.scrollHeight || 0;
+        const distanceFromTop = window.scrollY + boundClientRectTop;
+        const rawPercentScrolled = (window.scrollY - distanceFromTop) / (boundScrollHeight - window.innerHeight);
+        const percentScrolled = Math.min(Math.max(rawPercentScrolled, 0), 1);
 
-                if(primaryTextBlock && secondaryTextBlock) {
-                    if(percentScrolled >= 0.5) {
-                        primaryTextBlock.style.transform = `translateY(-${primaryTextBlock.offsetTop - 60}px)`;
-                        secondaryTextBlock.style.opacity = 1;
+        if (primaryTextBlock && secondaryTextBlock) {
+          if (percentScrolled >= 0.5) {
+            primaryTextBlock.style.transform = `translateY(-${primaryTextBlock.offsetTop - 60}px)`;
+            secondaryTextBlock.style.opacity = 1;
 
-                        if(primaryText) {
-                            primaryText.style.opacity = 0;
-                        }
-                    } else {
-                      primaryTextBlock.style.transform = 'translateY(0px)';
-                      secondaryTextBlock.style.opacity = 0;
-  
-                      if(primaryText) {
-                          primaryText.style.opacity = 1;
-                      }
-                    }
-                }
-
-                video.currentTime = video.duration * percentScrolled;
+            if (primaryText) {
+              primaryText.style.opacity = 0;
             }
-            requestAnimationFrame(scrollVideo);
-        }, DEBOUNCE_TIMER);
+          } else {
+            primaryTextBlock.style.transform = 'translateY(0px)';
+            secondaryTextBlock.style.opacity = 0;
 
-        requestAnimationFrame(scrollVideo);
-    }, []);
-
-    useEffect(() => {
-        if(isMobile !== null) {
-            const preloadVideos = [
-                fetch(first_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
-                fetch(third_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
-                fetch(fourth_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
-                fetch(fifth_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
-                fetch(sixth_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
-                fetch(seventh_screen[videoSource].localFile.publicURL).then((response) => response.blob()),
-                fetch(eighth_screen[videoSource].localFile.publicURL).then((response) => response.blob())
-            ];
-
-            Promise.all(preloadVideos).then((data) => {
-                setIsLoading(false);
-                data.map((screen, i) => registerVideo(`#bound-${i + 1}`, URL.createObjectURL(screen)))
-            }).catch((e) => console.log(e));
+            if (primaryText) {
+              primaryText.style.opacity = 1;
+            }
+          }
         }
-    }, [isMobile]);
 
-    return (
-        <div className="flip__page">
-            <Layout
-                seo={data.strapiFlip.seo} 
-                theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }} 
-                pageNumber={0}
-            >
-              {isLoading ? (
-                <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
-              ) : (
-                <div className={cn('flip__wrapper', {'flip__wrapper_mobile': isMobile})}>
-                    <FlipScreen data={first_screen} id="bound-1" />
-                    <FlipScreen data={third_screen} id="bound-2" />
-                    <FlipScreen data={fourth_screen} id="bound-3" />
-                    <FlipScreen data={fifth_screen} id="bound-4" />
-                    <FlipScreen data={sixth_screen} id="bound-5" icon={SberCloudLogoIcon} />
-                    <FlipScreen data={seventh_screen} id="bound-6" />
-                    <FlipScreen data={eighth_screen} id="bound-7" />
-                    <img className={cn('flip__logo')} src={FlipLogoIcon} />
-                    <Footer />
-                </div>
-              )}
-            </Layout>
-        </div>
-    );
+        video.currentTime = video.duration * percentScrolled;
+      }
+      requestAnimationFrame(scrollVideo);
+    }, DEBOUNCE_TIMER);
+
+    requestAnimationFrame(scrollVideo);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile !== null) {
+      const preloadVideos = [
+        fetch(first_screen[videoSource].localFile.url).then((response) => response.blob()),
+        fetch(third_screen[videoSource].localFile.url).then((response) => response.blob()),
+        fetch(fourth_screen[videoSource].localFile.url).then((response) => response.blob()),
+        fetch(fifth_screen[videoSource].localFile.url).then((response) => response.blob()),
+        fetch(sixth_screen[videoSource].localFile.url).then((response) => response.blob()),
+        fetch(seventh_screen[videoSource].localFile.url).then((response) => response.blob()),
+        fetch(eighth_screen[videoSource].localFile.url).then((response) => response.blob())
+      ];
+
+      Promise.all(preloadVideos).then((data) => {
+        setIsLoading(false);
+        data.map((screen, i) => registerVideo(`#bound-${i + 1}`, URL.createObjectURL(screen)))
+      }).catch((e) => console.log(e));
+    }
+  }, [isMobile]);
+
+  return (
+    <div className="flip__page">
+      <Layout
+        seo={data.strapiFlip.seo}
+        theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }}
+        pageNumber={0}
+      >
+        {isLoading ? (
+          <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
+        ) : (
+            <div className={cn('flip__wrapper', { 'flip__wrapper_mobile': isMobile })}>
+              <FlipScreen data={first_screen} id="bound-1" />
+              <FlipScreen data={third_screen} id="bound-2" />
+              <FlipScreen data={fourth_screen} id="bound-3" />
+              <FlipScreen data={fifth_screen} id="bound-4" />
+              <FlipScreen data={sixth_screen} id="bound-5" icon={SberCloudLogoIcon} />
+              <FlipScreen data={seventh_screen} id="bound-6" />
+              <FlipScreen data={eighth_screen} id="bound-7" />
+              <img className={cn('flip__logo')} src={FlipLogoIcon} />
+              <Footer />
+            </div>
+          )}
+      </Layout>
+    </div>
+  );
 };
 
 export default FlipPage;

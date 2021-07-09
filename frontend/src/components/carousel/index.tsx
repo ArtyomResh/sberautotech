@@ -16,7 +16,7 @@ interface IProps {
 
 export interface ILocalFile {
     localFile: {
-        publicURL: string
+        url: string
     }
 }
 
@@ -155,7 +155,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
                     <div key={i} className={cn('swiper-slide', 'carousel__slide')}>
                         <div className={cn('carousel__slide-container')}>
                             <div className={cn('carousel__img-container')}>
-                                <img className={cn('carousel__img')} src={slide.localFile.publicURL} />
+                                <img className={cn('carousel__img')} src={slide.localFile.url} />
                             </div>
                         </div>
                     </div>

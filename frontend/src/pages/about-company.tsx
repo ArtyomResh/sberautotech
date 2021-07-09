@@ -25,7 +25,7 @@ const query = graphql`
         node {
           headerBackground {
             localFile {
-              publicURL
+              url
             }
           }
           headerText
@@ -37,7 +37,7 @@ const query = graphql`
               id
               image {
                 localFile {
-                  publicURL
+                  url
                 }
               }
               target
@@ -49,7 +49,7 @@ const query = graphql`
             header_position
             slider_items {
                 localFile {
-                    publicURL
+                    url
                 }
             }
           }
@@ -61,30 +61,30 @@ const query = graphql`
 
 
 const AboutCompanyPage = () => {
-    const cn = useClassnames(style);
-    const data = useStaticQuery(query);
-    const { headerBackground, headerText, list, slider } = data.allStrapiAboutCompany.edges[0].node;
+  const cn = useClassnames(style);
+  const data = useStaticQuery(query);
+  const { headerBackground, headerText, list, slider } = data.allStrapiAboutCompany.edges[0].node;
 
-    const header = useFormattedText(headerText);
+  const header = useFormattedText(headerText);
 
-    return (
-        <div className={cn('about-company__page')}>
-            <Layout seo={data.strapiAboutCompany.seo} theme={{ mode: 'dark', logoColor: '#040A0A', whiteLogoImportant: true }} pageNumber={2}>
-                <div className={cn('about-company__wrapper')}>
-                    {header && (
-                        <div className={cn('about-company__header-wrapper')}>
-                            <img className={cn('about-company__header-image')} src={headerBackground.localFile.publicURL} />
-                            <p className={cn('about-company__header-text')}>{toUnescapedHTML(header)}</p>
-                        </div>
-                    )}
-                    <ListAccordeon data={list} className={cn('about-company__list')} />
-                    <Carousel data={slider} />
-                    <Footer />
-                </div>
-            </Layout>
+  return (
+    <div className={cn('about-company__page')}>
+      <Layout seo={data.strapiAboutCompany.seo} theme={{ mode: 'dark', logoColor: '#040A0A', whiteLogoImportant: true }} pageNumber={2}>
+        <div className={cn('about-company__wrapper')}>
+          {header && (
+            <div className={cn('about-company__header-wrapper')}>
+              <img className={cn('about-company__header-image')} src={headerBackground.localFile.url} />
+              <p className={cn('about-company__header-text')}>{toUnescapedHTML(header)}</p>
+            </div>
+          )}
+          <ListAccordeon data={list} className={cn('about-company__list')} />
+          <Carousel data={slider} />
+          <Footer />
         </div>
+      </Layout>
+    </div>
 
-    );
+  );
 };
 
 export default AboutCompanyPage;
