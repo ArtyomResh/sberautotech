@@ -9,7 +9,7 @@ import style from './index.css';
 interface IProps {
     data: Array<ISlideItem>
 }
-interface ISlideItem{
+interface ISlideItem {
     id: number,
     header: string,
     text: string,
@@ -21,12 +21,12 @@ const SwiperComponent: React.FC<IProps> = ({ data }) => {
     const $container = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if($container.current) {
+        if ($container.current) {
             const swiper = new Swiper($container.current, {
-                loop               : true,
-                centeredSlides     : true,
-                slidesPerView      : 1.3,
-                spaceBetween       : 20,
+                loop: true,
+                centeredSlides: true,
+                slidesPerView: 1.3,
+                spaceBetween: 20,
                 watchSlidesProgress: true
             });
 
@@ -42,7 +42,7 @@ const SwiperComponent: React.FC<IProps> = ({ data }) => {
                 'swiper-slide': swipable
             })}
         >
-            <img src={slide.image.localFile.publicURL} alt={slide.header} className={cn('swiper__slide-img')} />
+            <img src={slide.image.localFile.url} alt={slide.header} className={cn('swiper__slide-img')} />
             <h3 className={cn('swiper__slide-heading')}>{slide.header}</h3>
             <p className={cn('swiper__slide-text')}>{slide.text}</p>
         </div>

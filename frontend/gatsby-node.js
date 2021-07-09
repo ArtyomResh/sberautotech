@@ -28,7 +28,7 @@ exports.createPages = ({ actions, graphql }) => {
       }
       `).then(result => {
       // Create pages for each article.
-      result.data.allStrapiVacancies.edges.forEach(({ node }) => {
+      result.data?.allStrapiVacancies?.edges?.forEach(({ node }) => {
         createPage({
           path: `/vacancies/${node.strapiId}`,
           component: path.resolve(`src/pages/vacancy.tsx`),

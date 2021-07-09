@@ -28,8 +28,8 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
     const [play, setPlay] = useState(true);
 
     const toggleVideo = () => {
-        if(videoRef.current) {
-            if(videoRef.current.paused) {
+        if (videoRef.current) {
+            if (videoRef.current.paused) {
                 void videoRef.current.play().then(() => setPlay(true));
 
                 return;
@@ -43,12 +43,11 @@ const MainBlock: React.FC<IProps> = ({ data }) => {
     return (
         <div className={cn('main-block')} onClick={toggleVideo}>
             <div className={cn('main-block__header')}>{data.header}</div>
-            {play ? <ButtonPlay className={cn('main-block__play')} /> : <ButtonPause className={cn('main-block__play')} /> }
+            {play ? <ButtonPlay className={cn('main-block__play')} /> : <ButtonPause className={cn('main-block__play')} />}
             <video
                 className={cn('main-block__video')}
                 ref={videoRef}
-                src={isMobile ? data.mobileBackground.localFile.publicURL : data.background.localFile.publicURL}
-                poster={isMobile ? data.mobileBackgroundPoster.localFile.publicURL : data.backgroundPoster?.localFile?.publicURL}
+                src={isMobile ? data.mobileBackground.localFile.url : data.background.localFile.url}
                 muted={true}
                 loop={true}
                 autoPlay={true}

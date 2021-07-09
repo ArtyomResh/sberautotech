@@ -27,23 +27,12 @@ const query = graphql`
             text
             background {
               localFile {
-                publicURL
+                url
               }
-            }
-            backgroundPoster {
-              localFile {
-                publicURL
-              }
-              id
             }
             mobileBackground {
               localFile {
-                publicURL
-              }
-            }
-            mobileBackgroundPoster {
-              localFile {
-                publicURL
+                url
               }
             }
           }
@@ -53,7 +42,7 @@ const query = graphql`
             text
             image {
               localFile {
-                publicURL
+                url
               }
             }
           }
@@ -64,7 +53,7 @@ const query = graphql`
             text_position
             slider_items {
                 localFile {
-                    publicURL
+                    url
                 }
             }
           }
@@ -75,17 +64,17 @@ const query = graphql`
 `;
 
 const SelfDrivingCar = () => {
-    const data = useStaticQuery(query);
-    const { double_block, story_cards, slider } = data.allStrapiSelfDrivingCar.edges[0].node;
+  const data = useStaticQuery(query);
+  const { double_block, story_cards, slider } = data.allStrapiSelfDrivingCar.edges[0].node;
 
-    return (
-        <Layout seo={data.strapiSelfDrivingCar.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={1}>
-            <MainBlock data={double_block} />
-            <Swiper data={story_cards} />
-            <Carousel data={slider} />
-            <Footer />
-        </Layout>
-    );
+  return (
+    <Layout seo={data.strapiSelfDrivingCar.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={1}>
+      <MainBlock data={double_block} />
+      <Swiper data={story_cards} />
+      <Carousel data={slider} />
+      <Footer />
+    </Layout>
+  );
 };
 
 export default SelfDrivingCar;

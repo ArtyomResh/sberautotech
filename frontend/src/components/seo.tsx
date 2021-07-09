@@ -8,7 +8,7 @@ const query = graphql`
     strapiGlobal {
       favicon {
         localFile {
-          publicURL
+          url
         }
       }
     }
@@ -22,59 +22,59 @@ const SEO = ({ seo = {} }) => {
     const getMetaTags = () => {
         const tags = [];
 
-        if(seo.metaTitle) {
+        if (seo.metaTitle) {
             tags.push(
                 {
                     property: 'og:title',
-                    content : seo.metaTitle
+                    content: seo.metaTitle
                 },
                 {
-                    name   : 'twitter:title',
+                    name: 'twitter:title',
                     content: seo.metaTitle
                 }
             );
         }
 
-        if(seo.metaDescription) {
+        if (seo.metaDescription) {
             tags.push(
                 {
-                    name   : 'description',
+                    name: 'description',
                     content: seo.metaDescription
                 },
                 {
                     property: 'og:description',
-                    content : seo.metaDescription
+                    content: seo.metaDescription
                 },
                 {
-                    name   : 'twitter:description',
+                    name: 'twitter:description',
                     content: seo.metaDescription
                 }
             );
         }
 
-        if(seo.shareImage) {
+        if (seo.shareImage) {
             const imageUrl = (process.env.GATSBY_ROOT_URL || 'http://localhost:8000');
 
             tags.push(
                 {
-                    name   : 'image',
+                    name: 'image',
                     content: imageUrl
                 },
                 {
                     property: 'og:image',
-                    content : imageUrl
+                    content: imageUrl
                 },
                 {
-                    name   : 'twitter:image',
+                    name: 'twitter:image',
                     content: imageUrl
                 }
             );
         }
 
-        if(seo.article) {
+        if (seo.article) {
             tags.push({
                 property: 'og:type',
-                content : 'article'
+                content: 'article'
             });
         }
         tags.push({ name: 'twitter:card', content: 'summary_large_image' });
@@ -91,10 +91,10 @@ const SEO = ({ seo = {} }) => {
             meta={metaTags}
             link={[
                 {
-                    rel  : 'icon',
-                    type : 'image/png',
+                    rel: 'icon',
+                    type: 'image/png',
                     sizes: '16x16',
-                    href : favicon.publicURL
+                    href: favicon.url
                 }
             ]}
         />
@@ -104,15 +104,15 @@ const SEO = ({ seo = {} }) => {
 export default SEO;
 
 SEO.propTypes = {
-    title      : PropTypes.string,
+    title: PropTypes.string,
     description: PropTypes.string,
-    image      : PropTypes.string,
-    article    : PropTypes.bool
+    image: PropTypes.string,
+    article: PropTypes.bool
 };
 
 SEO.defaultProps = {
-    title      : null,
+    title: null,
     description: null,
-    image      : null,
-    article    : false
+    image: null,
+    article: false
 };
