@@ -25,7 +25,7 @@ const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag, sea
         if(searchString.length) {
             const titleWithSubstr = title.split('');
 
-            const firstIndex = title.toLowerCase().indexOf(searchString.trim());
+            const firstIndex = title.toLowerCase().indexOf(searchString.toLowerCase().trim());
             const lastIndex = searchString.trim().length + firstIndex + 1;
 
             titleWithSubstr.splice(firstIndex, 0, '<span class="vacancies__substr-title">');

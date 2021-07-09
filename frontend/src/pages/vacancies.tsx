@@ -175,7 +175,7 @@ const Vacancies = ({ location }) => {
                                         <img className={cn('vacancies__search-icon')} src={SearchIcon} onClick={() => $container.current?.focus()} />
                                     )}
                                 </div>
-                                <div className={cn('vacancies__result-wrapper')}>
+                                <div className={cn('vacancies__result-wrapper')} onClick={() => $container.current?.focus()}>
                                     {(searchString) ? (
                                         <p className={cn('vacancies__result')}>
                                             Найден{

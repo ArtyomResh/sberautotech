@@ -21,7 +21,7 @@ ul {
 
     &__wrapper {
         display: flex;
-        margin: 0px 20px;
+        margin: 0 20px;
 
         @media screen and (max-width: 1024px) {
             display: flex;
@@ -40,7 +40,7 @@ ul {
         max-width: 380px;
         margin-right: 15px;
         top: 120px;
-    
+
         & h1 {
             width: 217px;
             display: inline-block;
@@ -64,6 +64,13 @@ ul {
     &__left-block-arrow-left {
         display: inline-block;
         cursor: pointer;
+
+        &:hover {
+
+            & path {
+                fill: #34b7aa;
+            }
+        }
     }
 
     &__left-block-main {

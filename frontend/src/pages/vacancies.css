@@ -45,10 +45,9 @@
     }
 
     &__result-wrapper {
-        margin-top: 5px;
         border-bottom: 1px solid #e0e6eb;
         margin-bottom: 10px;
-        min-height: 33px;
+        min-height: 23px;
 
         @media screen and (max-width: 880px) {
             display: none;
@@ -60,7 +59,7 @@
         line-height: 14px;
         letter-spacing: -0.02em;
         color: #758794;
-        margin-bottom: 18px;
+        margin-bottom: 8px;
     }
 
     &__wrapper {
