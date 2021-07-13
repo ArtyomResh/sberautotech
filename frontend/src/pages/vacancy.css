@@ -189,7 +189,7 @@ ul {
         100% { opacity: 0; }
     }
 
-    @keyframes opacity {
+    @-webkit-keyframes opacity {
 
         0% { opacity: 0; }
 
@@ -198,7 +198,7 @@ ul {
         100% { opacity: 0; }
     }
 
-    @keyframes opacity {
+    @-moz-keyframes opacity {
 
         0% { opacity: 0; }
 
@@ -207,7 +207,7 @@ ul {
         100% { opacity: 0; }
     }
 
-    @keyframes opacity {
+    @-o-keyframes opacity {
 
         0% { opacity: 0; }
 
