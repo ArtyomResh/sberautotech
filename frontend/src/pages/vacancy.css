@@ -1,5 +1,5 @@
 :root {
-    --vacancy-padding-top: 120px;
+    --vacancy-margin-top: 120px;
 }
 
 ul {
@@ -7,7 +7,7 @@ ul {
 }
 
 .vacancy {
-    margin-top: 120px;
+    margin-top: var(--vacancy-margin-top);
 
     @media screen and (max-width: 880px) {
         margin-top: 80px;
@@ -34,7 +34,7 @@ ul {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 70vh;
+        height: calc(100vh - var(--vacancy-margin-top) - 40px);
         position: sticky;
         min-width: 280px;
         width: 25%;
@@ -78,6 +78,7 @@ ul {
         display: grid;
         grid-template-columns: 1fr [content]2fr 1fr;
         justify-items: start;
+        margin-top: 60px;
 
         &_mobile {
             display: none;
@@ -137,6 +138,10 @@ ul {
 
         & a {
             cursor: pointer;
+
+            &:not(:last-child) {
+                margin-right: 8px;
+            }
         }
 
         & a svg:hover {
