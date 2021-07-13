@@ -26,6 +26,7 @@ ul {
         @media screen and (max-width: 1024px) {
             display: flex;
             justify-content: center;
+            margin: 0 10px;
         }
     }
 
@@ -114,7 +115,7 @@ ul {
         &_mobile {
             position: fixed;
             bottom: 30px;
-            width: 300px;
+            width: calc(100vw - 20px);
             border-radius: 64px;
 
             @media screen and (min-width: 880px) {
@@ -236,14 +237,22 @@ ul {
         letter-spacing: -0.01em;
         box-sizing: border-box;
         border-radius: 32px;
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: #05080A;
+                background: #66DED2;
+                border: 1px solid #66DED2;
+            }
+        }
     }
 
     &__about-wrapper {
         margin-top: 24px;
 
         & p {
-            font-size: 18px;
-            line-height: 24px;
+            font-size: 16px;
+            line-height: 20px;
             font-family: var(--font-family-secondary);
         }
 
@@ -355,7 +364,7 @@ ul {
 
     &__count {
         font-family: var(--font-family-digits);
-        font-size: 125px;
+        font-size: 160px;
         line-height: 0.4;
     }
 
@@ -363,7 +372,7 @@ ul {
         font-size: 14px;
         line-height: 18px;
         letter-spacing: -0.01em;
-        max-width: 290px;
+        max-width: 320px;
         margin-top: 12px;
     }
 

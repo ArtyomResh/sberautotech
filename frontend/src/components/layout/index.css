@@ -6,10 +6,6 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 ul[class],
 ol[class] {
     padding: 0;
@@ -33,7 +29,6 @@ dd {
 }
 
 body {
-    scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
     font-family: var(--font-family-primary);
@@ -68,7 +63,6 @@ select {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
     }
 }
 

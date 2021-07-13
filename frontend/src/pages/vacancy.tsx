@@ -249,7 +249,6 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
             className={cn('vacancy__video')}
             ref={videoRef}
             src={video.localFile.url}
-            poster={videoPoster.localFile.url}
             loop={true}
           >
           </video>
