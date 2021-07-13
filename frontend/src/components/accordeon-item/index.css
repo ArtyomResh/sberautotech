@@ -1,17 +1,19 @@
 .accordeon {
+
     &__wrapper {
         width: 100%;
-        border-top: 1px solid #AEAEAE;
+        border-top: 1px solid #aeaeae;
 
         @media (max-width: 1024px) {
             margin-bottom: 40px;
+            border-top: none;
         }
     }
 
     &__toggle {
         display: flex;
         align-items: flex-start;
-        fill: #BDFFF8;
+        fill: #bdfff8;
         stroke: #000000;
 
         circle {
@@ -26,7 +28,7 @@
             fill: #fff;
 
             circle {
-              stroke: #000000;
+                stroke: #000000;
             }
         }
     }
@@ -40,16 +42,17 @@
         letter-spacing: -0.01em;
 
         &_border {
-            color: #FFFFFF;
+            color: #ffffff;
         }
 
         &_fill {
-            background: #BDFFF8;
+            background: #bdfff8;
 
             @media (hover: hover) and (pointer: fine) {
+
                 &:hover {
-                    background: #67CFC9;
-                    color: #FFF;
+                    background: #67cfc9;
+                    color: #fff;
                 }
             }
         }
@@ -57,7 +60,7 @@
 
     &__header-wrapper {
         display: flex;
-        margin: 23px 0px;
+        margin: 23px 0;
         cursor: pointer;
     }
 
@@ -115,7 +118,7 @@
             margin-bottom: 20px;
         }
     }
-    
+
     &__sub-description-wrapper {
         display: flex;
         justify-content: space-between;
@@ -162,7 +165,6 @@
             max-width: 100%;
             min-width: 100%;
 
-
             &:last-child {
                 margin-left: unset;
             }
@@ -179,6 +181,7 @@
     }
 
     &__link {
+
         @media (max-width: 1024px) {
             padding: 16px 80px;
         }
