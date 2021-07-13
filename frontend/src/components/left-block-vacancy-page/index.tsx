@@ -6,6 +6,7 @@ import { appContext } from '../../context/context';
 import style from '../../pages/vacancy.css';
 
 import Button from '../button';
+import Tooltip from '../tooltip';
 
 import { IStrapiVacancies } from '../../pages/vacancy';
 
@@ -77,7 +78,7 @@ const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }: IStr
                     <a target="_blank" href={`http://vk.com/share.php?url=${urlHref}`}><VKIcon /></a>
                     <a onClick={URLCopier} ><ShareLinkIcon /></a>
                 </div>
-                {tooltipIsOpen ? <span className={cn('vacancy__link-tooltip')}>Скопировано</span> : null}
+                {tooltipIsOpen ? <Tooltip label="Скопировано" /> : null}
             </div>
         </React.Fragment>
     );
