@@ -123,10 +123,10 @@ ul {
         height: 56px;
 
         &_mobile {
-            position: fixed;
+            position: fixed !important;
             bottom: 30px;
-            width: calc(100vw - 20px);
-            max-width: 350px;
+            width: calc(100vw - 20px) !important;
+            max-width: 350px !important;
 
             @media screen and (min-width: 880px) {
                 display: none;
