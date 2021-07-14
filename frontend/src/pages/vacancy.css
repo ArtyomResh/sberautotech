@@ -25,7 +25,6 @@ ul {
 
         @media screen and (max-width: 1024px) {
             display: flex;
-            justify-content: center;
             margin: 0 10px;
         }
     }
@@ -39,7 +38,7 @@ ul {
         min-width: 280px;
         width: 25%;
         max-width: 380px;
-        margin-right: 15px;
+        margin-right: 25px;
         top: 120px;
 
         & h1 {
@@ -65,6 +64,11 @@ ul {
     &__left-block-arrow-left {
         display: inline-block;
         cursor: pointer;
+        margin-right: 85px;
+
+        @media screen and (max-width: 1250px) {
+            margin-right: 45px;
+        }
 
         &:hover {
 
@@ -75,10 +79,14 @@ ul {
     }
 
     &__left-block-main {
-        display: grid;
-        grid-template-columns: 1fr [content]2fr 1fr;
+        display: flex;
         justify-items: start;
         margin-top: 60px;
+        margin-left: 115px;
+
+        @media screen and (max-width: 1250px) {
+            margin-left: 75px;
+        }
 
         &_mobile {
             display: none;
@@ -86,6 +94,7 @@ ul {
             @media screen and (max-width: 880px) {
                 display: block;
                 margin-top: 8px;
+                margin-left: unset;
             }
         }
     }
@@ -117,6 +126,7 @@ ul {
             position: fixed;
             bottom: 30px;
             width: calc(100vw - 20px);
+            max-width: 350px;
             border-radius: 64px;
 
             @media screen and (min-width: 880px) {
@@ -126,22 +136,23 @@ ul {
     }
 
     &__left-block-bottom {
-        display: grid;
-        grid-template-columns: 1fr [content]2fr 1fr;
-        justify-items: start;
+        display: flex;
+        justify-items: center;
     }
 
     &__link-wrapper {
-        grid-column: content;
         display: flex;
         flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 217px;
+        margin-left: 115px;
+
+        @media screen and (max-width: 1250px) {
+            margin-left: 75px;
+        }
 
         & a {
             cursor: pointer;
-
-            &:not(:last-child) {
-                margin-right: 8px;
-            }
         }
 
         & a svg:hover {
@@ -242,6 +253,8 @@ ul {
         letter-spacing: -0.01em;
         box-sizing: border-box;
         border-radius: 32px;
+        font-size: 14px;
+        line-height: 18px;
 
         @media (hover: hover) and (pointer: fine) {
             &:hover {

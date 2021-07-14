@@ -34,8 +34,12 @@
 
         &::placeholder {
             @media screen and (max-width: 1024px) {
-                color: #05080A;
+                color: #05080a;
             }
+        }
+
+        &:disabled {
+            background: none;
         }
     }
 

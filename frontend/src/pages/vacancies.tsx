@@ -169,6 +169,7 @@ const Vacancies = ({ location }) => {
                                         className={cn('vacancies__search')}
                                         value={searchString}
                                         type="text"
+                                        disabled={!filteredVacancies.length && !searchString}
                                         placeholder={isMobile ? 'Вакансии' : 'Поиск'}
                                         onChange={(e) => setSearchString(e.target.value)}
                                     />
