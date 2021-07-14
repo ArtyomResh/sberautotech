@@ -1,10 +1,12 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 import Layout from '../components/layout';
 import VacanciesList from '../components/vacancies-list';
 import TagsList from '../components/tags-list';
 import DirectionsList from '../components/directions-list';
+import Button from '../components/button';
 
 import { useClassnames } from '../hooks/use-classnames';
 
@@ -12,7 +14,6 @@ import SearchIcon from '../images/search.svg';
 import CrossIcon from '../images/cross.svg';
 
 import style from './vacancies.css';
-import Button from '../components/button';
 
 const query = graphql`
   query {
@@ -93,7 +94,7 @@ const Vacancies = ({ location }) => {
     const filteredTags = useMemo(() => {
         return filteredVacancies.reduce((acc, item) => {
             item.tags.forEach((tag) => {
-                if(!acc.find((tagInAcc) => tagInAcc.id === tag.id) && (activeDirection || activeTags.length)) {
+                if (!acc.find((tagInAcc) => tagInAcc.id === tag.id) && (activeDirection || activeTags.length)) {
                     acc.push(tag);
                 }
             });
@@ -105,13 +106,13 @@ const Vacancies = ({ location }) => {
     const onClickDirection = useCallback((e) => {
         const selectedDirectionId = Number(e.target.getAttribute('data-id'));
 
-        if(!selectedDirectionId) {
+        if (!selectedDirectionId) {
             setActiveDirection(null);
 
             return;
         }
 
-        if(activeDirection !== selectedDirectionId) {
+        if (activeDirection !== selectedDirectionId) {
             setActiveDirection(selectedDirectionId);
 
             return;
@@ -123,7 +124,7 @@ const Vacancies = ({ location }) => {
     const onClickTag = useCallback((e) => {
         const selectedTagId = Number(e.target.getAttribute('data-id'));
 
-        if(!activeTags.includes(selectedTagId)) {
+        if (!activeTags.includes(selectedTagId)) {
             setActiveTags([...activeTags, selectedTagId]);
 
             return;
@@ -134,15 +135,15 @@ const Vacancies = ({ location }) => {
 
     useEffect(() => {
         const newFilteredVacancies = vacanciesList.filter((vacancy) => {
-            if(activeDirection && activeDirection !== vacancy.direction?.id) {
+            if (activeDirection && activeDirection !== vacancy.direction?.id) {
                 return false;
             }
 
-            if(searchString.length && !vacancy.title.toLowerCase().includes(searchString.toLowerCase().trim())) {
+            if (searchString.length && !vacancy.title.toLowerCase().includes(searchString.toLowerCase().trim())) {
                 return false;
             }
 
-            if(activeTags.length) {
+            if (activeTags.length) {
                 return vacancy.tags.filter(({ id }) => activeTags.includes(id)).length === activeTags.length;
             }
 
@@ -151,6 +152,8 @@ const Vacancies = ({ location }) => {
 
         setFilteredVacancies(newFilteredVacancies);
     }, [searchString, activeDirection, activeTags]);
+
+    const filtersCount = useMemo(() => (activeDirection ? 1 : 0) + activeTags?.length || 0, [activeDirection, activeTags])
 
     return (
         <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
@@ -166,111 +169,100 @@ const Vacancies = ({ location }) => {
                                         className={cn('vacancies__search')}
                                         value={searchString}
                                         type="text"
-                                        placeholder="Поиск"
+                                        disabled={!filteredVacancies.length && !searchString}
+                                        placeholder={isMobile ? 'Вакансии' : 'Поиск'}
                                         onChange={(e) => setSearchString(e.target.value)}
                                     />
                                     {(searchString) ? (
                                         <img className={cn('vacancies__search-icon')} src={CrossIcon} onClick={() => setSearchString('')} />
                                     ) : (
-                                        <img className={cn('vacancies__search-icon')} src={SearchIcon} onClick={() => $container.current?.focus()} />
-                                    )}
-                                </div>
-                                <div className={cn('vacancies__result-wrapper')} onClick={() => $container.current?.focus()}>
-                                    {(searchString) ? (
-                                        <p className={cn('vacancies__result')}>
-                                            Найден{
-                                                (() => {
-                                                    if(filteredVacancies.length === 1) {
-                                                        return 'a';
-                                                    }
-
-                                                    return 'о';
-                                                })()
-                                            } {filteredVacancies.length} ваканси{
-                                                (() => {
-                                                    if(filteredVacancies.length === 0 || filteredVacancies.length > 4) {
-                                                        return 'й';
-                                                    }
-
-                                                    if(filteredVacancies.length === 1) {
-                                                        return 'я';
-                                                    }
-
-                                                    if(filteredVacancies.length > 1 && filteredVacancies.length < 5) {
-                                                        return 'и';
-                                                    }
-                                                })()
-                                            }
-                                        </p>
-                                    ) : null}
+                                            <img className={cn('vacancies__search-icon')} src={SearchIcon} onClick={() => $container.current?.focus()} />
+                                        )}
                                 </div>
                                 <div className={cn('vacancies__tags-wrapper')}>
                                     <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
                                 </div>
                                 <VacanciesList searchString={searchString} data={filteredVacancies} activeTags={activeTags} onClickTag={onClickTag} />
                             </div>
-                            <Button
-                                styleType="primary"
-                                type="button"
-                                className={cn('vacancies__button', 'vacancies__filter-button', {
-                                    'vacancies__filter-button_hidden': isMobileFilterVisible
-                                })}
-                                label="Фильтровать"
-                                count={(activeDirection ? 1 : 0) + activeTags?.length || 0}
-                                onClick={() => setIsMobileFilterVisible(!isMobileFilterVisible)}
-                            />
+                            <div className={cn('vacancies__filter-buttons')}>
+                                <Button
+                                    styleType="primary"
+                                    type="button"
+                                    className={cn('vacancies__button', 'vacancies__filter-button', {
+                                        'vacancies__filter-button_hidden': isMobileFilterVisible
+                                    })}
+                                    label="Фильтровать"
+                                    count={(activeDirection ? 1 : 0) + activeTags?.length || 0}
+                                    onClick={() => {
+                                        window.scrollTo(0, 0);
+                                        setIsMobileFilterVisible(!isMobileFilterVisible)
+                                    }}
+                                />
+                            </div>
                         </React.Fragment>
                     ) : (
-                        <div className={cn('vacancies__filter-wrapper', {
-                            'vacancies__filter-wrapper_visible': isMobileFilterVisible
-                        })}
-                        >
-                            <p className={cn('vacancies__filter-header')}>Фильтр</p>
-                            <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
-                            {filteredTags?.length ? (
-                                <React.Fragment>
-                                    <p className={cn('vacancies__filter-header')}>Теги</p>
-                                    <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
-                                </React.Fragment>
-                            ) : null}
-                            <Button
-                                styleType="primary"
-                                type="button"
-                                className={cn('vacancies__button', 'vacancies__show-button', {
-                                    'vacancies__show-button_visible': isMobileFilterVisible
-                                })}
-                                label={`Смотреть ${filteredVacancies.length} ваканси${(() => {
-                                    if(filteredVacancies.length === 0 || filteredVacancies.length > 4) {
-                                        return 'й';
-                                    }
+                            <div className={cn('vacancies__filter-wrapper', {
+                                'vacancies__filter-wrapper_visible': isMobileFilterVisible
+                            })}
+                            >
+                                <p className={cn('vacancies__filter-header')}>Фильтр</p>
+                                <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
+                                {filteredTags?.length ? (
+                                    <React.Fragment>
+                                        <p className={cn('vacancies__filter-header')}>Теги</p>
+                                        <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
+                                    </React.Fragment>
+                                ) : null}
+                                <div className={cn('vacancies__filter-buttons')}>
+                                    <Button
+                                        styleType="primary"
+                                        type="button"
+                                        className={cn('vacancies__button', 'vacancies__show-button', {
+                                            'vacancies__show-button_visible': isMobileFilterVisible
+                                        })}
+                                        disabled={!filteredVacancies.length}
+                                        label={!filteredVacancies.length ? 'Нет вакансий' : `Смотреть ${filteredVacancies.length} ваканси${(() => {
+                                            if (filteredVacancies.length === 0 || filteredVacancies.length > 4) {
+                                                return 'й';
+                                            }
 
-                                    if(filteredVacancies.length === 1) {
-                                        return 'ю';
-                                    }
+                                            if (filteredVacancies.length === 1) {
+                                                return 'ю';
+                                            }
 
-                                    if(filteredVacancies.length > 1 && filteredVacancies.length < 5) {
-                                        return 'и';
-                                    }
-                                })()
-                                }`}
-                                onClick={() => setIsMobileFilterVisible(!isMobileFilterVisible)}
-                            />
-                            <Button
-                                styleType="primary"
-                                type="button"
-                                className={cn('vacancies__button', 'vacancies__reset-button', {
-                                    'vacancies__reset-button_visible': isMobileFilterVisible
-                                })}
-                                label="Сбросить"
-                                count={(activeDirection ? 1 : 0) + activeTags?.length || 0}
-                                onClick={() => {
-                                    setActiveDirection(null);
-                                    setActiveTags([]);
-                                    setIsMobileFilterVisible(!isMobileFilterVisible);
-                                }}
-                            />
-                        </div>
-                    )
+                                            if (filteredVacancies.length > 1 && filteredVacancies.length < 5) {
+                                                return 'и';
+                                            }
+                                        })()
+                                            }`}
+                                        onClick={() => {
+                                            window.scrollTo(0, 0);
+                                            setIsMobileFilterVisible(!isMobileFilterVisible)
+                                        }}
+                                    />
+                                    <Button
+                                        styleType="primary"
+                                        type="button"
+                                        className={cn('vacancies__button', 'vacancies__reset-button', {
+                                            'vacancies__reset-button_visible': isMobileFilterVisible
+                                        })}
+                                        label={filtersCount ? "Сбросить" : "Закрыть"}
+                                        count={filtersCount}
+                                        onClick={() => {
+                                            window.scrollTo(0, 0);
+
+
+                                            if (filtersCount === 0) {
+                                                setIsMobileFilterVisible(!isMobileFilterVisible)
+                                                return;
+                                            }
+                                            setActiveDirection(null);
+                                            setActiveTags([]);
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        )
                 }
             </div>
         </Layout>

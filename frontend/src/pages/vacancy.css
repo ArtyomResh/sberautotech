@@ -1,5 +1,5 @@
 :root {
-    --vacancy-padding-top: 120px;
+    --vacancy-margin-top: 120px;
 }
 
 ul {
@@ -7,7 +7,7 @@ ul {
 }
 
 .vacancy {
-    margin-top: 120px;
+    margin-top: var(--vacancy-margin-top);
 
     @media screen and (max-width: 880px) {
         margin-top: 80px;
@@ -25,7 +25,7 @@ ul {
 
         @media screen and (max-width: 1024px) {
             display: flex;
-            justify-content: center;
+            margin: 0 10px;
         }
     }
 
@@ -33,12 +33,12 @@ ul {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 70vh;
+        height: calc(100vh - var(--vacancy-margin-top) - 40px);
         position: sticky;
         min-width: 280px;
         width: 25%;
         max-width: 380px;
-        margin-right: 15px;
+        margin-right: 25px;
         top: 120px;
 
         & h1 {
@@ -64,6 +64,11 @@ ul {
     &__left-block-arrow-left {
         display: inline-block;
         cursor: pointer;
+        margin-right: 85px;
+
+        @media screen and (max-width: 1250px) {
+            margin-right: 45px;
+        }
 
         &:hover {
 
@@ -74,9 +79,14 @@ ul {
     }
 
     &__left-block-main {
-        display: grid;
-        grid-template-columns: 1fr [content]2fr 1fr;
+        display: flex;
         justify-items: start;
+        margin-top: 60px;
+        margin-left: 115px;
+
+        @media screen and (max-width: 1250px) {
+            margin-left: 75px;
+        }
 
         &_mobile {
             display: none;
@@ -84,6 +94,7 @@ ul {
             @media screen and (max-width: 880px) {
                 display: block;
                 margin-top: 8px;
+                margin-left: unset;
             }
         }
     }
@@ -114,7 +125,8 @@ ul {
         &_mobile {
             position: fixed;
             bottom: 30px;
-            width: 300px;
+            width: calc(100vw - 20px);
+            max-width: 350px;
             border-radius: 64px;
 
             @media screen and (min-width: 880px) {
@@ -124,15 +136,20 @@ ul {
     }
 
     &__left-block-bottom {
-        display: grid;
-        grid-template-columns: 1fr [content]2fr 1fr;
-        justify-items: start;
+        display: flex;
+        justify-items: center;
     }
 
     &__link-wrapper {
-        grid-column: content;
         display: flex;
         flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 217px;
+        margin-left: 115px;
+
+        @media screen and (max-width: 1250px) {
+            margin-left: 75px;
+        }
 
         & a {
             cursor: pointer;
@@ -236,14 +253,24 @@ ul {
         letter-spacing: -0.01em;
         box-sizing: border-box;
         border-radius: 32px;
+        font-size: 14px;
+        line-height: 18px;
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: #05080A;
+                background: #66DED2;
+                border: 1px solid #66DED2;
+            }
+        }
     }
 
     &__about-wrapper {
         margin-top: 24px;
 
         & p {
-            font-size: 18px;
-            line-height: 24px;
+            font-size: 16px;
+            line-height: 20px;
             font-family: var(--font-family-secondary);
         }
 
@@ -355,7 +382,7 @@ ul {
 
     &__count {
         font-family: var(--font-family-digits);
-        font-size: 125px;
+        font-size: 160px;
         line-height: 0.4;
     }
 
@@ -363,7 +390,7 @@ ul {
         font-size: 14px;
         line-height: 18px;
         letter-spacing: -0.01em;
-        max-width: 290px;
+        max-width: 320px;
         margin-top: 12px;
     }
 

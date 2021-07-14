@@ -5,17 +5,17 @@
         display: flex;
         max-width: 100vw;
 
-        @media screen and (max-width: 880px) {
-            padding: 80px 20px 110px;
+        @media screen and (max-width: 1024px) {
+            padding: 80px 10px 110px 10px;
         }
     }
 
     &__search-wrapper {
         display: flex;
+        border-bottom: 1px solid #e0e6eb;
 
-        @media screen and (max-width: 880px) {
-            border-bottom: 1px solid #e0e6eb;
-            padding-bottom: 24px;
+        @media (max-width: 1024px) {
+            margin-bottom: 0px;
         }
     }
 
@@ -30,12 +30,24 @@
         color: #05080a;
         caret-color: #34b7aa;
         padding: 0;
+        padding-bottom: 10px;
+
+        &::placeholder {
+            @media screen and (max-width: 1024px) {
+                color: #05080a;
+            }
+        }
+
+        &:disabled {
+            background: none;
+        }
     }
 
     &__tags-wrapper {
         min-height: 42px;
+        margin-top: 15px;
 
-        @media screen and (max-width: 880px) {
+        @media screen and (max-width: 1024px) {
             display: none;
         }
     }
@@ -44,29 +56,11 @@
         cursor: pointer;
     }
 
-    &__result-wrapper {
-        border-bottom: 1px solid #e0e6eb;
-        margin-bottom: 10px;
-        min-height: 23px;
-
-        @media screen and (max-width: 880px) {
-            display: none;
-        }
-    }
-
-    &__result {
-        font-size: 12px;
-        line-height: 14px;
-        letter-spacing: -0.02em;
-        color: #758794;
-        margin-bottom: 8px;
-    }
-
     &__wrapper {
         overflow: auto;
         width: 65%;
 
-        @media screen and (max-width: 880px) {
+        @media screen and (max-width: 1024px) {
             width: 100%;
         }
     }
@@ -74,14 +68,13 @@
     &__filter-wrapper {
         display: none;
         position: absolute;
-        width: calc(100% - 40px);
-        height: calc(100% + 300px);
+        width: 100%;
         background: white;
         top: 0;
         left: 0;
-        padding-top: 80px;
-        margin: 0 20px;
+        padding: 20px 20px 0px 20px;
         flex-direction: column;
+        z-index: 100;
 
         &_visible {
             display: flex;
@@ -124,17 +117,35 @@
 
         .tags-list {
             z-index: 2;
+            margin-bottom: 180px;
+        }
+    }
+
+    &__filter-buttons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 18.18%, #FFFFFF 100%);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        z-index: 3;
+        padding-bottom: 30px;
+
+        @media screen and (min-width: 550px) {
+            flex-direction: row;
+            padding: 0px 10px 30px 10px;
         }
     }
 
     &__button {
         background: #e0e6eb;
         border-radius: 50px;
-        position: fixed;
-        bottom: 100px;
-        width: 300px;
         display: none;
-        left: calc(50vw - 150px);
+        width: calc(100vw - 20px);
+        max-width: 350px;
         font-size: 22px;
         line-height: 28px;
         padding: 10px 0;
@@ -148,6 +159,15 @@
 
     &__show-button {
         background: #bdfff8;
+        margin-bottom: 12px;
+
+        &:disabled {
+            background: #e0e6eb;
+        }
+
+        @media screen and (min-width: 550px) {
+            margin-bottom: unset;
+        }
 
         &_visible {
             display: block;
@@ -155,7 +175,10 @@
     }
 
     &__reset-button {
-        bottom: 30px;
+
+        @media screen and (min-width: 550px) {
+            margin-left: 10px;
+        }
 
         &_visible {
             display: block;
@@ -163,10 +186,9 @@
     }
 
     &__filter-button {
-        bottom: 30px;
 
-        @media screen and (max-width: 880px) {
-            display: block;
+        @media screen and (max-width: 1024px) {
+            display: inline-block;
         }
 
         &_hidden {

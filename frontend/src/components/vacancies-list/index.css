@@ -3,6 +3,10 @@
     &__wrap {
         width: 100%;
         padding-top: 10px;
+
+        @media (max-width: 1024px) {
+            padding-top: 0px;
+        }
     }
 
     &__list {
@@ -64,8 +68,8 @@
             margin-bottom: 10px !important;
         }
 
-        &:first-child {
-            padding: 20px 0 32px;
+        @media (max-width: 1024px) {
+            padding: 20px 0 15px 0;
         }
     }
 
