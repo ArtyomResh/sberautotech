@@ -22,7 +22,7 @@ const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag, sea
     const [hover, setHover] = useState<boolean>(false);
 
     const titleWithSubstrGenerator = useMemo(() => {
-        if(searchString.length) {
+        if (searchString.length) {
             const titleWithSubstr = title.split('');
 
             const firstIndex = title.toLowerCase().indexOf(searchString.toLowerCase().trim());
@@ -62,9 +62,9 @@ const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag, sea
             <div className={cn('vacancies__list-item-block')} id="block">
                 <Link to={`/vacancies/${strapiId}`} className={cn('vacancies__title', { 'vacancies__title_searched': searchString, 'vacancies__title_hovered': hover })}>{toUnescapedHTML(titleWithSubstrGenerator)}</Link>
             </div>
-            <div className={cn('vacancies__list-item-block')}>
+            {/* <div className={cn('vacancies__list-item-block')}>
                 <span className={cn('vacancies__area', { 'vacancies__area_hovered': hover })}>{area.text}</span>
-            </div>
+            </div> */}
             <div className={cn('vacancies__list-item-block')}>
                 <TagsList tags={tags} activeTags={activeTags} onClickTag={onClickTag} />
             </div>
