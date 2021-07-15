@@ -190,8 +190,6 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
         window.history.back();
     }, []);
 
-    console.log(direction);
-
     return (
         <Layout seo={{ ...data.allStrapiVacancyPage.edges[0].node.seo, metaTitle: title }} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
             <div className={cn('vacancy')}>
@@ -201,7 +199,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                     </div>
                     <div className={cn('vacancy__right-block')}>
                         <div className={cn('vacancy__date-and-direction')}>
-                            <Link to={`/vacancies?direction=${direction.id}`}><span>{direction?.header}</span></Link>
+                            <Link to={`/vacancies?direction=${direction?.id}`}><span>{direction?.header}</span></Link>
                         </div>
                         <div className={cn('vacancy__title')}>
                             <h1>{title}</h1>
