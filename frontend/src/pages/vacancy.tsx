@@ -54,6 +54,7 @@ export const query = graphql`
         customDescription
         direction {
           header
+          id
         }
         jobType {
           text
@@ -138,7 +139,8 @@ interface IArea {
 }
 
 interface IDirection {
-    header: string
+    header: string,
+    id: number
 }
 
 interface ICity {
@@ -188,6 +190,8 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
         window.history.back();
     }, []);
 
+    console.log(direction);
+
     return (
         <Layout seo={{ ...data.allStrapiVacancyPage.edges[0].node.seo, metaTitle: title }} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
             <div className={cn('vacancy')}>
@@ -197,7 +201,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                     </div>
                     <div className={cn('vacancy__right-block')}>
                         <div className={cn('vacancy__date-and-direction')}>
-                            <span>{direction?.header}</span>
+                            <Link to={`/vacancies?direction=${direction.id}`}><span>{direction?.header}</span></Link>
                         </div>
                         <div className={cn('vacancy__title')}>
                             <h1>{title}</h1>
@@ -206,7 +210,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                             <p>{area.text}</p>
                         </div>
                         <div className={cn('vacancy__tags-wrapper')}>
-                            {tags.map((el: ITag, i: number) => <Link to={`/vacancies?tags=${el.id}`}><span key={i} className={cn('vacancy__tag')}>{el.text}</span></Link>)}
+                            {tags.map((el: ITag, i: number) => <Link key={i} to={`/vacancies?tags=${el.id}`}><span className={cn('vacancy__tag')}>{el.text}</span></Link>)}
                         </div>
                         <div className={cn('vacancy__left-block-main', 'vacancy__left-block-main_mobile')}>
                             <ul className={cn('vacancy__title-wrapper')}>

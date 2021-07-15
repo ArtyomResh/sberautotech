@@ -94,7 +94,7 @@ const Vacancies = ({ location }) => {
     const filteredTags = useMemo(() => {
         return filteredVacancies.reduce((acc, item) => {
             item.tags.forEach((tag) => {
-                if (!acc.find((tagInAcc) => tagInAcc.id === tag.id) && (activeDirection || activeTags.length)) {
+                if(!acc.find((tagInAcc) => tagInAcc.id === tag.id) && (activeDirection || activeTags.length)) {
                     acc.push(tag);
                 }
             });
@@ -106,13 +106,13 @@ const Vacancies = ({ location }) => {
     const onClickDirection = useCallback((e) => {
         const selectedDirectionId = Number(e.target.getAttribute('data-id'));
 
-        if (!selectedDirectionId) {
+        if(!selectedDirectionId) {
             setActiveDirection(null);
 
             return;
         }
 
-        if (activeDirection !== selectedDirectionId) {
+        if(activeDirection !== selectedDirectionId) {
             setActiveDirection(selectedDirectionId);
 
             return;
@@ -124,7 +124,7 @@ const Vacancies = ({ location }) => {
     const onClickTag = useCallback((e) => {
         const selectedTagId = Number(e.target.getAttribute('data-id'));
 
-        if (!activeTags.includes(selectedTagId)) {
+        if(!activeTags.includes(selectedTagId)) {
             setActiveTags([...activeTags, selectedTagId]);
 
             return;
@@ -135,15 +135,15 @@ const Vacancies = ({ location }) => {
 
     useEffect(() => {
         const newFilteredVacancies = vacanciesList.filter((vacancy) => {
-            if (activeDirection && activeDirection !== vacancy.direction?.id) {
+            if(activeDirection && activeDirection !== vacancy.direction?.id) {
                 return false;
             }
 
-            if (searchString.length && !vacancy.title.toLowerCase().includes(searchString.toLowerCase().trim())) {
+            if(searchString.length && !vacancy.title.toLowerCase().includes(searchString.toLowerCase().trim())) {
                 return false;
             }
 
-            if (activeTags.length) {
+            if(activeTags.length) {
                 return vacancy.tags.filter(({ id }) => activeTags.includes(id)).length === activeTags.length;
             }
 
@@ -153,10 +153,10 @@ const Vacancies = ({ location }) => {
         setFilteredVacancies(newFilteredVacancies);
     }, [searchString, activeDirection, activeTags]);
 
-    const filtersCount = useMemo(() => (activeDirection ? 1 : 0) + activeTags?.length || 0, [activeDirection, activeTags])
+    const filtersCount = useMemo(() => (activeDirection ? 1 : 0) + activeTags?.length || 0, [activeDirection, activeTags]);
 
     return (
-        <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
+        <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
             <div className={cn('vacancies-page__wrapper')}>
                 {
                     !isMobileFilterVisible ? (
@@ -176,8 +176,8 @@ const Vacancies = ({ location }) => {
                                     {(searchString) ? (
                                         <img className={cn('vacancies__search-icon')} src={CrossIcon} onClick={() => setSearchString('')} />
                                     ) : (
-                                            <img className={cn('vacancies__search-icon')} src={SearchIcon} onClick={() => $container.current?.focus()} />
-                                        )}
+                                        <img className={cn('vacancies__search-icon')} src={SearchIcon} onClick={() => $container.current?.focus()} />
+                                    )}
                                 </div>
                                 <div className={cn('vacancies__tags-wrapper')}>
                                     <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
@@ -195,74 +195,75 @@ const Vacancies = ({ location }) => {
                                     count={(activeDirection ? 1 : 0) + activeTags?.length || 0}
                                     onClick={() => {
                                         window.scrollTo(0, 0);
-                                        setIsMobileFilterVisible(!isMobileFilterVisible)
+                                        setIsMobileFilterVisible(!isMobileFilterVisible);
                                     }}
                                 />
                             </div>
                         </React.Fragment>
                     ) : (
-                            <div className={cn('vacancies__filter-wrapper', {
-                                'vacancies__filter-wrapper_visible': isMobileFilterVisible
-                            })}
-                            >
-                                <p className={cn('vacancies__filter-header')}>Фильтр</p>
-                                <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
-                                {filteredTags?.length ? (
-                                    <React.Fragment>
-                                        <p className={cn('vacancies__filter-header')}>Теги</p>
-                                        <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
-                                    </React.Fragment>
-                                ) : null}
-                                <div className={cn('vacancies__filter-buttons')}>
-                                    <Button
-                                        styleType="primary"
-                                        type="button"
-                                        className={cn('vacancies__button', 'vacancies__show-button', {
-                                            'vacancies__show-button_visible': isMobileFilterVisible
-                                        })}
-                                        disabled={!filteredVacancies.length}
-                                        label={!filteredVacancies.length ? 'Нет вакансий' : `Смотреть ${filteredVacancies.length} ваканси${(() => {
-                                            if (filteredVacancies.length === 0 || filteredVacancies.length > 4) {
-                                                return 'й';
-                                            }
+                        <div className={cn('vacancies__filter-wrapper', {
+                            'vacancies__filter-wrapper_visible': isMobileFilterVisible
+                        })}
+                        >
+                            <p className={cn('vacancies__filter-header')}>Фильтр</p>
+                            <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
+                            {filteredTags?.length ? (
+                                <React.Fragment>
+                                    <p className={cn('vacancies__filter-header')}>Теги</p>
+                                    <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
+                                </React.Fragment>
+                            ) : null}
+                            <div className={cn('vacancies__filter-buttons')}>
+                                <Button
+                                    styleType="primary"
+                                    type="button"
+                                    className={cn('vacancies__button', 'vacancies__show-button', {
+                                        'vacancies__show-button_visible': isMobileFilterVisible
+                                    })}
+                                    disabled={!filteredVacancies.length}
+                                    label={!filteredVacancies.length ? 'Нет вакансий' : `Смотреть ${filteredVacancies.length} ваканси${(() => {
+                                        if(filteredVacancies.length === 0 || filteredVacancies.length > 4) {
+                                            return 'й';
+                                        }
 
-                                            if (filteredVacancies.length === 1) {
-                                                return 'ю';
-                                            }
+                                        if(filteredVacancies.length === 1) {
+                                            return 'ю';
+                                        }
 
-                                            if (filteredVacancies.length > 1 && filteredVacancies.length < 5) {
-                                                return 'и';
-                                            }
-                                        })()
-                                            }`}
-                                        onClick={() => {
-                                            window.scrollTo(0, 0);
-                                            setIsMobileFilterVisible(!isMobileFilterVisible)
-                                        }}
-                                    />
-                                    <Button
-                                        styleType="primary"
-                                        type="button"
-                                        className={cn('vacancies__button', 'vacancies__reset-button', {
-                                            'vacancies__reset-button_visible': isMobileFilterVisible
-                                        })}
-                                        label={filtersCount ? "Сбросить" : "Закрыть"}
-                                        count={filtersCount}
-                                        onClick={() => {
-                                            window.scrollTo(0, 0);
+                                        if(filteredVacancies.length > 1 && filteredVacancies.length < 5) {
+                                            return 'и';
+                                        }
+                                    })()
+                                    }`}
+                                    onClick={() => {
+                                        window.scrollTo(0, 0);
+                                        setIsMobileFilterVisible(!isMobileFilterVisible);
+                                    }}
+                                />
+                                <Button
+                                    styleType="primary"
+                                    type="button"
+                                    className={cn('vacancies__button', 'vacancies__reset-button', {
+                                        'vacancies__reset-button_visible': isMobileFilterVisible
+                                    })}
+                                    label={filtersCount ? 'Сбросить' : 'Закрыть'}
+                                    count={filtersCount}
+                                    onClick={() => {
+                                        window.scrollTo(0, 0);
 
 
-                                            if (filtersCount === 0) {
-                                                setIsMobileFilterVisible(!isMobileFilterVisible)
-                                                return;
-                                            }
-                                            setActiveDirection(null);
-                                            setActiveTags([]);
-                                        }}
-                                    />
-                                </div>
+                                        if(filtersCount === 0) {
+                                            setIsMobileFilterVisible(!isMobileFilterVisible);
+
+                                            return;
+                                        }
+                                        setActiveDirection(null);
+                                        setActiveTags([]);
+                                    }}
+                                />
                             </div>
-                        )
+                        </div>
+                    )
                 }
             </div>
         </Layout>
