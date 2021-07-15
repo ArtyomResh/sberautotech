@@ -127,6 +127,7 @@ ul {
             bottom: 30px;
             width: calc(100vw - 20px) !important;
             max-width: 350px !important;
+            border-radius: 64px !important;
 
             @media screen and (min-width: 880px) {
                 display: none;

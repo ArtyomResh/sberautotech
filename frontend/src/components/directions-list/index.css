@@ -68,7 +68,7 @@
         }
 
         &_active {
-            color: #34b7aa;
+            color: #34b7aa !important;
         }
     }
 

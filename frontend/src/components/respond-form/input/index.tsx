@@ -75,7 +75,7 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
             className={cn('input', { 'input_error': formState.errors?.[name] })}
             type={type}
             placeholder={placeholder}
-            autoComplete={props.autocomplete}
+            autoComplete={props.autocomplete || 'off'}
             {...register(name, { required: props.requiredValidation,
                 pattern : props.pattern })}
         />

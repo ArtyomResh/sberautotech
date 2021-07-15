@@ -19,10 +19,8 @@ const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag, sea
     const { title, city, area, direction, tags, strapiId } = data;
     const cn = useClassnames(style);
 
-    const [hover, setHover] = useState<boolean>(false);
-
     const titleWithSubstrGenerator = useMemo(() => {
-        if (searchString.length) {
+        if(searchString.length) {
             const titleWithSubstr = title.split('');
 
             const firstIndex = title.toLowerCase().indexOf(searchString.toLowerCase().trim());
@@ -37,19 +35,9 @@ const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag, sea
         return title;
     }, [searchString, title]);
 
-    const vacancyItemHover = useCallback(() => {
-        setHover(true);
-    }, []);
-
-    const vacancyItemUnHover = useCallback(() => {
-        setHover(false);
-    }, []);
-
     return (
         <div
             className={cn('vacancies__list-item')}
-            onMouseEnter={vacancyItemHover}
-            onMouseLeave={vacancyItemUnHover}
         >
             <div className={cn('vacancies__list-item-block')}>
                 <div className={cn('vacancies__info-wrapper')}>
@@ -60,7 +48,17 @@ const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag, sea
                 </div>
             </div>
             <div className={cn('vacancies__list-item-block')} id="block">
-                <Link to={`/vacancies/${strapiId}`} className={cn('vacancies__title', { 'vacancies__title_searched': searchString, 'vacancies__title_hovered': hover })}>{toUnescapedHTML(titleWithSubstrGenerator)}</Link>
+                <Link
+                    to={`/vacancies/${strapiId}`}
+                    className={
+                        cn('vacancies__title',
+                            {
+                                'vacancies__title_searched': searchString
+                            })
+                    }
+                >
+                    {toUnescapedHTML(titleWithSubstrGenerator)}
+                </Link>
             </div>
             {/* <div className={cn('vacancies__list-item-block')}>
                 <span className={cn('vacancies__area', { 'vacancies__area_hovered': hover })}>{area.text}</span>

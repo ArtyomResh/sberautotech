@@ -25,35 +25,17 @@
         height: 50vh;
     }
 
-    @media screen and (prefers-reduced-motion: reduce) {
-
-        &__inner-text-link {
-            cursor: pointer;
-            color: #34b7aa;
-            display: inline-block;
-            border-bottom: 1px solid transparent;
-            transition: none;
-
-            @media (hover: hover) and (pointer: fine) {
-
-                &:hover {
-                    border-bottom: 1px solid #34b7aa;
-                }
-            }
-        }
-    }
-
     &__inner-text-link {
         cursor: pointer;
         color: #34b7aa;
         display: inline-block;
-        border-bottom: 1px solid transparent;
-        transition: border-bottom 0.5s;
+        border-bottom: none;
+        transition: none;
 
         @media (hover: hover) and (pointer: fine) {
 
             &:hover {
-                border-bottom: 1px solid #34b7aa;
+                color: #43515c;
             }
         }
     }
@@ -61,11 +43,14 @@
     &__list-item {
         display: flex;
         flex-direction: column;
-        border-bottom: 1px solid #e0e6eb;
         padding: 32px 0;
 
         .tag {
             margin-bottom: 10px !important;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #e0e6eb;
         }
 
         @media (max-width: 1024px) {
@@ -118,7 +103,7 @@
             color: #758794;
         }
 
-        &_hovered {
+        &:hover {
             color: #34b7aa;
 
             & span {
