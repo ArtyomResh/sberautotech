@@ -205,7 +205,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                             <h1>{title}</h1>
                         </div>
                         <div className={cn('vacancy__area')}>
-                            <p>{area.text}</p>
+                            <p>{area?.text}</p>
                         </div>
                         <div className={cn('vacancy__tags-wrapper')}>
                             {tags.map((el: ITag, i: number) => <Link key={i} to={`/vacancies?tags=${el.id}`}><span className={cn('vacancy__tag')}>{el.text}</span></Link>)}
