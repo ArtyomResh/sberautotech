@@ -1,5 +1,11 @@
 .vacancies {
 
+    &__page {
+        .nav__list-item_active {
+            color: #040a0a;
+        }
+    }
+
     &-page__wrapper {
         padding: 120px 25px 0;
         display: flex;
