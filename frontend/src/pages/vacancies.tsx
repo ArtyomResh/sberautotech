@@ -156,117 +156,119 @@ const Vacancies = ({ location }) => {
     const filtersCount = useMemo(() => (activeDirection ? 1 : 0) + activeTags?.length || 0, [activeDirection, activeTags]);
 
     return (
-        <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
-            <div className={cn('vacancies-page__wrapper')}>
-                {
-                    !isMobileFilterVisible ? (
-                        <React.Fragment>
-                            <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
-                            <div className={cn('vacancies__wrapper')}>
-                                <div className={cn('vacancies__search-wrapper')}>
-                                    <input
-                                        ref={$container}
-                                        className={cn('vacancies__search')}
-                                        value={searchString}
-                                        type="text"
-                                        disabled={!filteredVacancies.length && !searchString}
-                                        placeholder={isMobile ? 'Вакансии' : 'Поиск'}
-                                        onChange={(e) => setSearchString(e.target.value)}
-                                    />
-                                    {(searchString) ? (
-                                        <img className={cn('vacancies__search-icon')} src={CrossIcon} onClick={() => setSearchString('')} />
-                                    ) : (
-                                        <img className={cn('vacancies__search-icon')} src={SearchIcon} onClick={() => $container.current?.focus()} />
-                                    )}
+        <div className={cn('vacancies__page')}>
+            <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
+                <div className={cn('vacancies-page__wrapper')}>
+                    {
+                        !isMobileFilterVisible ? (
+                            <React.Fragment>
+                                <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
+                                <div className={cn('vacancies__wrapper')}>
+                                    <div className={cn('vacancies__search-wrapper')}>
+                                        <input
+                                            ref={$container}
+                                            className={cn('vacancies__search')}
+                                            value={searchString}
+                                            type="text"
+                                            disabled={!filteredVacancies.length && !searchString}
+                                            placeholder={isMobile ? 'Вакансии' : 'Поиск'}
+                                            onChange={(e) => setSearchString(e.target.value)}
+                                        />
+                                        {(searchString) ? (
+                                            <img className={cn('vacancies__search-icon')} src={CrossIcon} onClick={() => setSearchString('')} />
+                                        ) : (
+                                            <img className={cn('vacancies__search-icon')} src={SearchIcon} onClick={() => $container.current?.focus()} />
+                                        )}
+                                    </div>
+                                    <div className={cn('vacancies__tags-wrapper')}>
+                                        <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
+                                    </div>
+                                    <VacanciesList searchString={searchString} data={filteredVacancies} activeTags={activeTags} onClickTag={onClickTag} />
                                 </div>
-                                <div className={cn('vacancies__tags-wrapper')}>
-                                    <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
-                                </div>
-                                <VacanciesList searchString={searchString} data={filteredVacancies} activeTags={activeTags} onClickTag={onClickTag} />
-                            </div>
-                            <div className={cn('vacancies__filter-buttons')}>
-                                <Button
-                                    styleType="primary"
-                                    type="button"
-                                    className={cn('vacancies__button', 'vacancies__filter-button', {
-                                        'vacancies__filter-button_hidden': isMobileFilterVisible
-                                    })}
-                                    label="Фильтровать"
-                                    count={(activeDirection ? 1 : 0) + activeTags?.length || 0}
-                                    onClick={() => {
-                                        window.scrollTo(0, 0);
-                                        setIsMobileFilterVisible(!isMobileFilterVisible);
-                                    }}
-                                />
-                            </div>
-                        </React.Fragment>
-                    ) : (
-                        <div className={cn('vacancies__filter-wrapper', {
-                            'vacancies__filter-wrapper_visible': isMobileFilterVisible
-                        })}
-                        >
-                            <p className={cn('vacancies__filter-header')}>Фильтр</p>
-                            <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
-                            {filteredTags?.length ? (
-                                <React.Fragment>
-                                    <p className={cn('vacancies__filter-header')}>Теги</p>
-                                    <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
-                                </React.Fragment>
-                            ) : null}
-                            <div className={cn('vacancies__filter-buttons')}>
-                                <Button
-                                    styleType="primary"
-                                    type="button"
-                                    className={cn('vacancies__button', 'vacancies__show-button', {
-                                        'vacancies__show-button_visible': isMobileFilterVisible
-                                    })}
-                                    disabled={!filteredVacancies.length}
-                                    label={!filteredVacancies.length ? 'Нет вакансий' : `Смотреть ${filteredVacancies.length} ваканси${(() => {
-                                        if(filteredVacancies.length === 0 || filteredVacancies.length > 4) {
-                                            return 'й';
-                                        }
-
-                                        if(filteredVacancies.length === 1) {
-                                            return 'ю';
-                                        }
-
-                                        if(filteredVacancies.length > 1 && filteredVacancies.length < 5) {
-                                            return 'и';
-                                        }
-                                    })()
-                                    }`}
-                                    onClick={() => {
-                                        window.scrollTo(0, 0);
-                                        setIsMobileFilterVisible(!isMobileFilterVisible);
-                                    }}
-                                />
-                                <Button
-                                    styleType="primary"
-                                    type="button"
-                                    className={cn('vacancies__button', 'vacancies__reset-button', {
-                                        'vacancies__reset-button_visible': isMobileFilterVisible
-                                    })}
-                                    label={filtersCount ? 'Сбросить' : 'Закрыть'}
-                                    count={filtersCount}
-                                    onClick={() => {
-                                        window.scrollTo(0, 0);
-
-
-                                        if(filtersCount === 0) {
+                                <div className={cn('vacancies__filter-buttons')}>
+                                    <Button
+                                        styleType="primary"
+                                        type="button"
+                                        className={cn('vacancies__button', 'vacancies__filter-button', {
+                                            'vacancies__filter-button_hidden': isMobileFilterVisible
+                                        })}
+                                        label="Фильтровать"
+                                        count={(activeDirection ? 1 : 0) + activeTags?.length || 0}
+                                        onClick={() => {
+                                            window.scrollTo(0, 0);
                                             setIsMobileFilterVisible(!isMobileFilterVisible);
+                                        }}
+                                    />
+                                </div>
+                            </React.Fragment>
+                        ) : (
+                            <div className={cn('vacancies__filter-wrapper', {
+                                'vacancies__filter-wrapper_visible': isMobileFilterVisible
+                            })}
+                            >
+                                <p className={cn('vacancies__filter-header')}>Фильтр</p>
+                                <DirectionsList directions={directions} count={filteredVacancies.length} activeDirection={activeDirection} onClickDirection={onClickDirection} />
+                                {filteredTags?.length ? (
+                                    <React.Fragment>
+                                        <p className={cn('vacancies__filter-header')}>Теги</p>
+                                        <TagsList tags={filteredTags} activeTags={activeTags} onClickTag={onClickTag} />
+                                    </React.Fragment>
+                                ) : null}
+                                <div className={cn('vacancies__filter-buttons')}>
+                                    <Button
+                                        styleType="primary"
+                                        type="button"
+                                        className={cn('vacancies__button', 'vacancies__show-button', {
+                                            'vacancies__show-button_visible': isMobileFilterVisible
+                                        })}
+                                        disabled={!filteredVacancies.length}
+                                        label={!filteredVacancies.length ? 'Нет вакансий' : `Смотреть ${filteredVacancies.length} ваканси${(() => {
+                                            if(filteredVacancies.length === 0 || filteredVacancies.length > 4) {
+                                                return 'й';
+                                            }
 
-                                            return;
-                                        }
-                                        setActiveDirection(null);
-                                        setActiveTags([]);
-                                    }}
-                                />
+                                            if(filteredVacancies.length === 1) {
+                                                return 'ю';
+                                            }
+
+                                            if(filteredVacancies.length > 1 && filteredVacancies.length < 5) {
+                                                return 'и';
+                                            }
+                                        })()
+                                        }`}
+                                        onClick={() => {
+                                            window.scrollTo(0, 0);
+                                            setIsMobileFilterVisible(!isMobileFilterVisible);
+                                        }}
+                                    />
+                                    <Button
+                                        styleType="primary"
+                                        type="button"
+                                        className={cn('vacancies__button', 'vacancies__reset-button', {
+                                            'vacancies__reset-button_visible': isMobileFilterVisible
+                                        })}
+                                        label={filtersCount ? 'Сбросить' : 'Закрыть'}
+                                        count={filtersCount}
+                                        onClick={() => {
+                                            window.scrollTo(0, 0);
+
+
+                                            if(filtersCount === 0) {
+                                                setIsMobileFilterVisible(!isMobileFilterVisible);
+
+                                                return;
+                                            }
+                                            setActiveDirection(null);
+                                            setActiveTags([]);
+                                        }}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    )
-                }
-            </div>
-        </Layout>
+                        )
+                    }
+                </div>
+            </Layout>
+        </div>
     );
 };
 

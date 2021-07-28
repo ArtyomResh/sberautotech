@@ -19,6 +19,12 @@ ul {
         align-items: center;
     }
 
+    &__page {
+        .nav__list-item_active {
+            color: #040a0a;
+        }
+    }
+
     &__wrapper {
         display: flex;
         margin: 0 20px;

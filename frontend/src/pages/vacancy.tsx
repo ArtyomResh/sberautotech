@@ -191,89 +191,91 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
     }, []);
 
     return (
-        <Layout seo={{ ...data.allStrapiVacancyPage.edges[0].node.seo, metaTitle: title }} theme={{ mode: 'dark', logoColor: '#040A0A' }}>
-            <div className={cn('vacancy')}>
-                <div className={cn('vacancy__wrapper')}>
-                    <div className={cn('vacancy__left-block')}>
-                        <LeftBlockVacancyPage city={city} jobType={jobType} backToPreviousPage={backToPreviousPage} title={title} />
-                    </div>
-                    <div className={cn('vacancy__right-block')}>
-                        <div className={cn('vacancy__date-and-direction')}>
-                            <Link to={`/vacancies?direction=${direction?.id}`}><span>{direction?.header}</span></Link>
+        <div className={cn('vacancy__page')}>
+            <Layout seo={{ ...data.allStrapiVacancyPage.edges[0].node.seo, metaTitle: title }} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
+                <div className={cn('vacancy')}>
+                    <div className={cn('vacancy__wrapper')}>
+                        <div className={cn('vacancy__left-block')}>
+                            <LeftBlockVacancyPage city={city} jobType={jobType} backToPreviousPage={backToPreviousPage} title={title} />
                         </div>
-                        <div className={cn('vacancy__title')}>
-                            <h1>{title}</h1>
-                        </div>
-                        <div className={cn('vacancy__area')}>
-                            <p>{area?.text}</p>
-                        </div>
-                        <div className={cn('vacancy__tags-wrapper')}>
-                            {tags.map((el: ITag, i: number) => <Link key={i} to={`/vacancies?tags=${el.id}`}><span className={cn('vacancy__tag')}>{el.text}</span></Link>)}
-                        </div>
-                        <div className={cn('vacancy__left-block-main', 'vacancy__left-block-main_mobile')}>
-                            <ul className={cn('vacancy__title-wrapper')}>
-                                <li>{city.text}</li>
-                                <li>{jobType.duration}</li>
-                                <li>{jobType.text}</li>
-                                <li>Офис</li>
-                            </ul>
-                        </div>
-                        <div className={cn('vacancy__about-wrapper')}>
-                            {toUnescapedHTML(about)}
-                        </div>
-                        {customDescription ? (
+                        <div className={cn('vacancy__right-block')}>
+                            <div className={cn('vacancy__date-and-direction')}>
+                                <Link to={`/vacancies?direction=${direction?.id}`}><span>{direction?.header}</span></Link>
+                            </div>
+                            <div className={cn('vacancy__title')}>
+                                <h1>{title}</h1>
+                            </div>
+                            <div className={cn('vacancy__area')}>
+                                <p>{area?.text}</p>
+                            </div>
+                            <div className={cn('vacancy__tags-wrapper')}>
+                                {tags.map((el: ITag, i: number) => <Link key={i} to={`/vacancies?tags=${el.id}`}><span className={cn('vacancy__tag')}>{el.text}</span></Link>)}
+                            </div>
+                            <div className={cn('vacancy__left-block-main', 'vacancy__left-block-main_mobile')}>
+                                <ul className={cn('vacancy__title-wrapper')}>
+                                    <li>{city.text}</li>
+                                    <li>{jobType.duration}</li>
+                                    <li>{jobType.text}</li>
+                                    <li>Офис</li>
+                                </ul>
+                            </div>
+                            <div className={cn('vacancy__about-wrapper')}>
+                                {toUnescapedHTML(about)}
+                            </div>
+                            {customDescription ? (
+                                <div className={cn('vacancy__text-wrapper')}>
+                                    <h1>{customDescriptionHeader}</h1>
+                                    {toUnescapedHTML(customDescription)}
+                                </div>) : null}
                             <div className={cn('vacancy__text-wrapper')}>
-                                <h1>{customDescriptionHeader}</h1>
-                                {toUnescapedHTML(customDescription)}
-                            </div>) : null}
-                        <div className={cn('vacancy__text-wrapper')}>
-                            <h1>{whatToDoHeader}</h1>
-                            {toUnescapedHTML(whatToDo)}
-                        </div>
-                        <div className={cn('vacancy__text-wrapper')}>
-                            <h1>{whatWaitingForHeader}</h1>
-                            {toUnescapedHTML(whatWaitingFor)}
-                        </div>
-                        {plusses ? (
+                                <h1>{whatToDoHeader}</h1>
+                                {toUnescapedHTML(whatToDo)}
+                            </div>
                             <div className={cn('vacancy__text-wrapper')}>
-                                <h1>{plussesHeader}</h1>
-                                {toUnescapedHTML(plusses)}
-                            </div>) : null}
-                        <div className={cn('vacancy__text-wrapper')}>
-                            <h1>{conditionsHeader}</h1>
-                            {toUnescapedHTML(conditions)}
+                                <h1>{whatWaitingForHeader}</h1>
+                                {toUnescapedHTML(whatWaitingFor)}
+                            </div>
+                            {plusses ? (
+                                <div className={cn('vacancy__text-wrapper')}>
+                                    <h1>{plussesHeader}</h1>
+                                    {toUnescapedHTML(plusses)}
+                                </div>) : null}
+                            <div className={cn('vacancy__text-wrapper')}>
+                                <h1>{conditionsHeader}</h1>
+                                {toUnescapedHTML(conditions)}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className={cn('vacancy__video-wrapper')} onClick={toggleVideo}>
-                    <PlayButton className={cn('vacancy__play-button', { 'vacancy__play-button_hidden': play })} />
-                    <video
-                        className={cn('vacancy__video')}
-                        ref={videoRef}
-                        src={video.localFile.url}
-                        loop={true}
-                    >
-                    </video>
-                </div>
-                <div className={cn('vacancy__bottom-block')}>
-                    <div className={cn('vacancy__left-side')}>
-                        <span className={cn('vacancy__count')}>{count}</span>
-                        <p className={cn('vacancy__count-text')}>{countText}</p>
+                    <div className={cn('vacancy__video-wrapper')} onClick={toggleVideo}>
+                        <PlayButton className={cn('vacancy__play-button', { 'vacancy__play-button_hidden': play })} />
+                        <video
+                            className={cn('vacancy__video')}
+                            ref={videoRef}
+                            src={video.localFile.url}
+                            loop={true}
+                        >
+                        </video>
                     </div>
-                    <div className={cn('vacancy__right-side')}>
-                        <div className={cn('vacancy__slogan')}>
-                            <p>{textBottom}</p>
+                    <div className={cn('vacancy__bottom-block')}>
+                        <div className={cn('vacancy__left-side')}>
+                            <span className={cn('vacancy__count')}>{count}</span>
+                            <p className={cn('vacancy__count-text')}>{countText}</p>
                         </div>
-                        <div className={cn('vacancy__big-slogan')}>
-                            <p className={cn('vacancy__external-part')}>
-                                {toUnescapedHTML(headerBottom.replace('{', '<span>').replace('}', '</span>'))}
-                            </p>
+                        <div className={cn('vacancy__right-side')}>
+                            <div className={cn('vacancy__slogan')}>
+                                <p>{textBottom}</p>
+                            </div>
+                            <div className={cn('vacancy__big-slogan')}>
+                                <p className={cn('vacancy__external-part')}>
+                                    {toUnescapedHTML(headerBottom.replace('{', '<span>').replace('}', '</span>'))}
+                                </p>
+                            </div>
                         </div>
                     </div>
+                    <ButtonWrapper className={cn('vacancy__respond-button_mobile')} label="Откликнуться" title={title} />
                 </div>
-                <ButtonWrapper className={cn('vacancy__respond-button_mobile')} label="Откликнуться" title={title} />
-            </div>
-        </Layout>
+            </Layout>
+        </div>
     );
 };
 
