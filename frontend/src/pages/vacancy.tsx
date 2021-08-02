@@ -1,16 +1,17 @@
 import React, { useCallback, useState, useRef } from 'react';
-
 import { graphql, Link } from 'gatsby';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+
 import { useClassnames } from '../hooks/use-classnames';
 import { toUnescapedHTML } from '../utils';
+import Layout from '../components/layout';
+import LeftBlockVacancyPage from '../components/left-block-vacancy-page';
+import ButtonWrapper from '../components/button-wrapper';
 
 import style from './vacancy.css';
 
 import PlayButton from '../images/play-button-vacancy.inline.svg';
-
-import Layout from '../components/layout';
-import LeftBlockVacancyPage from '../components/left-block-vacancy-page';
-import ButtonWrapper from '../components/button-wrapper';
 
 export const query = graphql`
   query VacancyPage($id: Int) {
@@ -220,29 +221,29 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                                 </ul>
                             </div>
                             <div className={cn('vacancy__about-wrapper')}>
-                                {toUnescapedHTML(about)}
+                                <ReactMarkdown rehypePlugins={[rehypeRaw]} children={about} />
                             </div>
                             {customDescription ? (
                                 <div className={cn('vacancy__text-wrapper')}>
                                     <h1>{customDescriptionHeader}</h1>
-                                    {toUnescapedHTML(customDescription)}
+                                    <ReactMarkdown rehypePlugins={[rehypeRaw]} children={customDescription} />
                                 </div>) : null}
                             <div className={cn('vacancy__text-wrapper')}>
                                 <h1>{whatToDoHeader}</h1>
-                                {toUnescapedHTML(whatToDo)}
+                                <ReactMarkdown rehypePlugins={[rehypeRaw]} children={whatToDo} />
                             </div>
                             <div className={cn('vacancy__text-wrapper')}>
                                 <h1>{whatWaitingForHeader}</h1>
-                                {toUnescapedHTML(whatWaitingFor)}
+                                <ReactMarkdown rehypePlugins={[rehypeRaw]} children={whatWaitingFor} />
                             </div>
                             {plusses ? (
                                 <div className={cn('vacancy__text-wrapper')}>
                                     <h1>{plussesHeader}</h1>
-                                    {toUnescapedHTML(plusses)}
+                                    <ReactMarkdown rehypePlugins={[rehypeRaw]} children={plusses} />
                                 </div>) : null}
                             <div className={cn('vacancy__text-wrapper')}>
                                 <h1>{conditionsHeader}</h1>
-                                {toUnescapedHTML(conditions)}
+                                <ReactMarkdown rehypePlugins={[rehypeRaw]} children={conditions} />
                             </div>
                         </div>
                     </div>
