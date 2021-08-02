@@ -278,6 +278,10 @@ ul {
             font-size: 16px;
             line-height: 20px;
             font-family: var(--font-family-secondary);
+
+            &:not(:last-child) {
+                margin-bottom: 20px;
+            }
         }
 
         @media screen and (max-width: 1024px) {
