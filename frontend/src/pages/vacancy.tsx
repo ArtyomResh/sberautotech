@@ -119,7 +119,8 @@ export interface IStrapiVacancies {
     plussesHeader: string,
     plusses: string,
     whatToDoHeader: string,
-    whatWaitingForHeader: string
+    whatWaitingForHeader: string,
+    huntflowId: string
 }
 
 interface INodes {
@@ -198,7 +199,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                 <div className={cn('vacancy')}>
                     <div className={cn('vacancy__wrapper')}>
                         <div className={cn('vacancy__left-block')}>
-                            <LeftBlockVacancyPage city={city} jobType={jobType} backToPreviousPage={backToPreviousPage} title={title} />
+                            <LeftBlockVacancyPage city={city} jobType={jobType} backToPreviousPage={backToPreviousPage} title={title} huntflowId={huntflowId} />
                         </div>
                         <div className={cn('vacancy__right-block')}>
                             <div className={cn('vacancy__date-and-direction')}>

@@ -54,12 +54,10 @@ const RespondForm = () => {
     const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(true);
     const [isSended, setIsSended] = useState(false);
     const [isError, setIsError] = useState(false);
-    const { vacancyTitle, huntflowId } = useContext(appContext);
-    const { isPopupVisible, setIsPopupVisible } = useContext(appContext);
+    const { isPopupVisible, setIsPopupVisible, vacancyTitle, huntflowId, setVacancyTitle, setHuntflowId } = useContext(appContext);
     const cn = useClassnames(style);
     const timeoutId = useRef<number>();
     const recaptchaInstance = useRef<Recaptcha | null>();
-
 
     const { consent,
         direction,
@@ -83,9 +81,15 @@ const RespondForm = () => {
         defaultValues   : {}
     });
 
+    const closeHandler = () => {
+        setVacancyTitle('');
+        setHuntflowId('');
+        setIsPopupVisible(false);
+    };
+
     const outsideClickHandler = useCallback((e) => {
         if(isPopupVisible && !e.target.closest('.respond-form') && !e.target.classList.contains('ui-select__option')) {
-            setIsPopupVisible(false);
+            closeHandler();
         }
     }, [isPopupVisible]);
 
@@ -96,10 +100,6 @@ const RespondForm = () => {
             window.removeEventListener('click', outsideClickHandler);
         };
     });
-
-    const closeHandler = () => {
-        return setIsPopupVisible(false);
-    };
 
     const preventClosePopup = useCallback((e) => {
         e.stopPropagation();

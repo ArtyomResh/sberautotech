@@ -25,13 +25,6 @@ const ButtonWrapper = ({ className, label, disabled, type, styleType, title, hun
         setHuntflowId(vacancyId);
     }, [vacancyTitle, huntflowId]);
 
-    useEffect(() => {
-        return () => {
-            setVacancyTitle('');
-            setHuntflowId('');
-        };
-    }, [vacancyTitle]);
-
     return (
         <Button
             className={className}
