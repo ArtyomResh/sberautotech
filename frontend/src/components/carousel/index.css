@@ -162,7 +162,19 @@
 }
 
 .career__carousel {
-    .carousel__header_bottom-left {
-        max-width: 765px;
+    .carousel__header {
+        max-width: 770px;
+
+        @media (max-width: 760px) {
+            max-width: 430px;
+            font-size: 27px;
+            line-height: 29px;
+        }
+
+        @media (max-width: 445px) {
+            max-width: 320px;
+            font-size: 20px;
+            line-height: 22px;
+        }
     }
 }
