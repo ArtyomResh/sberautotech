@@ -1,12 +1,10 @@
-import React, { useCallback, useContext, useMemo, useEffect, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
-import { appContext } from '../../context/context';
 
 import style from '../../pages/vacancy.css';
-
-import Button from '../button';
 import Tooltip from '../tooltip';
+import ButtonWrapper from '../button-wrapper';
 
 import { IStrapiVacancies } from '../../pages/vacancy';
 
@@ -20,11 +18,10 @@ interface IProps {
     backToPreviousPage: () => void
 }
 
-const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }: IStrapiVacancies & IProps) => {
+const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title, huntflowId }: IStrapiVacancies & IProps) => {
     const cn = useClassnames(style);
 
     const [tooltipIsOpen, setTooltipIsOpen] = useState(false);
-    const { setIsPopupVisible, setVacancyTitle, vacancyTitle } = useContext(appContext);
 
     const urlHref = useMemo(() => (typeof window !== 'undefined' ? window.location.href : ''), []);
 
@@ -35,17 +32,6 @@ const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }: IStr
             setTooltipIsOpen(false);
         }, 1000);
     }, []);
-
-    const setIsPopupVisibleHandler = useCallback(() => {
-        setIsPopupVisible(true);
-        setVacancyTitle(title);
-    }, [vacancyTitle]);
-
-    useEffect(() => {
-        return () => {
-            setVacancyTitle('');
-        };
-    }, [vacancyTitle]);
 
     return (
         <React.Fragment>
@@ -63,10 +49,11 @@ const LeftBlockVacancyPage = ({ city, jobType, backToPreviousPage, title }: IStr
                         <li>{jobType.duration}</li>
                         <li>{jobType.text}</li>
                         <li>Офис</li>
-                        <Button
-                            onClick={setIsPopupVisibleHandler}
+                        <ButtonWrapper
                             className={cn('vacancy__respond-button')}
                             label="Откликнуться"
+                            title={title}
+                            huntflowId={huntflowId}
                         />
                     </ul>
                 </div>
