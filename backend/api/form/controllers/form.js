@@ -82,8 +82,8 @@ module.exports = {
         }]
       });
 
-      if (huntflowId && applicant.id) {
-        await req.post(`/account/${HUNTFLOW_ACCOUNT_ID}/applicants/${applicant.id}/vacancy`, {
+      if (huntflowId && applicant?.data?.id) {
+        await req.post(`/account/${HUNTFLOW_ACCOUNT_ID}/applicants/${applicant?.data?.id}/vacancy`, {
           vacancy: huntflowId,
           status: 117000,
           files: [{ id }]
