@@ -139,6 +139,14 @@
       },
       "type": "string",
       "default": "Требования"
+    },
+    "huntflowId": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string"
     }
   }
 }

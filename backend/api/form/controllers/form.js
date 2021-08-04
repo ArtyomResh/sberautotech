@@ -17,12 +17,11 @@ req.defaults.headers.common['User-Agent'] = `SberAutoTech/${packagejson.version}
 
 module.exports = {
   async send(ctx) {
-    const { acception, name, surname, email, direction, textarea, content, filename, vacancy } = ctx.request.body;
+    const { acception, name, surname, email, direction, textarea, content, filename, vacancy, huntflowId } = ctx.request.body;
 
     try {
       const res = await strapi.plugins['email'].services.email.send({
-        //TODO: Можно ли указать в strapi?
-        to: 'hr_sat@sberbank.ru',
+        to: 'hr@sberautotech.ru',
         subject: vacancy ? `Отклик: ${vacancy}` : 'Отклик не по конкретной вакансии',
         html: `
           <p>${name} ${surname} - ${email}</p>
@@ -61,7 +60,7 @@ module.exports = {
         }
       } = upload.data;
 
-      const save = await req.post(`/account/${HUNTFLOW_ACCOUNT_ID}/applicants`, {
+      const applicant = await req.post(`/account/${HUNTFLOW_ACCOUNT_ID}/applicants`, {
         last_name: dataName?.last ?? surname,
         first_name: dataName?.first ?? name,
         middle_name: dataName?.middle,
@@ -82,6 +81,14 @@ module.exports = {
           account_source: HUNTFLOW_SOURCE_ID
         }]
       });
+
+      if (huntflowId && applicant.id) {
+        await req.post(`/account/${HUNTFLOW_ACCOUNT_ID}/applicants/${applicant.id}/vacancy`, {
+          vacancy: huntflowId,
+          status: 117000,
+          files: [{ id }]
+        });
+      }
     } catch (err) {
       console.error(err);
     }

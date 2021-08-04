@@ -103,11 +103,14 @@
             color: #758794;
         }
 
-        &:hover {
-            color: #34b7aa;
+        @media (hover: hover) and (pointer: fine) {
 
-            & span {
+            &:hover {
                 color: #34b7aa;
+    
+                & span {
+                    color: #34b7aa;
+                }
             }
         }
     }

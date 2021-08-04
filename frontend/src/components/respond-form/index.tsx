@@ -54,7 +54,7 @@ const RespondForm = () => {
     const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(true);
     const [isSended, setIsSended] = useState(false);
     const [isError, setIsError] = useState(false);
-    const { vacancyTitle } = useContext(appContext);
+    const { vacancyTitle, huntflowId } = useContext(appContext);
     const { isPopupVisible, setIsPopupVisible } = useContext(appContext);
     const cn = useClassnames(style);
     const timeoutId = useRef<number>();
@@ -124,6 +124,10 @@ const RespondForm = () => {
 
         if(vacancyTitle) {
             formData.append('vacancy', vacancyTitle);
+        }
+
+        if(huntflowId) {
+            formData.append('huntflowId', huntflowId);
         }
 
         for(const name in data) {

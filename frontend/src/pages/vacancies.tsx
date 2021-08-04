@@ -252,7 +252,6 @@ const Vacancies = ({ location }) => {
                                         onClick={() => {
                                             window.scrollTo(0, 0);
 
-
                                             if(filtersCount === 0) {
                                                 setIsMobileFilterVisible(!isMobileFilterVisible);
 
