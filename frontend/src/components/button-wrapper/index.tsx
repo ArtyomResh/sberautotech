@@ -12,22 +12,18 @@ interface IProps {
     type?: TButtonType,
     styleType?: TButtonStyleType,
     className?: string,
-    title: string
+    title: string,
+    huntflowId: string
 }
 
-const ButtonWrapper = ({ className, label, disabled, type, styleType, title }: IProps) => {
-    const { setIsPopupVisible, setVacancyTitle, vacancyTitle } = useContext(appContext);
+const ButtonWrapper = ({ className, label, disabled, type, styleType, title, huntflowId: vacancyId }: IProps) => {
+    const { setIsPopupVisible, setVacancyTitle, vacancyTitle, huntflowId, setHuntflowId } = useContext(appContext);
 
     const setIsPopupVisibleHandler = useCallback(() => {
         setIsPopupVisible(true);
         setVacancyTitle(title);
-    }, [vacancyTitle]);
-
-    useEffect(() => {
-        return () => {
-            setVacancyTitle('');
-        };
-    }, [vacancyTitle]);
+        setHuntflowId(vacancyId);
+    }, [vacancyTitle, huntflowId]);
 
     return (
         <Button

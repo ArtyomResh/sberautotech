@@ -78,6 +78,7 @@ export const query = graphql`
         plusses
         whatToDoHeader
         whatWaitingForHeader
+        huntflowId
     }
   }
 `;
@@ -118,7 +119,8 @@ export interface IStrapiVacancies {
     plussesHeader: string,
     plusses: string,
     whatToDoHeader: string,
-    whatWaitingForHeader: string
+    whatWaitingForHeader: string,
+    huntflowId: string
 }
 
 interface INodes {
@@ -171,7 +173,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [play, setPlay] = useState<boolean>(false);
 
-    const { about, area, city, conditions, customDescription, direction, jobType, tags, title, whatToDo, whatWaitingFor, customDescriptionHeader, conditionsHeader, plussesHeader, plusses, whatToDoHeader, whatWaitingForHeader } = data.strapiVacancies;
+    const { about, area, city, conditions, customDescription, direction, jobType, tags, title, whatToDo, whatWaitingFor, customDescriptionHeader, conditionsHeader, plussesHeader, plusses, whatToDoHeader, whatWaitingForHeader, huntflowId } = data.strapiVacancies;
     const { count, headerBottom, countText, textBottom, video, videoPoster } = data.allStrapiVacancyPage.edges[0].node;
 
     const toggleVideo = useCallback(() => {
@@ -197,7 +199,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                 <div className={cn('vacancy')}>
                     <div className={cn('vacancy__wrapper')}>
                         <div className={cn('vacancy__left-block')}>
-                            <LeftBlockVacancyPage city={city} jobType={jobType} backToPreviousPage={backToPreviousPage} title={title} />
+                            <LeftBlockVacancyPage city={city} jobType={jobType} backToPreviousPage={backToPreviousPage} title={title} huntflowId={huntflowId} />
                         </div>
                         <div className={cn('vacancy__right-block')}>
                             <div className={cn('vacancy__date-and-direction')}>
@@ -273,7 +275,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                             </div>
                         </div>
                     </div>
-                    <ButtonWrapper className={cn('vacancy__respond-button_mobile')} label="Откликнуться" title={title} />
+                    <ButtonWrapper className={cn('vacancy__respond-button_mobile')} label="Откликнуться" title={title} huntflowId={huntflowId} />
                 </div>
             </Layout>
         </div>
