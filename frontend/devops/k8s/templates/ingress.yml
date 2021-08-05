@@ -8,8 +8,10 @@ metadata:
     cert-manager.io/cluster-issuer: {{ cert_issuer }}
     konghq.com/https-redirect-status-code: "301"
     konghq.com/protocols: https
-{% endif %}
+    kubernetes.io/ingress.class: kong-public
+{% else %}
     kubernetes.io/ingress.class: kong
+{% endif %}
   name: {{ app_name }}-{{ package_name }}-kong
   namespace: {{ namespace }}
 spec:
