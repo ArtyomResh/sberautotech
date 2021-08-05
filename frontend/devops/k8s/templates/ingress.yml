@@ -9,7 +9,7 @@ metadata:
     konghq.com/https-redirect-status-code: "301"
     konghq.com/protocols: https
 {% endif %}
-    kubernetes.io/ingress.class: kong
+    kubernetes.io/ingress.class: kong-public
   name: {{ app_name }}-{{ package_name }}-kong
   namespace: {{ namespace }}
 spec:
