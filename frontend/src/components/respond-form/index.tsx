@@ -1,25 +1,18 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState, useContext } from 'react';
+import React, { useCallback, useEffect, useRef, useState, useContext } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import Recaptcha from 'react-recaptcha';
 
 import Input from './input';
-import Select from '../select';
 import Textarea from './textarea';
 import Button from '../button';
 import CheckBox from './check-box';
 import { useClassnames } from '../../hooks/use-classnames';
 import { toBase64 } from '../../utils';
 import { appContext } from '../../context/context';
+import Loader from '../loader/loaderComponent';
 
 import style from './index.css';
 import { graphql, useStaticQuery } from 'gatsby';
-
-const options = [
-    { value: 'Product', label: 'Product' },
-    { value: 'Development', label: 'Development' },
-    { value: 'HR', label: 'HR' },
-    { value: 'Design', label: 'Design' }
-];
 
 const FORM_URL = '/form';
 
@@ -50,9 +43,9 @@ const query = graphql`
 
 const RespondForm = () => {
     const data = useStaticQuery(query);
-    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
     const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(true);
     const [isSended, setIsSended] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const { isPopupVisible, setIsPopupVisible, vacancyTitle, huntflowId, setVacancyTitle, setHuntflowId } = useContext(appContext);
     const cn = useClassnames(style);
@@ -60,7 +53,6 @@ const RespondForm = () => {
     const recaptchaInstance = useRef<Recaptcha | null>();
 
     const { consent,
-        direction,
         email,
         errorButtonText,
         errorSend,
@@ -109,18 +101,16 @@ const RespondForm = () => {
         }
 
         setIsSended(false);
-        setIsSubmitDisabled(false);
         setIsPopupVisible(true);
         context.reset();
     }, [timeoutId]);
 
     const onSubmit = async (data) => {
-        setIsSubmitDisabled(true);
-
+        setIsLoading(true);
         const formData = new FormData();
         const fileInput = document.querySelector('#file');
         const file = data.file[0] || fileInput?.files[0];
-        const base64 = await toBase64(file);
+        const base64 = file ? await toBase64(file) : null;
 
         if(vacancyTitle) {
             formData.append('vacancy', vacancyTitle);
@@ -132,9 +122,7 @@ const RespondForm = () => {
 
         for(const name in data) {
             if(data[name]) {
-                if(name === 'direction') {
-                    formData.append(name, data[name].label);
-                } else if(name === 'file') {
+                if(name === 'file' && base64) {
                     formData.append('content', base64);
                     formData.append('filename', file.name);
                 } else {
@@ -155,17 +143,17 @@ const RespondForm = () => {
 
             if(res.ok) {
                 setIsSended(true);
+                setIsLoading(false);
 
                 timeoutId.current = setTimeout(() => {
                     setIsSended(false);
                     setIsPopupVisible(false);
-                    setIsSubmitDisabled(false);
                 }, 3000);
             }
         } catch(err) {
             setIsSended(true);
             setIsError(true);
-            setIsSubmitDisabled(false);
+            setIsLoading(false);
 
             console.error(err);
         }
@@ -176,7 +164,7 @@ const RespondForm = () => {
     }, []);
 
     if(!isPopupVisible) {
-        return <React.Fragment></React.Fragment>;
+        return null;
     }
 
     return (
@@ -216,11 +204,8 @@ const RespondForm = () => {
                                     </div>
                                 </div>
                                 <div className={cn('right-block__bottom-section')}>
-                                    <div className={cn('right-block__field-wrapper')}>
+                                    <div className={cn('right-block__field-wrapper', 'right-block__field-email')}>
                                         <Input type="text" placeholder={email} name="email" autocomplete="off" pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} requiredValidation={true} />
-                                    </div>
-                                    <div className={cn('right-block__field-wrapper')}>
-                                        <Select name="direction" placeholder={direction} options={options} />
                                     </div>
                                 </div>
                             </div>
@@ -231,22 +216,28 @@ const RespondForm = () => {
                                 <CheckBox name="acception" requiredValidation={true} label={consent} />
                             </div>
                             <div className={cn('right-block__button-section')}>
-                                <div className={cn('right-block__field-wrapper')}>
-                                    <Input type="file" placeholder={file} name="file" />
-                                </div>
-                                {isRecaptchaConfirmed ? (
-                                    <div className={cn('right-block__field-wrapper')}>
-                                        <Button type="submit" label={buttonText} styleType="secondary" />
-                                    </div>
+                                {isLoading ? (
+                                    <Loader stopColor="#BDFFF8" />
                                 ) : (
-                                    <Recaptcha
-                                        className={cn('right-block__grecaptcha')}
-                                        ref={(e) => recaptchaInstance.current = e}
-                                        sitekey="6LcxFCQbAAAAAPk5ZtW8P4LTJFuMUTHMh65Oap4n"
-                                        render="explicit"
-                                        hl={locale}
-                                        verifyCallback={verifyCallback}
-                                    />
+                                    <React.Fragment>
+                                        <div className={cn('right-block__field-wrapper')}>
+                                            <Input type="file" placeholder={file} name="file" />
+                                        </div>
+                                        {isRecaptchaConfirmed ? (
+                                            <div className={cn('right-block__field-wrapper')}>
+                                                <Button type="submit" label={buttonText} disabled={isLoading} styleType="secondary" />
+                                            </div>
+                                        ) : (
+                                            <Recaptcha
+                                                className={cn('right-block__grecaptcha')}
+                                                ref={(e) => recaptchaInstance.current = e}
+                                                sitekey="6LcxFCQbAAAAAPk5ZtW8P4LTJFuMUTHMh65Oap4n"
+                                                render="explicit"
+                                                hl={locale}
+                                                verifyCallback={verifyCallback}
+                                            />
+                                        )}
+                                    </React.Fragment>
                                 )}
                             </div>
                         </div>

@@ -58,6 +58,11 @@
             max-width: 300px;
         }
     }
+
+    .svg-icon_loader {
+        width: 60px;
+        height: 60px;
+    }
 }
 
 .text-block {
@@ -96,6 +101,10 @@
         &:last-child {
             margin-right: 0;
         }
+    }
+
+    &__field-email {
+        width: 100%;
     }
 
     &__checkbox-wrapper {
