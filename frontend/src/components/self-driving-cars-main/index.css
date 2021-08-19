@@ -33,7 +33,7 @@
         position: absolute;
         right: 10px;
         bottom: 10px;
-        z-index: 6;
+        z-index: 3;
 
         @media (hover: hover) and (pointer: fine) {
             &:hover {
@@ -61,6 +61,110 @@
 
         @media screen and (max-width: 550px) {
             max-width: calc(100vw - 80px);
+        }
+    }
+}
+
+.stories-block {
+
+    &__story {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 40px 0px;
+        margin: 20px;
+        /* grid-gap: 40px; */
+
+        &_inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+
+            @media (max-width: 1050px) {
+                grid-template-columns: 1fr;
+                grid-gap: 15px;
+                padding: 0;
+            }
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #E0E6EB;
+        }
+
+        span {
+            color: #34B7AA;
+        }
+
+
+        @media (max-width: 1050px) {
+            grid-template-columns: 1fr;
+            grid-gap: 15px;
+            margin: 10px;
+        }
+    }
+
+    &__story-header {
+        font-size: 26px;
+        line-height: 30px;
+        letter-spacing: -0.02em;
+        color: #1F272E;
+        min-width: 335px;
+
+        @media (max-width: 1050px) {
+            min-width: calc(100vw - 20px);
+        }
+    }
+
+    &__story-img {
+        max-width: 295px;
+        border-radius: 12px;
+        margin-right: 40px;
+
+        @media (max-width: 1250px) {
+            max-width: 240px;
+        }
+
+
+        @media (max-width: 1110px) {
+            max-width: 200px;
+        }
+
+        @media (max-width: 1050px) {
+            max-width: calc(100vw - 20px);
+            margin-right: 0;
+        }
+    }
+
+    &__story-text {
+        margin-bottom: 16px;
+        font-size: 26px;
+        line-height: 30px;
+        letter-spacing: -0.02em;
+    }
+
+    &__story-sub-text-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        align-items: flex-end;
+
+        @media (max-width: 1050px) {
+            grid-template-columns: 1fr;
+            grid-gap: 15px;
+            padding: 0;
+        }
+    }
+
+    &__story-sub-text {
+        font-family: SB Sans Display;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: -0.01em;
+        color: #1F272E;
+
+        b {
+            font-family: SB Sans Text;
+            font-size: 26px;
+            line-height: 29px;
         }
     }
 }

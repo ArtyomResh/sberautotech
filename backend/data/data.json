@@ -164,22 +164,28 @@
     },
     "story_cards": [
       {
-        "header": "Без слепых зон: обзор в 360°",
+        "header": "Без слепых зон:</br>обзор в 360°",
         "image": null,
-        "imageName": "torpedo.jpg",
-        "text": "Радары, лидары и сенсоры обеспечивают автомобилю обзор в 360° - вокруг него нет слепых зон. Беспилотник умеет распознавать и отличать друг от друга все возможные объекты, перестраиваться, тормозить, объезжать препятствия и предвидеть действия других участников дорожного движения."
+        "imageName": "story-card-1.jpg",
+        "text": "{Беспилотник} умеет распознавать и отличать друг от друга все возможные объекты, перестраиваться, тормозить, объезжать препятствия и предвидеть действия других участников дорожного движения",
+        "subText": "Радары, лидары и сенсоры обеспечивают автомобилю обзор в 360 градусов - вокруг него нет слепых зон",
+        "subTextSecond": ""
       },
       {
-        "header": "Бесшовная интеграция с экосистемой",
+        "header": "Бесшовная интеграция</br>с экосистемой",
         "image": null,
-        "imageName": "driver.jpg",
-        "text": "Бортовой компьютер собственной разработки использует картографию 2ГИС — ещё одной компании в экосистеме Сбера. Мы задействуем все возможные элементы экосистемы для глубокой и бесшовной интеграции с нашими продуктами."
+        "imageName": "story-card-2.jpg",
+        "text": "{Бортовой компьютер собственной разработки} использует картографию 2ГИС — ещё одной компании в экосистеме Сбера",
+        "subText": "Мы задействуем все возможные элементы экосистемы для глубокой и бесшовной интеграции с нашими продуктами",
+        "subTextSecond": ""
       },
       {
-        "header": "Нечеловеческая быстрота реакции",
+        "header": "Нечеловеческая быстрота</br>реакции",
         "image": null,
-        "imageName": "nightCar.jpg",
-        "text": "Скорость реакции роботизированной системы в 5 раз выше, чем у самого опытного водителя. По статистике, 93% аварий на дорогах в России происходят из-за потери водителем концентрации внимания. Беспилотные технологии, не подверженные усталости и эмоциям, помогут повысить безопасность на дорогах."
+        "imageName": "story-card-3.jpg",
+        "text": "{Скорость реакции роботизированной системы в 5 раз выше}, чем у самого опытного водителя",
+        "subText": "<b>93%</b></br>аварий на дорогах в России происходят из-за потери водителем концентрации внимания. (по данным статистики)",
+        "subTextSecond": "Беспилотные технологии, не подверженные усталости и эмоциям, помогут повысить безопасность на дорогах"
       }
     ],
     "slider": {
@@ -211,17 +217,23 @@
       {
         "header": "No blind spots: 360° view",
         "image": null,
-        "text": "Radars, lidars and sensors provide the vehicle with a 360 ° view - no blind spots around it. The drone is able to recognize and distinguish from each other all possible objects, rebuild, brake, avoid obstacles and anticipate the actions of other road users."
+        "text": "Radars, lidars and sensors provide the vehicle with a 360 ° view - no blind spots around it. The drone is able to recognize and distinguish from each other all possible objects, rebuild, brake, avoid obstacles and anticipate the actions of other road users.",
+        "subText": "",
+        "subTextSecond": ""
       },
       {
         "header": "Seamless integration with the ecosystem",
         "image": null,
-        "text": "The on-board computer of our own design uses 2GIS cartography, another company in the Sberbank ecosystem. We use all possible elements of the ecosystem for deep and seamless integration with our products."
+        "text": "The on-board computer of our own design uses 2GIS cartography, another company in the Sberbank ecosystem. We use all possible elements of the ecosystem for deep and seamless integration with our products.",
+        "subText": "",
+        "subTextSecond": ""
       },
       {
         "header": "Inhuman speed of reaction",
         "image": null,
-        "text": "The reaction speed of the robotic system is 5 times faster than that of the most experienced driver. According to statistics, 93% of road accidents in Russia are due to the driver's loss of concentration. Self-driving technology that is not subject to fatigue and emotion will help improve road safety."
+        "text": "The reaction speed of the robotic system is 5 times faster than that of the most experienced driver. According to statistics, 93% of road accidents in Russia are due to the driver's loss of concentration. Self-driving technology that is not subject to fatigue and emotion will help improve road safety.",
+        "subText": "",
+        "subTextSecond": ""
       }
     ],
     "slider": {
