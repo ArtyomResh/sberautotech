@@ -2,7 +2,8 @@
   "collectionName": "components_shared_story_cards",
   "info": {
     "name": "StoryCard",
-    "icon": "window-restore"
+    "icon": "window-restore",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -18,9 +19,16 @@
         "videos"
       ],
       "plugin": "upload",
-      "required": false
+      "required": false,
+      "pluginOptions": {}
     },
     "text": {
+      "type": "text"
+    },
+    "subText": {
+      "type": "text"
+    },
+    "subTextSecond": {
       "type": "text"
     }
   }
