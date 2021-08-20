@@ -3226,11 +3226,11 @@
     "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
     "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
     "link": {
-      "to": "/vacancies",
-      "text": "Вакансии",
+      "to": "",
+      "text": "Связаться с нами",
       "style": "fill"
     },
-    "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях.",
+    "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях. ©",
     "email": "contact@sberautotech.ru",
     "privacyPolicyLink": "/privacy-policy",
     "privacyPolicyText": "Политика конфиденциальности"
@@ -3241,11 +3241,11 @@
     "header": "Our team is expanding - find out about our vacancies and join specialists with rich experience in both IT and Automotive",
     "description": "We are only at the beginning of the path and cannot reveal all the plans. Fill out a questionnaire about yourself, send it and we will contact you as soon as there is an opportunity to take you to the team.",
     "link": {
-      "to": "/vacancies",
-      "text": "Vacancies",
+      "to": "",
+      "text": "Connect with us",
       "style": "fill"
     },
-    "disclaimer": "The information published on the Site is provided for informational purposes only.",
+    "disclaimer": "The information published on the Site is provided for informational purposes only. ©",
     "email": "contact@sberautotech.ru",
     "privacyPolicyLink": "/privacy-policy",
     "privacyPolicyText": "Privacy policy"
