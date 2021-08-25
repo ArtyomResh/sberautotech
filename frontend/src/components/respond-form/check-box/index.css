@@ -21,8 +21,8 @@
         padding: 0;
         vertical-align: top;
         outline: none;
-        border: 1px solid #000000;
-        border-radius: 15px;
+        border: 1px solid #758794;
+        border-radius: 8px;
         cursor: pointer;
         position: relative;
         box-sizing: border-box;
@@ -33,6 +33,7 @@
         }
 
         &:checked {
+            border-color: #10181F;
             background-position: center;
             background-image: url("../../../images/checkbox-checked.svg");
         }

@@ -1,30 +1,31 @@
 .button {
     cursor: pointer;
     width: 100%;
-    height: 60px;
-    border-radius: 15px;
+    height: 56px;
+    border-radius: 64px;
     border: none;
     font-size: 22px;
     line-height: 125%;
     letter-spacing: -0.01em;
-    color: #1F272E;
-    background-color: #94F7ED;
+    color: #1f272e;
+    background-color: #bdfff8;
     position: relative;
 
     @media (hover: hover) and (pointer: fine) {
+
         &:hover {
-            background-color: #67CFC9;
-            color: #FFFF;
+            background-color: #66ded2;
         }
     }
 
     &_secondary {
-        background-color: #FFF;
+        background-color: #fff;
 
         @media (hover: hover) and (pointer: fine) {
+
             &:hover {
-                background-color: #67CFC9;
-                color: #FFFF;
+                background-color: #66ded2;
+                color: #ffff;
             }
         }
     }
@@ -33,7 +34,7 @@
         position: absolute;
         right: 20px;
         padding: 5px 10px;
-        background: #BDFFF8;
+        background: #bdfff8;
         border-radius: 50px;
         font-size: 14px;
         line-height: 18px;
