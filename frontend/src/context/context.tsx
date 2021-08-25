@@ -3,6 +3,8 @@ import React, { createContext, ReactElement, useState, useContext } from 'react'
 interface IAppContext {
     isPopupVisible: boolean,
     setIsPopupVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
+    isRespondFormVisible: boolean,
+    setIsRespondFormVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
     vacancyTitle: string,
     setVacancyTitle: React.Dispatch<React.SetStateAction<string>> | null,
     huntflowId: string | null,
@@ -10,15 +12,18 @@ interface IAppContext {
 }
 
 const appContext = createContext<IAppContext>({
-    isPopupVisible   : false,
-    setIsPopupVisible: null,
-    vacancyTitle     : '',
-    setVacancyTitle  : null
+    isPopupVisible         : false,
+    isRespondFormVisible   : false,
+    setIsRespondFormVisible: null,
+    setIsPopupVisible      : null,
+    vacancyTitle           : '',
+    setVacancyTitle        : null
 });
 const { Provider } = appContext;
 
 const AppProvider = ({ children }: { children: ReactElement }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [isRespondFormVisible, setIsRespondFormVisible] = useState(false);
     const [vacancyTitle, setVacancyTitle] = useState('');
     const [huntflowId, setHuntflowId] = useState('');
 
@@ -26,6 +31,8 @@ const AppProvider = ({ children }: { children: ReactElement }) => {
         <Provider value={{
             isPopupVisible,
             setIsPopupVisible,
+            isRespondFormVisible,
+            setIsRespondFormVisible,
             vacancyTitle,
             setVacancyTitle,
             huntflowId,

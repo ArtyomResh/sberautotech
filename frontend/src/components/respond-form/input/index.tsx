@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ValidationRule, ValidationValueMessage } from 'react-hook-form/dist/types/validator';
 import { Message } from 'react-hook-form/dist/types/form';
 
@@ -9,7 +9,7 @@ import Cross from './cross';
 import { useClassnames } from '../../../hooks/use-classnames';
 import { useFormContext } from 'react-hook-form';
 
-type TInputType = 'text' | 'email' | 'file';
+type TInputType = 'text' | 'email' | 'file' | 'tel';
 type TAutoCompleteType = 'on' | 'off';
 
 interface IProps {
@@ -32,6 +32,7 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
     const cn = useClassnames(style);
 
     const [file, setFile] = useState<IState>({ fileName: '', fileExtension: '' });
+    const [string, setString] = useState<string>('');
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target as HTMLInputElement;
@@ -51,7 +52,98 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
         setFile({ fileName: '', fileExtension: '' });
     };
 
-    if(type === 'file') {
+    const getInputNumbersValue = (string: string) => {
+        return String(string).replace(/\D/g, '');
+    };
+
+    const onPhonePaste = (e: React.MouseEvent<HTMLInputElement>) => {
+        const input = e.target,
+            inputNumbersValue = getInputNumbersValue(input);
+        const pasted = e.clipboardData;
+
+        if(pasted) {
+            const pastedText = pasted.getData('Text');
+
+            if(/\D/g.test(pastedText)) {
+                (input as HTMLInputElement).value = inputNumbersValue;
+            }
+        }
+    };
+
+    const onPhoneInput = (e: React.MouseEvent<HTMLInputElement>) => {
+        const input = e.target,
+            selectionStart = (input as HTMLInputElement).selectionStart;
+        let formattedInputValue = '',
+            inputNumbersValue = getInputNumbersValue((input as HTMLInputElement).value);
+
+        if(!inputNumbersValue) {
+            (input as HTMLInputElement).value = '';
+
+            return;
+        }
+
+        if((input as HTMLInputElement).value.length !== selectionStart) {
+            if(e.data && /\D/g.test(e.data)) {
+                (input as HTMLInputElement).value = inputNumbersValue;
+            }
+
+            return;
+        }
+
+        if(['7', '8', '9'].includes(inputNumbersValue[0])) {
+            if(inputNumbersValue.startsWith('9')) {
+                inputNumbersValue = `7${inputNumbersValue}`;
+            }
+            const firstSymbols = '+7';
+
+            (input as HTMLInputElement).value = `${firstSymbols} `;
+
+            formattedInputValue = (input as HTMLInputElement).value;
+
+            if(inputNumbersValue.length > 1) {
+                formattedInputValue += inputNumbersValue.substring(1, 4);
+            }
+
+            if(inputNumbersValue.length >= 5) {
+                formattedInputValue += ` ${inputNumbersValue.substring(4, 7)}`;
+            }
+
+            if(inputNumbersValue.length >= 8) {
+                formattedInputValue += `-${inputNumbersValue.substring(7, 9)}`;
+            }
+
+            if(inputNumbersValue.length >= 10) {
+                formattedInputValue += `-${inputNumbersValue.substring(9, 11)}`;
+            }
+        } else {
+            formattedInputValue = `+${inputNumbersValue.substring(0, 16)}`;
+        }
+        (input as HTMLInputElement).value = formattedInputValue;
+    };
+
+    const onPhoneKeyDown = (e: React.MouseEvent<HTMLInputElement>) => {
+        const inputValue = (e.target as HTMLInputElement).value.replace(/\D/g, '');
+
+        if(e.keyCode === 8 && inputValue.length === 1) {
+            (e.target as HTMLInputElement).value = '';
+        }
+    };
+
+    const erorrHandler = useMemo(() => {
+        if(formState.errors?.[name] && string) {
+            if(name === 'Почта') {
+                return 'Неверный формат почты';
+            }
+
+            return 'Недопустимые значение';
+        }
+
+        if(formState.errors?.[name] && !string) {
+            return 'Обязательное поле';
+        }
+    }, [string, formState.errors?.[name]]);
+
+    const elInputFile = useMemo(() => {
         return (
             <div className={cn('input-file')}>
                 <input
@@ -66,19 +158,66 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
                     <span className={cn('input-file__ext')}>{file.fileExtension ? `.${file.fileExtension}` : null}</span>
                     <div className={cn('input-file__cross')} onClick={cancelFileHandler}>{file.fileName ? <Cross /> : null}</div>
                 </label>
+            </div>);
+    }, [formState, file]);
+
+    const elInput = useMemo(() => {
+        return (
+            <div className={cn('input', { 'input_error': formState.errors?.[name] })}>
+                <input
+                    placeholder={' '}
+                    id="input"
+                    type={type}
+                    onInput={(e) => {
+                        setString(e.target.value);
+                    }}
+                    autoComplete={props.autocomplete || 'off'}
+                    {...register(name, { required: props.requiredValidation,
+                        pattern : props.pattern })}
+                />
+                <label className={cn('input__label')} htmlFor="input">
+                    {placeholder}
+                </label>
+                <label className={cn('input__error-label')} htmlFor="input">
+                    {erorrHandler}
+                </label>
             </div>
         );
-    }
+    }, [formState, string]);
+
+    const elInputTel = useMemo(() => {
+        return (
+            <div className={cn('input', { 'input_error': formState.errors?.[name] })}>
+                <input
+                    placeholder="+7 ___ ___ - __ - __"
+                    id="input"
+                    type={type}
+                    autoComplete={props.autocomplete || 'off'}
+                    {...register(name, { required: props.requiredValidation,
+                        pattern : props.pattern })}
+                    onChange={onPhoneInput}
+                    onPaste={onPhonePaste}
+                    onKeyDown={onPhoneKeyDown}
+                    onInput={(e) => {
+                        setString(e.target.value);
+                    }}
+                />
+                <label className={cn('input__label', 'input__label_tel')} htmlFor="input">
+                    {placeholder}
+                </label>
+                <label className={cn('input__error-label')} htmlFor="input">
+                    {erorrHandler}
+                </label>
+            </div>
+        );
+    }, [formState]);
 
     return (
-        <input
-            className={cn('input', { 'input_error': formState.errors?.[name] })}
-            type={type}
-            placeholder={placeholder}
-            autoComplete={props.autocomplete || 'off'}
-            {...register(name, { required: props.requiredValidation,
-                pattern : props.pattern })}
-        />
+        <React.Fragment>
+            {type === 'file' ? elInputFile : null}
+            {type === 'tel' ? elInputTel : null}
+            {type === 'text' || type === 'email' ? elInput : null}
+        </React.Fragment>
     );
 };
 
