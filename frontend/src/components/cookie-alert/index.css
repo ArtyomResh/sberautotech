@@ -1,12 +1,14 @@
 .cookie-alert {
     background-color: #C0CCD5;
     display: flex;
-    padding: 10px;
+    padding: 20px;
+    margin: 20px;
     justify-content: space-between;
     position: fixed;
     bottom: 0;
     z-index: 999;
-    width: 100%;
+    width: calc(100vw - 40px);
+    border-radius: 12px;
     letter-spacing: -0.02em;
 
     &__right {
@@ -37,13 +39,14 @@
 
     &__button {
         cursor: pointer;
-        min-width: 217px;
+        min-width: 205px;
         height: 60px;
         border-radius: 55px;
         border: none;
         font-size: 22px;
         color: #1F272E;
-        background: #FFFFFF;
+        background: #BDFFF8;
+
         margin-left: 20px;
         margin-top: 16px;
 
@@ -60,8 +63,8 @@
         }
 
         &_dark {
-            color: #FFFF;
-            background: #43515C;
+            color: #1F272E;
+            background: #FFFFFF;
 
             @media (hover: hover) and (pointer: fine) {
                 &:hover {

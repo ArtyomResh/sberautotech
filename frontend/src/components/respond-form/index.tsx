@@ -250,7 +250,7 @@ const RespondForm = () => {
                             </div>
                         ) : (
                             <div className={cn('text-block')}>
-                                <h1 className={cn('text-block__header')}>{vacancyRespondHeader}</h1>
+                                <h1 className={cn('text-block__header')}>{toUnescapedHTML(vacancyRespondHeader)}</h1>
                                 <p className={cn('text-block__respond-vacancy-title')}>{vacancyTitle}</p>
                             </div>
                         )}

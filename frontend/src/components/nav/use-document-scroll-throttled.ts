@@ -1,10 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { throttle } from 'lodash';
+import { appContext } from '../../context/context';
 
 const THROTTLE = 200;
 
 const useDocumentScrollThrottled = (callback: (obj: { previousScrollTop: number, currentScrollTop: number }) => void) => {
     const [, setScrollPosition] = useState(0);
+    const { isPopupVisible, isRespondFormVisible } = useContext(appContext);
+
+    if(isPopupVisible || isRespondFormVisible) {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+        window.onscroll = () => {
+            window.scrollTo(scrollLeft, scrollTop);
+        };
+    } else {
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        window.onscroll = () => {};
+    }
+
     let previousScrollTop = 0;
 
     function handleDocumentScroll() {
@@ -27,7 +42,7 @@ const useDocumentScrollThrottled = (callback: (obj: { previousScrollTop: number,
         return () => {
             window.removeEventListener('scroll', handleDocumentScrollThrottled);
         };
-    }, []);
+    }, [isPopupVisible, isRespondFormVisible]);
 };
 
 export default useDocumentScrollThrottled;

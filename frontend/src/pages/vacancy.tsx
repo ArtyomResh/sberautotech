@@ -195,7 +195,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
 
     return (
         <div className={cn('vacancy__page')}>
-            <Layout seo={{ ...data.allStrapiVacancyPage.edges[0].node.seo, metaTitle: title }} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
+            <Layout seo={{ ...data.allStrapiVacancyPage.edges[0].node.seo, metaTitle: title }} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={4}>
                 <div className={cn('vacancy')}>
                     <div className={cn('vacancy__wrapper')}>
                         <div className={cn('vacancy__left-block')}>
