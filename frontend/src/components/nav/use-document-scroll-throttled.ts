@@ -18,8 +18,10 @@ const useDocumentScrollThrottled = (callback: (obj: { previousScrollTop: number,
             };
         }
     } else {
+        if(window) {
         // eslint-disable-next-line @typescript-eslint/no-empty-function
-        window.onscroll = () => {};
+            window.onscroll = () => {};
+        }
     }
 
     let previousScrollTop = 0;
