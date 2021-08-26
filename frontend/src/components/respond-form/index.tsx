@@ -286,7 +286,7 @@ const RespondForm = () => {
                                 </div>
                                 {isRecaptchaConfirmed ? (
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Button type="submit" label={buttonText} disabled={isLoading} styleType="special" />
+                                        <Button type="submit" label={buttonText} disabled={isLoading} isLoading={isLoading} styleType="special" />
                                     </div>
                                 ) : (
                                     <Recaptcha
