@@ -27,7 +27,7 @@
     @media screen and (prefers-reduced-motion: reduce) {
 
         &_visible {
-            top: var(--nav-height);
+            top: calc(var(--nav-height) + 20px);
             animation: 0.5s ease-out slideIn;
             animation: 0.5s ease-out slideIn;
             animation: 0.5s ease-out slideIn;
@@ -36,7 +36,7 @@
     }
 
     &_visible {
-        top: var(--nav-height);
+        top: calc(var(--nav-height) + 20px);
         animation: 0.5s ease-out slideIn;
         animation: 0.5s ease-out slideIn;
         animation: 0.5s ease-out slideIn;
@@ -231,6 +231,7 @@
         overflow: scroll;
         border-radius: 0;
         height: 100%;
+        animation: none;
 
         &__close-btn {
             top: 20px;

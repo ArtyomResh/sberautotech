@@ -60,7 +60,6 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
             ) : (
                 <img src={block.background.localFile.url} className={cn('block__image')} alt={block.link?.text} />
             )}
-            {block.link ? renderLink(block.link) : null}
             <div className={cn('block__bottom', pageNumber >= index ? 'block__bottom_showing' : 'block__bottom_hiding')}>
                 {text && <span className={cn('block__text')}>{toUnescapedHTML(text)}</span>}
                 {block.cards?.map((card, i) => (
