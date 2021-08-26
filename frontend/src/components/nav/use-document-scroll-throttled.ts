@@ -8,22 +8,6 @@ const useDocumentScrollThrottled = (callback: (obj: { previousScrollTop: number,
     const [, setScrollPosition] = useState(0);
     const { isPopupVisible, isRespondFormVisible } = useContext(appContext);
 
-    if(isPopupVisible || isRespondFormVisible) {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-        if(window) {
-            window.onscroll = () => {
-                window.scrollTo(scrollLeft, scrollTop);
-            };
-        }
-    } else {
-        if(window) {
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-            window.onscroll = () => {};
-        }
-    }
-
     let previousScrollTop = 0;
 
     function handleDocumentScroll() {
@@ -41,6 +25,16 @@ const useDocumentScrollThrottled = (callback: (obj: { previousScrollTop: number,
     const handleDocumentScrollThrottled = throttle(handleDocumentScroll, THROTTLE);
 
     useEffect(() => {
+        if(isPopupVisible || isRespondFormVisible) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+            window.onscroll = () => {
+                window.scrollTo(scrollLeft, scrollTop);
+            };
+        } else {
+            window.onscroll = () => {};
+        }
         window.addEventListener('scroll', handleDocumentScrollThrottled);
 
         return () => {
