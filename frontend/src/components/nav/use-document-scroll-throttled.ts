@@ -12,9 +12,11 @@ const useDocumentScrollThrottled = (callback: (obj: { previousScrollTop: number,
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-        window.onscroll = () => {
-            window.scrollTo(scrollLeft, scrollTop);
-        };
+        if(window) {
+            window.onscroll = () => {
+                window.scrollTo(scrollLeft, scrollTop);
+            };
+        }
     } else {
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         window.onscroll = () => {};
