@@ -31,7 +31,6 @@ export interface ITheme {
 }
 
 export interface INav {
-    setIsPopupVisible: Dispatch<SetStateAction<boolean | null>>,
     theme: ITheme,
     pageNumber: number,
     setPageNumber?: (page: number) => void,
@@ -81,7 +80,7 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
     const cn = useClassnames(style);
 
     const { links, joinButtonText } = data.allStrapiNavPanel.edges[0].node;
-    const { disclaimer, privacyPolicyLink, privacyPolicyText, email } = data.allStrapiFooter.edges[0].node;
+    const { disclaimer, privacyPolicyLink, privacyPolicyText } = data.allStrapiFooter.edges[0].node;
 
     useEffect(() => {
         setTimeout(() => {
