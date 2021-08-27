@@ -65,6 +65,16 @@
           "localized": true
         }
       }
+    },
+    "fifth_screen": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.full-screen-block",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

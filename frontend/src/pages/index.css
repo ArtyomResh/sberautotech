@@ -18,8 +18,8 @@
     overflow: hidden;
 }
 
-.main__page_3 {
-    .nav__accept-button {
-        visibility: hidden;
+.main__page_4 {
+    .block__text {
+        max-width: 960px;
     }
 }

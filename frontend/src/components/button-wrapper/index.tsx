@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useCallback } from 'react';
+import React, { useContext, useCallback } from 'react';
 
 import Button from '../button';
 import { appContext } from '../../context/context';
@@ -17,10 +17,11 @@ interface IProps {
 }
 
 const ButtonWrapper = ({ className, label, disabled, type, styleType, title, huntflowId: vacancyId }: IProps) => {
-    const { setIsPopupVisible, setVacancyTitle, vacancyTitle, huntflowId, setHuntflowId } = useContext(appContext);
+    const { setIsRespondFormVisible, setIsPopupVisible, setVacancyTitle, vacancyTitle, huntflowId, setHuntflowId } = useContext(appContext);
 
     const setIsPopupVisibleHandler = useCallback(() => {
         setIsPopupVisible(true);
+        setIsRespondFormVisible(true);
         setVacancyTitle(title);
         setHuntflowId(vacancyId);
     }, [vacancyTitle, huntflowId]);

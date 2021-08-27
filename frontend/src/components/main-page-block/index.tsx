@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-import { gtagClicked } from '../../utils';
+import { gtagClicked, toUnescapedHTML } from '../../utils';
 import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
-import { toUnescapedHTML } from '../../utils';
 import StoryCard, { ICard } from '../story-card';
 
 import style from './index.css';
@@ -59,9 +58,8 @@ const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: num
                     playsInline={true}
                 />
             ) : (
-                    <img src={block.background.localFile.url} className={cn('block__image')} alt={block.link?.text} />
-                )}
-            {block.link ? renderLink(block.link) : null}
+                <img src={block.background.localFile.url} className={cn('block__image')} alt={block.link?.text} />
+            )}
             <div className={cn('block__bottom', pageNumber >= index ? 'block__bottom_showing' : 'block__bottom_hiding')}>
                 {text && <span className={cn('block__text')}>{toUnescapedHTML(text)}</span>}
                 {block.cards?.map((card, i) => (

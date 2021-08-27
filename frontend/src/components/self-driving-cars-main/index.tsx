@@ -72,8 +72,6 @@ const MainBlock: React.FC<IProps> = ({ data, storyCards }) => {
         }
     };
 
-    console.log(storyCards);
-
     return (
         <div>
             <div className={cn('main-block')} onClick={toggleVideo}>

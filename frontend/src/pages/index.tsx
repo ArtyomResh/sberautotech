@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../hooks/use-classnames';
@@ -9,6 +9,7 @@ import MainPageBlock from '../components/main-page-block';
 
 import style from './index.css';
 import Loader from '../components/loader/loaderComponent';
+import { appContext } from '../context/context';
 
 const query = graphql`
   query {
@@ -115,12 +116,21 @@ const query = graphql`
               }
             }
             text
-            link {
-              style
-              text
-              to
+            id
+          }
+          fifth_screen {
+            background {
+              localFile {
+                url
+              }
               id
             }
+            mobileBackground {
+              localFile {
+                url
+              }
+            }
+            text
             id
           }
           id
@@ -130,136 +140,151 @@ const query = graphql`
   }
 `;
 
-const PAGES_LENGTH = 4;
+const PAGES_LENGTH = 5;
 const ANIMATION_DURATION = 1000;
 const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
 
-const IndexPage = () => {
-  const cn = useClassnames(style);
+const IndexPageBlocks = ({ screens, pageNumber, isMobile, setPageNumber }) => {
+    const cn = useClassnames(style);
+    const { isPopupVisible, isRespondFormVisible } = useContext(appContext);
+    const [isScrolling, setIsScrolling] = useState(false);
+    const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
 
-  const [pageNumber, setPageNumber] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
-  const [isLoading, setIsLoading] = useState(true);
-  const { isMobile } = useDeviceDetect();
+    const handleScroll = useCallback((deltaY: number) => {
+        const deltaPage = deltaY > 0 ? 1 : -1;
+        const nextPageNumber = pageNumber + deltaPage;
 
-  const data = useStaticQuery(query);
-  const screens = data.allStrapiHomepage.edges[0].node;
+        const hasNextPage = (nextPageNumber >= 0) && (nextPageNumber < PAGES_LENGTH);
 
-  const handleScroll = useCallback((deltaY: number) => {
-    const deltaPage = deltaY > 0 ? 1 : -1;
-    const nextPageNumber = pageNumber + deltaPage;
-    const hasNextPage = (nextPageNumber >= 0) && (nextPageNumber < PAGES_LENGTH);
+        const timeFromLastScrollStart = Date.now() - lastScrollStartTime;
+        const isNewScroll = timeFromLastScrollStart > (isMobile ? MAX_MOMENTUM_SCROLL_DURATION_MOBILE : MAX_MOMENTUM_SCROLL_DURATION);
 
-    const timeFromLastScrollStart = Date.now() - lastScrollStartTime;
-    const isNewScroll = timeFromLastScrollStart > (isMobile ? MAX_MOMENTUM_SCROLL_DURATION_MOBILE : MAX_MOMENTUM_SCROLL_DURATION);
+        if(!isScrolling && hasNextPage && isNewScroll) {
+            setLastScrollStartTime(Date.now());
+            setIsScrolling(true);
+            setPageNumber(nextPageNumber);
+            setTimeout(() => {
+                setIsScrolling(false);
+            }, ANIMATION_DURATION);
+        }
+    }, [pageNumber, isScrolling, lastScrollStartTime]);
 
-    if (!isScrolling && hasNextPage && isNewScroll) {
-      setLastScrollStartTime(Date.now());
-      setIsScrolling(true);
-      setPageNumber(nextPageNumber);
-      setTimeout(() => {
-        setIsScrolling(false);
-      }, ANIMATION_DURATION);
-    }
-  }, [pageNumber, isScrolling, lastScrollStartTime]);
+    useEffect(() => {
+        const bodyElement = document.querySelector('body') as HTMLBodyElement;
 
-  useEffect(() => {
-    if (isMobile !== null) {
-      const preloadVideos = [
-        fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
-        fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
-        fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.url).then((response) => response.blob()),
-        fetch(screens.fourth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
-      ];
+        bodyElement.style.overflow = 'hidden';
+        bodyElement.style.position = 'fixed';
 
-      Promise.all(preloadVideos).then((data) => {
-        setIsLoading(false);
+        return () => {
+            bodyElement.style.overflow = 'unset';
+            bodyElement.style.position = 'unset';
+        };
+    }, []);
 
-        data.forEach((blob, i) => {
-          const bound = document.getElementById(String(i));
-          const video = bound.querySelector('video');
+    useEffect(() => {
+        if(isPopupVisible || isRespondFormVisible) {
+            return;
+        }
+        const onWheel = (e: WheelEvent) => {
+            handleScroll(e.deltaY);
+        };
 
-          video?.setAttribute('src', URL.createObjectURL(blob));
-        });
-      }).catch((e) => console.log(e));
-    }
-  }, [isMobile]);
+        window.addEventListener('wheel', onWheel);
 
-  useEffect(() => {
-    const bodyElement = document.querySelector('body') as HTMLBodyElement;
+        let prevY = 0;
 
-    bodyElement.style.overflow = 'hidden';
-    bodyElement.style.position = 'fixed';
+        const onTouchMove = (e: TouchEvent) => {
+            const currY = e.touches[0].pageY;
+            const deltaY = prevY - currY;
 
-    return () => {
-      bodyElement.style.overflow = 'unset';
-      bodyElement.style.position = 'unset';
-    };
-  }, []);
+            handleScroll(deltaY);
+        };
 
-  useEffect(() => {
-    const onWheel = (e: WheelEvent) => {
-      handleScroll(e.deltaY);
-    };
+        const onTouchStart = (e: TouchEvent) => {
+            prevY = e.touches[0].pageY;
 
-    window.addEventListener('wheel', onWheel);
+            window.addEventListener('touchmove', onTouchMove);
+        };
 
-    let prevY = 0;
+        const onTouchEnd = () => {
+            window.removeEventListener('touchmove', onTouchMove);
+        };
 
-    const onTouchMove = (e: TouchEvent) => {
-      const currY = e.touches[0].pageY;
-      const deltaY = prevY - currY;
+        window.addEventListener('touchstart', onTouchStart);
+        window.addEventListener('touchend', onTouchEnd);
 
-      handleScroll(deltaY);
-    };
+        return () => {
+            window.removeEventListener('wheel', onWheel);
+            window.removeEventListener('touchstart', onTouchStart);
+            window.removeEventListener('touchmove', onTouchMove);
+            window.removeEventListener('touchend', onTouchEnd);
+        };
+    }, [handleScroll, isRespondFormVisible, isPopupVisible]);
 
-    const onTouchStart = (e: TouchEvent) => {
-      prevY = e.touches[0].pageY;
-
-      window.addEventListener('touchmove', onTouchMove);
-    };
-
-    const onTouchEnd = () => {
-      window.removeEventListener('touchmove', onTouchMove);
-    };
-
-    window.addEventListener('touchstart', onTouchStart);
-    window.addEventListener('touchend', onTouchEnd);
-
-    return () => {
-      window.removeEventListener('wheel', onWheel);
-      window.removeEventListener('touchstart', onTouchStart);
-      window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('touchend', onTouchEnd);
-    };
-  }, [handleScroll]);
-
-  return (
-    <div className={cn('main__page', `main__page_${pageNumber}`)}>
-      <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber} setPageNumber={setPageNumber}>
-        {isLoading ? (
-          <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
-        ) : (
-            <div className={cn('main-page-blocks')}>
-              <Link to="/flip">
+    return (
+        <div className={cn('main-page-blocks')}>
+            <Link to="/flip">
                 <MainPageBlock block={screens.second_screen[0]} index={0} pageNumber={pageNumber} />
-              </Link>
-              <Link to="/self-driving-car">
+            </Link>
+            <Link to="/self-driving-car">
                 <MainPageBlock block={screens.third_screen[0]} index={1} pageNumber={pageNumber} />
-              </Link>
-              <Link to="/about-company">
+            </Link>
+            <Link to="/about-company">
                 <MainPageBlock block={screens.first_screen[0]} index={2} pageNumber={pageNumber} />
-              </Link>
-              <Link to="/career">
+            </Link>
+            <Link to="/career">
                 <MainPageBlock block={screens.fourth_screen[0]} index={3} pageNumber={pageNumber} />
-              </Link>
-            </div>
-          )}
-      </Layout>
-    </div>
-  );
+            </Link>
+            <Link to="/vacancies">
+                <MainPageBlock block={screens.fifth_screen[0]} index={4} pageNumber={pageNumber} />
+            </Link>
+        </div>
+    );
+};
+
+const IndexPage = () => {
+    const cn = useClassnames(style);
+    const [pageNumber, setPageNumber] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const { isMobile } = useDeviceDetect();
+
+    const data = useStaticQuery(query);
+    const screens = data.allStrapiHomepage.edges[0].node;
+
+    useEffect(() => {
+        if(isMobile !== null) {
+            const preloadVideos = [
+                fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
+                fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
+                fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.url).then((response) => response.blob()),
+                fetch(screens.fourth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob())
+            ];
+
+            Promise.all(preloadVideos).then((data) => {
+                setIsLoading(false);
+
+                data.forEach((blob, i) => {
+                    const bound = document.getElementById(String(i));
+                    const video = bound.querySelector('video');
+
+                    video?.setAttribute('src', URL.createObjectURL(blob));
+                });
+            }).catch((e) => console.log(e));
+        }
+    }, [isMobile]);
+
+    return (
+        <div className={cn('main__page', `main__page_${pageNumber}`)}>
+            <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber} setPageNumber={setPageNumber}>
+                {isLoading ? (
+                    <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
+                ) : (
+                    <IndexPageBlocks screens={screens} pageNumber={pageNumber} isMobile={isMobile} setPageNumber={setPageNumber} />
+                )}
+            </Layout>
+        </div>
+    );
 };
 
 export default IndexPage;

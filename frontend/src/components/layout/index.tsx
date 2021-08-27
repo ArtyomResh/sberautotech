@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
 import Nav, { INav } from '../nav';
 import Seo from '../seo';
@@ -15,13 +14,12 @@ interface IProps {
     children: React.ReactNode,
     seo: Record<string, unknown>,
     theme: INav['theme'],
-    pageNumber?: INav['pageNumber'],
+    pageNumber: INav['pageNumber'],
     setPageNumber?: INav['setPageNumber']
 }
 
 const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => {
     const cn = useClassnames(style);
-
 
     return (
         <AppProvider>
@@ -34,10 +32,6 @@ const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => 
             </div>
         </AppProvider>
     );
-};
-
-Layout.propTypes = {
-    children: PropTypes.node.isRequired
 };
 
 export default Layout;
