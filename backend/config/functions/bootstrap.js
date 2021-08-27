@@ -205,6 +205,19 @@ async function importHomepage() {
       files[`fourth_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
+  homepageRu['fifth_screen'].map((screenItem, i) => {
+    files[`fifth_screen.${i}.background`] = getFileData(screenItem.backgroundName)
+    files[`fifth_screen.${i}.mobileBackground`] = getFileData(screenItem.mobileBackgroundName)
+    if (screenItem.backgroundPosterName) {
+      files[`fifth_screen.${i}.backgroundPoster`] = getFileData(screenItem.backgroundPosterName)
+    }
+    if (screenItem.backgroundPosterName) {
+      files[`fifth_screen.${i}.mobileBackgroundPoster`] = getFileData(screenItem.mobileBackgroundPosterName)
+    }
+    screenItem['cards'].map((cardItem, k) => {
+      files[`fifth_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
+    })
+  });
   await createEntry({ model: "homepage", entry: homepageRu, files });
   await createEntry({ model: "homepage", entry: homepageEn, files });
 }

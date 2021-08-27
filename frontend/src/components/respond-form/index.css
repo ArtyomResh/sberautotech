@@ -97,7 +97,6 @@
 }
 
 .text-block {
-    max-width: 568px;
 
     &__header {
         font-weight: 400;
@@ -115,8 +114,9 @@
 
     &__title {
         margin-top: 20px;
-        font-size: 18px;
-        line-height: 24px;
+        font-size: 47px;
+        line-height: 48px;
+
 
         &_error {
             font-size: 47px;
@@ -212,6 +212,8 @@
         }
 
         &__title {
+            font-size: 26px;
+            line-height: 30px;
 
             &_error {
                 font-size: 26px;

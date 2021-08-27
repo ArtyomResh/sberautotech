@@ -17,3 +17,9 @@
     width: 100vw;
     overflow: hidden;
 }
+
+.main__page_4 {
+    .block__text {
+        max-width: 960px;
+    }
+}

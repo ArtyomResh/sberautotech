@@ -61,11 +61,7 @@
     "fourth_screen": [
       {
         "text": "Создание транспорта будущего — увлекательная задача, и {мы с радостью примем в нашу команду единомышленников}. Нам нужны идеи, опыт и желание менять мир",
-        "link": {
-          "to": "/vacancies",
-          "text": "Вакансии",
-          "style": "fill"
-        },
+        "link": null,
         "cards": [],
         "background": null,
         "backgroundName": "garage.mp4",
@@ -75,6 +71,21 @@
         "mobileBackgroundName": "garage-mobile.mp4",
         "mobileBackgroundPoster": null,
         "mobileBackgroundPosterName": "garage.jpg"
+      }
+    ],
+    "fifth_screen": [
+      {
+        "text": "{У нас много вакансий} — приходите к нам, если горите всем автомобильным и беспилотным",
+        "link": null,
+        "cards": [],
+        "background": null,
+        "backgroundName": "team.jpg",
+        "backgroundPoster": null,
+        "backgroundPosterName": null,
+        "mobileBackground": null,
+        "mobileBackgroundName": "team.jpg",
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": null
       }
     ]
   },
@@ -139,6 +150,21 @@
         "backgroundPoster": null,
         "mobileBackground": null,
         "mobileBackgroundPoster": null
+      }
+    ],
+    "fifth_screen": [
+      {
+        "text": "У нас много вакансий — приходите к нам, если горите всем автомобильным и беспилотным",
+        "link": null,
+        "cards": [],
+        "background": null,
+        "backgroundName": null,
+        "backgroundPoster": null,
+        "backgroundPosterName": null,
+        "mobileBackground": null,
+        "mobileBackgroundName": null,
+        "mobileBackgroundPoster": null,
+        "mobileBackgroundPosterName": null
       }
     ]
   },
@@ -3287,7 +3313,7 @@
     "experience": "Опыт",
     "consent": "Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности",
     "file": "Прикрепить файл",
-    "successSend": "Сообщение отправлено. Благодарим за интерес к нашей компании!",
+    "successSend": "Сообщение отправлено.</br>Благодарим за интерес к нашей компании!",
     "errorSend": "Ваше резюме <p>не отправлено.</p> Попробуйте еще раз.",
     "errorButtonText": "Открыть форму",
     "successButtonText": "Отправить еще одно",
@@ -3315,7 +3341,7 @@
     "experience": "Опыт",
     "consent": "Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности",
     "file": "Прикрепить файл",
-    "successSend": "Сообщение отправлено. Благодарим за интерес к нашей компании!",
+    "successSend": "Сообщение отправлено.</br>Благодарим за интерес к нашей компании!",
     "errorSend": "Ваше резюме <p>не отправлено.</p> Попробуйте еще раз.",
     "errorButtonText": "Открыть форму",
     "successButtonText": "Отправить еще одно",

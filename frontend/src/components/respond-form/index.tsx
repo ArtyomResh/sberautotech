@@ -222,7 +222,7 @@ const RespondForm = () => {
                         className={cn('respond-form__send-block')} onClick={preventClosePopup}
                     >
                         <div className={cn('text-block')}>
-                            <h1 className={cn('text-block__title', { 'text-block__title_error': isError })}>{isError ? toUnescapedHTML(errorSend) : successSend}</h1>
+                            <p className={cn('text-block__title', { 'text-block__title_error': isError })}>{isError ? toUnescapedHTML(errorSend) : toUnescapedHTML(successSend)}</p>
                         </div>
                         <div
                             className={cn('respond-form__close-btn')} onClick={preventClosePopup}

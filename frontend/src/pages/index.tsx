@@ -116,12 +116,21 @@ const query = graphql`
               }
             }
             text
-            link {
-              style
-              text
-              to
+            id
+          }
+          fifth_screen {
+            background {
+              localFile {
+                url
+              }
               id
             }
+            mobileBackground {
+              localFile {
+                url
+              }
+            }
+            text
             id
           }
           id
@@ -131,7 +140,7 @@ const query = graphql`
   }
 `;
 
-const PAGES_LENGTH = 4;
+const PAGES_LENGTH = 5;
 const ANIMATION_DURATION = 1000;
 const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
@@ -226,6 +235,9 @@ const IndexPageBlocks = ({ screens, pageNumber, isMobile, setPageNumber }) => {
             </Link>
             <Link to="/career">
                 <MainPageBlock block={screens.fourth_screen[0]} index={3} pageNumber={pageNumber} />
+            </Link>
+            <Link to="/vacancies">
+                <MainPageBlock block={screens.fifth_screen[0]} index={4} pageNumber={pageNumber} />
             </Link>
         </div>
     );
