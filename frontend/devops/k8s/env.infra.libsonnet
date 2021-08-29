@@ -21,6 +21,7 @@
               gzip on;
               gzip_disable "msie6";
               gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript;
+              client_max_body_size 10M;
 
               location / {
                   root   /usr/share/nginx/html;
