@@ -11,14 +11,6 @@ ENV GATSBY_API_URL $BACKEND_API_URL
 RUN yarn
 RUN yarn build
 
-FROM ${DOCKER_REGISTRY}/nginx:1.19.5-alpine
+FROM ${DOCKER_REGISTRY}/nginx-unprivileged:1.20.1-alpine
 
 COPY --from=builder /home/builder/public /usr/share/nginx/html
-
-RUN touch /var/run/nginx.pid \
-    && chown -R nginx:nginx /var/run/nginx.pid \
-    && chown -R nginx:nginx /var/log/nginx/ \
-    && chown -R nginx:nginx /var/cache/nginx \
-    && chown -R nginx:nginx /usr/share/nginx/html
-
-USER nginx
