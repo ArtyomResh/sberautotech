@@ -1,0 +1,189 @@
+variables:
+  GIT_DEPTH: 10
+  GIT_SUBMODULE_STRATEGY: recursive
+  DEPLOYER_IMAGE: "${CI_REGISTRY}/infra/docker/deployer:k8s-sat"
+  VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}"
+  FRONTEND_IMAGE: "${CI_REGISTRY}/${CI_PROJECT_PATH}:frontend"
+  BACKEND_IMAGE: "${CI_REGISTRY}/${CI_PROJECT_PATH}:backend"
+
+workflow:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop" || $CI_PIPELINE_SOURCE == "web"'
+      variables:
+        DEPLOY_DEV: "true"
+        BACKEND_URL: "$BACKEND_DEV_URL"
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_PIPELINE_SOURCE == "web"'
+      variables:
+        DEPLOY_DEV: "true"
+        DEPLOY_PROD: "true"
+        BACKEND_URL: "$BACKEND_PROD_URL"
+
+image: "${CI_REGISTRY}/infra/docker/docker:20"
+
+stages:
+  - linters
+  - build-backend
+  - deploy-backend
+  - build-frontend
+  - deploy-frontend
+
+.rules_backend_build_template: &rules_backend_build_template
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  rules:
+    - changes:
+        - backend/**/*
+
+.rules_frontend_build_template: &rules_frontend_build_template
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  rules:
+    - changes:
+        - frontend/**/*
+
+.lint_k8s_template: &lint_k8s_template
+  stage: linters
+  image: ${CI_REGISTRY}/infra/docker/deployer:k8s-sat
+  rules:
+    - changes:
+        - backend/devops/**/*
+        - frontend/devops/**/*
+  script:
+    - |
+      cd ${MODULE_NAME}/devops/k8s
+      jsonnet -S -o manifests.yml \
+        --ext-code-file env_ext=env.${NAMESPACE}.libsonnet \
+        --ext-code lint=true \
+        --ext-str path_slug="${CI_PROJECT_PATH_SLUG}" \
+        --ext-str env_slug="${NAMESPACE}" \
+        --ext-str job_id="${CI_JOB_ID}" \
+        --ext-str image_path="${CI_PROJECT_PATH}" \
+        --ext-str image_version="${MODULE_NAME}-${VERSION}" \
+        --ext-str namespace="${NAMESPACE}" \
+        --ext-str registry="${CI_REGISTRY}" \
+        ${MODULE_NAME}.jsonnet
+      kubeval manifests.yml
+      kube-linter lint --config "kube-linter.${NAMESPACE}.yaml" manifests.yml
+      cat manifests.yml
+
+lint:k8s:frontend:dev:
+  <<: *lint_k8s_template
+  variables:
+    MODULE_NAME: "frontend"
+    NAMESPACE: "fe-dev"
+
+lint:k8s:frontend:prod:
+  <<: *lint_k8s_template
+  variables:
+    MODULE_NAME: "frontend"
+    NAMESPACE: "infra"
+
+lint:k8s:backend:dev:
+  <<: *lint_k8s_template
+  variables:
+    MODULE_NAME: "backend"
+    NAMESPACE: "fe-dev"
+
+lint:k8s:backend:prod:
+  <<: *lint_k8s_template
+  variables:
+    MODULE_NAME: "backend"
+    NAMESPACE: "infra"
+
+build:backend:
+  stage: build-backend
+  <<: *rules_backend_build_template
+  script:
+    - docker build --pull -t ${BACKEND_IMAGE}-${VERSION} --build-arg DOCKER_REGISTRY=${CI_REGISTRY}/infra/docker -f backend/Dockerfile .
+    - docker push ${BACKEND_IMAGE}-${VERSION}
+
+build:frontend:
+  stage: build-frontend
+  <<: *rules_frontend_build_template
+  script:
+    - docker build --pull -t ${FRONTEND_IMAGE}-${VERSION} --build-arg DOCKER_REGISTRY=${CI_REGISTRY}/infra/docker --build-arg BACKEND_API_URL=$BACKEND_URL -f frontend/Dockerfile .
+    - docker push ${FRONTEND_IMAGE}-${VERSION}
+
+.deploy_template: &deploy_template
+  image: ${CI_REGISTRY}/infra/docker/deployer:k8s-sat
+  script:
+    - |
+      PROJECT_NAME=$(echo $CI_PROJECT_NAME | tr '.' '-')
+      cd ${MODULE_NAME}/devops/k8s \
+      && jsonnet -S -o manifests.yml \
+        --ext-code-file env_ext=env.${KUBE_NAMESPACE}.libsonnet \
+        --ext-code lint=false \
+        --ext-str path_slug="${CI_PROJECT_PATH_SLUG}" \
+        --ext-str env_slug="${CI_ENVIRONMENT_SLUG}" \
+        --ext-str job_id="${CI_JOB_ID}" \
+        --ext-str image_path="${CI_PROJECT_PATH}" \
+        --ext-str image_version="${MODULE_NAME}-${VERSION}" \
+        --ext-str namespace="${KUBE_NAMESPACE}" \
+        --ext-str registry="${CI_REGISTRY}" \
+        ${MODULE_NAME}.jsonnet
+      kubectl apply -f manifests.yml
+      LIST=$(kubectl get deploy -n ${KUBE_NAMESPACE} -l app_group=${PROJECT_NAME}-${MODULE_NAME} -o name)
+      [ $? -gt 0 ] && exit 2
+      RES=true
+      for I in ${LIST}; do
+        kubectl rollout status -w ${I} -n ${KUBE_NAMESPACE} || RES=false
+        [ $RES ] || break
+      done
+      # echo $RES
+      if ! $RES; then
+        for J in ${LIST}; do kubectl rollout undo ${J} -n ${KUBE_NAMESPACE}; done
+        exit 3
+      fi
+
+deploy:backend:dev:
+  stage: deploy-backend
+  rules:
+    - if: '$DEPLOY_DEV == "true"'
+      changes:
+        - backend/**/*
+  variables:
+    MODULE_NAME: "backend"
+  environment:
+    name: fe-dev
+    kubernetes:
+      namespace: fe-dev
+  <<: *deploy_template
+
+deploy:frontend:dev:
+  stage: deploy-frontend
+  rules:
+    - if: '$DEPLOY_DEV == "true"'
+      changes:
+        - frontend/**/*
+  variables:
+    MODULE_NAME: "frontend"
+  environment:
+    name: fe-dev
+    kubernetes:
+      namespace: fe-dev
+  <<: *deploy_template
+
+deploy:backend:prod:
+  stage: deploy-backend
+  rules:
+    - if: '$DEPLOY_PROD == "true"'
+  variables:
+    MODULE_NAME: "backend"
+  environment:
+    name: infra
+    kubernetes:
+      namespace: infra
+  <<: *deploy_template
+
+deploy:frontend:prod:
+  stage: deploy-frontend
+  rules:
+    - if: '$DEPLOY_PROD == "true"'
+      when: manual
+  variables:
+    MODULE_NAME: "frontend"
+  environment:
+    name: infra
+    kubernetes:
+      namespace: infra
+  <<: *deploy_template
