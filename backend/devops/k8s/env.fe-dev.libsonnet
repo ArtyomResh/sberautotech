@@ -72,7 +72,7 @@
     [$.app_name + '-kong']: {
       class: 'kong',
       host: $.domain,
-      tls: false,
+      tls: true,
       strip_path: false,
       paths: [
         { path: '/', service: $.app_name + '-kong', port: $.app_port }

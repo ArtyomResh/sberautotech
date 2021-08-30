@@ -7,6 +7,9 @@ COPY frontend .
 
 ARG BACKEND_API_URL
 ENV GATSBY_API_URL $BACKEND_API_URL
+ENV NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
+
+RUN yarn config set cafile "/etc/ssl/certs/ca-certificates.crt"
 
 RUN yarn
 RUN yarn build
