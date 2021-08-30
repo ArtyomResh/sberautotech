@@ -80,5 +80,10 @@
     }
   },
 
-  certificates: {}
+  certificates: {
+    [$.domain]: {
+      issuer: 'infra-vault',
+      secret: 'sberautotech-backend-dev-fe-sbauto'
+    }
+  }
 }
