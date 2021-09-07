@@ -28,7 +28,6 @@ const query = graphql`
           email
           errorButtonText
           errorSend
-          experience
           file
           header
           locale
@@ -70,26 +69,22 @@ const RespondForm = () => {
     const { consent,
         telephone,
         vacancyRespondHeader,
-        email,
         mail,
-        errorButtonText,
         contactEmailLabel,
         contactEmail,
         prEmailLabel,
         prEmail,
         title,
         errorSend,
-        experience,
         file,
         header,
         locale,
         name,
         fewWordsAboutMyself,
         theme,
-        successButtonText,
+        comment,
         successSend,
         buttonText,
-        vacancyRespondTitle,
         surname } = data.allStrapiRespondForm.edges[0].node;
 
     const context = useForm({
@@ -242,7 +237,7 @@ const RespondForm = () => {
                         {!isRespondFormVisible ? (
                             <div className={cn('text-block')}>
                                 <h1 className={cn('text-block__header')}>{header}</h1>
-                                <p className={cn('text-block__title')}>{title}</p>
+                                <p className={cn('text-block__title-text')}>{title}</p>
                                 <p className={cn('text-block__pr-email-label')}>{prEmailLabel}</p>
                                 <p className={cn('text-block__pr-email')}>{prEmail}</p>
                                 <p className={cn('text-block__contact-email-label')}>{contactEmailLabel}</p>
@@ -275,7 +270,7 @@ const RespondForm = () => {
                                 </div>
                             </div>
                             <div className={cn('right-block__textarea-wrapper')}>
-                                <Textarea name="textarea" placeholder={isRespondFormVisible ? fewWordsAboutMyself : experience} requiredValidation={true} />
+                                <Textarea name="textarea" placeholder={isRespondFormVisible ? fewWordsAboutMyself : comment} requiredValidation={true} />
                             </div>
                             <div className={cn('right-block__checkbox-wrapper')}>
                                 <CheckBox name="acception" requiredValidation={true} label={consent} />

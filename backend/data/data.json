@@ -3254,7 +3254,7 @@
   "FooterRu": {
     "id": 1,
     "locale": "ru",
-    "header": "Наша команда расширяется — узнайте о наших вакансиях и присоединяйтесь к специалистам, имеющим богатый опыт работы как в IT, так и в Automotive",
+    "header": "Хотите задать вопрос или узнать больше о деятельности SberAutoTech? Напишите нам или заполните форму. Мы обязательно с вами свяжемся",
     "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
     "link": {
       "to": "",
@@ -3269,7 +3269,7 @@
   "FooterEn": {
     "id": 1,
     "locale": "en",
-    "header": "Our team is expanding - find out about our vacancies and join specialists with rich experience in both IT and Automotive",
+    "header": "Would you like to ask a question or learn more about SberAutoTech's activities? Write to us or fill out the form. We will definitely contact you",
     "description": "We are only at the beginning of the path and cannot reveal all the plans. Fill out a questionnaire about yourself, send it and we will contact you as soon as there is an opportunity to take you to the team.",
     "link": {
       "to": "",
@@ -3310,7 +3310,6 @@
     "theme": "Тема",
     "comment": "Комментарий",
     "telephone": "Телефон",
-    "experience": "Опыт",
     "consent": "Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности",
     "file": "Прикрепить файл",
     "successSend": "Сообщение отправлено.</br>Благодарим за интерес к нашей компании!",
@@ -3338,7 +3337,6 @@
     "theme": "Тема",
     "comment": "Комментарий",
     "telephone": "Телефон",
-    "experience": "Опыт",
     "consent": "Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности",
     "file": "Прикрепить файл",
     "successSend": "Сообщение отправлено.</br>Благодарим за интерес к нашей компании!",
