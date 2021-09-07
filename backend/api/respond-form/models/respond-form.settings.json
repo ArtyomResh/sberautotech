@@ -48,14 +48,6 @@
       },
       "type": "string"
     },
-    "experience": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "consent": {
       "pluginOptions": {
         "i18n": {
