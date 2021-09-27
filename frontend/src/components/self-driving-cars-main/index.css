@@ -70,8 +70,8 @@
     &__story {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        padding: 40px 0px;
-        margin: 20px;
+        padding-bottom: 40px;
+        margin: 40px 20px 0px 20px;
         /* grid-gap: 40px; */
 
         &_inner {
@@ -88,6 +88,7 @@
 
         &:not(:last-child) {
             border-bottom: 1px solid #E0E6EB;
+            margin: 40px 20px 20px 20px;
         }
 
         span {
@@ -98,7 +99,8 @@
         @media (max-width: 1050px) {
             grid-template-columns: 1fr;
             grid-gap: 15px;
-            margin: 10px;
+            margin: 10px !important;
+            padding-top: 40px;
         }
     }
 
@@ -165,6 +167,14 @@
             font-family: SB Sans Text;
             font-size: 26px;
             line-height: 29px;
+            letter-spacing: -0.04em;
+            font-weight: 400;
+        }
+
+        br {
+            content: ' ';
+            display: block;
+            margin: 5px 0;
         }
     }
 }
