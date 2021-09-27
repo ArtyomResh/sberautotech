@@ -223,15 +223,18 @@ const Vacancies = ({ location }) => {
                                         })}
                                         disabled={!filteredVacancies.length}
                                         label={!filteredVacancies.length ? 'Нет вакансий' : `Смотреть ${filteredVacancies.length} ваканси${(() => {
-                                            if(filteredVacancies.length === 0 || filteredVacancies.length > 4) {
+                                            const stringLength = filteredVacancies.length.toString();
+                                            const lastNumber = Number(stringLength[stringLength.length - 1]);
+
+                                            if(lastNumber === 0 || lastNumber > 4) {
                                                 return 'й';
                                             }
 
-                                            if(filteredVacancies.length === 1) {
+                                            if(lastNumber === 1) {
                                                 return 'ю';
                                             }
 
-                                            if(filteredVacancies.length > 1 && filteredVacancies.length < 5) {
+                                            if(lastNumber > 1 && lastNumber < 5) {
                                                 return 'и';
                                             }
                                         })()
