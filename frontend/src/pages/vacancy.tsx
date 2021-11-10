@@ -21,6 +21,7 @@ export const query = graphql`
           seo {
             metaTitle
             metaDescription
+            shareImage
           }
           headerBottom
           textBottom
