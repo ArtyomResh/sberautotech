@@ -22,59 +22,57 @@ const SEO = ({ seo = {} }) => {
     const getMetaTags = () => {
         const tags = [];
 
-        if (seo.metaTitle) {
+        if(seo.metaTitle) {
             tags.push(
                 {
                     property: 'og:title',
-                    content: seo.metaTitle
+                    content : seo.metaTitle
                 },
                 {
-                    name: 'twitter:title',
+                    name   : 'twitter:title',
                     content: seo.metaTitle
                 }
             );
         }
 
-        if (seo.metaDescription) {
+        if(seo.metaDescription) {
             tags.push(
                 {
-                    name: 'description',
+                    name   : 'description',
                     content: seo.metaDescription
                 },
                 {
                     property: 'og:description',
-                    content: seo.metaDescription
+                    content : seo.metaDescription
                 },
                 {
-                    name: 'twitter:description',
+                    name   : 'twitter:description',
                     content: seo.metaDescription
                 }
             );
         }
 
-        if (seo.shareImage) {
-            const imageUrl = (process.env.GATSBY_ROOT_URL || 'http://localhost:8000');
-
+        if(seo.shareImage) {
             tags.push(
                 {
-                    name: 'image',
-                    content: imageUrl
+                    name   : 'image',
+                    content: seo.shareImage
                 },
                 {
                     property: 'og:image',
-                    content: imageUrl
+                    content : seo.shareImage
                 },
                 {
-                    name: 'twitter:image',
-                    content: imageUrl
+                    name   : 'twitter:image',
+                    content: seo.shareImage
                 }
             );
         }
 
-        if (seo.article) {
+        if(seo.article) {
             tags.push({
                 property: 'og:type',
-                content: 'article'
+                content : 'article'
             });
         }
         tags.push({ name: 'twitter:card', content: 'summary_large_image' });
@@ -87,14 +85,14 @@ const SEO = ({ seo = {} }) => {
     return (
         <Helmet
             title={seo.metaTitle}
-            titleTemplate={`%s`}
+            titleTemplate="%s"
             meta={metaTags}
             link={[
                 {
-                    rel: 'icon',
-                    type: 'image/png',
+                    rel  : 'icon',
+                    type : 'image/png',
                     sizes: '16x16',
-                    href: favicon.url
+                    href : favicon.url
                 }
             ]}
         />
@@ -104,15 +102,15 @@ const SEO = ({ seo = {} }) => {
 export default SEO;
 
 SEO.propTypes = {
-    title: PropTypes.string,
+    title      : PropTypes.string,
     description: PropTypes.string,
-    image: PropTypes.string,
-    article: PropTypes.bool
+    shareImage : PropTypes.string,
+    article    : PropTypes.bool
 };
 
 SEO.defaultProps = {
-    title: null,
+    title      : null,
     description: null,
-    image: null,
-    article: false
+    shareImage : null,
+    article    : false
 };
