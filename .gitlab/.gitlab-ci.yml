@@ -167,6 +167,8 @@ deploy:backend:prod:
   stage: deploy-backend
   rules:
     - if: '$DEPLOY_PROD == "true"'
+      changes:
+        - backend/**/*
   variables:
     MODULE_NAME: "backend"
   environment:
