@@ -240,6 +240,8 @@ const RespondForm = () => {
                                 <p className={cn('text-block__title-text')}>{title}</p>
                                 <p className={cn('text-block__pr-email-label')}>{prEmailLabel}</p>
                                 <p className={cn('text-block__pr-email')}>{prEmail}</p>
+                                <p className={cn('text-block__pr-email-label')}>Для предложений о сотрудничестве</p>
+                                <p className={cn('text-block__pr-email')}>partners@sberautotech.ru</p>
                                 <p className={cn('text-block__contact-email-label')}>{contactEmailLabel}</p>
                                 <p className={cn('text-block__contact-email')}>{contactEmail}</p>
                             </div>
