@@ -318,7 +318,8 @@ async function importVacanciesPage() {
 async function importVacancyPage() {
   const files = {
     "video": getFileData(VacancyPageRu.videoName),
-    "videoPoster": getFileData(VacancyPageRu.videoPosterName)
+    "videoPoster": getFileData(VacancyPageRu.videoPosterName),
+    "seo.shareImage": getFileData("default-image.png")
   };
   await createEntry({ model: "vacancy-page", entry: VacancyPageRu, files });
   await createEntry({ model: "vacancy-page", entry: VacancyPageEn, files });
