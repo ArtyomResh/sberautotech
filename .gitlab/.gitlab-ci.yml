@@ -102,7 +102,7 @@ build:frontend:
   <<: *rules_frontend_build_template
   script:
     - |
-      docker build --pull -t ${FRONTEND_IMAGE}-${VERSION} --build-arg DOCKER_REGISTRY=${CI_REGISTRY}/infra/docker --build-arg BACKEND_API_URL=$BACKEND_URL -f frontend/Dockerfile .
+      docker build --pull --no-cache -t ${FRONTEND_IMAGE}-${VERSION} --build-arg DOCKER_REGISTRY=${CI_REGISTRY}/infra/docker --build-arg BACKEND_API_URL=$BACKEND_URL -f frontend/Dockerfile .
       if [ -n "$DEPLOY_DEV" ]; then
         docker push ${FRONTEND_IMAGE}-${VERSION}
       fi
@@ -156,8 +156,6 @@ deploy:frontend:dev:
   stage: deploy-frontend
   rules:
     - if: '$DEPLOY_DEV == "true"'
-      changes:
-        - frontend/**/*
   variables:
     MODULE_NAME: "frontend"
   environment:
