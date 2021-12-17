@@ -258,7 +258,7 @@ const RespondForm = () => {
                                         <Input type="text" placeholder={name} name="name" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} requiredValidation={true} />
                                     </div>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type={!isRespondFormVisible ? 'email' : 'text'} placeholder={!isRespondFormVisible ? mail : surname} name={!isRespondFormVisible ? mail : "surname"} autocomplete="off" requiredValidation={true} pattern={!isRespondFormVisible ? /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g : /^[А-Яа-яЁёA-Za-z\s-]+$/i} />
+                                        <Input type={!isRespondFormVisible ? 'email' : 'text'} placeholder={!isRespondFormVisible ? mail : surname} name={!isRespondFormVisible ? 'email' : "surname"} autocomplete="off" requiredValidation={true} pattern={!isRespondFormVisible ? /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g : /^[А-Яа-яЁёA-Za-z\s-]+$/i} />
                                     </div>
                                 </div>
                                 <div className={cn('right-block__bottom-section')}>
