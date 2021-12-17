@@ -239,11 +239,11 @@ const RespondForm = () => {
                                 <h1 className={cn('text-block__header')}>{header}</h1>
                                 <p className={cn('text-block__title-text')}>{title}</p>
                                 <p className={cn('text-block__pr-email-label')}>{prEmailLabel}</p>
-                                <p className={cn('text-block__pr-email')}>{prEmail}</p>
+                                <a href={prEmail}><p className={cn('text-block__pr-email')}>{prEmail}</p></a>
                                 <p className={cn('text-block__pr-email-label')}>Для предложений о сотрудничестве</p>
-                                <p className={cn('text-block__pr-email')}>partners@sberautotech.ru</p>
+                                <a href="partners@sberautotech.ru"><p className={cn('text-block__pr-email')}>partners@sberautotech.ru</p></a>
                                 <p className={cn('text-block__contact-email-label')}>{contactEmailLabel}</p>
-                                <p className={cn('text-block__contact-email')}>{contactEmail}</p>
+                                <a href={contactEmail}><p className={cn('text-block__contact-email')}>{contactEmail}</p></a>
                             </div>
                         ) : (
                             <div className={cn('text-block')}>
@@ -258,7 +258,7 @@ const RespondForm = () => {
                                         <Input type="text" placeholder={name} name="name" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} requiredValidation={true} />
                                     </div>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type="text" placeholder={surname} name="surname" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} requiredValidation={true} />
+                                        <Input type={!isRespondFormVisible ? 'email' : 'text'} placeholder={!isRespondFormVisible ? mail : surname} name={!isRespondFormVisible ? mail : "surname"} autocomplete="off" requiredValidation={true} pattern={!isRespondFormVisible ? /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g : /^[А-Яа-яЁёA-Za-z\s-]+$/i} />
                                     </div>
                                 </div>
                                 <div className={cn('right-block__bottom-section')}>
