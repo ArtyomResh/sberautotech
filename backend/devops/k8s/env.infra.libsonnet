@@ -82,7 +82,7 @@
 
   certificates: {
     [$.domain]: {
-      issuer: 'infra-vault',
+      issuer: 'infra-vault-sbauto',
       secret: 'sberautotech-backend-int-sbauto'
     }
   }
