@@ -51,6 +51,9 @@ const Footer = () => {
                 <div className={cn('footer__bottom-block_left')}>
                     <Link className={cn('footer__documents-link')} to={privacyPolicyLink}>{privacyPolicyText}</Link>
                 </div>
+                <div className={cn('footer__bottom-block_left')}>
+                    <Link className={cn('footer__documents-link')} to="https://sberautotech-site-bucket.obs.ru-moscow-1.hc.sbercloud.ru/group-structure.pdf">Правовая информация</Link>
+                </div>
                 <div className={cn('footer__bottom-block_right')}>
                     <span className={cn('footer__disclaimer')}>{disclaimer}</span>
                 </div>
