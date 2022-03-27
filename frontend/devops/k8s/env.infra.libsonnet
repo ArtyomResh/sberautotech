@@ -82,9 +82,7 @@
       host: $.domain,
       tls: true,
       strip_path: false,
-      letsencrypt: {
-        cluster_issuer: 'infra-letsencrypt',
-      },
+      cert_secret: 'sberautotech-wc-cert',
       paths: [
         { path: '/', service: $.app_name + '-kong', port: $.app_port }
       ]
