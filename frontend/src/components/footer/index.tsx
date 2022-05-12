@@ -15,6 +15,8 @@ const query = graphql`
           header
           description
           disclaimer
+          privacyPolicyLink
+          privacyPolicyText
           email
           link {
               text
@@ -30,7 +32,7 @@ const Footer = () => {
     const cn = useClassnames(style);
     const data = useStaticQuery(query);
     const { setIsPopupVisible } = useContext(appContext);
-    const { header, link, disclaimer } = data.allStrapiFooter.edges[0].node;
+    const { header, link, disclaimer, privacyPolicyLink, privacyPolicyText } = data.allStrapiFooter.edges[0].node;
 
     return (
         <footer className={cn('footer__wrapper')}>
@@ -47,7 +49,7 @@ const Footer = () => {
             </div>
             <div className={cn('footer__bottom-block')}>
                 <div className={cn('footer__bottom-block_left')}>
-                    <Link className={cn('footer__documents-link')} to="https://sberautotech-site-bucket.obs.ru-moscow-1.hc.sbercloud.ru/group-structure.pdf">Правовая информация</Link>
+                    <Link className={cn('footer__documents-link')} to={privacyPolicyLink}>{privacyPolicyText}</Link>
                 </div>
                 <div className={cn('footer__bottom-block_right')}>
                     <span className={cn('footer__disclaimer')}>{disclaimer}</span>
