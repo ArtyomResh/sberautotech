@@ -12,20 +12,29 @@ import style from './index.css';
 
 interface IProps {
     children: React.ReactNode,
-    seo: Record<string, unknown>,
-    theme: INav['theme'],
-    pageNumber: INav['pageNumber'],
-    setPageNumber?: INav['setPageNumber']
+    seo?: Record<string, unknown>,
+    theme?: INav['theme'],
+    pageNumber?: INav['pageNumber'],
+    setPageNumber?: INav['setPageNumber'],
+    type?: string
 }
 
-const Layout = ({ children, seo, theme, pageNumber, setPageNumber }: IProps) => {
+const Layout = ({ children, seo, theme, pageNumber, setPageNumber, type }: IProps) => {
     const cn = useClassnames(style);
+
+    if(type === 'pmef-landing-page') {
+        return (
+            <AppProvider>
+                <main>{children}</main>
+            </AppProvider>
+        );
+    }
 
     return (
         <AppProvider>
             <div className={cn('app__wrapper')}>
                 <Seo seo={seo} />
-                <Nav theme={theme} pageNumber={pageNumber} setPageNumber={setPageNumber} whiteLogoImportant={theme.whiteLogoImportant} />
+                <Nav theme={theme} pageNumber={pageNumber} setPageNumber={setPageNumber} whiteLogoImportant={theme?.whiteLogoImportant} />
                 <main>{children}</main>
                 <RespondForm />
                 <CookieAlert />
