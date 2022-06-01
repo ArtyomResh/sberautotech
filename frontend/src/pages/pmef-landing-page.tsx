@@ -1,14 +1,10 @@
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback, useRef } from 'react';
 import { Link } from 'gatsby';
 
-// import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../hooks/use-classnames';
-import useWindowSize from '../hooks/use-window-resize';
 import useDocumentScrollThrottled from '../components/nav/use-document-scroll-throttled';
-
-import video from '../static/krest.mp4';
-import img from '../images/pmef/back_v1.png';
 
 import LogoWhite from '../images/logo-white.inline.svg';
 import Arrow from '../images/pmef/arrow.inline.svg';
@@ -18,39 +14,41 @@ import NoAlk from '../images/pmef/no-alk.inline.svg';
 import NoPet from '../images/pmef/no-pet.inline.svg';
 import NoSmok from '../images/pmef/no-smok.inline.svg';
 import OutPhoto from '../images/pmef/out-photo.inline.svg';
+import PlayButton from '../images/pmef/play-button.inline.svg';
 
 import Button from '../components/button';
 import Layout from '../components/layout';
 
 import style from './pmef-landing-page.css';
 
-// const query = graphql`
-//   query {
-//     allStrapiPmefLandingPage {
-//     edges {
-//       node {
-//         background {
-//           localFile {
-//             url
-//           }
-//         }
-//         video {
-//           localFile {
-//             url
-//           }
-//         }
-//       }
-//     }
-//     }
-//   }
-// `;
+const query = graphql`
+  query {
+    allStrapiPmefLandingPage {
+    edges {
+        node {
+          video {
+            localFile {
+              url
+            }
+          }
+          background {
+            localFile {
+              url
+            }
+          }
+        }
+      }
+    }
+   }
+`;
 
 const PmefLandingPage = () => {
     const cn = useClassnames(style);
-    // const [width, height] = useWindowSize();
+    const videoRef = useRef<HTMLVideoElement>(null);
     const [shouldAddShadow, setShouldAddShadow] = useState(false);
-    // const data = useStaticQuery(query);
-    // const { video, background } = data.allStrapiPmefLandingPage.edges[0].node;
+    const data = useStaticQuery(query);
+    const [play, setPlay] = useState<boolean>(false);
+    const { video, background } = data.allStrapiPmefLandingPage.edges[0].node;
 
     const TIMEOUT_DELAY = 0;
     const MINIMUM_SCROLL = 5;
@@ -74,28 +72,11 @@ const PmefLandingPage = () => {
         }, TIMEOUT_DELAY);
     });
 
-    const elLabels = () => {
-        const root = document.documentElement;
-
-        const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue('--marquee-elements-displayed');
-        console.log(marqueeElementsDisplayed);
-        
-        const marqueeContent = document.querySelector('ul.marquee-content');
-
-        console.log(marqueeElementsDisplayed, marqueeContent);
-
-
-        root.style.setProperty('--marquee-elements', marqueeContent?.children.length);
-
-        for(let i = 0; i < marqueeElementsDisplayed; i++) {
-            marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
-        }
-
-        return (
-            <ul className={cn('marquee-content')}>
-                {labelCorousel?.map((label, i) => <li className={cn(`pmef-landing-page__label_${i}`)} key={i}>{label}</li>)}
-            </ul>);
-    };
+    const elLabels = useMemo(() => {
+        return labelCorousel?.map((label, i) => (
+            <li className={cn('pmef-landing-page__label', `pmef-landing-page__label_${i}`)} key={i}>{label}</li>
+        ));
+    }, []);
 
     const elIcons = useMemo(() => icons?.map(({ icon, label }, i) => {
         return (
@@ -108,6 +89,19 @@ const PmefLandingPage = () => {
         );
     }), []);
 
+    const toggleVideo = useCallback(() => {
+        if(videoRef.current) {
+            if(videoRef.current.paused) {
+                void videoRef.current.play().then(() => setPlay(true));
+
+                return;
+            }
+
+            videoRef.current.pause();
+            setPlay(false);
+        }
+    }, []);
+
     const elButtonBlock = useMemo(() => (
         <React.Fragment>
             <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
@@ -119,7 +113,7 @@ const PmefLandingPage = () => {
         <Layout type="pmef-landing-page" >
             <div className={cn('pmef-landing-page')}>
                 <div className={cn('pmef-landing-page__first-section')}>
-                    <img className={cn('pmef-landing-page__background-image')} src={img} />
+                    <img className={cn('pmef-landing-page__background-image')} src={background.localFile.url} />
                     <nav className={cn('pmef-landing-page__header', {
                         'pmef-landing-page__header_shadow': shouldAddShadow
                     })}
@@ -139,7 +133,7 @@ const PmefLandingPage = () => {
                         <div className={cn('pmef-landing-page__mob-button-block')}>
                             {elButtonBlock}
                         </div>
-                        <img className={cn('pmef-landing-page__background-image-mob')} src={img} />
+                        <img className={cn('pmef-landing-page__background-image-mob')} src={background.localFile.url} />
                         <div className={cn('pmef-landing-page__bottom-block')}>
                             <div className={cn('pmef-landing-page__text-block', 'pmef-landing-page__text-block_grid-c')}>
                                 <p className={cn('pmef-landing-page__small-title')}>Адрес</p>
@@ -166,19 +160,26 @@ const PmefLandingPage = () => {
                     <Link className={cn('pmef-landing-page__link')} to="https://sberautotech.ru/" children="sberautotech.ru" />
                     <div className={cn('pmef-landing-page__title-block')}>
                         <p className={cn('pmef-landing-page__mid-title')}>Ключевые направления</p>
-                        <div className={cn('marquee')}>
-                            {elLabels()}
-                        </div>
+                        <ul className={cn('pmef-landing-page__label-corousel_mob')}>
+                            {elLabels}
+                        </ul>
                         <p className={cn('pmef-landing-page__small-title', 'pmef-landing-page__5')}>Технологии SberAutoTech универсальны и легко адаптируются к разным видам транспорта и сценариям использования: пассажирские поездки, беспилотные грузовые перевозки, доставка</p>
                     </div>
-                    {/* <div className={cn('marquee')}>
-                        {elLabels()}
-                    </div> */}
+                    <ul className={cn('pmef-landing-page__label-corousel')}>
+                        {elLabels}
+                    </ul>
                 </div>
-                <div className={cn('pmef-landing-page__third-section')}>
-                    <video className={cn('pmef-landing-page__video')} controls={true}>
-                        <source src={video} type="video/mp4" />
-                    </video>
+                <div className={cn('pmef-landing-page__third-section')} onClick={toggleVideo}>
+                    <div className={cn('pmef-landing-page__video-wrapper')}>
+                        <PlayButton className={cn('pmef-landing-page__play-button', { 'pmef-landing-page__play-button_hidden': play })} />
+                        <video
+                            className={cn('pmef-landing-page__video')}
+                            src={video.localFile.url}
+                            loop={true}
+                            ref={videoRef}
+                        >
+                        </video>
+                    </div>
                 </div>
             </div>
         </Layout>

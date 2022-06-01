@@ -1,6 +1,6 @@
 {
   "kind": "singleType",
-  "collectionName": "pmef_landing_pages",
+  "collectionName": "pmef-landing-page",
   "info": {
     "name": "PmefLandingPage",
     "description": ""
