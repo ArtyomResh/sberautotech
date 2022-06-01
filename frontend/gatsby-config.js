@@ -100,6 +100,10 @@ module.exports = {
                         api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
+                        name: `pmef-landing-page`,
+                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                    },
+                    {
                         name: `career`,
                         api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
