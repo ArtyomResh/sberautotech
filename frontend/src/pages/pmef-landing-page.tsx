@@ -1,8 +1,6 @@
 import React, { useState, useMemo, useCallback, useRef } from 'react';
 import { Link } from 'gatsby';
 
-import { graphql, useStaticQuery } from 'gatsby';
-
 import { useClassnames } from '../hooks/use-classnames';
 import useDocumentScrollThrottled from '../components/nav/use-document-scroll-throttled';
 
@@ -21,34 +19,13 @@ import Layout from '../components/layout';
 
 import style from './pmef-landing-page.css';
 
-const query = graphql`
-  query {
-    allStrapiPmefLandingPage {
-    edges {
-        node {
-          video {
-            localFile {
-              url
-            }
-          }
-          background {
-            localFile {
-              url
-            }
-          }
-        }
-      }
-    }
-   }
-`;
-
 const PmefLandingPage = () => {
     const cn = useClassnames(style);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [shouldAddShadow, setShouldAddShadow] = useState(false);
-    const data = useStaticQuery(query);
     const [play, setPlay] = useState<boolean>(false);
-    const { video, background } = data.allStrapiPmefLandingPage.edges[0].node;
+    const videoLink = 'https://sberautotech-site-bucket.obs.ru-moscow-1.hc.sbercloud.ru/krest_compressed%20(1).mp4';
+    const imgLink = 'https://sberautotech-site-bucket.obs.ru-moscow-1.hc.sbercloud.ru/back_v1_253c976383.png';
 
     const TIMEOUT_DELAY = 0;
     const MINIMUM_SCROLL = 5;
@@ -113,7 +90,7 @@ const PmefLandingPage = () => {
         <Layout type="pmef-landing-page" >
             <div className={cn('pmef-landing-page')}>
                 <div className={cn('pmef-landing-page__first-section')}>
-                    <img className={cn('pmef-landing-page__background-image')} src={background.localFile.url} />
+                    <img className={cn('pmef-landing-page__background-image')} src={imgLink} />
                     <nav className={cn('pmef-landing-page__header', {
                         'pmef-landing-page__header_shadow': shouldAddShadow
                     })}
@@ -133,7 +110,7 @@ const PmefLandingPage = () => {
                         <div className={cn('pmef-landing-page__mob-button-block')}>
                             {elButtonBlock}
                         </div>
-                        <img className={cn('pmef-landing-page__background-image-mob')} src={background.localFile.url} />
+                        <img className={cn('pmef-landing-page__background-image-mob')} src={imgLink} />
                         <div className={cn('pmef-landing-page__bottom-block')}>
                             <div className={cn('pmef-landing-page__text-block', 'pmef-landing-page__text-block_grid-c')}>
                                 <p className={cn('pmef-landing-page__small-title')}>Адрес</p>
@@ -174,7 +151,7 @@ const PmefLandingPage = () => {
                         <PlayButton className={cn('pmef-landing-page__play-button', { 'pmef-landing-page__play-button_hidden': play })} />
                         <video
                             className={cn('pmef-landing-page__video')}
-                            src={video.localFile.url}
+                            src={videoLink}
                             loop={true}
                             ref={videoRef}
                         >
