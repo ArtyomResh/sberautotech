@@ -14,6 +14,8 @@ import NoSmok from '../images/pmef/no-smok.inline.svg';
 import OutPhoto from '../images/pmef/out-photo.inline.svg';
 import PlayButton from '../images/pmef/play-button.inline.svg';
 
+// import backgroung from '/pmef-backgroung.jpg';
+
 import Button from '../components/button';
 import Layout from '../components/layout';
 
@@ -24,8 +26,8 @@ const PmefLandingPage = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [shouldAddShadow, setShouldAddShadow] = useState(false);
     const [play, setPlay] = useState<boolean>(false);
-    const videoLink = 'https://sberautotech-site-bucket.obs.ru-moscow-1.hc.sbercloud.ru/krest_compressed%20(1).mp4';
-    const imgLink = 'https://sberautotech-site-bucket.obs.ru-moscow-1.hc.sbercloud.ru/back_v1_253c976383.png';
+    const videoLink = '/krest_compressed.mp4';
+    const imgLink = '/background.jpg';
 
     const TIMEOUT_DELAY = 0;
     const MINIMUM_SCROLL = 5;
