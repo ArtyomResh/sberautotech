@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { Link } from 'gatsby';
 
 import { useClassnames } from '../hooks/use-classnames';
@@ -49,23 +49,6 @@ const PmefLandingPage = () => {
         }, TIMEOUT_DELAY);
     });
 
-    const elLabels = useMemo(() => {
-        return labelCorousel?.map((label, i) => (
-            <li className={cn('pmef-landing-page__label', `pmef-landing-page__label_${i}`)} key={i}>{label}</li>
-        ));
-    }, []);
-
-    const elIcons = useMemo(() => icons?.map(({ icon, label }, i) => {
-        return (
-            <div className={cn('pmef-landing-page__icon-block')} key={i}>
-                {icon}
-                <label className={cn('pmef-landing-page__icon-label')}>
-                    {label}
-                </label>
-            </div>
-        );
-    }), []);
-
     const toggleVideo = useCallback(() => {
         if(videoRef.current) {
             if(videoRef.current.paused) {
@@ -79,13 +62,6 @@ const PmefLandingPage = () => {
         }
     }, []);
 
-    const elButtonBlock = useMemo(() => (
-        <React.Fragment>
-            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
-            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" />
-        </React.Fragment>
-    ), []);
-
     return (
         <Layout type="pmef-landing-page" >
             <div className={cn('pmef-landing-page')}>
@@ -97,7 +73,8 @@ const PmefLandingPage = () => {
                     >
                         <LogoWhite className={cn('pmef-landing-page__logo')} />
                         <div className={cn('pmef-landing-page__header-button-block')}>
-                            {elButtonBlock}
+                            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
+                            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" />
                         </div>
                     </nav>
                     <div className={cn('pmef-landing-page__content-wrapper')}>
@@ -108,7 +85,8 @@ const PmefLandingPage = () => {
                             <p className={cn('pmef-landing-page__big-title')}>12:00–24:00</p>
                         </div>
                         <div className={cn('pmef-landing-page__mob-button-block')}>
-                            {elButtonBlock}
+                            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
+                            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" />
                         </div>
                         <img className={cn('pmef-landing-page__background-image-mob')} src={imgLink} />
                         <div className={cn('pmef-landing-page__bottom-block')}>
@@ -131,19 +109,34 @@ const PmefLandingPage = () => {
                 <div className={cn('pmef-landing-page__second-section')}>
                     <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__3')}>Кстати, <span>про заезд</span></p>
                     <div className={cn('pmef-landing-page__icons-block')}>
-                        {elIcons}
+                        {
+                            icons?.map(({ icon, label }, i) => {
+                                return (
+                                    <div className={cn('pmef-landing-page__icon-block')} key={i}>
+                                        {icon}
+                                        <label className={cn('pmef-landing-page__icon-label')}>
+                                            {label}
+                                        </label>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                     <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__4')}><span>Sber Automotive Technologies —</span> компания, занимающаяся разработкой беспилотных технологий в экосистеме Сбера</p>
                     <Link className={cn('pmef-landing-page__link')} to="https://sberautotech.ru/" children="sberautotech.ru" />
                     <div className={cn('pmef-landing-page__title-block')}>
                         <p className={cn('pmef-landing-page__mid-title')}>Ключевые направления</p>
                         <ul className={cn('pmef-landing-page__label-corousel_mob')}>
-                            {elLabels}
+                            {labelCorousel?.map((label, i) => (
+                                <li className={cn('pmef-landing-page__label', `pmef-landing-page__label_${i}`)} key={i}>{label}</li>
+                            ))}
                         </ul>
                         <p className={cn('pmef-landing-page__small-title', 'pmef-landing-page__5')}>Технологии SberAutoTech универсальны и легко адаптируются к разным видам транспорта и сценариям использования: пассажирские поездки, беспилотные грузовые перевозки, доставка</p>
                     </div>
                     <ul className={cn('pmef-landing-page__label-corousel')}>
-                        {elLabels}
+                        {labelCorousel?.map((label, i) => (
+                            <li className={cn('pmef-landing-page__label', `pmef-landing-page__label_${i}`)} key={i}>{label}</li>
+                        ))}
                     </ul>
                 </div>
                 <div className={cn('pmef-landing-page__third-section')} onClick={toggleVideo}>
