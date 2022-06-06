@@ -77,12 +77,12 @@ const PmefLandingPage = () => {
                             <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" />
                         </div>
                     </nav>
-                    <div className="pmef-landing-page__content-wrapper">
-                        <div className="pmef-landing-page__middle-block">
-                            <p className="pmef-landing-page__big-title pmef-landing-page__1">Приглашаем на <span>открытое тестирование беспилотников</span> SberAutoTech в Санкт-Петербурге</p>
-                            <p className="pmef-landing-page__small-title pmef-landing-page__2">Прокатим по дорогам города и покажем, как работает технология автономного вождения</p>
-                            <p className="pmef-landing-page__big-title pmef-landing-page__date">15–18 июня</p>
-                            <p className="pmef-landing-page__big-title">12:00–24:00</p>
+                    <div className={cn('pmef-landing-page__content-wrapper')}>
+                        <div className={cn('pmef-landing-page__middle-block')}>
+                            <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__1')}>Приглашаем на <span>открытое тестирование беспилотников</span> SberAutoTech в Санкт-Петербурге</p>
+                            <p className={cn('pmef-landing-page__small-title', 'pmef-landing-page__2')}>Прокатим по дорогам города и покажем, как работает технология автономного вождения</p>
+                            <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__date')}>15–18 июня</p>
+                            <p className={cn('pmef-landing-page__big-title')}>12:00–24:00</p>
                         </div>
                         <div className={cn('pmef-landing-page__mob-button-block')}>
                             <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
@@ -122,7 +122,7 @@ const PmefLandingPage = () => {
                             })
                         }
                     </div>
-                    <p className="pmef-landing-page__big-title pmef-landing-page__4"><span>Sber Automotive Technologies —</span><br /> компания, занимающаяся разработкой беспилотных технологий в экосистеме Сбера</p>
+                    <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__4')}><span>Sber Automotive Technologies —</span> компания, занимающаяся разработкой беспилотных технологий в экосистеме Сбера</p>
                     <Link className={cn('pmef-landing-page__link')} to="https://sberautotech.ru/" children="sberautotech.ru" />
                     <div className={cn('pmef-landing-page__title-block')}>
                         <p className={cn('pmef-landing-page__mid-title')}>Ключевые направления</p>
