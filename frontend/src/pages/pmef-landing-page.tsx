@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { Link } from 'gatsby';
 
 import { useClassnames } from '../hooks/use-classnames';
@@ -107,7 +107,7 @@ const PmefLandingPage = () => {
                     </div>
                 </div>
                 <div className={cn('pmef-landing-page__second-section')}>
-                    <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__3')}>Кстати, <p>про заезд</p></p>
+                    <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__3')}>Кстати, <span>про заезд</span></p>
                     <div className={cn('pmef-landing-page__icons-block')}>
                         {
                             icons?.map(({ icon, label }, i) => {
@@ -122,7 +122,7 @@ const PmefLandingPage = () => {
                             })
                         }
                     </div>
-                    <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__4')}><span>Sber Automotive Technologies —</span><br /> компания, занимающаяся разработкой беспилотных технологий в экосистеме Сбера</p>
+                    <p className="pmef-landing-page__big-title pmef-landing-page__4"><span>Sber Automotive Technologies —</span><br /> компания, занимающаяся разработкой беспилотных технологий в экосистеме Сбера</p>
                     <Link className={cn('pmef-landing-page__link')} to="https://sberautotech.ru/" children="sberautotech.ru" />
                     <div className={cn('pmef-landing-page__title-block')}>
                         <p className={cn('pmef-landing-page__mid-title')}>Ключевые направления</p>
