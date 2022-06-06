@@ -14,8 +14,6 @@ import NoSmok from '../images/pmef/no-smok.inline.svg';
 import OutPhoto from '../images/pmef/out-photo.inline.svg';
 import PlayButton from '../images/pmef/play-button.inline.svg';
 
-// import backgroung from '/pmef-backgroung.jpg';
-
 import Button from '../components/button';
 import Layout from '../components/layout';
 
@@ -104,7 +102,7 @@ const PmefLandingPage = () => {
                     </nav>
                     <div className={cn('pmef-landing-page__content-wrapper')}>
                         <div className={cn('pmef-landing-page__middle-block')}>
-                            <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__1')}>Приглашаем на <p>открытое тестирование беспилотников</p> SberAutoTech в Санкт-Петербурге</p>
+                            <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__1')}>Приглашаем на <span>открытое тестирование беспилотников</span> SberAutoTech в Санкт-Петербурге</p>
                             <p className={cn('pmef-landing-page__small-title', 'pmef-landing-page__2')}>Прокатим по дорогам города и покажем, как работает технология автономного вождения</p>
                             <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__date')}>15–18 июня</p>
                             <p className={cn('pmef-landing-page__big-title')}>12:00–24:00</p>
@@ -131,11 +129,11 @@ const PmefLandingPage = () => {
                     </div>
                 </div>
                 <div className={cn('pmef-landing-page__second-section')}>
-                    <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__3')}>Кстати, <p>про заезд</p></p>
+                    <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__3')}>Кстати, <span>про заезд</span></p>
                     <div className={cn('pmef-landing-page__icons-block')}>
                         {elIcons}
                     </div>
-                    <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__4')}><p>Sber Automotive Technologies —</p> компания, занимающаяся разработкой беспилотных технологий в экосистеме Сбера</p>
+                    <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__4')}><span>Sber Automotive Technologies —</span> компания, занимающаяся разработкой беспилотных технологий в экосистеме Сбера</p>
                     <Link className={cn('pmef-landing-page__link')} to="https://sberautotech.ru/" children="sberautotech.ru" />
                     <div className={cn('pmef-landing-page__title-block')}>
                         <p className={cn('pmef-landing-page__mid-title')}>Ключевые направления</p>
