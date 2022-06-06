@@ -14,8 +14,9 @@ module.exports = {
       });
     } catch (err) {
       console.error(err);
+      ctx.badRequest('error', JSON.stringify(err.message))
     }
 
-    ctx.send();
+    // ctx.send();
   }
 };
