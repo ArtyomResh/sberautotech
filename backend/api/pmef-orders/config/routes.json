@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/pmef-orders",
+      "handler": "pmef-orders.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/pmef-orders/count",
+      "handler": "pmef-orders.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/pmef-orders/:id",
+      "handler": "pmef-orders.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/pmef-orders",
+      "handler": "pmef-orders.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/pmef-orders/:id",
+      "handler": "pmef-orders.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/pmef-orders/:id",
+      "handler": "pmef-orders.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
