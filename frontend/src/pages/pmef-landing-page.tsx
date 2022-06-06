@@ -77,9 +77,9 @@ const PmefLandingPage = () => {
                             <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" />
                         </div>
                     </nav>
-                    <div className={cn('pmef-landing-page__content-wrapper')}>
-                        <div className={cn('pmef-landing-page__middle-block')}>
-                            <p className="pmef-landing-page__big-title pmef-landing-page__1">Приглашаем на <p>открытое тестирование беспилотников</p> SberAutoTech в Санкт-Петербурге</p>
+                    <div className="pmef-landing-page__content-wrapper">
+                        <div className="pmef-landing-page__middle-block">
+                            <p className="pmef-landing-page__big-title pmef-landing-page__1">Приглашаем на <span>открытое тестирование беспилотников</span> SberAutoTech в Санкт-Петербурге</p>
                             <p className="pmef-landing-page__small-title pmef-landing-page__2">Прокатим по дорогам города и покажем, как работает технология автономного вождения</p>
                             <p className="pmef-landing-page__big-title pmef-landing-page__date">15–18 июня</p>
                             <p className="pmef-landing-page__big-title">12:00–24:00</p>
