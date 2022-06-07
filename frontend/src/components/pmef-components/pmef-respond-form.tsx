@@ -27,8 +27,11 @@ const PmefRespondForm = () => {
 
         try {
             const res = await fetch(FORM_URL, {
-                method: 'POST',
-                body  : formData
+                method : 'POST',
+                body   : formData,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
 
             if(res.ok) {
