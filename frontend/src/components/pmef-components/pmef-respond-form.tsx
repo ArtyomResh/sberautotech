@@ -12,7 +12,7 @@ import style from './pmef-respond-form.css';
 
 
 const PmefRespondForm = () => {
-    const FORM_URL = '/preview';
+    const FORM_URL = '/review';
     const context = useForm({
         mode            : 'onSubmit',
         reValidateMode  : 'onChange',
