@@ -1,0 +1,33 @@
+.pmef-respond-from {
+    position: fixed;
+    background-color: #e0e6eb;
+    width: calc(100vw - 40px);
+    display: flex;
+    justify-content: space-between;
+    top: 90px;
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 24px;
+
+    &__big-title {
+        max-width: 580px;
+        font-size: 57px;
+        line-height: 91%;
+        letter-spacing: -0.02em;
+        margin-left: -4px;
+    }
+
+    &__small-title {
+        font-size: 14px;
+        line-height: 17px;
+        letter-spacing: -0.03em;
+        font-family: var(--font-family-secondary);
+        margin-top: 32px;
+    }
+
+    &__right-block {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
