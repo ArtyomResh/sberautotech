@@ -16,6 +16,7 @@ import PlayButton from '../images/pmef/play-button.inline.svg';
 
 import Button from '../components/button';
 import Layout from '../components/layout';
+import PmefRespondForm from '../components/pmef-components/pmef-respond-form';
 
 import style from './pmef-landing-page.css';
 
@@ -23,6 +24,7 @@ const PmefLandingPage = () => {
     const cn = useClassnames(style);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [shouldAddShadow, setShouldAddShadow] = useState(false);
+    const [respondFormVisible, setRespondFormVisible] = useState(false);
     const [play, setPlay] = useState<boolean>(false);
     const videoLink = '/krest_compressed.mp4';
     const imgLink = '/background.jpg';
@@ -65,6 +67,7 @@ const PmefLandingPage = () => {
     return (
         <Layout type="pmef-landing-page" >
             <div className={cn('pmef-landing-page')}>
+                {respondFormVisible ? <PmefRespondForm /> : null}
                 <div className={cn('pmef-landing-page__first-section')}>
                     <img className={cn('pmef-landing-page__background-image')} src={imgLink} />
                     <nav className={cn('pmef-landing-page__header', {
@@ -74,7 +77,11 @@ const PmefLandingPage = () => {
                         <LogoWhite className={cn('pmef-landing-page__logo')} />
                         <div className={cn('pmef-landing-page__header-button-block')}>
                             <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
-                            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" />
+                            <Button
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
+                                    setRespondFormVisible(!respondFormVisible);
+                                }}
+                            />
                         </div>
                     </nav>
                     <div className={cn('pmef-landing-page__content-wrapper')}>
@@ -86,7 +93,11 @@ const PmefLandingPage = () => {
                         </div>
                         <div className={cn('pmef-landing-page__mob-button-block')}>
                             <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
-                            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" />
+                            <Button
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
+                                    setRespondFormVisible(!respondFormVisible);
+                                }}
+                            />
                         </div>
                         <img className={cn('pmef-landing-page__background-image-mob')} src={imgLink} />
                         <div className={cn('pmef-landing-page__bottom-block')}>
