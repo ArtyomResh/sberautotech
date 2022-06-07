@@ -22,7 +22,7 @@ const PmefRespondForm = () => {
     const cn = useClassnames(style);
 
 
-    const onSubmit = async (data) => {
+    const onSubmit = async () => {
         const formData = new FormData();
 
         try {
@@ -56,8 +56,8 @@ const PmefRespondForm = () => {
                     <div className={cn('pmef-respond-from__field-date')}>
                         <Input placeholder="Дата и время поездки" type="text" name="dateTime" />
                     </div>
-                    <Textarea placeholder="Ваш отзыв" name="text" requiredValidation={false} />
-                    <CheckBox label="Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности" />
+                    <Textarea placeholder="Ваш отзыв" name="dateTime" requiredValidation={false} />
+                    <CheckBox name="acception" label="Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности" />
                     <Button type="submit" label="Отправить" />
                 </div>
             </form>
