@@ -23,12 +23,14 @@ const PmefRespondForm = () => {
 
 
     const onSubmit = async () => {
-        const formData = new FormData();
+        const data = context.getValues();
+
+        delete data.acception;
 
         try {
             const res = await fetch(FORM_URL, {
                 method : 'POST',
-                body   : formData,
+                body   : JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -58,7 +60,7 @@ const PmefRespondForm = () => {
                     <div className={cn('pmef-respond-from__field-date')}>
                         <Input placeholder="Дата и время поездки" type="text" name="dateTime" />
                     </div>
-                    <Textarea placeholder="Ваш отзыв" name="dateTime" requiredValidation={false} />
+                    <Textarea placeholder="Ваш отзыв" name="text" requiredValidation={false} />
                     <CheckBox name="acception" label="Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности" />
                     <Button type="submit" label="Отправить" />
                 </div>
