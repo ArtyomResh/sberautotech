@@ -46,7 +46,8 @@ const PmefRespondForm = () => {
         <FormProvider {...context}>
             <form
                 onSubmit={context.handleSubmit(onSubmit)}
-                className={cn('pmef-respond-from')}/>
+                className={cn('pmef-respond-from')}
+            >
                 <div className={cn('pmef-respond-from__left-block')}>
                     <p className={cn('pmef-respond-from__big-title')}>Расскажите о поездке</p>
                     <p className={cn('pmef-respond-from__small-title')}>Как вам? Что понравилось, а что пошло не так?</p>
