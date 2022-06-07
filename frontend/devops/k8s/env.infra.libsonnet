@@ -31,6 +31,10 @@
               location /form {
                   proxy_pass https://sberautotech-backend.int.sbauto.tech;
               }
+
+              location /review {
+                  proxy_pass https://sberautotech-backend.int.sbauto.tech;
+              }
           }
       |||
     }
