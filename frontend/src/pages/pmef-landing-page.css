@@ -146,6 +146,10 @@
         margin-top: 88px;
         max-width: 851px;
 
+        @media (max-width: 1280px) {
+            margin-top: 44px;
+        }
+
         & span {
             color: #bdfff8;
         }
@@ -156,6 +160,7 @@
         line-height: 17px;
         letter-spacing: -0.03em;
         color: #ffffff;
+        margin-bottom: 16px;
     }
 
     &__2 {
@@ -176,7 +181,7 @@
         margin-top: 184px;
 
         @media (max-width: 1520px) {
-            margin-top: 24px;
+            margin-top: 34px;
         }
     }
 
@@ -228,7 +233,11 @@
     }
 
     &__first-section {
-        height: calc(100vh - 40px);
+        height: calc(100vh);
+        height: calc(100vh);
+        background: linear-gradient(90deg, rgba(14, 17, 20, 1), rgba(14, 17, 20, 0), rgba(14, 17, 20, 0), rgba(14, 17, 20, 0));
+        margin: -20px;
+        padding: 20px;
 
         @media (max-width: 1280px) {
             background-color: black;
@@ -251,7 +260,7 @@
         }
 
         & span {
-            color: #bdfff8;
+            color: #67CFC9;
             display: inline;
         }
     }
@@ -270,10 +279,12 @@
 
         @media (max-width: 744px) {
             grid-template: 1fr 1fr 1fr / 1fr 1fr;
+            grid-gap: 45px 25px;
         }
     }
 
     &__icon-label {
+        margin-top: 30px;
         text-align: center;
     }
 
@@ -283,7 +294,7 @@
         max-width: 1099px;
 
         & span {
-            color: #bdfff8;
+            color: #67CFC9;
         }
 
         @media (max-width: 1520px) {
@@ -364,14 +375,14 @@
         overflow-x: scroll;
         width: 100vw;
         margin-top: 44px !important;
-        margin-left: -20px !important;
+        margin-left: -12px !important;
 
         &::-webkit-scrollbar {
             display: none;
         }
 
         @media (max-width: 1280px) {
-            margin-left: 0 !important;
+            margin-left: 12px !important;
         }
 
         @media (min-width: 744px) {
@@ -389,6 +400,7 @@
                 overflow-x: scroll;
                 width: 100vw;
                 margin-top: 24px !important;
+                padding-left: 6px !important;
 
                 &::-webkit-scrollbar {
                     display: none;
@@ -415,13 +427,14 @@
         padding: 16px 24px;
         border: 2px solid black;
         border-radius: 32px;
-        margin-left: 20px;
-        margin-right: 20px;
+        margin-left: 12px;
+        margin-right: 12px;
 
         @media (max-width: 744px) {
             font-size: 14px;
             line-height: 17px;
             padding: 8px 12px;
+            border: 1px solid black;
         }
     }
 
