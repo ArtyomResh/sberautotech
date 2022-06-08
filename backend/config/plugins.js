@@ -30,7 +30,7 @@ module.exports = ({ env }) => {
         }
       },
       settings: {
-        defaultFrom: 'site@sberautotech.ru'
+        defaultFrom: 'feedback@sberautotech.ru'
       },
     }
   }

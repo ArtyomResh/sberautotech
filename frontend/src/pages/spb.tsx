@@ -89,7 +89,7 @@ const PmefLandingPage = () => {
                             <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__1')}>Приглашаем на <span>открытое тестирование беспилотников</span> SberAutoTech в Санкт-Петербурге</p>
                             <p className={cn('pmef-landing-page__small-title', 'pmef-landing-page__2')}>Прокатим по дорогам города и покажем, как работает технология автономного вождения</p>
                             <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__date')}>15–18 июня</p>
-                            <p className={cn('pmef-landing-page__big-title')}>12:00–24:00</p>
+                            <p className={cn('pmef-landing-page__big-title')}>12:00–22:00</p>
                         </div>
                         <div className={cn('pmef-landing-page__mob-button-block')}>
                             <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
