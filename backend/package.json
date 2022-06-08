@@ -5,7 +5,7 @@
   "description": "A Strapi application",
   "scripts": {
     "develop": "STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=ru strapi develop",
-    "start": "STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=ru strapi start",
+    "start": "STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=ru strapi develop",
     "start:production": "NODE_ENV=production yarn start",
     "build": "STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=ru strapi build",
     "build:production": "NODE_ENV=production yarn build",

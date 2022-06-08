@@ -133,6 +133,21 @@ const query = graphql`
             text
             id
           }
+          sixth_screen {
+            background {
+              localFile {
+                url
+              }
+              id
+            }
+            mobileBackground {
+              localFile {
+                url
+              }
+            }
+            text
+            id
+          }
           id
         }
       }
@@ -224,20 +239,23 @@ const IndexPageBlocks = ({ screens, pageNumber, isMobile, setPageNumber }) => {
 
     return (
         <div className={cn('main-page-blocks')}>
+            <Link to="/spb">
+                <MainPageBlock block={screens.sixth_screen[0]} index={0} pageNumber={pageNumber} />
+            </Link>
             <Link to="/flip">
-                <MainPageBlock block={screens.second_screen[0]} index={0} pageNumber={pageNumber} />
+                <MainPageBlock block={screens.second_screen[0]} index={1} pageNumber={pageNumber} />
             </Link>
             <Link to="/self-driving-car">
-                <MainPageBlock block={screens.third_screen[0]} index={1} pageNumber={pageNumber} />
+                <MainPageBlock block={screens.third_screen[0]} index={2} pageNumber={pageNumber} />
             </Link>
             <Link to="/about-company">
-                <MainPageBlock block={screens.first_screen[0]} index={2} pageNumber={pageNumber} />
+                <MainPageBlock block={screens.first_screen[0]} index={3} pageNumber={pageNumber} />
             </Link>
             <Link to="/career">
-                <MainPageBlock block={screens.fourth_screen[0]} index={3} pageNumber={pageNumber} />
+                <MainPageBlock block={screens.fourth_screen[0]} index={4} pageNumber={pageNumber} />
             </Link>
             <Link to="/vacancies">
-                <MainPageBlock block={screens.fifth_screen[0]} index={4} pageNumber={pageNumber} />
+                <MainPageBlock block={screens.fifth_screen[0]} index={5} pageNumber={pageNumber} />
             </Link>
         </div>
     );
@@ -255,6 +273,7 @@ const IndexPage = () => {
     useEffect(() => {
         if(isMobile !== null) {
             const preloadVideos = [
+                fetch(screens.sixth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
                 fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
                 fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
                 fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.url).then((response) => response.blob()),
