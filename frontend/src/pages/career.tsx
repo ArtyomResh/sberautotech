@@ -94,7 +94,7 @@ const Career = () => {
         }));
 
     return (
-        <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
+        <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={4}>
             <div className="career__carousel">
                 <Carousel data={top_slider} />
             </div>

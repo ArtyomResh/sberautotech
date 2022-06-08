@@ -3213,6 +3213,11 @@
     "locale": "ru",
     "links": [
       {
+        "text": "Беспилотное тестирование",
+        "to": "/spb",
+        "style": "fill"
+      },
+      {
         "text": "ФЛИП",
         "to": "/flip",
         "style": "fill"

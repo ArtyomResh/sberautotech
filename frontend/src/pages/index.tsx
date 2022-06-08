@@ -133,21 +133,6 @@ const query = graphql`
             text
             id
           }
-          sixth_screen {
-            background {
-              localFile {
-                url
-              }
-              id
-            }
-            mobileBackground {
-              localFile {
-                url
-              }
-            }
-            text
-            id
-          }
           id
         }
       }
@@ -155,7 +140,7 @@ const query = graphql`
   }
 `;
 
-const PAGES_LENGTH = 5;
+const PAGES_LENGTH = 6;
 const ANIMATION_DURATION = 1000;
 const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
@@ -240,7 +225,17 @@ const IndexPageBlocks = ({ screens, pageNumber, isMobile, setPageNumber }) => {
     return (
         <div className={cn('main-page-blocks')}>
             <Link to="/spb">
-                <MainPageBlock block={screens.sixth_screen[0]} index={0} pageNumber={pageNumber} />
+                <MainPageBlock
+                    block={{
+                        id        : 0,
+                        background: {
+                            localFile: {
+                                url: isMobile ? '/pmef_test_mobile.mp4' : '/pmef_test.mp4'
+                            }
+                        },
+                        text: '{Беспилотное тестирование}</br> в Санкт-Петербурге'
+                    }} index={0} pageNumber={pageNumber}
+                />
             </Link>
             <Link to="/flip">
                 <MainPageBlock block={screens.second_screen[0]} index={1} pageNumber={pageNumber} />
@@ -273,7 +268,7 @@ const IndexPage = () => {
     useEffect(() => {
         if(isMobile !== null) {
             const preloadVideos = [
-                fetch(screens.sixth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
+                fetch(isMobile ? '/pmef_test_mobile.mp4' : '/pmef_test.mp4').then((response) => response.blob()),
                 fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
                 fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
                 fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.url).then((response) => response.blob()),
