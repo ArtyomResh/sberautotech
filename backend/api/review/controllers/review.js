@@ -17,6 +17,6 @@ module.exports = {
       ctx.badRequest('error', JSON.stringify(err.message))
     }
 
-    // ctx.send();
+    ctx.send();
   }
 };
