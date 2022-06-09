@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/order",
+      "handler": "order.send",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/freeSlots",
+      "handler": "order.getFreeSlots",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

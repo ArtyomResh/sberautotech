@@ -69,7 +69,7 @@ const PmefLandingPage = () => {
             <div className={cn('pmef-landing-page')}>
                 {respondFormVisible ? <PmefRespondForm /> : null}
                 <div className={cn('pmef-landing-page__first-section')}>
-                    <img className={cn('pmef-landing-page__background-image')} src={imgLink} />
+                    <img className={cn('pmef-landing-page__background-image')} />
                     <nav className={cn('pmef-landing-page__header', {
                         'pmef-landing-page__header_shadow': shouldAddShadow
                     })}
@@ -99,7 +99,7 @@ const PmefLandingPage = () => {
                                 }}
                             />
                         </div>
-                        <img className={cn('pmef-landing-page__background-image-mob')} src={imgLink} />
+                        <div className={cn('pmef-landing-page__background-image-mob')} />
                         <div className={cn('pmef-landing-page__bottom-block')}>
                             <div className={cn('pmef-landing-page__text-block', 'pmef-landing-page__text-block_grid-c')}>
                                 <p className={cn('pmef-landing-page__small-title')}>Адрес</p>
