@@ -30,6 +30,18 @@
               location /form {
                   proxy_pass https://sberautotech-backend.dev.fe.sbauto.tech;
               }
+
+              location /review {
+                  proxy_pass https://sberautotech-backend.dev.fe.sbauto.tech;
+              }
+
+              location /freeSlots {
+                  proxy_pass https://sberautotech-backend.dev.fe.sbauto.tech;
+              }
+
+              location /order {
+                  proxy_pass https://sberautotech-backend.dev.fe.sbauto.tech;
+              }
           }
       |||
     }

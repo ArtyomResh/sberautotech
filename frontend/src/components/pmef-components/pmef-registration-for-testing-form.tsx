@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 
 import Button from '../button';
 import CheckBox from '../respond-form/check-box';
 import Input from '../respond-form/input';
-import Textarea from '../respond-form/textarea';
+import Select from '../select';
 
 import IconClose from '../../images/pmef/icon-cls.inline.svg';
 
@@ -16,18 +16,25 @@ interface IProps {
     closeHandler: () => void
 }
 
-const PmefRespondForm = (props: IProps) => {
-    const [submitButtonIsDisabled, setSubmitButton] = useState(true);
+const PmefRegistrationForTestingForm = (props: IProps) => {
+    interface IAcceptions {
+        acceptionOne: boolean,
+        acceptionTwo: boolean,
+        acceptionThree: boolean
+    }
+
+    const [submitButtonIsDisabled, setSubmitButton] = useState<IAcceptions>({
+        acceptionOne  : false,
+        acceptionTwo  : false,
+        acceptionThree: false
+    });
     const [isSended, setContentSend] = useState(false);
     const [error, setError] = useState(false);
 
     const FORM_URL = '/review';
 
     const context = useForm({
-        mode            : 'onSubmit',
-        reValidateMode  : 'onChange',
-        shouldFocusError: true,
-        defaultValues   : {}
+        mode: 'onSubmit'
     });
 
     const cn = useClassnames(style);
@@ -107,6 +114,13 @@ const PmefRespondForm = (props: IProps) => {
         }
     }, [error, isSended]);
 
+    const acceptionsHandler = useCallback((e) => setSubmitButton({ ...submitButtonIsDisabled, [e.target.name]: !submitButtonIsDisabled[e.target.name] }), [submitButtonIsDisabled]);
+    const buttonActivatorHandler = useMemo(() => {
+        const arrOfBull = Object.values(submitButtonIsDisabled);
+
+        return arrOfBull.every((e) => e);
+    }, [submitButtonIsDisabled]);
+
     const respondForm = useMemo(() => {
         return (
             <form
@@ -114,8 +128,9 @@ const PmefRespondForm = (props: IProps) => {
                 className={cn('pmef-respond-form__form')}
             >
                 <div className={cn('pmef-respond-form__left-block')}>
-                    <p className={cn('pmef-respond-form__big-title')}>Расскажите о поездке</p>
-                    <p className={cn('pmef-respond-form__small-title')}>Как вам? Что понравилось, а что пошло не так?</p>
+                    <p className={cn('pmef-respond-form__big-title')}>Запись на открытое тестирование</p>
+                    <p className={cn('pmef-respond-form__small-title')}>Заполните краткую информацию о себе и выберите доступные дату и время поездки.</p>
+                    <p className={cn('pmef-respond-form__small-title')}>При себе необходимо иметь документ, удостоверяющий личность</p>
                 </div>
                 <div className={cn('pmef-respond-form__right-block')}>
                     <div
@@ -130,15 +145,28 @@ const PmefRespondForm = (props: IProps) => {
                     <div className={cn('pmef-respond-form__field-name')}>
                         <Input placeholder="ФИО" type="text" name="name" />
                     </div>
-                    <div className={cn('pmef-respond-form__field-date')}>
-                        <Input placeholder="Дата и время поездки" type="text" name="dateTime" />
+                    <div className={cn('pmef-respond-form__field-email')}>
+                        <Input placeholder="Почта" type="email" name="email" />
                     </div>
-                    <Textarea placeholder="Ваш отзыв" name="dateTime" requiredValidation={false} />
+                    <div className={cn('pmef-respond-form__field-date')}>
+                        <Select name="date" />
+                    </div>
+                    <div className={cn('pmef-respond-form__field-time')}>
+                        <Select name="time" />
+                    </div>
                     <CheckBox
-                        name="acception" label="Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности"
-                        onChange={() => setSubmitButton(!submitButtonIsDisabled)}
+                        name="acceptionOne" label="Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности"
+                        onChange={acceptionsHandler}
                     />
-                    <Button className={cn('pmef-respond-form__submit-button')} type="submit" label="Отправить" disabled={submitButtonIsDisabled} />
+                    <CheckBox
+                        name="acceptionTwo" label="Даю согласие на участие в эксперименте"
+                        onChange={acceptionsHandler}
+                    />
+                    <CheckBox
+                        name="acceptionThree" label="Даю согласие на съемку"
+                        onChange={acceptionsHandler}
+                    />
+                    <Button className={cn('pmef-respond-form__submit-button')} type="submit" label="Отправить" disabled={!buttonActivatorHandler} />
                 </div>
             </form>
         );
@@ -153,4 +181,4 @@ const PmefRespondForm = (props: IProps) => {
         </FormProvider>);
 };
 
-export default PmefRespondForm;
+export default PmefRegistrationForTestingForm;

@@ -30,6 +30,17 @@
         }
     }
 
+    &_disabled {
+        opacity: 0.5;
+
+        @media (hover: hover) and (pointer: fine) {
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+
     &__count {
         position: absolute;
         right: 20px;
