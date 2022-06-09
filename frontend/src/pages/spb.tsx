@@ -69,7 +69,7 @@ const PmefLandingPage = () => {
             <div className={cn('pmef-landing-page')}>
                 {respondFormVisible ? <PmefRespondForm closeHandler={() => setRespondFormVisible(false)} /> : null}
                 <div className={cn('pmef-landing-page__first-section')}>
-                    <img className={cn('pmef-landing-page__background-image')} src={imgLink} />
+                    <img className={cn('pmef-landing-page__background-image')} />
                     <nav className={cn('pmef-landing-page__header', {
                         'pmef-landing-page__header_shadow': shouldAddShadow
                     })}
@@ -86,10 +86,10 @@ const PmefLandingPage = () => {
                     </nav>
                     <div className={cn('pmef-landing-page__content-wrapper')}>
                         <div className={cn('pmef-landing-page__middle-block')}>
-                            <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__1')}>Приглашаем на <span>открытое тестирование беспилотников</span> SberAutoTech в Санкт-Петербурге</p>
+                            <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__1')}>Приглашаем на <span>открытое тестирование беспилотников</span> SberAutoTech<br />в Санкт-Петербурге</p>
                             <p className={cn('pmef-landing-page__small-title', 'pmef-landing-page__2')}>Прокатим по дорогам города и покажем, как работает технология автономного вождения</p>
                             <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__date')}>15–18 июня</p>
-                            <p className={cn('pmef-landing-page__big-title')}>12:00–24:00</p>
+                            <p className={cn('pmef-landing-page__big-title')}>12:00–22:00</p>
                         </div>
                         <div className={cn('pmef-landing-page__mob-button-block')}>
                             <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
@@ -99,7 +99,7 @@ const PmefLandingPage = () => {
                                 }}
                             />
                         </div>
-                        <img className={cn('pmef-landing-page__background-image-mob')} src={imgLink} />
+                        <div className={cn('pmef-landing-page__background-image-mob')} />
                         <div className={cn('pmef-landing-page__bottom-block')}>
                             <div className={cn('pmef-landing-page__text-block', 'pmef-landing-page__text-block_grid-c')}>
                                 <p className={cn('pmef-landing-page__small-title')}>Адрес</p>

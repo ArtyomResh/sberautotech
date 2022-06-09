@@ -69,7 +69,7 @@ const AboutCompanyPage = () => {
 
     return (
         <div className={cn('about-company__page')}>
-            <Layout seo={data.strapiAboutCompany.seo} theme={{ mode: 'dark', logoColor: '#040A0A', whiteLogoImportant: true }} pageNumber={2}>
+            <Layout seo={data.strapiAboutCompany.seo} theme={{ mode: 'dark', logoColor: '#040A0A', whiteLogoImportant: true }} pageNumber={3}>
                 <div className={cn('about-company__wrapper')}>
                     {header && (
                         <div className={cn('about-company__header-wrapper')}>

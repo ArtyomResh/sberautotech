@@ -33,12 +33,14 @@ const PmefRespondForm = (props: IProps) => {
     const cn = useClassnames(style);
 
     const onSubmit = async () => {
-        const formData = new FormData();
+        const data = context.getValues();
+
+        delete data.acception;
 
         try {
             const res = await fetch(FORM_URL, {
                 method : 'POST',
-                body   : formData,
+                body   : JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
                 }

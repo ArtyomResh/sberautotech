@@ -22,13 +22,15 @@ module.exports = ({ env }) => {
       providerOptions: {
         host: env('SMTP_HOST', '10.10.1.24'),
         port: env('SMTP_PORT', 25),
+        secure: false,
+        ignoreTLS: true,
         auth: {
           user: env('SMTP_USERNAME', ""),
           pass: env('SMTP_PASSWORD', ""),
         }
       },
       settings: {
-        defaultFrom: 'site@sberautotech.ru'
+        defaultFrom: 'feedback@sberautotech.ru'
       },
     }
   }
