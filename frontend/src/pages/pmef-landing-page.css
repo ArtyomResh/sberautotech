@@ -13,6 +13,7 @@
         z-index: -1;
         left: 0;
         top: 0;
+        background: black;
         background-image: url('/map 1280.png');
         background-position: center;
         background-repeat: no-repeat;
@@ -308,7 +309,7 @@
     }
 
     &__icon {
-        height: 80px;
+        height: 110px;
     }
 
     &__icon-label {

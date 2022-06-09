@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { Link } from 'gatsby';
+import { isMobile } from 'react-device-detect';
 
 import { useClassnames } from '../hooks/use-classnames';
 import useDocumentScrollThrottled from '../components/nav/use-document-scroll-throttled';
@@ -28,7 +29,6 @@ const PmefLandingPage = () => {
     const [respondFormVisible, setRespondFormVisible] = useState(false);
     const [registrationFormVisible, setRegistrationFormVisible] = useState(false);
     const [play, setPlay] = useState<boolean>(false);
-    const videoLink = '/krest_compressed.mp4';
 
     const TIMEOUT_DELAY = 0;
     const MINIMUM_SCROLL = 5;
@@ -36,8 +36,8 @@ const PmefLandingPage = () => {
     const icons = [
         { icon: <Flag />, iconName: '/flag.png', label: 'Бесплатно' },
         { icon: <Lent />, iconName: '/lent.png', label: 'Пристегнуть ремни' },
-        { icon: <OutPhoto />, iconName: '/out-photo.png', label: 'Два пассажира' },
         { icon: <NoAlk />, iconName: '/no-alk.png', label: 'Без еды и напитков' },
+        { icon: <OutPhoto />, iconName: '/out-photo.png', label: 'Два пассажира на борту' },
         { icon: <NoPet />, iconName: '/no-pet.png', label: 'Без питомцев' },
         { icon: <NoSmok />, iconName: '/no-smok.png', label: 'Не курить' }
     ];
@@ -134,7 +134,6 @@ const PmefLandingPage = () => {
                             icons?.map(({ iconName, label }, i) => {
                                 return (
                                     <div className={cn('pmef-landing-page__icon-block')} key={i}>
-                                        {/* {icon} */}
                                         <img className={cn('pmef-landing-page__icon')} src={iconName} />
                                         <label className={cn('pmef-landing-page__icon-label')}>
                                             {label}
@@ -166,8 +165,9 @@ const PmefLandingPage = () => {
                         <PlayButton className={cn('pmef-landing-page__play-button', { 'pmef-landing-page__play-button_hidden': play })} />
                         <video
                             className={cn('pmef-landing-page__video')}
-                            src={videoLink}
+                            src={isMobile ? '/spb_mobile.mp4' : '/spb.mp4'}
                             loop={true}
+                            poster="/spb_back.jpg"
                             ref={videoRef}
                         >
                         </video>
