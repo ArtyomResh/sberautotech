@@ -13,7 +13,7 @@
 
     @media (hover: hover) and (pointer: fine) {
 
-        &:hover {
+        &:hover:not([disabled]) {
             background-color: #66ded2;
         }
     }
@@ -23,7 +23,7 @@
 
         @media (hover: hover) and (pointer: fine) {
 
-            &:hover {
+            &:hover:not([disabled]) {
                 background-color: #66ded2;
                 color: #ffff;
             }
