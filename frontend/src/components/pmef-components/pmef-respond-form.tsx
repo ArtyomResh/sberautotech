@@ -21,7 +21,7 @@ const PmefRespondForm = (props: IProps) => {
     const [isSended, setContentSend] = useState(false);
     const [error, setError] = useState(false);
 
-    const FORM_URL = '/preview';
+    const FORM_URL = '/review';
 
     const context = useForm({
         mode            : 'onSubmit',
