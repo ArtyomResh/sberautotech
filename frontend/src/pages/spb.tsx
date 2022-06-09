@@ -17,6 +17,7 @@ import PlayButton from '../images/pmef/play-button.inline.svg';
 import Button from '../components/button';
 import Layout from '../components/layout';
 import PmefRespondForm from '../components/pmef-components/pmef-respond-form';
+import PmefRegistrationForTestingForm from '../components/pmef-components/pmef-registration-for-testing-form';
 
 import style from './pmef-landing-page.css';
 
@@ -25,9 +26,9 @@ const PmefLandingPage = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [shouldAddShadow, setShouldAddShadow] = useState(false);
     const [respondFormVisible, setRespondFormVisible] = useState(false);
+    const [registrationFormVisible, setRegistrationFormVisible] = useState(false);
     const [play, setPlay] = useState<boolean>(false);
     const videoLink = '/krest_compressed.mp4';
-    const imgLink = '/background.jpg';
 
     const TIMEOUT_DELAY = 0;
     const MINIMUM_SCROLL = 5;
@@ -68,6 +69,7 @@ const PmefLandingPage = () => {
         <Layout type="pmef-landing-page" >
             <div className={cn('pmef-landing-page')}>
                 {respondFormVisible ? <PmefRespondForm closeHandler={() => setRespondFormVisible(false)} /> : null}
+                {registrationFormVisible ? <PmefRegistrationForTestingForm closeHandler={() => setRegistrationFormVisible(false)} /> : null}
                 <div className={cn('pmef-landing-page__first-section')}>
                     <img className={cn('pmef-landing-page__background-image')} />
                     <nav className={cn('pmef-landing-page__header', {

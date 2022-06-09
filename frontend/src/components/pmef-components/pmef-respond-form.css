@@ -1,7 +1,3 @@
-.form-wrapper {
-
-}
-
 .pmef-respond-form {
     position: fixed;
     width: 1520px;
@@ -43,6 +39,7 @@
 
         @media (max-width: 744px) {
             height: 100vh;
+            padding: 10px;
         }
     }
 
@@ -155,10 +152,11 @@
             position: absolute;
             top: 20px;
             right: 20px;
+        }
 
-            & svg path:last-child {
-                fill: #1f272e;
-            }
+        @media (max-width: 744px) {
+            top: 0;
+            right: 0;
         }
     }
 
@@ -206,6 +204,13 @@
 
         @media (max-width: 1280px) {
             margin-top: 32px;
+        }
+    }
+
+    &__left-block {
+
+        @media (max-width: 744px) {
+            margin-top: 63px;
         }
     }
 }
