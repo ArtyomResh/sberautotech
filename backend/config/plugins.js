@@ -20,15 +20,17 @@ module.exports = ({ env }) => {
     email: {
       provider: 'nodemailer',
       providerOptions: {
-        host: env('SMTP_HOST', 'smtp.office365.com'),
-        port: env('SMTP_PORT', 587),
+        host: env('SMTP_HOST', '10.10.1.24'),
+        port: env('SMTP_PORT', 25),
+        secure: false,
+        ignoreTLS: true,
         auth: {
-          user: env('SMTP_USERNAME'),
-          pass: env('SMTP_PASSWORD'),
+          user: env('SMTP_USERNAME', ""),
+          pass: env('SMTP_PASSWORD', ""),
         }
       },
       settings: {
-        defaultFrom: 'no-reply-dev@sbauto.tech'
+        defaultFrom: 'feedback@sberautotech.ru'
       },
     }
   }

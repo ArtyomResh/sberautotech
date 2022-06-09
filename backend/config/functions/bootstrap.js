@@ -21,6 +21,8 @@ const {
   FooterEn,
   PrivacyPolicyRu,
   PrivacyPolicyEn,
+  PmefLandingPageRu,
+  PmefLandingPageEn,
   RespondFormRu,
   RespondFormEn,
   VacanciesPageRu,
@@ -330,6 +332,15 @@ async function importNavPanel() {
   await createEntry({ model: "nav-panel", entry: NavPanelEn });
 }
 
+async function importPmefLandingPage() {
+  const files = {
+    "video": getFileData(PmefLandingPageRu.videoName),
+    "background": getFileData(PmefLandingPageRu.backgroundName),
+  };
+  await createEntry({ model: "pmef-landing-page", entry: PmefLandingPageRu, files });
+  await createEntry({ model: "pmef-landing-page", entry: PmefLandingPageEn, files });
+}
+
 async function importPrivacyPolicy() {
   await createEntry({ model: "privacy-policy", entry: PrivacyPolicyRu });
   await createEntry({ model: "privacy-policy", entry: PrivacyPolicyEn });
@@ -359,6 +370,7 @@ async function importSeedData() {
     footer: ['find'],
     'privacy-policy': ['find'],
     'respond-form': ['find'],
+    'pmef-landing-page': ['find'],
     form: ['send'],
     vacancy: ['find', 'findone'],
     tag: ['find', 'findone'],
@@ -381,7 +393,8 @@ async function importSeedData() {
   await importFlip();
   await importNavPanel();
   await importFooter();
-  await importPrivacyPolicy();
+  await importPrivacyPolicy(); 
+  await importPmefLandingPage();
   await importRespondForm();
   await importVacanciesPage();
   await importVacancyPage();

@@ -270,6 +270,22 @@
       "slider_items": [null, null, null, null, null]
     }
   },
+  "PmefLandingPageRu": {
+    "id": 1,
+    "locale": "ru",
+    "video": null,
+    "videoName": "krest_compressed.mp4",
+    "backgroundName": "background.jpg",
+    "background": null
+  },
+  "PmefLandingPageEn": {
+    "id": 1,
+    "locale": "en",
+    "video": null,
+    "videoName": "krest_compressed.mp4",
+    "backgroundName": "background.jpg",
+    "background": null
+  },
   "CareerRu": {
     "id": 1,
     "locale": "ru",
@@ -3196,6 +3212,11 @@
     "id": 1,
     "locale": "ru",
     "links": [
+      {
+        "text": "Беспилотное тестирование",
+        "to": "/spb",
+        "style": "fill"
+      },
       {
         "text": "ФЛИП",
         "to": "/flip",

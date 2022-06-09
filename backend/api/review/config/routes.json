@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/review",
+      "handler": "review.send",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

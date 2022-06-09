@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/pmef-landing-page",
+      "handler": "pmef-landing-page.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/pmef-landing-page",
+      "handler": "pmef-landing-page.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/pmef-landing-page",
+      "handler": "pmef-landing-page.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
