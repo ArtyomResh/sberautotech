@@ -72,7 +72,7 @@ const PmefRespondForm = (props: IProps) => {
                 })}
                 >
                     <p className={cn('pmef-respond-form__error-title')}>
-                        Ваш отзыв <span>не отправлен.</span>
+                        Ваш отзыв <span>не отправлен.</span><br />
                         Попробуйте еще раз.
                     </p>
                     <div
