@@ -14,7 +14,8 @@ export interface IRadioButtonProps {
     inputRef?: React.Ref<HTMLInputElement>,
     checked?: boolean,
     className?: string,
-    requiredValidation?: Message | ValidationRule<boolean>
+    requiredValidation?: Message | ValidationRule<boolean>,
+    onChange?: () => void
 }
 
 const CheckBox: React.FC<IRadioButtonProps> = ({ label, name, ...props }: IRadioButtonProps) => {
@@ -30,6 +31,7 @@ const CheckBox: React.FC<IRadioButtonProps> = ({ label, name, ...props }: IRadio
                 {...register(name, {
                     required: props.requiredValidation
                 })}
+                onChange={props?.onChange}
             />
             <label className={cn('check-box__label')}>
                 {label}
