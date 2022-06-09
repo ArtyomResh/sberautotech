@@ -27,18 +27,17 @@ const PmefLandingPage = () => {
     const [respondFormVisible, setRespondFormVisible] = useState(false);
     const [play, setPlay] = useState<boolean>(false);
     const videoLink = '/krest_compressed.mp4';
-    const imgLink = '/background.jpg';
 
     const TIMEOUT_DELAY = 0;
     const MINIMUM_SCROLL = 5;
 
     const icons = [
-        { icon: <Flag />, label: 'Бесплатно' },
-        { icon: <Lent />, label: 'Пристегнуть ремни' },
-        { icon: <OutPhoto />, label: 'Фото только снаружи' },
-        { icon: <NoAlk />, label: 'Без еды и напитков' },
-        { icon: <NoPet />, label: 'Без питомцев' },
-        { icon: <NoSmok />, label: 'Не курить' }
+        { icon: <Flag />, iconName: '/flag.png', label: 'Бесплатно' },
+        { icon: <Lent />, iconName: '/lent.png', label: 'Пристегнуть ремни' },
+        { icon: <OutPhoto />, iconName: '/out-photo.png', label: 'Два пассажира' },
+        { icon: <NoAlk />, iconName: '/no-alk.png', label: 'Без еды и напитков' },
+        { icon: <NoPet />, iconName: '/no-pet.png', label: 'Без питомцев' },
+        { icon: <NoSmok />, iconName: '/no-smok.png', label: 'Не курить' }
     ];
 
     const labelCorousel = ['Автономное вождение', 'Электромобиль ФЛИП', 'Интеграция с V2X и V2V', 'Управление флотом', 'Пассажирские сервисы', 'Пользовательские приложения'];
@@ -65,7 +64,7 @@ const PmefLandingPage = () => {
     }, []);
 
     return (
-        <Layout type="pmef-landing-page" >
+        <Layout type="pmef-landing-page">
             <div className={cn('pmef-landing-page')}>
                 {respondFormVisible ? <PmefRespondForm /> : null}
                 <div className={cn('pmef-landing-page__first-section')}>
@@ -76,9 +75,9 @@ const PmefLandingPage = () => {
                     >
                         <LogoWhite className={cn('pmef-landing-page__logo')} />
                         <div className={cn('pmef-landing-page__header-button-block')}>
-                            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
+                            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} disabled={true} label="Записаться на тестирование" />
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} disabled={true} label="Оставить отзыв" onClick={() => {
                                     setRespondFormVisible(!respondFormVisible);
                                 }}
                             />
@@ -87,14 +86,14 @@ const PmefLandingPage = () => {
                     <div className={cn('pmef-landing-page__content-wrapper')}>
                         <div className={cn('pmef-landing-page__middle-block')}>
                             <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__1')}>Приглашаем на <span>открытое тестирование беспилотников</span> SberAutoTech<br />в Санкт-Петербурге</p>
-                            <p className={cn('pmef-landing-page__small-title', 'pmef-landing-page__2')}>Прокатим по дорогам города и покажем, как работает технология автономного вождения</p>
+                            <p className={cn('pmef-landing-page__small-title', 'pmef-landing-page__2')}>Покатаем по дорогам города и покажем, как работает технология автономного вождения</p>
                             <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__date')}>15–18 июня</p>
                             <p className={cn('pmef-landing-page__big-title')}>12:00–22:00</p>
                         </div>
                         <div className={cn('pmef-landing-page__mob-button-block')}>
-                            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" />
+                            <Button className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} disabled={true} label="Записаться на тестирование" />
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} disabled={true} label="Оставить отзыв" onClick={() => {
                                     setRespondFormVisible(!respondFormVisible);
                                 }}
                             />
@@ -121,10 +120,11 @@ const PmefLandingPage = () => {
                     <p className={cn('pmef-landing-page__big-title', 'pmef-landing-page__3')}>Кстати, <span>про заезд</span></p>
                     <div className={cn('pmef-landing-page__icons-block')}>
                         {
-                            icons?.map(({ icon, label }, i) => {
+                            icons?.map(({ iconName, label }, i) => {
                                 return (
                                     <div className={cn('pmef-landing-page__icon-block')} key={i}>
-                                        {icon}
+                                        {/* {icon} */}
+                                        <img className={cn('pmef-landing-page__icon')} src={iconName} />
                                         <label className={cn('pmef-landing-page__icon-label')}>
                                             {label}
                                         </label>
