@@ -79,12 +79,12 @@ const PmefLandingPage = () => {
                         <LogoWhite className={cn('pmef-landing-page__logo')} />
                         <div className={cn('pmef-landing-page__header-button-block')}>
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} disabled={true} label="Записаться на тестирование" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" onClick={() => {
                                     setRegistrationFormVisible(!registrationFormVisible);
                                 }}
                             />
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} disabled={true} label="Оставить отзыв" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
                                     setRespondFormVisible(!respondFormVisible);
                                 }}
                             />
@@ -99,12 +99,12 @@ const PmefLandingPage = () => {
                         </div>
                         <div className={cn('pmef-landing-page__mob-button-block')}>
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} disabled={true} label="Записаться на тестирование" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" onClick={() => {
                                     setRegistrationFormVisible(!registrationFormVisible);
                                 }}
                             />
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} disabled={true} label="Оставить отзыв" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
                                     setRespondFormVisible(!respondFormVisible);
                                 }}
                             />
