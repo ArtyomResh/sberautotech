@@ -268,7 +268,7 @@ const IndexPage = () => {
     useEffect(() => {
         if(isMobile !== null) {
             const preloadVideos = [
-                fetch(isMobile ? '/pmef_test_mobile.mp4' : '/pmef_test.mp4').then((response) => response.blob()),
+                // fetch(isMobile ? '/pmef_test_mobile.mp4' : '/pmef_test.mp4').then((response) => response.blob()),
                 fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
                 fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
                 fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.url).then((response) => response.blob()),
