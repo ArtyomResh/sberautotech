@@ -4,8 +4,7 @@ module.exports = {
 
     try {
       await strapi.plugins['email'].services.email.send({
-        // to: 'feedback@sberautotech.ru',
-        to: 'mmborisov@sberautotech.ru',
+        to: 'feedback@sberautotech.ru',
         subject: `Отзыв о поездке на Крестовском`,
         html: `
           <p>ФИО - ${name}</p>
