@@ -14,13 +14,13 @@
         left: 0;
         top: 0;
         background: black;
-        background-image: url('/map 1280.png');
+        background-image: url("/map 1280.png");
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover; 
+        background-size: cover;
 
         @media (min-width: 1920px) {
-            background-image: url('/map 1920.png');
+            background-image: url("/map 1920.png");
         }
 
         @media (max-width: 1280px) {
@@ -32,7 +32,7 @@
         display: none;
         width: 100%;
         height: calc(100vh / 3);
-        background-image: url('/map mob.png');
+        background-image: url("/map mob.png");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -44,12 +44,12 @@
         }
 
         @media (min-width: 650px) and (max-width: 1280px) {
-            background-image: url('/map 744.png');
+            background-image: url("/map 744.png");
             height: calc(100vh / 2);
         }
 
         @media (min-width: 1024px) and (max-width: 1280px) {
-            background-image: url('/map 1280.png');
+            background-image: url("/map 1280.png");
             height: calc(100vh / 2);
         }
     }
@@ -134,6 +134,13 @@
 
     &__response-button {
         background-color: #ffffff;
+
+        @media (hover: hover) and (pointer: fine) {
+
+            &:hover {
+                background-color: #e0e6eb !important;
+            }
+        }
     }
 
     &__big-title {
@@ -285,7 +292,7 @@
         }
 
         & span {
-            color: #67CFC9;
+            color: #67cfc9;
             display: inline;
         }
     }
@@ -321,10 +328,10 @@
     &__4 {
         margin-top: 120px;
         color: black;
-        max-width: 1099px;
+        max-width: 75%;
 
         & span {
-            color: #67CFC9;
+            color: #67cfc9;
         }
 
         @media (max-width: 1520px) {
@@ -333,6 +340,7 @@
 
         @media (max-width: 1280px) {
             margin: 92px 20px 0;
+            max-width: none;
         }
 
         @media (max-width: 744px) {
@@ -364,11 +372,15 @@
     &__title-block {
         margin-top: 87px;
         display: flex;
-        max-width: 1100px;
+        max-width: 75%;
         justify-content: space-between;
 
         @media (max-width: 1520px) {
             margin-top: 44px;
+        }
+
+        @media (max-width: 1280px) {
+            max-width: none;
         }
 
         @media (max-width: 744px) {
@@ -402,6 +414,7 @@
 
     &__label-corousel {
         display: flex;
+        justify-content: space-evenly;
         overflow-x: scroll;
         width: 100vw;
         margin-top: 44px !important;
@@ -427,6 +440,7 @@
 
             &_mob {
                 display: flex;
+                justify-content: space-evenly;
                 overflow-x: scroll;
                 width: 100vw;
                 margin-top: 24px !important;

@@ -24,10 +24,7 @@ const PmefRespondForm = (props: IProps) => {
     const FORM_URL = '/review';
 
     const context = useForm({
-        mode            : 'onSubmit',
-        reValidateMode  : 'onChange',
-        shouldFocusError: true,
-        defaultValues   : {}
+        mode: 'onSubmit'
     });
 
     const cn = useClassnames(style);
