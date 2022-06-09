@@ -24,7 +24,7 @@ const Button = ({ label, type, disabled, styleType, className, onClick, count, i
 
     return (
         <button
-            className={cn('button', `button__${styleType}`, className)}
+            className={cn('button', `button__${styleType}`, className, { 'button_disabled': disabled })}
             type={type}
             disabled={disabled || isLoading}
             onClick={onClick}

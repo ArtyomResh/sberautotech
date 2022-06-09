@@ -67,7 +67,7 @@ const PmefLandingPage = () => {
     return (
         <Layout type="pmef-landing-page" >
             <div className={cn('pmef-landing-page')}>
-                {respondFormVisible ? <PmefRespondForm /> : null}
+                {respondFormVisible ? <PmefRespondForm closeHandler={() => setRespondFormVisible(false)} /> : null}
                 <div className={cn('pmef-landing-page__first-section')}>
                     <img className={cn('pmef-landing-page__background-image')} />
                     <nav className={cn('pmef-landing-page__header', {
