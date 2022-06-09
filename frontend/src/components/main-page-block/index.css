@@ -248,13 +248,13 @@
     }
 }
 
-[id="0"] {
+/* [id="0"] {
     .block__text {
         width: 100%;
     }
-}
+} */
 
-[id="3"] {
+[id="2"] {
     .block__text {
         max-width: 1115px;
     }
