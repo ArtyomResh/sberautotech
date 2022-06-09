@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 
 import Button from '../button';
@@ -11,6 +11,21 @@ import IconClose from '../../images/pmef/icon-cls.inline.svg';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './pmef-respond-form.css';
+
+const dates = [
+    { label: '10.06.2022', value: '06-10-2022' },
+    { label: '11.06.2022', value: '06-11-2022' },
+    { label: '12.06.2022', value: '06-12-2022' },
+    { label: '13.06.2022', value: '06-13-2022' },
+    { label: '14.06.2022', value: '06-14-2022' },
+    { label: '15.06.2022', value: '06-15-2022' },
+    { label: '16.06.2022', value: '06-16-2022' },
+    { label: '17.06.2022', value: '06-17-2022' },
+    { label: '18.06.2022', value: '06-18-2022' },
+    { label: '19.06.2022', value: '06-19-2022' },
+    { label: '20.06.2022', value: '06-20-2022' },
+    { label: '21.06.2022', value: '06-21-2022' },
+];
 
 interface IProps {
     closeHandler: () => void
@@ -30,8 +45,11 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
     });
     const [isSended, setContentSend] = useState(false);
     const [error, setError] = useState(false);
+    const [selectedDate, setSelectedDate] = useState();
+    const [times, setTimes] = useState([]);
+    const [selectedTime, setSelectedTime] = useState();
 
-    const FORM_URL = '/review';
+    const FORM_URL = '/order';
 
     const context = useForm({
         mode: 'onSubmit'
@@ -39,15 +57,23 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
 
     const cn = useClassnames(style);
 
+    useEffect(() => {
+        if(selectedDate) {
+            fetch('/freeSlots?date=' + selectedDate.value).then(data => data.json()).then(data => setTimes(data));
+        }
+    }, [selectedDate]);
+
     const onSubmit = async () => {
         const data = context.getValues();
 
-        delete data.acception;
+        delete data.acceptionOne;
+        delete data.acceptionTwo;
+        delete data.acceptionThree;
 
         try {
             const res = await fetch(FORM_URL, {
                 method : 'POST',
-                body   : JSON.stringify(data),
+                body   : JSON.stringify({...data, date: selectedDate.value, time: selectedTime.timeFrom}),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -149,10 +175,10 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                         <Input placeholder="Почта" type="email" name="email" />
                     </div>
                     <div className={cn('pmef-respond-form__field-date')}>
-                        <Select name="date" />
+                        <Select name="date" placeholder="Дата поездки" options={dates} onChange={(value) => setSelectedDate(value)} />
                     </div>
                     <div className={cn('pmef-respond-form__field-time')}>
-                        <Select name="time" />
+                        <Select name="time" placeholder="Время" options={times} onChange={(value) => setSelectedTime(value)} />
                     </div>
                     <CheckBox
                         name="acceptionOne" label="Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности"
@@ -170,7 +196,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                 </div>
             </form>
         );
-    }, [error, isSended, submitButtonIsDisabled]);
+    }, [error, isSended, submitButtonIsDisabled, times]);
 
     return (
         <FormProvider {...context}>
