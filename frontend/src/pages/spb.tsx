@@ -80,11 +80,17 @@ const PmefLandingPage = () => {
                         <div className={cn('pmef-landing-page__header-button-block')}>
                             <Button
                                 className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" onClick={() => {
+                                    if(respondFormVisible) {
+                                        setRespondFormVisible(false);
+                                    }
                                     setRegistrationFormVisible(!registrationFormVisible);
                                 }}
                             />
                             <Button
                                 className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
+                                    if(registrationFormVisible) {
+                                        setRegistrationFormVisible(false);
+                                    }
                                     setRespondFormVisible(!respondFormVisible);
                                 }}
                             />
@@ -100,11 +106,17 @@ const PmefLandingPage = () => {
                         <div className={cn('pmef-landing-page__mob-button-block')}>
                             <Button
                                 className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" onClick={() => {
+                                    if(respondFormVisible) {
+                                        setRespondFormVisible(false);
+                                    }
                                     setRegistrationFormVisible(!registrationFormVisible);
                                 }}
                             />
                             <Button
                                 className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
+                                    if(registrationFormVisible) {
+                                        setRegistrationFormVisible(false);
+                                    }
                                     setRespondFormVisible(!respondFormVisible);
                                 }}
                             />
