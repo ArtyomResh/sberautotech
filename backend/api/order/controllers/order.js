@@ -124,6 +124,18 @@ module.exports = {
           <p>Дата и время поездки: ${date} ${time}</p>
         `
       });
+
+      setTimeout(async () => {
+        await strapi.plugins['email'].services.email.send({
+          to: email,
+          subject: `Пожалуйста, оставьте отзыв`,
+          html: `
+            <p>Здравствуйте, ${name}</p>
+            <p>Просим вас оставить отзыв о поездке</p>
+            <p>Дата и время поездки: ${date} ${time}</p>
+          `
+        });
+      }, 60000)
     } catch (err) {
       console.error(err);
       ctx.badRequest('error', JSON.stringify(err.message))
