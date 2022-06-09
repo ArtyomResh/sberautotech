@@ -209,7 +209,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                         metaTitle : title
                     }
                 }
-                theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={5}
+                theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={4}
             >
                 <div className={cn('vacancy')}>
                     <div className={cn('vacancy__wrapper')}>
