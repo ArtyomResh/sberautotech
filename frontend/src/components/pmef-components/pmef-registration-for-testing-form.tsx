@@ -15,18 +15,10 @@ import style from './pmef-registration-form.css';
 import policyLink from '../../../static/test.pdf';
 
 const dates = [
-    { label: '10.06.2022', value: '06-10-2022' },
-    { label: '11.06.2022', value: '06-11-2022' },
-    { label: '12.06.2022', value: '06-12-2022' },
-    { label: '13.06.2022', value: '06-13-2022' },
-    { label: '14.06.2022', value: '06-14-2022' },
     { label: '15.06.2022', value: '06-15-2022' },
     { label: '16.06.2022', value: '06-16-2022' },
     { label: '17.06.2022', value: '06-17-2022' },
-    { label: '18.06.2022', value: '06-18-2022' },
-    { label: '19.06.2022', value: '06-19-2022' },
-    { label: '20.06.2022', value: '06-20-2022' },
-    { label: '21.06.2022', value: '06-21-2022' }
+    { label: '18.06.2022', value: '06-18-2022' }
 ];
 
 interface IProps {
@@ -59,7 +51,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
         if(selectedDate) {
             fetch(`/freeSlots?date=${selectedDate.value}`)
                 .then((data) => data.json())
-                .then((data) => setTimes(data))
+                .then((data) => setTimes(data.filter(item => !item.disabled)))
                 .catch((err) => {
                     throw new Error(err);
                 });
