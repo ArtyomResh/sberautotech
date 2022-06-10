@@ -134,7 +134,7 @@ const PmefRespondForm = (props: IProps) => {
                     </div>
                     <Textarea placeholder="Ваш отзыв" name="dateTime" requiredValidation={false} />
                     <CheckBox
-                        name="acception" label={toUnescapedHTML(`<a href="${policyLink}">Даю согласие на обработку моих персональных данных в соответствии с <span>политикой конфиденциальности</span></a>`)}
+                        name="acception" label={toUnescapedHTML(`<a target="_blank" href="${policyLink}">Даю согласие на обработку моих персональных данных в соответствии с <span>политикой конфиденциальности</span></a>`)}
                         onChange={() => setSubmitButton(!submitButtonIsDisabled)}
                         className={cn('pmef-respond-form__checkbox')}
                     />
