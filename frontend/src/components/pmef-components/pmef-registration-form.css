@@ -167,7 +167,7 @@
 
     &__close-btn {
         width: fit-content;
-        align-self: end;
+        align-self: flex-end;
         cursor: pointer;
 
         & svg path:last-child {
