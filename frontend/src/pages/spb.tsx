@@ -42,7 +42,7 @@ const PmefLandingPage = () => {
         { icon: <NoSmok />, iconName: '/no-smok.png', label: 'Не курить' }
     ];
 
-    const labelCorousel = ['Автономное вождение', 'Электромобиль ФЛИП', 'Интеграция с V2X и V2V', 'Управление флотом', 'Пассажирские сервисы', 'Пользовательские приложения'];
+    const labelCorousel = ['Автономное вождение', 'Электромобиль ФЛИП', 'Интеграция с V2X', 'Управление флотом', 'Пассажирские сервисы', 'Пользовательские приложения'];
 
     useDocumentScrollThrottled(({ currentScrollTop }) => {
         const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
@@ -113,7 +113,7 @@ const PmefLandingPage = () => {
                         <div className={cn('pmef-landing-page__bottom-block')}>
                             <div className={cn('pmef-landing-page__text-block', 'pmef-landing-page__text-block_grid-c')}>
                                 <p className={cn('pmef-landing-page__small-title')}>Адрес</p>
-                                <p className={cn('pmef-landing-page__big-title')}>Крестовский остров, Р21</p>
+                                <a href="https://go.2gis.com/wvezcr" target="_blank" rel="noreferrer" className={cn('pmef-landing-page__big-title')}>Крестовский остров, Р21</a>
                             </div>
                             <div className={cn('pmef-landing-page__text-block', 'pmef-landing-page__text-block_grid-a')}>
                                 <p className={cn('pmef-landing-page__small-title')}>Протяженность</p>

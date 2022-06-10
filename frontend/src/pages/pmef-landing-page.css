@@ -193,11 +193,15 @@
         margin-top: 32px;
 
         @media (max-width: 1520px) {
-            margin-top: 74px;
+            margin-top: 34px;
         }
 
         @media (max-width: 1280px) {
-            margin-top: 44px;
+            margin-top: 34px;
+        }
+
+        @media (max-width: 744px) {
+            margin-top: 24px;
         }
     }
 
@@ -206,7 +210,15 @@
         margin-top: 184px;
 
         @media (max-width: 1520px) {
-            margin-top: 34px;
+            margin-top: 74px;
+        }
+
+        @media (max-width: 1280px) {
+            margin-top: 74px;
+        }
+
+        @media (max-width: 744px) {
+            margin-top: 44px;
         }
     }
 
@@ -247,7 +259,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: calc(100% - 40px);
+        height: calc(100% - 20px);
     }
 
     &__middle-block {
@@ -507,4 +519,8 @@
     &__video {
         width: 100vw;
     }
+}
+
+a.pmef-landing-page__big-title:hover {
+    color: rgba(189, 255, 248, 1);
 }
