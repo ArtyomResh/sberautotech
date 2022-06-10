@@ -110,7 +110,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                 })}
                 >
                     <p className={cn('pmef-registration-form__error-title')}>
-                        Ваш отзыв <span>не отправлен.</span><br />
+                        Записаться <span>не получилось.</span><br />
                         Попробуйте еще раз.
                     </p>
                     <div
@@ -129,8 +129,8 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
             return (
                 <div className={cn('pmef-registration-form__complete-popup')}>
                     <p className={cn('pmef-registration-form__complete-popup-title')}>
-                        Ваш отзыв отправлен!<br />
-                        Спасибо.
+                        Вы записаны на открытое<br />
+                        тестирование
                     </p>
                     <div
                         className={cn('pmef-registration-form__complete-popup-close-btn')} onClick={() => {
