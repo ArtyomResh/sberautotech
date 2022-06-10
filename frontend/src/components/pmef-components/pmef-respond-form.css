@@ -79,6 +79,13 @@
         }
     }
 
+    &__checkbox {
+
+        & span {
+            font-weight: 600;
+        }
+    }
+
     &__complete-popup-title {
         font-size: 47px;
         line-height: 48px;
