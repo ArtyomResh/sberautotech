@@ -9,25 +9,23 @@ import Textarea from '../respond-form/textarea';
 import IconClose from '../../images/pmef/icon-cls.inline.svg';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import { toUnescapedHTML } from '../../utils';
 
 import style from './pmef-respond-form.css';
+import policyLink from '../../../static/Согласие на участии в тестировании беспилотного ТС_AS (ПМЭФ-2022).pdf'
 
 interface IProps {
     closeHandler: () => void
 }
 
 const PmefRespondForm = (props: IProps) => {
-    const [submitButtonIsDisabled, setSubmitButton] = useState(true);
     const [isSended, setContentSend] = useState(false);
     const [error, setError] = useState(false);
 
     const FORM_URL = '/review';
 
     const context = useForm({
-        mode            : 'onSubmit',
-        reValidateMode  : 'onChange',
-        shouldFocusError: true,
-        defaultValues   : {}
+        mode: 'onSubmit'
     });
 
     const cn = useClassnames(style);
@@ -128,21 +126,23 @@ const PmefRespondForm = (props: IProps) => {
                         <IconClose />
                     </div>
                     <div className={cn('pmef-respond-form__field-name')}>
-                        <Input placeholder="ФИО" type="text" name="name" />
+                        <Input placeholder="ФИО" type="text" name="name" requiredValidation={true} />
                     </div>
                     <div className={cn('pmef-respond-form__field-date')}>
                         <Input placeholder="Дата и время поездки" type="text" name="dateTime" />
                     </div>
-                    <Textarea placeholder="Ваш отзыв" name="dateTime" requiredValidation={false} />
+                    <Textarea placeholder="Ваш отзыв" name="dateTime" requiredValidation={true} />
                     <CheckBox
-                        name="acception" label="Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности"
+                        name="acception" label={toUnescapedHTML(`<a target="_blank" href="${policyLink}">Даю согласие на обработку моих персональных данных в соответствии с <span>политикой конфиденциальности</span></a>`)}
                         onChange={() => setSubmitButton(!submitButtonIsDisabled)}
+                        className={cn('pmef-respond-form__checkbox')}
+                        requiredValidation={true}
                     />
-                    <Button className={cn('pmef-respond-form__submit-button')} type="submit" label="Отправить" disabled={submitButtonIsDisabled} />
+                    <Button className={cn('pmef-respond-form__submit-button')} type="submit" label="Отправить" />
                 </div>
             </form>
         );
-    }, [error, isSended, submitButtonIsDisabled]);
+    }, [error, isSended]);
 
     return (
         <FormProvider {...context}>

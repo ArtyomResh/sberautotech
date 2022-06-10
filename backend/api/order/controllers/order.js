@@ -372,6 +372,7 @@ module.exports = {
       return {
         ...item,
         value: item.timeFrom + ' - ' + item.timeTo,
+        label: item.timeFrom + ' - ' + item.timeTo,
         disabled: previousOrders.length < 2 ? false : true
       }
     }))

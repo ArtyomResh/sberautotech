@@ -42,7 +42,7 @@ const PmefLandingPage = () => {
         { icon: <NoSmok />, iconName: '/no-smok.png', label: 'Не курить' }
     ];
 
-    const labelCorousel = ['Автономное вождение', 'Электромобиль ФЛИП', 'Интеграция с V2X и V2V', 'Управление флотом', 'Пассажирские сервисы', 'Пользовательские приложения'];
+    const labelCorousel = ['Автономное вождение', 'Электромобиль ФЛИП', 'Интеграция с V2X', 'Управление флотом', 'Пассажирские сервисы', 'Пользовательские приложения'];
 
     useDocumentScrollThrottled(({ currentScrollTop }) => {
         const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
@@ -76,15 +76,21 @@ const PmefLandingPage = () => {
                         'pmef-landing-page__header_shadow': shouldAddShadow
                     })}
                     >
-                        <LogoWhite className={cn('pmef-landing-page__logo')} />
+                        <Link className={cn('pmef-landing-page__logo')} to="https://sberautotech.ru/" children={<LogoWhite />} />
                         <div className={cn('pmef-landing-page__header-button-block')}>
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} disabled={true} label="Записаться на тестирование" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" onClick={() => {
+                                    if(respondFormVisible) {
+                                        setRespondFormVisible(false);
+                                    }
                                     setRegistrationFormVisible(!registrationFormVisible);
                                 }}
                             />
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} disabled={true} label="Оставить отзыв" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
+                                    if(registrationFormVisible) {
+                                        setRegistrationFormVisible(false);
+                                    }
                                     setRespondFormVisible(!respondFormVisible);
                                 }}
                             />
@@ -99,12 +105,18 @@ const PmefLandingPage = () => {
                         </div>
                         <div className={cn('pmef-landing-page__mob-button-block')}>
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} disabled={true} label="Записаться на тестирование" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" onClick={() => {
+                                    if(respondFormVisible) {
+                                        setRespondFormVisible(false);
+                                    }
                                     setRegistrationFormVisible(!registrationFormVisible);
                                 }}
                             />
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} disabled={true} label="Оставить отзыв" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
+                                    if(registrationFormVisible) {
+                                        setRegistrationFormVisible(false);
+                                    }
                                     setRespondFormVisible(!respondFormVisible);
                                 }}
                             />
@@ -113,7 +125,7 @@ const PmefLandingPage = () => {
                         <div className={cn('pmef-landing-page__bottom-block')}>
                             <div className={cn('pmef-landing-page__text-block', 'pmef-landing-page__text-block_grid-c')}>
                                 <p className={cn('pmef-landing-page__small-title')}>Адрес</p>
-                                <p className={cn('pmef-landing-page__big-title')}>Крестовский остров, Р21</p>
+                                <a href="https://go.2gis.com/wvezcr" target="_blank" rel="noreferrer" className={cn('pmef-landing-page__big-title')}>Крестовский остров, Р21</a>
                             </div>
                             <div className={cn('pmef-landing-page__text-block', 'pmef-landing-page__text-block_grid-a')}>
                                 <p className={cn('pmef-landing-page__small-title')}>Протяженность</p>
