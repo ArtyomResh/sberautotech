@@ -19,7 +19,6 @@ interface IProps {
 }
 
 const PmefRespondForm = (props: IProps) => {
-    const [submitButtonIsDisabled, setSubmitButton] = useState(true);
     const [isSended, setContentSend] = useState(false);
     const [error, setError] = useState(false);
 
@@ -127,22 +126,22 @@ const PmefRespondForm = (props: IProps) => {
                         <IconClose />
                     </div>
                     <div className={cn('pmef-respond-form__field-name')}>
-                        <Input placeholder="ФИО" type="text" name="name" />
+                        <Input placeholder="ФИО" type="text" name="name" requiredValidation={true} />
                     </div>
                     <div className={cn('pmef-respond-form__field-date')}>
                         <Input placeholder="Дата и время поездки" type="text" name="dateTime" />
                     </div>
-                    <Textarea placeholder="Ваш отзыв" name="dateTime" requiredValidation={false} />
+                    <Textarea placeholder="Ваш отзыв" name="dateTime" requiredValidation={true} />
                     <CheckBox
                         name="acception" label={toUnescapedHTML(`<a href="${policyLink}">Даю согласие на обработку моих персональных данных в соответствии с <span>политикой конфиденциальности</span></a>`)}
-                        onChange={() => setSubmitButton(!submitButtonIsDisabled)}
                         className={cn('pmef-respond-form__checkbox')}
+                        requiredValidation={true}
                     />
-                    <Button className={cn('pmef-respond-form__submit-button')} type="submit" label="Отправить" disabled={submitButtonIsDisabled} />
+                    <Button className={cn('pmef-respond-form__submit-button')} type="submit" label="Отправить" />
                 </div>
             </form>
         );
-    }, [error, isSended, submitButtonIsDisabled]);
+    }, [error, isSended]);
 
     return (
         <FormProvider {...context}>

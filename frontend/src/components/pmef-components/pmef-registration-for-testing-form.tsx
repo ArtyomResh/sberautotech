@@ -61,7 +61,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
 
     useEffect(() => {
         if(selectedDate) {
-            fetch(`/freeSlots?date=${selectedDate.value}`)
+            fetch(`http://localhost:1337/freeSlots?date=${selectedDate.value}`)
                 .then((data) => data.json())
                 .then((data) => setTimes(data))
                 .catch((err) => {
@@ -151,8 +151,20 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
     const buttonActivatorHandler = useMemo(() => {
         const arrOfBull = Object.values(submitButtonIsDisabled);
 
-        return arrOfBull.every((e) => e);
-    }, [submitButtonIsDisabled]);
+        if(!selectedDate) {
+            return false;
+        }
+
+        if(!selectedTime) {
+            return false;
+        }
+
+        if(!arrOfBull.every((e) => e)) {
+            return false;
+        }
+
+        return true;
+    }, [submitButtonIsDisabled, selectedDate, selectedTime]);
 
     const respondForm = useMemo(() => {
         return (
@@ -176,10 +188,10 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                         <IconClose />
                     </div>
                     <div className={cn('pmef-registration-form__field-name')}>
-                        <Input placeholder="ФИО" type="text" name="name" />
+                        <Input placeholder="ФИО" type="text" name="name" requiredValidation={true} />
                     </div>
                     <div className={cn('pmef-registration-form__field-email')}>
-                        <Input placeholder="Почта" type="email" name="email" />
+                        <Input placeholder="Почта" type="email" name="email" requiredValidation={true} />
                     </div>
                     <div className={cn('pmef-registration-form__select-block')}>
                         <div className={cn('pmef-registration-form__field-date')}>
@@ -208,7 +220,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                 </div>
             </form>
         );
-    }, [error, isSended, submitButtonIsDisabled, times]);
+    }, [error, isSended, submitButtonIsDisabled, times, selectedDate, selectedTime]);
 
     return (
         <FormProvider {...context}>
