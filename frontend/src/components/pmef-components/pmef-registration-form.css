@@ -159,6 +159,10 @@
 
     &__submit-button {
         min-height: 56px;
+
+        @media (max-width: 744px) {
+            margin-bottom: 40px;
+        }
     }
 
     &__close-btn {
