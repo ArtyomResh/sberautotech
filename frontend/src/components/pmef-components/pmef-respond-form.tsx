@@ -31,6 +31,7 @@ const PmefRespondForm = (props: IProps) => {
     const cn = useClassnames(style);
 
     const onSubmit = async () => {
+        setContentSend(true);
         const data = context.getValues();
 
         delete data.acception;
@@ -46,18 +47,17 @@ const PmefRespondForm = (props: IProps) => {
 
             if(res.ok) {
                 console.log('sended!');
-                setContentSend(true);
                 setError(false);
             }
 
             if(!res.ok) {
                 console.log('didnt send!');
                 setError(true);
-                setContentSend(false);
+                // setContentSend(false);
             }
         } catch(err) {
             setError(true);
-            setContentSend(false);
+            // setContentSend(false);
             throw new Error(err);
         }
     };
@@ -119,7 +119,7 @@ const PmefRespondForm = (props: IProps) => {
                     <div
                         className={cn('pmef-respond-form__close-btn')} onClick={() => {
                             setContentSend(false);
-                            setError(false);
+                            // setError(false);
                             props?.closeHandler();
                         }}
                     >
@@ -129,12 +129,12 @@ const PmefRespondForm = (props: IProps) => {
                         <Input placeholder="ФИО" type="text" name="name" requiredValidation={true} />
                     </div>
                     <div className={cn('pmef-respond-form__field-date')}>
-                        <Input placeholder="Дата и время поездки" type="text" name="dateTime" />
+                        <Input placeholder="Дата и время поездки" type="text" name="dateTime" requiredValidation={true} />
                     </div>
-                    <Textarea placeholder="Ваш отзыв" name="dateTime" requiredValidation={true} />
+                    <Textarea placeholder="Ваш отзыв" name="text" requiredValidation={true} />
                     <CheckBox
                         name="acception" label={toUnescapedHTML(`<a target="_blank" href="${policyLink}">Даю согласие на обработку моих персональных данных в соответствии с <span>политикой конфиденциальности</span></a>`)}
-                        onChange={() => setSubmitButton(!submitButtonIsDisabled)}
+                        // onChange={() => setSubmitButton(!submitButtonIsDisabled)}
                         className={cn('pmef-respond-form__checkbox')}
                         requiredValidation={true}
                     />

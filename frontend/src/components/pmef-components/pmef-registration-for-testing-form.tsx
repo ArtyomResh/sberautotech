@@ -15,18 +15,10 @@ import style from './pmef-registration-form.css';
 import policyLink from '../../../static/test.pdf';
 
 const dates = [
-    { label: '10.06.2022', value: '06-10-2022' },
-    { label: '11.06.2022', value: '06-11-2022' },
-    { label: '12.06.2022', value: '06-12-2022' },
-    { label: '13.06.2022', value: '06-13-2022' },
-    { label: '14.06.2022', value: '06-14-2022' },
     { label: '15.06.2022', value: '06-15-2022' },
     { label: '16.06.2022', value: '06-16-2022' },
     { label: '17.06.2022', value: '06-17-2022' },
-    { label: '18.06.2022', value: '06-18-2022' },
-    { label: '19.06.2022', value: '06-19-2022' },
-    { label: '20.06.2022', value: '06-20-2022' },
-    { label: '21.06.2022', value: '06-21-2022' }
+    { label: '18.06.2022', value: '06-18-2022' }
 ];
 
 interface IProps {
@@ -59,7 +51,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
         if(selectedDate) {
             fetch(`/freeSlots?date=${selectedDate.value}`)
                 .then((data) => data.json())
-                .then((data) => setTimes(data))
+                .then((data) => setTimes(data.filter(item => !item.disabled)))
                 .catch((err) => {
                     throw new Error(err);
                 });
@@ -67,6 +59,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
     }, [selectedDate]);
 
     const onSubmit = async () => {
+        setContentSend(true);
         const data = context.getValues();
 
         delete data.acceptionOne;
@@ -84,18 +77,17 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
 
             if(res.ok) {
                 console.log('sended!');
-                setContentSend(true);
                 setError(false);
             }
 
             if(!res.ok) {
                 console.log('didnt send!');
                 setError(true);
-                setContentSend(false);
+                // setContentSend(false);
             }
         } catch(err) {
             setError(true);
-            setContentSend(false);
+            // setContentSend(false);
             throw new Error(err);
         }
     };
@@ -198,7 +190,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                         </div>
                     </div>
                     <CheckBox
-                        name="acceptionOne" label={toUnescapedHTML(`<a target="_blank" href="${policyLink}">Даю <span>согласие</span> на участие в эксперименте, обработку персональных данных и осуществление фото- и видеосъемки.</a>`)}
+                        name="acceptionOne" label={toUnescapedHTML(`<a target="_blank" href="${policyLink}">Даю <span>согласие</span> на участие в эксперименте, обработку персональных данных и осуществление фото- и видеосъемки</a>`)}
                         onChange={acceptionsHandler}
                         className={cn('pmef-registration-form__checkbox')}
                     />
