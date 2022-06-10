@@ -9,8 +9,10 @@ import Textarea from '../respond-form/textarea';
 import IconClose from '../../images/pmef/icon-cls.inline.svg';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import { toUnescapedHTML } from '../../utils';
 
 import style from './pmef-respond-form.css';
+import policyLink from '../../../static/Согласие на участии в тестировании беспилотного ТС_AS (ПМЭФ-2022).pdf'
 
 interface IProps {
     closeHandler: () => void
@@ -132,8 +134,9 @@ const PmefRespondForm = (props: IProps) => {
                     </div>
                     <Textarea placeholder="Ваш отзыв" name="dateTime" requiredValidation={false} />
                     <CheckBox
-                        name="acception" label="Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности"
+                        name="acception" label={toUnescapedHTML(`<a href="${policyLink}">Даю согласие на обработку моих персональных данных в соответствии с <span>политикой конфиденциальности</span></a>`)}
                         onChange={() => setSubmitButton(!submitButtonIsDisabled)}
+                        className={cn('pmef-respond-form__checkbox')}
                     />
                     <Button className={cn('pmef-respond-form__submit-button')} type="submit" label="Отправить" disabled={submitButtonIsDisabled} />
                 </div>
