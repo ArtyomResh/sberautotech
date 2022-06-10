@@ -1,5 +1,6 @@
 .pmef-landing-page {
     padding: 20px 20px 0;
+    overflow: hidden;
 
     @media (max-width: 1280px) {
         padding: unset;
@@ -426,11 +427,10 @@
 
     &__label-corousel {
         display: flex;
-        justify-content: space-evenly;
         overflow-x: scroll;
         width: 100vw;
         margin-top: 44px !important;
-        margin-left: -12px !important;
+        margin-left: -20px !important;
 
         &::-webkit-scrollbar {
             display: none;
@@ -452,7 +452,6 @@
 
             &_mob {
                 display: flex;
-                justify-content: space-evenly;
                 overflow-x: scroll;
                 width: 100vw;
                 margin-top: 24px !important;
