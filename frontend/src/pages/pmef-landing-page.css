@@ -1,5 +1,6 @@
 .pmef-landing-page {
     padding: 20px 20px 0;
+    overflow: hidden;
 
     @media (max-width: 1280px) {
         padding: unset;
@@ -200,11 +201,15 @@
         margin-top: 32px;
 
         @media (max-width: 1520px) {
-            margin-top: 74px;
+            margin-top: 34px;
         }
 
         @media (max-width: 1280px) {
-            margin-top: 44px;
+            margin-top: 34px;
+        }
+
+        @media (max-width: 744px) {
+            margin-top: 24px;
         }
     }
 
@@ -213,7 +218,15 @@
         margin-top: 184px;
 
         @media (max-width: 1520px) {
-            margin-top: 34px;
+            margin-top: 74px;
+        }
+
+        @media (max-width: 1280px) {
+            margin-top: 74px;
+        }
+
+        @media (max-width: 744px) {
+            margin-top: 44px;
         }
     }
 
@@ -254,7 +267,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: calc(100% - 40px);
+        height: calc(100% - 20px);
     }
 
     &__middle-block {
@@ -414,11 +427,10 @@
 
     &__label-corousel {
         display: flex;
-        justify-content: space-evenly;
         overflow-x: scroll;
         width: 100vw;
         margin-top: 44px !important;
-        margin-left: -12px !important;
+        margin-left: -20px !important;
 
         &::-webkit-scrollbar {
             display: none;
@@ -440,7 +452,6 @@
 
             &_mob {
                 display: flex;
-                justify-content: space-evenly;
                 overflow-x: scroll;
                 width: 100vw;
                 margin-top: 24px !important;
@@ -521,4 +532,8 @@
     &__video {
         width: 100vw;
     }
+}
+
+a.pmef-landing-page__big-title:hover {
+    color: rgba(189, 255, 248, 1);
 }
