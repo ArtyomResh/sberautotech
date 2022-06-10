@@ -61,7 +61,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
 
     useEffect(() => {
         if(selectedDate) {
-            fetch(`http://localhost:1337/freeSlots?date=${selectedDate.value}`)
+            fetch(`/freeSlots?date=${selectedDate.value}`)
                 .then((data) => data.json())
                 .then((data) => setTimes(data))
                 .catch((err) => {
