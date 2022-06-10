@@ -35,11 +35,9 @@
         @media (max-width: 744px) {
             flex-direction: column;
             border-radius: 0;
-        }
-
-        @media (max-width: 744px) {
             height: 100vh;
             padding: 10px;
+            overflow: scroll;
         }
     }
 
