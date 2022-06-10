@@ -1,4 +1,4 @@
-.pmef-respond-form {
+.pmef-registration-form {
     position: fixed;
     width: 1520px;
     left: 50%;
@@ -85,12 +85,30 @@
         letter-spacing: -0.01em;
         margin-top: 63px;
         max-width: 600px;
-        color: #1F272E;
+        color: #1f272e;
 
         @media (max-width: 744px) {
             font-size: 26px;
             line-height: 30px;
             letter-spacing: -0.04em;
+        }
+    }
+
+    &__select-block {
+        display: flex;
+        gap: 20px;
+
+        @media (max-width: 744px) {
+            flex-direction: column;
+        }
+    }
+
+    &__field-date,
+    &__field-time {
+        width: 50%;
+
+        @media (max-width: 744px) {
+            width: 100%;
         }
     }
 
@@ -100,7 +118,7 @@
         align-self: start;
 
         & svg path:last-child {
-            fill: #1F272E;
+            fill: #1f272e;
         }
     }
 
@@ -118,7 +136,6 @@
         line-height: 48px;
         letter-spacing: -0.01em;
         margin-top: 63px;
-        max-width: 600px;
         color: #ffffff;
 
         & span {
@@ -183,6 +200,11 @@
         letter-spacing: -0.03em;
         font-family: var(--font-family-secondary);
         margin-top: 32px;
+        max-width: 333px;
+
+        &:last-child {
+            margin-top: 20px;
+        }
 
         @media (max-width: 1280px) {
             margin-top: 20px;
