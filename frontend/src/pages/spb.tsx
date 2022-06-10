@@ -76,7 +76,7 @@ const PmefLandingPage = () => {
                         'pmef-landing-page__header_shadow': shouldAddShadow
                     })}
                     >
-                        <LogoWhite className={cn('pmef-landing-page__logo')} />
+                        <Link className={cn('pmef-landing-page__logo')} to="https://sberautotech.ru/" children={<LogoWhite />} />
                         <div className={cn('pmef-landing-page__header-button-block')}>
                             <Button
                                 className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" onClick={() => {

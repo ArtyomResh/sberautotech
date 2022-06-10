@@ -9,8 +9,10 @@ import Select from '../select';
 import IconClose from '../../images/pmef/icon-cls.inline.svg';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import { toUnescapedHTML } from '../../utils';
 
 import style from './pmef-registration-form.css';
+import policyLink from '../../../static/Согласие на участии в тестировании беспилотного ТС_AS (ПМЭФ-2022).pdf'
 
 const dates = [
     { label: '10.06.2022', value: '06-10-2022' },
@@ -200,16 +202,19 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                         </div>
                     </div>
                     <CheckBox
-                        name="acceptionOne" label="Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности"
+                        name="acceptionOne" label={toUnescapedHTML(`<a href="${policyLink}">Даю согласие на обработку моих персональных данных в соответствии с <span>политикой конфиденциальности</span></a>`)}
                         onChange={acceptionsHandler}
+                        className={cn('pmef-registration-form__checkbox')}
                     />
                     <CheckBox
-                        name="acceptionTwo" label="Даю согласие на участие в эксперименте"
+                        name="acceptionTwo" label={toUnescapedHTML('Даю согласие на участие в <span>эксперименте</span>')}
                         onChange={acceptionsHandler}
+                        className={cn('pmef-registration-form__checkbox')}
                     />
                     <CheckBox
-                        name="acceptionThree" label="Даю согласие на съемку"
+                        name="acceptionThree" label={toUnescapedHTML('Даю согласие на <span>съемку</span>')}
                         onChange={acceptionsHandler}
+                        className={cn('pmef-registration-form__checkbox')}
                     />
                     <Button className={cn('pmef-registration-form__submit-button')} type="submit" label="Отправить" disabled={!buttonActivatorHandler} />
                 </div>
