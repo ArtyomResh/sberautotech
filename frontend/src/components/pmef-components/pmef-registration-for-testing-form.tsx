@@ -51,7 +51,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
         if(selectedDate) {
             fetch(`/freeSlots?date=${selectedDate.value}`)
                 .then((data) => data.json())
-                .then((data) => setTimes(data.filter(item => !item.disabled)))
+                .then((data) => setTimes(data.filter((item) => !item.disabled)))
                 .catch((err) => {
                     throw new Error(err);
                 });
@@ -103,8 +103,9 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                     </p>
                     <div
                         className={cn('pmef-registration-form__popup-close-btn')} onClick={() => {
-                            setContentSend(false);
-                            setError(false);
+                            // setContentSend(false);
+                            // setError(false);
+                            props?.closeHandler();
                         }}
                     >
                         <IconClose />
@@ -122,8 +123,8 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                     </p>
                     <div
                         className={cn('pmef-registration-form__complete-popup-close-btn')} onClick={() => {
-                            setContentSend(false);
-                            setError(false);
+                            // setContentSend(false);
+                            // setError(false);
                             props?.closeHandler();
                         }}
                     >

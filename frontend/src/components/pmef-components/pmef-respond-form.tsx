@@ -75,8 +75,9 @@ const PmefRespondForm = (props: IProps) => {
                     </p>
                     <div
                         className={cn('pmef-respond-form__popup-close-btn')} onClick={() => {
-                            setContentSend(false);
-                            setError(false);
+                            // setContentSend(false);
+                            // setError(false);
+                            props?.closeHandler();
                         }}
                     >
                         <IconClose />
@@ -94,8 +95,9 @@ const PmefRespondForm = (props: IProps) => {
                     </p>
                     <div
                         className={cn('pmef-respond-form__complete-popup-close-btn')} onClick={() => {
-                            setContentSend(false);
-                            setError(false);
+                            // setContentSend(false);
+                            // setError(false);
+                            props?.closeHandler();
                         }}
                     >
                         <IconClose />
