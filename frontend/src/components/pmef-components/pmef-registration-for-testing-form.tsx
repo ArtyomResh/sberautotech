@@ -83,11 +83,9 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
             if(!res.ok) {
                 console.log('didnt send!');
                 setError(true);
-                // setContentSend(false);
             }
         } catch(err) {
             setError(true);
-            // setContentSend(false);
             throw new Error(err);
         }
     };
@@ -126,6 +124,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                         className={cn('pmef-registration-form__complete-popup-close-btn')} onClick={() => {
                             setContentSend(false);
                             setError(false);
+                            props?.closeHandler();
                         }}
                     >
                         <IconClose />
