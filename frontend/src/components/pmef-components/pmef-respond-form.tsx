@@ -12,7 +12,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import { toUnescapedHTML } from '../../utils';
 
 import style from './pmef-respond-form.css';
-import policyLink from '../../../static/Согласие на участии в тестировании беспилотного ТС_AS (ПМЭФ-2022).pdf'
+import policyLink from '../../../static/Согласие на участии в тестировании беспилотного ТС_AS (ПМЭФ-2022).pdf';
 
 interface IProps {
     closeHandler: () => void
@@ -148,10 +148,12 @@ const PmefRespondForm = (props: IProps) => {
 
     return (
         <FormProvider {...context}>
+
             <div className={cn('pmef-respond-form')}>
                 {errorPopup}
                 {isSended ? null : respondForm}
             </div>
+
         </FormProvider>);
 };
 
