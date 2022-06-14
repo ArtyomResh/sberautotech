@@ -297,7 +297,7 @@ const timeSlots = [
   {
     id: 60,
     timeFrom: '21:50',
-    timeTo: '20:00'
+    timeTo: '22:00'
   },
 ];
 
