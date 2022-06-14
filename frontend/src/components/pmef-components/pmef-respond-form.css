@@ -142,11 +142,15 @@
 
     &__submit-button {
         min-height: 56px;
+
+        @media (max-width: 744px) {
+            margin-bottom: 40px;
+        }
     }
 
     &__close-btn {
         width: fit-content;
-        align-self: end;
+        align-self: flex-end;
         cursor: pointer;
 
         & svg path:last-child {

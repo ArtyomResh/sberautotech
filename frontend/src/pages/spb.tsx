@@ -66,10 +66,10 @@ const PmefLandingPage = () => {
     }, []);
 
     return (
-        <Layout type="pmef-landing-page">
+        <Layout seo={{ metaTitle: 'Открытое тестирование беспилотников SberAutoTech в Санкт-Петербурге', metaDescription: 'Открытое тестирование беспилотной технологии СберАвтоТех. 15—18 июня 2022 г., 12:00—22:00. Санкт-Петербург, Крестовский остров' }} type="pmef-landing-page">
+            {respondFormVisible ? <PmefRespondForm closeHandler={() => setRespondFormVisible(false)} /> : null}
+            {registrationFormVisible ? <PmefRegistrationForTestingForm closeHandler={() => setRegistrationFormVisible(false)} /> : null}
             <div className={cn('pmef-landing-page')}>
-                {respondFormVisible ? <PmefRespondForm closeHandler={() => setRespondFormVisible(false)} /> : null}
-                {registrationFormVisible ? <PmefRegistrationForTestingForm closeHandler={() => setRegistrationFormVisible(false)} /> : null}
                 <div className={cn('pmef-landing-page__first-section')}>
                     <img className={cn('pmef-landing-page__background-image')} />
                     <nav className={cn('pmef-landing-page__header', {

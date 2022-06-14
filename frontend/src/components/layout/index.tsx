@@ -25,6 +25,7 @@ const Layout = ({ children, seo, theme, pageNumber, setPageNumber, type }: IProp
     if(type === 'pmef-landing-page') {
         return (
             <AppProvider>
+                <Seo seo={seo} />
                 <main>{children}</main>
             </AppProvider>
         );
