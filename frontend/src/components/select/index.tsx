@@ -4,7 +4,7 @@ import ReactSelect, { Props } from 'react-select';
 import { customStyles } from './config';
 
 
-const Select = React.forwardRef(({ placeholder, name, value, options, onChange }: Props, ref) => {
+const Select = React.forwardRef(({ placeholder, name, value, options, onChange, noOptionsMessage }: Props, ref) => {
     const { control } = useFormContext();
 
     return (
@@ -22,6 +22,7 @@ const Select = React.forwardRef(({ placeholder, name, value, options, onChange }
                     classNamePrefix="ui-select"
                     isSearchable={false}
                     onChange={onChange}
+                    noOptionsMessage={noOptionsMessage}
                 />
             )}
         />
