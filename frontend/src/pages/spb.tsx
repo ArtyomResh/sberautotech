@@ -7,6 +7,7 @@ import useDocumentScrollThrottled from '../components/nav/use-document-scroll-th
 
 import LogoWhite from '../images/logo-white.inline.svg';
 import Arrow from '../images/pmef/arrow.inline.svg';
+import Arrow2 from '../images/pmef/a2.inline.svg';
 import Flag from '../images/pmef/flag.inline.svg';
 import Lent from '../images/pmef/lent.inline.svg';
 import NoAlk from '../images/pmef/no-alk.inline.svg';
@@ -126,6 +127,7 @@ const PmefLandingPage = () => {
                             <div className={cn('pmef-landing-page__text-block', 'pmef-landing-page__text-block_grid-c')}>
                                 <p className={cn('pmef-landing-page__small-title')}>Адрес</p>
                                 <a href="https://go.2gis.com/wvezcr" target="_blank" rel="noreferrer" className={cn('pmef-landing-page__big-title')}>Крестовский остров, Р21</a>
+                                <Arrow2 className={cn('pmef-landing-page__arrow2-icon')} />
                             </div>
                             <div className={cn('pmef-landing-page__text-block', 'pmef-landing-page__text-block_grid-a')}>
                                 <p className={cn('pmef-landing-page__small-title')}>Протяженность</p>
