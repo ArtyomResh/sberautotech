@@ -65,22 +65,13 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
             };
 
             fetch(`/freeSlots?date=${selectedDate.value}`)
-                .then((data) => {
-                    // console.log(data.json());
-
-                    return data.json();
-                })
-                .then((data) => {
-                    console.log(data);
-                    setTimes(optionsFilter(data));
-                })
+                .then((data) => data.json())
+                .then((data) => setTimes(optionsFilter(data)))
                 .catch((err) => {
                     throw new Error(err);
                 });
         }
     }, [selectedDate]);
-
-    // console.log(parse( new Date()));
 
     const onSubmit = async () => {
         setContentSend(true);
