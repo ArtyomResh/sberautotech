@@ -87,7 +87,7 @@ const PmefLandingPage = () => {
                                 }}
                             />
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" disabled={true} onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
                                     if(registrationFormVisible) {
                                         setRegistrationFormVisible(false);
                                     }
@@ -113,7 +113,7 @@ const PmefLandingPage = () => {
                                 }}
                             />
                             <Button
-                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} disabled={true} label="Оставить отзыв" onClick={() => {
+                                className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
                                     if(registrationFormVisible) {
                                         setRegistrationFormVisible(false);
                                     }
