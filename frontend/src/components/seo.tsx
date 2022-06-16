@@ -5,9 +5,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import picPath from '../../static/pic.png';
 
-console.log(pic, 'uguguguug');
-
-
 const query = graphql`
   query {
     strapiGlobal {
@@ -57,7 +54,7 @@ const SEO = ({ seo = {} }) => {
             );
         }
 
-        const shareImage = seo.shareImage || `http://sberautotech.ru${picPath}`; //import абсолютный до картинки
+        const shareImage = seo.shareImage || `https://sberautotech.ru${picPath}`; //import абсолютный до картинки
 
         tags.push(
             {

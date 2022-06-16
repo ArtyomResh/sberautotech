@@ -16,6 +16,7 @@ import style from './pmef-registration-form.css';
 import policyLink from '../../../static/test.pdf';
 
 const dates = [
+    { label: '15 июня', value: '06-15-2022' },
     { label: '16 июня', value: '06-16-2022' },
     { label: '17 июня', value: '06-17-2022' },
     { label: '18 июня', value: '06-18-2022' }
@@ -49,28 +50,29 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
 
     useEffect(() => {
         if(selectedDate) {
-            // const optionsFilter = (data) => {
-            //     return data.filter((item) => {
-            //         // if(isToday(new Date(selectedDate.value))) {
-            //         //     const currentTimeToStr = new Date().toTimeString().split(':').slice(0, 2).join(':');
+            const optionsFilter = (data) => {
+                return data.filter((item) => {
+                    if(isToday(new Date(selectedDate.value))) {
+                        const currentTimeToStr = new Date().toTimeString().split(':').slice(0, 2).join(':');
 
-            //         //     const strTimeToMillSec = (time) => Number(time.split(':')[0]) * 60 * 60 * 1000 + Number(time.split(':')[1]) * 60 * 1000;
+                        const strTimeToMillSec = (time) => Number(time.split(':')[0]) * 60 * 60 * 1000 + Number(time.split(':')[1]) * 60 * 1000;
 
-            //         //     return !item.disabled && (strTimeToMillSec(currentTimeToStr) - 300000 < strTimeToMillSec(item?.timeFrom));
-            //         // }
+                        return !item.disabled && (strTimeToMillSec(currentTimeToStr) - 300000 < strTimeToMillSec(item?.timeFrom));
+                    }
 
-            //         return !item.disabled;
-            //     });
-            // };
+                    return !item.disabled;
+                });
+            };
 
             fetch(`/freeSlots?date=${selectedDate.value}`)
                 .then((data) => data.json())
-                .then((data) => setTimes(data.filter((item) => !item.disabled)))
+                .then((data) => setTimes(optionsFilter(data)))
                 .catch((err) => {
                     throw new Error(err);
                 });
         }
-    }, [selectedDate]);
+    }
+    , [selectedDate]);
 
     const onSubmit = async () => {
         setContentSend(true);
@@ -168,7 +170,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
         return true;
     }, [submitButtonIsDisabled, selectedDate, selectedTime]);
 
-    const respondForm = () => {
+    const respondForm = useMemo(() => {
         return (
             <form
                 onSubmit={context.handleSubmit(onSubmit)}
@@ -197,7 +199,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                     </div>
                     <div className={cn('pmef-registration-form__select-block')}>
                         <div className={cn('pmef-registration-form__field-date')}>
-                            <Select name="date" placeholder="Дата поездки" options={dates} onChange={(value: Date) => setSelectedDate(value)} />
+                            <Select name="date" placeholder="Дата поездки" options={dates.filter((item) => isToday(new Date(item.value)) || isFuture(new Date(item.value)))} onChange={(value: Date) => setSelectedDate(value)} />
                         </div>
                         <div className={cn('pmef-registration-form__field-time')}>
                             <Select name="time" placeholder="Время" options={times} onChange={(value: Date) => setSelectedTime(value)} noOptionsMessage={() => 'Нет слотов'} />
@@ -212,13 +214,13 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                 </div>
             </form>
         );
-    };
+    }, [error, isSended, submitButtonIsDisabled, times, selectedDate, selectedTime]);
 
     return (
         <FormProvider {...context}>
             <div className={cn('pmef-registration-form')}>
                 {errorPopup}
-                {isSended ? null : respondForm()}
+                {isSended ? null : respondForm}
             </div>
         </FormProvider>);
 };
