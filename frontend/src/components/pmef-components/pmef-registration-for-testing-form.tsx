@@ -16,7 +16,6 @@ import style from './pmef-registration-form.css';
 import policyLink from '../../../static/test.pdf';
 
 const dates = [
-    { label: '15 июня', value: '06-15-2022' },
     { label: '16 июня', value: '06-16-2022' },
     { label: '17 июня', value: '06-17-2022' },
     { label: '18 июня', value: '06-18-2022' }
@@ -66,7 +65,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
 
             fetch(`/freeSlots?date=${selectedDate.value}`)
                 .then((data) => data.json())
-                .then((data) => setTimes(data))
+                .then((data) => setTimes(data.filter((item) => !item.disabled)))
                 .catch((err) => {
                     throw new Error(err);
                 });
@@ -213,7 +212,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                 </div>
             </form>
         );
-    }
+    };
 
     return (
         <FormProvider {...context}>
