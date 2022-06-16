@@ -169,7 +169,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
         return true;
     }, [submitButtonIsDisabled, selectedDate, selectedTime]);
 
-    const respondForm = useMemo(() => {
+    const respondForm = () => {
         return (
             <form
                 onSubmit={context.handleSubmit(onSubmit)}
@@ -213,13 +213,13 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                 </div>
             </form>
         );
-    }, [error, isSended, submitButtonIsDisabled, times, selectedDate, selectedTime]);
+    }
 
     return (
         <FormProvider {...context}>
             <div className={cn('pmef-registration-form')}>
                 {errorPopup}
-                {isSended ? null : respondForm}
+                {isSended ? null : respondForm()}
             </div>
         </FormProvider>);
 };
