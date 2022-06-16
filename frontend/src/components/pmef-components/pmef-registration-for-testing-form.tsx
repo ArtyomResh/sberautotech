@@ -40,7 +40,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
     const [times, setTimes] = useState([]);
     const [selectedTime, setSelectedTime] = useState<Date>();
 
-    const FORM_URL = '/order';
+    const FORM_URL = 'http://localhost:1337/order';
 
     const context = useForm({
         mode: 'onSubmit'
@@ -64,7 +64,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                 });
             };
 
-            fetch(`/freeSlots?date=${selectedDate.value}`)
+            fetch(`http://localhost:1337/freeSlots?date=${selectedDate.value}`)
                 .then((data) => data.json())
                 .then((data) => setTimes(optionsFilter(data)))
                 .catch((err) => {
@@ -169,7 +169,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
         return true;
     }, [submitButtonIsDisabled, selectedDate, selectedTime]);
 
-    const respondForm = useMemo(() => {
+    const respondForm = () => {
         return (
             <form
                 onSubmit={context.handleSubmit(onSubmit)}
@@ -213,13 +213,13 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                 </div>
             </form>
         );
-    }, [error, isSended, submitButtonIsDisabled, times, selectedDate, selectedTime]);
+    }
 
     return (
         <FormProvider {...context}>
             <div className={cn('pmef-registration-form')}>
                 {errorPopup}
-                {isSended ? null : respondForm}
+                {isSended ? null : respondForm()}
             </div>
         </FormProvider>);
 };
