@@ -50,23 +50,23 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
 
     useEffect(() => {
         if(selectedDate) {
-            const optionsFilter = (data) => {
-                return data.filter((item) => {
-                    // if(isToday(new Date(selectedDate.value))) {
-                    //     const currentTimeToStr = new Date().toTimeString().split(':').slice(0, 2).join(':');
+            // const optionsFilter = (data) => {
+            //     return data.filter((item) => {
+            //         // if(isToday(new Date(selectedDate.value))) {
+            //         //     const currentTimeToStr = new Date().toTimeString().split(':').slice(0, 2).join(':');
 
-                    //     const strTimeToMillSec = (time) => Number(time.split(':')[0]) * 60 * 60 * 1000 + Number(time.split(':')[1]) * 60 * 1000;
+            //         //     const strTimeToMillSec = (time) => Number(time.split(':')[0]) * 60 * 60 * 1000 + Number(time.split(':')[1]) * 60 * 1000;
 
-                    //     return !item.disabled && (strTimeToMillSec(currentTimeToStr) - 300000 < strTimeToMillSec(item?.timeFrom));
-                    // }
+            //         //     return !item.disabled && (strTimeToMillSec(currentTimeToStr) - 300000 < strTimeToMillSec(item?.timeFrom));
+            //         // }
 
-                    return !item.disabled;
-                });
-            };
+            //         return !item.disabled;
+            //     });
+            // };
 
             fetch(`/freeSlots?date=${selectedDate.value}`)
                 .then((data) => data.json())
-                .then((data) => setTimes(optionsFilter(data)))
+                .then((data) => setTimes(data))
                 .catch((err) => {
                     throw new Error(err);
                 });
@@ -198,7 +198,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                     </div>
                     <div className={cn('pmef-registration-form__select-block')}>
                         <div className={cn('pmef-registration-form__field-date')}>
-                            <Select name="date" placeholder="Дата поездки" options={dates.filter((item) => isToday(new Date(item.value)) || isFuture(new Date(item.value)))} onChange={(value: Date) => setSelectedDate(value)} />
+                            <Select name="date" placeholder="Дата поездки" options={dates} onChange={(value: Date) => setSelectedDate(value)} />
                         </div>
                         <div className={cn('pmef-registration-form__field-time')}>
                             <Select name="time" placeholder="Время" options={times} onChange={(value: Date) => setSelectedTime(value)} noOptionsMessage={() => 'Нет слотов'} />
