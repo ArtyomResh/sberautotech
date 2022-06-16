@@ -93,8 +93,6 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
         }, 200);
     }, [pageNumber, width, height]);
 
-    console.log(links);
-
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const isScrolledDown = previousScrollTop < currentScrollTop;
         const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;

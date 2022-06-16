@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
+import picPath from '../../static/pic.png';
+
 const query = graphql`
   query {
     strapiGlobal {
@@ -52,22 +54,22 @@ const SEO = ({ seo = {} }) => {
             );
         }
 
-        if(seo.shareImage) {
-            tags.push(
-                {
-                    name   : 'image',
-                    content: seo.shareImage
-                },
-                {
-                    property: 'og:image',
-                    content : seo.shareImage
-                },
-                {
-                    name   : 'twitter:image',
-                    content: seo.shareImage
-                }
-            );
-        }
+        const shareImage = seo.shareImage || `https://sberautotech.ru${picPath}`;
+
+        tags.push(
+            {
+                name   : 'image',
+                content: shareImage
+            },
+            {
+                property: 'og:image',
+                content : shareImage
+            },
+            {
+                name   : 'twitter:image',
+                content: shareImage
+            }
+        );
 
         if(seo.article) {
             tags.push({
