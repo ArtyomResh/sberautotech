@@ -54,7 +54,7 @@ const SEO = ({ seo = {} }) => {
             );
         }
 
-        const shareImage = seo.shareImage || `https://sberautotech.ru${picPath}`; //import абсолютный до картинки
+        const shareImage = seo.shareImage || `https://sberautotech.ru${picPath}`;
 
         tags.push(
             {
