@@ -52,13 +52,13 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
         if(selectedDate) {
             const optionsFilter = (data) => {
                 return data.filter((item) => {
-                    if(isToday(new Date(selectedDate.value))) {
-                        const currentTimeToStr = new Date().toTimeString().split(':').slice(0, 2).join(':');
+                    // if(isToday(new Date(selectedDate.value))) {
+                    //     const currentTimeToStr = new Date().toTimeString().split(':').slice(0, 2).join(':');
 
-                        const strTimeToMillSec = (time) => Number(time.split(':')[0]) * 60 * 60 * 1000 + Number(time.split(':')[1]) * 60 * 1000;
+                    //     const strTimeToMillSec = (time) => Number(time.split(':')[0]) * 60 * 60 * 1000 + Number(time.split(':')[1]) * 60 * 1000;
 
-                        return !item.disabled && (strTimeToMillSec(currentTimeToStr) - 300000 < strTimeToMillSec(item?.timeFrom));
-                    }
+                    //     return !item.disabled && (strTimeToMillSec(currentTimeToStr) - 300000 < strTimeToMillSec(item?.timeFrom));
+                    // }
 
                     return !item.disabled;
                 });
