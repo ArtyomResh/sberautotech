@@ -66,6 +66,10 @@ const SEO = ({ seo = {} }) => {
                 content : shareImage
             },
             {
+                property: 'vk:image',
+                content : shareImage
+            },
+            {
                 name   : 'twitter:image',
                 content: shareImage
             }
