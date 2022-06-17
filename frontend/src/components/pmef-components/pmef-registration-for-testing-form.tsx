@@ -16,8 +16,6 @@ import style from './pmef-registration-form.css';
 import policyLink from '../../../static/test.pdf';
 
 const dates = [
-    { label: '15 июня', value: '06-15-2022' },
-    { label: '16 июня', value: '06-16-2022' },
     { label: '17 июня', value: '06-17-2022' },
     { label: '18 июня', value: '06-18-2022' }
 ];
@@ -199,7 +197,7 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                     </div>
                     <div className={cn('pmef-registration-form__select-block')}>
                         <div className={cn('pmef-registration-form__field-date')}>
-                            <Select name="date" placeholder="Дата поездки" options={dates.filter((item) => isToday(new Date(item.value)) || isFuture(new Date(item.value)))} onChange={(value: Date) => setSelectedDate(value)} />
+                            <Select name="date" placeholder="Дата поездки" options={dates} onChange={(value: Date) => setSelectedDate(value)} />
                         </div>
                         <div className={cn('pmef-registration-form__field-time')}>
                             <Select name="time" placeholder="Время" options={times} onChange={(value: Date) => setSelectedTime(value)} noOptionsMessage={() => 'Нет слотов'} />
