@@ -79,14 +79,14 @@ const PmefLandingPage = () => {
                     >
                         <Link className={cn('pmef-landing-page__logo')} to="https://sberautotech.ru/" children={<LogoWhite />} />
                         <div className={cn('pmef-landing-page__header-button-block')}>
-                            <Button
+                            {/* <Button
                                 className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" onClick={() => {
                                     if(respondFormVisible) {
                                         setRespondFormVisible(false);
                                     }
                                     setRegistrationFormVisible(!registrationFormVisible);
                                 }}
-                            />
+                            /> */}
                             <Button
                                 className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
                                     if(registrationFormVisible) {
@@ -105,14 +105,14 @@ const PmefLandingPage = () => {
                             <p className={cn('pmef-landing-page__big-title')}>12:00–22:00</p>
                         </div>
                         <div className={cn('pmef-landing-page__mob-button-block')}>
-                            <Button
+                            {/* <Button
                                 className={cn('pmef-landing-page__button', 'pmef-landing-page__test-button')} label="Записаться на тестирование" onClick={() => {
                                     if(respondFormVisible) {
                                         setRespondFormVisible(false);
                                     }
                                     setRegistrationFormVisible(!registrationFormVisible);
                                 }}
-                            />
+                            /> */}
                             <Button
                                 className={cn('pmef-landing-page__button', 'pmef-landing-page__response-button')} label="Оставить отзыв" onClick={() => {
                                     if(registrationFormVisible) {
