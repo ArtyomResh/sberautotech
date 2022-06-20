@@ -27,7 +27,7 @@ const query = graphql`
         }
       }
     }
-    allStrapiVacancies {
+    allStrapiVacancies(filter: {isSecret: {nin: true}}) {
       edges {
         node {
           locale
