@@ -275,8 +275,8 @@ ul {
         margin-top: 24px;
 
         & p {
-            font-size: 16px;
-            line-height: 20px;
+            font-size: 18px;
+            line-height: 24px;
             font-family: var(--font-family-secondary);
 
             &:not(:last-child) {
