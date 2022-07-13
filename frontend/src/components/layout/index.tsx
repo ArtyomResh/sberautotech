@@ -22,14 +22,14 @@ interface IProps {
 const Layout = ({ children, seo, theme, pageNumber, setPageNumber, type }: IProps) => {
     const cn = useClassnames(style);
 
-    if(type === 'pmef-landing-page') {
-        return (
-            <AppProvider>
-                <Seo seo={seo} />
-                <main>{children}</main>
-            </AppProvider>
-        );
-    }
+    // if(type === 'pmef-landing-page') {
+    //     return (
+    //         <AppProvider>
+    //             <Seo seo={seo} />
+    //             <main>{children}</main>
+    //         </AppProvider>
+    //     );
+    // }
 
     return (
         <AppProvider>
