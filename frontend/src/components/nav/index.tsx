@@ -84,7 +84,7 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
 
     useEffect(() => {
         setTimeout(() => {
-            const activeElement = document.querySelector(`.nav__link-${pageNumber}`) as HTMLElement;
+            const activeElement = document.querySelector(`.nav__link-${pageNumber - 1}`) as HTMLElement;
 
             setIndicatorStyles({
                 transform: `translateX(${activeElement?.offsetLeft - PADDING}px)`,
