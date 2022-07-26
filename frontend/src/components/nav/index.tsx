@@ -82,8 +82,6 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
     const { links, joinButtonText } = data.allStrapiNavPanel.edges[0].node;
     const { disclaimer, privacyPolicyLink, privacyPolicyText } = data.allStrapiFooter.edges[0].node;
 
-    console.log(pageNumber);
-
     useEffect(() => {
         setTimeout(() => {
             const activeElement = document.querySelector(`.nav__link-${pageNumber - 1}`) as HTMLElement;
