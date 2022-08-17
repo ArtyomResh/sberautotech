@@ -84,7 +84,7 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
 
     useEffect(() => {
         setTimeout(() => {
-            const activeElement = document.querySelector(`.nav__link-${pageNumber}`) as HTMLElement;
+            const activeElement = document.querySelector(`.nav__link-${pageNumber - 1}`) as HTMLElement;
 
             setIndicatorStyles({
                 transform: `translateX(${activeElement?.offsetLeft - PADDING}px)`,
@@ -144,7 +144,7 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
                     <div className={cn('nav__indicator')} style={indicatorStyles} />
                     {
                         links.map(({ text, to }: INavItem, i: number) => (
-                            <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageNumber === i })}>
+                            <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageNumber - 1 === i })}>
                                 <Link to={to} className={cn('nav__link', `nav__link-${i}`)}>
                                     {text}
                                 </Link>
