@@ -117,8 +117,6 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                     </p>
                     <div
                         className={cn('pmef-registration-form__popup-close-btn')} onClick={() => {
-                            // setContentSend(false);
-                            // setError(false);
                             props?.closeHandler();
                         }}
                     >
@@ -137,8 +135,6 @@ const PmefRegistrationForTestingForm = (props: IProps) => {
                     </p>
                     <div
                         className={cn('pmef-registration-form__complete-popup-close-btn')} onClick={() => {
-                            // setContentSend(false);
-                            // setError(false);
                             props?.closeHandler();
                         }}
                     >

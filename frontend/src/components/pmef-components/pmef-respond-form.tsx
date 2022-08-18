@@ -53,11 +53,9 @@ const PmefRespondForm = (props: IProps) => {
             if(!res.ok) {
                 console.log('didnt send!');
                 setError(true);
-                // setContentSend(false);
             }
         } catch(err) {
             setError(true);
-            // setContentSend(false);
             throw new Error(err);
         }
     };
@@ -75,8 +73,6 @@ const PmefRespondForm = (props: IProps) => {
                     </p>
                     <div
                         className={cn('pmef-respond-form__popup-close-btn')} onClick={() => {
-                            // setContentSend(false);
-                            // setError(false);
                             props?.closeHandler();
                         }}
                     >
@@ -95,8 +91,6 @@ const PmefRespondForm = (props: IProps) => {
                     </p>
                     <div
                         className={cn('pmef-respond-form__complete-popup-close-btn')} onClick={() => {
-                            // setContentSend(false);
-                            // setError(false);
                             props?.closeHandler();
                         }}
                     >
@@ -121,7 +115,6 @@ const PmefRespondForm = (props: IProps) => {
                     <div
                         className={cn('pmef-respond-form__close-btn')} onClick={() => {
                             setContentSend(false);
-                            // setError(false);
                             props?.closeHandler();
                         }}
                     >
@@ -136,7 +129,6 @@ const PmefRespondForm = (props: IProps) => {
                     <Textarea placeholder="Ваш отзыв" name="text" requiredValidation={true} />
                     <CheckBox
                         name="acception" label={toUnescapedHTML(`<a target="_blank" href="${policyLink}">Даю согласие на обработку моих персональных данных в соответствии с <span>политикой конфиденциальности</span></a>`)}
-                        // onChange={() => setSubmitButton(!submitButtonIsDisabled)}
                         className={cn('pmef-respond-form__checkbox')}
                         requiredValidation={true}
                     />
