@@ -306,7 +306,7 @@ const FlipPage = () => {
       <Layout
         seo={data.strapiFlip.seo}
         theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }}
-        pageNumber={1}
+        pageNumber={0}
       >
         {isLoading ? (
           <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>

@@ -25,6 +25,7 @@ const query = graphql`
           subDescriptionSecond
           target
           strapiId
+          position
         }
       }
     }
@@ -73,28 +74,35 @@ const query = graphql`
 
 interface IDirection {
     node: {
-        strapiId: number,
-        target: string,
-        header: string,
-        description: string,
-        subDescriptionFirst: string,
-        subDescriptionSecond: string
-    }
+        strapiId: number;
+        target: string;
+        header: string;
+        description: string;
+        subDescriptionFirst: string;
+        subDescriptionSecond: string;
+        position: number;
+    };
 }
 
 const Career = () => {
     const data = useStaticQuery(query);
     const { top_slider, top_list, bottom_slider, bottom_list } = data.allStrapiCareer.edges[0].node;
 
+    console.log(data);
+
     const directions = data.allStrapiDirections.edges
-        .sort((a: IDirection, b: IDirection) => a.node.strapiId - b.node.strapiId)
+        .sort(
+            (a: IDirection, b: IDirection) => a.node.position - b.node.position
+        )
         .map((direction: IDirection, i: number) => ({
             ...top_list.list_items[i],
-            ...direction.node
+            ...direction.node,
         }));
 
+     console.log(directions);
+
     return (
-        <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={4}>
+        <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
             <div className="career__carousel">
                 <Carousel data={top_slider} />
             </div>
