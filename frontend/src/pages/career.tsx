@@ -88,8 +88,6 @@ const Career = () => {
     const data = useStaticQuery(query);
     const { top_slider, top_list, bottom_slider, bottom_list } = data.allStrapiCareer.edges[0].node;
 
-    console.log(data);
-
     const directions = data.allStrapiDirections.edges
         .sort(
             (a: IDirection, b: IDirection) => a.node.position - b.node.position
@@ -98,8 +96,6 @@ const Career = () => {
             ...top_list.list_items[i],
             ...direction.node,
         }));
-
-     console.log(directions);
 
     return (
         <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
