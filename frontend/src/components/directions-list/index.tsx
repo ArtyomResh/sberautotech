@@ -22,6 +22,8 @@ interface IProps {
 }
 
 const DirectionsList = ({ directions, count, activeDirection, onClickDirection }: IProps) => {
+    console.log(directions, 'vacancies page');
+    
     const cn = useClassnames(style);
 
     const backToPreviousPage = useCallback(() => {
