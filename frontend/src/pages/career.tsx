@@ -87,12 +87,14 @@ const Career = () => {
     const { top_slider, top_list, bottom_slider, bottom_list } = data.allStrapiCareer.edges[0].node;
 
     const directions = data.allStrapiDirections.edges
-        .sort((a: IDirection, b: IDirection) => a.node.strapiId - b.node.strapiId)
-        .map((direction: IDirection, i: number) => ({
-            ...top_list.list_items[i],
-            ...direction.node
-        }));
+    .sort((a: IDirection, b: IDirection) => a.node.strapiId - b.node.strapiId)
+    .map((direction: IDirection, i: number) => ({
+      ...top_list.list_items[i],
+      ...direction.node
+    }));
 
+    console.log(top_list, directions, "accordeon");
+  
     return (
         <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={4}>
             <div className="career__carousel">
