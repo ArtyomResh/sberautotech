@@ -96,8 +96,6 @@ const Career = () => {
             ...top_list.list_items[i],
             ...direction.node,
         }));
-
-    console.log(top_list, directions, "accordeon");
   
     return (
         <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
