@@ -5,7 +5,6 @@ variables:
   VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}"
   FRONTEND_IMAGE: "${CI_REGISTRY}/${CI_PROJECT_PATH}:frontend"
   BACKEND_IMAGE: "${CI_REGISTRY}/${CI_PROJECT_PATH}:backend"
-  VAULT_AUTH_ROLE: external-csssr
 
 workflow:
   rules:
@@ -93,6 +92,7 @@ deploy:backend:dev:
   variables:
     MODULE_NAME: "backend"
     STAND: "fe-dev"
+    VAULT_AUTH_ROLE: external-csssr
   <<: *infra_secrets
   <<: *deploy_template
 
@@ -103,6 +103,7 @@ deploy:frontend:dev:
   variables:
     MODULE_NAME: "frontend"
     STAND: "fe-dev"
+    VAULT_AUTH_ROLE: external-csssr
   <<: *infra_secrets
   <<: *deploy_template
 
@@ -115,6 +116,7 @@ deploy:backend:prod:
   variables:
     MODULE_NAME: "backend"
     STAND: "infra"
+    VAULT_AUTH_ROLE: external-csssr
   <<: *infra_secrets
   <<: *deploy_template
 
@@ -126,5 +128,6 @@ deploy:frontend:prod:
   variables:
     MODULE_NAME: "frontend"
     STAND: "infra"
+    VAULT_AUTH_ROLE: external-csssr
   <<: *infra_secrets
   <<: *deploy_template
