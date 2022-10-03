@@ -1,10 +1,11 @@
 variables:
   GIT_DEPTH: 10
-  GIT_SUBMODULE_STRATEGY: recursive
-  DEPLOYER_IMAGE: "${CI_REGISTRY}/infra/docker/deployer:k8s-sat"
+  DEPLOYER_IMAGE: "${CI_REGISTRY}/infra/docker/deployer:k8s-sat-v2"
+  K8S_MANIFESTS_URL: "${CI_SERVER_HOST}/${K8S_MANIFESTS_PATH}/${K8S_MANIFESTS_REPO}.git"
   VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}"
   FRONTEND_IMAGE: "${CI_REGISTRY}/${CI_PROJECT_PATH}:frontend"
   BACKEND_IMAGE: "${CI_REGISTRY}/${CI_PROJECT_PATH}:backend"
+  VAULT_AUTH_ROLE: external-csssr
 
 workflow:
   rules:
@@ -19,6 +20,15 @@ workflow:
         BACKEND_URL: "$BACKEND_PROD_URL"
 
 image: "${CI_REGISTRY}/infra/docker/docker:20"
+
+.infra_secrets: &infra_secrets
+  secrets:
+    PUSH_USER_NAME:
+      vault: gitlab/username@secret/gitlab/external/csssr
+      file: false
+    PUSH_USER_TOKEN:
+      vault: gitlab/token@secret/gitlab/external/csssr
+      file: false
 
 stages:
   - linters
@@ -37,55 +47,6 @@ stages:
 .rules_frontend_build_template: &rules_frontend_build_template
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-
-.lint_k8s_template: &lint_k8s_template
-  stage: linters
-  image: ${CI_REGISTRY}/infra/docker/deployer:k8s-sat
-  rules:
-    - changes:
-        - backend/devops/**/*
-        - frontend/devops/**/*
-  script:
-    - |
-      cd ${MODULE_NAME}/devops/k8s
-      jsonnet -S -o manifests.yml \
-        --ext-code-file env_ext=env.${NAMESPACE}.libsonnet \
-        --ext-code lint=true \
-        --ext-str path_slug="${CI_PROJECT_PATH_SLUG}" \
-        --ext-str env_slug="${NAMESPACE}" \
-        --ext-str job_id="${CI_JOB_ID}" \
-        --ext-str image_path="${CI_PROJECT_PATH}" \
-        --ext-str image_version="${MODULE_NAME}-${VERSION}" \
-        --ext-str namespace="${NAMESPACE}" \
-        --ext-str registry="${CI_REGISTRY}" \
-        ${MODULE_NAME}.jsonnet
-      kubeval manifests.yml
-      kube-linter lint --config "kube-linter.${NAMESPACE}.yaml" manifests.yml
-      cat manifests.yml
-
-lint:k8s:frontend:dev:
-  <<: *lint_k8s_template
-  variables:
-    MODULE_NAME: "frontend"
-    NAMESPACE: "fe-dev"
-
-lint:k8s:frontend:prod:
-  <<: *lint_k8s_template
-  variables:
-    MODULE_NAME: "frontend"
-    NAMESPACE: "infra"
-
-lint:k8s:backend:dev:
-  <<: *lint_k8s_template
-  variables:
-    MODULE_NAME: "backend"
-    NAMESPACE: "fe-dev"
-
-lint:k8s:backend:prod:
-  <<: *lint_k8s_template
-  variables:
-    MODULE_NAME: "backend"
-    NAMESPACE: "infra"
 
 build:backend:
   stage: build-backend
@@ -108,35 +69,20 @@ build:frontend:
       fi
 
 .deploy_template: &deploy_template
-  image: ${CI_REGISTRY}/infra/docker/deployer:k8s-sat
+  image: $DEPLOYER_IMAGE
   script:
     - |
-      PROJECT_NAME=$(echo $CI_PROJECT_NAME | tr '.' '-')
-      cd ${MODULE_NAME}/devops/k8s \
-      && jsonnet -S -o manifests.yml \
-        --ext-code-file env_ext=env.${KUBE_NAMESPACE}.libsonnet \
-        --ext-code lint=false \
-        --ext-str path_slug="${CI_PROJECT_PATH_SLUG}" \
-        --ext-str env_slug="${CI_ENVIRONMENT_SLUG}" \
-        --ext-str job_id="${CI_JOB_ID}" \
-        --ext-str image_path="${CI_PROJECT_PATH}" \
-        --ext-str image_version="${MODULE_NAME}-${VERSION}" \
-        --ext-str namespace="${KUBE_NAMESPACE}" \
-        --ext-str registry="${CI_REGISTRY}" \
-        ${MODULE_NAME}.jsonnet
-      kubectl apply -f manifests.yml
-      LIST=$(kubectl get deploy -n ${KUBE_NAMESPACE} -l app_group=${PROJECT_NAME}-${MODULE_NAME} -o name)
-      [ $? -gt 0 ] && exit 2
-      RES=true
-      for I in ${LIST}; do
-        kubectl rollout status -w ${I} -n ${KUBE_NAMESPACE} || RES=false
-        [ $RES ] || break
-      done
-      # echo $RES
-      if ! $RES; then
-        for J in ${LIST}; do kubectl rollout undo ${J} -n ${KUBE_NAMESPACE}; done
-        exit 3
-      fi
+      [ -d "${K8S_MANIFESTS_REPO}" ] && rm -rf "${K8S_MANIFESTS_REPO}" || true
+      git clone --branch "${K8S_MANIFESTS_BRANCH}" "https://${PUSH_USER_NAME}:${PUSH_USER_TOKEN}@${K8S_MANIFESTS_URL}"
+      cd "${K8S_MANIFESTS_REPO}"
+      echo -n "${VERSION}" > "${CI_PROJECT_NAME}/${MODULE_NAME}/${STAND}/image_version.txt"
+      # Set new image version in override file
+      git config --global user.email "${PUSH_USER_EMAIL}"
+      git config --global user.name "${PUSH_USER_NAME}"
+      git remote set-url origin "https://${PUSH_USER_NAME}:${PUSH_USER_TOKEN}@${K8S_MANIFESTS_URL}"
+      git add "${CI_PROJECT_NAME}/${MODULE_NAME}/${STAND}/image_version.txt"
+      git commit -m "Auto-push: set ${CI_PROJECT_NAME} image version to ${VERSION}" \
+        && git push -u origin "HEAD:${K8S_MANIFESTS_BRANCH}" || true
 
 deploy:backend:dev:
   stage: deploy-backend
@@ -146,10 +92,8 @@ deploy:backend:dev:
         - backend/**/*
   variables:
     MODULE_NAME: "backend"
-  environment:
-    name: fe-dev
-    kubernetes:
-      namespace: fe-dev
+    STAND: "fe-dev"
+  <<: *infra_secrets
   <<: *deploy_template
 
 deploy:frontend:dev:
@@ -158,10 +102,8 @@ deploy:frontend:dev:
     - if: '$DEPLOY_DEV == "true"'
   variables:
     MODULE_NAME: "frontend"
-  environment:
-    name: fe-dev
-    kubernetes:
-      namespace: fe-dev
+    STAND: "fe-dev"
+  <<: *infra_secrets
   <<: *deploy_template
 
 deploy:backend:prod:
@@ -172,10 +114,8 @@ deploy:backend:prod:
         - backend/**/*
   variables:
     MODULE_NAME: "backend"
-  environment:
-    name: infra
-    kubernetes:
-      namespace: infra
+    STAND: "infra"
+  <<: *infra_secrets
   <<: *deploy_template
 
 deploy:frontend:prod:
@@ -185,8 +125,6 @@ deploy:frontend:prod:
       when: manual
   variables:
     MODULE_NAME: "frontend"
-  environment:
-    name: infra
-    kubernetes:
-      namespace: infra
+    STAND: "infra"
+  <<: *infra_secrets
   <<: *deploy_template
