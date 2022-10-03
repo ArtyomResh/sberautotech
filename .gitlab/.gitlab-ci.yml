@@ -74,7 +74,7 @@ build:frontend:
       [ -d "${K8S_MANIFESTS_REPO}" ] && rm -rf "${K8S_MANIFESTS_REPO}" || true
       git clone --branch "${K8S_MANIFESTS_BRANCH}" "https://${PUSH_USER_NAME}:${PUSH_USER_TOKEN}@${K8S_MANIFESTS_URL}"
       cd "${K8S_MANIFESTS_REPO}"
-      echo -n "${VERSION}" > "${CI_PROJECT_NAME}/${MODULE_NAME}/${STAND}/image_version.txt"
+      echo -n "${MODULE_NAME}-${VERSION}" > "${CI_PROJECT_NAME}/${MODULE_NAME}/${STAND}/image_version.txt"
       # Set new image version in override file
       git config --global user.email "${PUSH_USER_EMAIL}"
       git config --global user.name "${PUSH_USER_NAME}"
