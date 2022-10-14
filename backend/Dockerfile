@@ -1,4 +1,4 @@
-ARG DOCKER_REGISTRY
+ARG DOCKER_REGISTRY=registry.sberautotech.ru:5574/external/csssr/sberautotech.ru
 FROM ${DOCKER_REGISTRY}/node:14.16-buster-slim
 
 WORKDIR /home/runner

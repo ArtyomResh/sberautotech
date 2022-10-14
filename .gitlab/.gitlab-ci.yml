@@ -2,7 +2,7 @@ variables:
   GIT_DEPTH: 10
   DEPLOYER_IMAGE: "${CI_REGISTRY}/infra/docker/deployer:k8s-sat-v2"
   K8S_MANIFESTS_URL: "${CI_SERVER_HOST}/${K8S_MANIFESTS_PATH}/${K8S_MANIFESTS_REPO}.git"
-  VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}"
+  VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}-${CI_PIPELINE_IID}"
   FRONTEND_IMAGE: "${CI_REGISTRY}/${CI_PROJECT_PATH}:frontend"
   BACKEND_IMAGE: "${CI_REGISTRY}/${CI_PROJECT_PATH}:backend"
 
@@ -52,7 +52,7 @@ build:backend:
   <<: *rules_backend_build_template
   script:
     - |
-      docker build --pull -t ${BACKEND_IMAGE}-${VERSION} --build-arg DOCKER_REGISTRY=${CI_REGISTRY}/infra/docker -f backend/Dockerfile .
+      docker build --pull -t ${BACKEND_IMAGE}-${VERSION} -f backend/Dockerfile .
       if [ -n "$DEPLOY_DEV" ]; then
         docker push ${BACKEND_IMAGE}-${VERSION}
       fi
@@ -62,7 +62,7 @@ build:frontend:
   <<: *rules_frontend_build_template
   script:
     - |
-      docker build --pull --no-cache -t ${FRONTEND_IMAGE}-${VERSION} --build-arg DOCKER_REGISTRY=${CI_REGISTRY}/infra/docker --build-arg BACKEND_API_URL=$BACKEND_URL -f frontend/Dockerfile .
+      docker build --pull --no-cache -t ${FRONTEND_IMAGE}-${VERSION} --build-arg BACKEND_API_URL=$BACKEND_URL -f frontend/Dockerfile .
       if [ -n "$DEPLOY_DEV" ]; then
         docker push ${FRONTEND_IMAGE}-${VERSION}
       fi
