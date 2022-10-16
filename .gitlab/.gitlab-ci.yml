@@ -23,7 +23,7 @@ workflow:
       variables:
         VERSION: "$CI_COMMIT_SHORT_SHA"
         BUILD_BACKEND: "true"
-    - if: '$CI_COMMIT_BRANCH == "develop"'
+    - if: '($CI_COMMIT_BRANCH == "develop") && ($CI_PIPELINE_SOURCE != "web")'
       changes:
         - backend/**/*
       variables:
@@ -31,7 +31,7 @@ workflow:
         BUILD_BACKEND: "true"
         DEPLOY_BACKEND_DEV: "true"
         PUSH: "true"
-    - if: '$CI_COMMIT_BRANCH == "master"'
+    - if: '($CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE != "web")'
       changes:
         - backend/**/*
       variables:
@@ -49,14 +49,14 @@ workflow:
         REVIEW_FRONTEND: "true"
         PUSH: "true"
         BACKEND_URL: "$BACKEND_DEV_URL"
-    - if: '($CI_COMMIT_BRANCH == "develop") || ($CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "develop")'
+    - if: '($CI_COMMIT_BRANCH == "develop") || ($CI_PIPELINE_SOURCE == "web")'
       variables:
         VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}-${CI_PIPELINE_IID}"
         BUILD_FRONTEND: "true"
         PUSH: "true"
         BACKEND_URL: "$BACKEND_DEV_URL"
         DEPLOY_FRONTEND_DEV: "true"
-    - if: '($CI_COMMIT_BRANCH == "master") || ($CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "master")'
+    - if: '($CI_COMMIT_BRANCH == "master") || ($CI_PIPELINE_SOURCE == "web")'
       variables:
         VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}-${CI_PIPELINE_IID}"
         BUILD_FRONTEND: "true"
