@@ -149,7 +149,7 @@ frontend:review:start:
   <<: *review_template
   environment:
     name: review/$CI_COMMIT_REF_NAME
-    url: https://${MODULE_NAME}-${CI_COMMIT_SHORT_SHA}.review.dev.fe.sbauto.tech
+    url: https://${REVIEW_MODULE}-${CI_COMMIT_SHORT_SHA}.review.dev.fe.sbauto.tech
     on_stop: "frontend:review:stop"
     auto_stop_in: 1 day
     kubernetes:
