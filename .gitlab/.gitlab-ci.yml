@@ -1,24 +1,10 @@
 variables:
   GIT_DEPTH: 10
+  BUILDER_IMAGE: "${CI_REGISTRY}/infra/docker/docker:20"
   DEPLOYER_IMAGE: "${CI_REGISTRY}/infra/docker/deployer:k8s-sat-v2"
   K8S_MANIFESTS_URL: "${CI_SERVER_HOST}/${K8S_MANIFESTS_PATH}/${K8S_MANIFESTS_REPO}.git"
-  VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}-${CI_PIPELINE_IID}"
   FRONTEND_IMAGE: "${CI_REGISTRY}/${CI_PROJECT_PATH}:frontend"
   BACKEND_IMAGE: "${CI_REGISTRY}/${CI_PROJECT_PATH}:backend"
-
-workflow:
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "develop" || $CI_PIPELINE_SOURCE == "web"'
-      variables:
-        DEPLOY_DEV: "true"
-        BACKEND_URL: "$BACKEND_DEV_URL"
-    - if: '$CI_COMMIT_BRANCH == "master" || $CI_PIPELINE_SOURCE == "web"'
-      variables:
-        DEPLOY_DEV: "true"
-        DEPLOY_PROD: "true"
-        BACKEND_URL: "$BACKEND_PROD_URL"
-
-image: "${CI_REGISTRY}/infra/docker/docker:20"
 
 .infra_secrets: &infra_secrets
   secrets:
@@ -29,43 +15,115 @@ image: "${CI_REGISTRY}/infra/docker/docker:20"
       vault: gitlab/token@secret/gitlab/external/csssr
       file: false
 
+workflow:
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"'
+      changes:
+        - backend/**/*
+      variables:
+        VERSION: "$CI_COMMIT_SHORT_SHA"
+        BUILD_BACKEND: "true"
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+      changes:
+        - backend/**/*
+      variables:
+        VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}"
+        BUILD_BACKEND: "true"
+        DEPLOY_BACKEND_DEV: "true"
+        PUSH: "true"
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes:
+        - backend/**/*
+      variables:
+        VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}"
+        BUILD_BACKEND: "true"
+        DEPLOY_BACKEND_PROD: "true"
+        PUSH: "true"
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"'
+      changes:
+        - frontend/**/*
+      variables:
+        VERSION: "$CI_COMMIT_SHORT_SHA"
+        REVIEW_MODULE: "sberautotech"
+        BUILD_FRONTEND: "true"
+        REVIEW_FRONTEND: "true"
+        PUSH: "true"
+        BACKEND_URL: "$BACKEND_DEV_URL"
+    - if: '($CI_COMMIT_BRANCH == "develop") || ($CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "develop")'
+      variables:
+        VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}-${CI_PIPELINE_IID}"
+        BUILD_FRONTEND: "true"
+        PUSH: "true"
+        BACKEND_URL: "$BACKEND_DEV_URL"
+        DEPLOY_FRONTEND_DEV: "true"
+    - if: '($CI_COMMIT_BRANCH == "master") || ($CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "master")'
+      variables:
+        VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}-${CI_PIPELINE_IID}"
+        BUILD_FRONTEND: "true"
+        PUSH: "true"
+        BACKEND_URL: "$BACKEND_PROD_URL"
+        DEPLOY_FRONTEND_PROD: "true"
+
 stages:
-  - linters
   - build-backend
   - deploy-backend
   - build-frontend
   - deploy-frontend
-
-.rules_backend_build_template: &rules_backend_build_template
-  before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-  rules:
-    - changes:
-        - backend/**/*
-
-.rules_frontend_build_template: &rules_frontend_build_template
-  before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - cleanup
 
 build:backend:
   stage: build-backend
-  <<: *rules_backend_build_template
+  rules:
+    - if: '$BUILD_BACKEND == "true"'
+  image: $BUILDER_IMAGE
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - |
       docker build --pull -t ${BACKEND_IMAGE}-${VERSION} -f backend/Dockerfile .
-      if [ -n "$DEPLOY_DEV" ]; then
+      if [ -n "$PUSH" ]; then
         docker push ${BACKEND_IMAGE}-${VERSION}
       fi
 
 build:frontend:
   stage: build-frontend
-  <<: *rules_frontend_build_template
+  rules:
+    - if: '$BUILD_FRONTEND == "true"'
+  image: $BUILDER_IMAGE
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - |
       docker build --pull --no-cache -t ${FRONTEND_IMAGE}-${VERSION} --build-arg BACKEND_API_URL=$BACKEND_URL -f frontend/Dockerfile .
-      if [ -n "$DEPLOY_DEV" ]; then
+      if [ -n "$PUSH" ]; then
         docker push ${FRONTEND_IMAGE}-${VERSION}
       fi
+
+.review_template: &review_template
+  image: $DEPLOYER_IMAGE
+  script:
+    - |
+      REVIEW_PREFIX=$(echo $CI_COMMIT_REF_NAME | sha256sum | head -c 8)
+      cd devops/k8s/${REVIEW_MODULE} \
+      && jsonnet -S -o manifests.yml \
+        --ext-code-file env_ext=config.review.libsonnet \
+        --ext-str path_slug="${CI_PROJECT_PATH_SLUG}" \
+        --ext-str env_slug="${CI_ENVIRONMENT_SLUG}" \
+        --ext-str image_path="${CI_PROJECT_PATH}" \
+        --ext-str image_version="frontend-${VERSION}" \
+        --ext-str namespace="${KUBE_NAMESPACE}" \
+        --ext-str registry="${CI_REGISTRY}" \
+        --ext-str domain="${REVIEW_MODULE}-${CI_COMMIT_SHORT_SHA}.review.dev.fe.sbauto.tech" \
+        --ext-str app_name="${REVIEW_MODULE}-review-${REVIEW_PREFIX}" \
+        ${REVIEW_MODULE}-review.jsonnet
+      kubectl apply -f manifests.yml
+      LIST=$(kubectl get deploy -n ${KUBE_NAMESPACE} -l app_group=${REVIEW_MODULE}-review-${REVIEW_PREFIX} -o name)
+      [ $? -gt 0 ] && exit 2
+      RES=true
+      for I in ${LIST}; do
+        kubectl rollout status -w ${I} -n ${KUBE_NAMESPACE} || RES=false
+        [ $RES ] || break
+      done
 
 .deploy_template: &deploy_template
   image: $DEPLOYER_IMAGE
@@ -83,12 +141,41 @@ build:frontend:
       git commit -m "Auto-push: set ${CI_PROJECT_NAME} image version to ${VERSION}" \
         && git push -u origin "HEAD:${K8S_MANIFESTS_BRANCH}" || true
 
+frontend:review:start:
+  stage: deploy-frontend
+  rules:
+    - if: '$REVIEW_FRONTEND == "true"'
+  needs: ["build:frontend"]
+  <<: *review_template
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: https://${MODULE_NAME}-${CI_COMMIT_SHORT_SHA}.review.dev.fe.sbauto.tech
+    on_stop: "frontend:review:stop"
+    auto_stop_in: 1 day
+    kubernetes:
+      namespace: fe-dev
+
+frontend:review:stop:
+  stage: cleanup
+  image: $DEPLOYER_IMAGE
+  rules:
+    - if: '$REVIEW_FRONTEND == "true"'
+      when: manual
+      allow_failure: true
+  needs: ["frontend:review:start"]
+  before_script:
+    - export REVIEW_PREFIX=$(echo $CI_COMMIT_REF_NAME | sha256sum | head -c 8)
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    action: stop
+  script:
+    - kubectl -n fe-dev delete deploy,svc,cm,ing -l app=${REVIEW_MODULE}-review-${REVIEW_PREFIX}
+
 deploy:backend:dev:
   stage: deploy-backend
+  needs: ["build:backend"]
   rules:
-    - if: '$DEPLOY_DEV == "true"'
-      changes:
-        - backend/**/*
+    - if: '$DEPLOY_BACKEND_DEV == "true"'
   variables:
     MODULE_NAME: "backend"
     STAND: "fe-dev"
@@ -98,8 +185,9 @@ deploy:backend:dev:
 
 deploy:frontend:dev:
   stage: deploy-frontend
+  needs: ["build:frontend"]
   rules:
-    - if: '$DEPLOY_DEV == "true"'
+    - if: '$DEPLOY_FRONTEND_DEV == "true"'
   variables:
     MODULE_NAME: "frontend"
     STAND: "fe-dev"
@@ -109,10 +197,10 @@ deploy:frontend:dev:
 
 deploy:backend:prod:
   stage: deploy-backend
+  needs: ["build:backend"]
   rules:
-    - if: '$DEPLOY_PROD == "true"'
-      changes:
-        - backend/**/*
+    - if: '$DEPLOY_BACKEND_PROD == "true"'
+      when: manual
   variables:
     MODULE_NAME: "backend"
     STAND: "infra"
@@ -122,8 +210,9 @@ deploy:backend:prod:
 
 deploy:frontend:prod:
   stage: deploy-frontend
+  needs: ["build:frontend"]
   rules:
-    - if: '$DEPLOY_PROD == "true"'
+    - if: '$DEPLOY_FRONTEND_PROD == "true"'
       when: manual
   variables:
     MODULE_NAME: "frontend"
