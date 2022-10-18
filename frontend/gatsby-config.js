@@ -17,6 +17,16 @@ module.exports = {
             environments: ['production', 'development']
         },
         {
+            resolve: 'gatsby-plugin-yandex-metrica',
+            options: {
+                trackingId         : '90680317',
+                clickmap           : true,
+                trackLinks         : true,
+                accurateTrackBounce: true,
+                webvisor           : true
+            }
+        },
+        {
             resolve: 'gatsby-plugin-google-gtag',
             options: {
                 // You can add multiple tracking ids and a pageview event will be fired for all of them.
