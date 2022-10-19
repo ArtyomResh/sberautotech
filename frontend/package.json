@@ -51,6 +51,7 @@
     "postcss": "8.2.9",
     "postcss-import": "14.0.0",
     "postcss-loader": "4.1.0",
+    "postcss-mixins": "^9.0.4",
     "postcss-nested": "4.2.3",
     "postcss-url": "10.1.1",
     "style-loader": "2.0.0",

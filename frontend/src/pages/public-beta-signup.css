@@ -1,34 +1,166 @@
 .public-beta-signup {
-    &__wrapper {
-        max-width: 1272px;
-        margin: 0 auto;
-        margin-top: 100px;
-        padding-bottom: 60px;
 
-        & p {
-            margin-top: 18px;
+    &__section-wrapper {
+        display: grid;
+        grid-gap: 0 20px;
+    }
+
+    &__features-list {
+        display: grid;
+        grid-gap: 20px;
+        list-style: none;
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .public-beta-signup {
+
+        &__section-wrapper {
+            padding: 80px 20px;
+            grid-template-columns: repeat(12, 1fr);
         }
 
-        & h3 {
-            margin-top: 40px;
+        &__features-title {
+            grid-column: 1 / span 6;
         }
 
-        & a p {
-            color: red;
+        &__features-subtitle {
+            margin-top: 0;
+            grid-column: 7 / span 6;
+        }
 
-            @media (hover: hover) and (pointer: fine) {
-                &:hover {
-                    text-decoration: underline;
-                }
+        &__features-list {
+            margin-top: 36px !important;
+            grid-column: 1 / span 12;
+            grid-template-columns: repeat(12, 1fr);
+
+            &-item {
+                min-height: 260px;
+            }
+
+            &-item:first-of-type {
+                grid-column: 1 / span 4;
+            }
+
+            &-item:nth-of-type(2) {
+                grid-column: 5 / span 4;
+            }
+
+            &-item:last-of-type {
+                grid-column: 9 / span 4;
             }
         }
+    }
+}
 
-        @media (max-width: 1440px) {
-            padding: 0 60px 60px 60px;
+@mixin media_breakpoint_small_desktop {
+
+    .public-beta-signup {
+
+        &__section-wrapper {
+            padding: 60px 20px;
+            grid-template-columns: repeat(12, 1fr);
         }
 
-        @media (max-width: 450px) {
-            padding: 0 30px 30px 30px;
+        &__features-title {
+            grid-column: 1 / span 6;
+        }
+
+        &__features-subtitle {
+            margin-top: 4px;
+            grid-column: 7 / span 6;
+        }
+
+        &__features-list {
+            margin-top: 40px !important;
+            grid-column: 1 / span 12;
+            grid-template-columns: repeat(12, 1fr);
+
+            &-item {
+                min-height: 200px;
+            }
+
+            &-item:first-of-type {
+                grid-column: 1 / span 4;
+            }
+
+            &-item:nth-of-type(2) {
+                grid-column: 5 / span 4;
+            }
+
+            &-item:last-of-type {
+                grid-column: 9 / span 4;
+            }
+        }
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .public-beta-signup {
+
+        &__section-wrapper {
+            padding: 40px 20px;
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        &__features-title,
+        &__features-subtitle,
+        &__features-list {
+            grid-column: 1 / span 6;
+        }
+
+        &__features-subtitle {
+            margin-top: 20px;
+        }
+
+        &__features-list {
+            margin-top: 40px !important;
+            grid-template-columns: repeat(6, 1fr);
+
+            &-item {
+                min-height: 200px;
+            }
+
+            &-item:first-of-type {
+                grid-column: 1 / span 3;
+            }
+
+            &-item:nth-of-type(2) {
+                grid-column: 4 / span 3;
+            }
+
+            &-item:last-of-type {
+                grid-column: 1 / span 6;
+            }
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .public-beta-signup {
+
+        &__section-wrapper {
+            padding: 30px 20px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        &__features-title,
+        &__features-subtitle,
+        &__features-list,
+        &__features-list-item {
+            grid-column: 1 / span 2;
+        }
+
+        &__features-subtitle {
+            margin-top: 20px;
+        }
+
+        &__features-list {
+            margin-top: 28px !important;
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 }
