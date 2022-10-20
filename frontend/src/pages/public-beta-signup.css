@@ -5,10 +5,26 @@
         grid-gap: 0 20px;
     }
 
-    &__features-list {
+    &__features-list,
+    &__rules-list {
         display: grid;
         grid-gap: 20px;
         list-style: none;
+    }
+
+    &__rule {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__rule-image {
+        width: 116px;
+        height: 116px;
+    }
+
+    &__rule-caption {
+        text-align: center;
     }
 }
 
@@ -21,7 +37,8 @@
             grid-template-columns: repeat(12, 1fr);
         }
 
-        &__features-title {
+        &__features-title,
+        &__rules-title {
             grid-column: 1 / span 6;
         }
 
@@ -30,10 +47,14 @@
             grid-column: 7 / span 6;
         }
 
-        &__features-list {
-            margin-top: 36px !important;
+        &__features-list,
+        &__rules-list {
             grid-column: 1 / span 12;
             grid-template-columns: repeat(12, 1fr);
+        }
+
+        &__features-list {
+            margin-top: 36px !important;
 
             &-item {
                 min-height: 260px;
@@ -51,6 +72,23 @@
                 grid-column: 9 / span 4;
             }
         }
+
+        &__rules-list {
+            margin-top: 60px !important;
+
+            &-item {
+                grid-column-end: span 2;
+            }
+        }
+
+        &__rule-image {
+            width: 174px;
+            height: 174px;
+        }
+
+        &__rule-caption {
+            margin-top: 16px;
+        }
     }
 }
 
@@ -63,7 +101,8 @@
             grid-template-columns: repeat(12, 1fr);
         }
 
-        &__features-title {
+        &__features-title,
+        &__rules-title {
             grid-column: 1 / span 6;
         }
 
@@ -72,10 +111,14 @@
             grid-column: 7 / span 6;
         }
 
-        &__features-list {
+        &__features-list,
+        &__rules-list {
             margin-top: 40px !important;
             grid-column: 1 / span 12;
             grid-template-columns: repeat(12, 1fr);
+        }
+
+        &__features-list {
 
             &-item {
                 min-height: 200px;
@@ -93,6 +136,17 @@
                 grid-column: 9 / span 4;
             }
         }
+
+        &__rules-list {
+
+            &-item {
+                grid-column-end: span 2;
+            }
+        }
+
+        &__rule-caption {
+            margin-top: 20px;
+        }
     }
 }
 
@@ -107,7 +161,9 @@
 
         &__features-title,
         &__features-subtitle,
-        &__features-list {
+        &__features-list,
+        &__rules-title,
+        &__rules-list {
             grid-column: 1 / span 6;
         }
 
@@ -135,6 +191,32 @@
                 grid-column: 1 / span 6;
             }
         }
+
+        &__rules-list {
+            display: grid;
+            grid-gap: 0 20px;
+        }
+
+        &__rules-list-item {
+            margin-top: 40px;
+        }
+
+
+        &__rules-list-item:nth-of-type(3n - 2) {
+            grid-column: 1 / span 2;
+        }
+
+        &__rules-list-item:nth-of-type(3n - 1) {
+            grid-column: 3 / span 2;
+        }
+
+        &__rules-list-item:nth-of-type(3n) {
+            grid-column: 5 / span 2;
+        }
+
+        &__rule-caption {
+            margin-top: 8px;
+        }
     }
 }
 
@@ -150,7 +232,9 @@
         &__features-title,
         &__features-subtitle,
         &__features-list,
-        &__features-list-item {
+        &__features-list-item,
+        &__rules-title,
+        &__rules-list {
             grid-column: 1 / span 2;
         }
 
@@ -161,6 +245,27 @@
         &__features-list {
             margin-top: 28px !important;
             grid-template-columns: repeat(2, 1fr);
+        }
+
+        &__rules-list {
+            display: grid;
+            grid-gap: 0 20px;
+        }
+
+        &__rules-list-item {
+            margin-top: 30px;
+        }
+
+        &__rules-list-item:nth-of-type(odd) {
+            grid-column: 1 / span 1;
+        }
+
+        &__rules-list-item:nth-of-type(even) {
+            grid-column: 2 / span 1;
+        }
+
+        &__rule-caption {
+            margin-top: 8px;
         }
     }
 }
