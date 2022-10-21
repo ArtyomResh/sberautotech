@@ -6,6 +6,7 @@ import { formatText } from '../utils';
 import Heading from '../components/heading';
 import Text from '../components/text';
 import Card from '../components/card';
+import VideoPlayer from '../components/video-player';
 
 const features = [
     'Мы&#160;серьезно относимся к&#160;безопасности наших пассажиров',
@@ -81,6 +82,24 @@ const PublicBetaSignup = () => {
                     ))}
                 </ul>
 
+            </section>
+
+            <section>
+                <div className={cn('public-beta-signup__section-wrapper')}>
+                    <Heading
+                        className={cn('public-beta-signup__video-title')}
+                        level={2}
+                        dangerouslySetInnerHTML={{ __html: formatText('Посмотрите, как выглядит {поездка на&#160;беспилотнике}') }}
+                    />
+                </div>
+
+                <VideoPlayer
+                    className={cn('public-beta-signup__video-player')}
+                    videoFileName="pmef_test"
+                    poster="/spb_back.jpg"
+                    preload="none"
+                    loop={true}
+                />
             </section>
         </Layout>
     );

@@ -89,6 +89,14 @@
         &__rule-caption {
             margin-top: 16px;
         }
+
+        &__video-title {
+            grid-column: 1 / span 8;
+        }
+
+        &__video-player {
+            margin-top: -44px;
+        }
     }
 }
 
@@ -146,6 +154,14 @@
 
         &__rule-caption {
             margin-top: 20px;
+        }
+
+        &__video-title {
+            grid-column: 1 / span 8;
+        }
+
+        &__video-player {
+            margin-top: -20px;
         }
     }
 }
@@ -217,6 +233,14 @@
         &__rule-caption {
             margin-top: 8px;
         }
+
+        &__video-title {
+            grid-column: 1 / span 6;
+        }
+
+        &__video-player {
+            margin-top: -10px;
+        }
     }
 }
 
@@ -266,6 +290,10 @@
 
         &__rule-caption {
             margin-top: 8px;
+        }
+
+        &__video-title {
+            grid-column: 1 / span 2;
         }
     }
 }
