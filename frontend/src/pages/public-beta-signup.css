@@ -253,6 +253,8 @@
             grid-template-columns: repeat(2, 1fr);
         }
 
+        &__path-description h2,
+        &__path-description h2 + p,
         &__features-title,
         &__features-subtitle,
         &__features-list,

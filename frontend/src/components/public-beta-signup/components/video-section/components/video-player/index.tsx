@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 
-import { useClassnames } from '../../hooks/use-classnames';
-import Text from '../text';
+import { useClassnames } from '../../../../../../hooks/use-classnames';
+import Text from '../../../../../text';
 
 import styles from './index.css';
 
