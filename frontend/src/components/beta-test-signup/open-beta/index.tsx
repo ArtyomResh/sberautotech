@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './open-beta.css';
 import { useClassnames } from '../../../hooks/use-classnames';
-import GridWrapper from "../../public-beta-signup/components/grid-wrapper";
+import GridWrapper from '../../public-beta-signup/components/grid-wrapper';
+import LinkButton from '../../link-button';
 
 interface IProps {
     testingStartsAt: Date | string
@@ -113,7 +114,7 @@ const OpenTesting = ({ testingStartsAt }: IProps) => {
                         </small>
                     </div>
                     <div className={cn('signUpButtonWrap')}>
-                        <a className={cn('signUpButton')} href="/public-beta-signup#modal">Принять участие</a>
+                        <LinkButton className={cn('signUpButton')} href="/public-beta-signup#modal">Принять участие</LinkButton>
                     </div>
                 </div>
             </div>

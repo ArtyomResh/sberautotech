@@ -4,6 +4,7 @@ import Layout from '../layout';
 
 import OpenTesting from '../beta-test-signup/open-beta';
 import FeaturesSection from './components/features-section';
+import Footer from './components/footer';
 import VideoSection from './components/video-section';
 import RulesSection from './components/rules-section';
 
@@ -16,6 +17,8 @@ const PublicBetaSignup = () => (
         <RulesSection />
 
         <VideoSection />
+
+        <Footer />
     </Layout>
 );
 

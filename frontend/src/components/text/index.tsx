@@ -3,7 +3,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import styles from './index.css';
 
-type TTextProps = React.HTMLAttributes<HTMLDivElement> & {
+type TTextProps = React.HTMLAttributes<HTMLElement> & {
 
     /** Element type */
     as?: keyof JSX.IntrinsicElements,
