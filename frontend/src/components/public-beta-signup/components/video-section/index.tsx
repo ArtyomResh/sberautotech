@@ -1,4 +1,5 @@
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
@@ -25,8 +26,9 @@ const VideoSection = () => {
             <VideoPlayer
                 className={cn('video-section__player')}
                 videoFileName="pmef_test"
-                poster="/spb_back.jpg"
-                preload="none"
+                poster={isMobile ? '/spb_back_mobile.jpg' : '/spb_back.jpg'}
+                playsInline={true}
+                preload="metadata"
                 loop={true}
             />
         </section>
