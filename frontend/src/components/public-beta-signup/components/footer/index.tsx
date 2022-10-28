@@ -21,7 +21,7 @@ const PublicBetaSignup = () => {
                 dangerouslySetInnerHTML={{ __html: formatText('СберАвтоТех: {беспилотные технологии}') }}
             />
 
-            <LinkButton className={cn('footer__link')} href="https://sberautotech.ru/" target="_blank" rel="noopener noreferrer">
+            <LinkButton className={cn('footer__link-button')} href="https://sberautotech.ru/" target="_blank" rel="noopener noreferrer">
                 sberautotech.ru
             </LinkButton>
 
