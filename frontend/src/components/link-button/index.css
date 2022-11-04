@@ -1,3 +1,5 @@
+@import "../text/index.css";
+
 .link-button {
     --color-accent-idle: #66d4d0;
     --color-accent-hover: #5ec4c1;
@@ -35,5 +37,17 @@
         &:active {
             background-color: var(--color-accent-active);
         }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+    .link-button {
+        @mixin t3;
+    }
+}
+
+@mixin media_breakpoint_tablet {
+    .link-button {
+        @mixin t3;
     }
 }

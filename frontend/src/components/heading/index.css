@@ -76,6 +76,11 @@
 
     .heading__level {
 
+        &_1 {
+
+            @mixin h2;
+        }
+
         &_2 {
 
             @mixin h3;
@@ -87,6 +92,11 @@
 
     .heading__level {
 
+        &_1 {
+
+            @mixin h2;
+        }
+
         &_2 {
 
             @mixin h3;
@@ -97,6 +107,11 @@
 @mixin media_breakpoint_mobile {
 
     .heading__level {
+
+        &_1 {
+
+            @mixin h4;
+        }
 
         &_2 {
 
