@@ -207,7 +207,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
                         ...data.allStrapiVacancyPage.edges[0].node.seo,
                         shareImage: data.allStrapiVacancyPage.edges[0].node.seo.shareImage.localFile.url,
                         metaTitle : title
-                    }
+                }
                 }
                 theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={4}
             >

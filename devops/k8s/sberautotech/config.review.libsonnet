@@ -7,7 +7,7 @@
   history_limit: 1,
 
   configmaps: {
-    [$.app_name]: {
+    'sberautotech-review-nginx-conf': {
       'nginx-conf': |||
           resolver 10.10.0.162 10.10.0.41;
 
@@ -48,19 +48,18 @@
   },
 
   deployments: {
-    [$.app_name]: {
+    [$.app_name + '-ru']: {
       replicas: 1,
       anti_affinity: false,
       volumes: [
-        { name: 'nginx-conf', type: 'configmap', items: [{ key: 'nginx-conf', path: 'default.conf' }] }
+        { name: 'nginx-conf', type: 'configmap', configmap_name: 'sberautotech-review-nginx-conf', items: [{ key: 'nginx-conf', path: 'default.conf' }] }
       ],
       run_as_user: 101,
       expose: {
-        [$.app_name + '-kong']: {
+        [$.app_name + '-ru']: {
           ports: [
             { name: $.app_name, port: $.proxy_port }
-          ],
-          kong_plugins: ['prometheus'],
+          ]
         }
       },
       containers: [
@@ -83,19 +82,66 @@
           }
         }
       ]
+    },
+    [$.app_name + '-en']: {
+      replicas: 1,
+      anti_affinity: false,
+      volumes: [
+        { name: 'nginx-conf', type: 'configmap', configmap_name: 'sberautotech-review-nginx-conf', items: [{ key: 'nginx-conf', path: 'default.conf' }] }
+      ],
+      run_as_user: 101,
+      expose: {
+        [$.app_name + '-en']: {
+          ports: [
+            { name: $.app_name, port: $.proxy_port }
+          ]
+        }
+      },
+      containers: [
+        {
+          name: $.app_name,
+          version_postfix: '-en',
+          command: [],
+          args: [],
+          requests: { cpu: '50m', memory: '50Mi' },
+          limits: { cpu: '100m', memory: '50Mi' },
+          ports: [ $.proxy_port ],
+          mounts: [
+            { name: 'nginx-conf', path: '/etc/nginx/conf.d/default.conf', subpath: 'default.conf', ro: true }
+          ],
+          envs: [],
+          readiness_probe: {
+            initialDelaySeconds: 2,
+            periodSeconds: 5,
+            timeoutSeconds: 2,
+            tcpSocket: { port: $.proxy_port }
+          }
+        }
+      ]
     }
   },
 
   ingresses: {
-    [$.app_name + '-kong']: {
+    [$.app_name + '-ru']: {
       class: 'kong',
-      host: $.domain,
+      host: $.domain_ru,
       tls: true,
       strip_path: false,
       cert_secret: 'shepherd-review-wc',
       paths: [
-        { path: '/', service: $.app_name + '-kong', port: $.proxy_port }
+        { path: '/', service: $.app_name + '-ru', port: $.proxy_port }
+      ]
+    },
+    [$.app_name + '-en']: {
+      class: 'kong',
+      host: $.domain_en,
+      tls: true,
+      strip_path: false,
+      cert_secret: 'shepherd-review-wc',
+      paths: [
+        { path: '/', service: $.app_name + '-en', port: $.proxy_port }
       ]
     }
   }
+
 }
