@@ -71,3 +71,18 @@ select {
     flex-direction: column;
     min-height: 100%;
 }
+
+:root {
+    --zindex-base: 100;
+    --zindex-dropdown: 101;
+    --zindex-sticky: 102;
+    --zindex-fixed: 103;
+    --zindex-modal-backdrop: 104;
+    --zindex-offcanvas: 105;
+    --zindex-modal: 106;
+    --zindex-popover: 107;
+    --zindex-tooltip: 108;
+
+    --color-accent: #66d4d0;
+    --color-error: #ff364d;
+}

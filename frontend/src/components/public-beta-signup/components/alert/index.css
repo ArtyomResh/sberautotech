@@ -1,0 +1,93 @@
+@import "../../../heading/index.css";
+
+.alert {
+    position: fixed;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    padding-right: 76px;
+    border-radius: 32px;
+    z-index: var(--zindex-tooltip);
+
+    &_type-success {
+        background-color: var(--color-accent);
+    }
+
+    &_type-error {
+        background-color: var(--color-error);
+    }
+
+    &__button {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+        display: flex;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        border: none;
+        font-size: 0;
+        line-height: 0;
+        background: none;
+        cursor: pointer;
+    }
+
+    &__text {
+        color: var(--color-white);
+    }
+
+    &__icon-cross {
+        fill: var(--color-white);
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .alert {
+        top: 82px;
+        left: 20px;
+        width: calc(100% - 40px);
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .alert {
+        top: 72px;
+        left: 20px;
+        width: calc(100% - 40px);
+
+        &__text {
+            @mixin h2;
+        }
+    }
+
+}
+
+@mixin media_breakpoint_tablet {
+
+    .alert {
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+
+        &__text {
+            @mixin h2;
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .alert {
+        top: 0;
+        left: 0;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        width: 100%;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}
