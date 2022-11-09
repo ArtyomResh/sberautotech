@@ -8,11 +8,10 @@ import styles from './index.css';
 
 interface IProps {
     type: 'success' | 'error',
-    children: React.ReactNode,
     onCloseClick: () => void
 }
 
-const Alert = (props: IProps) => {
+const Alert = (props: React.PropsWithChildren<IProps>) => {
     const cn = useClassnames(styles);
     const { children, type, onCloseClick } = props;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Layout from '../layout';
 
@@ -9,23 +9,44 @@ import Hero from './components/hero';
 import VideoSection from './components/video-section';
 import RulesSection from './components/rules-section';
 import SignupModal from './components/signup-modal';
+import Alert from './components/alert';
 
-const PublicBetaSignup = () => (
-    <Layout theme={{ mode: 'dark', logoColor: '#040A0A' }}>
-        <Hero />
+const PublicBetaSignup = () => {
+    const [showRegistrationResultAlert, setShowRegistrationResultAlert] = useState<boolean>(false);
+    const [registrationResult, setRegistrationResult] = useState<'success' | 'error'>('success');
 
-        <PathDescription />
+    const handleRegistrationResultAlertClose = () => setShowRegistrationResultAlert(false);
 
-        <FeaturesSection />
+    const handleSignupSuccess = async () => {
+        setRegistrationResult('success');
+        setShowRegistrationResultAlert(true);
+    };
 
-        <RulesSection />
+    const handleSignupError = async () => {
+        setRegistrationResult('error');
+        setShowRegistrationResultAlert(true);
+    };
 
-        <VideoSection />
+    const registrationAlert = registrationResult === 'success' ? <Alert type="success" onCloseClick={handleRegistrationResultAlertClose} ><React.Fragment>Мы приняли вашу заявку!<br />До встречи в будушем.</React.Fragment></Alert> : <Alert type="error" onCloseClick={handleRegistrationResultAlertClose} ><React.Fragment>Заявка не отправлена.<br />Попробуйте еще раз.</React.Fragment></Alert>;
 
-        <Footer />
+    return (
+        <Layout theme={{ mode: 'dark', logoColor: '#040A0A' }}>
+            <Hero />
 
-        <SignupModal onSubmit={() => {}} />
-    </Layout>
-);
+            <PathDescription />
+
+            <FeaturesSection />
+
+            <RulesSection />
+
+            <VideoSection />
+
+            <Footer />
+
+            <SignupModal onSuccess={handleSignupSuccess} onError={handleSignupError} />
+            {showRegistrationResultAlert && registrationAlert}
+        </Layout>
+    );
+};
 
 export default PublicBetaSignup;

@@ -1,4 +1,4 @@
-import { Link } from 'gatsby';
+import { Link, l, navigate } from 'gatsby';
 import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { components, Props as SelectProps } from 'react-select';
@@ -15,10 +15,44 @@ import Text from '../../../text';
 
 import styles from './index.css';
 import selectStyles from './select.styles';
+import { api } from '../../../../utils/api';
+import { IRegistrationRequest } from '../../../../utils/api/types';
 
+
+export interface ISignupFormData {
+    name: string,
+    email: string,
+    phoneNumber: string,
+    district: 'krylatskoye' | 'other',
+    mobileOS: 'ios' | 'android' | 'other',
+    eighteen: boolean,
+    policy: boolean
+}
+
+const formFields: {[key in keyof ISignupFormData]: key} = {
+    name       : 'name',
+    email      : 'email',
+    phoneNumber: 'phoneNumber',
+    district   : 'district',
+    mobileOS   : 'mobileOS',
+    eighteen   : 'eighteen',
+    policy     : 'policy'
+};
+
+const districtOptions: Array<{value: ISignupFormData['district'], label: string}> = [
+    { value: 'krylatskoye', label: 'В Крылатском' },
+    { value: 'other', label: 'В другом' }
+];
+
+const mobileOsOptions: Array<{value: ISignupFormData['mobileOS'], label: string}> = [
+    { value: 'ios', label: 'iOS' },
+    { value: 'android', label: 'Android' }
+];
 
 interface IProps {
-    onSubmit(): void
+    onSubmit?(): void,
+    onSuccess?(): void,
+    onError?(): void
 }
 
 const { ValueContainer, Placeholder } = components;
@@ -34,12 +68,36 @@ const CustomValueContainer = (props: SelectProps['ValueContainer']) => {
     );
 };
 
+
 const SignupModal = (props: IProps) => {
     const cn = useClassnames(styles);
-    const methods = useForm({
+    const methods = useForm<ISignupFormData>({
         mode: 'onSubmit'
     });
     const [visible, setVisible] = useState<boolean>(typeof window !== 'undefined' && window.location.hash === '#modal');
+    const closeModal = () => {
+        setVisible(false);
+    };
+    const handleSubmit = async (data: ISignupFormData) => {
+        const request: IRegistrationRequest = {
+            username                           : data.name,
+            phone_number                       : data.phoneNumber,
+            email                              : data.email,
+            residence_area                     : data.district,
+            phone_model                        : data.mobileOS,
+            is_adult                           : data.eighteen,
+            is_processing_personal_data_allowed: data.policy
+        };
+
+        try {
+            await api.registrationForBeta(request);
+            closeModal();
+            void navigate('/public-beta-signup');
+            props.onSuccess?.();
+        } catch{
+            props.onError?.();
+        }
+    };
 
     useEffect(() => {
         const handler = () => {
@@ -70,7 +128,7 @@ const SignupModal = (props: IProps) => {
     return visible ? (
         <div className={cn('signup-modal__overlay')}>
             <div className={cn('signup-modal')}>
-                <Link onClick={() => setVisible(false)} to="/public-beta-signup" className={cn('signup-modal__button-close')}>
+                <Link onClick={closeModal} to="/public-beta-signup" className={cn('signup-modal__button-close')}>
                     <CrossIcon />
                 </Link>
 
@@ -95,19 +153,19 @@ const SignupModal = (props: IProps) => {
                 </div>
 
                 <FormProvider {...methods}>
-                    <form onSubmit={methods.handleSubmit(props.onSubmit)} className={cn('signup-modal__form')}>
+                    <form onSubmit={methods.handleSubmit<ISignupFormData>(handleSubmit)} className={cn('signup-modal__form')}>
                         <Input
                             className={cn('signup-modal__form-field', 'signup-modal__form-field_full-width')}
                             type="text"
                             placeholder="Как вас зовут?"
-                            name="name"
+                            name={formFields.name}
                             requiredValidation=""
                         />
                         <Input
                             className={cn('signup-modal__form-field')}
                             type="email"
                             placeholder="Электронная почта"
-                            name="email"
+                            name={formFields.email}
                             requiredValidation=""
                         />
 
@@ -115,16 +173,16 @@ const SignupModal = (props: IProps) => {
                             className={cn('signup-modal__form-field')}
                             type="tel"
                             placeholder="Номер телефона"
-                            name="phoneNumber"
+                            name={formFields.phoneNumber}
                             requiredValidation=""
                         />
 
 
                         <div className={cn('signup-modal__form-field')}>
                             <Select
-                                options={[{ value: 1, label: 'В Крылатском' }, { value: 2, label: 'В другом' }]}
+                                options={districtOptions}
                                 placeholder="В каком районе вы живете?"
-                                name="district"
+                                name={formFields.district}
                                 requiredValidation=""
                                 styles={selectStyles}
                                 components={{
@@ -134,9 +192,9 @@ const SignupModal = (props: IProps) => {
                         </div>
                         <div className={cn('signup-modal__form-field')}>
                             <Select
-                                options={[{ value: 1, label: 'iOS' }, { value: 2, label: 'Android' }]}
+                                options={mobileOsOptions}
                                 placeholder="ОС на вашем телефоне"
-                                name="mobileOS"
+                                name={formFields.mobileOS}
                                 requiredValidation=""
                                 styles={selectStyles}
                                 components={{
@@ -156,7 +214,7 @@ const SignupModal = (props: IProps) => {
                                     Мне исполнилось 18&#160;лет
                                 </Text>
                             )}
-                            name="eighteen"
+                            name={formFields.eighteen}
                             isBlock={true}
                         />
 
@@ -171,7 +229,7 @@ const SignupModal = (props: IProps) => {
                                     Даю согласие на&#160;обработку моих персональных данных в&#160;соответствии с&#160;политикой конфиденциальности и&#160;на&#160;участие в&#160;эксперименте
                                 </Text>
                             )}
-                            name="policy"
+                            name={formFields.policy}
                             isBlock={true}
                         />
 
