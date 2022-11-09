@@ -118,6 +118,7 @@
 
         &__title {
             grid-column: 1 / span 5;
+            max-width: 505px;
         }
 
         &__announce,
