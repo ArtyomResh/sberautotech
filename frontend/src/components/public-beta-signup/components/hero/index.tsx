@@ -13,9 +13,15 @@ import LinkButton from '../link-button';
 
 import styles from './index.css';
 
+interface IProps {
+    onLinkClick?: () => void
+}
 
-const OpenTesting = () => {
+const OpenTesting = ({ onLinkClick }: IProps) => {
     const cn = useClassnames(styles);
+    const handleLinkClick = () => {
+        onLinkClick?.();
+    };
 
     return (
         <section className={cn('hero')}>
@@ -33,6 +39,7 @@ const OpenTesting = () => {
                 <LinkButton
                     className={cn('hero__button')}
                     href="/public-beta-signup#modal"
+                    onClick={handleLinkClick}
                 >
                     Принять участие
                 </LinkButton>

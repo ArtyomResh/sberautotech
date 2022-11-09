@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Layout from '../layout';
 
@@ -14,6 +14,18 @@ import Alert from './components/alert';
 const PublicBetaSignup = () => {
     const [showRegistrationResultAlert, setShowRegistrationResultAlert] = useState<boolean>(false);
     const [registrationResult, setRegistrationResult] = useState<'success' | 'error'>('success');
+
+    useEffect(() => {
+        const popupShowTime = 3000;
+
+        if(showRegistrationResultAlert) {
+            const timer = setTimeout(() => {
+                setShowRegistrationResultAlert(false);
+            }, popupShowTime);
+
+            return () => clearTimeout(timer);
+        }
+    }, [showRegistrationResultAlert]);
 
     const handleRegistrationResultAlertClose = () => setShowRegistrationResultAlert(false);
 
@@ -31,11 +43,14 @@ const PublicBetaSignup = () => {
         setShowRegistrationResultAlert(true);
     };
 
-    const registrationAlert = registrationResult === 'success' ? <Alert type="success" onCloseClick={handleRegistrationResultAlertClose}>Мы&#160;приняли вашу заявку!<br />До&#160;встречи в&#160;будушем.</Alert> : <Alert type="error" onCloseClick={handleRegistrationResultAlertClose}>Заявка не&#160;отправлена.<br />Попробуйте еще раз.</Alert>;
+    const alertsDataByRegistrationResult = {
+        success: 'Мы&#160;приняли вашу заявку!<br />До&#160;встречи в&#160;будушем.',
+        error  : 'Заявка не&#160;отправлена.<br />Попробуйте еще раз.'
+    };
 
     return (
         <Layout theme={{ mode: 'dark', logoColor: '#040A0A' }}>
-            <Hero />
+            <Hero onLinkClick={handleRegistrationResultAlertClose} />
 
             <PathDescription />
 
@@ -48,7 +63,14 @@ const PublicBetaSignup = () => {
             <Footer />
 
             <SignupModal onSuccess={handleSignupSuccess} onError={handleSignupError} onSubmit={handleSubmitStart} />
-            {showRegistrationResultAlert && registrationAlert}
+
+            <Alert
+                type={registrationResult}
+                onCloseClick={handleRegistrationResultAlertClose}
+                isVisible={showRegistrationResultAlert}
+            >
+                {alertsDataByRegistrationResult[registrationResult]}
+            </Alert>
         </Layout>
     );
 };

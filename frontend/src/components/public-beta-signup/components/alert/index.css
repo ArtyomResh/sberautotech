@@ -8,6 +8,7 @@
     padding-right: 76px;
     border-radius: 32px;
     z-index: var(--zindex-tooltip);
+    pointer-events: none;
 
     &_type-success {
         background-color: var(--color-accent);
@@ -15,6 +16,10 @@
 
     &_type-error {
         background-color: var(--color-error);
+    }
+
+    &_visible {
+        pointer-events: all;
     }
 
     &__button {

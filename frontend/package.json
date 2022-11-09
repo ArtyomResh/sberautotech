@@ -33,6 +33,7 @@
     "react-markdown": "6.0.3",
     "react-moment": "0.9.7",
     "react-recaptcha": "2.3.10",
+    "react-reveal": "^1.2.2",
     "react-select": "4.3.0",
     "rehype-raw": "6.0.0",
     "swiper": "6.5.7"

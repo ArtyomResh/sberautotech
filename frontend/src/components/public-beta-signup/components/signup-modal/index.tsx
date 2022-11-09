@@ -1,10 +1,14 @@
-import { Link, l, navigate } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { components, Props as SelectProps } from 'react-select';
+import { useLocation } from '@reach/router';
+
 
 import CrossIcon from '../../../../images/cross.inline.svg';
 import { useClassnames } from '../../../../hooks/use-classnames';
+import { api } from '../../../../utils/api';
+import { IRegistrationRequest } from '../../../../utils/api/types';
 
 import Heading from '../../../heading';
 import Button from '../button';
@@ -15,8 +19,6 @@ import Text from '../../../text';
 
 import styles from './index.css';
 import selectStyles from './select.styles';
-import { api } from '../../../../utils/api';
-import { IRegistrationRequest } from '../../../../utils/api/types';
 
 interface IMobileOption {
     value: 'ios' | 'android', label: string
@@ -78,14 +80,16 @@ const CustomValueContainer = (props: SelectProps['ValueContainer']) => {
 
 
 const SignupModal = (props: IProps) => {
+    const location = useLocation();
     const cn = useClassnames(styles);
     const methods = useForm<ISignupFormData>({
         mode: 'onSubmit'
     });
 
-    const [visible, setVisible] = useState<boolean>(typeof window !== 'undefined' && window.location.hash === '#modal');
+    const [isVisible, setIsVisible] = useState<boolean>(location.hash === '#modal');
     const closeModal = () => {
-        setVisible(false);
+        setIsVisible(false);
+        void navigate('/public-beta-signup');
     };
     const handleSubmit = async (data: ISignupFormData) => {
         const request: IRegistrationRequest = {
@@ -101,7 +105,6 @@ const SignupModal = (props: IProps) => {
         try {
             await api.registrationForBeta(request);
             closeModal();
-            void navigate('/public-beta-signup');
             props.onSuccess?.();
         } catch{
             props.onError?.();
@@ -109,20 +112,12 @@ const SignupModal = (props: IProps) => {
     };
 
     useEffect(() => {
-        const handler = () => {
-            setVisible(window.location.hash === '#modal');
-        };
-
-        window.addEventListener('hashchange', handler);
-
-        return function cleanup() {
-            window.removeEventListener('hashchange', handler);
-        };
-    }, [setVisible]);
+        setIsVisible(location.hash === '#modal');
+    }, [setIsVisible, location.hash]);
 
     useEffect(
         () => {
-            if(visible) {
+            if(isVisible) {
                 window.document.body.style.overflowY = 'hidden';
             } else {
                 window.document.body.style.overflowY = 'auto';
@@ -132,10 +127,11 @@ const SignupModal = (props: IProps) => {
                 window.document.body.style.overflowY = 'auto';
             };
         },
-        [visible]);
+        [isVisible]
+    );
 
-    return visible ? (
-        <div className={cn('signup-modal__overlay')}>
+    return (
+        <div className={cn('signup-modal__overlay', { 'signup-modal__overlay_visible': isVisible })}>
             <div className={cn('signup-modal')}>
                 <Link onClick={closeModal} to="/public-beta-signup" className={cn('signup-modal__button-close')}>
                     <CrossIcon />
@@ -251,7 +247,7 @@ const SignupModal = (props: IProps) => {
                 </FormProvider>
             </div>
         </div>
-    ) : null;
+    );
 };
 
 export default SignupModal;

@@ -16,10 +16,15 @@
         right: 0;
         bottom: 0;
         left: 0;
+        z-index: var(--zindex-tooltip);
+        display: none;
         overflow: auto;
         overflow-x: hidden;
         overflow-y: auto;
-        z-index: var(--zindex-tooltip);
+    }
+
+    &__overlay_visible {
+        display: block;
     }
 
     &__description {

@@ -1,4 +1,5 @@
 import React from 'react';
+import Fade from 'react-reveal/Fade';
 
 import Heading from '../../../heading';
 import { useClassnames } from '../../../../hooks/use-classnames';
@@ -8,24 +9,24 @@ import styles from './index.css';
 
 interface IProps {
     type: 'success' | 'error',
+    isVisible: boolean,
     onCloseClick: () => void
 }
 
 const Alert = (props: React.PropsWithChildren<IProps>) => {
     const cn = useClassnames(styles);
-    const { children, type, onCloseClick } = props;
+    const { children, type, isVisible, onCloseClick } = props;
 
     return (
-        <div className={cn('alert', `alert_type-${type}`)}>
-            <Heading level={2} as="div" className={cn('alert__text')}>
-                {children}
+        <Fade duration={200} top={true} when={isVisible}>
+            <div className={cn('alert', `alert_type-${type}`, { 'alert_visible': isVisible })}>
+                <Heading level={2} as="div" className={cn('alert__text')} dangerouslySetInnerHTML={{ __html: `${children}` }} />
 
                 <button className={cn('alert__button')} type="button" title="Кнопка закрытия алёрта" onClick={onCloseClick}>
                     <Cross className={cn('alert__icon-cross')} />
                 </button>
-
-            </Heading>
-        </div>
+            </div>
+        </Fade>
     );
 };
 
