@@ -83,7 +83,9 @@ select {
     --zindex-popover: 107;
     --zindex-tooltip: 108;
 
+    --color-black: #1f272e;
     --color-accent: #66d4d0;
+    --color-neutral: #e0e6eb;
     --color-error: #ff364d;
     --color-gray: #f3f8f9;
 }

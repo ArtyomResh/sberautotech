@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Heading from '../../../heading';
-import LinkButton from '../../../link-button';
+import LinkButton from '../link-button';
 import Text from '../../../text';
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';

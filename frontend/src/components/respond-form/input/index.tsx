@@ -19,15 +19,16 @@ interface IProps {
     ref?: React.Ref<HTMLInputElement>,
     pattern?: RegExp | ValidationValueMessage<RegExp>,
     requiredValidation?: Message | ValidationRule<boolean>,
-    autocomplete?: TAutoCompleteType
+    autocomplete?: TAutoCompleteType,
+    className?: string
 }
 
 interface IState {
-    fileName: string | undefined,
-    fileExtension: string | undefined
+    fileName?: string,
+    fileExtension?: string
 }
 
-const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
+const Input = ({ type, placeholder, ref, name, className, ...props }: IProps) => {
     const { register, formState } = useFormContext();
     const cn = useClassnames(style);
 
@@ -109,11 +110,11 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
             }
 
             if(inputNumbersValue.length >= 8) {
-                formattedInputValue += `-${inputNumbersValue.substring(7, 9)}`;
+                formattedInputValue += `–${inputNumbersValue.substring(7, 9)}`;
             }
 
             if(inputNumbersValue.length >= 10) {
-                formattedInputValue += `-${inputNumbersValue.substring(9, 11)}`;
+                formattedInputValue += `–${inputNumbersValue.substring(9, 11)}`;
             }
         } else {
             formattedInputValue = `+${inputNumbersValue.substring(0, 16)}`;
@@ -145,7 +146,7 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
 
     const elInputFile = useMemo(() => {
         return (
-            <div className={cn('input-file')}>
+            <div className={cn('input-file', className)}>
                 <input
                     type="file"
                     id="file"
@@ -163,7 +164,7 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
 
     const elInput = useMemo(() => {
         return (
-            <div className={cn('input', { 'input_error': formState.errors?.[name] })}>
+            <div className={cn('input', className, { 'input_error': formState.errors?.[name] })}>
                 <input
                     placeholder={' '}
                     id="input"
@@ -187,7 +188,7 @@ const Input = ({ type, placeholder, ref, name, ...props }: IProps) => {
 
     const elInputTel = useMemo(() => {
         return (
-            <div className={cn('input', { 'input_error': formState.errors?.[name] })}>
+            <div className={cn('input', className, { 'input_error': formState.errors?.[name] })}>
                 <input
                     placeholder="+7 ___ ___ - __ - __"
                     id="input"

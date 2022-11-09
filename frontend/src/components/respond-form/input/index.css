@@ -37,8 +37,8 @@
             border: 1px solid #ffffff;
 
             & ~ .input__label {
-                line-height: 20px;
                 font-size: 14px;
+                line-height: 20px;
             }
         }
 
@@ -47,8 +47,8 @@
             border: 1px solid #ffffff;
 
             & ~ .input__label {
-                line-height: 20px;
                 font-size: 14px;
+                line-height: 20px;
             }
         }
     }
@@ -67,8 +67,8 @@
             transition: none;
 
             &_tel {
-                line-height: 20px;
                 font-size: 14px;
+                line-height: 20px;
             }
         }
     }
@@ -85,8 +85,8 @@
         transition: 0.3s;
 
         &_tel {
-            line-height: 20px;
             font-size: 14px;
+            line-height: 20px;
         }
     }
 

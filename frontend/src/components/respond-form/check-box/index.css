@@ -9,6 +9,10 @@
         letter-spacing: -0.01em;
         color: #000000;
         opacity: 0.9;
+
+        &_block {
+            width: calc(100% - 45px);
+        }
     }
 
     &__input {

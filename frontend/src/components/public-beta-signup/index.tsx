@@ -8,7 +8,7 @@ import Footer from './components/footer';
 import Hero from './components/hero';
 import VideoSection from './components/video-section';
 import RulesSection from './components/rules-section';
-import Alert from './components/alert';
+import SignupModal from './components/signup-modal';
 
 const PublicBetaSignup = () => (
     <Layout theme={{ mode: 'dark', logoColor: '#040A0A' }}>
@@ -24,10 +24,7 @@ const PublicBetaSignup = () => (
 
         <Footer />
 
-        <Alert type="success" onCloseClick={() => console.log('click')}>
-            Мы приняли вашу заявку! <br />
-            До встречи в будущем.
-        </Alert>
+        <SignupModal onSubmit={() => {}} />
     </Layout>
 );
 

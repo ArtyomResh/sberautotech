@@ -1,10 +1,9 @@
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import ReactSelect, { Props } from 'react-select';
-import { customStyles } from './config';
+import { defaultStyles } from './config';
 
-
-const Select = React.forwardRef(({ placeholder, name, value, options, onChange, noOptionsMessage }: Props, ref) => {
+const Select = React.forwardRef(({ placeholder, name, value, isDisabled, options, onChange, noOptionsMessage, styles = defaultStyles, components }: Props, ref) => {
     const { control } = useFormContext();
 
     return (
@@ -13,16 +12,18 @@ const Select = React.forwardRef(({ placeholder, name, value, options, onChange, 
             name={name}
             render={({ field }) => (
                 <ReactSelect
+                    isDisabled={isDisabled}
                     {...field}
                     placeholder={placeholder}
                     inputRef={ref}
                     value={value}
                     options={options}
-                    styles={customStyles}
+                    styles={styles}
                     classNamePrefix="ui-select"
                     isSearchable={false}
                     onChange={onChange}
                     noOptionsMessage={noOptionsMessage}
+                    components={components}
                 />
             )}
         />

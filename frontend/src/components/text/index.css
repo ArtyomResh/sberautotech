@@ -80,6 +80,11 @@
             @mixin t3;
         }
 
+        &_3 {
+
+            @mixin t2;
+        }
+
         &_2 {
 
             @mixin t1;

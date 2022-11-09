@@ -5,10 +5,11 @@ import IconArrowDown from '../../../../../static/hero/icon-arrow-down.inline.svg
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
 
-import LinkButton from '../../../link-button';
 import Heading from '../../../heading';
 import Text from '../../../text';
 import GridWrapper from '../grid-wrapper';
+
+import LinkButton from '../link-button';
 
 import styles from './index.css';
 

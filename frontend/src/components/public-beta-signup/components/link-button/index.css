@@ -1,9 +1,8 @@
-@import "../text/index.css";
+@import "../../../text/index.css";
 
 .link-button {
-    --color-accent-idle: #66d4d0;
+    --color-accent: #66d4d0;
     --color-accent-hover: #5ec4c1;
-    --color-accent-active: #e0e6eb;
     --color-accent-pressed: #6de3df;
 
     padding: 16px 20px;
@@ -14,11 +13,14 @@
     align-items: center;
     border-radius: 32px;
     color: var(--color-white);
-    background-color: var(--color-accent-idle);
+    background-color: var(--color-accent);
     transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
 
-    &:hover {
-        background-color: var(--color-accent-hover);
+    @media (hover: hover) and (pointer: fine) {
+
+        &:hover {
+            background-color: var(--color-accent-hover);
+        }
     }
 
     &:active {
@@ -27,15 +29,18 @@
 
     &_active {
         color: var(--color-black);
-        background-color: var(--color-accent-active);
+        background-color: var(--color-neutral);
 
-        &:hover {
-            color: var(--color-black);
-            background-color: var(--color-accent-active);
+        @media (hover: hover) and (pointer: fine) {
+
+            &:hover {
+                color: var(--color-black);
+                background-color: var(--color-neutral);
+            }
         }
 
         &:active {
-            background-color: var(--color-accent-active);
+            background-color: var(--color-neutral);
         }
     }
 }
