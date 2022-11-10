@@ -48,11 +48,16 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         'width': '100%',
 
         '.ui-select__control--menu-is-open': {
-            'border'                 : '1px solid #10181F',
+            'border'                 : '1px solid var(--color-black-dark)',
             'borderBottomColor'      : 'transparent',
             'borderBottomLeftRadius' : '0',
             'borderBottomRightRadius': '0',
-            'box-shadow'             : '0px 0px 0px 1px #10181F'
+            'box-shadow'             : '0px 0px 0px 1px var(--color-black-dark)'
+        },
+
+        '.ui-select__control--is-focused': {
+            'border'    : '1px solid var(--color-black-dark)',
+            'box-shadow': '0px 0px 0px 1px var(--color-black-dark)'
         }
     }),
     control: (provided) => ({
@@ -71,13 +76,15 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         'cursor'        : 'pointer',
         'transition'    : '100ms ease-in-out',
 
-        '&:hover': {
-            'border'    : '1px solid #10181F',
-            'box-shadow': '0px 0px 0px 1px #10181F'
+        '@media (hover: hover) and (pointer: fine)': {
+            '&:hover': {
+                'border'    : '1px solid var(--color-black-dark)',
+                'box-shadow': '0px 0px 0px 1px var(--color-black-dark)'
+            }
         },
 
         '& .ui-select__single-value': {
-            'color': '#10181F'
+            'color': 'var(--color-black-dark)'
         },
 
         '& .ui-select__dropdwon-icon': {
@@ -87,7 +94,7 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         },
 
         '& .ui-select__indicator svg': {
-            'fill': '#43515C'
+            'fill': 'var(--color-black-dark)'
         },
 
         '@media (min-width: 1280px) and (max-width: 1919px)': controlMediaQueryStyles,
@@ -107,7 +114,7 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         'line-height'   : '30px',
         'font-weight'   : '400',
         'letter-spacing': '-0.05em',
-        'color'         : '#1F272E',
+        'color'         : 'var(--color-black)',
         'transform'     : 'none',
         'transition'    : '100ms ease-in-out',
 
@@ -132,9 +139,16 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         'padding'   : '0',
         'max-height': '150px',
 
+        '@media (hover: hover) and (pointer: fine)': {
+            '& .ui-select__option:hover': {
+                'background-color': 'white',
+                'color'           : 'var(--color-black)'
+            }
+        },
+
         '& .ui-select__option--is-focused': {
-            'background-color': '#FFF',
-            'color'           : 'black'
+            'background-color': 'var(--color-neutral)',
+            'color'           : 'var(--color-black)'
         },
 
         '& .ui-select__option--is-selected': {
@@ -146,10 +160,10 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         'top'           : 'calc(100% - 16px)',
         'border-radius' : '0 0 16px 16px',
         'box-shadow'    : 'none',
-        'border'        : '2px solid #10181F',
+        'border'        : '2px solid var(--color-black-dark)',
         'border-top'    : 'none',
         'overflow'      : 'hidden',
-        'background'    : '#e0e6eb',
+        'background'    : 'var(--color-neutral)',
         'margin-top'    : '0',
         'padding-top'   : '0',
         'padding-bottom': '16px',
@@ -158,7 +172,7 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
     option: (provided) => ({
         ...provided,
         'cursor'        : 'pointer',
-        'color'         : '#10181F',
+        'color'         : 'var(--color-black-dark)',
         'font-size'     : '24px',
         'line-height'   : '30px',
         'font-weight'   : '400',
