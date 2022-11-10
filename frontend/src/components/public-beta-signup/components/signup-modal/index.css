@@ -108,8 +108,8 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 20px;
-        min-height: calc(100vh - 102px);  /* sum of margins from top and bottom  */
-        max-height: 737px;
+        height: calc(100vh - 102px);  /* sum of margins from top and bottom  */
+        max-height: 974px;
         border-radius: 32px;
 
         &__description {
@@ -117,6 +117,7 @@
         }
 
         &__description-paragraph {
+            margin-top: 40px;
             max-width: 415px;
         }
 
@@ -159,7 +160,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 20px;
-        min-height: calc(100vh - 92px);  /* sum of margins from top and bottom  */
+        height: calc(100vh - 92px);  /* sum of margins from top and bottom  */
         max-height: 737px;
         border-radius: 32px;
 
@@ -168,6 +169,7 @@
         }
 
         &__description-paragraph {
+            margin-top: 40px;
             max-width: 275px;
         }
 
@@ -209,7 +211,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        min-height: calc(100vh - 130px); /* bottom padding */
+        height: calc(100vh - 130px); /* bottom padding */
         max-height: 1004px;
         border-bottom-left-radius: 32px;
         border-bottom-right-radius: 32px;
