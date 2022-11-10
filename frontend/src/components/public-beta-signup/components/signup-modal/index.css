@@ -125,12 +125,12 @@
             grid-column: 2 / span 1;
         }
 
-        &__form-field label {
+        &__form-field input + label {
 
             @mixin t2;
         }
 
-        &__form-field input[type="tel"] ~ label {
+        &__form-field input[type="tel"] + label {
 
             @mixin t3;
         }
@@ -144,8 +144,8 @@
             padding-right: 16px;
             height: 90px;
 
-            &:focus ~ label,
-            &:not(:placeholder-shown) ~ label {
+            &:focus + label,
+            &:not(:placeholder-shown) + label {
 
                 @mixin t3;
             }
@@ -177,12 +177,12 @@
             grid-column: 2 / span 1;
         }
 
-        &__form-field label {
+        &__form-field input + label {
 
             @mixin t3;
         }
 
-        &__form-field input[type="tel"] ~ label {
+        &__form-field input[type="tel"] + label {
 
             @mixin t4;
         }
@@ -196,8 +196,8 @@
             padding-right: 16px;
             height: 80px;
 
-            &:focus ~ label,
-            &:not(:placeholder-shown) ~ label {
+            &:focus + label,
+            &:not(:placeholder-shown) + label {
 
                 @mixin t4;
             }
@@ -230,12 +230,12 @@
             max-width: 322px;
         }
 
-        &__form-field label {
+        &__form-field input + label {
 
             @mixin t3;
         }
 
-        &__form-field input[type="tel"] ~ label {
+        &__form-field input[type="tel"] + label {
 
             @mixin t4;
         }
@@ -249,8 +249,8 @@
             padding-right: 16px;
             height: 80px;
 
-            &:focus ~ label,
-            &:not(:placeholder-shown) ~ label {
+            &:focus + label,
+            &:not(:placeholder-shown) + label {
 
                 @mixin t4;
             }
@@ -288,12 +288,12 @@
             margin-top: 20px;
         }
 
-        &__form-field label {
+        &__form-field input + label {
 
             @mixin t3;
         }
 
-        &__form-field input[type="tel"] ~ label {
+        &__form-field input[type="tel"] + label {
 
             @mixin t4;
         }
@@ -307,8 +307,8 @@
             padding-right: 16px;
             height: 80px;
 
-            &:focus ~ label,
-            &:not(:placeholder-shown) ~ label {
+            &:focus + label,
+            &:not(:placeholder-shown) + label {
 
                 @mixin t4;
             }

@@ -8,7 +8,9 @@ export const strapiAPIRoutes = {
 
 export const api = {
     registrationForBeta: (data: IRegistrationRequest) => {
-        return Promise.resolve('')
+        console.log('registration request data', data);
+
+        return Promise.resolve('');
         // return fetch(strapiAPIRoutes.registrationForBeta, {
         //     method: 'POST',
         //     body  : JSON.stringify(data)

@@ -132,7 +132,7 @@ const Input = ({ type, placeholder, ref, name, className, ...props }: IProps) =>
 
     const erorrHandler = useMemo(() => {
         if(formState.errors?.[name] && string) {
-            if(name === 'Почта') {
+            if(type === 'email') {
                 return 'Неверный формат почты';
             }
 

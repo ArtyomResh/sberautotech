@@ -18,13 +18,19 @@ import selectStyles from './select.styles';
 import { api } from '../../../../utils/api';
 import { IRegistrationRequest } from '../../../../utils/api/types';
 
+interface IMobileOption {
+    value: 'ios' | 'android', label: string
+}
+interface IDsitrictOption {
+    value: 'krylatskoye' | 'other', label: string
+}
 
 export interface ISignupFormData {
     name: string,
     email: string,
     phoneNumber: string,
-    district: 'krylatskoye' | 'other',
-    mobileOS: 'ios' | 'android' | 'other',
+    district: IDsitrictOption | undefined,
+    mobileOS: IMobileOption | undefined,
     eighteen: boolean,
     policy: boolean
 }
@@ -39,15 +45,17 @@ const formFields: {[key in keyof ISignupFormData]: key} = {
     policy     : 'policy'
 };
 
-const districtOptions: Array<{value: ISignupFormData['district'], label: string}> = [
+const districtOptions: Array<IDsitrictOption> = [
     { value: 'krylatskoye', label: 'В Крылатском' },
     { value: 'other', label: 'В другом' }
 ];
 
-const mobileOsOptions: Array<{value: ISignupFormData['mobileOS'], label: string}> = [
+
+const mobileOsOptions: Array<IMobileOption> = [
     { value: 'ios', label: 'iOS' },
     { value: 'android', label: 'Android' }
 ];
+
 
 interface IProps {
     onSubmit?(): void,
@@ -74,6 +82,7 @@ const SignupModal = (props: IProps) => {
     const methods = useForm<ISignupFormData>({
         mode: 'onSubmit'
     });
+
     const [visible, setVisible] = useState<boolean>(typeof window !== 'undefined' && window.location.hash === '#modal');
     const closeModal = () => {
         setVisible(false);
@@ -83,8 +92,8 @@ const SignupModal = (props: IProps) => {
             username                           : data.name,
             phone_number                       : data.phoneNumber,
             email                              : data.email,
-            residence_area                     : data.district,
-            phone_model                        : data.mobileOS,
+            residence_area                     : data.district?.value || 'other',
+            phone_model                        : data.mobileOS?.value || 'other',
             is_adult                           : data.eighteen,
             is_processing_personal_data_allowed: data.policy
         };
@@ -159,14 +168,14 @@ const SignupModal = (props: IProps) => {
                             type="text"
                             placeholder="Как вас зовут?"
                             name={formFields.name}
-                            requiredValidation=""
+                            requiredValidation={true}
                         />
                         <Input
                             className={cn('signup-modal__form-field')}
                             type="email"
                             placeholder="Электронная почта"
                             name={formFields.email}
-                            requiredValidation=""
+                            requiredValidation={true}
                         />
 
                         <Input
@@ -174,7 +183,7 @@ const SignupModal = (props: IProps) => {
                             type="tel"
                             placeholder="Номер телефона"
                             name={formFields.phoneNumber}
-                            requiredValidation=""
+                            requiredValidation={true}
                         />
 
 
@@ -183,7 +192,7 @@ const SignupModal = (props: IProps) => {
                                 options={districtOptions}
                                 placeholder="В каком районе вы живете?"
                                 name={formFields.district}
-                                requiredValidation=""
+                                required={true}
                                 styles={selectStyles}
                                 components={{
                                     ValueContainer: CustomValueContainer
@@ -195,8 +204,8 @@ const SignupModal = (props: IProps) => {
                                 options={mobileOsOptions}
                                 placeholder="ОС на вашем телефоне"
                                 name={formFields.mobileOS}
-                                requiredValidation=""
                                 styles={selectStyles}
+                                required={true}
                                 components={{
                                     ValueContainer: CustomValueContainer
                                 }}
@@ -216,6 +225,7 @@ const SignupModal = (props: IProps) => {
                             )}
                             name={formFields.eighteen}
                             isBlock={true}
+                            requiredValidation={true}
                         />
 
                         <CheckBox
@@ -231,6 +241,7 @@ const SignupModal = (props: IProps) => {
                             )}
                             name={formFields.policy}
                             isBlock={true}
+                            requiredValidation={true}
                         />
 
                         <Button type="submit" className={cn('signup-modal__submit')} isBlock={true}>
