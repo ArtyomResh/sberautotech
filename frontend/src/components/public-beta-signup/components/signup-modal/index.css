@@ -39,6 +39,11 @@
         width: calc(50% - 10px);
     }
 
+    &__form-field label,
+    &__form-field input {
+        transition: 100ms ease-in-out;
+    }
+
     &__form-field input:not([type="checkbox"]):not([aria-autocomplete="list"]) {
         caret-color: var(--color-accent);
 

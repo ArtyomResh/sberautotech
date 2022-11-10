@@ -27,7 +27,7 @@ const PublicBetaSignup = () => {
         setShowRegistrationResultAlert(true);
     };
 
-    const registrationAlert = registrationResult === 'success' ? <Alert type="success" onCloseClick={handleRegistrationResultAlertClose} ><React.Fragment>Мы приняли вашу заявку!<br />До встречи в будушем.</React.Fragment></Alert> : <Alert type="error" onCloseClick={handleRegistrationResultAlertClose} ><React.Fragment>Заявка не отправлена.<br />Попробуйте еще раз.</React.Fragment></Alert>;
+    const registrationAlert = registrationResult === 'success' ? <Alert type="success" onCloseClick={handleRegistrationResultAlertClose}>Мы&#160;приняли вашу заявку!<br />До&#160;встречи в&#160;будушем.</Alert> : <Alert type="error" onCloseClick={handleRegistrationResultAlertClose}>Заявка не&#160;отправлена.<br />Попробуйте еще раз.</Alert>;
 
     return (
         <Layout theme={{ mode: 'dark', logoColor: '#040A0A' }}>

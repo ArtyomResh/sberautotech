@@ -69,7 +69,7 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         'outline'       : 'none',
         'background'    : 'transparent',
         'cursor'        : 'pointer',
-        'transition'    : '0.3s',
+        'transition'    : '100ms ease-in-out',
 
         '&:hover': {
             'border'    : '1px solid #10181F',
@@ -109,7 +109,7 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         'letter-spacing': '-0.05em',
         'color'         : '#1F272E',
         'transform'     : 'none',
-        'transition'    : '0.3s',
+        'transition'    : '100ms ease-in-out',
 
         '.ui-select__control--menu-is-open &': {
             'font-size'  : '20px',

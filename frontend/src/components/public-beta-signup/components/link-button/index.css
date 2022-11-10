@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 32px;
-    color: var(--color-white);
+    color: var(--color-white) !important;
     background-color: var(--color-accent);
     transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
 
