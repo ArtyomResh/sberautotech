@@ -10,6 +10,7 @@ import VideoSection from './components/video-section';
 import RulesSection from './components/rules-section';
 import SignupModal from './components/signup-modal';
 import Alert from './components/alert';
+import Header from './components/header';
 
 const PublicBetaSignup = () => {
     const [showRegistrationResultAlert, setShowRegistrationResultAlert] = useState<boolean>(false);
@@ -49,7 +50,9 @@ const PublicBetaSignup = () => {
     };
 
     return (
-        <Layout theme={{ mode: 'dark', logoColor: '#040A0A' }}>
+        <Layout theme={{ mode: 'dark', logoColor: '#040A0A' }} withNav={false}>
+            <Header />
+
             <Hero onLinkClick={handleRegistrationResultAlertClose} />
 
             <PathDescription />

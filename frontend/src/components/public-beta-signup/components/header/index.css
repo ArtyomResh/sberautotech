@@ -1,0 +1,62 @@
+.header {
+    position: fixed;
+    z-index: var(--zindex-base);
+    margin-bottom: calc(var(--nav-height) * -1);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: var(--nav-height);
+    color: #fff;
+    transform: translateY(0);
+    transition: transform 0.5s ease;
+    background-color: #fff;
+
+    &_hidden {
+        transform: translateY(-110%);
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .header {
+        height: var(--nav-height);
+
+        &_logo {
+            width: 322px;
+            height: 36px;
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .header {
+        height: 72px;
+
+        &_logo {
+            width: 286px;
+            height: 32px;
+        }
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .header {
+        height: 72px;
+
+        &_logo {
+            width: 286px;
+            height: 32px;
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .header {
+        display: none;
+    }
+}

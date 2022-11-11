@@ -1,6 +1,13 @@
 
 .hero {
 
+    &__header {
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        width: 100vw;
+    }
+
     &__location-details-title + p {
         margin-top: 8px;
     }
@@ -28,6 +35,16 @@
     .hero {
         position: relative;
         background-image: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);
+
+        &__header {
+            margin-bottom: calc(var(--nav-height) * -1);
+            height: var(--nav-height);
+
+            &-logo {
+                width: 322px;
+                height: 36px;
+            }
+        }
 
         &__title {
             --width-of-title-on-1920-resolution: 810px;
@@ -120,10 +137,21 @@
         position: relative;
         background-image: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);
 
+        &__header {
+            margin-bottom: -72px;
+            height: 72px;
+
+            &-logo {
+                width: 286px;
+                height: 32px;
+            }
+        }
+
         &__title {
             grid-column: 1 / span 5;
             max-width: 505px;
         }
+        
 
         &__announce,
         &__location-details-title:first-of-type,
@@ -203,6 +231,16 @@
 @mixin media_breakpoint_tablet {
 
     .hero {
+        &__header {
+            margin-bottom: -72px;
+            height: 72px;
+
+            &-logo {
+                width: 286px;
+                height: 32px;
+            }
+        }
+
         &__title,
         &__announce,
         &__map {
@@ -283,6 +321,16 @@
 
     .hero {
 
+        &__header {
+            margin-bottom: -78px;
+            height: 70px;
+
+            &-logo {
+                width: 286px;
+                height: 32px;
+            }
+        }
+
         &__title,
         &__announce,
         &__map,
@@ -357,5 +405,14 @@
         &__location-details-title:last-of-type {
            width: 80px;
         }
+    }
+
+    .hero .hero__button {
+        --paddings-width: 40px;
+        position: fixed;
+        z-index: var(--zindex-base);
+        bottom: 40px;
+        margin: 0;
+        width: calc(100vw - var(--paddings-width));
     }
 }

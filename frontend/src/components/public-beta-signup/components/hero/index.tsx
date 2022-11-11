@@ -2,6 +2,7 @@ import React from 'react';
 
 import IconArrowRight from '../../../../../static/hero/icon-arrow-right.inline.svg';
 import IconArrowDown from '../../../../../static/hero/icon-arrow-down.inline.svg';
+import Logo from '../../../../../static/logo.inline.svg';
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
 
@@ -25,6 +26,10 @@ const OpenTesting = ({ onLinkClick }: IProps) => {
 
     return (
         <section className={cn('hero')}>
+            <header className={cn('hero__header')}>
+                <Logo className={cn('hero__header-logo')} />
+            </header>
+
             <GridWrapper as="div">
                 <Heading
                     level={1}

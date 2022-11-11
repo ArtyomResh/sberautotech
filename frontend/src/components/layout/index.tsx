@@ -16,17 +16,25 @@ interface IProps {
     theme?: INav['theme'],
     pageNumber?: INav['pageNumber'],
     setPageNumber?: INav['setPageNumber'],
-    type?: string
+    type?: string,
+    withNav?: boolean
 }
 
-const Layout = ({ children, seo, theme, pageNumber, setPageNumber, type }: IProps) => {
+const Layout = ({ children, seo, theme, pageNumber, setPageNumber, type, withNav = true }: IProps) => {
     const cn = useClassnames(style);
 
     return (
         <AppProvider>
             <div className={cn('app__wrapper')}>
                 <Seo seo={seo} />
-                <Nav theme={theme} pageNumber={pageNumber} setPageNumber={setPageNumber} whiteLogoImportant={theme?.whiteLogoImportant} />
+                {withNav && (
+                    <Nav
+                        theme={theme}
+                        pageNumber={pageNumber}
+                        setPageNumber={setPageNumber}
+                        whiteLogoImportant={theme?.whiteLogoImportant}
+                    />
+                )}
                 <main>{children}</main>
                 <RespondForm />
                 <CookieAlert />
