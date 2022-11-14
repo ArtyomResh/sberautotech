@@ -22,7 +22,7 @@ const RulesSection = () => {
     const cn = useClassnames(style);
 
     return (
-        <GridWrapper as="section">
+        <GridWrapper as="section" className={cn('rules-section')}>
             <Heading
                 className={cn('rules-section__title')}
                 level={2}

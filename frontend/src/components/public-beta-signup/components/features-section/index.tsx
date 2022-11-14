@@ -20,7 +20,7 @@ const FeaturesSection = () => {
     const cn = useClassnames(style);
 
     return (
-        <GridWrapper as="section">
+        <GridWrapper as="section" className={cn('features-section')}>
             <Heading
                 className={cn('features-section__title')}
                 level={2}

@@ -1,3 +1,7 @@
+.video-section {
+    background-color: var(--color-white);
+}
+
 @mixin media_breakpoint_normal_desktop {
 
     .video-section {

@@ -1,5 +1,7 @@
 .rules-section {
 
+    background-color: var(--color-white);
+
     &__list {
         display: grid;
         grid-gap: 20px;

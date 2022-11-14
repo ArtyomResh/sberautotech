@@ -14,7 +14,7 @@ const VideoSection = () => {
     const cn = useClassnames(style);
 
     return (
-        <section>
+        <section className={cn('video-section')}>
             <GridWrapper>
                 <Heading
                     className={cn('video-section__title')}
