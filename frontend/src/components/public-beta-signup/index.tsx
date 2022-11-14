@@ -17,6 +17,10 @@ const PublicBetaSignup = () => {
 
     const handleRegistrationResultAlertClose = () => setShowRegistrationResultAlert(false);
 
+    const handleSubmitStart = () => {
+        setShowRegistrationResultAlert(false);
+    };
+
     const handleSignupSuccess = async () => {
         setRegistrationResult('success');
         setShowRegistrationResultAlert(true);
@@ -43,7 +47,7 @@ const PublicBetaSignup = () => {
 
             <Footer />
 
-            <SignupModal onSuccess={handleSignupSuccess} onError={handleSignupError} />
+            <SignupModal onSuccess={handleSignupSuccess} onError={handleSignupError} onSubmit={handleSubmitStart} />
             {showRegistrationResultAlert && registrationAlert}
         </Layout>
     );

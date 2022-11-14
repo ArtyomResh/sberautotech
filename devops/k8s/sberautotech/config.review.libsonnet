@@ -4,6 +4,7 @@
   service_account: 'fe-dev-sa',
   registry_secret_name: 'docker-registries',
   backend_url: 'https://sberautotech-backend.dev.fe.sbauto.tech',
+  taxi_auth_url: 'https://taxi-auth.dev.sd.sbauto.tech',
   history_limit: 1,
 
   configmaps: {
@@ -42,8 +43,12 @@
               location /order {
                   proxy_pass %(backend_url)s;
               }
+
+              location ~ ^/auth-taxi/(.*)$ {
+                  proxy_pass %(taxi_auth_url)s/$1$is_args$args;
+              }
           }
-      ||| % { backend_url: $.backend_url, proxy_port: $.proxy_port }
+      ||| % { backend_url: $.backend_url, taxi_auth_url: $.taxi_auth_url, proxy_port: $.proxy_port }
     }
   },
 
