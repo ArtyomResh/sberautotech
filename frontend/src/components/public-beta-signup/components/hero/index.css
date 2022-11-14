@@ -30,7 +30,9 @@
         background-image: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);
 
         &__title {
+            --width-of-title-on-1920-resolution: 810px;
             grid-column: 1 / span 5;
+            max-width: var(--width-of-title-on-1920-resolution);
         }
 
         &__announce,
@@ -66,7 +68,7 @@
             position: absolute;
             top: 0;
             z-index: -1;
-            padding-top: 56.25%;
+            height: 100%;
             background-image: url("/hero/map/map_1920@2x.png");
             background-image: -webkit-image-set(
                 url("/hero/map/map_1920@1x.png") 1x,
@@ -78,6 +80,8 @@
                 url("/hero/map/map_1920@2x.png") 2x,
                 url("/hero/map/map_1920@3x.png") 3x
             );
+            background-size: cover;
+            background-position-x: 61%;
         }
 
         &__title {
@@ -149,7 +153,7 @@
             position: absolute;
             top: 0;
             z-index: -1;
-            padding-top: 64.84%;
+            height: 100%;
             background-image: url("/hero/map/map_1280@2x.png");
             background-image: -webkit-image-set(
                 url("/hero/map/map_1280@1x.png") 1x,
@@ -162,7 +166,8 @@
                 url("/hero/map/map_1280@3x.png") 3x
             );
             background-repeat: no-repeat;
-            background-size: contain;
+            background-size: cover;
+            background-position-x: 50%;
         }
 
         &__title {
