@@ -5,6 +5,8 @@
     --color-accent-hover: #5ec4c1;
     --color-accent-pressed: #6de3df;
 
+    @mixin t3;
+
     padding: 16px 20px;
     display: flex;
     width: max-content;
@@ -12,7 +14,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 32px;
-    color: var(--color-white) !important;
+    color: var(--color-white);
     background-color: var(--color-accent);
     transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
 
@@ -45,14 +47,9 @@
     }
 }
 
-@mixin media_breakpoint_small_desktop {
-    .link-button {
-        @mixin t3;
-    }
-}
+@mixin media_breakpoint_mobile {
 
-@mixin media_breakpoint_tablet {
     .link-button {
-        @mixin t3;
+        @mixin t4;
     }
 }

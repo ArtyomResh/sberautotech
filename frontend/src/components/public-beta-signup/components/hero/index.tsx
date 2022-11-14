@@ -40,9 +40,11 @@ const OpenTesting = ({ onLinkClick }: IProps) => {
                     className={cn('hero__button')}
                     href="/public-beta-signup#modal"
                     onClick={handleLinkClick}
+                    isGatsbyLink={true}
                 >
                     Принять участие
                 </LinkButton>
+
             </GridWrapper>
 
             <div className={cn('hero__map')} />
