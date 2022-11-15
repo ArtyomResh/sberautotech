@@ -22,6 +22,7 @@
     "gatsby-plugin-yandex-metrica": "^0.1.3-check",
     "gatsby-source-filesystem": "2.3.4",
     "gatsby-source-strapi": "1.0.1",
+    "i18next": "^22.0.5",
     "moment": "2.26.0",
     "prop-types": "15.7.2",
     "react": "16.12.0",
