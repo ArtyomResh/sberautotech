@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { YM_ID } from '../../../../constants';
 import IconArrowRight from '../../../../../static/hero/icon-arrow-right.inline.svg';
 import IconArrowDown from '../../../../../static/hero/icon-arrow-down.inline.svg';
 import Logo from '../../../../../static/logo.inline.svg';
@@ -22,6 +23,9 @@ const OpenTesting = ({ onLinkClick }: IProps) => {
     const cn = useClassnames(styles);
     const handleLinkClick = () => {
         onLinkClick?.();
+
+        // @ts-expect-error: ym подставляется только при NODE_ENV === 'production'
+        typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'click--button--prinyat_uchastie');
     };
 
     return (
@@ -43,6 +47,7 @@ const OpenTesting = ({ onLinkClick }: IProps) => {
 
                 <LinkButton
                     className={cn('hero__button')}
+                    onClick={handleLinkClick}
                     href="/public-beta-signup#modal"
                     onClick={handleLinkClick}
                     isGatsbyLink={true}

@@ -1,17 +1,23 @@
 import React from 'react';
 
-import Heading from '../../../heading';
-import LinkButton from '../link-button';
-import Text from '../../../text';
+import { YM_ID } from '../../../../constants';
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
 
+import Heading from '../../../heading';
+import Text from '../../../text';
+
+import LinkButton from '../link-button';
 import GridWrapper from '../grid-wrapper';
 
 import styles from './index.css';
 
 const PublicBetaSignup = () => {
     const cn = useClassnames(styles);
+    const handleLinkClick = () => {
+        // @ts-expect-error: ym подставляется только при NODE_ENV === 'production'
+        typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'click--button--perejti_na_oficialnyj_sajt');
+    };
 
     return (
         <GridWrapper as="footer" className={cn('footer')}>
@@ -21,7 +27,13 @@ const PublicBetaSignup = () => {
                 dangerouslySetInnerHTML={{ __html: formatText('СберАвтоТех: {беспилотные технологии}') }}
             />
 
-            <LinkButton className={cn('footer__link-button')} href="https://sberautotech.ru/" target="_blank" rel="noopener noreferrer">
+            <LinkButton
+                className={cn('footer__link-button')}
+                href="https://sberautotech.ru/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleLinkClick}
+            >
                 sberautotech.ru
             </LinkButton>
 

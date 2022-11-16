@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Logo from '../../../../../static/logo.inline.svg';
 
+import { YM_ID } from '../../../../constants';
 import { useClassnames } from '../../../../hooks/use-classnames';
 import useDocumentScrollThrottled from '../../../nav/use-document-scroll-throttled';
 import LinkButton from '../link-button';
@@ -26,6 +27,11 @@ const Header = () => {
         }, TIMEOUT_DELAY);
     });
 
+    const handleLinkClick = () => {
+        // @ts-expect-error: ym подставляется только при NODE_ENV === 'production'
+        typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'click--button--prinyat_uchastie');
+    };
+
     return (
         <header className={cn('header', { 'header_hidden': shouldHideHeader })}>
             <Logo className={cn('header_logo')} />
@@ -33,6 +39,7 @@ const Header = () => {
             <LinkButton
                 className={cn('header__button')}
                 href="/public-beta-signup#modal"
+                onClick={handleLinkClick}
             >
                 Принять участие
             </LinkButton>

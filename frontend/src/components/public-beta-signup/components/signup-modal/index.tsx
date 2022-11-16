@@ -5,6 +5,7 @@ import { components, Props as SelectProps } from 'react-select';
 import { useLocation } from '@reach/router';
 
 
+import { YM_ID } from '../../../../constants';
 import CrossIcon from '../../../../images/cross.inline.svg';
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { api } from '../../../../utils/api';
@@ -106,6 +107,9 @@ const SignupModal = (props: IProps) => {
             is_adult                           : data.eighteen,
             is_processing_personal_data_allowed: data.policy
         };
+
+        // @ts-expect-error: ym подставляется только при NODE_ENV === 'production'
+        typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'click--button--otparvit');
 
         try {
             setIsSubmitting(true);

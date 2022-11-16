@@ -19,7 +19,7 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-yandex-metrica',
             options: {
-                trackingId         : '90680317',
+                trackingId         : 90680317,
                 clickmap           : true,
                 trackLinks         : true,
                 accurateTrackBounce: true,
@@ -84,94 +84,94 @@ module.exports = {
                 apiURL      : process.env.GATSBY_API_URL,
                 contentTypes: [
                     {
-                        name: `vacancy`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'vacancy',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `tag`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'tag',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `direction`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'direction',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     }
                 ],
-                singleTypes : [
+                singleTypes: [
                     {
-                        name: `homepage`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'homepage',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `global`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'global',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `self-driving-car`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'self-driving-car',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `pmef-landing-page`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'pmef-landing-page',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `career`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'career',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `about-company`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'about-company',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `flip`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'flip',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `nav-panel`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'nav-panel',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `footer`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'footer',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `privacy-policy`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'privacy-policy',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `vacancies-page`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'vacancies-page',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `vacancy-page`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'vacancy-page',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `respond-form`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'respond-form',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `vacancies`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'vacancies',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `tags`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'tags',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `directions`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'directions',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `cities`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'cities',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `areas`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'areas',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     },
                     {
-                        name: `job-types`,
-                        api: { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
+                        name: 'job-types',
+                        api : { qs: { _locale: process.env.GATSBY_LOCALE_CODE } }
                     }
                 ]
             }
@@ -191,12 +191,12 @@ module.exports = {
             }
         },
         {
-            resolve: `gatsby-plugin-recaptcha`,
+            resolve: 'gatsby-plugin-recaptcha',
             options: {
-               async: false,
-               defer: false,
-               args: `?onload=onloadCallback&render=explicit`,
-            },
-         }
+                async: false,
+                defer: false,
+                args : '?onload=onloadCallback&render=explicit'
+            }
+        }
     ]
 };
