@@ -1,17 +1,19 @@
 import React from 'react';
 import { useClassnames } from '../../../../hooks/use-classnames';
 import Text from '../../../text';
+import Loader from '../../../loader/loaderComponent';
 
 import styles from './index.css';
 
 type TProps = React.AnchorHTMLAttributes<HTMLButtonElement> & {
     isActive? : boolean,
-    isBlock? : boolean
+    isBlock? : boolean,
+    isLoading?: boolean
 };
 
 const Button = (props: TProps) => {
     const cn = useClassnames(styles);
-    const { className, children, isActive, isBlock, ...otherProps } = props;
+    const { className, children, isActive, isBlock, isLoading, ...otherProps } = props;
 
     return (
         <Text
@@ -27,7 +29,8 @@ const Button = (props: TProps) => {
             )}
             {...otherProps}
         >
-            {children}
+            <span className={cn('button__text', { 'button__text_hidden': isLoading })}>{children}</span>
+            {isLoading && <Loader className={cn('button__loader')} /> }
         </Text>
     );
 };

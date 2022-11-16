@@ -50,4 +50,18 @@
         font-size: 14px;
         line-height: 18px;
     }
+
+    &__text_hidden {
+        opacity: 0;
+        user-select: none;
+    }
+
+    &__loader  {
+        position: absolute;
+
+        svg {
+            height: 1.5em;
+            color: inherit;
+        }
+    }
 }

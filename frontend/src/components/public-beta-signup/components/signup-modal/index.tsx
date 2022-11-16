@@ -87,11 +87,16 @@ const SignupModal = (props: IProps) => {
     });
 
     const [isVisible, setIsVisible] = useState<boolean>(location.hash === '#modal');
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
     const closeModal = () => {
         setIsVisible(false);
         void navigate('/public-beta-signup');
     };
     const handleSubmit = async (data: ISignupFormData) => {
+        if(isSubmitting) {
+            return;
+        }
         const request: IRegistrationRequest = {
             username                           : data.name,
             phone_number                       : data.phoneNumber,
@@ -103,11 +108,14 @@ const SignupModal = (props: IProps) => {
         };
 
         try {
+            setIsSubmitting(true);
             await api.registrationForBeta(request);
             closeModal();
             props.onSuccess?.();
         } catch{
             props.onError?.();
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -240,7 +248,7 @@ const SignupModal = (props: IProps) => {
                             requiredValidation={true}
                         />
 
-                        <Button type="submit" className={cn('signup-modal__submit')} isBlock={true}>
+                        <Button type="submit" className={cn('signup-modal__submit')} isBlock={true} isLoading={isSubmitting}>
                             Отправить
                         </Button>
                     </form>
