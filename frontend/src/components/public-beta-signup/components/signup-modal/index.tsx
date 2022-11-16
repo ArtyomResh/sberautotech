@@ -20,6 +20,7 @@ import Text from '../../../text';
 
 import styles from './index.css';
 import selectStyles from './select.styles';
+import { useIsClient } from '../../../../utils/hooks/useIsClient';
 
 interface IMobileOption {
     value: 'ios' | 'android', label: string
@@ -82,6 +83,7 @@ const CustomValueContainer = (props: SelectProps['ValueContainer']) => {
 
 const SignupModal = (props: IProps) => {
     const location = useLocation();
+    const isClient = useIsClient();
     const cn = useClassnames(styles);
     const methods = useForm<ISignupFormData>({
         mode: 'onSubmit'
@@ -94,6 +96,7 @@ const SignupModal = (props: IProps) => {
         setIsVisible(false);
         void navigate('/public-beta-signup');
     };
+
     const handleSubmit = async (data: ISignupFormData) => {
         if(isSubmitting) {
             return;
@@ -143,7 +146,7 @@ const SignupModal = (props: IProps) => {
     );
 
     return (
-        <div className={cn('signup-modal__overlay', { 'signup-modal__overlay_visible': isVisible })}>
+        <div className={cn('signup-modal__overlay', { 'signup-modal__overlay_visible': isVisible })} key={String(isClient)}>
             <div className={cn('signup-modal')}>
                 <Link onClick={closeModal} to="/public-beta-signup" className={cn('signup-modal__button-close')}>
                     <CrossIcon />
