@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState, useContext } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { useForm, FormProvider } from 'react-hook-form';
 import Recaptcha from 'react-recaptcha';
 
@@ -63,7 +64,8 @@ const RespondForm = () => {
     const [onTop, setSendToTop] = useState(false);
     const { isPopupVisible, setIsPopupVisible, vacancyTitle, huntflowId, setVacancyTitle, setHuntflowId, isRespondFormVisible, setIsRespondFormVisible } = useContext(appContext);
     const cn = useClassnames(style);
-    const timeoutId = useRef<number>();
+    const timeoutId = useRef<ReturnType<typeof setTimeout>>();
+    const timeoutTime = 3000;
     const recaptchaInstance = useRef<Recaptcha | null>();
 
     const { consent,
@@ -95,10 +97,10 @@ const RespondForm = () => {
     });
 
     const closeHandler = () => {
-        setVacancyTitle('');
-        setHuntflowId('');
-        setIsPopupVisible(false);
-        setIsRespondFormVisible(false);
+        setVacancyTitle?.('');
+        setHuntflowId?.('');
+        setIsPopupVisible?.(false);
+        setIsRespondFormVisible?.(false);
     };
 
     const MINIMUM_SCROLL = 5;
@@ -127,17 +129,17 @@ const RespondForm = () => {
         };
     });
 
-    const preventClosePopup = useCallback((e) => {
-        e.stopPropagation();
+    const preventClosePopup = useCallback((e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        e?.stopPropagation();
 
         if(timeoutId) {
-            clearTimeout(timeoutId.current);
+            clearTimeout(timeoutId.current as ReturnType<typeof setTimeout>);
         }
 
         setIsSended(false);
         setIsError(false);
-        setIsPopupVisible(false);
-        setIsRespondFormVisible(false);
+        setIsPopupVisible?.(false);
+        setIsRespondFormVisible?.(false);
         context.reset();
     }, [timeoutId]);
 
@@ -183,14 +185,14 @@ const RespondForm = () => {
 
                 timeoutId.current = setTimeout(() => {
                     setIsSended(false);
-                    setIsPopupVisible(false);
-                }, 3000);
+                    setIsPopupVisible?.(false);
+                }, timeoutTime);
             }
         } catch(err) {
             setIsSended(true);
             setIsError(true);
             setIsLoading(false);
-            setIsPopupVisible(true);
+            setIsPopupVisible?.(true);
         }
     };
 
@@ -213,20 +215,23 @@ const RespondForm = () => {
                 })}
             >
                 {isSended ? (
-                    <div
-                        className={cn('respond-form__send-block')} onClick={preventClosePopup}
-                    >
-                        <div className={cn('text-block')}>
-                            <p className={cn('text-block__title', { 'text-block__title_error': isError })}>{isError ? toUnescapedHTML(errorSend) : toUnescapedHTML(successSend)}</p>
-                        </div>
+                    <OutsideClickHandler onOutsideClick={preventClosePopup}>
                         <div
-                            className={cn('respond-form__close-btn')} onClick={preventClosePopup}
+                            className={cn('respond-form__send-block')} onClick={preventClosePopup}
                         >
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" clipRule="evenodd" d="M0.80852 17.4881C0.417995 17.8786 0.417995 18.5118 0.80852 18.9023C1.19904 19.2928 1.83221 19.2928 2.22273 18.9023L10.0009 11.1241L17.7791 18.9023C18.1696 19.2928 18.8028 19.2928 19.1933 18.9023C19.5838 18.5118 19.5838 17.8786 19.1933 17.4881L11.4151 9.70989L19.1933 1.93172C19.5838 1.54119 19.5838 0.908027 19.1933 0.517502C18.8028 0.126978 18.1696 0.126979 17.7791 0.517503L10.0009 8.29568L2.22273 0.517503C1.83221 0.126979 1.19904 0.126979 0.808518 0.517503C0.417994 0.908028 0.417994 1.54119 0.808519 1.93172L8.58669 9.70989L0.80852 17.4881Z" fill={isError ? '#FFFFFF' : '#1F272E'} />
-                            </svg>
+                            <div className={cn('text-block')}>
+                                <p className={cn('text-block__title', { 'text-block__title_error': isError })}>{isError ? toUnescapedHTML(errorSend) : toUnescapedHTML(successSend)}</p>
+                            </div>
+                            <div
+                                className={cn('respond-form__close-btn')} onClick={preventClosePopup}
+                            >
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M0.80852 17.4881C0.417995 17.8786 0.417995 18.5118 0.80852 18.9023C1.19904 19.2928 1.83221 19.2928 2.22273 18.9023L10.0009 11.1241L17.7791 18.9023C18.1696 19.2928 18.8028 19.2928 19.1933 18.9023C19.5838 18.5118 19.5838 17.8786 19.1933 17.4881L11.4151 9.70989L19.1933 1.93172C19.5838 1.54119 19.5838 0.908027 19.1933 0.517502C18.8028 0.126978 18.1696 0.126979 17.7791 0.517503L10.0009 8.29568L2.22273 0.517503C1.83221 0.126979 1.19904 0.126979 0.808518 0.517503C0.417994 0.908028 0.417994 1.54119 0.808519 1.93172L8.58669 9.70989L0.80852 17.4881Z" fill={isError ? '#FFFFFF' : '#1F272E'} />
+                                </svg>
+                            </div>
                         </div>
-                    </div>
+                    </OutsideClickHandler>
+
                 ) : (
                     <React.Fragment>
                         <div className={cn('respond-form__close-btn')} onClick={closeHandler}>
@@ -258,7 +263,7 @@ const RespondForm = () => {
                                         <Input type="text" placeholder={name} name="name" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} requiredValidation={true} />
                                     </div>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type={!isRespondFormVisible ? 'email' : 'text'} placeholder={!isRespondFormVisible ? mail : surname} name={!isRespondFormVisible ? 'email' : "surname"} autocomplete="off" requiredValidation={true} pattern={!isRespondFormVisible ? /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g : /^[А-Яа-яЁёA-Za-z\s-]+$/i} />
+                                        <Input type={!isRespondFormVisible ? 'email' : 'text'} placeholder={!isRespondFormVisible ? mail : surname} name={!isRespondFormVisible ? 'email' : 'surname'} autocomplete="off" requiredValidation={true} pattern={!isRespondFormVisible ? /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g : /^[А-Яа-яЁёA-Za-z\s-]+$/i} />
                                     </div>
                                 </div>
                                 <div className={cn('right-block__bottom-section')}>
