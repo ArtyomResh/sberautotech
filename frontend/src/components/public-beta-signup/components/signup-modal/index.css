@@ -216,8 +216,6 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: calc(100vh - 130px); /* bottom padding */
-        max-height: 1004px;
         border-bottom-left-radius: 32px;
         border-bottom-right-radius: 32px;
 
