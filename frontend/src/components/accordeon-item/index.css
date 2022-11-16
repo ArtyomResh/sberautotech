@@ -61,6 +61,11 @@
     &__header-wrapper {
         display: flex;
         margin: 23px 0;
+        padding: 0;
+        width: 100%;
+        color: #fff;
+        background: none;
+        border: none;
         cursor: pointer;
     }
 
