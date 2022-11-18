@@ -33,6 +33,11 @@
         justify-content: space-between;
     }
 
+    &__description-title {
+        margin-right: 32px;
+    }
+
+
     &__form {
         display: flex;
         flex-wrap: wrap;
@@ -290,6 +295,7 @@
 
             @mixin h4;
             max-width: 280px;
+            margin-right: 50px;
         }
 
         &__description-paragraph,
