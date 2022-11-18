@@ -20,16 +20,16 @@ const Button = (props: TProps) => {
             size={3}
             as="button"
             className={cn(
-                'button',
+                'signup-button',
                 className,
                 {
-                    'button_active': isActive,
-                    'button_block' : isBlock
+                    'signup-button_active': isActive,
+                    'signup-button_block' : isBlock
                 }
             )}
             {...otherProps}
         >
-            <span className={cn('button__text', { 'button__text_hidden': isLoading })}>{children}</span>
+            <span className={cn('signup-button__text', { 'button__text_hidden': isLoading })}>{children}</span>
             {isLoading && <Loader className={cn('button__loader')} /> }
         </Text>
     );
