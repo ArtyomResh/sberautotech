@@ -17,6 +17,8 @@ import Input from '../../../respond-form/input';
 import CheckBox from '../../../respond-form/check-box';
 import Select from '../../../select';
 import Text from '../../../text';
+import policyDocLink from '../../../../../static/Политика конфиденциальности.pdf';
+import agreementDocLink from '../../../../../static/Согласие_на_участии_в_тестировании_беспилотного_ТС_AS_ПМЭФ_2022.pdf';
 
 import styles from './index.css';
 import selectStyles from './select.styles';
@@ -247,7 +249,7 @@ const SignupModal = (props: IProps) => {
                                 )}
                                 label={(
                                     <Text size={4} as="p">
-                                        Даю согласие на&#160;обработку моих персональных данных в&#160;соответствии с&#160;политикой конфиденциальности и&#160;на&#160;участие в&#160;эксперименте
+                                        Даю согласие на&#160;обработку моих персональных данных в&#160;соответствии&#32;<a className={cn('signup-modal__doc-link')} target="_blank" href={policyDocLink}>с&#160;политикой конфиденциальности</a> и&#160;на&#160;участие в&#160;<a className={cn('signup-modal__doc-link')} target="_blank" href={agreementDocLink}>эксперименте</a>
                                     </Text>
                                 )}
                                 name={formFields.policy}

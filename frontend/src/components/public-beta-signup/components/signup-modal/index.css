@@ -105,6 +105,13 @@
         height: 32px;
         cursor: pointer;
     }
+
+    &__doc-link {
+        text-decoration: none;
+        color: --color-black;
+        font-weight: bold;
+        cursor: pointer;
+    }
 }
 
 @mixin media_breakpoint_normal_desktop {
