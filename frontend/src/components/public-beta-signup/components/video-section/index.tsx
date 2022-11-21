@@ -25,8 +25,8 @@ const VideoSection = () => {
 
             <VideoPlayer
                 className={cn('video-section__player')}
-                videoFileName="pmef_test"
-                poster={isMobile ? '/spb_back_mobile.jpg' : '/spb_back.jpg'}
+                videoFileName="showreel"
+                poster={isMobile ? '/showreel_mobile.jpeg' : '/showreel_desktop.jpeg'}
                 playsInline={true}
                 preload="metadata"
                 loop={true}
