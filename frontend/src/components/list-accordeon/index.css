@@ -36,6 +36,14 @@
         max-width: 220px;
         margin-right: 140px;
 
+        @media (min-width: 1025px) {
+            max-height: 107px;
+        }
+
+        @media (min-width: 1441px) {
+            max-height: 113.5px;
+        }
+
         @media (max-width: 1024px) {
             border-top: 1px solid #aeaeae;
             padding-top: 10px;

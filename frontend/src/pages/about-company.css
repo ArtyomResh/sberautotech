@@ -81,7 +81,7 @@
         &-item:first-child {
             .about-company__list-item-wrapper {
                 @media (min-width: 1024px) {
-                    border-top: none !important;
+                    border-top: 1px solid transparent !important;
                 }
             }   
         }
