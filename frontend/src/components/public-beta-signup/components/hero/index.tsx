@@ -14,6 +14,7 @@ import GridWrapper from '../grid-wrapper';
 import LinkButton from '../link-button';
 
 import styles from './index.css';
+import { BETA_TEST_SIGNUP_FORM_URL } from '../../constants';
 
 interface IProps {
     onLinkClick?: () => void
@@ -48,8 +49,7 @@ const OpenTesting = ({ onLinkClick }: IProps) => {
                 <LinkButton
                     className={cn('hero__button')}
                     onClick={handleLinkClick}
-                    href="/public-beta-signup#modal"
-                    onClick={handleLinkClick}
+                    href={BETA_TEST_SIGNUP_FORM_URL}
                     isGatsbyLink={true}
                 >
                     Принять участие

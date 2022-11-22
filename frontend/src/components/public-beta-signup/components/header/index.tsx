@@ -5,6 +5,7 @@ import Logo from '../../../../../static/logo.inline.svg';
 import { YM_ID } from '../../../../constants';
 import { useClassnames } from '../../../../hooks/use-classnames';
 import useDocumentScrollThrottled from '../../../nav/use-document-scroll-throttled';
+import { BETA_TEST_SIGNUP_FORM_URL } from '../../constants';
 import LinkButton from '../link-button';
 
 import styles from './index.css';
@@ -38,7 +39,7 @@ const Header = () => {
 
             <LinkButton
                 className={cn('header__button')}
-                href="/public-beta-signup#modal"
+                href={BETA_TEST_SIGNUP_FORM_URL}
                 onClick={handleLinkClick}
             >
                 Принять участие

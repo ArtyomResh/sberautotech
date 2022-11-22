@@ -23,6 +23,7 @@ import agreementDocLink from '../../../../../static/Согласие_на_уча
 import styles from './index.css';
 import selectStyles from './select.styles';
 import { UpdateOnMount } from '../../../update-on-mount';
+import { BETA_TEST_LANDING_URL } from '../../constants';
 
 interface IMobileOption {
     value: 'ios' | 'android', label: string
@@ -95,7 +96,7 @@ const SignupModal = (props: IProps) => {
 
     const closeModal = () => {
         setIsVisible(false);
-        void navigate('/public-beta-signup');
+        void navigate(BETA_TEST_LANDING_URL);
     };
 
     const handleSubmit = async (data: ISignupFormData) => {
@@ -150,7 +151,7 @@ const SignupModal = (props: IProps) => {
         <UpdateOnMount>
             <div className={cn('signup-modal__overlay', { 'signup-modal__overlay_visible': isVisible })}>
                 <div className={cn('signup-modal')}>
-                    <Link onClick={closeModal} to="/public-beta-signup" className={cn('signup-modal__button-close')}>
+                    <Link onClick={closeModal} to={BETA_TEST_LANDING_URL} className={cn('signup-modal__button-close')}>
                         <CrossIcon />
                     </Link>
 
