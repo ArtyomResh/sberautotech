@@ -1,13 +1,13 @@
 .header {
     position: fixed;
     z-index: var(--zindex-base);
-    margin-bottom: calc(var(--nav-height) * -1);
+    margin-bottom: calc(var(--header-height) * -1);
     padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    height: var(--nav-height);
+    height: var(--header-height);
     color: #fff;
     transform: translateY(0);
     transition: transform 0.5s ease;
@@ -21,7 +21,7 @@
 @mixin media_breakpoint_normal_desktop {
 
     .header {
-        height: var(--nav-height);
+        height: var(--header-height);
 
         &_logo {
             width: 322px;

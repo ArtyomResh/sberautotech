@@ -73,7 +73,8 @@ select {
 }
 
 :root {
-    --nav-height: 82px;
+    --nav-height: 60px;
+    --header-height: 82px;
 
     --zindex-base: 100;
     --zindex-dropdown: 101;
