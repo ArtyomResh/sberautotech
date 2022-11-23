@@ -198,7 +198,7 @@ const SignupModal = (props: IProps) => {
                     </div>
 
                     <FormProvider {...methods}>
-                        <form onSubmit={methods.handleSubmit<ISignupFormData>(handleSubmit)} className={cn('signup-modal__form')}>
+                        <form onSubmit={methods.handleSubmit<ISignupFormData>(handleSubmit)} className={cn('signup-modal__form')} noValidate={true}>
                             <Input
                                 className={cn('signup-modal__form-field', 'signup-modal__form-field_full-width')}
                                 type="text"
