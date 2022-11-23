@@ -190,6 +190,7 @@ const SignupModal = (props: IProps) => {
                                 placeholder="Электронная почта"
                                 name={formFields.email}
                                 requiredValidation={true}
+                                pattern={new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)}
                             />
 
                             <Input
