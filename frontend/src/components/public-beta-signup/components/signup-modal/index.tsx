@@ -1,5 +1,5 @@
 import { Link, navigate } from 'gatsby';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { components, Props as SelectProps } from 'react-select';
 import { useLocation } from '@reach/router';
@@ -70,6 +70,8 @@ interface IProps {
     onError?(): void
 }
 
+type TFieldNames = keyof ISignupFormData;
+
 const { ValueContainer, Placeholder } = components;
 const CustomValueContainer = (props: SelectProps['ValueContainer']) => {
     return (
@@ -88,7 +90,8 @@ const SignupModal = (props: IProps) => {
     const location = useLocation();
     const cn = useClassnames(styles);
     const methods = useForm<ISignupFormData>({
-        mode: 'onSubmit'
+        mode          : 'onSubmit',
+        reValidateMode: 'onSubmit'
     });
 
     const [isVisible, setIsVisible] = useState<boolean>(location.hash === '#modal');
@@ -127,6 +130,25 @@ const SignupModal = (props: IProps) => {
             setIsSubmitting(false);
         }
     };
+
+    const clearInputError = useCallback(
+        (name: TFieldNames) => {
+            if(methods.formState.errors[name]) {
+                methods.clearErrors(name);
+            }
+        },
+        [methods.clearErrors, methods.formState.errors]
+    );
+
+    useEffect(() => {
+        const subscription = methods.watch((value, { name }) => {
+            if(name) {
+                clearInputError(name as TFieldNames);
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, [methods.watch]);
 
     useEffect(() => {
         setIsVisible(location.hash === '#modal');
