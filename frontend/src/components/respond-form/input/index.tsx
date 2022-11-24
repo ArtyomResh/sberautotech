@@ -140,18 +140,23 @@ const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: I
         }
         const errorType = error.type;
 
+        let defaultMessage = 'Поле заполненно неверно';
+
         if(errorType === 'pattern') {
             switch (type) {
                 case 'email':
-                    return 'Неверный формат почты';
+                    defaultMessage = 'Неверный формат почты';
+                    break;
                 case 'tel':
-                    return 'Неверный формат номера телефона';
+                    defaultMessage = 'Неверный формат номера телефона';
+                    break;
                 default:
-                    return 'Недопустимые значение';
+                    defaultMessage = 'Недопустимое значение';
+                    break;
             }
         }
 
-        return error.message || 'Поле заполненно не верно';
+        return error.message || defaultMessage;
     }, [controller.fieldState.error]);
 
 

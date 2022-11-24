@@ -183,6 +183,10 @@ const SignupModal = (props: IProps) => {
                                 placeholder="Как вас зовут?"
                                 name={formFields.name}
                                 requiredValidation={true}
+                                pattern={{
+                                    message: 'Имя может состоять из букв и пробелов',
+                                    value  : /^[а-яА-Яa-zA-Z\s]*$/
+                                }}
                             />
                             <Input
                                 className={cn('signup-modal__form-field')}
@@ -190,7 +194,7 @@ const SignupModal = (props: IProps) => {
                                 placeholder="Электронная почта"
                                 name={formFields.email}
                                 requiredValidation={true}
-                                pattern={new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)}
+                                pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g}
                             />
 
                             <Input
