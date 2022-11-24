@@ -22,7 +22,7 @@
         grid-column: 1;
     }
 
-    &__map { 
+    &__map {
         width: 100%;
         height: 0;
         background-repeat: no-repeat;
@@ -41,8 +41,8 @@
             height: var(--header-height);
 
             &-logo {
-                width: 322px;
-                height: 36px;
+                width: 286px;
+                height: 32px;
             }
         }
 
@@ -142,8 +142,8 @@
             height: 72px;
 
             &-logo {
-                width: 286px;
-                height: 32px;
+                width: 214px;
+                height: 24px;
             }
         }
 
@@ -151,7 +151,7 @@
             grid-column: 1 / span 5;
             max-width: 505px;
         }
-        
+
 
         &__announce,
         &__location-details-title:first-of-type,
@@ -236,8 +236,8 @@
             height: 72px;
 
             &-logo {
-                width: 286px;
-                height: 32px;
+                width: 214px;
+                height: 24px;
             }
         }
 
@@ -326,8 +326,8 @@
             height: 70px;
 
             &-logo {
-                width: 286px;
-                height: 32px;
+                width: 214px;
+                height: 24px;
             }
         }
 
@@ -403,7 +403,7 @@
         }
 
         &__location-details-title:last-of-type {
-           width: 80px;
+            width: 80px;
         }
     }
 

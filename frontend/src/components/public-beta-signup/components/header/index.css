@@ -24,8 +24,8 @@
         height: var(--header-height);
 
         &_logo {
-            width: 322px;
-            height: 36px;
+            width: 286px;
+            height: 32px;
         }
     }
 }
@@ -36,8 +36,8 @@
         height: 72px;
 
         &_logo {
-            width: 286px;
-            height: 32px;
+            width: 214px;
+            height: 24px;
         }
     }
 }
@@ -48,8 +48,8 @@
         height: 72px;
 
         &_logo {
-            width: 286px;
-            height: 32px;
+            width: 214px;
+            height: 24px;
         }
     }
 }
