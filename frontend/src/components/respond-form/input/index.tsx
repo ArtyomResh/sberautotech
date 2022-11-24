@@ -19,7 +19,9 @@ interface IProps {
     pattern?: RegExp | ValidationValueMessage<RegExp>,
     requiredValidation?: boolean,
     autocomplete?: TAutoCompleteType,
-    className?: string
+    className?: string,
+    onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void,
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
 interface IState {
@@ -159,6 +161,10 @@ const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: I
         return error.message || defaultMessage;
     }, [controller.fieldState.error]);
 
+    const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        void controllerProps.onBlur();
+        props?.onBlur?.(e);
+    };
 
     const elInputFile = () => {
         return (
@@ -187,6 +193,8 @@ const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: I
                     type={type}
                     autoComplete={props.autocomplete || 'off'}
                     {...controllerProps}
+                    onFocus={props?.onFocus}
+                    onBlur={onBlur}
                 />
                 <label className={cn('input__label')} htmlFor="input">
                     {placeholder}
@@ -209,6 +217,8 @@ const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: I
                     {...controllerProps}
                     onChange={onPhoneChange}
                     onPaste={onPhonePaste}
+                    onFocus={props?.onFocus}
+                    onBlur={onBlur}
                 />
                 <label className={cn('input__label', 'input__label_tel')} htmlFor="input">
                     {placeholder}

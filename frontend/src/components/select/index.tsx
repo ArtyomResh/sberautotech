@@ -7,9 +7,11 @@ import style from './index.css';
 
 type TSelectProps = Props & {
     name: string,
-    required?: boolean
+    required?: boolean,
+    onFocus?: () => void,
+    onBlur?: () => void
 };
-const Select: React.FC<TSelectProps> = React.forwardRef<unknown, TSelectProps>(({ placeholder, name, isDisabled, options, onChange, noOptionsMessage, styles = defaultStyles, components, required }, ref) => {
+const Select: React.FC<TSelectProps> = React.forwardRef<unknown, TSelectProps>(({ placeholder, name, isDisabled, options, onChange, onFocus, onBlur, noOptionsMessage, styles = defaultStyles, components, required }, ref) => {
     const { control } = useFormContext();
     const cn = useClassnames(style);
 
@@ -22,6 +24,11 @@ const Select: React.FC<TSelectProps> = React.forwardRef<unknown, TSelectProps>((
                 const handleChange: Props['onChange'] = (...args) => {
                     field.onChange(...args);
                     onChange?.(...args);
+                };
+
+                const handleBlur: Props['onBlur'] = () => {
+                    field.onBlur();
+                    onBlur?.();
                 };
 
                 const error = fieldState.error?.message;
@@ -46,6 +53,8 @@ const Select: React.FC<TSelectProps> = React.forwardRef<unknown, TSelectProps>((
                             onChange={handleChange}
                             noOptionsMessage={noOptionsMessage}
                             components={components}
+                            onFocus={onFocus}
+                            onBlur={handleBlur}
                         />
                         <label htmlFor={name} className={cn('select__error-label')} >{error}</label>
                     </div>

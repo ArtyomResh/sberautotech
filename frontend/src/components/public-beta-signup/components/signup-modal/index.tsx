@@ -141,16 +141,6 @@ const SignupModal = (props: IProps) => {
     );
 
     useEffect(() => {
-        const subscription = methods.watch((value, { name }) => {
-            if(name) {
-                clearInputError(name as TFieldNames);
-            }
-        });
-
-        return () => subscription.unsubscribe();
-    }, [methods.watch]);
-
-    useEffect(() => {
         setIsVisible(location.hash === '#modal');
     }, [setIsVisible, location.hash]);
 
@@ -168,6 +158,24 @@ const SignupModal = (props: IProps) => {
         },
         [isVisible]
     );
+
+    // Если вам это не нравится, то мне тоже,
+    // но заказчик НАСТОЯЛ на такой валидации
+    const handleFocus = (name: TFieldNames) => () => {
+        clearInputError(name);
+    };
+
+    const handleBlur = (name: TFieldNames) => () => {
+        if(!methods.getValues(name)) {
+            clearInputError(name);
+        } else {
+            methods.trigger(name);
+        }
+    };
+
+    const handleCheckboxChange = (name: TFieldNames) => () => {
+        methods.trigger(name);
+    };
 
     return (
         <UpdateOnMount>
@@ -209,6 +217,8 @@ const SignupModal = (props: IProps) => {
                                     message: 'Имя может состоять из букв и пробелов',
                                     value  : /^[а-яА-Яa-zA-Z\s]*$/
                                 }}
+                                onFocus={handleFocus(formFields.name)}
+                                onBlur={handleBlur(formFields.name)}
                             />
                             <Input
                                 className={cn('signup-modal__form-field')}
@@ -217,6 +227,8 @@ const SignupModal = (props: IProps) => {
                                 name={formFields.email}
                                 requiredValidation={true}
                                 pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g}
+                                onFocus={handleFocus(formFields.email)}
+                                onBlur={handleBlur(formFields.email)}
                             />
 
                             <Input
@@ -226,6 +238,8 @@ const SignupModal = (props: IProps) => {
                                 name={formFields.phoneNumber}
                                 requiredValidation={true}
                                 pattern={/^(\+7 \d{3} (\d){3}–(\d{2})–(\d{2}))$/}
+                                onFocus={handleFocus(formFields.phoneNumber)}
+                                onBlur={handleBlur(formFields.phoneNumber)}
                             />
 
 
@@ -239,6 +253,8 @@ const SignupModal = (props: IProps) => {
                                     components={{
                                         ValueContainer: CustomValueContainer
                                     }}
+                                    onFocus={handleFocus(formFields.district)}
+                                    onBlur={handleBlur(formFields.district)}
                                 />
                             </div>
                             <div className={cn('signup-modal__form-field')}>
@@ -251,6 +267,8 @@ const SignupModal = (props: IProps) => {
                                     components={{
                                         ValueContainer: CustomValueContainer
                                     }}
+                                    onFocus={handleFocus(formFields.mobileOS)}
+                                    onBlur={handleBlur(formFields.mobileOS)}
                                 />
                             </div>
 
@@ -268,6 +286,7 @@ const SignupModal = (props: IProps) => {
                                 name={formFields.eighteen}
                                 isBlock={true}
                                 requiredValidation={true}
+                                onChange={handleCheckboxChange(formFields.eighteen)}
                             />
 
                             <CheckBox
@@ -284,6 +303,7 @@ const SignupModal = (props: IProps) => {
                                 name={formFields.policy}
                                 isBlock={true}
                                 requiredValidation={true}
+                                onChange={handleCheckboxChange(formFields.policy)}
                             />
 
                             <Button type="submit" className={cn('signup-modal__submit')} isBlock={true} isLoading={isSubmitting}>
