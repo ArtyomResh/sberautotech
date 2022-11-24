@@ -100,12 +100,12 @@
     }
 
     &_error input {
-        border: 1px solid #ff364d;
-        box-shadow: 0 0 0 1px #ff364d;
+        border: 1px solid var(--color-error);
+        box-shadow: 0 0 0 1px var(--color-error);
 
         &:focus {
-            border: 1px solid #ff364d;
-            box-shadow: 0 0 0 1px #ff364d;
+            border: 1px solid var(--color-error);
+            box-shadow: 0 0 0 1px var(--color-error);
         }
 
         @media (hover: hover) and (pointer: fine) {

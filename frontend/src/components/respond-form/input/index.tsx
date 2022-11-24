@@ -1,13 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { ValidationRule, ValidationValueMessage } from 'react-hook-form/dist/types/validator';
-import { Message } from 'react-hook-form/dist/types/form';
+import { ValidationValueMessage } from 'react-hook-form/dist/types/validator';
 
 import style from './index.css';
 
 import Cross from './cross';
 
 import { useClassnames } from '../../../hooks/use-classnames';
-import { useFormContext } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 
 type TInputType = 'text' | 'email' | 'file' | 'tel';
 type TAutoCompleteType = 'on' | 'off';
@@ -18,7 +17,7 @@ interface IProps {
     name: string,
     ref?: React.Ref<HTMLInputElement>,
     pattern?: RegExp | ValidationValueMessage<RegExp>,
-    requiredValidation?: Message | ValidationRule<boolean>,
+    requiredValidation?: boolean,
     autocomplete?: TAutoCompleteType,
     className?: string
 }
@@ -28,14 +27,21 @@ interface IState {
     fileExtension?: string
 }
 
-const Input = ({ type, placeholder, ref, name, className, ...props }: IProps) => {
-    const { register, formState } = useFormContext();
+const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: IProps) => {
+    const { setValue } = useFormContext();
+
+    const controller = useController({ name, rules: {
+        required: props.requiredValidation && 'Обязательное поле',
+        pattern : pattern
+    } });
+    const controllerProps = controller.field;
+
     const cn = useClassnames(style);
 
     const [file, setFile] = useState<IState>({ fileName: '', fileExtension: '' });
-    const [string, setString] = useState<string>('');
 
-    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target as HTMLInputElement;
         const inputFile: File | null = input.files ? input.files[0] : null;
         const fileExtension = inputFile?.name.split('.').pop();
@@ -48,7 +54,7 @@ const Input = ({ type, placeholder, ref, name, className, ...props }: IProps) =>
         }
     };
 
-    const cancelFileHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    const onFileCancel = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
         setFile({ fileName: '', fileExtension: '' });
     };
@@ -57,7 +63,7 @@ const Input = ({ type, placeholder, ref, name, className, ...props }: IProps) =>
         return String(string).replace(/\D/g, '');
     };
 
-    const onPhonePaste = (e: React.MouseEvent<HTMLInputElement>) => {
+    const onPhonePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
         const input = e.target,
             inputNumbersValue = getInputNumbersValue(input);
         const pasted = e.clipboardData;
@@ -71,21 +77,24 @@ const Input = ({ type, placeholder, ref, name, className, ...props }: IProps) =>
         }
     };
 
-    const onPhoneInput = (e: React.MouseEvent<HTMLInputElement>) => {
+    const onPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target,
             selectionStart = (input as HTMLInputElement).selectionStart;
         let formattedInputValue = '',
             inputNumbersValue = getInputNumbersValue((input as HTMLInputElement).value);
 
+
         if(!inputNumbersValue) {
-            (input as HTMLInputElement).value = '';
+            setValue(name, '');
+            void controllerProps.onChange(e);
 
             return;
         }
 
         if((input as HTMLInputElement).value.length !== selectionStart) {
             if(e.data && /\D/g.test(e.data)) {
-                (input as HTMLInputElement).value = inputNumbersValue;
+                setValue(name, inputNumbersValue);
+                void controllerProps.onChange(e);
             }
 
             return;
@@ -119,105 +128,98 @@ const Input = ({ type, placeholder, ref, name, className, ...props }: IProps) =>
         } else {
             formattedInputValue = `+${inputNumbersValue.substring(0, 16)}`;
         }
-        (input as HTMLInputElement).value = formattedInputValue;
+        setValue(name, formattedInputValue);
+        void controllerProps.onChange(e);
     };
 
-    const onPhoneKeyDown = (e: React.MouseEvent<HTMLInputElement>) => {
-        const inputValue = (e.target as HTMLInputElement).value.replace(/\D/g, '');
+    const errorMessage = useMemo(() => {
+        const error = controller.fieldState.error;
 
-        if(e.keyCode === 8 && inputValue.length === 1) {
-            (e.target as HTMLInputElement).value = '';
+        if(!error) {
+            return;
         }
-    };
+        const errorType = error.type;
 
-    const erorrHandler = useMemo(() => {
-        if(formState.errors?.[name] && string) {
-            if(type === 'email') {
-                return 'Неверный формат почты';
+        if(errorType === 'pattern') {
+            switch (type) {
+                case 'email':
+                    return 'Неверный формат почты';
+                case 'tel':
+                    return 'Неверный формат номера телефона';
+                default:
+                    return 'Недопустимые значение';
             }
-
-            return 'Недопустимые значение';
         }
 
-        if(formState.errors?.[name] && !string) {
-            return 'Обязательное поле';
-        }
-    }, [string, formState.errors?.[name]]);
+        return error.message || 'Поле заполненно не верно';
+    }, [controller.fieldState.error]);
 
-    const elInputFile = useMemo(() => {
+
+    const elInputFile = () => {
         return (
             <div className={cn('input-file', className)}>
                 <input
                     type="file"
                     id="file"
                     accept="application/pdf, application/msword, application/vnd.oasis.opendocument.text, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/rtf, .pdf, .doc, .docx, .rtf"
-                    {...register(name, { required: props.requiredValidation })}
-                    onChange={onChangeHandler}
+                    {...controllerProps}
+                    onChange={onFileChange}
                 />
-                <label htmlFor="file" className={cn('input-file__label', { 'input-file__label_error': formState.errors?.[name] })}>
+                <label htmlFor="file" className={cn('input-file__label', { 'input-file__label_error': errorMessage })}>
                     <span className={cn({ 'input-file__title': file.fileName })}>{file.fileName ? file.fileName : placeholder}</span>
                     <span className={cn('input-file__ext')}>{file.fileExtension ? `.${file.fileExtension}` : null}</span>
-                    <div className={cn('input-file__cross')} onClick={cancelFileHandler}>{file.fileName ? <Cross /> : null}</div>
+                    <div className={cn('input-file__cross')} onClick={onFileCancel}>{file.fileName ? <Cross /> : null}</div>
                 </label>
             </div>);
-    }, [formState, file]);
+    };
 
-    const elInput = useMemo(() => {
+    const elInput = () => {
         return (
-            <div className={cn('input', className, { 'input_error': formState.errors?.[name] })}>
+            <div className={cn('input', className, { 'input_error': Boolean(errorMessage) })}>
                 <input
                     placeholder={' '}
                     id="input"
                     type={type}
-                    onInput={(e) => {
-                        setString(e.target.value);
-                    }}
                     autoComplete={props.autocomplete || 'off'}
-                    {...register(name, { required: props.requiredValidation,
-                        pattern : props.pattern })}
+                    {...controllerProps}
                 />
                 <label className={cn('input__label')} htmlFor="input">
                     {placeholder}
                 </label>
                 <label className={cn('input__error-label')} htmlFor="input">
-                    {erorrHandler}
+                    {errorMessage}
                 </label>
             </div>
         );
-    }, [formState, string]);
+    };
 
-    const elInputTel = useMemo(() => {
+    const elInputTel = () => {
         return (
-            <div className={cn('input', className, { 'input_error': formState.errors?.[name] })}>
+            <div className={cn('input', className, { 'input_error': Boolean(errorMessage) })}>
                 <input
                     placeholder="+7 ___ ___ - __ - __"
                     id="input"
                     type={type}
                     autoComplete={props.autocomplete || 'off'}
-                    {...register(name, { required: props.requiredValidation,
-                        pattern : props.pattern })}
-                    onChange={onPhoneInput}
+                    {...controllerProps}
+                    onChange={onPhoneChange}
                     onPaste={onPhonePaste}
-                    onKeyDown={onPhoneKeyDown}
-                    onInput={(e) => {
-                        setString(e.target.value);
-                    }}
                 />
                 <label className={cn('input__label', 'input__label_tel')} htmlFor="input">
                     {placeholder}
                 </label>
                 <label className={cn('input__error-label')} htmlFor="input">
-                    {erorrHandler}
+                    {errorMessage}
                 </label>
             </div>
         );
-    }, [formState]);
+    };
 
     return (
         <React.Fragment>
-            {type === 'file' ? elInputFile : null}
-            {type === 'tel' ? elInputTel : null}
-            {type === 'text' || type === 'email' ? elInput : null}
+            {type === 'file' ? elInputFile() : null}
+            {type === 'tel' ? elInputTel() : null}
+            {type === 'text' || type === 'email' ? elInput() : null}
         </React.Fragment>
     );
 };
