@@ -232,7 +232,7 @@ deploy:backend:prod:
 
 deploy:frontend:prod:
   stage: deploy-frontend
-  needs: ["build:frontend:ru", "build:frontend:en"]
+  needs: ["build:frontend:ru"]
   rules:
     - if: '$DEPLOY_FRONTEND_PROD == "true"'
       when: manual
