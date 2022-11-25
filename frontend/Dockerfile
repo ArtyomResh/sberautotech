@@ -12,7 +12,10 @@ ENV NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
 RUN yarn config set cafile "/etc/ssl/certs/ca-certificates.crt"
 
 RUN yarn
-RUN yarn build
+
+ARG BUILD_COMMAND=build
+
+RUN yarn ${BUILD_COMMAND}
 
 FROM ${DOCKER_REGISTRY}/nginx-unprivileged:1.20.1-alpine
 

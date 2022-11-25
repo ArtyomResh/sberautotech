@@ -92,7 +92,7 @@ build:backend:
         docker push ${BACKEND_IMAGE}-${VERSION}
       fi
 
-build:frontend:
+build:frontend:ru:
   stage: build-frontend
   rules:
     - if: '$BUILD_FRONTEND == "true"'
@@ -104,6 +104,20 @@ build:frontend:
       docker build --pull --no-cache -t ${FRONTEND_IMAGE}-${VERSION} --build-arg BACKEND_API_URL=$BACKEND_URL -f frontend/Dockerfile .
       if [ -n "$PUSH" ]; then
         docker push ${FRONTEND_IMAGE}-${VERSION}
+      fi
+
+build:frontend:en:
+  stage: build-frontend
+  rules:
+    - if: '$BUILD_FRONTEND == "true"'
+  image: $BUILDER_IMAGE
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - |
+      docker build --pull --no-cache -t ${FRONTEND_IMAGE}-${VERSION}-en --build-arg BUILD_COMMAND=buildEn --build-arg BACKEND_API_URL=$BACKEND_URL -f frontend/Dockerfile .
+      if [ -n "$PUSH" ]; then
+        docker push ${FRONTEND_IMAGE}-${VERSION}-en
       fi
 
 .review_template: &review_template
@@ -120,7 +134,8 @@ build:frontend:
         --ext-str image_version="frontend-${VERSION}" \
         --ext-str namespace="${KUBE_NAMESPACE}" \
         --ext-str registry="${CI_REGISTRY}" \
-        --ext-str domain="${REVIEW_MODULE}-${CI_COMMIT_SHORT_SHA}.review.dev.fe.sbauto.tech" \
+        --ext-str domain_ru="${REVIEW_MODULE}-${CI_COMMIT_SHORT_SHA}.review.dev.fe.sbauto.tech" \
+        --ext-str domain_en="${REVIEW_MODULE}-${CI_COMMIT_SHORT_SHA}-en.review.dev.fe.sbauto.tech" \
         --ext-str app_name="${REVIEW_MODULE}-review-${REVIEW_PREFIX}" \
         ${REVIEW_MODULE}-review.jsonnet
       kubectl apply -f manifests.yml
@@ -152,7 +167,7 @@ frontend:review:start:
   stage: deploy-frontend
   rules:
     - if: '$REVIEW_FRONTEND == "true"'
-  needs: ["build:frontend"]
+  needs: ["build:frontend:ru", "build:frontend:en"]
   <<: *review_template
   environment:
     name: review/$CI_COMMIT_REF_NAME
@@ -192,7 +207,7 @@ deploy:backend:dev:
 
 deploy:frontend:dev:
   stage: deploy-frontend
-  needs: ["build:frontend"]
+  needs: ["build:frontend:ru", "build:frontend:en"]
   rules:
     - if: '$DEPLOY_FRONTEND_DEV == "true"'
   variables:
@@ -217,7 +232,7 @@ deploy:backend:prod:
 
 deploy:frontend:prod:
   stage: deploy-frontend
-  needs: ["build:frontend"]
+  needs: ["build:frontend:ru", "build:frontend:en"]
   rules:
     - if: '$DEPLOY_FRONTEND_PROD == "true"'
       when: manual

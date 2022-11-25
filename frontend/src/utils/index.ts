@@ -12,7 +12,8 @@ export const toUnescapedHTML = (text: string) => {
     return createElement('div', { dangerouslySetInnerHTML: { __html: text } });
 };
 
-export const gtagClicked = (event_category: string) => window?.gtag?.('event', 'click', { event_category, event_label: window?.location.pathname });
+export const gtagClicked = (event_category: string) => window
+    ?.gtag?.('event', 'click', { event_category, event_label: window?.location.pathname });
 
 export const enumToValues = (en) => {
     const values = Object.values(en);
@@ -20,3 +21,10 @@ export const enumToValues = (en) => {
 
     return keys.map((key, index) => ({ value: key, label: values[index] }));
 };
+
+export const formatText = (text: string) => text
+    .replace(/&#160;/g, ' ')
+    .replace('{', '<span class="selection-pattern">')
+    .replace('}', '</span>')
+    .replace('[', '<b>')
+    .replace(']', '</b>');

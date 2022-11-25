@@ -12,10 +12,10 @@ export interface IProps {
 }
 
 const Loader: FC<IProps> = (props) => {
-    const cn = useClassnames(style, props.className, true);
+    const cn = useClassnames(style);
 
     return (
-        <div className={cn('loader')}>
+        <div className={cn('loader', props.className)}>
             <LoaderIcon stopColor={props.stopColor} svg={{ className: cn('loader__icon'), width: 80, height: 80 }} />
         </div>
     );

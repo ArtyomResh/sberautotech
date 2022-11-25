@@ -37,8 +37,8 @@
             border: 1px solid #ffffff;
 
             & ~ .input__label {
-                line-height: 20px;
                 font-size: 14px;
+                line-height: 20px;
             }
         }
 
@@ -47,8 +47,8 @@
             border: 1px solid #ffffff;
 
             & ~ .input__label {
-                line-height: 20px;
                 font-size: 14px;
+                line-height: 20px;
             }
         }
     }
@@ -67,8 +67,8 @@
             transition: none;
 
             &_tel {
-                line-height: 20px;
                 font-size: 14px;
+                line-height: 20px;
             }
         }
     }
@@ -85,8 +85,8 @@
         transition: 0.3s;
 
         &_tel {
-            line-height: 20px;
             font-size: 14px;
+            line-height: 20px;
         }
     }
 
@@ -100,12 +100,12 @@
     }
 
     &_error input {
-        border: 1px solid #ff364d;
-        box-shadow: 0 0 0 1px #ff364d;
+        border: 1px solid var(--color-error);
+        box-shadow: 0 0 0 1px var(--color-error);
 
         &:focus {
-            border: 1px solid #ff364d;
-            box-shadow: 0 0 0 1px #ff364d;
+            border: 1px solid var(--color-error);
+            box-shadow: 0 0 0 1px var(--color-error);
         }
 
         @media (hover: hover) and (pointer: fine) {

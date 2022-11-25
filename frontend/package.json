@@ -33,6 +33,7 @@
     "react-markdown": "6.0.3",
     "react-moment": "0.9.7",
     "react-recaptcha": "2.3.10",
+    "react-reveal": "^1.2.2",
     "react-select": "4.3.0",
     "rehype-raw": "6.0.0",
     "swiper": "6.5.7"
@@ -51,6 +52,7 @@
     "postcss": "8.2.9",
     "postcss-import": "14.0.0",
     "postcss-loader": "4.1.0",
+    "postcss-mixins": "^9.0.4",
     "postcss-nested": "4.2.3",
     "postcss-url": "10.1.1",
     "style-loader": "2.0.0",

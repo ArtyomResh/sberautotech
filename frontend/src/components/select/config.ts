@@ -1,6 +1,6 @@
 import { StylesConfig } from 'react-select';
 
-export const customStyles: StylesConfig = {
+export const defaultStyles: StylesConfig = {
     container: (provided) => ({
         ...provided,
         'width'                            : '100%',

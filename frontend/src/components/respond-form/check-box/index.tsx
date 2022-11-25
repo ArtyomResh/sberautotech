@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { ValidationRule } from 'react-hook-form/dist/types/validator';
 import { Message } from 'react-hook-form/dist/types/form';
 
@@ -9,17 +9,28 @@ import style from './index.css';
 import { useFormContext } from 'react-hook-form';
 
 export interface IRadioButtonProps {
-    label: string,
+    label: string | React.ReactElement,
     name: string,
     inputRef?: React.Ref<HTMLInputElement>,
     checked?: boolean,
     className?: string,
     requiredValidation?: Message | ValidationRule<boolean>,
-    onChange?: (e: InputEvent) => void
+    isBlock?: boolean,
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const CheckBox: React.FC<IRadioButtonProps> = ({ label, name, ...props }: IRadioButtonProps) => {
+const CheckBox: React.FC<IRadioButtonProps> = ({ label, name, isBlock, ...props }: IRadioButtonProps) => {
     const { register, formState } = useFormContext();
+
+
+    const { onChange, ...registerProps } = register(name, {
+        required: props.requiredValidation
+    });
+
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        void onChange(e);
+        props.onChange?.(e);
+    };
 
     const cn = useClassnames(style);
 
@@ -28,12 +39,10 @@ const CheckBox: React.FC<IRadioButtonProps> = ({ label, name, ...props }: IRadio
             <input
                 type="checkbox"
                 className={cn('check-box__input', { 'check-box__input_error': formState.errors?.[name] })}
-                {...register(name, {
-                    required: props.requiredValidation
-                })}
-                onChange={props?.onChange}
+                {...registerProps}
+                onChange={handleChange}
             />
-            <label className={cn('check-box__label')}>
+            <label className={cn('check-box__label', { 'check-box__label_block': isBlock })}>
                 {label}
             </label>
         </div>

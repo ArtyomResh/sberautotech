@@ -1,0 +1,346 @@
+@import '../../../text/index.css';
+@import '../../../heading/index.css';
+
+.signup-modal {
+    position: absolute;
+    top: 82px;
+    left: 20px;
+    right: 20px;
+    padding: 40px;
+    background-color: var(--color-neutral);
+    overflow: auto;
+
+    &__overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: var(--zindex-tooltip);
+        display: none;
+        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    &__overlay_visible {
+        display: block;
+    }
+
+    &__description {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__description-title {
+        margin-right: 32px;
+    }
+
+
+    &__form {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-end;
+        gap: 20px;
+    }
+
+    &__form-field {
+        width: calc(50% - 10px);
+    }
+
+    &__form-field label,
+    &__form-field input {
+        transition: 100ms ease-in-out;
+    }
+
+    &__form-field input:not([type="checkbox"]):not([aria-autocomplete="list"]) {
+        caret-color: var(--color-accent);
+
+        &:not(:placeholder-shown) {
+            background-color: var(--color-neutral);
+            border: 1px solid #43515c;
+        }
+
+        &:focus {
+            background-color: var(--color-neutral);
+            border: 1px solid var(--color-black);
+            box-shadow: 0 0 0 1px var(--color-black);
+
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+
+            &:hover {
+                background-color: var(--color-neutral);
+                border: 1px solid var(--color-black);
+                box-shadow: 0 0 0 1px var(--color-black);
+            }
+        }
+    }
+
+    &__form-field.input_error input:not([type="checkbox"]):not([aria-autocomplete="list"]) {
+
+        &:not(:placeholder-shown) {
+            border: 1px solid var(--color-error);
+            box-shadow: 0 0 0 1px var(--color-error);
+        }
+
+        &:focus {
+            border: 1px solid var(--color-error);
+            box-shadow: 0 0 0 1px var(--color-error);
+        }
+    }
+
+    &__form-field_full-width {
+        width: 100%;
+    }
+
+    &__form-field_checkbox {
+        display: flex;
+
+        & input {
+            margin-right: 12px;
+        }
+
+        & label {
+            align-self: center;
+            height: auto;
+        }
+    }
+
+    &__submit {
+        margin-top: 20px;
+    }
+
+    &__button-close {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+    }
+
+    &__doc-link {
+        text-decoration: none;
+        color: --color-black;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .signup-modal {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 20px;
+        height: calc(100vh - 102px);  /* sum of margins from top and bottom  */
+        max-height: 974px;
+        border-radius: 32px;
+
+        &__description {
+            grid-column: 1 / span 1;
+        }
+
+        &__description-paragraph {
+            margin-top: 40px;
+            max-width: 415px;
+        }
+
+        &__form {
+            grid-column: 2 / span 1;
+        }
+
+        &__form-field input + label {
+
+            @mixin t2;
+        }
+
+        &__form-field input[type="tel"] + label {
+
+            @mixin t3;
+        }
+
+        &__form-field input:not([type="checkbox"]):not([aria-autocomplete="list"]) {
+
+            @mixin t2;
+            padding-top: 44px;
+            padding-bottom: 16px;
+            padding-left: 16px;
+            padding-right: 16px;
+            height: 90px;
+
+            &:focus + label,
+            &:not(:placeholder-shown) + label {
+
+                @mixin t3;
+            }
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .signup-modal {
+        top: 72px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 20px;
+        height: calc(100vh - 92px);  /* sum of margins from top and bottom  */
+        max-height: 737px;
+        border-radius: 32px;
+
+        &__description {
+            grid-column: 1 / span 1;
+        }
+
+        &__description-paragraph {
+            margin-top: 40px;
+            max-width: 275px;
+        }
+
+        &__form {
+            grid-column: 2 / span 1;
+        }
+
+        &__form-field input + label {
+
+            @mixin t3;
+        }
+
+        &__form-field input[type="tel"] + label {
+
+            @mixin t4;
+        }
+
+        &__form-field input:not([type="checkbox"]):not([aria-autocomplete="list"]) {
+
+            @mixin t3;
+            padding-top: 38px;
+            padding-bottom: 16px;
+            padding-left: 16px;
+            padding-right: 16px;
+            height: 80px;
+
+            &:focus + label,
+            &:not(:placeholder-shown) + label {
+
+                @mixin t4;
+            }
+        }
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .signup-modal {
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-bottom-left-radius: 32px;
+        border-bottom-right-radius: 32px;
+
+        &__description,
+        &__form {
+            width: 100%;
+        }
+
+        &__description-paragraph,
+        &__form {
+            margin-top: 40px;
+        }
+
+        &__description-paragraph {
+            max-width: 322px;
+        }
+
+        &__form-field input + label {
+
+            @mixin t3;
+        }
+
+        &__form-field input[type="tel"] + label {
+
+            @mixin t4;
+        }
+
+        &__form-field input:not([type="checkbox"]):not([aria-autocomplete="list"]) {
+
+            @mixin t3;
+            padding-top: 38px;
+            padding-bottom: 16px;
+            padding-left: 16px;
+            padding-right: 16px;
+            height: 80px;
+
+            &:focus + label,
+            &:not(:placeholder-shown) + label {
+
+                @mixin t4;
+            }
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .signup-modal {
+        top: 0;
+        left: 0;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+
+        &__description,
+        &__description-paragraph,
+        &__form,
+        &__form-field {
+            width: 100%;
+        }
+
+        &__description-title {
+
+            @mixin h4;
+            max-width: 280px;
+            margin-right: 50px;
+        }
+
+        &__description-paragraph,
+        &__form {
+            margin-top: 20px;
+        }
+
+        &__form-field input + label {
+
+            @mixin t3;
+        }
+
+        &__form-field input[type="tel"] + label {
+
+            @mixin t4;
+        }
+
+        &__form-field input:not([type="checkbox"]):not([aria-autocomplete="list"]) {
+
+            @mixin t3;
+            padding-top: 38px;
+            padding-bottom: 16px;
+            padding-left: 16px;
+            padding-right: 16px;
+            height: 80px;
+
+            &:focus + label,
+            &:not(:placeholder-shown) + label {
+
+                @mixin t4;
+            }
+        }
+    }
+}

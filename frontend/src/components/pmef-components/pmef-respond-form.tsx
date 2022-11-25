@@ -4,7 +4,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import Button from '../button';
 import CheckBox from '../respond-form/check-box';
 import Input from '../respond-form/input';
-import Textarea from '../respond-form/textarea';
+import TextInput from '../respond-form/textarea';
 
 import IconClose from '../../images/pmef/icon-cls.inline.svg';
 

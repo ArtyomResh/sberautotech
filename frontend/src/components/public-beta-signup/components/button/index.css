@@ -1,0 +1,55 @@
+.signup-button {
+    --color-accent: #66d4d0;
+    --color-accent-hover: #5ec4c1;
+    --color-accent-pressed: #6de3df;
+
+    padding: 16px;
+    display: flex;
+    width: max-content;
+    height: max-content;
+    justify-content: center;
+    align-items: center;
+    border-radius: 60px;
+    border:none;
+    color: var(--color-white) !important;
+    background-color: var(--color-accent);
+    transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+
+    &_block {
+        width: 100%;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+
+        &:hover {
+            background-color: var(--color-accent-hover);
+        }
+    }
+
+    &:active {
+        background-color: var(--color-accent-pressed);
+    }
+
+    &_active {
+        color: var(--color-black);
+        background-color: var(--color-neutral);
+
+        @media (hover: hover) and (pointer: fine) {
+
+            &:hover {
+                color: var(--color-black);
+                background-color: var(--color-neutral);
+            }
+        }
+
+        &:active {
+            background-color: var(--color-neutral);
+        }
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+    .signup-button {
+        padding: 20px;
+    }
+}

@@ -13,6 +13,7 @@ const PADDING = 20;
 import useDocumentScrollThrottled from './use-document-scroll-throttled';
 import { gtagClicked } from '../../utils';
 import { appContext } from '../../context/context';
+import { YM_ID } from '../../constants';
 
 import LogoWhite from '../../images/logo-white.inline.svg';
 import LogoBlack from '../../images/logo-black.inline.svg';
@@ -121,6 +122,9 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
 
     const onClick = () => {
         gtagClicked('header_button_click', 'Join button');
+        // @ts-expect-error: ym подставляется только при NODE_ENV === 'production'
+        typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'form--success--svyazatsya_s_nami');
+
         setIsPopupVisible(true);
     };
 

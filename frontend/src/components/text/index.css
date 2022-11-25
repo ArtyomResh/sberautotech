@@ -1,0 +1,93 @@
+@define-mixin t1 {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.04em;
+}
+
+@define-mixin t2 {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: -0.05em;
+}
+
+@define-mixin t3 {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -0.04em;
+}
+
+@define-mixin t4 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.03em;
+}
+
+@define-mixin t5 {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: -0.03em;
+}
+
+.text {
+    font-family: var(--font-family-primary);
+    font-style: normal;
+    color: var(--color-black);
+
+    .selection-pattern {
+        color: var(--color-accent);
+    }
+}
+
+.text__size {
+
+    &_1 {
+
+        @mixin t1;
+    }
+
+    &_2 {
+
+        @mixin t2;
+    }
+
+    &_3 {
+
+        @mixin t3;
+    }
+
+    &_4 {
+
+        @mixin t4;
+    }
+
+    &_5 {
+
+        @mixin t5;
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .text__size {
+
+        &_4 {
+
+            @mixin t3;
+        }
+
+        &_3 {
+
+            @mixin t2;
+        }
+
+        &_2 {
+
+            @mixin t1;
+        }
+    }
+}

@@ -71,3 +71,25 @@ select {
     flex-direction: column;
     min-height: 100%;
 }
+
+:root {
+    --nav-height: 60px;
+    --header-height: 82px;
+
+    --zindex-base: 100;
+    --zindex-dropdown: 101;
+    --zindex-sticky: 102;
+    --zindex-fixed: 103;
+    --zindex-modal-backdrop: 104;
+    --zindex-offcanvas: 105;
+    --zindex-modal: 106;
+    --zindex-popover: 107;
+    --zindex-tooltip: 108;
+
+    --color-black: #1f272e;
+    --color-black-dark: #10181f;
+    --color-accent: #66d4d0;
+    --color-neutral: #e0e6eb;
+    --color-error: #ff364d;
+    --color-gray: #f3f8f9;
+}

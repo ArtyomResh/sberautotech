@@ -9,7 +9,8 @@ local ci = {
   image_version: std.extVar('image_version'),
   ns: std.extVar('namespace'),
   registry: std.extVar('registry'),
-  domain: std.extVar('domain'),
+  domain_ru: std.extVar('domain_ru'),
+  domain_en: std.extVar('domain_en'),
   app_name: std.extVar('app_name')
 };
 
@@ -19,7 +20,7 @@ local ext_env = std.extVar('env_ext');
 // Lib import
 local sat = import '/jsonnet-libs/sat-k8s-libsonnet/main.libsonnet';
 
-local env = ext_env + { domain: ci.domain, app_name: ci.app_name };
+local env = ext_env + { domain_ru: ci.domain_ru, domain_en: ci.domain_en, app_name: ci.app_name };
 
 // Contructing k8s objects
 local deployments = [
