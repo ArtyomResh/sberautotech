@@ -157,7 +157,7 @@ const Vacancies = ({ location }) => {
 
     return (
         <div className={cn('vacancies__page')}>
-            <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={4}>
+            <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId="vacancies">
                 <div className={cn('vacancies-page__wrapper')}>
                     {
                         !isMobileFilterVisible ? (

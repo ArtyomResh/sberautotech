@@ -3220,27 +3220,32 @@
       {
         "text": "ФЛИП",
         "to": "/flip",
-        "style": "fill"
+        "style": "fill",
+        "navId": "flip"
       },
       {
         "text": "Беспилотник",
         "to": "/self-driving-car",
-        "style": "fill"
+        "style": "fill",
+        "navId": "self_driving_car"
       },
       {
         "text": "О компании",
         "to": "/about-company",
-        "style": "fill"
+        "style": "fill",
+        "navId": "about_company"
       },
       {
         "text": "Команда",
         "to": "/career",
-        "style": "fill"
+        "style": "fill",
+        "navId": "career"
       },
       {
         "text": "Вакансии",
         "to": "/vacancies",
-        "style": "fill"
+        "style": "fill",
+        "navId": "vacancies"
       }
     ],
     "joinButtonText": "Связаться с нами"
@@ -3252,22 +3257,26 @@
       {
         "text": "FLIP",
         "to": "/flip",
-        "style": "fill"
+        "style": "fill",
+        "navId": "flip"
       },
       {
         "text": "Self-driving vehicle",
         "to": "/self-driving-car",
-        "style": "fill"
+        "style": "fill",
+        "navId": "self_driving_car"
       },
       {
         "text": "About us",
         "to": "/about-company",
-        "style": "fill"
+        "style": "fill",
+        "navId": "about_company"
       },
       {
         "text": "Careers",
         "to": "/career",
-        "style": "fill"
+        "style": "fill",
+        "navId": "career"
       }
     ],
     "joinButtonText": "Join us"

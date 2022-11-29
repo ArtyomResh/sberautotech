@@ -22,7 +22,8 @@ import Cross from '../../images/cross.inline.svg';
 
 export interface INavItem {
     text: string,
-    to: string
+    to: string,
+    navId: string
 }
 
 export interface ITheme {
@@ -33,8 +34,8 @@ export interface ITheme {
 
 export interface INav {
     theme: ITheme,
-    pageNumber: number,
-    setPageNumber?: (page: number) => void,
+    pageId: string,
+    setActivePageId?: (page: string) => void,
     whiteLogoImportant?: boolean
 }
 
@@ -46,6 +47,7 @@ const query = graphql`
           links {
               text
               to
+              navId
           }
           joinButtonText
         }
@@ -70,7 +72,7 @@ const query = graphql`
   }
 `;
 
-const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => {
+const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
     const data = useStaticQuery(query);
     const [isOpen, setIsOpen] = useState(false);
     const [indicatorStyles, setIndicatorStyles] = useState({});
@@ -84,15 +86,17 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
     const { disclaimer, privacyPolicyLink, privacyPolicyText } = data.allStrapiFooter.edges[0].node;
 
     useEffect(() => {
+        const ANIMATION_DELAY = 200;
+
         setTimeout(() => {
-            const activeElement = document.querySelector(`.nav__link-${pageNumber}`) as HTMLElement;
+            const activeElement = document.querySelector(`.nav__link-${pageId}`) as HTMLElement;
 
             setIndicatorStyles({
                 transform: `translateX(${activeElement?.offsetLeft - PADDING}px)`,
                 width    : activeElement?.offsetWidth
             });
-        }, 200);
-    }, [pageNumber, width, height]);
+        }, ANIMATION_DELAY);
+    }, [pageId, width, height]);
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const isScrolledDown = previousScrollTop < currentScrollTop;
@@ -111,8 +115,8 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
     };
 
     const redirectHandler = () => {
-        if(pageNumber) {
-            setPageNumber?.(0);
+        if(pageId) {
+            setActivePageId?.(pageId);
         }
 
         if(isOpen) {
@@ -147,9 +151,9 @@ const Nav = ({ theme, pageNumber, setPageNumber, whiteLogoImportant }: INav) => 
                 <ul className={cn('nav__list')}>
                     <div className={cn('nav__indicator')} style={indicatorStyles} />
                     {
-                        links.map(({ text, to }: INavItem, i: number) => (
-                            <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageNumber === i })}>
-                                <Link to={to} className={cn('nav__link', `nav__link-${i}`)}>
+                        links.map(({ text, to, navId }: INavItem, i: number) => (
+                            <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageId === navId })}>
+                                <Link to={to} className={cn('nav__link', `nav__link-${navId}`)}>
                                     {text}
                                 </Link>
                             </li>

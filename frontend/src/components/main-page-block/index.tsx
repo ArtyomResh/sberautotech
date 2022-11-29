@@ -33,19 +33,8 @@ export interface IBlock {
 
 const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: number, pageNumber: number }) => {
     const cn = useClassnames(style);
-    const linkStyle = block.link?.style || 'border';
     const text = useFormattedText(block.text);
     const visibilityClassName = pageNumber >= index ? 'block__wrapper_visible' : 'block__wrapper_hidden';
-
-    const renderLink = (link: ILink) => (
-        <Link
-            to={link.to}
-            className={cn('block__link', `block__link_${linkStyle}`)}
-            onClick={() => gtagClicked('main_slide_button_click')}
-        >
-            {link.text}
-        </Link>
-    );
 
     return (
         <div className={cn('block__wrapper', visibilityClassName)} id={String(index)}>

@@ -10,9 +10,21 @@ import MainPageBlock from '../components/main-page-block';
 import style from './index.css';
 import Loader from '../components/loader/loaderComponent';
 import { appContext } from '../context/context';
+import { INavItem } from '../components/nav';
 
 const query = graphql`
   query {
+    allStrapiNavPanel {
+      edges {
+        node {
+          links {
+              text
+              to
+              navId
+          }
+        }
+      }
+    }
     allStrapiHomepage {
       edges {
         node {
@@ -145,11 +157,14 @@ const ANIMATION_DURATION = 1000;
 const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
 
-const IndexPageBlocks = ({ screens, pageNumber, isMobile, setPageNumber }) => {
+const IndexPageBlocks = ({ screens, pageId, isMobile, setActivePageId }) => {
     const cn = useClassnames(style);
     const { isPopupVisible, isRespondFormVisible } = useContext(appContext);
     const [isScrolling, setIsScrolling] = useState(false);
     const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
+    const data = useStaticQuery(query);
+    const { links } = data.allStrapiNavPanel.edges[0].node;
+    const pageNumber: number = links.findIndex(({ navId }: INavItem) => navId === pageId);
 
     const handleScroll = useCallback((deltaY: number) => {
         const deltaPage = deltaY > 0 ? 1 : -1;
@@ -163,7 +178,7 @@ const IndexPageBlocks = ({ screens, pageNumber, isMobile, setPageNumber }) => {
         if(!isScrolling && hasNextPage && isNewScroll) {
             setLastScrollStartTime(Date.now());
             setIsScrolling(true);
-            setPageNumber(nextPageNumber);
+            setActivePageId(links[nextPageNumber].navId);
             setTimeout(() => {
                 setIsScrolling(false);
             }, ANIMATION_DURATION);
@@ -244,13 +259,13 @@ const IndexPageBlocks = ({ screens, pageNumber, isMobile, setPageNumber }) => {
 };
 
 const IndexPage = () => {
-    const cn = useClassnames(style);
-    const [pageNumber, setPageNumber] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
-    const { isMobile } = useDeviceDetect();
-
     const data = useStaticQuery(query);
     const screens = data.allStrapiHomepage.edges[0].node;
+    const { links } = data.allStrapiNavPanel.edges[0].node;
+    const [pageId, setActivePageId] = useState(links[0].navId);
+    const [isLoading, setIsLoading] = useState(true);
+    const { isMobile } = useDeviceDetect();
+    const cn = useClassnames(style);
 
     useEffect(() => {
         if(isMobile !== null) {
@@ -275,12 +290,12 @@ const IndexPage = () => {
     }, [isMobile]);
 
     return (
-        <div className={cn('main__page', `main__page_${pageNumber}`)}>
-            <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageNumber={pageNumber} setPageNumber={setPageNumber}>
+        <div className={cn('main__page', `main__page_${pageId}`)}>
+            <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageId={pageId} setActivePageId={setActivePageId}>
                 {isLoading ? (
                     <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
                 ) : (
-                    <IndexPageBlocks screens={screens} pageNumber={pageNumber} isMobile={isMobile} setPageNumber={setPageNumber} />
+                    <IndexPageBlocks screens={screens} isMobile={isMobile} pageId={pageId} setActivePageId={setActivePageId} />
                 )}
             </Layout>
         </div>

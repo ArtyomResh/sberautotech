@@ -2,7 +2,8 @@
   "collectionName": "components_shared_links",
   "info": {
     "name": "Link",
-    "icon": "link"
+    "icon": "link",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -20,6 +21,11 @@
         "border",
         "fill"
       ],
+      "required": true
+    },
+    "navId": {
+      "type": "string",
+      "unique": false,
       "required": true
     }
   }

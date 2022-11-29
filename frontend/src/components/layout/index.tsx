@@ -14,13 +14,13 @@ interface IProps {
     children: React.ReactNode,
     seo?: Record<string, unknown>,
     theme?: INav['theme'],
-    pageNumber?: INav['pageNumber'],
-    setPageNumber?: INav['setPageNumber'],
+    pageId: INav['pageId'],
+    setActivePageId?: INav['setActivePageId'],
     type?: string,
     withNav?: boolean
 }
 
-const Layout = ({ children, seo, theme, pageNumber, setPageNumber, type, withNav = true }: IProps) => {
+const Layout = ({ children, seo, theme, pageId, setActivePageId, type, withNav = true }: IProps) => {
     const cn = useClassnames(style);
 
     return (
@@ -30,8 +30,8 @@ const Layout = ({ children, seo, theme, pageNumber, setPageNumber, type, withNav
                 {withNav && (
                     <Nav
                         theme={theme}
-                        pageNumber={pageNumber}
-                        setPageNumber={setPageNumber}
+                        pageId={pageId}
+                        setActivePageId={setActivePageId}
                         whiteLogoImportant={theme?.whiteLogoImportant}
                     />
                 )}

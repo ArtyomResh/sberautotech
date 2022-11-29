@@ -74,14 +74,14 @@ const query = graphql`
 
 interface IDirection {
     node: {
-        strapiId: number;
-        target: string;
-        header: string;
-        description: string;
-        subDescriptionFirst: string;
-        subDescriptionSecond: string;
-        position: number;
-    };
+        strapiId: number,
+        target: string,
+        header: string,
+        description: string,
+        subDescriptionFirst: string,
+        subDescriptionSecond: string,
+        position: number
+    }
 }
 
 const Career = () => {
@@ -96,7 +96,7 @@ const Career = () => {
         }));
 
     return (
-        <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={3}>
+        <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId="career">
             <div className="career__carousel">
                 <Carousel data={top_slider} />
             </div>
