@@ -171,6 +171,7 @@
   "SelfDrivingCarRu": {
     "id": 1,
     "locale": "ru",
+    "pageId": "self_driving_car",
     "seo": {
       "metaTitle": "Беспилотный автомобиль SberAutoTech",
       "metaDescription": "Беспилотник СберАвтоТех — собственные технологии автономного вождения",
@@ -226,6 +227,7 @@
   "SelfDrivingCarEn": {
     "id": 1,
     "locale": "en",
+    "pageId": "self_driving_car",
     "seo": {
       "metaTitle": "Unmanned vehicle SberAutoTech",
       "metaDescription": "SberAutoTech drone - own technologies of autonomous driving",
@@ -289,6 +291,7 @@
   "CareerRu": {
     "id": 1,
     "locale": "ru",
+    "pageId": "career",
     "seo": {
       "metaTitle": "Работа в SberAutoTech",
       "metaDescription": "Карьера в сфере создания цифрового транспорта: безопасного, бесшумного и беспилотного",
@@ -414,6 +417,7 @@
   "CareerEn": {
     "id": 1,
     "locale": "en",
+    "pageId": "career",
     "seo": {
       "metaTitle": "Work in SberAutoTech",
       "metaDescription": "A career in digital transport: safe, quiet and unmanned",
@@ -571,6 +575,7 @@
   "VacanciesPageRu": {
     "id": 1,
     "locale": "ru",
+    "pageId": "vacancies",
     "seo":{
       "metaTitle":"SberAutoTech Вакансии",
       "metaDescription":"СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
@@ -580,6 +585,7 @@
   "VacanciesPageEn": {
     "id": 1,
     "locale": "en",
+    "pageId": "vacancies",
     "seo":{
       "metaTitle":"SberAutoTech Vacancies",
       "metaDescription":"SberAutoTech",
@@ -589,6 +595,7 @@
   "VacancyPageRu": {
     "id": 1,
     "locale": "ru",
+    "pageId": "vacancies",
     "seo":{
       "metaTitle":"SberAutoTech Вакансия",
       "metaDescription":"СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
@@ -606,6 +613,7 @@
   "VacancyPageEn": {
     "id": 1,
     "locale": "en",
+    "pageId": "vacancies",
     "seo":{
       "metaTitle":"SberAutoTech Vacancy",
       "metaDescription":"SberAutoTech",
@@ -623,6 +631,7 @@
   "AboutCompanyRu": {
     "id": 1,
     "locale": "ru",
+    "pageId": "about_company",
     "seo": {
       "metaTitle": "SberAutoTech — технологическая компания, занимающаяся разработками в сфере цифрового транспорта",
       "metaDescription": "СберАвтоТех: создание беспилотных транспортных средств, операционной системы для управления флотами автомобилей и платформы connected",
@@ -669,6 +678,7 @@
   "AboutCompanyEn": {
     "id": 1,
     "locale": "en",
+    "pageId": "about_company",
     "seo": {
       "metaTitle": "SberAutoTech is a digital transportation technology company",
       "metaDescription": "SberAutoTech: development of unmanned vehicles, an operating system for managing fleets of vehicles and a connected platform",
@@ -710,6 +720,7 @@
   "FlipRu": {
     "id": 1,
     "locale": "ru",
+    "pageId": "flip",
     "seo": {
       "metaTitle": "ФЛИП — новое средство мобильности от SberAutoTech",
       "metaDescription": "ФЛИП от СберАвтоТех — полностью подключённое, автономное и безопасное транспортное средство на альтернативных видах топлива",
@@ -831,6 +842,7 @@
   "FlipEn": {
     "id": 1,
     "locale": "en",
+    "pageId": "flip",
     "seo": {
       "metaTitle": "FLIP - the new mobility tool from SberAutoTech",
       "metaDescription": "FLIP from SberAutoTech is a fully connected, autonomous and safe vehicle running on alternative fuels",
@@ -3226,31 +3238,26 @@
       {
         "text": "ФЛИП",
         "to": "/flip",
-        "style": "fill",
         "navId": "flip"
       },
       {
         "text": "Беспилотник",
         "to": "/self-driving-car",
-        "style": "fill",
         "navId": "self_driving_car"
       },
       {
         "text": "О компании",
         "to": "/about-company",
-        "style": "fill",
         "navId": "about_company"
       },
       {
         "text": "Команда",
         "to": "/career",
-        "style": "fill",
         "navId": "career"
       },
       {
         "text": "Вакансии",
         "to": "/vacancies",
-        "style": "fill",
         "navId": "vacancies"
       }
     ],
@@ -3263,25 +3270,21 @@
       {
         "text": "FLIP",
         "to": "/flip",
-        "style": "fill",
         "navId": "flip"
       },
       {
         "text": "Self-driving vehicle",
         "to": "/self-driving-car",
-        "style": "fill",
         "navId": "self_driving_car"
       },
       {
         "text": "About us",
         "to": "/about-company",
-        "style": "fill",
         "navId": "about_company"
       },
       {
         "text": "Careers",
         "to": "/career",
-        "style": "fill",
         "navId": "career"
       }
     ],

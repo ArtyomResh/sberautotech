@@ -1,9 +1,8 @@
 {
-  "collectionName": "components_shared_links",
+  "collectionName": "components_shared_nav_links",
   "info": {
-    "name": "Link",
-    "icon": "link",
-    "description": ""
+    "name": "NavLink",
+    "icon": "external-link-alt"
   },
   "options": {},
   "attributes": {
@@ -15,12 +14,8 @@
       "type": "string",
       "required": true
     },
-    "style": {
-      "type": "enumeration",
-      "enum": [
-        "border",
-        "fill"
-      ],
+    "navId": {
+      "type": "string",
       "required": true
     }
   }

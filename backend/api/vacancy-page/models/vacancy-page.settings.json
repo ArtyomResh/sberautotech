@@ -85,6 +85,15 @@
           "localized": true
         }
       }
+    },
+    "pageId": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "required": true
     }
   }
 }

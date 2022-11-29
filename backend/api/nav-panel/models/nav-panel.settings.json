@@ -16,6 +16,14 @@
     }
   },
   "attributes": {
+    "joinButtonText": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
     "links": {
       "type": "component",
       "repeatable": true,
@@ -24,15 +32,7 @@
           "localized": true
         }
       },
-      "component": "shared.link"
-    },
-    "joinButtonText": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
+      "component": "shared.nav-link"
     }
   }
 }
