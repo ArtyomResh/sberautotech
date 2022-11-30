@@ -93,7 +93,7 @@
         }
       },
       "type": "string",
-      "required": true
+      "required": false
     }
   }
 }
