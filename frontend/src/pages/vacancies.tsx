@@ -24,6 +24,7 @@ const query = graphql`
             metaTitle
             metaDescription
           }
+          pageId
         }
       }
     }
@@ -85,6 +86,7 @@ const Vacancies = ({ location }) => {
 
     const vacanciesList = data.allStrapiVacancies.edges.map((edge) => edge.node);
     const directions = data.allStrapiDirections.edges.map((direction) => direction.node);
+    const { pageId, seo } = data.allStrapiVacanciesPage.edges[0].node;
 
     const [activeDirection, setActiveDirection] = useState<number | null>(Number(directionParam));
     const [activeTags, setActiveTags] = useState<Array<number>>(tagsParam);
@@ -157,7 +159,7 @@ const Vacancies = ({ location }) => {
 
     return (
         <div className={cn('vacancies__page')}>
-            <Layout seo={data.allStrapiVacanciesPage.edges[0].node.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId="vacancies">
+            <Layout seo={seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId={pageId}>
                 <div className={cn('vacancies-page__wrapper')}>
                     {
                         !isMobileFilterVisible ? (

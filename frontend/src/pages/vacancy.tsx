@@ -27,16 +27,12 @@ export const query = graphql`
                 }
               }
           }
+          pageId,
           headerBottom
           textBottom
           count
           countText
           video {
-            localFile {
-              url
-            }
-          }
-          videoPoster {
             localFile {
               url
             }
@@ -134,13 +130,13 @@ interface INodes {
 }
 
 interface INode {
+    pageId: string,
     count: string,
     countText: string,
     headerBottom: string,
     seo: ISeo,
     textBottom: string,
-    video: ILocalFile,
-    videoPoster: ILocalFile
+    video: ILocalFile
 }
 
 interface IArea {
@@ -180,7 +176,7 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
     const [play, setPlay] = useState<boolean>(false);
 
     const { about, area, city, conditions, customDescription, direction, jobType, tags, title, whatToDo, whatWaitingFor, customDescriptionHeader, conditionsHeader, plussesHeader, plusses, whatToDoHeader, whatWaitingForHeader, huntflowId } = data.strapiVacancies;
-    const { count, headerBottom, countText, textBottom, video, videoPoster } = data.allStrapiVacancyPage.edges[0].node;
+    const { seo, pageId, count, headerBottom, countText, textBottom, video } = data.allStrapiVacancyPage.edges[0].node;
 
     const toggleVideo = useCallback(() => {
         if(videoRef.current) {
@@ -203,11 +199,11 @@ const VacancyPage: React.FC<IProps> = ({ data }) => {
         <div className={cn('vacancy__page')}>
             <Layout
                 seo={{
-                    ...data.allStrapiVacancyPage.edges[0].node.seo,
-                    shareImage: data.allStrapiVacancyPage.edges[0].node.seo.shareImage.localFile.url,
+                    ...seo,
+                    shareImage: seo.shareImage.localFile.url,
                     metaTitle : title
                 }}
-                theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId="vacancies"
+                theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId={pageId}
             >
                 <div className={cn('vacancy')}>
                     <div className={cn('vacancy__wrapper')}>

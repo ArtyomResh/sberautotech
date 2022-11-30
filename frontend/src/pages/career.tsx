@@ -9,12 +9,6 @@ import Footer from '../components/footer';
 
 const query = graphql`
   query {
-    strapiCareer {
-      seo {
-        metaTitle
-        metaDescription
-      }
-    }
     allStrapiDirections {
       edges {
         node {
@@ -32,6 +26,11 @@ const query = graphql`
     allStrapiCareer {
       edges {
         node {
+          seo {
+            metaTitle
+            metaDescription
+          }
+          pageId
           top_slider {
             header
             header_position
@@ -86,7 +85,7 @@ interface IDirection {
 
 const Career = () => {
     const data = useStaticQuery(query);
-    const { top_slider, top_list, bottom_slider, bottom_list } = data.allStrapiCareer.edges[0].node;
+    const { seo, pageId, top_slider, top_list, bottom_slider, bottom_list } = data.allStrapiCareer.edges[0].node;
 
     const directions = data.allStrapiDirections.edges
         .sort((a: IDirection, b: IDirection) => a.node.strapiId - b.node.strapiId)
@@ -96,7 +95,7 @@ const Career = () => {
         }));
 
     return (
-        <Layout seo={data.strapiCareer.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId="career">
+        <Layout seo={seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId={pageId}>
             <div className="career__carousel">
                 <Carousel data={top_slider} />
             </div>

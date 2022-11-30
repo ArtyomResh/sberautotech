@@ -14,15 +14,14 @@ import { toUnescapedHTML } from '../utils';
 
 const query = graphql`
   query {
-    strapiAboutCompany {
-      seo {
-        metaTitle
-        metaDescription
-      }
-    }
     allStrapiAboutCompany {
       edges {
         node {
+          seo {
+            metaTitle
+            metaDescription
+          }
+          pageId
           headerBackground {
             localFile {
               url
@@ -63,13 +62,13 @@ const query = graphql`
 const AboutCompanyPage = () => {
     const cn = useClassnames(style);
     const data = useStaticQuery(query);
-    const { headerBackground, headerText, list, slider } = data.allStrapiAboutCompany.edges[0].node;
+    const { seo, pageId, headerBackground, headerText, list, slider } = data.allStrapiAboutCompany.edges[0].node;
 
     const header = useFormattedText(headerText);
 
     return (
         <div className={cn('about-company__page')}>
-            <Layout seo={data.strapiAboutCompany.seo} theme={{ mode: 'dark', logoColor: '#040A0A', whiteLogoImportant: true }} pageId="about_company">
+            <Layout seo={seo} theme={{ mode: 'dark', logoColor: '#040A0A', whiteLogoImportant: true }} pageId={pageId}>
                 <div className={cn('about-company__wrapper')}>
                     {header && (
                         <div className={cn('about-company__header-wrapper')}>
