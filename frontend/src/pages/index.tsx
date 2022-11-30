@@ -157,13 +157,11 @@ const ANIMATION_DURATION = 1000;
 const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
 
-const IndexPageBlocks = ({ screens, pageId, isMobile, setActivePageId }) => {
+const IndexPageBlocks = ({ screens, pageId, isMobile, setActivePageId, links }) => {
     const cn = useClassnames(style);
     const { isPopupVisible, isRespondFormVisible } = useContext(appContext);
     const [isScrolling, setIsScrolling] = useState(false);
     const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
-    const data = useStaticQuery(query);
-    const { links } = data.allStrapiNavPanel.edges[0].node;
     const pageNumber: number = links.findIndex(({ navId }: INavItem) => navId === pageId);
 
     const handleScroll = useCallback((deltaY: number) => {
@@ -295,7 +293,7 @@ const IndexPage = () => {
                 {isLoading ? (
                     <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
                 ) : (
-                    <IndexPageBlocks screens={screens} isMobile={isMobile} pageId={pageId} setActivePageId={setActivePageId} />
+                    <IndexPageBlocks screens={screens} isMobile={isMobile} pageId={pageId} setActivePageId={setActivePageId} links={links} />
                 )}
             </Layout>
         </div>
