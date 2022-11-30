@@ -131,7 +131,6 @@
         letter-spacing: 0;
         text-align: left;
         align-self: center;
-        max-width: 120px;
 
         &_active {
             color: #BDFFF8;

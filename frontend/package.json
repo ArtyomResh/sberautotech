@@ -67,8 +67,8 @@
   "scripts": {
     "build": "GATSBY_LOCALE_CODE=ru gatsby build",
     "buildEn": "GATSBY_LOCALE_CODE=en gatsby build",
-    "develop": "GATSBY_LOCALE_CODE=ru gatsby develop --open -H 0.0.0.0",
-    "developEn": "GATSBY_LOCALE_CODE=en gatsby develop --open -H 0.0.0.0",
+    "develop": "gatsby clean && GATSBY_LOCALE_CODE=ru gatsby develop --open -H 0.0.0.0",
+    "developEn": "gatsby clean && GATSBY_LOCALE_CODE=en gatsby develop --open -H 0.0.0.0",
     "dev": "yarn develop",
     "lint:style": "stylelint \"src/**/*.{css,pcss}\"",
     "lint:es": "eslint --ext .ts,.tsx src/",
