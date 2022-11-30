@@ -99,7 +99,7 @@
     },
     "first_screen": [
       {
-        "text": "Save and self driving — {transportation of the future will change the logistics of megacities} and help us better manage our most valuable resource - time",
+        "text": "{The Future}<br/>{Driverless transportation will change the life of modern megapolis.} Chaotic city logistics will open a way to new technologies. With the help of AI technologies, traffic in most congested areas will be reduced, to provide citizens with time and space for their daily lives.",
         "link": null,
         "cards": [],
         "background": null,
@@ -112,7 +112,7 @@
     ],
     "second_screen": [
       {
-        "text": "{SberAutoTech technologies} open up new forms, new possibilities, a new kind of mobility",
+        "text": "{SberAutoTech technologies} open up various new forms of mobility and will transform your daily urban life forever.",
         "link": null,
         "cards": [],
         "background": null,
@@ -123,11 +123,11 @@
     ],
     "third_screen": [
       {
-        "text": "Proprietary self-driving technology: {full control of the situation on the road} and reaction faster than any driver",
+        "text": "{Precise self-driving technology}<br/>We developed our own technology to make the most reliable self-driving vehicle. SberAutoTech vehicles have {full control over the road}, react faster than any human driver, and calculate all possible risks beforehand.",
         "link": null,
         "cards": [
           {
-            "text": "{The first generation of drones} took to the roads of Moscow for testing in December 2020",
+            "text": "December 2020: {the first generation of self-driving cars} appeared on the roads of Moscow during a test launch.",
             "image": null
           }
         ],
@@ -139,7 +139,7 @@
     ],
     "fourth_screen": [
       {
-        "text": "Building the transport of the future is an exciting challenge and {we will gladly welcome like-minded people to our team}. We need ideas, experience and a desire to change the world",
+        "text": "We are excited to bring the future closer and {happy to welcome like-minded people to our team}. Bring your ideas, experience, and desire to change the world. Together we will make it happen!",
         "link": {
           "to": "/vacancies",
           "text": "Vacancies",
@@ -154,7 +154,7 @@
     ],
     "fifth_screen": [
       {
-        "text": "У нас много вакансий — приходите к нам, если горите всем автомобильным и беспилотным",
+        "text": "{We are hiring!} Join us if you are excited to change the future of automotive technologies",
         "link": null,
         "cards": [],
         "background": null,
@@ -246,38 +246,38 @@
       "shareImage": null
     },
     "double_block": {
-      "header": "Technologies that will provide a breakthrough in road safety",
+      "header": "Breakthrough tehnologies in road safety",
       "background": null,
       "backgroundPoster": null,
       "mobileBackground": null,
       "mobileBackgroundPoster": null,
-      "text": "The robotic control system fully controls the road and provides an instant response to any changes in the situation"
+      "text": "Autonomous system that has a total driving control and instantly responds to the environment"
     },
     "story_cards": [
       {
-        "header": "No blind spots: 360° view",
+        "header": "Zero blind spots<br/>360° panoramic view",
         "image": null,
-        "text": "Radars, lidars and sensors provide the vehicle with a 360 ° view - no blind spots around it. The drone is able to recognize and distinguish from each other all possible objects, rebuild, brake, avoid obstacles and anticipate the actions of other road users.",
+        "text": "{Build-in system} that can recognize and distinguish all static and movable objects on the road. Vehicle can easily integrate into the usual traffic, change lanes, make stops, avoid obstacles and anticipate different actions of other road participants.",
+        "subText": "Radars, lidars, and sensors have a 360º view with no blind spots",
+        "subTextSecond": ""
+      },
+      {
+        "header": "Seamless integration",
+        "image": null,
+        "text": "{The onboard computer} easily integrates into the ecosystem of the vehicle and can adapt to any task from daily commutes to cargo transportation.",
         "subText": "",
         "subTextSecond": ""
       },
       {
-        "header": "Seamless integration with the ecosystem",
+        "header": "Incredible reaction rate",
         "image": null,
-        "text": "The on-board computer of our own design uses 2GIS cartography, another company in the Sberbank ecosystem. We use all possible elements of the ecosystem for deep and seamless integration with our products.",
-        "subText": "",
-        "subTextSecond": ""
-      },
-      {
-        "header": "Inhuman speed of reaction",
-        "image": null,
-        "text": "The reaction speed of the robotic system is 5 times faster than that of the most experienced driver. According to statistics, 93% of road accidents in Russia are due to the driver's loss of concentration. Self-driving technology that is not subject to fatigue and emotion will help improve road safety.",
+        "text": "{The reaction of the robotic system is 5 times faster than that of any experienced driver.}<br/>According to the statistics, lack of driver concentration is the cause of 93% of road accidents. Modern self-driving technologies exceed the capabilities of the human brain and increase traffic safety.",
         "subText": "",
         "subTextSecond": ""
       }
     ],
     "slider": {
-      "header": "{The first unmanned vehicles from Sber Automotive Technologies} hit the streets of Moscow in December 2020 for testing in a winter metropolis",
+      "header": "{SAT started the testing passenger transportation in April’22. Employees of the company use a self-driving shuttle to commute between the HQ building and the metro station.",
       "header_position": "top_right",
       "text": "By law, each vehicle is driven by a test engineer, ready to take over if necessary.",
       "text_position": "bottom_left",
@@ -333,7 +333,7 @@
       ]
     },
     "top_list": {
-      "header": "Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
+      "header": "Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.<br/>Мы верим друг в друга.",
       "list_items": [
         {
           "link": {
@@ -472,7 +472,7 @@
       ]
     },
     "top_list": {
-      "header": "We are proud to represent the SberAutoTech team. Each of us today is working to change the world for the better tomorrow. \nWe believe in each other.",
+      "header": "We are proud to represent the SberAutoTech team. Each of us today is working to change the world for the better tomorrow. <br/>We believe in each other.",
       "list_items": [
         {
           "link": {
@@ -739,33 +739,33 @@
       "metaDescription": "SberAutoTech: development of unmanned vehicles, an operating system for managing fleets of vehicles and a connected platform",
       "shareImage": null
     },
-    "headerText": "Sber Automotive Technologies was established in 2020 to {develop automotive services} by Sber based on the principles of mobility, environmental friendliness and safety",
+    "headerText": "Sber Automotive Technologies was established in 2020.<br/>We develop automotive services based on advanced mobility, safety and sustainability",
     "headerBackground": null,
     "list": {
       "header": null,
       "list_items": [
         {
-          "target": "Ensure safety with a system that reacts to any event faster than a professional driver",
+          "target": "System that reacts faster than a professional driver",
           "header": "Safety",
-          "description": "Our engineers have equipped the car with the optimal combination of radars, lidars and cameras, thanks to which the drone continuously monitors what is happening on the road and beyond. The drone has a 360 ° view, it has no blind spots and it reacts to any change in the traffic situation 5 times faster than the most experienced driver, it is not subject to emotions and does not break the rules. This is why autonomous driving technologies can help reduce accidents and improve road safety.",
+          "description": "Our engineers equipped our cars with the optimal combination of radars, lidars, and cameras. The self-driving car has a 360° view with no blind spots and constantly monitors the road. The reaction of an average driver is about 1,5 seconds. Our system reacts 5 times faster. That&#39;s why autonomous driving technologies can reduce accidents and make our daily life safer.",
           "image": null
         },
         {
-          "target": "Make travel and transportation a convenient one-click service",
+          "target": "Convenient one-click service",
           "header": "Mobility",
-          "description": "We are improving the efficiency of commercial parks. Optimal distribution of tasks and routes, safety, comfort, increased productivity - all this is possible with the help of technologies we develop. Self-driving vehicles will erase the line between taxi and car sharing, and smart control systems will ensure user comfort.",
+          "description": "Our technologies go far beyond self-driving vehicles. We create not only cars, but a wholeecosystem of services that will advance travel and transportation. Imagine transformedcommercial suburbs with autonomous vehicles, AI-powered software solutions, that managetasks and routes, and relaxed city traffic with almost no rush hours. Self-driving cars will narrowdown the gap t between taxi and car sharing service offerings, and smart control systems willprovide comfort for users.",
           "image": null
         },
         {
-          "target": "Adhere to the principles of sustainable development",
-          "header": "Environmental friendliness",
-          "description": "In metropolitan areas, electric vehicles will help reduce gas emissions and noise levels. They have a lower cost of ownership - this is in line with our shared concept of wise consumption and resource conservation. And the autonomy of the new transport will make the urban space more comfortable for humans.",
+          "target": "Eco-technologies for a better future",
+          "header": "Sustainability",
+          "description": "We want to make urban space more comfortable for people without harming nature. Electric vehicles reduce gas emissions and noise levels, they need less money for service and fuel. That is all about the principles of responsible consumption and resource conservation that we share.",
           "image": null
         }
       ]
     },
     "slider": {
-      "header": "The company has three key locations - a software development office, an engineering test center and an engineering office in {Moscow and Minsk.}",
+      "header": "We develop our products at the HQ in Moscow. The design bureau, development and operation units, software and algorithm centers are located on a 15,000 m² area.",
       "header_position": "bottom_right",
       "text": null,
       "text_position": "bottom_left",
@@ -3366,11 +3366,11 @@
   "FooterEn": {
     "id": 1,
     "locale": "en",
-    "header": "Would you like to ask a question or learn more about SberAutoTech's activities? Write to us or fill out the form. We will definitely contact you",
+    "header": "This is just the beginning of the new era of transportation. Join us in this adventure! Introduce yourself and we will contact you as soon as we can.",
     "description": "We are only at the beginning of the path and cannot reveal all the plans. Fill out a questionnaire about yourself, send it and we will contact you as soon as there is an opportunity to take you to the team.",
     "link": {
       "to": "",
-      "text": "Connect with us",
+      "text": "Stay in touch",
       "style": "fill"
     },
     "disclaimer": "The information published on the Site is provided for informational purposes only. ©",
