@@ -1,5 +1,6 @@
 import React from 'react';
 import { isMobile } from 'react-device-detect';
+import { useLocation } from '@reach/router';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
@@ -12,6 +13,7 @@ import style from './index.css';
 
 const VideoSection = () => {
     const cn = useClassnames(style);
+    const location = useLocation();
 
     return (
         <section className={cn('video-section')}>
@@ -27,8 +29,9 @@ const VideoSection = () => {
                 className={cn('video-section__player')}
                 videoFileName="showreel"
                 poster={isMobile ? '/showreel_mobile.jpeg' : '/showreel_desktop.jpeg'}
-                playsInline={true}
                 preload="metadata"
+                shouldStopPlaying={location.hash === '#modal'}
+                playsInline={true}
                 loop={true}
             />
         </section>
