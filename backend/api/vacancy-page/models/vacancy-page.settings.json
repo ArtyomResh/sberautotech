@@ -26,6 +26,15 @@
       },
       "component": "shared.seo"
     },
+    "isHidden": {
+      "type": "boolean",
+      "default": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
     "headerBottom": {
       "pluginOptions": {
         "i18n": {
