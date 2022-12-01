@@ -8,7 +8,7 @@ import { toUnescapedHTML } from '../utils';
 import Layout from '../components/layout';
 import LeftBlockVacancyPage from '../components/left-block-vacancy-page';
 import ButtonWrapper from '../components/button-wrapper';
-
+import { ILocalFile, ISeo } from '../types';
 import style from './vacancy.css';
 
 import PlayButton from '../images/play-button-vacancy.inline.svg';
@@ -97,12 +97,6 @@ interface IData {
     allStrapiVacancyPage: IEdges
 }
 
-interface ISeo {
-    shareImage: ILocalFile,
-    metaTitle: string,
-    metaDescription: string
-}
-
 export interface IStrapiVacancies {
     about: string,
     area: IArea,
@@ -162,13 +156,6 @@ interface ITag {
     id: number
 }
 
-interface IUrl {
-    url: string
-}
-
-interface ILocalFile {
-    localFile: IUrl
-}
 
 const VacancyPage: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);

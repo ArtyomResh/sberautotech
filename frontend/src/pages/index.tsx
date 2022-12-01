@@ -5,12 +5,13 @@ import { useClassnames } from '../hooks/use-classnames';
 import useDeviceDetect from '../hooks/use-device-detect';
 
 import Layout from '../components/layout';
-import MainPageBlock from '../components/main-page-block';
+import MainPageBlock, { IBlock } from '../components/main-page-block';
 
 import style from './index.css';
 import Loader from '../components/loader/loaderComponent';
 import { appContext } from '../context/context';
 import { INavItem } from '../components/nav';
+import { ISeo } from '../types';
 
 const query = graphql`
   query {
@@ -41,6 +42,7 @@ const query = graphql`
             }
             text
             id
+            pageId
           }
           second_screen {
             background {
@@ -67,6 +69,7 @@ const query = graphql`
             }
             text
             id
+            pageId
           }
           third_screen {
             background {
@@ -103,6 +106,7 @@ const query = graphql`
             }
             id
             text
+            pageId
           }
           fourth_screen {
             background {
@@ -129,6 +133,7 @@ const query = graphql`
             }
             text
             id
+            pageId
           }
           fifth_screen {
             background {
@@ -144,6 +149,7 @@ const query = graphql`
             }
             text
             id
+            pageId
           }
           id
         }
@@ -152,23 +158,39 @@ const query = graphql`
   }
 `;
 
-const PAGES_LENGTH = 5;
 const ANIMATION_DURATION = 1000;
 const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
 
-const IndexPageBlocks = ({ screens, pageId, isMobile, setActivePageId, links }) => {
+interface IMainPageScreenData extends IBlock {
+    seo: ISeo,
+    pageId?: string
+}
+
+interface IIndexPageBlocksProps {
+    screens: Array<IMainPageScreenData>,
+    activePageId: string,
+    isMobile: boolean | null,
+    setActivePageId: (id: string) => void,
+    links: Array<INavItem>,
+    navId?: string
+}
+
+const getScreenBlockId = (screen: IMainPageScreenData) => `main-page-screen-${screen.pageId}`;
+
+const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
     const cn = useClassnames(style);
     const { isPopupVisible, isRespondFormVisible } = useContext(appContext);
     const [isScrolling, setIsScrolling] = useState(false);
     const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
-    const pageNumber: number = links.findIndex(({ navId }: INavItem) => navId === pageId);
+    const pageNumber: number = links.findIndex(({ navId }) => navId === activePageId);
+    const pagesLength = screens.length;
 
     const handleScroll = useCallback((deltaY: number) => {
         const deltaPage = deltaY > 0 ? 1 : -1;
         const nextPageNumber = pageNumber + deltaPage;
 
-        const hasNextPage = (nextPageNumber >= 0) && (nextPageNumber < PAGES_LENGTH);
+        const hasNextPage = (nextPageNumber >= 0) && (nextPageNumber < pagesLength);
 
         const timeFromLastScrollStart = Date.now() - lastScrollStartTime;
         const isNewScroll = timeFromLastScrollStart > (isMobile ? MAX_MOMENTUM_SCROLL_DURATION_MOBILE : MAX_MOMENTUM_SCROLL_DURATION);
@@ -236,8 +258,17 @@ const IndexPageBlocks = ({ screens, pageId, isMobile, setActivePageId, links }) 
     }, [handleScroll, isRespondFormVisible, isPopupVisible]);
 
     return (
-        <div className={cn('main-page-blocks')}>
-            <Link to="/flip">
+        <div className={cn('main-pa.ge-blocks')}>
+            {screens.map((screen, index) => {
+                const link = links.find((link) => link.navId === screen.pageId)?.to || '/';
+
+                return (
+                    <Link to={link} key={`page-screen-${index}`}>
+                        <MainPageBlock block={screen} index={index} blockId={getScreenBlockId(screen)} pageNumber={pageNumber} />
+                    </Link>
+                );
+            })}
+            {/* <Link to="/flip">
                 <MainPageBlock block={screens.second_screen[0]} index={0} pageNumber={pageNumber} />
             </Link>
             <Link to="/self-driving-car">
@@ -251,7 +282,7 @@ const IndexPageBlocks = ({ screens, pageId, isMobile, setActivePageId, links }) 
             </Link>
             <Link to="/vacancies">
                 <MainPageBlock block={screens.fifth_screen[0]} index={4} pageNumber={pageNumber} />
-            </Link>
+            </Link> */}
         </div>
     );
 };
@@ -259,27 +290,28 @@ const IndexPageBlocks = ({ screens, pageId, isMobile, setActivePageId, links }) 
 const IndexPage = () => {
     const data = useStaticQuery(query);
     const screens = data.allStrapiHomepage.edges[0].node;
-    const { links } = data.allStrapiNavPanel.edges[0].node;
-    const [pageId, setActivePageId] = useState(links[0].navId);
+    const { links } = data.allStrapiNavPanel.edges[0].node as {links: Array<INavItem>};
+    const [activePageId, setActivePageId] = useState(links[0].navId);
     const [isLoading, setIsLoading] = useState(true);
     const { isMobile } = useDeviceDetect();
     const cn = useClassnames(style);
 
+
     useEffect(() => {
         if(isMobile !== null) {
             const preloadVideos = [
-                fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
-                fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()),
-                fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.url).then((response) => response.blob()),
-                fetch(screens.fourth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob())
+                fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.second_screen[0]) })),
+                fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.third_screen[0]) })),
+                fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.first_screen[0]) })),
+                fetch(screens.fourth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.fourth_screen[0]) }))
             ];
 
             Promise.all(preloadVideos).then((data) => {
                 setIsLoading(false);
 
-                data.forEach((blob, i) => {
-                    const bound = document.getElementById(String(i));
-                    const video = bound.querySelector('video');
+                data.forEach(({ blob, blockId }) => {
+                    const bound = document.getElementById(blockId);
+                    const video = bound?.querySelector('video');
 
                     video?.setAttribute('src', URL.createObjectURL(blob));
                 });
@@ -287,13 +319,25 @@ const IndexPage = () => {
         }
     }, [isMobile]);
 
+    const allScreens = [
+        screens.second_screen[0],
+        screens.third_screen[0],
+        screens.first_screen[0],
+        screens.fourth_screen[0],
+        screens.fifth_screen[0]
+    ] as Array<IMainPageScreenData>;
+
+    const sortedScreens = links.map((link, index) => {
+        return allScreens.find((screen) => screen.pageId && link.navId === screen.pageId) || allScreens[index];
+    });
+
     return (
-        <div className={cn('main__page', `main__page_${pageId}`)}>
-            <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageId={pageId} setActivePageId={setActivePageId}>
+        <div className={cn('main__page', `main__page_${activePageId}`)}>
+            <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageId={activePageId} setActivePageId={setActivePageId}>
                 {isLoading ? (
                     <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
                 ) : (
-                    <IndexPageBlocks screens={screens} isMobile={isMobile} pageId={pageId} setActivePageId={setActivePageId} links={links} />
+                    <IndexPageBlocks screens={sortedScreens} isMobile={isMobile} activePageId={activePageId} setActivePageId={setActivePageId} links={links} />
                 )}
             </Layout>
         </div>
