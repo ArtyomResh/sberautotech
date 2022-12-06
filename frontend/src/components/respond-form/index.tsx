@@ -96,6 +96,11 @@ const RespondForm = () => {
         defaultValues   : {}
     });
 
+    const fileRef = useRef<File | null>(null);
+    const hadleFileChange = (file: File | null) => {
+        fileRef.current = file;
+    };
+
     const closeHandler = () => {
         setVacancyTitle?.('');
         setHuntflowId?.('');
@@ -141,13 +146,14 @@ const RespondForm = () => {
         setIsPopupVisible?.(false);
         setIsRespondFormVisible?.(false);
         context.reset();
+        fileRef.current = null;
     }, [timeoutId]);
 
     const onSubmit = async (data) => {
         setIsLoading(true);
         const formData = new FormData();
-        const fileInput = document.querySelector('#file');
-        const file = data.file[0] || fileInput?.files[0];
+
+        const file = fileRef.current;
         const base64 = file ? await toBase64(file) : null;
 
         if(vacancyTitle) {
@@ -159,13 +165,13 @@ const RespondForm = () => {
         }
 
         for(const name in data) {
-            if(data[name]) {
-                if(name === 'file' && base64) {
+            if(name === 'file') {
+                if(base64 && file) {
                     formData.append('content', base64);
                     formData.append('filename', file.name);
-                } else {
-                    formData.append(name, data[name]);
                 }
+            } else if(data[name]) {
+                formData.append(name, data[name]);
             }
         }
 
@@ -284,7 +290,7 @@ const RespondForm = () => {
                             </div>
                             <div className={cn('right-block__button-section')}>
                                 <div className={cn('right-block__field-wrapper')}>
-                                    <Input type="file" placeholder={file} name="file" />
+                                    <Input type="file" placeholder={file} name="file" onFileChange={hadleFileChange} />
                                 </div>
                                 {isRecaptchaConfirmed ? (
                                     <div className={cn('right-block__field-wrapper')}>
