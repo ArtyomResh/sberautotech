@@ -63,7 +63,7 @@
         margin: 23px 0;
         padding: 0;
         width: 100%;
-        color: #fff;
+        color: inherit;
         background: none;
         border: none;
         cursor: pointer;
