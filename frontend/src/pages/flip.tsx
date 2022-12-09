@@ -17,15 +17,14 @@ import style from './flip.css';
 
 const query = graphql`
   query {
-    strapiFlip {
-      seo {
-        metaTitle
-        metaDescription
-      }
-    }
     allStrapiFlip {
       edges {
         node {
+          seo {
+            metaTitle
+            metaDescription
+          }
+          pageId
           first_screen {
             background {
               localFile {
@@ -225,6 +224,8 @@ const FlipPage = () => {
     const videoSource = useMemo(() => (isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'), []);
 
     const {
+        seo,
+        pageId,
         first_screen,
         third_screen,
         fourth_screen,
@@ -304,9 +305,9 @@ const FlipPage = () => {
     return (
         <div className="flip__page">
             <Layout
-                seo={data.strapiFlip.seo}
+                seo={seo}
                 theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }}
-                pageNumber={0}
+                pageId={pageId}
             >
                 {isLoading ? (
                     <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>

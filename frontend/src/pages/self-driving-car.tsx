@@ -10,15 +10,14 @@ import 'swiper/swiper-bundle.css';
 
 const query = graphql`
   query {
-    strapiSelfDrivingCar {
-      seo {
-        metaTitle
-        metaDescription
-      }
-    }
     allStrapiSelfDrivingCar {
       edges {
         node {
+          seo {
+            metaTitle
+            metaDescription
+          }
+          pageId
           id
           double_block {
             header
@@ -66,10 +65,10 @@ const query = graphql`
 
 const SelfDrivingCar = () => {
     const data = useStaticQuery(query);
-    const { double_block, story_cards, slider } = data.allStrapiSelfDrivingCar.edges[0].node;
+    const { seo, pageId, double_block, story_cards, slider } = data.allStrapiSelfDrivingCar.edges[0].node;
 
     return (
-        <Layout seo={data.strapiSelfDrivingCar.seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageNumber={1}>
+        <Layout seo={seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId={pageId}>
             <MainBlock data={double_block} storyCards={story_cards} />
             <Carousel data={slider} />
             <Footer />

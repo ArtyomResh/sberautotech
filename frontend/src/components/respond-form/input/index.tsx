@@ -21,7 +21,8 @@ interface IProps {
     autocomplete?: TAutoCompleteType,
     className?: string,
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void,
-    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void,
+    onFileChange?: (file: File | null) => void
 }
 
 interface IState {
@@ -29,21 +30,20 @@ interface IState {
     fileExtension?: string
 }
 
-const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: IProps) => {
+const Input = ({ type, placeholder, ref, name, className, pattern, onFileChange, ...props }: IProps) => {
     const { setValue } = useFormContext();
 
     const controller = useController({ name, rules: {
         required: props.requiredValidation && 'Обязательное поле',
         pattern : pattern
-    } });
+    }, shouldUnregister: true });
     const controllerProps = controller.field;
 
     const cn = useClassnames(style);
 
     const [file, setFile] = useState<IState>({ fileName: '', fileExtension: '' });
 
-
-    const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target as HTMLInputElement;
         const inputFile: File | null = input.files ? input.files[0] : null;
         const fileExtension = inputFile?.name.split('.').pop();
@@ -52,12 +52,14 @@ const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: I
 
         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         if(fileSize / 1024 / 1024 < 1) {
+            onFileChange?.(inputFile);
             setFile({ fileName, fileExtension });
         }
     };
 
-    const onFileCancel = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleFileCancel = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
+        onFileChange?.(null);
         setFile({ fileName: '', fileExtension: '' });
     };
 
@@ -65,7 +67,7 @@ const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: I
         return String(string).replace(/\D/g, '');
     };
 
-    const onPhonePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const handlePhonePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
         const input = e.target,
             inputNumbersValue = getInputNumbersValue(input);
         const pasted = e.clipboardData;
@@ -79,7 +81,7 @@ const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: I
         }
     };
 
-    const onPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target,
             selectionStart = (input as HTMLInputElement).selectionStart;
         let formattedInputValue = '',
@@ -170,16 +172,16 @@ const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: I
         return (
             <div className={cn('input-file', className)}>
                 <input
-                    type="file"
                     id="file"
+                    type="file"
                     accept="application/pdf, application/msword, application/vnd.oasis.opendocument.text, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/rtf, .pdf, .doc, .docx, .rtf"
                     {...controllerProps}
-                    onChange={onFileChange}
+                    onChange={handleFileChange}
                 />
                 <label htmlFor="file" className={cn('input-file__label', { 'input-file__label_error': errorMessage })}>
                     <span className={cn({ 'input-file__title': file.fileName })}>{file.fileName ? file.fileName : placeholder}</span>
                     <span className={cn('input-file__ext')}>{file.fileExtension ? `.${file.fileExtension}` : null}</span>
-                    <div className={cn('input-file__cross')} onClick={onFileCancel}>{file.fileName ? <Cross /> : null}</div>
+                    <div className={cn('input-file__cross')} onClick={handleFileCancel}>{file.fileName ? <Cross /> : null}</div>
                 </label>
             </div>);
     };
@@ -215,8 +217,8 @@ const Input = ({ type, placeholder, ref, name, className, pattern, ...props }: I
                     type={type}
                     autoComplete={props.autocomplete || 'off'}
                     {...controllerProps}
-                    onChange={onPhoneChange}
-                    onPaste={onPhonePaste}
+                    onChange={handlePhoneChange}
+                    onPaste={handlePhonePaste}
                     onFocus={props?.onFocus}
                     onBlur={onBlur}
                 />

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 
 import { useClassnames } from '../../../../../../hooks/use-classnames';
@@ -8,16 +8,25 @@ import styles from './index.css';
 
 type TVideoPlayer = React.HTMLProps<HTMLVideoElement> & {
     videoFileName: string,
-    posterFilePath?: string
+    posterFilePath?: string,
+    shouldStopPlaying?: boolean
 };
 
 const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
     const cx = useClassnames(styles);
-    const { videoFileName, posterFilePath, className, ...restProps } = props;
+    const { videoFileName, posterFilePath, className, shouldStopPlaying, ...restProps } = props;
     const filePathToVideo = isMobile ? `/video/mobile/${videoFileName}` : `/video/desktop/${videoFileName}`;
 
     const videoElement = useRef<HTMLVideoElement | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+
+
+    useEffect(() => {
+        if(shouldStopPlaying) {
+            setIsPlaying(false);
+            videoElement?.current?.pause();
+        }
+    }, [setIsPlaying, shouldStopPlaying]);
 
     const handlePlay = async () => {
         if(isPlaying) {

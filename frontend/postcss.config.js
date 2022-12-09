@@ -20,6 +20,16 @@ const plugins = [
             '@media (min-width: 1920px)': {
                 '@mixin-content': {},
             }
+        },
+        media_breakpoint_nav_collapsed: {
+            '@media (max-width: 1210px)': {
+                '@mixin-content': {},
+            }
+        },
+        media_breakpoint_nav_fullwidth: {
+            '@media (min-width: 1211px)': {
+                '@mixin-content': {},
+            }
         }
     }}),
     require('postcss-url')({

@@ -61,12 +61,22 @@
     &__header-wrapper {
         display: flex;
         margin: 23px 0;
+        padding: 0;
+        width: 100%;
+        color: inherit;
+        background: none;
+        border: none;
         cursor: pointer;
+
+        @media (max-width: 600px) {
+            align-items: center;
+        }
     }
 
     &__header {
         display: flex;
         align-items: center;
+        text-align: left;
         margin-left: 55px;
         font-family: var(--font-family-secondary);
         font-size: 70px;

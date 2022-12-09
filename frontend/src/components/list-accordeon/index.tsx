@@ -41,12 +41,23 @@ const ListAccordeon: React.FC<IProps> = ({ data, className }) => {
                     {data.header}
                 </div>
             )}
+
             <ul className={cn('list-accordeon__list', { [`${className}`]: className })}>
                 {data.list_items.map((item: IListAccordeonItem, i: number) => (
                     <li key={i} className={cn('list-accordeon__list-item', { [`${className}-item`]: className })}>
-                        <div className={cn('list-accordeon__target-wrapper', { [`${className}-target-wrapper`]: className })}>
+
+                        <div
+                            className={cn(
+                                'list-accordeon__target-wrapper',
+                                {
+                                    [`${className}-target-wrapper`]: className
+
+                                }
+                            )}
+                        >
                             {item.target}
                         </div>
+
                         <AccordeonItem data={item} className={className} />
                     </li>
                 ))}

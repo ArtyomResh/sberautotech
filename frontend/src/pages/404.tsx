@@ -9,7 +9,7 @@ const NotFoundPage = () => (
             metaTitle      : '404: Not found',
             metaDescription: 'It looks like you got lost'
         }}
-        pageNumber={0}
+        pageId="not_found"
     >
         <h1>NOT FOUND</h1>
         <p>You just hit a route that doesn't exist... the sadness.</p>

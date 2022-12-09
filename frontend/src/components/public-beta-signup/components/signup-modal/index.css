@@ -153,6 +153,7 @@
         }
 
         &__form {
+            margin-top: 32px;
             grid-column: 2 / span 1;
         }
 
@@ -205,6 +206,7 @@
         }
 
         &__form {
+            margin-top: 32px;
             grid-column: 2 / span 1;
         }
 

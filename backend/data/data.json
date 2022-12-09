@@ -99,7 +99,7 @@
     },
     "first_screen": [
       {
-        "text": "Save and self driving — {transportation of the future will change the logistics of megacities} and help us better manage our most valuable resource - time",
+        "text": "{The Future}<br/>{Driverless transportation will change the life of modern megapolis.} Chaotic city logistics will open a way to new technologies. With the help of AI technologies, traffic in most congested areas will be reduced, to provide citizens with time and space for their daily lives.",
         "link": null,
         "cards": [],
         "background": null,
@@ -112,7 +112,7 @@
     ],
     "second_screen": [
       {
-        "text": "{SberAutoTech technologies} open up new forms, new possibilities, a new kind of mobility",
+        "text": "{SberAutoTech technologies} open up various new forms of mobility and will transform your daily urban life forever.",
         "link": null,
         "cards": [],
         "background": null,
@@ -123,11 +123,11 @@
     ],
     "third_screen": [
       {
-        "text": "Proprietary self-driving technology: {full control of the situation on the road} and reaction faster than any driver",
+        "text": "{Precise self-driving technology}<br/>We developed our own technology to make the most reliable self-driving vehicle. SberAutoTech vehicles have {full control over the road}, react faster than any human driver, and calculate all possible risks beforehand.",
         "link": null,
         "cards": [
           {
-            "text": "{The first generation of drones} took to the roads of Moscow for testing in December 2020",
+            "text": "December 2020: {the first generation of self-driving cars} appeared on the roads of Moscow during a test launch.",
             "image": null
           }
         ],
@@ -139,7 +139,7 @@
     ],
     "fourth_screen": [
       {
-        "text": "Building the transport of the future is an exciting challenge and {we will gladly welcome like-minded people to our team}. We need ideas, experience and a desire to change the world",
+        "text": "We are excited to bring the future closer and {happy to welcome like-minded people to our team}. Bring your ideas, experience, and desire to change the world. Together we will make it happen!",
         "link": {
           "to": "/vacancies",
           "text": "Vacancies",
@@ -154,7 +154,7 @@
     ],
     "fifth_screen": [
       {
-        "text": "У нас много вакансий — приходите к нам, если горите всем автомобильным и беспилотным",
+        "text": "{We are hiring!} Join us if you are excited to change the future of automotive technologies",
         "link": null,
         "cards": [],
         "background": null,
@@ -171,6 +171,7 @@
   "SelfDrivingCarRu": {
     "id": 1,
     "locale": "ru",
+    "pageId": "self_driving_car",
     "seo": {
       "metaTitle": "Беспилотный автомобиль SberAutoTech",
       "metaDescription": "Беспилотник СберАвтоТех — собственные технологии автономного вождения",
@@ -219,55 +220,74 @@
       "header_position": "top_right",
       "text": "В соответствии с законодательством, за рулем каждой машины находится инженер-испытатель, готовый взять управление на себя в случае необходимости.",
       "text_position": "bottom_left",
-      "slider_items": [null, null, null, null, null],
-      "slider_items_names": ["carWithLidar-day.jpg", "carWithLidar-day-front.jpg", "carWithLidar-day-back.jpg", "carWithLidar-day-front-second.jpg", "carWithLidar-day-front-third.jpg"]
+      "slider_items": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "slider_items_names": [
+        "carWithLidar-day.jpg",
+        "carWithLidar-day-front.jpg",
+        "carWithLidar-day-back.jpg",
+        "carWithLidar-day-front-second.jpg",
+        "carWithLidar-day-front-third.jpg"
+      ]
     }
   },
   "SelfDrivingCarEn": {
     "id": 1,
     "locale": "en",
+    "pageId": "self_driving_car",
     "seo": {
       "metaTitle": "Unmanned vehicle SberAutoTech",
       "metaDescription": "SberAutoTech drone - own technologies of autonomous driving",
       "shareImage": null
     },
     "double_block": {
-      "header": "Technologies that will provide a breakthrough in road safety",
+      "header": "Breakthrough tehnologies in road safety",
       "background": null,
       "backgroundPoster": null,
       "mobileBackground": null,
       "mobileBackgroundPoster": null,
-      "text": "The robotic control system fully controls the road and provides an instant response to any changes in the situation"
+      "text": "Autonomous system that has a total driving control and instantly responds to the environment"
     },
     "story_cards": [
       {
-        "header": "No blind spots: 360° view",
+        "header": "Zero blind spots<br/>360° panoramic view",
         "image": null,
-        "text": "Radars, lidars and sensors provide the vehicle with a 360 ° view - no blind spots around it. The drone is able to recognize and distinguish from each other all possible objects, rebuild, brake, avoid obstacles and anticipate the actions of other road users.",
+        "text": "{Build-in system} that can recognize and distinguish all static and movable objects on the road. Vehicle can easily integrate into the usual traffic, change lanes, make stops, avoid obstacles and anticipate different actions of other road participants.",
+        "subText": "Radars, lidars, and sensors have a 360º view with no blind spots",
+        "subTextSecond": ""
+      },
+      {
+        "header": "Seamless integration",
+        "image": null,
+        "text": "{The onboard computer} easily integrates into the ecosystem of the vehicle and can adapt to any task from daily commutes to cargo transportation.",
         "subText": "",
         "subTextSecond": ""
       },
       {
-        "header": "Seamless integration with the ecosystem",
+        "header": "Incredible reaction rate",
         "image": null,
-        "text": "The on-board computer of our own design uses 2GIS cartography, another company in the Sberbank ecosystem. We use all possible elements of the ecosystem for deep and seamless integration with our products.",
-        "subText": "",
-        "subTextSecond": ""
-      },
-      {
-        "header": "Inhuman speed of reaction",
-        "image": null,
-        "text": "The reaction speed of the robotic system is 5 times faster than that of the most experienced driver. According to statistics, 93% of road accidents in Russia are due to the driver's loss of concentration. Self-driving technology that is not subject to fatigue and emotion will help improve road safety.",
+        "text": "{The reaction of the robotic system is 5 times faster than that of any experienced driver.}<br/>According to the statistics, lack of driver concentration is the cause of 93% of road accidents. Modern self-driving technologies exceed the capabilities of the human brain and increase traffic safety.",
         "subText": "",
         "subTextSecond": ""
       }
     ],
     "slider": {
-      "header": "{The first unmanned vehicles from Sber Automotive Technologies} hit the streets of Moscow in December 2020 for testing in a winter metropolis",
+      "header": "{SAT started the testing passenger transportation in April’22. Employees of the company use a self-driving shuttle to commute between the HQ building and the metro station.",
       "header_position": "top_right",
       "text": "By law, each vehicle is driven by a test engineer, ready to take over if necessary.",
       "text_position": "bottom_left",
-      "slider_items": [null, null, null, null, null]
+      "slider_items": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     }
   },
   "PmefLandingPageRu": {
@@ -289,21 +309,31 @@
   "CareerRu": {
     "id": 1,
     "locale": "ru",
+    "pageId": "career",
     "seo": {
       "metaTitle": "Работа в SberAutoTech",
       "metaDescription": "Карьера в сфере создания цифрового транспорта: безопасного, бесшумного и беспилотного",
       "shareImage": null
     },
+    "isHidden": false,
     "top_slider": {
       "header": "Мир не меняется сам по себе.</br>Его меняют люди, которые верят в технологии, в будущее и в свои силы",
       "header_position": "top_left",
       "text": null,
       "text_position": "bottom_left",
-      "slider_items": [null, null],
-      "slider_items_names": ["engineer2.jpg", "programmer.jpg", "team.jpg", "engineer8.jpg"]
+      "slider_items": [
+        null,
+        null
+      ],
+      "slider_items_names": [
+        "engineer2.jpg",
+        "programmer.jpg",
+        "team.jpg",
+        "engineer8.jpg"
+      ]
     },
     "top_list": {
-      "header": "Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.\nМы верим друг в друга.",
+      "header": "Мы с гордостью представляем команду SberAutoTech. Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему.<br/>Мы верим друг в друга.",
       "list_items": [
         {
           "link": {
@@ -354,8 +384,18 @@
       "header_position": "bottom_left",
       "text": null,
       "text_position": "bottom_left",
-      "slider_items": [null, null, null, null],
-      "slider_items_names": [ "office.jpg",  "office-2.jpg",  "office-3.jpg",  "office-4.jpg"]
+      "slider_items": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "slider_items_names": [
+        "office.jpg",
+        "office-2.jpg",
+        "office-3.jpg",
+        "office-4.jpg"
+      ]
     },
     "bottom_list": {
       "header": "Достойная оплата труда, офис с парковкой и социальный пакет – базовые вещи. Мы предлагаем больше",
@@ -414,20 +454,25 @@
   "CareerEn": {
     "id": 1,
     "locale": "en",
+    "pageId": "career",
     "seo": {
       "metaTitle": "Work in SberAutoTech",
       "metaDescription": "A career in digital transport: safe, quiet and unmanned",
       "shareImage": null
     },
+    "isHidden": true,
     "top_slider": {
       "header": "The world does not change by itself. It is changed by people who believe in technology, in the future and in their own strength.",
       "header_position": "top_left",
       "text": null,
       "text_position": "bottom_left",
-      "slider_items": [null, null]
+      "slider_items": [
+        null,
+        null
+      ]
     },
     "top_list": {
-      "header": "We are proud to represent the SberAutoTech team. Each of us today is working to change the world for the better tomorrow. \nWe believe in each other.",
+      "header": "We are proud to represent the SberAutoTech team. Each of us today is working to change the world for the better tomorrow. <br/>We believe in each other.",
       "list_items": [
         {
           "link": {
@@ -478,7 +523,12 @@
       "header_position": "bottom_left",
       "text": null,
       "text_position": "bottom_left",
-      "slider_items": [null, null, null, null]
+      "slider_items": [
+        null,
+        null,
+        null,
+        null
+      ]
     },
     "bottom_list": {
       "header": "Decent wages, an office with parking and a social package are basic things. We offer more",
@@ -537,11 +587,11 @@
   "globalRu": {
     "id": 1,
     "locale": "ru",
-    "siteName":"Sber Automotive Technologies",
-    "defaultSeo":{
-      "metaTitle":"SberAutoTech",
-      "metaDescription":"СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
-      "shareImage":null
+    "siteName": "Sber Automotive Technologies",
+    "defaultSeo": {
+      "metaTitle": "SberAutoTech",
+      "metaDescription": "СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
+      "shareImage": null
     },
     "cookieBanner": {
       "title": "Мы используем файлы cookies (куки-файлы) c целью повышения удобства пользования веб-сайтом.",
@@ -549,16 +599,16 @@
       "decline": "Нет",
       "accept": "Принять"
     },
-    "favicon":null
+    "favicon": null
   },
   "globalEn": {
     "id": 1,
     "locale": "en",
-    "siteName":"Sber Automotive Technologies",
-    "defaultSeo":{
-      "metaTitle":"SberAutoTech",
-      "metaDescription":"SberAutoTech",
-      "shareImage":null
+    "siteName": "Sber Automotive Technologies",
+    "defaultSeo": {
+      "metaTitle": "SberAutoTech",
+      "metaDescription": "SberAutoTech",
+      "shareImage": null
     },
     "cookieBanner": {
       "title": "We use cookies to improve the usability of the website.",
@@ -566,33 +616,38 @@
       "decline": "No",
       "accept": "Accept"
     },
-    "favicon":null
+    "favicon": null
   },
   "VacanciesPageRu": {
     "id": 1,
     "locale": "ru",
-    "seo":{
-      "metaTitle":"SberAutoTech Вакансии",
-      "metaDescription":"СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
-      "shareImage":null
-    }
+    "pageId": "vacancies",
+    "seo": {
+      "metaTitle": "SberAutoTech Вакансии",
+      "metaDescription": "СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
+      "shareImage": null
+    },
+    "isHidden": false
   },
   "VacanciesPageEn": {
     "id": 1,
     "locale": "en",
-    "seo":{
-      "metaTitle":"SberAutoTech Vacancies",
-      "metaDescription":"SberAutoTech",
-      "shareImage":null
-    }
+    "pageId": "vacancies",
+    "seo": {
+      "metaTitle": "SberAutoTech Vacancies",
+      "metaDescription": "SberAutoTech",
+      "shareImage": null
+    },
+    "isHidden": true
   },
   "VacancyPageRu": {
     "id": 1,
     "locale": "ru",
-    "seo":{
-      "metaTitle":"SberAutoTech Вакансия",
-      "metaDescription":"СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
-      "shareImage":null
+    "pageId": "vacancies",
+    "seo": {
+      "metaTitle": "SberAutoTech Вакансия",
+      "metaDescription": "СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
+      "shareImage": null
     },
     "headerBottom": "Мы — команда {Sber Automotive Technologies}. Мы создаём безопасное беспилотное будущее",
     "textBottom": "С помощью гаджетов люди научились управлять самым главным ресурсом — временем. Финансы, развлечения, бронирование билетов и многое другое теперь доступно в один клик. Настало время превратить в удобный гаджет и автомобиль. Взаимодействие с ним станет интуитивно понятным и комфортным, а вождение — беспилотным. Так люди получат больше свободы, а города — гибкую логистику для доставки товаров и грузов.",
@@ -606,10 +661,11 @@
   "VacancyPageEn": {
     "id": 1,
     "locale": "en",
-    "seo":{
-      "metaTitle":"SberAutoTech Vacancy",
-      "metaDescription":"SberAutoTech",
-      "shareImage":null
+    "pageId": "vacancies",
+    "seo": {
+      "metaTitle": "SberAutoTech Vacancy",
+      "metaDescription": "SberAutoTech",
+      "shareImage": null
     },
     "headerBottom": "We are {Sber Automotive Technologies}. We are creating digital transport products that will revolutionize the movement of passengers and goods.",
     "textBottom": "People have learned to manage the most important resource - time - with the help of gadgets. The task of our team is to turn the car into a convenient gadget with intuitive controls. This way we will make driving easy and comfortable, and in the future we will entrust it to unmanned technologies. The logistics of life in a big city will become more convenient, and people will get even more free time.",
@@ -623,6 +679,7 @@
   "AboutCompanyRu": {
     "id": 1,
     "locale": "ru",
+    "pageId": "about_company",
     "seo": {
       "metaTitle": "SberAutoTech — технологическая компания, занимающаяся разработками в сфере цифрового транспорта",
       "metaDescription": "СберАвтоТех: создание беспилотных транспортных средств, операционной системы для управления флотами автомобилей и платформы connected",
@@ -662,54 +719,66 @@
       "header_position": "bottom_left",
       "text": null,
       "text_position": "bottom_left",
-      "slider_items": [null, null],
-      "slider_items_names": ["engineer6.jpg",  "engineer7.jpg", "engineer5.jpg"]
+      "slider_items": [
+        null,
+        null
+      ],
+      "slider_items_names": [
+        "engineer6.jpg",
+        "engineer7.jpg",
+        "engineer5.jpg"
+      ]
     }
   },
   "AboutCompanyEn": {
     "id": 1,
     "locale": "en",
+    "pageId": "about_company",
     "seo": {
       "metaTitle": "SberAutoTech is a digital transportation technology company",
       "metaDescription": "SberAutoTech: development of unmanned vehicles, an operating system for managing fleets of vehicles and a connected platform",
       "shareImage": null
     },
-    "headerText": "Sber Automotive Technologies was established in 2020 to {develop automotive services} by Sber based on the principles of mobility, environmental friendliness and safety",
+    "headerText": "Sber Automotive Technologies was established in 2020.<br/>We develop automotive services based on advanced mobility, safety and sustainability",
     "headerBackground": null,
     "list": {
       "header": null,
       "list_items": [
         {
-          "target": "Ensure safety with a system that reacts to any event faster than a professional driver",
+          "target": "System that reacts faster than a professional driver",
           "header": "Safety",
-          "description": "Our engineers have equipped the car with the optimal combination of radars, lidars and cameras, thanks to which the drone continuously monitors what is happening on the road and beyond. The drone has a 360 ° view, it has no blind spots and it reacts to any change in the traffic situation 5 times faster than the most experienced driver, it is not subject to emotions and does not break the rules. This is why autonomous driving technologies can help reduce accidents and improve road safety.",
+          "description": "Our engineers equipped our cars with the optimal combination of radars, lidars, and cameras. The self-driving car has a 360° view with no blind spots and constantly monitors the road. The reaction of an average driver is about 1,5 seconds. Our system reacts 5 times faster. That&#39;s why autonomous driving technologies can reduce accidents and make our daily life safer.",
           "image": null
         },
         {
-          "target": "Make travel and transportation a convenient one-click service",
+          "target": "Convenient one-click service",
           "header": "Mobility",
-          "description": "We are improving the efficiency of commercial parks. Optimal distribution of tasks and routes, safety, comfort, increased productivity - all this is possible with the help of technologies we develop. Self-driving vehicles will erase the line between taxi and car sharing, and smart control systems will ensure user comfort.",
+          "description": "Our technologies go far beyond self-driving vehicles. We create not only cars, but a wholeecosystem of services that will advance travel and transportation. Imagine transformedcommercial suburbs with autonomous vehicles, AI-powered software solutions, that managetasks and routes, and relaxed city traffic with almost no rush hours. Self-driving cars will narrowdown the gap t between taxi and car sharing service offerings, and smart control systems willprovide comfort for users.",
           "image": null
         },
         {
-          "target": "Adhere to the principles of sustainable development",
-          "header": "Environmental friendliness",
-          "description": "In metropolitan areas, electric vehicles will help reduce gas emissions and noise levels. They have a lower cost of ownership - this is in line with our shared concept of wise consumption and resource conservation. And the autonomy of the new transport will make the urban space more comfortable for humans.",
+          "target": "Eco-technologies for a better future",
+          "header": "Sustainability",
+          "description": "We want to make urban space more comfortable for people without harming nature. Electric vehicles reduce gas emissions and noise levels, they need less money for service and fuel. That is all about the principles of responsible consumption and resource conservation that we share.",
           "image": null
         }
       ]
     },
     "slider": {
-      "header": "The company has three key locations - a software development office, an engineering test center and an engineering office in {Moscow and Minsk.}",
+      "header": "We develop our products at the HQ in Moscow. The design bureau, development and operation units, software and algorithm centers are located on a 15,000 m² area.",
       "header_position": "bottom_right",
       "text": null,
       "text_position": "bottom_left",
-      "slider_items": [null, null]
+      "slider_items": [
+        null,
+        null
+      ]
     }
   },
   "FlipRu": {
     "id": 1,
     "locale": "ru",
+    "pageId": "flip",
     "seo": {
       "metaTitle": "ФЛИП — новое средство мобильности от SberAutoTech",
       "metaDescription": "ФЛИП от СберАвтоТех — полностью подключённое, автономное и безопасное транспортное средство на альтернативных видах топлива",
@@ -831,6 +900,7 @@
   "FlipEn": {
     "id": 1,
     "locale": "en",
+    "pageId": "flip",
     "seo": {
       "metaTitle": "FLIP - the new mobility tool from SberAutoTech",
       "metaDescription": "FLIP from SberAutoTech is a fully connected, autonomous and safe vehicle running on alternative fuels",
@@ -937,7 +1007,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Тестировать системы беспилотного транспорта непосредственно на автомобиле;</li><li>Искать баги и передавать информацию команде разработки;</li><li>Активно взаимодействовать с несколькими командами для поиска оптимального решения.</li></ul>",
         "whatWaitingFor": "<ul><li>Более пяти лет непрерывного стажа вождения;</li><li>Опыт тестирования программного обеспечения больше двух лет;</li><li>Критическое мышление;</li><li>Опыт работы с linux;</li><li>Сильные коммуникативные навыки.</li></ul>",
-        "plusses":  "<ul><li>Знание любого языка программирования;</li><li>Опыт тестирования робототехники;</li><li>Знакомство с ROS;</li><li>Опыт работы с linux;</li><li>Опыт работы с git.</li></ul>",
+        "plusses": "<ul><li>Знание любого языка программирования;</li><li>Опыт тестирования робототехники;</li><li>Знакомство с ROS;</li><li>Опыт работы с linux;</li><li>Опыт работы с git.</li></ul>",
         "tags": [
           {
             "id": 1
@@ -976,7 +1046,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Лидирование крупного проекта, управление командой продуктологов и аналитиков, плотное взаимодействие с разработкой, тестированием, дизайном;</li><li>Тесная работа с командой разработки: определить цели, убедиться в их достижимости в указанные сроки и расписать все необходимые шаги для отслеживания сходимости проекта;</li><li>Вместе с QA командой определять тест-кейсы и сценарии, проводить валидацию решений;</li><li>Плотное взаимодействие с поставщиками оборудования, выбор и защита перед стейкхолдерами необходимых компонентов и технологий;</li><li>Постоянная коммуникация со всеми подразделениями и командами для достижения поставленных целей, точного и надежного результата работы.</li></ul>",
         "whatWaitingFor": "<ul><li>Опыт 5+ лет продактом из них не менее 2 — лидером продуктовой команды;</li><li>Работа над сложными крупными проектами с большим числом команд и смежников;</li><li>Знание мобильной разработки, бэкенда, фронта;</li><li>Высокие коммуникативные навыки. Умение точно сформулировать поставленную задачу и способность донести до каждого участника команды какой результат вы ожидаете в целом и от него конкретно;</li><li>Уметь быстро спроектировать прототип/сценарий идеи и убедить команду поставить ее в план;</li><li>Стрессоустойчивость. Достижение результата в условиях сжатых сроков и изменяющихся условий;</li><li>Мы ожидаем, что кандидат не только продемонстрирует свой опыт, но и желание постоянно учиться и развиваться.</li></ul>",
-        "plusses":  "<ul><li>Опыт в работе с OEM и ПО для них, понимание спецификаций, релизного цикла и других процедур;</li><li>Опыт в разработке мобильных приложений, знание основ C++;</li><li>Знание автомотив-рынка и ADAS.</li></ul>",
+        "plusses": "<ul><li>Опыт в работе с OEM и ПО для них, понимание спецификаций, релизного цикла и других процедур;</li><li>Опыт в разработке мобильных приложений, знание основ C++;</li><li>Знание автомотив-рынка и ADAS.</li></ul>",
         "tags": [
           {
             "id": 9
@@ -1015,7 +1085,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Разработка схемотехнических и топологических узлов, библиотек компонентов в САПР Altium Designer. Оформление документации;</li><li>Составление и актуализация BOM листов, поиск поставщиков компонентов, подбор замен элементов;</li><li>Контроль за процессом закупок радиокомпонентов;</li><li>Сборка инженерных образцов устройств;</li><li>Изготовление жгутов электропроводки и монтаж на автомобили;</li><li>Взаимодействие с отделом тестирования.</li></ul>",
         "whatWaitingFor": "<ul><li>Опыт работы в САПР Altium Designer от 1 года;</li><li>Знание поставщиков радиокомпонентов в России и в мире;</li><li>Опыт схемотехнического проектирования;</li><li>Чтение и понимание схем;</li><li>Опыт компоновки и трассировки плат;</li><li>Опыт монтажа печатных плат; пайка QFN, SOIC, LGA, 0402;</li><li>Опыт работы с измерительным оборудованием;</li><li>Понимание процесса запуска и отладки первых образцов изделий;</li><li>Представление процесса запуска изделия в серию;</li><li>Знание основ поиска неисправных компонентов и ремонта электроники.</li></ul>",
-        "plusses":  "<ul><li>Знание особенностей проектирования и работы Automotive электроники;</li><li>Умение проводить электрические, тепловые и прочие расчёты для электроники;</li><li>Умение программировать и писать прошивки под контроллеры;</li><li>Навык 3D проектирования корпусов и установочных изделий и прототипирования.</li></ul>",
+        "plusses": "<ul><li>Знание особенностей проектирования и работы Automotive электроники;</li><li>Умение проводить электрические, тепловые и прочие расчёты для электроники;</li><li>Умение программировать и писать прошивки под контроллеры;</li><li>Навык 3D проектирования корпусов и установочных изделий и прототипирования.</li></ul>",
         "tags": [
           {
             "id": 17
@@ -1054,7 +1124,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Быть ответственным за разработку беспилотной технологии;</li><li>Придумывать сценарии, которые будут не только двигать вперед продукт и технологию, но и отвечать маркетинговой стратегии;</li><li>Уметь быстро спроектировать прототип/сценарий идеи и убедить команду поставить ее в план;</li><li>Тесная работа с командой разработки: определить цели, убедиться в их достижимости в указанные сроки и расписать все необходимые шаги для отслеживания сходимости проекта;</li><li>Вместе с QA командой определять тест-кейсы и сценарии, проводить валидацию решений;</li><li>Плотное взаимодействие с поставщиками оборудования, выбор и защита перед стейкхолдерами необходимых компонентов и технологий;</li><li>Постоянная коммуникация со всеми подразделениями и командами для достижения поставленных целей, точного и надежного результата работы.</li></ul>",
         "whatWaitingFor": "<ul><li>Опыт работы над беспилотными технологиями и/или в автомобильной разработке;</li><li>Слова Perception, Planning и Localization для вас много значат;</li><li>Дизайн, разработка, тестирование и вывод в прод сложных систем;</li><li>Опыт в работе с поставщиками оборудования и ПО для таких систем, понимание спецификаций, релизного цикла и других процедур;</li><li>Умение работать в условиях сжатых сроков и постоянно изменяющихся условий. Обеспечивать получение результата даже в указанных сложных проектах;</li><li>Высокие коммуникативные навыки, как письменные, так и устные. Умение точно сформулировать поставленную задачу и способность донести до каждого участника команды какой результат вы ожидаете в целом и от него конкретно.</li></ul>",
-        "plusses":  "<ul><li>Опыт в разработке, знание основ C++;</li><li>Знание автомотив-рынка и ADAS;</li><li>Понимание особенностей регуляторов, текущих законов и будущих перспектив AD/AV;</li><li>Понимание протоколов: CAN / LIN / Ethernet.</li></ul>",
+        "plusses": "<ul><li>Опыт в разработке, знание основ C++;</li><li>Знание автомотив-рынка и ADAS;</li><li>Понимание особенностей регуляторов, текущих законов и будущих перспектив AD/AV;</li><li>Понимание протоколов: CAN / LIN / Ethernet.</li></ul>",
         "tags": [
           {
             "id": 9
@@ -1093,7 +1163,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Участвовать в разработке новых конфигураций вычислительного и сенсорного оборудования автоматизированных ТС;</li><li>Участвовать в разработке программно-аппаратных стендов для комплексного тестирования;</li><li>Развивать инструменты для автоматизации проведения стендовых испытаний.</li></ul>",
         "whatWaitingFor": "<ul><li>Исследовательский склад ума, стремление решать сложные и непонятные проблемы, разбираться в навить технологиями;</li><li>Огромное желание разбираться с необычным оборудованием;</li><li>Глубокие знания Linux;</li><li>Знания основных архитектур современных процессоров (x86, ARM);</li><li>Большой опыт построения и эксплуатации серверного оборудования (hardware);</li><li>Знание сетевого стека TCP/IP;</li><li>Опыт написания скриптов на Python;</li><li>Знания git, bash.</li></ul>",
-        "plusses":  "",
+        "plusses": "",
         "tags": [
           {
             "id": 13
@@ -1138,7 +1208,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Тестирование беспилотных технологий, систем и алгоритмов непосредственно на транспортном средстве;</li><li>Составление тестовых сценариев и ведение тестовой документации;</li><li>Активное взаимодействие со всеми командами проекта для поиска оптимальных решений.</li></ul>",
         "whatWaitingFor": "<ul><li>Уверенные знания всех основных органов управления автомобилем;</li><li>Понимание принципов и методик тестирования;</li><li>Опыт работы с Jira, Confluence, Testrail или их аналогами;</li><li>Опыт работы с командной строкой Linux (работа с логами).</li></ul>",
-        "plusses":  "<ul><li>Навыки программирования на Python;</li><li>Знакомство с Robot Operation System.</li></ul>",
+        "plusses": "<ul><li>Навыки программирования на Python;</li><li>Знакомство с Robot Operation System.</li></ul>",
         "tags": [
           {
             "id": 7
@@ -1180,7 +1250,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Построение CAS моделей на основе поступающих от дизайнеров полигональных моделей и 2D эскизов;</li><li>Адаптация дизайнерских поверхностей до технологической исполнимости и собираемости, итеративная работа с дизайнерами до достижения взаимно удовлетворяющей геометрии;</li><li>Структурирование и обеспечение качества сборок (создание интуитивно понятного дерева построений и присвоение децимальных номеров, отсутствие ошибок в исходящих файлах), передача сборок в конструкторский отдел;</li><li>Контроль соответствия создаваемых конструкторами CAD моделей переданной стилевой CAS геометрии, итеративная работа с конструкторами до достижения взаимно удовлетворяющей геометрии;</li><li>Консультации с производственным подразделением и внешними поставщиками при разработке стиля с целью обеспечения исполнимости геометрии и доступности покупных элементов, закладываемых в стилевую модель.</li></ul>",
         "whatWaitingFor": "<ul><li>Уверенные навыки работы в одной или нескольких из перечисленных CAD систем: Dassault Catia, Siemens NX, Solidworks;</li><li>Навыки построения CAS моделей со сложной геометрией поверхностей на основе входящих полигональных моделей и 2D эскизов;</li><li>Понимание технологических процессов производства деталей и монтажа сборок из стеклопластика / карбона, литьевых пластиков;</li><li>Общие инженерные знания и навыки проведения простейших симуляционных расчетов в CAE модулях/программах: деформация под статической нагрузкой, тепловое расширение, работа кинематических механизмов);</li><li>Опыт работы на позиции инженера-конструктора и/или CAS моделлера в проектах создания транспортных средств от 3 лет</li><li>Высшее техническое образование, предпочтительно: МАИ, МАМИ, МГТУ им. Баумана, СПбПУ</li></ul>",
-        "plusses":  "",
+        "plusses": "",
         "tags": [
           {
             "id": 1
@@ -1219,7 +1289,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Проводить теоретические и практические занятия по обучению водителей и инженеров по тестированию беспилотного транспорта;</li><li>Анализировать действия и поиск проблемных мест в вождении сотрудников;</li><li>Составлять программы обучения с учётом специфики работы обучающихся;</li><li>«Переносить» свой опыт вождения в алгоритмы беспилотного транспорта.</li></ul>",
         "whatWaitingFor": "<ul><li>Реальный водительский стаж от 10 лет (обязательно);</li><li>Наличие сертификата/свидетельства об окончании курсов/программы обучения по направлению \"Тренер по контраварийному вождению\" (обязательно);</li><li>Опыт преподавания контраварийного вождения от 5 лет;</li><li>Собственная программа обучения;</li><li>Грамотная речь и умение донести информацию;</li><li>Активная жизненная позиция.</li></ul>",
-        "plusses":  "<ul><li>Имеешь права категорий C, D, E;</li><li>Проходил сертификацию по защитному вождению (Rospa/Сepa/Test&Traning/TUV или подобные).</li></ul>",
+        "plusses": "<ul><li>Имеешь права категорий C, D, E;</li><li>Проходил сертификацию по защитному вождению (Rospa/Сepa/Test&Traning/TUV или подобные).</li></ul>",
         "tags": [
           {
             "id": 37
@@ -1249,7 +1319,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Быть ответственным за разработку навигации в автомобильной ОС;</li><li>Определить ключевые компоненты и увязать их в стройную архитектуру проекта;</li><li>Уметь спроектировать прототип/сценарий, проверить жизнеспособность идеи у аналитиков и убедить стейкхолдеров поставить ее в план;</li><li>Тесная работа с командой разработки: определить цели, убедиться в их достижимости в указанные сроки и расписать все необходимые шаги для отслеживания сходимости проекта;</li><li>Вместе с QA командой определять тест-кейсы и сценарии, проводить валидацию решений;</li><li>Постоянная коммуникация со всеми подразделениями и командами для достижения поставленных целей, точного и надежного результата работы.</li></ul>",
         "whatWaitingFor": "<ul><li>Большой и успешный опыт работы в IT-проектах на аналогичных позициях;</li><li>Постоянное изучение рынка автомобильной навигации, как мобильных приложений, так и решений автопроизводителей;</li><li>Умение договориться с командами UX/UI, разработки, тестирование и обеспечить вывод в прод сложных высокоуровневых систем;</li><li>Готовность работать в условиях сжатых сроков и постоянно изменяющихся условий. Обеспечивать получение качественного результата даже в указанных сложных проектах;</li><li>Высокие коммуникативные навыки, как письменные, так и устные. Умение точно сформулировать поставленную задачу и способность донести до каждого участника команды какой результат вы ожидаете в целом и от него конкретно.</li></ul>",
-        "plusses":  "",
+        "plusses": "",
         "tags": [
           {
             "id": 9
@@ -1288,7 +1358,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Обслуживание работы оборудования автоматизированной сборки и пайки печатных плат – трафаретного принтера, автоматического и полуавтоматического установщика компонентов, печи оплавления припоя;</li><li>Сборка и монтаж радиоэлектронных устройств и приборов;</li><li>Ручной штыревой DIP монтаж печатных плат (работа с паяльной станцией);</li><li>Частично поверхностный монтаж (SMD от 0603) компонентов (работа с феном);</li><li>Работа с полуавтоматическим расстановщиком компонентов;</li><li>Работа с дозатором паяльной пасты, термостолом;</li><li>Сборка и распайка жгутов и кабелей;</li><li>Монтаж сложных узлов и конструкций;</li><li>Проверка, ремонт печатных плат после автоматизированной установки РЭК;</li><li>Контроль качества монтажа и промывки изделий;</li><li>Диагностика и ремонт производственного брака;</li><li>Участие в проведении испытаний и тестирования произведенного оборудования.</li></ul>",
         "whatWaitingFor": "<ul><li>Знание технологий автоматизированного монтажа, настройка оборудования (трафаретный принтер, плейсер, печь оплавления припоя);</li><li>Опыт работы по монтажу SMD-компонентов (от 0402) ручным, автоматическим и полуавтоматическим методами;</li><li>Знание современного оборудования для монтажа;</li><li>Чтение монтажных и электрических схем;</li><li>Навыки работы с разъемами разных типов;</li><li>Навыки работы с разными видами соединения — пайка, обжим, винтовые соединения;</li><li>Умение пользоваться микроскопом;</li><li>Профильное образование.</li></ul>",
-        "plusses":  "<ul><li>Опыт работы с электрооборудованием автомобиля;</li><li>Владение САПР Альтиум Дизайнер.</li></ul>",
+        "plusses": "<ul><li>Опыт работы с электрооборудованием автомобиля;</li><li>Владение САПР Альтиум Дизайнер.</li></ul>",
         "tags": [
           {
             "id": 39
@@ -1324,7 +1394,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Разрабатывать эффективные алгоритмы в одной из подсистем беспилотника;</li><li>Создавать и масштабировать системы сбора и обработки данных, необходимые для улучшения качества систем;</li><li>Проводить интеграцию, внедрение, тестирование и проверку алгоритмов в симуляторах и на транспортных средствах;</li><li>Оптимизировать и тестировать имеющиеся алгоритмы.</li></ul>",
         "whatWaitingFor": "<ul><li>Отличные навыки программирования на С++, знание STL и многопоточного программирования;</li><li>Опыт промышленного программирования на С++ от года;</li><li>Хорошая алгоритмическая подготовка, знание классических алгоритмов и структур данных;</li><li>Знания хотя бы в одной из областей: теория вероятностей, дискретная и непрерывная оптимизация, машинное обучение, глубинное обучение, теория оптимального управления.</li></ul>",
-        "plusses":  "<ul><li>Опыт работы с лидарными данными;</li><li>Опыт работы с ROS;</li><li>Опыт работы в робототехнике;</li><li>Знание python;</li><li>Опыт решения программных задач с использованием аналитической геометрии, линейной алгебры, дискретной и непрерывной оптимизации;</li><li>Опыт написания надежного, безопасного и эффективного кода;</li><li>Опыт оптимизации высокопроизводительного кода на C++;</li><li>Сильная математическая подготовка.</li></ul>",
+        "plusses": "<ul><li>Опыт работы с лидарными данными;</li><li>Опыт работы с ROS;</li><li>Опыт работы в робототехнике;</li><li>Знание python;</li><li>Опыт решения программных задач с использованием аналитической геометрии, линейной алгебры, дискретной и непрерывной оптимизации;</li><li>Опыт написания надежного, безопасного и эффективного кода;</li><li>Опыт оптимизации высокопроизводительного кода на C++;</li><li>Сильная математическая подготовка.</li></ul>",
         "tags": [
           {
             "id": 49
@@ -1360,7 +1430,7 @@
         "conditions": "<ul><li>Конкурентные условия труда (белая заработная плата, оклад, премии);</li><li>Курсы повышения квалификации несколько раз в год;</li><li>Возможность посещения (как в качестве слушателя, так и в качестве выступающего) всероссийских и международных IT-конференций (когда снова станет можно);</li><li>ДМС для сотрудников и скидки на медицинскую страховку для родственников;</li><li>Работа в команде профессионалов, возможность разрабатывать уникальные и крупные проекты масштаба нашей страны;</li><li>Большой и комфортный офис со спортзалом, кинозалом, библиотекой, столами для пинг-понга, кафе для сотрудников;</li><li>Льготное кредитование в Сбербанке – возможность пользоваться премиальными продуктами Банка на специальных условиях.</li></ul>",
         "whatToDo": "<ul><li>Писать технические задания и технические решения, ставить задачи и доводить фичу с командой до прода;</li><li>Уточнять требования и задачи по мере разработки системы, а также поддерживать документацию в актуальном состоянии;</li><li>Создавать базы знаний состояний системы, понятные как новичкам, так и смежным подразделениям (мы за прозрачность и открытость);</li><li>Прорабатывать и держать актуальность межсистемных интеграций;</li><li>Строить систему аналитики.</li></ul>",
         "whatWaitingFor": "<ul><li>Иметь опыт работы системным аналитиком от 3 лет;</li><li>Писать технические тексты, понятные и достаточные для всей команды;</li><li>Понимать современный технологический контекст и уметь самостоятельно разбираться в новых для себя предметных областях;</li><li>Разбираться в ритуалах скрама.</li></ul>",
-        "plusses":  "<ul><li>Имеешь представление об OpenApi;</li><li>Знаешь Amplitude или аналоги;</li><li>Знаешь нотации моделирования, например BPMN;</li><li>Можешь читать код и тем более программировать.</li></ul>",
+        "plusses": "<ul><li>Имеешь представление об OpenApi;</li><li>Знаешь Amplitude или аналоги;</li><li>Знаешь нотации моделирования, например BPMN;</li><li>Можешь читать код и тем более программировать.</li></ul>",
         "tags": [
           {
             "id": 53
@@ -3050,6 +3120,7 @@
         "description": "Our team is developing an Android-based embedded car system to provide access to all the services the driver needs right in the cabin. First of all, this is navigation, route planning, music and a voice assistant, thanks to which you will not have to be distracted from the road to control the system. In the future, we want a car equipped with a smart OS to become not just a means of transportation, but also a full-fledged assistant: the system can customize the seat or climate control for a specific driver, help with booking movie tickets and making necessary purchases.",
         "subDescriptionFirst": "To make this a reality, we need mobile and system developers from junior to senior: with experience with AOSP (or a desire to figure it out), an understanding of architectural approaches, an algorithmic base, and knowledge of Java and Kotlin. Experience with Linux will be a plus.",
         "subDescriptionSecond": "",
+        "position": 1,
         "localizations": [
           {
             "id": 1,
@@ -3080,6 +3151,7 @@
         "description": "We are more than a team - a whole department for the creation of an unmanned vehicle, which includes 6 directions.",
         "subDescriptionFirst": "The Planning team builds the trajectory for the drone and transmits this data to the Control team, which converts the knowledge about the path into the movement of the car. To work for the Control team, knowledge of physics and mathematics, C ++ is important, for the Planning team - classical algorithms and C ++. Direction Localization is responsible for locating the vehicle using cameras and lidars. For this team we are looking for developers with knowledge of C ++, linear algebra, probability theory.",
         "subDescriptionSecond": "For the Perception team, which is engaged in recognizing roads, people, cars and everything that happens around, the ability to write in Python and the background in computer vision are important. The data generated by Perception goes to the guys from the Prediction team. Their task is to predict how road users will behave in the future. To do this, you need to know C ++ and / or be able to train recurrent neural networks. The simulator team reproduces our car and the entire environment around it. This is where C ++ comes in handy. Experience with GameDev will also be a plus.",
+        "position": 2,
         "localizations": [
           {
             "id": 3,
@@ -3111,6 +3183,7 @@
         "description": "Our team forms the vision of the future product, which is implemented by our colleagues. We create a description of what the market and the user need, filling the work backlog for other teams. Our credo is to look at the car as a part of a person's life. We want a person to find themselves not in a steel cocoon, but in the big world, in touch with relatives and colleagues, with access to all the services they are used to, when sitting in a salon.",
         "subDescriptionFirst": "Now the team is almost complete, but we still need some awesome Product Owner and UX / UI designers. Experience in Automotive is optional - we are looking for people at the intersection of this industry with others, for example, IoT, mobile industry, Smart TV. Don't forget to grab your portfolio and your willingness to change the world!",
         "subDescriptionSecond": "We will be happy to find non-standard-minded specialists. An important difference in the development of our devices and systems is that we create fundamentally new products that have yet to transform the concept of transport and movement in space. Get ready for the fact that it will not always be possible to conduct a custom or A / B test - you need to be a visionary, stay ahead of the curve, come up with a framework for a future product and feel its place in the market of the future. If you have long wanted not to finish the feature, but to do everything from scratch on your own - this is us.",
+        "position": 3,
         "localizations": [
           {
             "id": 5,
@@ -3142,6 +3215,7 @@
         "description": "We are inviting testers to join our team, who will work closely with our developers and other professionals who create the transport of the future and unmanned technologies.",
         "subDescriptionFirst": "Before the unmanned vehicle takes to the streets, it works out in the simulator all possible situations that will face on the road. To test in a simulator, technicians will need to simulate such situations. This is where a good knowledge of Python and an understanding of algorithms come in handy. We also need people to test software on Android. You need a good acquaintance with the OS itself, and for automators - the ability to confidently work with Appium.",
         "subDescriptionSecond": "Manual testers will need Linux, Docker and basic networking skills. We also invite backend and frontend testing specialists (Python, REST API, Selenium) for cooperation. If you dream of solving non-standard problems, then we are looking for testers for \"hardware\". For this, it is planned to create an entire testing laboratory to assess the quality of the devices in various operating conditions. Creative and engineering skills will be used a little more than fully!",
+        "position": 4,
         "localizations": [
           {
             "id": 7,
@@ -3173,6 +3247,7 @@
         "description": "For more than 100 years of development, the classic Automotive has perfected its main competence - the production of vehicles under the control of people. However, the development of digital technologies has shown the whole world that familiar tasks can be solved easier, faster and more efficiently. It's time to change the car too. And this can only be done together with those who know how to look into the future, understand the development trends of related industries and have the skill of translating ideas into real projects.",
         "subDescriptionFirst": "Our team needs people who have expertise in both the Automotive and the IT sector, ready to participate in the formation of B2B, B2B2C and B2C solutions based on the latest technologies and developments of SberAutoTech. The speed of decision-making, the ability to achieve the set goals on time and the experience of working with cross-functional teams will allow you to become involved in the creation of the transport of the future.",
         "subDescriptionSecond": "Building the transport of the future is a huge project that requires joint efforts. Therefore, we are ready to cooperate with companies that feel confident in the field of digital solutions, with manufacturers of cars and electronic components. If you see new opportunities in the field of digital transport, you know how to find common ground of interests of different companies at first glance, then you should definitely work in our team.",
+        "position": 5,
         "localizations": [
           {
             "id": 9,
@@ -3204,6 +3279,7 @@
         "description": "We are building the transport of the future that will make people's lives more convenient and safer. To accomplish this task, we need to constantly share news about our products and know-how, talk about what we do, and show our designs in action. It is important for us that as many people as possible learn about how “smart” technologies can change our lives for the better. Media and social networks, official platforms and blogs - our voice should be heard everywhere.",
         "subDescriptionFirst": "We need marketers with experience in digital, who are versed in communication strategies, the IT market, setting up and analyzing advertising campaigns, who are able to communicate with the expert community. You may have a specialized education in marketing or PR, but it is almost more important to be active, open to everything new and ready for non-standard moves.",
         "subDescriptionSecond": "",
+        "position": 6,
         "localizations": [
           {
             "id": 11,
@@ -3220,27 +3296,27 @@
       {
         "text": "ФЛИП",
         "to": "/flip",
-        "style": "fill"
+        "navId": "flip"
       },
       {
         "text": "Беспилотник",
         "to": "/self-driving-car",
-        "style": "fill"
+        "navId": "self_driving_car"
       },
       {
         "text": "О компании",
         "to": "/about-company",
-        "style": "fill"
+        "navId": "about_company"
       },
       {
         "text": "Команда",
         "to": "/career",
-        "style": "fill"
+        "navId": "career"
       },
       {
         "text": "Вакансии",
         "to": "/vacancies",
-        "style": "fill"
+        "navId": "vacancies"
       }
     ],
     "joinButtonText": "Связаться с нами"
@@ -3252,22 +3328,22 @@
       {
         "text": "FLIP",
         "to": "/flip",
-        "style": "fill"
+        "navId": "flip"
       },
       {
         "text": "Self-driving vehicle",
         "to": "/self-driving-car",
-        "style": "fill"
+        "navId": "self_driving_car"
       },
       {
         "text": "About us",
         "to": "/about-company",
-        "style": "fill"
+        "navId": "about_company"
       },
       {
         "text": "Careers",
         "to": "/career",
-        "style": "fill"
+        "navId": "career"
       }
     ],
     "joinButtonText": "Join us"
@@ -3290,11 +3366,11 @@
   "FooterEn": {
     "id": 1,
     "locale": "en",
-    "header": "Would you like to ask a question or learn more about SberAutoTech's activities? Write to us or fill out the form. We will definitely contact you",
+    "header": "This is just the beginning of the new era of transportation. Join us in this adventure! Introduce yourself and we will contact you as soon as we can.",
     "description": "We are only at the beginning of the path and cannot reveal all the plans. Fill out a questionnaire about yourself, send it and we will contact you as soon as there is an opportunity to take you to the team.",
     "link": {
       "to": "",
-      "text": "Connect with us",
+      "text": "Stay in touch",
       "style": "fill"
     },
     "disclaimer": "The information published on the Site is provided for informational purposes only. ©",
@@ -3341,7 +3417,7 @@
   },
   "RespondFormEn": {
     "id": 1,
-    "locale": "ru",
+    "locale": "en",
     "header": "Связаться с нами",
     "title": "Хотите задать вопрос или узнать больше о деятельности SberAutoTech? Напишите нам или заполните форму. Мы обязательно с вами свяжемся.",
     "prEmailLabel": "Отдел по связям с общественностью",

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_nav_links",
+  "info": {
+    "name": "NavLink",
+    "icon": "external-link-alt"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "to": {
+      "type": "string",
+      "required": true
+    },
+    "navId": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

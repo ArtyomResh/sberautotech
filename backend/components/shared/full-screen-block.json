@@ -58,6 +58,15 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "pageId": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "required": false
     }
   }
 }

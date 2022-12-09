@@ -24,7 +24,7 @@ export const enumToValues = (en) => {
 
 export const formatText = (text: string) => text
     .replace(/&#160;/g, ' ')
-    .replace('{', '<span class="selection-pattern">')
-    .replace('}', '</span>')
+    .replace(/\{/g, '<span class="selection-pattern">')
+    .replace(/\}/g, '</span>')
     .replace('[', '<b>')
     .replace(']', '</b>');
