@@ -1,13 +1,11 @@
 .accordeon {
 
-    &__wrapper {
-        width: 100%;
-        border-top: 1px solid #aeaeae;
+    width: 100%;
+    border-top: 1px solid #aeaeae;
 
-        @media (max-width: 1024px) {
-            margin-bottom: 40px;
-            border-top: none;
-        }
+    @media (max-width: 1024px) {
+        margin-bottom: 40px;
+        border-top: none;
     }
 
     &__toggle {
@@ -29,31 +27,6 @@
 
             circle {
                 stroke: #000000;
-            }
-        }
-    }
-
-    &__link {
-        text-align: center;
-        padding: 16px 32px;
-        border-radius: 50px;
-        font-size: 30px;
-        line-height: 48px;
-        letter-spacing: -0.01em;
-
-        &_border {
-            color: #ffffff;
-        }
-
-        &_fill {
-            background: #bdfff8;
-
-            @media (hover: hover) and (pointer: fine) {
-
-                &:hover {
-                    background: #67cfc9;
-                    color: #fff;
-                }
             }
         }
     }
@@ -190,18 +163,7 @@
         }
     }
 
-    &__link {
-
-        @media (max-width: 1024px) {
-            padding: 16px 80px;
-        }
-
-        @media (max-width: 376px) {
-            padding: 16px 105px;
-        }
-
-        @media (max-width: 365px) {
-            padding: 16px 80px;
-        }
+    & &__link {
+        min-width: 200px;
     }
 }

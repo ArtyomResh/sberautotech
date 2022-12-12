@@ -1,8 +1,6 @@
 .footer {
-    &__wrapper {
-        display: flex;
-        flex-direction: column;
-    }
+    display: flex;
+    flex-direction: column;
 
     &__top-block {
         padding: 20px 20px 0 20px;
@@ -38,21 +36,8 @@
         }
     }
 
-    &__link {
-        text-align: center;
-        border-radius: 50px;
-        font-size: 24px;
-        line-height: 28px;
-        letter-spacing: -0.01em;
-        background: #BDFFF8;
+    &__button {
         max-width: 260px;
-
-        @media (hover: hover) and (pointer: fine) {
-            &:hover {
-                background-color: #67CFC9;
-                color: #FFFF;
-            }
-        }
     }
 
     &__bottom-block {

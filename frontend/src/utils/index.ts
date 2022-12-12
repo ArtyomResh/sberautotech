@@ -28,3 +28,20 @@ export const formatText = (text: string) => text
     .replace(/\}/g, '</span>')
     .replace('[', '<b>')
     .replace(']', '</b>');
+
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+export const pluralize = (n: number, one: string, few: string, many: string) => {
+    const nP100 = n % 100;
+    const nP10 = n % 10;
+
+    if(nP10 === 1 && nP100 !== 11) {
+        return one;
+    }
+
+    if(nP10 >= 2 && nP10 <= 4 && (nP100 < 10 || nP100 >= 20)) {
+        return few;
+    }
+
+    return many;
+};
+/* eslint-enable @typescript-eslint/no-magic-numbers */

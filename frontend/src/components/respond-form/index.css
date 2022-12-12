@@ -27,7 +27,7 @@
     @media screen and (prefers-reduced-motion: reduce) {
 
         &_visible {
-            top: calc(var(--nav-height) + 20px);
+            top: calc(var(--header-height) + 20px);
             animation: 0.5s ease-out slideIn;
             animation: 0.5s ease-out slideIn;
             animation: 0.5s ease-out slideIn;
@@ -36,7 +36,7 @@
     }
 
     &_visible {
-        top: calc(var(--nav-height) + 20px);
+        top: calc(var(--header-height) + 20px);
         animation: 0.5s ease-out slideIn;
         animation: 0.5s ease-out slideIn;
         animation: 0.5s ease-out slideIn;
@@ -314,54 +314,54 @@
 
     from { top: -100vh; }
 
-    to { top: var(--nav-height); }
+    to { top: var(--header-height); }
 }
 
 @keyframes slideIn {
 
     from { top: -100vh; }
 
-    to { top: var(--nav-height); }
+    to { top: var(--header-height); }
 }
 
 @keyframes slideIn {
 
     from { top: -100vh; }
 
-    to { top: var(--nav-height); }
+    to { top: var(--header-height); }
 }
 
 @keyframes slideIn {
 
     from { top: -100vh; }
 
-    to { top: var(--nav-height); }
+    to { top: var(--header-height); }
 }
 
 @keyframes slideOut {
 
-    from { top: var(--nav-height); }
+    from { top: var(--header-height); }
 
     to { top: -100vh; }
 }
 
 @keyframes slideOut {
 
-    from { top: var(--nav-height); }
+    from { top: var(--header-height); }
 
     to { top: -100vh; }
 }
 
 @keyframes slideOut {
 
-    from { top: var(--nav-height); }
+    from { top: var(--header-height); }
 
     to { top: -100vh; }
 }
 
 @keyframes slideOut {
 
-    from { top: var(--nav-height); }
+    from { top: var(--header-height); }
 
     to { top: -100vh; }
 }
