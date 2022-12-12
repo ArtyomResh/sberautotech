@@ -7,7 +7,7 @@ import { formatText } from '../../../../utils';
 import Heading from '../../../heading';
 import Text from '../../../text';
 
-import LinkButton from '../link-button';
+import LinkButton from '../../../link-button';
 import GridWrapper from '../grid-wrapper';
 
 import styles from './index.css';
@@ -32,6 +32,7 @@ const PublicBetaSignup = () => {
                 href="https://sberautotech.ru/"
                 target="_blank"
                 rel="noopener noreferrer"
+                size="s"
                 onClick={handleLinkClick}
             >
                 sberautotech.ru

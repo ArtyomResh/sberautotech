@@ -34,23 +34,30 @@ const Footer = () => {
     const { setIsPopupVisible } = useContext(appContext);
     const { header, link, disclaimer, privacyPolicyLink, privacyPolicyText } = data.allStrapiFooter.edges[0].node;
 
+    const handleClick = () => {
+        gtagClicked('footer_button_click');
+        setIsPopupVisible(true);
+    };
+
     return (
-        <footer className={cn('footer__wrapper')}>
+        <footer className={cn('footer')}>
             <div className={cn('footer__top-block')}>
                 <div className={cn('footer__header')}>{header}</div>
+
                 <Button
-                    className={cn('footer__link')}
-                    onClick={() => {
-                        gtagClicked('footer_button_click');
-                        setIsPopupVisible(true);
-                    }}
-                    label={link.text}
-                />
+                    className={cn('footer__button')}
+                    size="s"
+                    onClick={handleClick}
+                >
+                    {link.text}
+                </Button>
             </div>
+
             <div className={cn('footer__bottom-block')}>
                 <div className={cn('footer__bottom-block_left')}>
                     <Link className={cn('footer__documents-link')} to={privacyPolicyLink}>{privacyPolicyText}</Link>
                 </div>
+
                 <div className={cn('footer__bottom-block_right')}>
                     <span className={cn('footer__disclaimer')}>{disclaimer}</span>
                 </div>

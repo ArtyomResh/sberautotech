@@ -6,7 +6,7 @@ import { YM_ID } from '../../../../constants';
 import { useClassnames } from '../../../../hooks/use-classnames';
 import useDocumentScrollThrottled from '../../../nav/use-document-scroll-throttled';
 import { BETA_TEST_SIGNUP_FORM_URL } from '../../constants';
-import LinkButton from '../link-button';
+import LinkButton from '../../../link-button';
 
 import styles from './index.css';
 
@@ -40,6 +40,7 @@ const Header = () => {
             <LinkButton
                 className={cn('header__button')}
                 href={BETA_TEST_SIGNUP_FORM_URL}
+                size="s"
                 onClick={handleLinkClick}
             >
                 Принять участие

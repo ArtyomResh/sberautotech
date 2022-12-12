@@ -1,3 +1,5 @@
+@import "../../text/index.css";
+
 .input {
     position: relative;
 
@@ -133,20 +135,17 @@
     }
 
     &__label {
+        padding: 16px 20px;
         display: flex;
+        width: 100%;
         justify-content: center;
         align-items: center;
-        background-color: #ffffff;
-        border-radius: 64px;
-        height: 56px;
-        font-size: 22px;
-        line-height: 125%;
-        letter-spacing: -0.01em;
-        color: #43515c;
-        border: none;
+        border-radius: 60px;
+        border:none;
         outline: none;
+        background-color: var(--color-white);
+        transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
         cursor: pointer;
-        padding: 16px 16px 14px;
 
         @media (hover: hover) and (pointer: fine) {
 
@@ -171,5 +170,51 @@
     &__ext {
         color: #05080a;
         height: 30px;
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .input-file {
+
+        &__label {
+
+            @mixin t2;
+
+            padding: 20px;
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .input-file {
+
+        &__label {
+
+            @mixin t3;
+        }
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .input-file {
+
+        &__label {
+
+            @mixin t3;
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .input-file {
+
+        &__label {
+
+            @mixin t3;
+        }
     }
 }

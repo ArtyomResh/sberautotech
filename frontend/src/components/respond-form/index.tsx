@@ -292,9 +292,17 @@ const RespondForm = () => {
                                 <div className={cn('right-block__field-wrapper')}>
                                     <Input type="file" placeholder={file} name="file" onFileChange={hadleFileChange} />
                                 </div>
+
                                 {isRecaptchaConfirmed ? (
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Button type="submit" label={buttonText} disabled={isLoading} isLoading={isLoading} styleType="special" />
+                                        <Button
+                                            type="submit"
+                                            disabled={isLoading}
+                                            isLoading={isLoading}
+                                            isBlock={true}
+                                        >
+                                            {buttonText}
+                                        </Button>
                                     </div>
                                 ) : (
                                     <Recaptcha

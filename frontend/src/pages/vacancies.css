@@ -125,74 +125,57 @@
         position: fixed;
         bottom: 0;
         left: 0;
-        width: 100%;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 18.18%, #FFFFFF 100%);
+        z-index: 3;
+        padding-bottom: 30px;
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        z-index: 3;
-        padding-bottom: 30px;
+        width: 100%;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 18.18%, #FFFFFF 100%);
 
         @media screen and (min-width: 550px) {
-            flex-direction: row;
             padding: 0px 10px 30px 10px;
+            flex-direction: row;
         }
     }
 
     &__button {
-        background: #e0e6eb;
-        border-radius: 50px;
-        display: none;
-        width: calc(100vw - 20px);
-        max-width: 350px;
-        font-size: 22px;
-        line-height: 28px;
-        padding: 10px 0;
-        height: 56px;
+        position: relative;
         z-index: 3;
+        display: none;
+        max-width: 350px;
 
         &_visible {
             display: block;
         }
     }
 
-    &__show-button {
-        background: #bdfff8;
-        margin-bottom: 12px;
-
-        &:disabled {
-            background: #e0e6eb;
-        }
-
-        @media screen and (min-width: 550px) {
-            margin-bottom: unset;
-        }
-
-        &_visible {
-            display: block;
-        }
-    }
-
-    &__reset-button {
-
-        @media screen and (min-width: 550px) {
-            margin-left: 10px;
-        }
-
-        &_visible {
-            display: block;
-        }
+    &__button-count {
+        position: absolute;
+        right: 20px;
+        padding: 5px 10px;
+        background: var(--color-accent);
+        color: var(--color-white);
+        border-radius: 50px;
+        font-size: 14px;
+        line-height: 18px;
     }
 
     &__filter-button {
+        display: none;
 
         @media screen and (max-width: 1024px) {
             display: inline-block;
         }
+    }
 
-        &_hidden {
-            display: none;
+    &__reset-button {
+        margin-top: 12px;
+
+        @media screen and (min-width: 550px) {
+            margin-top: 0;
+            margin-left: 10px;
         }
     }
 

@@ -1,6 +1,6 @@
 @import "../text/index.css";
 
-.core-button {
+.core-link-button {
     --color-accent: #66d4d0;
     --color-accent-hover: #5ec4c1;
     --color-accent-pressed: #6de3df;
@@ -40,7 +40,7 @@
         @media (hover: hover) and (pointer: fine) {
 
             &:hover {
-                color: var(--color-white);
+                color: var(--color-black);
                 background-color: var(--color-neutral);
             }
         }
@@ -80,7 +80,7 @@
 
 @mixin media_breakpoint_normal_desktop {
 
-    .core-button {
+    .core-link-button {
 
         &_size-l {
 
@@ -98,7 +98,7 @@
 
 @mixin media_breakpoint_small_desktop {
 
-    .core-button {
+    .core-link-button {
 
         &_size-l {
 
@@ -114,7 +114,7 @@
 
 @mixin media_breakpoint_tablet {
 
-    .core-button {
+    .core-link-button {
 
         &_size-l {
 
@@ -130,7 +130,7 @@
 
 @mixin media_breakpoint_mobile {
 
-    .core-button {
+    .core-link-button {
 
         &_size-l {
 

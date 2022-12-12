@@ -11,7 +11,7 @@ import Heading from '../../../heading';
 import Text from '../../../text';
 import GridWrapper from '../grid-wrapper';
 
-import LinkButton from '../link-button';
+import LinkButton from '../../../link-button';
 
 import styles from './index.css';
 import { BETA_TEST_SIGNUP_FORM_URL } from '../../constants';
@@ -50,6 +50,7 @@ const OpenTesting = ({ onLinkClick }: IProps) => {
                     className={cn('hero__button')}
                     onClick={handleLinkClick}
                     href={BETA_TEST_SIGNUP_FORM_URL}
+                    size="s"
                     isGatsbyLink={true}
                 >
                     Принять участие

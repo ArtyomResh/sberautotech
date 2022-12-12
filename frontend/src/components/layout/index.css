@@ -73,7 +73,6 @@ select {
 }
 
 :root {
-    --nav-height: 60px;
     --header-height: 82px;
 
     --zindex-base: 100;

@@ -14,6 +14,7 @@ import SearchIcon from '../images/search.svg';
 import CrossIcon from '../images/cross.svg';
 
 import style from './vacancies.css';
+import { pluralize } from '../utils';
 
 const query = graphql`
   query {
@@ -189,18 +190,25 @@ const Vacancies = ({ location }) => {
                                 </div>
                                 <div className={cn('vacancies__filter-buttons')}>
                                     <Button
-                                        styleType="primary"
+                                        variant="secondary"
                                         type="button"
                                         className={cn('vacancies__button', 'vacancies__filter-button', {
-                                            'vacancies__filter-button_hidden': isMobileFilterVisible
+                                            'vacancies__button_visible': !isMobileFilterVisible
                                         })}
                                         label="Фильтровать"
-                                        count={(activeDirection ? 1 : 0) + activeTags?.length || 0}
+                                        isBlock={true}
                                         onClick={() => {
                                             window.scrollTo(0, 0);
                                             setIsMobileFilterVisible(!isMobileFilterVisible);
                                         }}
-                                    />
+                                    >
+                                        Фильтровать
+                                        {filtersCount ? (
+                                            <span className={cn('vacancies__button-count')}>
+                                                {filtersCount}
+                                            </span>
+                                        ) : null}
+                                    </Button>
                                 </div>
                             </React.Fragment>
                         ) : (
@@ -218,42 +226,27 @@ const Vacancies = ({ location }) => {
                                 ) : null}
                                 <div className={cn('vacancies__filter-buttons')}>
                                     <Button
-                                        styleType="primary"
                                         type="button"
-                                        className={cn('vacancies__button', 'vacancies__show-button', {
-                                            'vacancies__show-button_visible': isMobileFilterVisible
+                                        className={cn('vacancies__button', {
+                                            'vacancies__button_visible': isMobileFilterVisible
                                         })}
                                         disabled={!filteredVacancies.length}
-                                        label={!filteredVacancies.length ? 'Нет вакансий' : `Смотреть ${filteredVacancies.length} ваканси${(() => {
-                                            const stringLength = filteredVacancies.length.toString();
-                                            const lastNumber = Number(stringLength[stringLength.length - 1]);
-
-                                            if(lastNumber === 0 || lastNumber > 4) {
-                                                return 'й';
-                                            }
-
-                                            if(lastNumber === 1) {
-                                                return 'ю';
-                                            }
-
-                                            if(lastNumber > 1 && lastNumber < 5) {
-                                                return 'и';
-                                            }
-                                        })()
-                                        }`}
+                                        isBlock={true}
                                         onClick={() => {
                                             window.scrollTo(0, 0);
                                             setIsMobileFilterVisible(!isMobileFilterVisible);
                                         }}
-                                    />
+                                    >
+                                        {!filteredVacancies.length ? 'Нет вакансий' : `Смотреть ${filteredVacancies.length} ${pluralize(filteredVacancies.length, 'вакансию', 'вакансии', 'вакансий')}`}
+                                    </Button>
+
                                     <Button
-                                        styleType="primary"
+                                        variant="secondary"
                                         type="button"
                                         className={cn('vacancies__button', 'vacancies__reset-button', {
-                                            'vacancies__reset-button_visible': isMobileFilterVisible
+                                            'vacancies__button_visible': isMobileFilterVisible
                                         })}
-                                        label={filtersCount ? 'Сбросить' : 'Закрыть'}
-                                        count={filtersCount}
+                                        isBlock={true}
                                         onClick={() => {
                                             window.scrollTo(0, 0);
 
@@ -265,7 +258,15 @@ const Vacancies = ({ location }) => {
                                             setActiveDirection(null);
                                             setActiveTags([]);
                                         }}
-                                    />
+                                    >
+                                        {filtersCount ? 'Сбросить' : 'Закрыть'}
+
+                                        {filtersCount ? (
+                                            <span className={cn('vacancies__button-count')}>
+                                                {filtersCount}
+                                            </span>
+                                        ) : null}
+                                    </Button>
                                 </div>
                             </div>
                         )
