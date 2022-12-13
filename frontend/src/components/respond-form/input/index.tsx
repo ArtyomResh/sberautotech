@@ -1,36 +1,27 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { ValidationValueMessage } from 'react-hook-form/dist/types/validator';
 
 import style from './index.css';
 
-import Cross from './cross';
-
 import { useClassnames } from '../../../hooks/use-classnames';
 import { useController, useFormContext } from 'react-hook-form';
 
-type TInputType = 'text' | 'email' | 'file' | 'tel';
+type TInputType = 'text' | 'email' | 'tel';
 type TAutoCompleteType = 'on' | 'off';
 
 interface IProps {
     type?: TInputType,
     placeholder?: string,
     name: string,
-    ref?: React.Ref<HTMLInputElement>,
     pattern?: RegExp | ValidationValueMessage<RegExp>,
     requiredValidation?: boolean,
     autocomplete?: TAutoCompleteType,
     className?: string,
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void,
-    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void,
-    onFileChange?: (file: File | null) => void
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
-interface IState {
-    fileName?: string,
-    fileExtension?: string
-}
-
-const Input = ({ type, placeholder, ref, name, className, pattern, onFileChange, ...props }: IProps) => {
+const Input = ({ type, placeholder, name, className, pattern, ...props }: IProps) => {
     const { setValue } = useFormContext();
 
     const controller = useController({ name, rules: {
@@ -40,28 +31,6 @@ const Input = ({ type, placeholder, ref, name, className, pattern, onFileChange,
     const controllerProps = controller.field;
 
     const cn = useClassnames(style);
-
-    const [file, setFile] = useState<IState>({ fileName: '', fileExtension: '' });
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const input = e.target as HTMLInputElement;
-        const inputFile: File | null = input.files ? input.files[0] : null;
-        const fileExtension = inputFile?.name.split('.').pop();
-        const fileName = inputFile?.name.split('.').shift();
-        const fileSize = inputFile?.size ?? 0;
-
-        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-        if(fileSize / 1024 / 1024 < 1) {
-            onFileChange?.(inputFile);
-            setFile({ fileName, fileExtension });
-        }
-    };
-
-    const handleFileCancel = (e: React.MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
-        onFileChange?.(null);
-        setFile({ fileName: '', fileExtension: '' });
-    };
 
     const getInputNumbersValue = (string: string) => {
         return String(string).replace(/\D/g, '');
@@ -144,7 +113,7 @@ const Input = ({ type, placeholder, ref, name, className, pattern, onFileChange,
         }
         const errorType = error.type;
 
-        let defaultMessage = 'Поле заполненно неверно';
+        let defaultMessage = 'Поле заполнено неверно';
 
         if(errorType === 'pattern') {
             switch (type) {
@@ -166,24 +135,6 @@ const Input = ({ type, placeholder, ref, name, className, pattern, onFileChange,
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         void controllerProps.onBlur();
         props?.onBlur?.(e);
-    };
-
-    const elInputFile = () => {
-        return (
-            <div className={cn('input-file', className)}>
-                <input
-                    id="file"
-                    type="file"
-                    accept="application/pdf, application/msword, application/vnd.oasis.opendocument.text, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/rtf, .pdf, .doc, .docx, .rtf"
-                    {...controllerProps}
-                    onChange={handleFileChange}
-                />
-                <label htmlFor="file" className={cn('input-file__label', { 'input-file__label_error': errorMessage })}>
-                    <span className={cn({ 'input-file__title': file.fileName })}>{file.fileName ? file.fileName : placeholder}</span>
-                    <span className={cn('input-file__ext')}>{file.fileExtension ? `.${file.fileExtension}` : null}</span>
-                    <div className={cn('input-file__cross')} onClick={handleFileCancel}>{file.fileName ? <Cross /> : null}</div>
-                </label>
-            </div>);
     };
 
     const elInput = () => {
@@ -234,7 +185,6 @@ const Input = ({ type, placeholder, ref, name, className, pattern, onFileChange,
 
     return (
         <React.Fragment>
-            {type === 'file' ? elInputFile() : null}
             {type === 'tel' ? elInputTel() : null}
             {type === 'text' || type === 'email' ? elInput() : null}
         </React.Fragment>

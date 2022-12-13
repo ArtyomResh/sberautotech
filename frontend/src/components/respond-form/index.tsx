@@ -17,6 +17,7 @@ import useDocumentScrollThrottled from '../nav/use-document-scroll-throttled';
 
 import style from './index.css';
 import { graphql, useStaticQuery } from 'gatsby';
+import InputFile from './inputFile';
 
 const FORM_URL = '/form';
 
@@ -97,7 +98,7 @@ const RespondForm = () => {
     });
 
     const fileRef = useRef<File | null>(null);
-    const hadleFileChange = (file: File | null) => {
+    const handleFileChange = (file: File | null) => {
         fileRef.current = file;
     };
 
@@ -290,7 +291,7 @@ const RespondForm = () => {
                             </div>
                             <div className={cn('right-block__button-section')}>
                                 <div className={cn('right-block__field-wrapper')}>
-                                    <Input type="file" placeholder={file} name="file" onFileChange={hadleFileChange} />
+                                    <InputFile placeholder={file} name="file" onFileChange={handleFileChange} />
                                 </div>
 
                                 {isRecaptchaConfirmed ? (
