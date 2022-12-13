@@ -11,10 +11,9 @@ interface IProps {
 }
 
 const ButtonWrapper = ({ className, title, huntflowId: vacancyId, children }: IProps) => {
-    const { setIsRespondFormVisible, setIsPopupVisible, setVacancyTitle, vacancyTitle, huntflowId, setHuntflowId } = useContext(appContext);
+    const { setIsRespondFormVisible, setVacancyTitle, vacancyTitle, huntflowId, setHuntflowId } = useContext(appContext);
 
     const setIsPopupVisibleHandler = useCallback(() => {
-        setIsPopupVisible?.(true);
         setIsRespondFormVisible?.(true);
         setVacancyTitle?.(title);
         setHuntflowId?.(vacancyId);

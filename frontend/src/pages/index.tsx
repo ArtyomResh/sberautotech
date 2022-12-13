@@ -180,7 +180,7 @@ const getScreenBlockId = (screen: IMainPageScreenData) => `main-page-screen-${sc
 
 const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
     const cn = useClassnames(style);
-    const { isPopupVisible, isRespondFormVisible } = useContext(appContext);
+    const { isContactFormVisible, isRespondFormVisible } = useContext(appContext);
     const [isScrolling, setIsScrolling] = useState(false);
     const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
     const pageNumber: number = links.findIndex(({ navId }) => navId === activePageId);
@@ -218,7 +218,7 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
     }, []);
 
     useEffect(() => {
-        if(isPopupVisible || isRespondFormVisible) {
+        if(isContactFormVisible || isRespondFormVisible) {
             return;
         }
         const onWheel = (e: WheelEvent) => {
@@ -255,7 +255,7 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
             window.removeEventListener('touchmove', onTouchMove);
             window.removeEventListener('touchend', onTouchEnd);
         };
-    }, [handleScroll, isRespondFormVisible, isPopupVisible]);
+    }, [handleScroll, isRespondFormVisible, isContactFormVisible]);
 
     return (
         <div className={cn('main-pa.ge-blocks')}>

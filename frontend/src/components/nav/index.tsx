@@ -79,7 +79,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const [shouldAddShadow, setShouldAddShadow] = useState(false);
-    const { setIsPopupVisible } = useContext(appContext);
+    const { setIsContactFormVisible } = useContext(appContext);
     const [width, height] = useWindowSize();
     const cn = useClassnames(style);
 
@@ -130,7 +130,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
         // @ts-expect-error: ym подставляется только при NODE_ENV === 'production'
         typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'form--success--svyazatsya_s_nami');
 
-        setIsPopupVisible?.(true);
+        setIsContactFormVisible?.(true);
     };
 
     return (

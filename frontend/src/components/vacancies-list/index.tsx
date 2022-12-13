@@ -42,10 +42,10 @@ export interface IVacanciesListItem {
 const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag, searchString }) => {
     const cn = useClassnames(style);
 
-    const { setIsPopupVisible } = useContext(appContext);
+    const { setIsRespondFormVisible } = useContext(appContext);
 
     const linkPopupHandler = useCallback(() => {
-        setIsPopupVisible(true);
+        setIsRespondFormVisible?.(true);
     }, []);
 
     return (
@@ -54,9 +54,9 @@ const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag, searchS
                 {data?.length ? data.map((item) => (
                     <VacanciesItem key={item.id} data={item} activeTags={activeTags} onClickTag={onClickTag} searchString={searchString} />
                 )) : (
-                        <div className={cn('vacancies__empty-text')}>
-                            <p>Сейчас вакансий по этому направлению нет. <p className={cn('vacancies__inner-text-link')} onClick={linkPopupHandler}>Напишите нам</p> и при наличии подходящих вакансий мы обязательно с вами свяжемся</p>
-                        </div>)}
+                    <div className={cn('vacancies__empty-text')}>
+                        <p>Сейчас вакансий по этому направлению нет. <p className={cn('vacancies__inner-text-link')} onClick={linkPopupHandler}>Напишите нам</p> и при наличии подходящих вакансий мы обязательно с вами свяжемся</p>
+                    </div>)}
             </div>
         </div>
     );
