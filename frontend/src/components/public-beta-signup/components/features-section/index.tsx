@@ -13,7 +13,7 @@ import style from './index.css';
 const features = [
     'Мы&#160;серьезно относимся к&#160;безопасности наших пассажиров',
     'Все автомобили прошли необходимые тесты, а&#160;для надежности в&#160;салоне будет находиться инженер-испытатель',
-    'Вы&#160;можете записаться на&#160;тестирование только если вам уже исполнилось 18&#160;лет, а&#160;ваш +1&#160;может быть любого возраста'
+    'Вы&#160;можете прокатиться на&#160;беспилотнике, если вам уже исполнилось 18&#160;лет. Если вы&#160;моложе&#160;&#8212; приходите с&#160;родителями'
 ];
 
 const FeaturesSection = () => {
@@ -33,9 +33,12 @@ const FeaturesSection = () => {
 
             <ul className={cn('features-section__list')}>
                 {features.map((feature, index) => (
-                    <Card key={index} className={cn('features-section__list-item')} as="li">
-                        {formatText(feature)}
-                    </Card>
+                    <Card
+                        key={index}
+                        className={cn('features-section__list-item')}
+                        as="li"
+                        dangerouslySetInnerHTML={{ __html: formatText(feature) }}
+                    />
                 ))}
             </ul>
         </GridWrapper>

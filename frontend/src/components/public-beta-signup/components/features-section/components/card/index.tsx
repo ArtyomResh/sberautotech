@@ -12,12 +12,12 @@ type TCardProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 const Card = (props: TCardProps) => {
-    const { className, children, as } = props;
+    const { className, children, as, ...otherProps } = props;
     const cx = useClassnames(styles);
 
     const classNames = cx(className, 'card');
 
-    return <Text className={classNames} size={2} as={as}>{children}</Text>;
+    return <Text {...otherProps} className={classNames} size={2} as={as}>{children}</Text>;
 };
 
 export default Card;

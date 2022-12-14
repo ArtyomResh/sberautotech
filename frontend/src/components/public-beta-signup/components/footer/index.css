@@ -98,7 +98,7 @@
 @mixin media_breakpoint_mobile {
 
     .footer {
-        padding-bottom: 130px;
+        /* padding-bottom: 130px; */
 
         &__title,
         &__link-button,
