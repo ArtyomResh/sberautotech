@@ -120,20 +120,6 @@ const RespondForm = () => {
         }, TIMEOUT_DELAY);
     });
 
-    const outsideClickHandler = useCallback((e) => {
-        if(isRespondFormVisible && !e.target.closest('.respond-form') && !e.target.classList.contains('ui-select__option')) {
-            closeHandler();
-        }
-    }, [isRespondFormVisible]);
-
-    useEffect(() => {
-        window.addEventListener('click', outsideClickHandler);
-
-        return () => {
-            window.removeEventListener('click', outsideClickHandler);
-        };
-    });
-
     const preventClosePopup = useCallback((e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e?.stopPropagation();
 
@@ -147,6 +133,22 @@ const RespondForm = () => {
         context.reset();
         fileRef.current = null;
     }, [timeoutId]);
+
+
+    const outsideClickHandler = useCallback((e) => {
+        if(isRespondFormVisible && !e.target.closest('.respond-form') && !e.target.classList.contains('ui-select__option')) {
+            preventClosePopup();
+        }
+    }, [isRespondFormVisible, preventClosePopup]);
+
+    useEffect(() => {
+        window.addEventListener('click', outsideClickHandler);
+
+        return () => {
+            window.removeEventListener('click', outsideClickHandler);
+        };
+    }, [outsideClickHandler]);
+
 
     const onSubmit = async (data: IRespondFormData) => {
         setIsLoading(true);
