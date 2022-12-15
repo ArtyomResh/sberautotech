@@ -2,7 +2,8 @@
   "kind": "singleType",
   "collectionName": "footers",
   "info": {
-    "name": "Footer"
+    "name": "Footer",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -23,13 +24,13 @@
       },
       "type": "string"
     },
-    "description": {
+    "coreBusiness": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "text"
+      "type": "string"
     },
     "disclaimer": {
       "pluginOptions": {
@@ -37,17 +38,9 @@
           "localized": true
         }
       },
-      "type": "string"
+      "type": "text"
     },
-    "email": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
-    "privacyPolicyLink": {
+    "copyright": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -63,15 +56,39 @@
       },
       "type": "string"
     },
-    "link": {
-      "type": "component",
-      "repeatable": false,
+    "accreditationText": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "shared.link"
+      "type": "string"
+    },
+    "modalLinkText": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "accreditationIsLink": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": false
+    },
+    "privacyPolicyIsLink": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": false
     }
   }
 }
