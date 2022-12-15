@@ -57,16 +57,9 @@ const query = graphql`
     allStrapiFooter {
         edges {
           node {
-            header
-            description
             disclaimer
             privacyPolicyLink
             privacyPolicyText
-            email
-            link {
-                text
-                to
-            }
           }
         }
       }

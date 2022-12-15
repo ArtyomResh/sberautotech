@@ -8,7 +8,7 @@ import Heading from '../../../heading';
 import Text from '../../../text';
 
 import LinkButton from '../../../link-button';
-import GridWrapper from '../grid-wrapper';
+import GridWrapper from '../../../grid-wrapper';
 
 import styles from './index.css';
 

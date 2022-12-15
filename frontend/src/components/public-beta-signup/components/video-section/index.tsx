@@ -6,7 +6,7 @@ import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
 
 import Heading from '../../../heading';
-import GridWrapper from '../grid-wrapper';
+import GridWrapper from '../../../grid-wrapper';
 
 import VideoPlayer from './components/video-player';
 import style from './index.css';
