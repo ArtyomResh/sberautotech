@@ -24,7 +24,6 @@ const query = graphql`
       edges {
         node {
           consent
-          email
           errorButtonText
           errorSend
           file
