@@ -214,9 +214,7 @@ const RespondForm = () => {
                     <form
                         onSubmit={context.handleSubmit(onSubmit)} className={cn('respond-form', {
                             'respond-form_visible': isRespondFormVisible,
-                            'respond-form_top'    : onTop,
-                            'respond-form_sended' : isSended,
-                            'respond-form_error'  : isError
+                            'respond-form_top'    : onTop
                         })}
                     >
                         <div className={cn('respond-form__close-btn')} onClick={closeHandler}>
@@ -254,12 +252,12 @@ const RespondForm = () => {
                                 <CheckBox name="acception" requiredValidation={true} label={consent} />
                             </div>
                             <div className={cn('right-block__button-section')}>
-                                <div className={cn('right-block__field-wrapper')}>
+                                <div className={cn('right-block__button-wrapper')}>
                                     <InputFile placeholder={file} name="file" onFileChange={handleFileChange} />
                                 </div>
 
                                 {isRecaptchaConfirmed ? (
-                                    <div className={cn('right-block__field-wrapper')}>
+                                    <div className={cn('right-block__button-wrapper')}>
                                         <Button
                                             type="submit"
                                             disabled={isLoading}
