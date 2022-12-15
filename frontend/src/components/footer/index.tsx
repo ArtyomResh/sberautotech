@@ -31,12 +31,12 @@ const query = graphql`
 const Footer = () => {
     const cn = useClassnames(style);
     const data = useStaticQuery(query);
-    const { setIsPopupVisible } = useContext(appContext);
+    const { setIsContactFormVisible } = useContext(appContext);
     const { header, link, disclaimer, privacyPolicyLink, privacyPolicyText } = data.allStrapiFooter.edges[0].node;
 
     const handleClick = () => {
         gtagClicked('footer_button_click');
-        setIsPopupVisible(true);
+        setIsContactFormVisible?.(true);
     };
 
     return (

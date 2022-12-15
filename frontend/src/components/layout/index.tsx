@@ -3,6 +3,7 @@ import React from 'react';
 import Nav, { INav } from '../nav';
 import Seo from '../seo';
 import RespondForm from '../respond-form';
+import { ContactForm } from '../contact-form';
 import CookieAlert from '../cookie-alert';
 import { useClassnames } from '../../hooks/use-classnames';
 
@@ -37,6 +38,7 @@ const Layout = ({ children, seo, theme, pageId, setActivePageId, type, withNav =
                 )}
                 <main>{children}</main>
                 <RespondForm />
+                <ContactForm />
                 <CookieAlert />
             </div>
         </AppProvider>
