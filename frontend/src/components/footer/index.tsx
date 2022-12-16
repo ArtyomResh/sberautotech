@@ -1,11 +1,19 @@
 import React, { useContext } from 'react';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
+
+import privacyPolicyDocLink from '../../../static/footer/Политика_в_области_обработки_и_защиты_персональных_данных_0_5.pdf';
+import accreditationDocLink from '../../../static/footer/Аккредитация МинКомСвязь.pdf';
+
 import { useClassnames } from '../../hooks/use-classnames';
 import { gtagClicked } from '../../utils';
-import Button from '../button';
 import { appContext } from '../../context/context';
 
-import style from './index.css';
+import Button from '../button';
+import Heading from '../heading';
+import GridWrapper from '../grid-wrapper';
+import Text from '../text';
+
+import styles from './index.css';
 
 const query = graphql`
   query {
@@ -13,26 +21,25 @@ const query = graphql`
       edges {
         node {
           header
-          description
           disclaimer
-          privacyPolicyLink
+          modalLinkText
+          copyright
+          coreBusiness
+          accreditationText
+          accreditationIsLink
           privacyPolicyText
-          email
-          link {
-              text
-              to
-          }
+          privacyPolicyIsLink
         }
       }
-    }
+    },
   }
 `;
 
 const Footer = () => {
-    const cn = useClassnames(style);
+    const cn = useClassnames(styles);
     const data = useStaticQuery(query);
     const { setIsContactFormVisible } = useContext(appContext);
-    const { header, link, disclaimer, privacyPolicyLink, privacyPolicyText } = data.allStrapiFooter.edges[0].node;
+    const { header, disclaimer, modalLinkText, copyright, coreBusiness, accreditationText, accreditationIsLink, privacyPolicyText, privacyPolicyIsLink } = data.allStrapiFooter.edges[0].node;
 
     const handleClick = () => {
         gtagClicked('footer_button_click');
@@ -40,29 +47,70 @@ const Footer = () => {
     };
 
     return (
-        <footer className={cn('footer')}>
-            <div className={cn('footer__top-block')}>
-                <div className={cn('footer__header')}>{header}</div>
+        <GridWrapper as="footer" className={cn('main-footer')}>
+            <Heading className={cn('main-footer__header')} level={2}>
+                {header}
+            </Heading>
 
-                <Button
-                    className={cn('footer__button')}
-                    size="s"
-                    onClick={handleClick}
-                >
-                    {link.text}
-                </Button>
-            </div>
+            <Button
+                className={cn('main-footer__button')}
+                size="s"
+                onClick={handleClick}
+            >
+                {modalLinkText}
+            </Button>
 
-            <div className={cn('footer__bottom-block')}>
-                <div className={cn('footer__bottom-block_left')}>
-                    <Link className={cn('footer__documents-link')} to={privacyPolicyLink}>{privacyPolicyText}</Link>
-                </div>
+            <Text
+                className={cn('main-footer__disclaimer')}
+                as="p"
+                size={5}
+                dangerouslySetInnerHTML={{ __html: disclaimer }}
+            />
 
-                <div className={cn('footer__bottom-block_right')}>
-                    <span className={cn('footer__disclaimer')}>{disclaimer}</span>
-                </div>
-            </div>
-        </footer>
+            <Text className={cn('main-footer__copyright')} as="span" size={5}>{copyright}</Text>
+
+            <Text className={cn('main-footer__legal-info')} size={5}>
+                <span className={cn('main-footer__core-business')}>
+                    {coreBusiness}
+                </span>
+
+                {
+                    accreditationText && (
+                        accreditationIsLink
+                            ? (
+                                <a
+                                    className={cn('main-footer__accreditation')}
+                                    href={accreditationDocLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {accreditationText}
+                                </a>
+                            )
+
+                            : <span className={cn('main-footer__accreditation')}>{accreditationText}</span>
+                    )
+                }
+
+                {
+                    privacyPolicyText && (
+                        privacyPolicyIsLink
+                            ? (
+                                <a
+                                    className={cn('main-footer__privacy-policy')}
+                                    href={privacyPolicyDocLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {privacyPolicyText}
+                                </a>
+                            )
+                            : <span className={cn('main-footer__privacy-policy')}>{privacyPolicyText}</span>
+                    )
+                }
+            </Text>
+
+        </GridWrapper>
     );
 };
 

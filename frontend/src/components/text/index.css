@@ -29,7 +29,7 @@
 @define-mixin t5 {
     font-weight: 400;
     font-size: 11px;
-    line-height: 16px;
+    line-height: 14px;
     letter-spacing: -0.03em;
 }
 
@@ -75,9 +75,9 @@
 
     .text__size {
 
-        &_4 {
+        &_2 {
 
-            @mixin t3;
+            @mixin t1;
         }
 
         &_3 {
@@ -85,9 +85,14 @@
             @mixin t2;
         }
 
-        &_2 {
+        &_4 {
 
-            @mixin t1;
+            @mixin t3;
+        }
+
+        &_5 {
+
+            @mixin t4;
         }
     }
 }

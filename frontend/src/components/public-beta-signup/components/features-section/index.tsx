@@ -5,7 +5,7 @@ import { formatText } from '../../../../utils';
 
 import Heading from '../../../heading';
 import Text from '../../../text';
-import GridWrapper from '../grid-wrapper';
+import GridWrapper from '../../../grid-wrapper';
 
 import Card from './components/card';
 import style from './index.css';

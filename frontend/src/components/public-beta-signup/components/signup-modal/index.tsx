@@ -17,8 +17,8 @@ import Input from '../../../respond-form/input';
 import CheckBox from '../../../respond-form/check-box';
 import Select from '../../../select';
 import Text from '../../../text';
-import policyDocLink from '../../../../../static/Политика конфиденциальности.pdf';
-import agreementDocLink from '../../../../../static/Согласие_на_участии_в_тестировании_беспилотного_ТС_AS_ПМЭФ_2022.pdf';
+import policyDocLink from '../../../../../static/signup-modal/Политика конфиденциальности.pdf';
+import agreementDocLink from '../../../../../static/signup-modal/Согласие_на_участии_в_тестировании_беспилотного_ТС_AS_ПМЭФ_2022.pdf';
 
 import styles from './index.css';
 import selectStyles from './select.styles';
