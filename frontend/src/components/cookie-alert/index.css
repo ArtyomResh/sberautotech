@@ -38,40 +38,18 @@
     }
 
     &__button {
-        cursor: pointer;
-        min-width: 205px;
-        height: 60px;
-        border-radius: 55px;
-        border: none;
-        font-size: 22px;
-        color: #1F272E;
-        background: #BDFFF8;
-
         margin-left: 20px;
         margin-top: 16px;
+        min-width: 205px;
+        cursor: pointer;
+
+        & &_variant-secondary {
+            color: var(--color-white);
+        }
 
         @media (max-width: 768px) {
+            margin-left: 0;
             min-width: 48%;
-            margin-left: 0px;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            &:hover {
-                background-color: #67CFC9;
-                color: #FFFF;
-            }
-        }
-
-        &_dark {
-            color: #1F272E;
-            background: #FFFFFF;
-
-            @media (hover: hover) and (pointer: fine) {
-                &:hover {
-                    background-color: #67CFC9;
-                    color: #FFFF;
-                }
-            }
         }
     }
 }
@@ -85,7 +63,7 @@
             font-size: 22px;
             margin-bottom: 20px;
         }
-    
+
         &__text {
             font-size: 14px;
         }
@@ -96,4 +74,3 @@
         }
     }
 }
-
