@@ -215,9 +215,7 @@ export const ContactForm = () => {
                     <form
                         onSubmit={context.handleSubmit(onSubmit)} className={cn('contact-form', {
                             'contact-form_visible': isContactFormVisible,
-                            'contact-form_top'    : onTop,
-                            'contact-form_sended' : isSended,
-                            'contact-form_error'  : isError
+                            'contact-form_top'    : onTop
                         })}
                     >
                         {!isSended && (
@@ -261,11 +259,11 @@ export const ContactForm = () => {
                                         <CheckBox name="acception" requiredValidation={true} label={consent} />
                                     </div>
                                     <div className={cn('right-block__button-section')}>
-                                        <div className={cn('right-block__field-wrapper')}>
+                                        <div className={cn('right-block__button-wrapper')}>
                                             <InputFile placeholder={file} name={formFields.file} onFileChange={hadleFileChange} />
                                         </div>
                                         {isRecaptchaConfirmed ? (
-                                            <div className={cn('right-block__field-wrapper')}>
+                                            <div className={cn('right-block__button-wrapper')}>
                                                 <Button type="submit" disabled={isLoading} isLoading={isLoading} isBlock={true}>{buttonText}</Button>
                                             </div>
                                         ) : (
