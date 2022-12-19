@@ -1,6 +1,7 @@
 .main-footer {
     padding-top: 30px !important;
     padding-bottom: 20px !important;
+    background-color: var(--color-white);
 
     &__header {
         grid-row: 1;
@@ -51,7 +52,7 @@
             grid-column: 5 / span 8;
         }
 
-        &__disclaimer {   
+        &__disclaimer {
             padding-top: 12px;
             border-top: 1px solid var(--color-black);
         }
