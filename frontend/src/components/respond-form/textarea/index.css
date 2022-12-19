@@ -1,104 +1,92 @@
 .textarea {
     position: relative;
-    padding: 38px 16px 16px;
-    border: 1px solid #758794;
-    border-radius: 15px;
     height: 120px;
 
     &__field {
-        overflow: scroll;
+        padding-top: 38px;
+        padding-bottom: 16px;
+        padding-left: 16px;
+        padding-right: 16px;
         width: 100%;
-        background-color: transparent;
-        outline: none;
         box-sizing: border-box;
+        border: 1px solid #758794;
+        border-radius: 15px;
         font-size: 20px;
         line-height: 125%;
         letter-spacing: -0.01em;
-        position: relative;
-        border: none;
+        background-color: transparent;
+        outline: none;
+        overflow: scroll;
         resize: none;
+        transition: border-color 300ms, background-color 300ms;
+    }
 
-        &_focused {
-            background-color: #ffffff;
-            border-color: #ffffff;
-        }
+    &__field:focus {
+        background-color: var(--color-white);
+        border-color: var(--color-white);
+    }
+
+    &__field:focus ~ &__label {
+        line-height: 20px;
+        font-size: 14px;
+    }
+
+    &__field:not(:placeholder-shown) {
+        border-color: var(--color-white);
+    }
+
+    &__field:not(:placeholder-shown) ~ &__label {
+        line-height: 20px;
+        font-size: 14px;
+    }
+
+    &__label {
+        position: absolute;
+        left: 16px;
+        right: 0;
+        top: 16px;
+        font-size: 20px;
+        line-height: 28px;
+        color: #1f272e;
+        transition:  line-height 300ms, font-size 300ms;
+        opacity: 1;
+    }
+
+    &_has-value &__field {
+        background-color: var(--color-white);
+        border-color: var(--color-white);
+    }
+
+    &_error &__field {
+        border: 1px solid var(--color-error);
+        box-shadow: 0 0 0 1px var(--color-error);
 
         &:focus {
-
-            & + .textarea__label {
-                line-height: 20px;
-                font-size: 14px;
-            }
-        }
-
-        &:not(:placeholder-shown) {
-            border-color: #ffffff;
-
-            & + .textarea__label {
-                line-height: 20px;
-                font-size: 14px;
-            }
+            border: 1px solid var(--color-error);
+            box-shadow: 0 0 0 1px var(--color-error);
         }
     }
 
     @media (hover: hover) and (pointer: fine) {
 
-        @media screen and (prefers-reduced-motion: reduce) {
-
-            &:hover {
-                border-color: #ffffff;
-                transition: none;
-            }
+        &:hover &__field {
+            border-color: var(--color-white);
         }
 
-        &:hover {
-            border-color: #ffffff;
-            transition: 0.3s;
+        &_error:hover &__field {
+            border: 1px solid var(--color-error);
+            box-shadow: 0 0 0 1px var(--color-error);
         }
     }
 
     @media screen and (prefers-reduced-motion: reduce) {
 
-        &__label {
-            font-size: 20px;
-            line-height: 28px;
-            position: absolute;
-            left: 16px;
-            top: 16px;
-            right: 0;
-            color: #1f272e;
+        &:hover &__field {
             transition: none;
         }
-    }
 
-    &__label {
-        font-size: 20px;
-        line-height: 28px;
-        position: absolute;
-        left: 16px;
-        top: 16px;
-        right: 0;
-        color: #1f272e;
-        transition: 0.3s;
-        opacity: 1;
-    }
-
-    &_error {
-        border: 1px solid #ff364d;
-        box-shadow: 0 0 0 1px #ff364d;
-
-        @media (hover: hover) and (pointer: fine) {
-
-            &:hover {
-                border: 1px solid #ff364d;
-                box-shadow: 0 0 0 1px #ff364d;
-            }
-        }
-
-        &:focus {
-            /* background-color: #ffffff; */
-            border: 1px solid #ff364d;
-            box-shadow: 0 0 0 1px #ff364d;
+        &__label {
+            transition: none;
         }
     }
 }

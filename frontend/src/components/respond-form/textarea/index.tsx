@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useState } from 'react';
 import { ValidationRule } from 'react-hook-form/dist/types/validator';
 import { Message } from 'react-hook-form/dist/types/form';
 
@@ -15,31 +15,20 @@ interface IProps {
 }
 
 const Textarea = ({ placeholder, name, requiredValidation }: IProps) => {
-    const { register, formState } = useFormContext();
+    const { register, formState, getValues } = useFormContext();
+    const textareaValue = getValues(name);
     const cn = useClassnames(style);
+    const [hasValue, setHasValue] = useState(Boolean(textareaValue));
 
-    const blurHandler = useCallback((e) => {
-        if(!e.currentTarget.querySelector('textarea').value) {
-            e.currentTarget.style.backgroundColor = 'transparent';
-            e.currentTarget.style.removeProperty('border-color');
-        }
-    }, []);
+    const blurHandler = () => {
+        const textareaValue = getValues(name);
 
-    const onClickHandler = useCallback((e) => {
-        e.preventDefault();
-        e.currentTarget.style.backgroundColor = 'white';
-
-        if(!formState.errors?.[name]) {
-            e.currentTarget.style.borderColor = 'white';
-        }
-        e.currentTarget.querySelector('textarea').focus();
-    }, [formState.errors?.[name]]);
+        setHasValue(Boolean(textareaValue));
+    };
 
     return (
         <div
-            className={cn('textarea', { 'textarea_error': formState.errors?.[name] })}
-            onMouseDown={onClickHandler}
-            onBlur={blurHandler}
+            className={cn('textarea', { 'textarea_error': formState.errors?.[name], 'textarea_has-value': hasValue })}
         >
             <textarea
                 className={cn('textarea__field')}
@@ -47,6 +36,7 @@ const Textarea = ({ placeholder, name, requiredValidation }: IProps) => {
                 {...register(name, {
                     required: requiredValidation
                 })}
+                onBlur={blurHandler}
             />
             <label className={cn('textarea__label')}>
                 {placeholder}
