@@ -11,7 +11,7 @@ const TIMEOUT_DELAY = 0;
 const PADDING = 20;
 
 import useDocumentScrollThrottled from './use-document-scroll-throttled';
-import { gtagClicked } from '../../utils';
+import { gtagClicked, toUnescapedHTML } from '../../utils';
 import { appContext } from '../../context/context';
 import { YM_ID } from '../../constants';
 
@@ -170,7 +170,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                     </div>
 
                     <span className={cn('nav__disclaimer')}>
-                        {disclaimer}
+                        {toUnescapedHTML(disclaimer)}
                     </span>
                 </div>
 
