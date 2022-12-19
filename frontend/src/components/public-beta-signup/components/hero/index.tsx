@@ -58,10 +58,17 @@ const OpenTesting = (/* { onLinkClick }: IProps */) => {
                 <Text className={cn('hero__location-details-title')} size={4} as="h3">
                     Где
                 </Text>
-                <Heading level={2} as="p" className={cn('hero__location-details')}>
-                    Парк &#171;Сказка&#187;
-                    <IconArrowRight className={cn('hero__location-details-icon_arrow-right')} />
-                </Heading>
+                <a
+                    href="https://2gis.ru/moscow/geo/70030076318299879/37.429481%2C55.769577?m=37.430017%2C55.769532%2F19.29"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className={cn('hero__location-details')}
+                >
+                    <Heading level={2} as="span">
+                        Парк &#171;Сказка&#187;
+                        <IconArrowRight className={cn('hero__location-details-icon_arrow-right')} />
+                    </Heading>
+                </a>
 
                 <Text className={cn('hero__location-details-title')} size={4} as="h3">
                     Когда
