@@ -42,7 +42,7 @@ const OpenTesting = () => {
                 <br />
                 <br />
 
-                Тестирование бесплатно!
+                Участие бесплатно!
             </Text>
         </GridWrapper>
     );
