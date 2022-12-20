@@ -93,8 +93,8 @@
     "id": 1,
     "locale": "en",
     "seo": {
-      "metaTitle": "SberAutoTech",
-      "metaDescription": "SberAutoTech is a technology company that creates the transport of the future: unmanned, safe and comfortable",
+      "metaTitle": "Sber Automotive Technologies",
+      "metaDescription": "SberAutoTech is a tech company. We create the transport of the future: self-driving, safe and comfortable",
       "shareImage": null
     },
     "first_screen": [
@@ -241,8 +241,8 @@
     "locale": "en",
     "pageId": "self_driving_car",
     "seo": {
-      "metaTitle": "Unmanned vehicle SberAutoTech",
-      "metaDescription": "SberAutoTech drone - own technologies of autonomous driving",
+      "metaTitle": "SberAutoTech self-driving car",
+      "metaDescription": "SberAutoTech self-driving vehicle: our technologies will change the world of transportation.",
       "shareImage": null
     },
     "double_block": {
@@ -735,8 +735,8 @@
     "locale": "en",
     "pageId": "about_company",
     "seo": {
-      "metaTitle": "SberAutoTech is a digital transportation technology company",
-      "metaDescription": "SberAutoTech: development of unmanned vehicles, an operating system for managing fleets of vehicles and a connected platform",
+      "metaTitle": "SberAutoTech develops self-driving technologies and creates complex solutions for digital transport",
+      "metaDescription": "SberAutoTech: self-driving technologies, interconnected end-to-end OS solutions that combine fleet management, HD mapping, vehicle navigation and AI infrastructure for data processing",
       "shareImage": null
     },
     "headerText": "Sber Automotive Technologies was established in 2020.<br/>We develop automotive services based on advanced mobility, safety and sustainability",
@@ -902,8 +902,8 @@
     "locale": "en",
     "pageId": "flip",
     "seo": {
-      "metaTitle": "FLIP - the new mobility tool from SberAutoTech",
-      "metaDescription": "FLIP from SberAutoTech is a fully connected, autonomous and safe vehicle running on alternative fuels",
+      "metaTitle": "FLIP is a new mode of transport developed by SberAutoTech",
+      "metaDescription": "FLIP by SberAutoTech is an innovative transport solution, fully autonomous, safe and environment-friendly alternative fuel vehicle",
       "shareImage": null
     },
     "first_screen": {
@@ -3351,16 +3351,13 @@
   "FooterRu": {
     "id": 1,
     "locale": "ru",
-    "header": "Хотите задать вопрос или узнать больше о деятельности SberAutoTech? Напишите нам или заполните форму. Мы обязательно с вами свяжемся",
-    "description": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
-    "link": {
-      "to": "",
-      "text": "Связаться с нами",
-      "style": "fill"
-    },
-    "disclaimer": "Информация, опубликованная на Сайте, предоставляется только в ознакомительных целях. ©",
-    "email": "contact@sberautotech.ru",
-    "privacyPolicyLink": "/privacy-policy",
+    "header": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
+    "disclaimer": "Общество с ограниченной ответственностью «Сбер Автомотив Технологии»\nИНН 9725045830, ОГРН 1217700104160, КПП 772501001\nАдрес места нахождения: 115432, Россия, г. Москва, проспект Андропова, дом 10А",
+    "copyright": "© SberAutoTech, 2022",
+    "coreBusiness": "основной вид деятельности: ОКВЭД 62.01",
+    "accreditationIsLink": true,
+    "accreditationText": "Аккредитация в качестве ИТ-компании",
+    "privacyPolicyIsLink": true,
     "privacyPolicyText": "Политика конфиденциальности"
   },
   "FooterEn": {
@@ -3368,15 +3365,13 @@
     "locale": "en",
     "header": "This is just the beginning of the new era of transportation. Join us in this adventure! Introduce yourself and we will contact you as soon as we can.",
     "description": "We are only at the beginning of the path and cannot reveal all the plans. Fill out a questionnaire about yourself, send it and we will contact you as soon as there is an opportunity to take you to the team.",
-    "link": {
-      "to": "",
-      "text": "Stay in touch",
-      "style": "fill"
-    },
-    "disclaimer": "The information published on the Site is provided for informational purposes only. ©",
-    "email": "contact@sberautotech.ru",
-    "privacyPolicyLink": "/privacy-policy",
-    "privacyPolicyText": "Privacy policy"
+    "disclaimer": "The information published on the Site is provided for informational purposes only.",
+    "copyright": "© SberAutoTech, 2022",
+    "coreBusiness": "Sber Automotive Technologies LLC",
+    "accreditationIsLink": false,
+    "accreditationText": "Tax number 9725045830",
+    "privacyPolicyIsLink": false,
+    "privacyPolicyText": ""
   },
   "PrivacyPolicyRu": {
     "id": 1,
@@ -3393,7 +3388,7 @@
     "locale": "ru",
     "header": "Связаться с нами",
     "title": "Хотите задать вопрос или узнать больше о деятельности SberAutoTech? Напишите нам или заполните форму. Мы обязательно с вами свяжемся.",
-    "prEmailLabel": "Отдел по связям с общественностью",
+    "prEmailLabel": "Для СМИ",
     "prEmail": "pr@sberautotech.ru",
     "contactEmailLabel": "По другим вопросам",
     "contactEmail": "contact@sberautotech.ru",

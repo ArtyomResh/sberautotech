@@ -276,7 +276,8 @@
         ],
         "operator-linebreak": [
             "error",
-            "none"
+            "none",
+            { "overrides": { "?": "before", ":": "before" } }
         ],
         "padded-blocks": [
             "error",
@@ -419,7 +420,10 @@
         ],
         "@typescript-eslint/indent": [
             "error",
-            4
+            4,
+            {
+                "offsetTernaryExpressions": false
+            }
         ],
         "@typescript-eslint/member-delimiter-style": [
             "error",
@@ -695,7 +699,7 @@
             "always"
         ],
         "react/jsx-child-element-spacing": "off",
-        "react/jsx-closing-bracket-location": "error",
+        "react/jsx-closing-bracket-location": ["error", "line-aligned"],
         "react/jsx-closing-tag-location": "error",
         "react/jsx-curly-brace-presence": [
             "error",

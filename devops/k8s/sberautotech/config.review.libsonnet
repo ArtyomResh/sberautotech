@@ -32,6 +32,14 @@
                   proxy_pass %(backend_url)s;
               }
 
+              location /form/vacancy {
+                  proxy_pass %(backend_url)s;
+              }
+
+              location /form/contact {
+                  proxy_pass %(backend_url)s;
+              }
+
               location /review {
                   proxy_pass %(backend_url)s;
               }

@@ -8,19 +8,30 @@
         width: 100vw;
     }
 
-    &__location-details-title + p {
+    &__location-details-title + &__location-details {
         margin-top: 8px;
     }
 
-    &__location-details-title:first-of-type + p {
+    a&__location-details span {
         display: flex;
         align-items: center;
+        color: inherit;
+        transition: color 100ms;
     }
 
-    &__button {
+    a&__location-details {
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: var(--color-accent);
+            }
+        }
+    }
+
+    /* &__button {
         margin-top: 20px;
         grid-column: 1;
-    }
+    } */
 
     &__map {
         width: 100%;
@@ -52,34 +63,40 @@
             max-width: var(--width-of-title-on-1920-resolution);
         }
 
-        &__announce,
-        &__location-details-title:first-of-type,
-        &__location-details-title:first-of-type + p {
-            grid-column: 1 / span 4;
-        }
-
-        &__location-details-title:nth-of-type(2),
-        &__location-details-title:nth-of-type(2) + p {
-            grid-column: 7 / span 3;
-        }
-
-        &__location-details-title:last-of-type,
-        &__location-details-title:last-of-type + p {
-            grid-column: 10 / span 2;
-        }
-
-        &__location-details-title {
-            grid-row: 1;
-        }
-
-        &__location-details-title:first-of-type + p {
-            grid-row: 2;
-        }
-
-        &__location-details-title + p {
+        &__location-details-title + &__location-details {
             margin-top: 12px;
         }
 
+        &__location-details-title:first-of-type,
+        &__location-details-title:first-of-type + &__location-details,
+        &__location-details-title:nth-of-type(2),
+        &__location-details-title:nth-of-type(2) + &__location-details {
+            grid-column: 1 / span 4;
+        }
+
+        &__location-details-title:last-of-type,
+        &__location-details-title:last-of-type + &__location-details {
+            grid-column: 7 / span 3;
+        }
+
+        &__location-details-title:first-of-type {
+            grid-row: 1;
+        }
+
+        &__location-details-title:first-of-type + &__location-details {
+            grid-row: 2;
+        }
+
+        &__location-details-title:nth-of-type(2),
+        &__location-details-title:last-of-type {
+            margin-top: 60px;
+            grid-row: 3;
+        }
+
+        &__location-details-title:nth-of-type(2) + &__location-details,
+        &__location-details-title:last-of-type + &__location-details {
+            grid-row: 4;
+        }
 
         &__map {
             position: absolute;
@@ -105,19 +122,17 @@
             margin-top: 22px;
         }
 
-        &__announce {
-            margin-top: 120px;
-        }
-
         &__location {
-            margin-top: 92px;
+            margin-top: 104px;
             padding-bottom: 30px;
             background-image: linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
         }
 
         &__location-icon_arrow-down {
+            margin-bottom: 8px;
             grid-column: 12;
-            grid-row: 1 / span 2;
+            grid-row: 1 / span 4;
+            align-self: end;
             width: 84px;
             height: 84px;
             transform: translate(54px, 18px);
@@ -152,29 +167,32 @@
             max-width: 505px;
         }
 
+        &__location-details-title + &__location-details {
+            margin-top: 8px;
+        }
 
-        &__announce,
         &__location-details-title:first-of-type,
-        &__location-details-title:first-of-type + p {
+        &__location-details-title:first-of-type + &__location-details,
+        &__location-details-title:nth-of-type(2),
+        &__location-details-title:nth-of-type(2) + &__location-details {
             grid-column: 1 / span 4;
         }
 
-        &__location-details-title:nth-of-type(2),
-        &__location-details-title:nth-of-type(2) + p {
+        &__location-details-title:last-of-type,
+        &__location-details-title:last-of-type + &__location-details {
             grid-column: 7 / span 3;
         }
 
-        &__location-details-title:last-of-type,
-        &__location-details-title:last-of-type + p {
-            grid-column: 10 / span 2;
+
+        &__location-details-title:nth-of-type(2),
+        &__location-details-title:last-of-type {
+            margin-top: 40px;
+            grid-row: 3;
         }
 
-        &__location-details-title {
-            grid-row: 1;
-        }
-
-        &__location-details-title:first-of-type + p {
-            grid-row: 2;
+        &__location-details-title:nth-of-type(2) + &__location-details,
+        &__location-details-title:last-of-type + &__location-details {
+            grid-row: 4;
         }
 
         &__map {
@@ -195,26 +213,24 @@
             );
             background-repeat: no-repeat;
             background-size: cover;
-            background-position-x: 50%;
+            background-position-x: 47%;
         }
 
         &__title {
             margin-top: 32px;
         }
 
-        &__announce {
-            margin-top: 120px;
-        }
-
         &__location {
-            margin-top: 66px;
+            margin-top: 144px;
             padding-bottom: 24px;
             background-image: linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
         }
 
         &__location-icon_arrow-down {
+            margin-bottom: 5px;
             grid-column: 12;
-            grid-row: 1 / span 2;
+            grid-row: 1 / span 4;
+            align-self: end;
             width: 64px;
             height: 64px;
             transform: translate(20px, 10px);
@@ -242,20 +258,22 @@
         }
 
         &__title,
-        &__announce,
         &__map {
             grid-column: 1 / span 6;
         }
 
         &__location-details-title:first-of-type,
-        &__location-details-title:first-of-type + p,
+        &__location-details-title:first-of-type + &__location-details {
+            grid-column: 1 / span 4;
+        }
+
         &__location-details-title:nth-of-type(2),
-        &__location-details-title:nth-of-type(2) + p {
+        &__location-details-title:nth-of-type(2) + &__location-details {
             grid-column: 1 / span 3;
         }
 
         &__location-details-title:last-of-type,
-        &__location-details-title:last-of-type + p {
+        &__location-details-title:last-of-type + &__location-details {
             grid-column: 4 / span 3;
         }
 
@@ -263,7 +281,7 @@
             grid-row: 1;
         }
 
-        &__location-details-title:first-of-type + p {
+        &__location-details-title:first-of-type + &__location-details {
             grid-row: 2;
         }
 
@@ -272,16 +290,15 @@
             grid-row: 3;
         }
 
-        &__location-details-title:nth-of-type(2) + p,
-        &__location-details-title:last-of-type + p {
+        &__location-details-title:nth-of-type(2) + &__location-details,
+        &__location-details-title:last-of-type + &__location-details {
             grid-row: 4;
         }
 
         &__title {
-            margin-top: 52px;
+            margin-top: 56px;
         }
 
-        &__announce,
         &__location-details-title:not(:first-of-type) {
             margin-top: 40px;
         }
@@ -332,47 +349,14 @@
         }
 
         &__title,
-        &__announce,
         &__map,
-        &__location-details-title:first-of-type,
-        &__location-details-title:first-of-type + p {
+        &__location-details-title,
+        &__location-details-title + &__location-details {
             grid-column: 1 / span 2;
-        }
-
-        &__location-details-title:nth-of-type(2),
-        &__location-details-title:nth-of-type(2) + p {
-            grid-column: 1 / span 1;
-        }
-
-        &__location-details-title:last-of-type,
-        &__location-details-title:last-of-type + p {
-            grid-column: 2 / span 1;
-        }
-
-        &__location-details-title:first-of-type {
-            grid-row: 1;
-        }
-
-        &__location-details-title:first-of-type + p {
-            grid-row: 2;
-        }
-
-        &__location-details-title:nth-of-type(2),
-        &__location-details-title:last-of-type, {
-            grid-row: 3;
-        }
-
-        &__location-details-title:nth-of-type(2) + p,
-        &__location-details-title:last-of-type + p {
-            grid-row: 4;
         }
 
         &__title {
             margin-top: 48px;
-        }
-
-        &__announce {
-            margin-top: 20px;
         }
 
         &__map {
@@ -407,12 +391,12 @@
         }
     }
 
-    .hero .hero__button {
+    /* .hero .hero__button {
         --paddings-width: 40px;
         position: fixed;
         z-index: var(--zindex-base);
         bottom: 40px;
         margin: 0;
         width: calc(100vw - var(--paddings-width));
-    }
+    } */
 }

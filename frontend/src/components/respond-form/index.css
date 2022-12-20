@@ -27,7 +27,7 @@
     @media screen and (prefers-reduced-motion: reduce) {
 
         &_visible {
-            top: calc(var(--nav-height) + 20px);
+            top: calc(var(--header-height) + 20px);
             animation: 0.5s ease-out slideIn;
             animation: 0.5s ease-out slideIn;
             animation: 0.5s ease-out slideIn;
@@ -36,7 +36,7 @@
     }
 
     &_visible {
-        top: calc(var(--nav-height) + 20px);
+        top: calc(var(--header-height) + 20px);
         animation: 0.5s ease-out slideIn;
         animation: 0.5s ease-out slideIn;
         animation: 0.5s ease-out slideIn;
@@ -45,17 +45,6 @@
 
     &_top {
         top: 0;
-    }
-
-    &_sended {
-        background-color: #bdfff8;
-        padding: 20px;
-        align-items: flex-end;
-        height: 212px;
-    }
-
-    &_error {
-        background-color: #1f272e;
     }
 
     &__close-btn {
@@ -199,6 +188,15 @@
         justify-content: space-between;
         max-width: calc(100vw - 40px);
     }
+
+    &__button-wrapper {
+        width: 50%;
+        margin-right: 20px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
 }
 
 @mixin media_breakpoint_nav_collapsed {
@@ -275,12 +273,17 @@
         }
 
         &__field-wrapper {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             width: 100%;
         }
 
         &__button-section {
             flex-direction: column;
+        }
+
+        &__button-wrapper {
+            margin-bottom: 10px;
+            width: 100%;
         }
 
         &__grecaptcha {
@@ -314,54 +317,54 @@
 
     from { top: -100vh; }
 
-    to { top: var(--nav-height); }
+    to { top: var(--header-height); }
 }
 
 @keyframes slideIn {
 
     from { top: -100vh; }
 
-    to { top: var(--nav-height); }
+    to { top: var(--header-height); }
 }
 
 @keyframes slideIn {
 
     from { top: -100vh; }
 
-    to { top: var(--nav-height); }
+    to { top: var(--header-height); }
 }
 
 @keyframes slideIn {
 
     from { top: -100vh; }
 
-    to { top: var(--nav-height); }
+    to { top: var(--header-height); }
 }
 
 @keyframes slideOut {
 
-    from { top: var(--nav-height); }
+    from { top: var(--header-height); }
 
     to { top: -100vh; }
 }
 
 @keyframes slideOut {
 
-    from { top: var(--nav-height); }
+    from { top: var(--header-height); }
 
     to { top: -100vh; }
 }
 
 @keyframes slideOut {
 
-    from { top: var(--nav-height); }
+    from { top: var(--header-height); }
 
     to { top: -100vh; }
 }
 
 @keyframes slideOut {
 
-    from { top: var(--nav-height); }
+    from { top: var(--header-height); }
 
     to { top: -100vh; }
 }

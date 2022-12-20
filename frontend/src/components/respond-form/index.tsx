@@ -1,24 +1,22 @@
 import React, { useCallback, useEffect, useRef, useState, useContext } from 'react';
-import OutsideClickHandler from 'react-outside-click-handler';
 import { useForm, FormProvider } from 'react-hook-form';
 import Recaptcha from 'react-recaptcha';
+import { graphql, useStaticQuery } from 'gatsby';
 
 import Input from './input';
 import Textarea from './textarea';
 import Button from '../button';
 import CheckBox from './check-box';
+import InputFile from './inputFile';
 import { useClassnames } from '../../hooks/use-classnames';
-import { toBase64 } from '../../utils';
+import { toBase64, toUnescapedHTML } from '../../utils';
 import { appContext } from '../../context/context';
-
-import { toUnescapedHTML } from '../../utils';
-
 import useDocumentScrollThrottled from '../nav/use-document-scroll-throttled';
+import Alert from '../public-beta-signup/components/alert';
 
 import style from './index.css';
-import { graphql, useStaticQuery } from 'gatsby';
 
-const FORM_URL = '/form';
+const FORM_URL = '/form/vacancy';
 
 const query = graphql`
   query {
@@ -30,7 +28,6 @@ const query = graphql`
           errorButtonText
           errorSend
           file
-          header
           locale
           name
           successButtonText
@@ -38,15 +35,8 @@ const query = graphql`
           surname
           buttonText
           telephone
-          theme
-          comment
           fewWordsAboutMyself
           mail
-          contactEmail
-          contactEmailLabel
-          prEmail
-          prEmailLabel
-          title
           vacancyRespondHeader
           vacancyRespondTitle
         }
@@ -55,6 +45,24 @@ const query = graphql`
   }
 `;
 
+export interface IRespondFormData {
+    name: string,
+    surname: string,
+    email: string,
+    telephone: string,
+    aboutMyself: string,
+    file: string
+}
+
+const formFields: {[key in keyof IRespondFormData]: key} = {
+    name       : 'name',
+    surname    : 'surname',
+    email      : 'email',
+    telephone  : 'telephone',
+    aboutMyself: 'aboutMyself',
+    file       : 'file'
+};
+
 const RespondForm = () => {
     const data = useStaticQuery(query);
     const [isRecaptchaConfirmed, setIsRecaptchaConfirmed] = useState(true);
@@ -62,32 +70,25 @@ const RespondForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [onTop, setSendToTop] = useState(false);
-    const { isPopupVisible, setIsPopupVisible, vacancyTitle, huntflowId, setVacancyTitle, setHuntflowId, isRespondFormVisible, setIsRespondFormVisible } = useContext(appContext);
+    const { vacancyTitle, huntflowId, setVacancyTitle, setHuntflowId, isRespondFormVisible, setIsRespondFormVisible } = useContext(appContext);
     const cn = useClassnames(style);
     const timeoutId = useRef<ReturnType<typeof setTimeout>>();
     const timeoutTime = 3000;
-    const recaptchaInstance = useRef<Recaptcha | null>();
 
-    const { consent,
+    const {
+        consent,
         telephone,
         vacancyRespondHeader,
         mail,
-        contactEmailLabel,
-        contactEmail,
-        prEmailLabel,
-        prEmail,
-        title,
         errorSend,
         file,
-        header,
         locale,
         name,
         fewWordsAboutMyself,
-        theme,
-        comment,
         successSend,
         buttonText,
-        surname } = data.allStrapiRespondForm.edges[0].node;
+        surname
+    } = data.allStrapiRespondForm.edges[0].node;
 
     const context = useForm({
         mode            : 'onSubmit',
@@ -97,14 +98,13 @@ const RespondForm = () => {
     });
 
     const fileRef = useRef<File | null>(null);
-    const hadleFileChange = (file: File | null) => {
+    const handleFileChange = (file: File | null) => {
         fileRef.current = file;
     };
 
     const closeHandler = () => {
         setVacancyTitle?.('');
         setHuntflowId?.('');
-        setIsPopupVisible?.(false);
         setIsRespondFormVisible?.(false);
     };
 
@@ -120,20 +120,6 @@ const RespondForm = () => {
         }, TIMEOUT_DELAY);
     });
 
-    const outsideClickHandler = useCallback((e) => {
-        if(isPopupVisible && !e.target.closest('.respond-form') && !e.target.classList.contains('ui-select__option')) {
-            closeHandler();
-        }
-    }, [isPopupVisible]);
-
-    useEffect(() => {
-        window.addEventListener('click', outsideClickHandler);
-
-        return () => {
-            window.removeEventListener('click', outsideClickHandler);
-        };
-    });
-
     const preventClosePopup = useCallback((e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e?.stopPropagation();
 
@@ -143,36 +129,47 @@ const RespondForm = () => {
 
         setIsSended(false);
         setIsError(false);
-        setIsPopupVisible?.(false);
         setIsRespondFormVisible?.(false);
         context.reset();
         fileRef.current = null;
     }, [timeoutId]);
 
-    const onSubmit = async (data) => {
+
+    const outsideClickHandler = useCallback((e) => {
+        if(isRespondFormVisible && !e.target.closest('.respond-form') && !e.target.classList.contains('ui-select__option')) {
+            preventClosePopup();
+        }
+    }, [isRespondFormVisible, preventClosePopup]);
+
+    useEffect(() => {
+        window.addEventListener('click', outsideClickHandler);
+
+        return () => {
+            window.removeEventListener('click', outsideClickHandler);
+        };
+    }, [outsideClickHandler]);
+
+
+    const onSubmit = async (data: IRespondFormData) => {
         setIsLoading(true);
         const formData = new FormData();
-
         const file = fileRef.current;
-        const base64 = file ? await toBase64(file) : null;
 
-        if(vacancyTitle) {
-            formData.append('vacancy', vacancyTitle);
-        }
 
-        if(huntflowId) {
-            formData.append('huntflowId', huntflowId);
-        }
+        formData.append('name', data.name);
+        formData.append('surname', data.surname);
+        formData.append('email', data.email);
+        formData.append('telephone', data.telephone);
+        formData.append('textarea', data.aboutMyself);
 
-        for(const name in data) {
-            if(name === 'file') {
-                if(base64 && file) {
-                    formData.append('content', base64);
-                    formData.append('filename', file.name);
-                }
-            } else if(data[name]) {
-                formData.append(name, data[name]);
-            }
+        vacancyTitle && formData.append('vacancy', vacancyTitle);
+        huntflowId && formData.append('huntflowId', huntflowId);
+
+        if(file) {
+            const base64 = await toBase64(file);
+
+            formData.append('content', base64);
+            formData.append('filename', file.name);
         }
 
         try {
@@ -191,14 +188,14 @@ const RespondForm = () => {
 
                 timeoutId.current = setTimeout(() => {
                     setIsSended(false);
-                    setIsPopupVisible?.(false);
+                    setIsRespondFormVisible?.(false);
                 }, timeoutTime);
             }
         } catch(err) {
             setIsSended(true);
             setIsError(true);
             setIsLoading(false);
-            setIsPopupVisible?.(true);
+            setIsRespondFormVisible?.(true);
         }
     };
 
@@ -206,100 +203,73 @@ const RespondForm = () => {
         setIsRecaptchaConfirmed(true);
     }, []);
 
-    if(!isPopupVisible) {
+    if(!isRespondFormVisible) {
         return null;
     }
 
     return (
-        <FormProvider {...context}>
-            <form
-                onSubmit={context.handleSubmit(onSubmit)} className={cn('respond-form', {
-                    'respond-form_visible': isPopupVisible,
-                    'respond-form_top'    : onTop,
-                    'respond-form_sended' : isSended,
-                    'respond-form_error'  : isError
-                })}
-            >
-                {isSended ? (
-                    <OutsideClickHandler onOutsideClick={preventClosePopup}>
-                        <div
-                            className={cn('respond-form__send-block')} onClick={preventClosePopup}
-                        >
-                            <div className={cn('text-block')}>
-                                <p className={cn('text-block__title', { 'text-block__title_error': isError })}>{isError ? toUnescapedHTML(errorSend) : toUnescapedHTML(successSend)}</p>
-                            </div>
-                            <div
-                                className={cn('respond-form__close-btn')} onClick={preventClosePopup}
-                            >
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M0.80852 17.4881C0.417995 17.8786 0.417995 18.5118 0.80852 18.9023C1.19904 19.2928 1.83221 19.2928 2.22273 18.9023L10.0009 11.1241L17.7791 18.9023C18.1696 19.2928 18.8028 19.2928 19.1933 18.9023C19.5838 18.5118 19.5838 17.8786 19.1933 17.4881L11.4151 9.70989L19.1933 1.93172C19.5838 1.54119 19.5838 0.908027 19.1933 0.517502C18.8028 0.126978 18.1696 0.126979 17.7791 0.517503L10.0009 8.29568L2.22273 0.517503C1.83221 0.126979 1.19904 0.126979 0.808518 0.517503C0.417994 0.908028 0.417994 1.54119 0.808519 1.93172L8.58669 9.70989L0.80852 17.4881Z" fill={isError ? '#FFFFFF' : '#1F272E'} />
-                                </svg>
-                            </div>
-                        </div>
-                    </OutsideClickHandler>
-
-                ) : (
-                    <React.Fragment>
+        <React.Fragment>
+            {!isSended && (
+                <FormProvider {...context}>
+                    <form
+                        onSubmit={context.handleSubmit(onSubmit)} className={cn('respond-form', {
+                            'respond-form_visible': isRespondFormVisible,
+                            'respond-form_top'    : onTop
+                        })}
+                    >
                         <div className={cn('respond-form__close-btn')} onClick={closeHandler}>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M0.80852 17.4881C0.417995 17.8786 0.417995 18.5118 0.80852 18.9023C1.19904 19.2928 1.83221 19.2928 2.22273 18.9023L10.0009 11.1241L17.7791 18.9023C18.1696 19.2928 18.8028 19.2928 19.1933 18.9023C19.5838 18.5118 19.5838 17.8786 19.1933 17.4881L11.4151 9.70989L19.1933 1.93172C19.5838 1.54119 19.5838 0.908027 19.1933 0.517502C18.8028 0.126978 18.1696 0.126979 17.7791 0.517503L10.0009 8.29568L2.22273 0.517503C1.83221 0.126979 1.19904 0.126979 0.808518 0.517503C0.417994 0.908028 0.417994 1.54119 0.808519 1.93172L8.58669 9.70989L0.80852 17.4881Z" fill="#2E3840" />
                             </svg>
                         </div>
-                        {!isRespondFormVisible ? (
-                            <div className={cn('text-block')}>
-                                <h1 className={cn('text-block__header')}>{header}</h1>
-                                <p className={cn('text-block__title-text')}>{title}</p>
-                                <p className={cn('text-block__pr-email-label')}>{prEmailLabel}</p>
-                                <a href={prEmail}><p className={cn('text-block__pr-email')}>{prEmail}</p></a>
-                                <p className={cn('text-block__pr-email-label')}>Для предложений о сотрудничестве</p>
-                                <a href="partners@sberautotech.ru"><p className={cn('text-block__pr-email')}>partners@sberautotech.ru</p></a>
-                                <p className={cn('text-block__contact-email-label')}>{contactEmailLabel}</p>
-                                <a href={contactEmail}><p className={cn('text-block__contact-email')}>{contactEmail}</p></a>
-                            </div>
-                        ) : (
-                            <div className={cn('text-block')}>
-                                <h1 className={cn('text-block__header')}>{toUnescapedHTML(vacancyRespondHeader)}</h1>
-                                <p className={cn('text-block__respond-vacancy-title')}>{vacancyTitle}</p>
-                            </div>
-                        )}
+                        <div className={cn('text-block')}>
+                            <h1 className={cn('text-block__header')}>{toUnescapedHTML(vacancyRespondHeader)}</h1>
+                            <p className={cn('text-block__respond-vacancy-title')}>{vacancyTitle}</p>
+                        </div>
                         <div className={cn('right-block')}>
                             <div className={cn('right-block__inputs')}>
                                 <div className={cn('right-block__top-section')}>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type="text" placeholder={name} name="name" autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} requiredValidation={true} />
+                                        <Input type="text" placeholder={name} name={formFields.name} autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} requiredValidation={true} />
                                     </div>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type={!isRespondFormVisible ? 'email' : 'text'} placeholder={!isRespondFormVisible ? mail : surname} name={!isRespondFormVisible ? 'email' : 'surname'} autocomplete="off" requiredValidation={true} pattern={!isRespondFormVisible ? /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g : /^[А-Яа-яЁёA-Za-z\s-]+$/i} />
+                                        <Input type="text" placeholder={surname} name={formFields.surname} autocomplete="off" requiredValidation={true} pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} />
                                     </div>
                                 </div>
                                 <div className={cn('right-block__bottom-section')}>
                                     <div className={cn('right-block__field-wrapper', 'right-block__field-email')}>
-                                        <Input type={isRespondFormVisible ? 'email' : 'text'} placeholder={isRespondFormVisible ? mail : theme} name={isRespondFormVisible ? mail : theme} autocomplete="off" requiredValidation={true} pattern={isRespondFormVisible ? /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g : null} />
+                                        <Input type="text" placeholder={mail} name={formFields.email} autocomplete="off" requiredValidation={true} pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} />
                                     </div>
-                                    {isRespondFormVisible ? (
-                                        <div className={cn('right-block__field-wrapper', 'right-block__field-email')}>
-                                            <Input type="tel" placeholder={telephone} name="telephone" requiredValidation={true} />
-                                        </div>) : null}
+                                    <div className={cn('right-block__field-wrapper', 'right-block__field-email')}>
+                                        <Input type="tel" placeholder={telephone} name={formFields.telephone} requiredValidation={true} />
+                                    </div>
                                 </div>
                             </div>
                             <div className={cn('right-block__textarea-wrapper')}>
-                                <Textarea name="textarea" placeholder={isRespondFormVisible ? fewWordsAboutMyself : comment} requiredValidation={true} />
+                                <Textarea name={formFields.aboutMyself} placeholder={fewWordsAboutMyself} requiredValidation={true} />
                             </div>
                             <div className={cn('right-block__checkbox-wrapper')}>
                                 <CheckBox name="acception" requiredValidation={true} label={consent} />
                             </div>
                             <div className={cn('right-block__button-section')}>
-                                <div className={cn('right-block__field-wrapper')}>
-                                    <Input type="file" placeholder={file} name="file" onFileChange={hadleFileChange} />
+                                <div className={cn('right-block__button-wrapper')}>
+                                    <InputFile placeholder={file} name="file" onFileChange={handleFileChange} />
                                 </div>
+
                                 {isRecaptchaConfirmed ? (
-                                    <div className={cn('right-block__field-wrapper')}>
-                                        <Button type="submit" label={buttonText} disabled={isLoading} isLoading={isLoading} styleType="special" />
+                                    <div className={cn('right-block__button-wrapper')}>
+                                        <Button
+                                            type="submit"
+                                            disabled={isLoading}
+                                            isLoading={isLoading}
+                                            isBlock={true}
+                                        >
+                                            {buttonText}
+                                        </Button>
                                     </div>
                                 ) : (
                                     <Recaptcha
                                         className={cn('right-block__grecaptcha')}
-                                        ref={(e) => recaptchaInstance.current = e}
                                         sitekey="6LcxFCQbAAAAAPk5ZtW8P4LTJFuMUTHMh65Oap4n"
                                         render="explicit"
                                         hl={locale}
@@ -308,10 +278,17 @@ const RespondForm = () => {
                                 )}
                             </div>
                         </div>
-                    </React.Fragment>
-                )}
-            </form>
-        </FormProvider>
+                    </form>
+                </FormProvider>
+            )}
+            <Alert
+                type={isError ? 'error' : 'success'}
+                onCloseClick={preventClosePopup}
+                isVisible={isSended}
+            >
+                {isError ? errorSend : successSend}
+            </Alert>
+        </React.Fragment>
     );
 };
 

@@ -1,8 +1,8 @@
 import React, { createContext, ReactElement, useState, useContext } from 'react';
 
 interface IAppContext {
-    isPopupVisible: boolean,
-    setIsPopupVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
+    isContactFormVisible: boolean,
+    setIsContactFormVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
     isRespondFormVisible: boolean,
     setIsRespondFormVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
     vacancyTitle: string,
@@ -12,25 +12,27 @@ interface IAppContext {
 }
 
 const appContext = createContext<IAppContext>({
-    isPopupVisible         : false,
+    isContactFormVisible   : false,
     isRespondFormVisible   : false,
     setIsRespondFormVisible: null,
-    setIsPopupVisible      : null,
+    setIsContactFormVisible: null,
     vacancyTitle           : '',
-    setVacancyTitle        : null
+    setVacancyTitle        : null,
+    huntflowId             : null,
+    setHuntflowId          : null
 });
 const { Provider } = appContext;
 
 const AppProvider = ({ children }: { children: ReactElement }) => {
-    const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [isContactFormVisible, setIsContactFormVisible] = useState(false);
     const [isRespondFormVisible, setIsRespondFormVisible] = useState(false);
     const [vacancyTitle, setVacancyTitle] = useState('');
     const [huntflowId, setHuntflowId] = useState('');
 
     return (
         <Provider value={{
-            isPopupVisible,
-            setIsPopupVisible,
+            isContactFormVisible,
+            setIsContactFormVisible,
             isRespondFormVisible,
             setIsRespondFormVisible,
             vacancyTitle,

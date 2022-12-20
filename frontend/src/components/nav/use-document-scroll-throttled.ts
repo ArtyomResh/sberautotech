@@ -6,7 +6,7 @@ const THROTTLE = 200;
 
 const useDocumentScrollThrottled = (callback: (obj: { previousScrollTop: number, currentScrollTop: number }) => void) => {
     const [, setScrollPosition] = useState(0);
-    const { isPopupVisible, isRespondFormVisible } = useContext(appContext);
+    const { isContactFormVisible, isRespondFormVisible } = useContext(appContext);
 
     let previousScrollTop = 0;
 
@@ -25,7 +25,7 @@ const useDocumentScrollThrottled = (callback: (obj: { previousScrollTop: number,
     const handleDocumentScrollThrottled = throttle(handleDocumentScroll, THROTTLE);
 
     useEffect(() => {
-        if(isPopupVisible || isRespondFormVisible) {
+        if(isContactFormVisible || isRespondFormVisible) {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
@@ -40,7 +40,7 @@ const useDocumentScrollThrottled = (callback: (obj: { previousScrollTop: number,
         return () => {
             window.removeEventListener('scroll', handleDocumentScrollThrottled);
         };
-    }, [isPopupVisible, isRespondFormVisible]);
+    }, [isContactFormVisible, isRespondFormVisible]);
 };
 
 export default useDocumentScrollThrottled;

@@ -5,6 +5,7 @@ import CookieConsent from 'react-cookie-consent';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
+import Button from '../button';
 
 const query = graphql`
   query {
@@ -19,6 +20,9 @@ const query = graphql`
   }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ButtonWrapper = (props: any) => <Button {...props} size="s" />;
+
 const CookieAlert = () => {
     const cn = useClassnames(style);
     const { strapiGlobal: { cookieBanner: { title, description, decline, accept } } } = useStaticQuery(query);
@@ -32,14 +36,17 @@ const CookieAlert = () => {
             containerClasses={cn('cookie-alert')}
             buttonWrapperClasses={cn('cookie-alert__right')}
             buttonClasses={cn('cookie-alert__button')}
-            declineButtonClasses={cn('cookie-alert__button', 'cookie-alert__button_dark')}
+            declineButtonClasses={cn('cookie-alert__button', 'cookie-alert__button_variant-secondary')}
             enableDeclineButton={true}
             flipButtons={true}
             cookieName="gatsby-gdpr-google-analytics"
+            ButtonComponent={ButtonWrapper}
+            customDeclineButtonProps={{ variant: 'secondary' }}
         >
             <h1 className={cn('cookie-alert__title')}>
                 {title}
             </h1>
+
             <p className={cn('cookie-alert__text')}>
                 {description}
             </p>

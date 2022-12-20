@@ -7,8 +7,9 @@ import { gtagClicked } from '../../utils';
 import AccordeonHide from '../../images/accordeon-hide.inline.svg';
 import AccordeonShow from '../../images/accordeon-show.inline.svg';
 
+import LinkButton from '../link-button';
+
 import style from './index.css';
-import { Link } from 'gatsby';
 
 interface IProps {
     data: IListAccordeonItem,
@@ -23,8 +24,12 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
         setIsOpen(!isOpen);
     };
 
+    const handleLinkClick = () => {
+        gtagClicked(`accordeon_button_click_${data.id}`);
+    };
+
     return (
-        <div className={cn('accordeon__wrapper', { [`${className}-item-wrapper`]: className })}>
+        <div className={cn('accordeon', { [`${className}-item-wrapper`]: className })}>
             <button className={cn('accordeon__header-wrapper', { [`${className}-item-header-wrapper`]: className })} onClick={handleClick}>
                 <div className={cn('accordeon__toggle', { [`${className}-item-toggle`]: className })}>
                     {isOpen ? <AccordeonHide className={cn('accordeon__toggle_hide')} /> : <AccordeonShow className={cn('accordeon__toggle_show')} />}
@@ -47,13 +52,15 @@ const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
                     <div className={cn('accordeon__sub-description-wrapper')}>
                         {data.link && (
                             <div className={cn('accordeon__link-wrapper')}>
-                                <Link
-                                    to={data.link.to}
-                                    className={cn('accordeon__link', `accordeon__link_${data.link.style || 'border'}`)}
-                                    onClick={() => gtagClicked(`accordeon_button_click_${data.id}`)}
+                                <LinkButton
+                                    href={data.link.to}
+                                    isGatsbyLink={true}
+                                    className={cn('accordeon__link')}
+                                    onClick={handleLinkClick}
+                                    isBlock={true}
                                 >
                                     {data.link.text}
-                                </Link>
+                                </LinkButton>
                             </div>
                         )}
                         <div className={cn('accordeon__sub-description')}>

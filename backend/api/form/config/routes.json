@@ -7,6 +7,22 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/form/vacancy",
+      "handler": "form.vacancy",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/form/contact",
+      "handler": "form.contact",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

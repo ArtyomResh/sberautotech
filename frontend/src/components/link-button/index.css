@@ -1,0 +1,144 @@
+@import "../text/index.css";
+
+.core-link-button {
+    --color-accent: #66d4d0;
+    --color-accent-hover: #5ec4c1;
+    --color-accent-pressed: #6de3df;
+    --color-gray: #eef1f4;
+
+    padding: 16px 20px;
+    display: flex;
+    width: max-content;
+    height: max-content;
+    justify-content: center;
+    align-items: center;
+    border-radius: 60px;
+    border:none;
+    transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+    cursor: pointer;
+
+    &__loader {
+        position: absolute;
+
+        svg {
+            height: 1.5em;
+            color: inherit;
+        }
+    }
+
+    &_variant-primary {
+        color: var(--color-white);
+        background-color: var(--color-accent);
+    }
+
+    &_variant-secondary,
+    &_active {
+        color: var(--color-black);
+        background-color: var(--color-neutral);
+
+        @media (hover: hover) and (pointer: fine) {
+
+            &:hover {
+                color: var(--color-black);
+                background-color: var(--color-neutral);
+            }
+        }
+
+        &:active {
+            background-color: var(--color-neutral);
+        }
+    }
+
+    &_block {
+        width: 100%;
+    }
+
+    &_text-hidden {
+        color: transparent;
+        user-select: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+
+        &:hover {
+            background-color: var(--color-accent-hover);
+        }
+    }
+
+    &:active {
+        background-color: var(--color-accent-pressed);
+    }
+
+    &:disabled {
+        color: var(--color-gray-dark); 
+        background-color: var(--color-gray);
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .core-link-button {
+
+        &_size-l {
+
+            @mixin t2;
+
+            padding: 20px;
+        }
+
+        &_size-s {
+
+            @mixin t3;
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .core-link-button {
+
+        &_size-l {
+
+            @mixin t3;
+        }
+
+        &_size-s {
+
+            @mixin t3;
+        }
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .core-link-button {
+
+        &_size-l {
+
+            @mixin t3;
+        }
+
+        &_size-s {
+
+            @mixin t3;
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .core-link-button {
+
+        &_size-l {
+
+            @mixin t3;
+        }
+
+        &_size-s {
+
+            @mixin t4;
+        }
+    }
+}

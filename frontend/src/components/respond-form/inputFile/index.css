@@ -1,0 +1,103 @@
+@import "../../text/index.css";
+
+.input-file {
+    width: 100%;
+    position: relative;
+
+    & input {
+        position: absolute;
+        opacity: 0;
+    }
+
+    &__label {
+        padding: 16px 20px;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        border-radius: 60px;
+        border:none;
+        outline: none;
+        background-color: var(--color-white);
+        transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+        cursor: pointer;
+
+        @media (hover: hover) and (pointer: fine) {
+
+            &:hover {
+                color: #1f272e;
+            }
+        }
+
+        &_error {
+            border: 2px solid red;
+        }
+    }
+
+    &__title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        height: 30px;
+        color: #05080a;
+    }
+
+    &__ext {
+        color: #05080a;
+        height: 30px;
+    }
+
+    &__cross {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .input-file {
+
+        &__label {
+
+            @mixin t2;
+
+            padding: 20px;
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .input-file {
+
+        &__label {
+
+            @mixin t3;
+        }
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .input-file {
+
+        &__label {
+
+            @mixin t3;
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .input-file {
+
+        &__label {
+
+            @mixin t3;
+        }
+    }
+}

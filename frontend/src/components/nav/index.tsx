@@ -11,7 +11,7 @@ const TIMEOUT_DELAY = 0;
 const PADDING = 20;
 
 import useDocumentScrollThrottled from './use-document-scroll-throttled';
-import { gtagClicked } from '../../utils';
+import { gtagClicked, toUnescapedHTML } from '../../utils';
 import { appContext } from '../../context/context';
 import { YM_ID } from '../../constants';
 
@@ -19,6 +19,7 @@ import LogoWhite from '../../images/logo-white.inline.svg';
 import LogoBlack from '../../images/logo-black.inline.svg';
 import Burger from '../../images/burger.inline.svg';
 import Cross from '../../images/cross.inline.svg';
+import Button from '../button';
 
 export interface INavItem {
     text: string,
@@ -56,16 +57,9 @@ const query = graphql`
     allStrapiFooter {
         edges {
           node {
-            header
-            description
             disclaimer
             privacyPolicyLink
             privacyPolicyText
-            email
-            link {
-                text
-                to
-            }
           }
         }
       }
@@ -78,7 +72,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const [shouldAddShadow, setShouldAddShadow] = useState(false);
-    const { setIsPopupVisible } = useContext(appContext);
+    const { setIsContactFormVisible } = useContext(appContext);
     const [width, height] = useWindowSize();
     const cn = useClassnames(style);
 
@@ -129,16 +123,16 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
         // @ts-expect-error: ym подставляется только при NODE_ENV === 'production'
         typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'form--success--svyazatsya_s_nami');
 
-        setIsPopupVisible(true);
+        setIsContactFormVisible?.(true);
     };
 
     return (
         <nav
             className={
-                cn('nav__wrapper', `nav__wrapper_${theme.mode}`, {
-                    'nav__wrapper_open-menu': isOpen,
-                    'nav__wrapper_hidden'   : shouldHideHeader,
-                    'nav__wrapper_shadow'   : shouldAddShadow
+                cn('nav', `nav_${theme.mode}`, {
+                    'nav_open-menu': isOpen,
+                    'nav_hidden'   : shouldHideHeader,
+                    'nav_shadow'   : shouldAddShadow
                 })
             }
         >
@@ -160,27 +154,34 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                         ))
                     }
                 </ul>
+
                 <div className={cn('nav__bottom-block')}>
-                    <button
+                    <Button
                         type="button"
                         className={cn('nav__bottom-block-accept-button')}
-                        onClick={() => setIsPopupVisible(true)}
+                        isBlock={true}
+                        onClick={onClick}
                     >
                         {joinButtonText}
-                    </button>
+                    </Button>
+
                     <div className={cn('nav__link-block')}>
                         <Link className={cn('nav__link-bottom-block')} to={privacyPolicyLink} title={privacyPolicyText}>{privacyPolicyText}</Link>
                     </div>
+
                     <span className={cn('nav__disclaimer')}>
-                        {disclaimer}
+                        {toUnescapedHTML(disclaimer)}
                     </span>
                 </div>
-                <button
+
+                <Button
                     type="button"
+                    size="s"
                     className={cn('nav__accept-button')}
                     onClick={onClick}
-                >{joinButtonText}
-                </button>
+                >
+                    {joinButtonText}
+                </Button>
             </div>
             <div className={cn('nav__right')}>
                 <button className={cn('nav__menu-button')} onClick={onMenuButtonClick}>
