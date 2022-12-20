@@ -271,9 +271,9 @@
       {
         "header": "Incredible reaction rate",
         "image": null,
-        "text": "{The reaction of the robotic system is 5 times faster than that of any experienced driver.}<br/>According to the statistics, lack of driver concentration is the cause of 93% of road accidents. Modern self-driving technologies exceed the capabilities of the human brain and increase traffic safety.",
-        "subText": "",
-        "subTextSecond": ""
+        "text": "{The reaction of the robotic system is 5 times faster than that of any experienced driver.}",
+        "subText": "According to the statistics, lack of driver concentration is the cause of 93% of road accidents.",
+        "subTextSecond": "Modern self-driving technologies exceed the capabilities of the human brain and increase traffic safety."
       }
     ],
     "slider": {
