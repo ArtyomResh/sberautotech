@@ -51,6 +51,8 @@ const InputFile = ({ placeholder, name, className, onFileChange, ...props }: IPr
             onFileChange?.(inputFile);
             setFile({ fileName, fileExtension });
         }
+
+        e.target.value = '';
     };
 
     const handleFileCancel = (e: React.MouseEvent<HTMLDivElement>) => {
