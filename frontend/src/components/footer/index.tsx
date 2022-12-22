@@ -35,7 +35,7 @@ const query = graphql`
   }
 `;
 
-const Footer = () => {
+const Footer = ({ className }: {className?: string}) => {
     const cn = useClassnames(styles);
     const data = useStaticQuery(query);
     const { setIsContactFormVisible } = useContext(appContext);
@@ -47,7 +47,7 @@ const Footer = () => {
     };
 
     return (
-        <GridWrapper as="footer" className={cn('main-footer')}>
+        <GridWrapper as="footer" className={cn('main-footer', className)}>
             <Heading className={cn('main-footer__header')} level={2}>
                 {header}
             </Heading>
