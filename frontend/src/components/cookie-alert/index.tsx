@@ -5,7 +5,7 @@ import CookieConsent from 'react-cookie-consent';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
-import Button from '../button';
+import Button from '../button-like/button';
 
 const query = graphql`
   query {

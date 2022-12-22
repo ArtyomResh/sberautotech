@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link as GatsbyLink } from 'gatsby';
 
-import { useClassnames } from '../../hooks/use-classnames';
+import { useClassnames } from '../../../hooks/use-classnames';
 
 import styles from './index.css';
-import Loader from '../loader/loaderComponent';
+import Loader from '../../loader/loaderComponent';
 
 type TProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     size?: 'l' | 's',

@@ -1,6 +1,6 @@
 import React, { useContext, useCallback } from 'react';
 
-import Button from '../../../button';
+import Button from '../../../button-like/button';
 import { appContext } from '../../../../context/context';
 
 interface IProps {

@@ -12,7 +12,7 @@ import { api } from '../../../../utils/api';
 import { IRegistrationRequest } from '../../../../utils/api/types';
 
 import Heading from '../../../heading';
-import Button from '../../../button';
+import Button from '../../../button-like/button';
 import Input from '../../../respond-form/input';
 import CheckBox from '../../../respond-form/check-box';
 import Select from '../../../select';

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useClassnames } from '../../hooks/use-classnames';
-import Loader from '../loader/loaderComponent';
+import { useClassnames } from '../../../hooks/use-classnames';
+import Loader from '../../loader/loaderComponent';
 
 import styles from './index.css';
 
