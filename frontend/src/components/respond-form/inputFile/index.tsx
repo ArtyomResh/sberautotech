@@ -55,7 +55,7 @@ const InputFile = ({ placeholder, name, className, onFileChange, ...props }: IPr
         e.target.value = '';
     };
 
-    const handleFileCancel = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleFileCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         onFileChange?.(null);
         setFile({ fileName: '', fileExtension: '' });
@@ -72,11 +72,24 @@ const InputFile = ({ placeholder, name, className, onFileChange, ...props }: IPr
                 {...controllerProps}
                 onChange={handleFileChange}
             />
-            <label htmlFor="file" className={cn('input-file__label', { 'input-file__label_error': errorMessage })}>
-                <span className={cn({ 'input-file__title': file.fileName })}>{file.fileName ? file.fileName : placeholder}</span>
-                <span className={cn('input-file__ext')}>{file.fileExtension ? `.${file.fileExtension}` : null}</span>
-                <div className={cn('input-file__cross')} onClick={handleFileCancel}>{file.fileName ? <CrossIcon width="16px" height="16px" /> : null}</div>
+            <label htmlFor="file" className={cn('input-file__label', { 'input-file__label_error': errorMessage, 'input-file__label_has-file': file.fileName })}>
+                <span className={cn({ 'input-file__title': file.fileName })}>
+                    {file.fileName ? file.fileName : placeholder}
+                </span>
+
+                <span className={cn('input-file__ext')}>
+                    {file.fileExtension ? `.${file.fileExtension}` : null}
+                </span>
             </label>
+
+            {
+                file.fileName && (
+                    <button className={cn('input-file__cross')} type="button" onClick={handleFileCancel}>
+                        <CrossIcon width="16px" height="16px" />
+                    </button>
+                )
+            }
+
         </div>);
 };
 
