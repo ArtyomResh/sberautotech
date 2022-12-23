@@ -3354,11 +3354,12 @@
     "header": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
     "disclaimer": "Общество с ограниченной ответственностью «Сбер Автомотив Технологии»\nИНН 9725045830, ОГРН 1217700104160, КПП 772501001\nАдрес места нахождения: 115432, Россия, г. Москва, проспект Андропова, дом 10А",
     "copyright": "© SberAutoTech, 2022",
-    "coreBusiness": "основной вид деятельности: ОКВЭД 62.01",
+    "coreBusiness": "Основной вид деятельности: ОКВЭД 62.01",
     "accreditationIsLink": true,
     "accreditationText": "Аккредитация в качестве ИТ-компании",
     "privacyPolicyIsLink": true,
-    "privacyPolicyText": "Политика конфиденциальности"
+    "privacyPolicyText": "Политика конфиденциальности",
+    "modalLinkText": "Связаться с нами"
   },
   "FooterEn": {
     "id": 1,
@@ -3371,7 +3372,8 @@
     "accreditationIsLink": false,
     "accreditationText": "Tax number 9725045830",
     "privacyPolicyIsLink": false,
-    "privacyPolicyText": ""
+    "privacyPolicyText": "",
+    "modalLinkText": "Contact us"
   },
   "PrivacyPolicyRu": {
     "id": 1,
@@ -3390,6 +3392,8 @@
     "title": "Хотите задать вопрос или узнать больше о деятельности SberAutoTech? Напишите нам или заполните форму. Мы обязательно с вами свяжемся.",
     "prEmailLabel": "Для СМИ",
     "prEmail": "pr@sberautotech.ru",
+    "commercialProposalsEmailLabel": "Для предложений о сотрудничестве",
+    "commercialProposalsEmail": "partners@sberautotech.ru",
     "contactEmailLabel": "По другим вопросам",
     "contactEmail": "contact@sberautotech.ru",
     "vacancyRespondHeader": "Откликнуться</br>на вакансию",
@@ -3406,6 +3410,8 @@
     "file": "Прикрепить файл",
     "successSend": "Сообщение отправлено.</br>Благодарим за интерес к нашей компании!",
     "errorSend": "Ваше резюме <p>не отправлено.</p> Попробуйте еще раз.",
+    "successContactSend": "Благодарим за обращение.",
+    "errorContactSend": "Обращение не отправлено. Попробуйте еще раз.",
     "errorButtonText": "Открыть форму",
     "successButtonText": "Отправить еще одно",
     "buttonText": "Отправить"
@@ -3413,28 +3419,32 @@
   "RespondFormEn": {
     "id": 1,
     "locale": "en",
-    "header": "Связаться с нами",
-    "title": "Хотите задать вопрос или узнать больше о деятельности SberAutoTech? Напишите нам или заполните форму. Мы обязательно с вами свяжемся.",
-    "prEmailLabel": "Отдел по связям с общественностью",
+    "header": "Stay in touch",
+    "title": "Ask us a question or learn more about the SberAutoTech! Write to us directly or fill out the form.",
+    "prEmailLabel": "PR Department",
     "prEmail": "pr@sberautotech.ru",
-    "contactEmailLabel": "По другим вопросам",
+    "commercialProposalsEmailLabel": "For commercial proposals",
+    "commercialProposalsEmail": "partners@sberautotech.ru",
+    "contactEmailLabel": "For other questions",
     "contactEmail": "contact@sberautotech.ru",
     "vacancyRespondHeader": "Откликнуться</br>на вакансию",
     "vacancyRespondTitle": "Руководитель направления технической поддержки SberAutoTech",
-    "name": "Имя",
-    "surname": "Фамилия",
+    "name": "Name",
+    "surname": "Surname",
     "email": "Email",
-    "mail": "Почта",
+    "mail": "Email",
     "fewWordsAboutMyself": "Пара слов о себе",
-    "theme": "Тема",
-    "comment": "Комментарий",
-    "telephone": "Телефон",
-    "consent": "Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности",
-    "file": "Прикрепить файл",
+    "theme": "Theme",
+    "comment": "Comment",
+    "telephone": "Telephone",
+    "consent": "I consent to the processing of my personal data in accordance with the privacy policy",
+    "file": "Attach file",
     "successSend": "Сообщение отправлено.</br>Благодарим за интерес к нашей компании!",
     "errorSend": "Ваше резюме <p>не отправлено.</p> Попробуйте еще раз.",
+    "successContactSend": "Thank you for contacting us.",
+    "errorContactSend": "Message has not been sent. Try again.",
     "errorButtonText": "Открыть форму",
     "successButtonText": "Отправить еще одно",
-    "buttonText": "Отправить"
+    "buttonText": "Send"
   }
 }
