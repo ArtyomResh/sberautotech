@@ -10,8 +10,8 @@ import MainPageBlock, { IBlock } from '../components/main-page-block';
 import style from './index.css';
 import Loader from '../components/loader/loaderComponent';
 import { appContext } from '../context/context';
-import { INavItem } from '../components/nav';
-import { ISeo } from '../types';
+import { BETA_TEST_NAV_LINK, INavItem } from '../components/nav';
+import { BETA_TEST_LANADING_NAV_ID } from '../components/public-beta-signup/constants';
 
 const query = graphql`
   query {
@@ -163,7 +163,6 @@ const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
 
 interface IMainPageScreenData extends IBlock {
-    seo: ISeo,
     pageId?: string
 }
 
@@ -177,6 +176,22 @@ interface IIndexPageBlocksProps {
 }
 
 const getScreenBlockId = (screen: IMainPageScreenData) => `main-page-screen-${screen.pageId}`;
+
+const betaTestScreen: IMainPageScreenData = {
+    pageId    : BETA_TEST_LANADING_NAV_ID,
+    id        : 0,
+    background: {
+        localFile: {
+            url: '/video/desktop/homepage-screen-beta-test.mp4'
+        }
+    },
+    mobileBackground: {
+        localFile: {
+            url: '/video/mobile/homepage-screen-beta-test.mp4'
+        }
+    },
+    text: '{Беспилотные автомобили} ждут первых пассажиров в&nbsp;парке «Сказка»'
+};
 
 const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
     const cn = useClassnames(style);
@@ -268,21 +283,6 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
                     </Link>
                 );
             })}
-            {/* <Link to="/flip">
-                <MainPageBlock block={screens.second_screen[0]} index={0} pageNumber={pageNumber} />
-            </Link>
-            <Link to="/self-driving-car">
-                <MainPageBlock block={screens.third_screen[0]} index={1} pageNumber={pageNumber} />
-            </Link>
-            <Link to="/about-company">
-                <MainPageBlock block={screens.first_screen[0]} index={2} pageNumber={pageNumber} />
-            </Link>
-            <Link to="/career">
-                <MainPageBlock block={screens.fourth_screen[0]} index={3} pageNumber={pageNumber} />
-            </Link>
-            <Link to="/vacancies">
-                <MainPageBlock block={screens.fifth_screen[0]} index={4} pageNumber={pageNumber} />
-            </Link> */}
         </div>
     );
 };
@@ -290,7 +290,8 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
 const IndexPage = () => {
     const data = useStaticQuery(query);
     const screens = data.allStrapiHomepage.edges[0].node;
-    const { links } = data.allStrapiNavPanel.edges[0].node as {links: Array<INavItem>};
+    const { links: strapiLinks } = data.allStrapiNavPanel.edges[0].node as {links: Array<INavItem>};
+    const links = [BETA_TEST_NAV_LINK, ...strapiLinks];
     const [activePageId, setActivePageId] = useState(links[0].navId);
     const [isLoading, setIsLoading] = useState(true);
     const { isMobile } = useDeviceDetect();
@@ -300,6 +301,8 @@ const IndexPage = () => {
     useEffect(() => {
         if(isMobile !== null) {
             const preloadVideos = [
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                fetch(betaTestScreen[isMobile ? 'mobileBackground' : 'background']!.localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(betaTestScreen) })),
                 fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.second_screen[0]) })),
                 fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.third_screen[0]) })),
                 fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.first_screen[0]) })),
@@ -308,7 +311,6 @@ const IndexPage = () => {
 
             Promise.all(preloadVideos).then((data) => {
                 setIsLoading(false);
-
                 data.forEach(({ blob, blockId }) => {
                     const bound = document.getElementById(blockId);
                     const video = bound?.querySelector('video');
@@ -320,6 +322,7 @@ const IndexPage = () => {
     }, [isMobile]);
 
     const allScreens = [
+        betaTestScreen,
         screens.second_screen[0],
         screens.third_screen[0],
         screens.first_screen[0],

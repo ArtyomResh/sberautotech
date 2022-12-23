@@ -21,6 +21,11 @@ export interface IBlock {
             url: string
         }
     },
+    mobileBackground?: {
+        localFile: {
+            url: string
+        }
+    },
     backgroundPoster?: {
         localFile: {
             url: string

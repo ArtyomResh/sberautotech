@@ -129,6 +129,7 @@
         letter-spacing: 0;
         text-align: left;
         align-self: center;
+        white-space: nowrap;
 
         &_active {
             color: #BDFFF8;
