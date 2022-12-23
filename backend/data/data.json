@@ -99,7 +99,7 @@
     },
     "first_screen": [
       {
-        "text": "{The Future}<br/>{Driverless transportation will change the life of modern megapolis.} Chaotic city logistics will open a way to new technologies. With the help of AI technologies, traffic in most congested areas will be reduced, to provide citizens with time and space for their daily lives.",
+        "text": "{The Future is&nbsp;close}<br/>Driverless transportation will change the life of&nbsp;modern megapolis. Roads will be&nbsp;less loaded, and citizens will get more time and much safer space for their daily lives.",
         "link": null,
         "cards": [],
         "background": null,
@@ -967,7 +967,7 @@
       "backgroundOgg": null,
       "primary_header": "FLIP {never stops learning}",
       "secondary_header": "",
-      "primary_text": "[It uses up to 2TB of information a day]</br></br>Neural networks and computer vision systems use data for&nbsp;environmental analysis and constant training.",
+      "primary_text": "[Up to 2TB/day]</br></br>Neural networks and computer vision systems use data for&nbsp;environmental analysis and constant training.",
       "secondary_text": "This array of&nbsp;information is stored and processed in&nbsp;SberCloud, a&nbsp;cloud service in Sber ecosystem",
       "primary_text_float": "left",
       "secondary_text_float": "left"
@@ -977,7 +977,7 @@
       "mobileBackground": null,
       "backgroundOgg": null,
       "primary_header": "FLIP {is waiting for you}",
-      "secondary_header": "FLIP is a reimagined mobility: it is fully connected and integrated into {the&nbsp;Sber ecosystem}",
+      "secondary_header": "FLIP is integrated </br>into the {Sberbank ecosystem}",
       "primary_text": "",
       "secondary_text": "",
       "primary_text_float": "right",
