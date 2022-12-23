@@ -321,7 +321,7 @@ const FlipPage = () => {
                         <FlipScreen data={seventh_screen} id="bound-6" />
                         <FlipScreen data={eighth_screen} id="bound-7" />
                         <img className={cn('flip__logo')} src={FlipLogoIcon} />
-                        <Footer />
+                        <Footer className={cn('flip__footer')} />
                     </div>
                 )}
             </Layout>

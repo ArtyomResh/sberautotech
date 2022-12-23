@@ -13,32 +13,32 @@
         width: 100%;
         justify-content: space-between;
 
-        -moz-transition: transform 1s; 
-        -webkit-transition: transform 1s;  
-        -ms-transition: transform 1s;  
-        -o-transition: transform 1s;  
-        transition: transform 1s;  
+        -moz-transition: transform 1s;
+        -webkit-transition: transform 1s;
+        -ms-transition: transform 1s;
+        -o-transition: transform 1s;
+        transition: transform 1s;
 
         @media (max-width: 850px) {
             padding: 10px;
         }
 
         .flip__screen-text_primary {
-            -moz-transition: opacity 0.5s ease-in-out; 
-            -webkit-transition: opacity 0.5s ease-in-out;  
-            -ms-transition: opacity 0.5s ease-in-out;  
-            -o-transition: opacity 0.5s ease-in-out;  
-            transition: opacity 0.5s ease-in-out; 
+            -moz-transition: opacity 0.5s ease-in-out;
+            -webkit-transition: opacity 0.5s ease-in-out;
+            -ms-transition: opacity 0.5s ease-in-out;
+            -o-transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
         }
 
         &_secondary {
             opacity: 0;
 
-            -moz-transition: opacity 0.5s ease-in-out; 
-            -webkit-transition: opacity 0.5s ease-in-out;  
-            -ms-transition: opacity 0.5s ease-in-out;  
-            -o-transition: opacity 0.5s ease-in-out;  
-            transition: opacity 0.5s ease-in-out; 
+            -moz-transition: opacity 0.5s ease-in-out;
+            -webkit-transition: opacity 0.5s ease-in-out;
+            -ms-transition: opacity 0.5s ease-in-out;
+            -o-transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
         }
     }
 
@@ -115,7 +115,7 @@
         position: fixed;
         right: 55px;
         top: 86px;
-        
+
 
         @media (max-width: 850px) {
             right: 10px;
@@ -137,7 +137,7 @@
             text-align: center;
             order: 2;
 
-                
+
             .content {
                 display: flex;
                 flex-direction: column;
@@ -163,7 +163,7 @@
             text-align: left;
             display: flex;
             flex-direction: column;
-    
+
             b {
                 font-size: 27px;
                 line-height: 30px;
@@ -183,30 +183,20 @@
             padding: 10px 10px;
             opacity: 1;
             order: 3;
-    
+
             .flip__screen-header_secondary {
                 margin-bottom: 20px;
             }
-    
+
             .flip__screen-text_primary {
                 margin-bottom: 20px;
             }
-    
+
             .flip__screen-logo {
                 margin-top: 10px;
                 width: 200px;
             }
 
-        }
-        .footer__wrapper {
-            margin-top: 40px;
-            background: black;
-            color: white;
-            order: 3;
-    
-            .footer__link {
-                color: black;
-            }
         }
     }
 }
