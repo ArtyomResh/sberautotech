@@ -16,7 +16,6 @@
         letter-spacing: -0.01em;
         background-color: transparent;
         outline: none;
-        overflow: scroll;
         resize: none;
         transition: border-color 300ms, background-color 300ms;
     }
