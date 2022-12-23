@@ -12,7 +12,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import { toBase64, toUnescapedHTML } from '../../utils';
 import { appContext } from '../../context/context';
 import useDocumentScrollThrottled from '../nav/use-document-scroll-throttled';
-import Alert from '../public-beta-signup/components/alert';
+import Alert from '../alert';
 
 import style from './index.css';
 
@@ -280,6 +280,7 @@ const RespondForm = () => {
                     </form>
                 </FormProvider>
             )}
+
             <Alert
                 type={isError ? 'error' : 'success'}
                 onCloseClick={preventClosePopup}

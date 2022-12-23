@@ -62,7 +62,6 @@
 }
 
 .text-block {
-
     &__header {
         font-weight: 400;
         font-size: 60px;
@@ -94,24 +93,24 @@
         }
     }
 
-    &__pr-email-label {
-        margin-top: 40px;
+    &__pr-email-label,
+    &__contact-email-label {
         color: #758794;
         font-size: 14px;
         line-height: 20px;
     }
 
-    &__pr-email,
-    &__contact-email {
-        font-size: 20px;
-        line-height: 28px;
+    &__pr-email-label {
+        margin-top: 40px;
     }
 
     &__contact-email-label {
         margin-top: 20px;
-        color: #758794;
-        font-size: 14px;
-        line-height: 20px;
+    }
+
+    &__email-link {
+        font-size: 20px;
+        line-height: 28px;
     }
 }
 
