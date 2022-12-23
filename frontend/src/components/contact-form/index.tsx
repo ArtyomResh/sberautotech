@@ -41,7 +41,6 @@ const query = graphql`
           contactEmailLabel
           prEmail
           prEmailLabel
-          title
         }
       }
     }
@@ -84,7 +83,6 @@ export const ContactForm = () => {
         contactEmail,
         prEmailLabel,
         prEmail,
-        title,
         errorSend,
         file,
         header,
@@ -227,7 +225,6 @@ export const ContactForm = () => {
                                 </div>
                                 <div className={cn('text-block')}>
                                     <h1 className={cn('text-block__header')}>{header}</h1>
-                                    <p className={cn('text-block__title-text')}>{title}</p>
                                     <p className={cn('text-block__pr-email-label')}>{prEmailLabel}</p>
                                     <a href={prEmail}><p className={cn('text-block__pr-email')}>{prEmail}</p></a>
                                     <p className={cn('text-block__pr-email-label')}>Для предложений о сотрудничестве</p>
