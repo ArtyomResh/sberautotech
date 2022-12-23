@@ -112,14 +112,6 @@
       },
       "type": "string"
     },
-    "title": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "prEmailLabel": {
       "pluginOptions": {
         "i18n": {
