@@ -27,7 +27,7 @@
       "type": "string"
     },
     "secondary_text": {
-      "type": "string"
+      "type": "text"
     },
     "primary_text_float": {
       "type": "enumeration",
