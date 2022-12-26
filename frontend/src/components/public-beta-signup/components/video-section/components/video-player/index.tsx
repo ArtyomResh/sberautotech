@@ -52,7 +52,6 @@ const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
                 ref={videoElement}
                 {...restProps}
             >
-                <source src={`${filePathToVideo}.avi`} type="video/avi" />
                 <source src={`${filePathToVideo}.webm`} type="video/webm" />
                 <source src={`${filePathToVideo}.mp4`} type="video/mp4" />
 
