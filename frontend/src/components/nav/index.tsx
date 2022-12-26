@@ -67,6 +67,7 @@ const query = graphql`
   }
 `;
 
+const isRu = process.env.GATSBY_LOCALE_CODE !== 'en';
 
 export const BETA_TEST_NAV_LINK: INavItem = {
     to   : BETA_TEST_LANDING_URL,
@@ -154,7 +155,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                 <ul className={cn('nav__list')}>
                     <div className={cn('nav__indicator')} style={indicatorStyles} />
                     {
-                        [BETA_TEST_NAV_LINK, ...links].map(({ text, to, navId }: INavItem, i: number) => (
+                        (isRu ? [BETA_TEST_NAV_LINK, ...links] : links).map(({ text, to, navId }: INavItem, i: number) => (
                             <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageId === navId })}>
                                 <Link to={to} className={cn('nav__link', `nav__link-${navId}`)}>
                                     {text}

@@ -193,6 +193,8 @@ const betaTestScreen: IMainPageScreenData = {
     text: '{Беспилотные автомобили} ждут первых пассажиров в&nbsp;парке «Сказка»'
 };
 
+const isRu = process.env.GATSBY_LOCALE_CODE !== 'en';
+
 const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
     const cn = useClassnames(style);
     const { isContactFormVisible, isRespondFormVisible } = useContext(appContext);
@@ -301,14 +303,16 @@ const IndexPage = () => {
     useEffect(() => {
         if(isMobile !== null) {
             const preloadVideos = [
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                fetch(betaTestScreen[isMobile ? 'mobileBackground' : 'background']!.localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(betaTestScreen) })),
                 fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.second_screen[0]) })),
                 fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.third_screen[0]) })),
                 fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.first_screen[0]) })),
                 fetch(screens.fourth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.fourth_screen[0]) }))
-            ];
+            ].filter(Boolean);
 
+            if(isRu) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                preloadVideos.unshift(fetch(betaTestScreen[isMobile ? 'mobileBackground' : 'background']!.localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(betaTestScreen) })));
+            }
             Promise.all(preloadVideos).then((data) => {
                 setIsLoading(false);
                 data.forEach(({ blob, blockId }) => {
@@ -322,13 +326,13 @@ const IndexPage = () => {
     }, [isMobile]);
 
     const allScreens = [
-        betaTestScreen,
+        isRu && betaTestScreen,
         screens.second_screen[0],
         screens.third_screen[0],
         screens.first_screen[0],
         screens.fourth_screen[0],
         screens.fifth_screen[0]
-    ] as Array<IMainPageScreenData>;
+    ].filter(Boolean) as Array<IMainPageScreenData>;
 
     const sortedScreens = links.map((link, index) => {
         return allScreens.find((screen) => screen.pageId && link.navId === screen.pageId) || allScreens[index];
