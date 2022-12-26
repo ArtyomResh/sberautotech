@@ -20,6 +20,7 @@ import LogoBlack from '../../images/logo-black.inline.svg';
 import Burger from '../../images/burger.inline.svg';
 import Cross from '../../images/cross.inline.svg';
 import Button from '../button';
+import { BETA_TEST_LANADING_NAV_ID, BETA_TEST_LANDING_URL } from '../public-beta-signup/constants';
 
 export interface INavItem {
     text: string,
@@ -65,6 +66,14 @@ const query = graphql`
       }
   }
 `;
+
+
+export const BETA_TEST_NAV_LINK: INavItem = {
+    to   : BETA_TEST_LANDING_URL,
+    text : 'Крылатское',
+    navId: BETA_TEST_LANADING_NAV_ID
+};
+
 
 const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
     const data = useStaticQuery(query);
@@ -145,7 +154,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                 <ul className={cn('nav__list')}>
                     <div className={cn('nav__indicator')} style={indicatorStyles} />
                     {
-                        links.map(({ text, to, navId }: INavItem, i: number) => (
+                        [BETA_TEST_NAV_LINK, ...links].map(({ text, to, navId }: INavItem, i: number) => (
                             <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageId === navId })}>
                                 <Link to={to} className={cn('nav__link', `nav__link-${navId}`)}>
                                     {text}
