@@ -37,7 +37,7 @@ enum ECursorDirection {
 
 const Carousel: React.FC<IProps> = ({ data }) => {
     const cn = useClassnames(style);
-    const $container = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const [cursorDirection, setCursorDirection] = useState({ prev: '', actual: ECursorDirection.none });
     const [cursorCoordinates, setCursorCoordinates] = useState({ сoordinateX: 0, сoordinateY: 0 });
     const [isAnimation, setIsAnimation] = useState<boolean>(false);
@@ -50,9 +50,9 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     };
 
     const onClick = useCallback(() => {
-        if (cursorDirection.actual === ECursorDirection.right) {
+        if(cursorDirection.actual === ECursorDirection.right) {
             swiper?.slideNext();
-        } else if (cursorDirection.actual === ECursorDirection.left) {
+        } else if(cursorDirection.actual === ECursorDirection.left) {
             swiper?.slidePrev();
         }
     }, [cursorDirection.actual, swiper]);
@@ -60,7 +60,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     const observeCursor = useCallback((e) => {
         const containerWidth = e.target?.closest('.carousel-container')?.clientWidth;
 
-        if (!containerWidth) {
+        if(!containerWidth) {
             return;
         }
 
@@ -68,7 +68,7 @@ const Carousel: React.FC<IProps> = ({ data }) => {
         const сoordinateY = e.clientY;
         const { top, bottom } = e.target?.closest('.carousel-container')?.getBoundingClientRect();
 
-        if (сoordinateY < top || сoordinateY > bottom) {
+        if(сoordinateY < top || сoordinateY > bottom) {
             setCursorDirection({ prev: cursorDirection.actual, actual: ECursorDirection.none });
 
             return;
@@ -78,13 +78,13 @@ const Carousel: React.FC<IProps> = ({ data }) => {
 
         const newCursorDirection = containerWidth / 2 >= cursorCoordinates.сoordinateX ? ECursorDirection.left : ECursorDirection.right;
 
-        if (newCursorDirection !== cursorDirection.actual) {
+        if(newCursorDirection !== cursorDirection.actual) {
             setCursorDirection({ prev: cursorDirection.actual, actual: newCursorDirection });
         }
     }, [cursorDirection.actual, cursorCoordinates]);
 
     useEffect(() => {
-        if ((cursorDirection.actual === 'left' || cursorDirection.actual === 'right') && cursorDirection.prev === 'none') {
+        if((cursorDirection.actual === 'left' || cursorDirection.actual === 'right') && cursorDirection.prev === 'none') {
             setIsAnimation(true);
         }
 
@@ -94,18 +94,18 @@ const Carousel: React.FC<IProps> = ({ data }) => {
     }, [cursorDirection]);
 
     useEffect(() => {
-        if ($container.current) {
-            const swiper = new Swiper($container.current, {
-                loop: true,
+        if(containerRef.current) {
+            const swiper = new Swiper(containerRef.current, {
+                loop          : true,
                 centeredSlides: true,
-                slidesPerView: 1,
-                spaceBetween: 0
+                slidesPerView : 1,
+                spaceBetween  : 0
             });
 
             setSwiper(swiper);
 
             return () => {
-                swiper.destroy();
+                swiper.destroy(true, true);
             };
         }
     }, []);
@@ -130,8 +130,8 @@ const Carousel: React.FC<IProps> = ({ data }) => {
 
     return (
         <div
-            className={cn('carousel-container', 'carousel')}
-            ref={$container}
+            className={cn('swiper', 'carousel-container', 'carousel')}
+            ref={containerRef}
             onMouseMove={observeCursor}
             onMouseLeave={() => {
                 setCursorDirection({ prev: cursorDirection.actual, actual: ECursorDirection.none });

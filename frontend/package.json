@@ -37,7 +37,7 @@
     "react-reveal": "^1.2.2",
     "react-select": "4.3.0",
     "rehype-raw": "6.0.0",
-    "swiper": "6.5.7"
+    "swiper": "^8.4.5"
   },
   "devDependencies": {
     "@types/classnames": "2.2.11",
