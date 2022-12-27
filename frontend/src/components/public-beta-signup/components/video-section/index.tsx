@@ -27,8 +27,8 @@ const VideoSection = () => {
 
             <VideoPlayer
                 className={cn('video-section__player')}
-                videoFileName="showreel"
-                poster={isMobile ? '/showreel_mobile.jpeg' : '/showreel_desktop.jpeg'}
+                videoFileName="showreel_2"
+                poster={isMobile ? '/showreel_2_mobile.jpeg' : '/showreel_2_desktop.jpeg'}
                 preload="metadata"
                 shouldStopPlaying={location.hash === '#modal'}
                 playsInline={true}

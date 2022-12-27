@@ -10,14 +10,15 @@
     }
 
     &__label {
-        padding: 16px 20px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        padding-left: 20px;
+        padding-right: 20px;
         display: flex;
         width: 100%;
         justify-content: center;
         align-items: center;
         border-radius: 60px;
-        border:none;
-        outline: none;
         background-color: var(--color-white);
         transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
         cursor: pointer;
@@ -31,6 +32,10 @@
 
         &_error {
             border: 2px solid red;
+        }
+
+        &_has-file {
+            padding-right: 62px;
         }
     }
 
@@ -48,11 +53,20 @@
     }
 
     &__cross {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        padding-left: 0;
+        padding-right: 0;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 30px;
         height: 30px;
+        border: none;
+        transform: translateY(-15px);
+        background-color: transparent;
+        cursor: pointer;
     }
 }
 
@@ -63,8 +77,8 @@
         &__label {
 
             @mixin t2;
-
-            padding: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
         }
     }
 }

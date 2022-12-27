@@ -39,7 +39,7 @@ const OpenTesting = (/* { onLinkClick }: IProps */) => {
                 <Heading
                     level={1}
                     className={cn('hero__title')}
-                    dangerouslySetInnerHTML={{ __html: formatText('{Беспилотные автомобили} ждут первых пассажиров уже в&#160;декабре') }}
+                    dangerouslySetInnerHTML={{ __html: formatText('{Беспилотные автомобили} ждут первых пассажиров в&#160;парке &#171;Сказка&#187;') }}
                 />
 
                 {/* <LinkButton
@@ -74,7 +74,7 @@ const OpenTesting = (/* { onLinkClick }: IProps */) => {
                     Когда
                 </Text>
                 <Heading level={2} as="p" className={cn('hero__location-details')}>
-                    24&#8211;25 декабря
+                    2&#8211;8 января
                 </Heading>
 
                 <Text className={cn('hero__location-details-title')} size={4} as="h3">

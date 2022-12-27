@@ -80,33 +80,4 @@
     &__button-respond {
         margin-top: 20px;
     }
-
-    &__bottom {
-        display: flex;
-        justify-items: center;
-    }
-
-    &__links-wrapper {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        width: 217px;
-        margin-left: 115px;
-
-        @media screen and (max-width: 1250px) {
-            margin-left: 75px;
-        }
-
-        & a {
-            cursor: pointer;
-        }
-
-        & a svg:hover {
-
-            & path {
-                fill: #758794;
-            }
-        }
-    }
-
 }
