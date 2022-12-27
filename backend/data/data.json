@@ -611,10 +611,10 @@
       "shareImage": null
     },
     "cookieBanner": {
-      "title": "We use cookies to improve the usability of the website.",
-      "description": "If you do not want your user data to be processed, please limit their use in your browser.",
-      "decline": "No",
-      "accept": "Accept"
+      "title": "We use cookies, to provide you with the best possible online experience.",
+      "description": "By clicking on “Accept all” you agree to the saving and reading of information on your device. By clicking on “Reject”, you reject the use of cookies that require consent.",
+      "decline": "Reject",
+      "accept": "Accept all"
     },
     "favicon": null
   },
