@@ -12,15 +12,10 @@ export const toUnescapedHTML = (text: string) => {
     return createElement('div', { dangerouslySetInnerHTML: { __html: text } });
 };
 
-export const gtagClicked = (event_category: string) => window
-    ?.gtag?.('event', 'click', { event_category, event_label: window?.location.pathname });
+type TGtagCommandOptions = Record<string, unknown>;
+type TWindowWithGtag = typeof globalThis & {gtag?: (opearation: string, commandOrOptions: TGtagCommandOptions | string, options?: TGtagCommandOptions) => void };
 
-export const enumToValues = (en) => {
-    const values = Object.values(en);
-    const keys = Object.keys(en);
-
-    return keys.map((key, index) => ({ value: key, label: values[index] }));
-};
+export const gtagClicked = (event_category: string) => (window as TWindowWithGtag)?.gtag?.('event', 'click', { event_category, event_label: window?.location.pathname });
 
 export const formatText = (text: string) => text
     .replace(/&#160;/g, ' ')

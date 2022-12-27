@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction, Dispatch, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../../hooks/use-classnames';
@@ -188,7 +188,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                 {isRu && (
                     <Button
                         type="button"
-                        size="s"
+                        buttonSize="s"
                         className={cn('nav__accept-button')}
                         onClick={onClick}
                     >

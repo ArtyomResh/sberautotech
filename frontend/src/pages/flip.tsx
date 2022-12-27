@@ -237,7 +237,7 @@ const FlipPage = () => {
 
     const registerVideo = useCallback((boundSelector: string, videoBlob: string) => {
         const bound = document.querySelector(boundSelector);
-        const video = document.querySelector(`${boundSelector} video`);
+        const video = document.querySelector(`${boundSelector} video`) as HTMLVideoElement;
 
         video?.setAttribute('src', videoBlob);
 
@@ -245,9 +245,9 @@ const FlipPage = () => {
             return;
         }
 
-        const primaryTextBlock = bound?.querySelector('.flip__text-wrapper_primary');
-        const primaryText = primaryTextBlock?.querySelector('.flip__screen-text');
-        const secondaryTextBlock = bound?.querySelector('.flip__text-wrapper_secondary');
+        const primaryTextBlock = bound?.querySelector('.flip__text-wrapper_primary') as HTMLElement;
+        const primaryText = primaryTextBlock?.querySelector('.flip__screen-text') as HTMLElement;
+        const secondaryTextBlock = bound?.querySelector('.flip__text-wrapper_secondary') as HTMLElement;
 
         const scrollVideo = debounce(() => {
             if(video?.duration) {
@@ -260,17 +260,17 @@ const FlipPage = () => {
                 if(primaryTextBlock && secondaryTextBlock) {
                     if(percentScrolled >= 0.5) {
                         primaryTextBlock.style.transform = `translateY(-${primaryTextBlock.offsetTop - 60}px)`;
-                        secondaryTextBlock.style.opacity = 1;
+                        secondaryTextBlock.style.opacity = '1';
 
                         if(primaryText) {
-                            primaryText.style.opacity = 0;
+                            primaryText.style.opacity = '0';
                         }
                     } else {
                         primaryTextBlock.style.transform = 'translateY(0px)';
-                        secondaryTextBlock.style.opacity = 0;
+                        secondaryTextBlock.style.opacity = '0';
 
                         if(primaryText) {
-                            primaryText.style.opacity = 1;
+                            primaryText.style.opacity = '1';
                         }
                     }
                 }
@@ -313,13 +313,13 @@ const FlipPage = () => {
                     <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
                 ) : (
                     <div className={cn('flip__wrapper', { 'flip__wrapper_mobile': isMobile })}>
-                        <FlipScreen data={first_screen} id="bound-1" />
-                        <FlipScreen data={third_screen} id="bound-2" />
-                        <FlipScreen data={fourth_screen} id="bound-3" />
-                        <FlipScreen data={fifth_screen} id="bound-4" />
-                        <FlipScreen data={sixth_screen} id="bound-5" icon={SberCloudLogoIcon} />
-                        <FlipScreen data={seventh_screen} id="bound-6" />
-                        <FlipScreen data={eighth_screen} id="bound-7" />
+                        <FlipScreen isMobile={isMobile} data={first_screen} id="bound-1" />
+                        <FlipScreen isMobile={isMobile} data={third_screen} id="bound-2" />
+                        <FlipScreen isMobile={isMobile} data={fourth_screen} id="bound-3" />
+                        <FlipScreen isMobile={isMobile} data={fifth_screen} id="bound-4" />
+                        <FlipScreen isMobile={isMobile} data={sixth_screen} id="bound-5" icon={SberCloudLogoIcon} />
+                        <FlipScreen isMobile={isMobile} data={seventh_screen} id="bound-6" />
+                        <FlipScreen isMobile={isMobile} data={eighth_screen} id="bound-7" />
                         <img className={cn('flip__logo')} src={FlipLogoIcon} />
                         <Footer className={cn('flip__footer')} />
                     </div>

@@ -5,39 +5,15 @@ import { useClassnames } from '../../hooks/use-classnames';
 import { appContext } from '../../context/context';
 
 import style from './index.css';
-import VacanciesItem from './item';
+import VacanciesItem, { IVacanciesListItem } from './item';
 
 interface IProps {
     data: Array<IVacanciesListItem>,
-    activeTags: Array<any>,
+    activeTags: Array<number>,
     onClickTag: any,
     searchString: string
 }
 
-export interface IVacanciesListItem {
-    id: string,
-    locale: string,
-    title: string,
-    conditions: string,
-    city: {
-        text: string,
-        value: string
-    },
-    area: {
-        text: string,
-        value: string
-    },
-    direction: {
-        header: string
-    },
-    tags: Array<any>,
-    about: string,
-    jobType: string,
-    publicationDate: string,
-    whatWaitingFor: string,
-    whatToDo: string,
-    strapiId: number
-}
 
 const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag, searchString }) => {
     const cn = useClassnames(style);

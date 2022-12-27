@@ -5,9 +5,14 @@ import Tag from '../tag';
 
 import style from './index.css';
 
+export interface ITagListItem {
+    text: string,
+    id: number,
+    strapiId?: number
+}
 interface IProps {
-    tags: Array<any>,
-    activeTags: Array<any>,
+    tags: Array<ITagListItem>,
+    activeTags: Array<number>,
     onClickTag: any
 }
 
@@ -17,8 +22,8 @@ const TagsList = ({ tags, activeTags, onClickTag }: IProps) => {
     return (
         <ul className={cn('tags-list')}>
             {tags.map(
-                (tag => (
-                    <Tag text={tag.text} strapiId={tag.strapiId || tag.id} isActive={activeTags?.includes(tag.strapiId || tag.id)} onClickTag={onClickTag} />
+                ((tag) => (
+                    <Tag key={tag.strapiId || tag.id} text={tag.text} strapiId={tag.strapiId || tag.id} isActive={activeTags?.includes(tag.strapiId || tag.id)} onClickTag={onClickTag} />
                 )
                 ))}
         </ul>

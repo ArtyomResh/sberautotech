@@ -1,11 +1,14 @@
 import React, { useCallback, useState, useRef } from 'react';
 import { Link } from 'gatsby';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown, { PluginOptions } from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import { toUnescapedHTML } from '../../utils';
 import PlayButton from '../../images/play-button-vacancy.inline.svg';
+import { IVacancy, ITag } from '../../types/strapi/vacancies';
+import { IStrapiSingleType } from '../../types/strapi';
+import { IVacancyPage } from '../../types/strapi/vacancyPage';
 
 import Layout from '../layout';
 
@@ -14,87 +17,19 @@ import ButtonWrapper from './components/button-wrapper';
 
 import styles from './index.css';
 
-interface IArea {
-    text: string
-}
-
-interface ICity {
-    text: string
-}
-
-interface IDirection {
-    header: string,
-    id: number
-}
-
-interface IJobType {
-    duration: string,
-    text: string
-}
-
-interface ITag {
-    text: string,
-    value: string,
-    id: number
-}
-
-export interface IStrapiVacancies {
-    about: string,
-    area: IArea,
-    city: ICity,
-    conditions: string,
-    customDescription: string,
-    direction: IDirection,
-    jobType: IJobType,
-    publicationDate: string,
-    tags: Array<ITag>,
-    title: string,
-    whatToDo: string,
-    whatWaitingFor: string,
-    customDescriptionHeader: string,
-    conditionsHeader: string,
-    plussesHeader: string,
-    plusses: string,
-    whatToDoHeader: string,
-    whatWaitingForHeader: string,
-    huntflowId: string
-}
-
-interface IUrl {
-    url: string
-}
-
-interface ILocalFile {
-    localFile: IUrl
-}
-
-interface ISeo {
-    shareImage: ILocalFile,
-    metaTitle: string,
-    metaDescription: string
-}
-
-interface INode {
-    pageId: string,
-    count: string,
-    countText: string,
-    headerBottom: string,
-    seo: ISeo,
-    textBottom: string,
-    video: ILocalFile
-}
-
-interface INodes {
-    node: INode
-}
-
-interface IEdges {
-    edges: Array<INodes>
-}
+type TNode = Pick<IVacancyPage,
+'pageId'|
+'count'|
+'countText'|
+'headerBottom'|
+'seo'|
+'textBottom'|
+'video'
+>;
 
 interface IData {
-    strapiVacancies: IStrapiVacancies,
-    allStrapiVacancyPage: IEdges
+    strapiVacancies: IVacancy,
+    allStrapiVacancyPage: IStrapiSingleType<TNode>
 }
 
 export interface IProps {
@@ -125,6 +60,8 @@ const Vacancy: React.FC<IProps> = ({ data }) => {
     const backToPreviousPage = useCallback(() => {
         window.history.back();
     }, []);
+
+    const rehypePlugins = [rehypeRaw] as PluginOptions['rehypePlugins'];
 
     return (
         <div className={cn('vacancy__page')}>
@@ -166,39 +103,39 @@ const Vacancy: React.FC<IProps> = ({ data }) => {
                             </ul>
 
                             <div className={cn('vacancy__about-wrapper')}>
-                                <ReactMarkdown rehypePlugins={[rehypeRaw]} children={about} />
+                                <ReactMarkdown rehypePlugins={rehypePlugins} children={about} />
                             </div>
 
                             {customDescription ? (
                                 <div className={cn('vacancy__text-wrapper')}>
                                     <h1>{customDescriptionHeader}</h1>
 
-                                    <ReactMarkdown rehypePlugins={[rehypeRaw]} children={customDescription} />
+                                    <ReactMarkdown rehypePlugins={rehypePlugins} children={customDescription} />
                                 </div>) : null}
 
                             <div className={cn('vacancy__text-wrapper')}>
                                 <h1>{whatToDoHeader}</h1>
 
-                                <ReactMarkdown rehypePlugins={[rehypeRaw]} children={whatToDo} />
+                                <ReactMarkdown rehypePlugins={rehypePlugins} children={whatToDo} />
                             </div>
 
                             <div className={cn('vacancy__text-wrapper')}>
                                 <h1>{whatWaitingForHeader}</h1>
 
-                                <ReactMarkdown rehypePlugins={[rehypeRaw]} children={whatWaitingFor} />
+                                <ReactMarkdown rehypePlugins={rehypePlugins} children={whatWaitingFor} />
                             </div>
 
                             {plusses ? (
                                 <div className={cn('vacancy__text-wrapper')}>
                                     <h1>{plussesHeader}</h1>
 
-                                    <ReactMarkdown rehypePlugins={[rehypeRaw]} children={plusses} />
+                                    <ReactMarkdown rehypePlugins={rehypePlugins} children={plusses} />
                                 </div>) : null}
 
                             <div className={cn('vacancy__text-wrapper')}>
                                 <h1>{conditionsHeader}</h1>
 
-                                <ReactMarkdown rehypePlugins={[rehypeRaw]} children={conditions} />
+                                <ReactMarkdown rehypePlugins={rehypePlugins} children={conditions} />
                             </div>
                         </div>
                     </div>

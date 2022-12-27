@@ -58,7 +58,7 @@ const Footer = ({ className }: {className?: string}) => {
             {isRu && (
                 <Button
                     className={cn('main-footer__button')}
-                    size="s"
+                    buttonSize="s"
                     onClick={handleClick}
                 >
                     {modalLinkText}
