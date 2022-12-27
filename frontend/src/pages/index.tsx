@@ -9,6 +9,7 @@ import MainPageBlock, { IBlock } from '../components/main-page-block';
 
 import style from './index.css';
 import Loader from '../components/loader/loaderComponent';
+import { isRu } from '../utils/locale';
 import { appContext } from '../context/context';
 import { BETA_TEST_NAV_LINK, INavItem } from '../components/nav';
 import { BETA_TEST_LANADING_NAV_ID } from '../components/public-beta-signup/constants';
@@ -192,8 +193,6 @@ const betaTestScreen: IMainPageScreenData = {
     },
     text: '{Беспилотные автомобили} ждут первых пассажиров в&nbsp;парке «Сказка»'
 };
-
-const isRu = process.env.GATSBY_LOCALE_CODE !== 'en';
 
 const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
     const cn = useClassnames(style);

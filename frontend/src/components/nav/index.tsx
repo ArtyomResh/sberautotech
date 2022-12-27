@@ -21,6 +21,7 @@ import Burger from '../../images/burger.inline.svg';
 import Cross from '../../images/cross.inline.svg';
 import Button from '../button';
 import { BETA_TEST_LANADING_NAV_ID, BETA_TEST_LANDING_URL } from '../public-beta-signup/constants';
+import { isRu } from '../../utils/locale';
 
 export interface INavItem {
     text: string,
@@ -66,8 +67,6 @@ const query = graphql`
       }
   }
 `;
-
-const isRu = process.env.GATSBY_LOCALE_CODE !== 'en';
 
 export const BETA_TEST_NAV_LINK: INavItem = {
     to   : BETA_TEST_LANDING_URL,
