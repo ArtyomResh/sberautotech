@@ -23,6 +23,10 @@ export const formatText = (text: string) => text
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 export const pluralize = (n: number, one: string, few: string, many: string) => {
+    if(typeof n !== 'number' || typeof one !== 'string' || typeof few !== 'string' || typeof many !== 'string') {
+        return;
+    }
+
     const nP100 = n % 100;
     const nP10 = n % 10;
 
