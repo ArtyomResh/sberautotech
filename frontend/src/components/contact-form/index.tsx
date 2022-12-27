@@ -24,21 +24,20 @@ const query = graphql`
       edges {
         node {
           consent
-          email
-          errorButtonText
-          errorSend
+          errorContactSend
           file
           header
           locale
           name
-          successButtonText
-          successSend
+          successContactSend
           buttonText
           theme
           comment
           mail
           contactEmail
           contactEmailLabel
+          commercialProposalsEmail
+          commercialProposalsEmailLabel
           prEmail
           prEmailLabel
         }
@@ -83,14 +82,16 @@ export const ContactForm = () => {
         contactEmail,
         prEmailLabel,
         prEmail,
-        errorSend,
+        commercialProposalsEmail,
+        commercialProposalsEmailLabel,
+        errorContactSend,
         file,
         header,
         locale,
         name,
         theme,
         comment,
-        successSend,
+        successContactSend,
         buttonText
     } = data.allStrapiRespondForm.edges[0].node;
 
@@ -227,8 +228,8 @@ export const ContactForm = () => {
                                     <h1 className={cn('text-block__header')}>{header}</h1>
                                     <p className={cn('text-block__pr-email-label')}>{prEmailLabel}</p>
                                     <a href={prEmail}><p className={cn('text-block__pr-email')}>{prEmail}</p></a>
-                                    <p className={cn('text-block__pr-email-label')}>Для предложений о сотрудничестве</p>
-                                    <a href="partners@sberautotech.ru"><p className={cn('text-block__pr-email')}>partners@sberautotech.ru</p></a>
+                                    <p className={cn('text-block__pr-email-label')}>{commercialProposalsEmailLabel}</p>
+                                    <a href="partners@sberautotech.ru"><p className={cn('text-block__pr-email')}>{commercialProposalsEmail}</p></a>
                                     <p className={cn('text-block__contact-email-label')}>{contactEmailLabel}</p>
                                     <a href={contactEmail}><p className={cn('text-block__contact-email')}>{contactEmail}</p></a>
                                 </div>
@@ -284,7 +285,7 @@ export const ContactForm = () => {
                 onCloseClick={preventClosePopup}
                 isVisible={isSended}
             >
-                {isError ? errorSend : successSend}
+                {isError ? errorContactSend : successContactSend}
             </Alert>
         </React.Fragment>
     );
