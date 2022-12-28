@@ -165,14 +165,16 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                 </ul>
 
                 <div className={cn('nav__bottom-block')}>
-                    <Button
-                        type="button"
-                        className={cn('nav__bottom-block-accept-button')}
-                        isBlock={true}
-                        onClick={onClick}
-                    >
-                        {joinButtonText}
-                    </Button>
+                    {isRu && (
+                        <Button
+                            type="button"
+                            className={cn('nav__bottom-block-accept-button')}
+                            isBlock={true}
+                            onClick={onClick}
+                        >
+                            {joinButtonText}
+                        </Button>
+                    )}
 
                     <div className={cn('nav__link-block')}>
                         <Link className={cn('nav__link-bottom-block')} to={privacyPolicyLink} title={privacyPolicyText}>{privacyPolicyText}</Link>
@@ -183,14 +185,16 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                     </span>
                 </div>
 
-                <Button
-                    type="button"
-                    size="s"
-                    className={cn('nav__accept-button')}
-                    onClick={onClick}
-                >
-                    {joinButtonText}
-                </Button>
+                {isRu && (
+                    <Button
+                        type="button"
+                        size="s"
+                        className={cn('nav__accept-button')}
+                        onClick={onClick}
+                    >
+                        {joinButtonText}
+                    </Button>
+                )}
             </div>
             <div className={cn('nav__right')}>
                 <button className={cn('nav__menu-button')} onClick={onMenuButtonClick}>
