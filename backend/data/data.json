@@ -747,7 +747,7 @@
         {
           "target": "System that reacts faster than a professional driver",
           "header": "Safety",
-          "description": "Our engineers equipped our cars with the optimal combination of radars, lidars, and cameras. The self-driving car has a 360° view with no blind spots and constantly monitors the road. The reaction of an average driver is about 1,5 seconds. Our system reacts 5 times faster. That&#39;s why autonomous driving technologies can reduce accidents and make our daily life safer.",
+          "description": "Our engineers equipped our cars with the optimal combination of radars, lidars, and cameras. The self-driving car has a 360° view with no blind spots and constantly monitors the road. The reaction of an average driver is about 1,5 seconds. Our system reacts 5 times faster. That's why autonomous driving technologies can reduce accidents and make our daily life safer.",
           "image": null
         },
         {
@@ -977,7 +977,7 @@
       "mobileBackground": null,
       "backgroundOgg": null,
       "primary_header": "FLIP {is waiting for you}",
-      "secondary_header": "FLIP is integrated </br>into the {Sberbank ecosystem}",
+      "secondary_header": "FLIP is integrated </br>into the {Sber ecosystem}",
       "primary_text": "",
       "secondary_text": "",
       "primary_text_float": "right",
@@ -3364,7 +3364,7 @@
   "FooterEn": {
     "id": 1,
     "locale": "en",
-    "header": "This is just the beginning of the new era of transportation. Join us in this adventure! Introduce yourself and we will contact you as soon as we can.",
+    "header": "Do&nbsp;you want to&nbsp;ask a&nbsp;question or&nbsp;learn more about SberAutoTech activities? Write to&nbsp;us by&nbsp;filling out the form. We&nbsp;will definitely contact you.",
     "description": "We are only at the beginning of the path and cannot reveal all the plans. Fill out a questionnaire about yourself, send it and we will contact you as soon as there is an opportunity to take you to the team.",
     "disclaimer": "The information published on the Site is provided for informational purposes only.",
     "copyright": "© SberAutoTech, 2022",
