@@ -1,9 +1,9 @@
 import React from 'react';
 import Fade from 'react-reveal/Fade';
 
-import Heading from '../../../heading';
-import { useClassnames } from '../../../../hooks/use-classnames';
-import Cross from '../../../../images/cross.inline.svg';
+import Heading from '../heading';
+import { useClassnames } from '../../hooks/use-classnames';
+import Cross from '../../images/cross.inline.svg';
 
 import styles from './index.css';
 
