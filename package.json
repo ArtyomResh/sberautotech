@@ -10,6 +10,7 @@
     "inst": "yarn && cd backend && yarn && cd ../frontend && yarn && cd .."
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
     "@types/swiper": "5.4.2",
     "@typescript-eslint/eslint-plugin": "4.14.0",
     "@typescript-eslint/parser": "4.14.0",

@@ -128,7 +128,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
     };
 
     const onClick = () => {
-        gtagClicked('header_button_click', 'Join button');
+        gtagClicked('header_button_click');
         // @ts-expect-error: ym подставляется только при NODE_ENV === 'production'
         typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'form--success--svyazatsya_s_nami');
 

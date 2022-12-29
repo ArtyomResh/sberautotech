@@ -12,10 +12,7 @@ export const toUnescapedHTML = (text: string) => {
     return createElement('div', { dangerouslySetInnerHTML: { __html: text } });
 };
 
-type TGtagCommandOptions = Record<string, unknown>;
-type TWindowWithGtag = typeof globalThis & {gtag?: (opearation: string, commandOrOptions: TGtagCommandOptions | string, options?: TGtagCommandOptions) => void };
-
-export const gtagClicked = (event_category: string) => (window as TWindowWithGtag)?.gtag?.('event', 'click', { event_category, event_label: window?.location.pathname });
+export const gtagClicked = (event_category: string) => window?.gtag?.('event', 'click', { event_category, event_label: window?.location.pathname });
 
 export const formatText = (text: string) => text
     .replace(/&#160;/g, ' ')
