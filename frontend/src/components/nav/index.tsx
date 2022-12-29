@@ -21,6 +21,7 @@ import Burger from '../../images/burger.inline.svg';
 import Cross from '../../images/cross.inline.svg';
 import Button from '../button';
 import { BETA_TEST_LANADING_NAV_ID, BETA_TEST_LANDING_URL } from '../public-beta-signup/constants';
+import { isRu } from '../../utils/locale';
 
 export interface INavItem {
     text: string,
@@ -66,7 +67,6 @@ const query = graphql`
       }
   }
 `;
-
 
 export const BETA_TEST_NAV_LINK: INavItem = {
     to   : BETA_TEST_LANDING_URL,
@@ -154,7 +154,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                 <ul className={cn('nav__list')}>
                     <div className={cn('nav__indicator')} style={indicatorStyles} />
                     {
-                        [BETA_TEST_NAV_LINK, ...links].map(({ text, to, navId }: INavItem, i: number) => (
+                        (isRu ? [BETA_TEST_NAV_LINK, ...links] : links).map(({ text, to, navId }: INavItem, i: number) => (
                             <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageId === navId })}>
                                 <Link to={to} className={cn('nav__link', `nav__link-${navId}`)}>
                                     {text}
@@ -165,14 +165,16 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                 </ul>
 
                 <div className={cn('nav__bottom-block')}>
-                    <Button
-                        type="button"
-                        className={cn('nav__bottom-block-accept-button')}
-                        isBlock={true}
-                        onClick={onClick}
-                    >
-                        {joinButtonText}
-                    </Button>
+                    {isRu && (
+                        <Button
+                            type="button"
+                            className={cn('nav__bottom-block-accept-button')}
+                            isBlock={true}
+                            onClick={onClick}
+                        >
+                            {joinButtonText}
+                        </Button>
+                    )}
 
                     <div className={cn('nav__link-block')}>
                         <Link className={cn('nav__link-bottom-block')} to={privacyPolicyLink} title={privacyPolicyText}>{privacyPolicyText}</Link>
@@ -183,14 +185,16 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                     </span>
                 </div>
 
-                <Button
-                    type="button"
-                    size="s"
-                    className={cn('nav__accept-button')}
-                    onClick={onClick}
-                >
-                    {joinButtonText}
-                </Button>
+                {isRu && (
+                    <Button
+                        type="button"
+                        size="s"
+                        className={cn('nav__accept-button')}
+                        onClick={onClick}
+                    >
+                        {joinButtonText}
+                    </Button>
+                )}
             </div>
             <div className={cn('nav__right')}>
                 <button className={cn('nav__menu-button')} onClick={onMenuButtonClick}>

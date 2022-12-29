@@ -99,7 +99,7 @@
     },
     "first_screen": [
       {
-        "text": "{The Future}<br/>{Driverless transportation will change the life of modern megapolis.} Chaotic city logistics will open a way to new technologies. With the help of AI technologies, traffic in most congested areas will be reduced, to provide citizens with time and space for their daily lives.",
+        "text": "{The Future is&nbsp;close}<br/>Driverless transportation will change the life of&nbsp;modern megapolis. Roads will be&nbsp;less loaded, and citizens will get more time and much safer space for their daily lives.",
         "link": null,
         "cards": [],
         "background": null,
@@ -611,10 +611,10 @@
       "shareImage": null
     },
     "cookieBanner": {
-      "title": "We use cookies to improve the usability of the website.",
-      "description": "If you do not want your user data to be processed, please limit their use in your browser.",
-      "decline": "No",
-      "accept": "Accept"
+      "title": "We use cookies, to provide you with the best possible online experience.",
+      "description": "By clicking on “Accept all” you agree to the saving and reading of information on your device. By clicking on “Reject”, you reject the use of cookies that require consent.",
+      "decline": "Reject",
+      "accept": "Accept all"
     },
     "favicon": null
   },
@@ -747,7 +747,7 @@
         {
           "target": "System that reacts faster than a professional driver",
           "header": "Safety",
-          "description": "Our engineers equipped our cars with the optimal combination of radars, lidars, and cameras. The self-driving car has a 360° view with no blind spots and constantly monitors the road. The reaction of an average driver is about 1,5 seconds. Our system reacts 5 times faster. That&#39;s why autonomous driving technologies can reduce accidents and make our daily life safer.",
+          "description": "Our engineers equipped our cars with the optimal combination of radars, lidars, and cameras. The self-driving car has a 360° view with no blind spots and constantly monitors the road. The reaction of an average driver is about 1,5 seconds. Our system reacts 5 times faster. That's why autonomous driving technologies can reduce accidents and make our daily life safer.",
           "image": null
         },
         {
@@ -967,7 +967,7 @@
       "backgroundOgg": null,
       "primary_header": "FLIP {never stops learning}",
       "secondary_header": "",
-      "primary_text": "[It uses up to 2TB of information a day]</br></br>Neural networks and computer vision systems use data for&nbsp;environmental analysis and constant training.",
+      "primary_text": "[Up to 2TB/day]</br></br>Neural networks and computer vision systems use data for&nbsp;environmental analysis and constant training.",
       "secondary_text": "This array of&nbsp;information is stored and processed in&nbsp;SberCloud, a&nbsp;cloud service in Sber ecosystem",
       "primary_text_float": "left",
       "secondary_text_float": "left"
@@ -977,7 +977,7 @@
       "mobileBackground": null,
       "backgroundOgg": null,
       "primary_header": "FLIP {is waiting for you}",
-      "secondary_header": "FLIP is a reimagined mobility: it is fully connected and integrated into {the&nbsp;Sber ecosystem}",
+      "secondary_header": "FLIP is integrated </br>into the {Sber ecosystem}",
       "primary_text": "",
       "secondary_text": "",
       "primary_text_float": "right",
@@ -3346,7 +3346,7 @@
         "navId": "career"
       }
     ],
-    "joinButtonText": "Join us"
+    "joinButtonText": "Stay in touch"
   },
   "FooterRu": {
     "id": 1,
@@ -3354,16 +3354,17 @@
     "header": "Мы только в начале пути и не можем раскрыть всех планов. Заполняйте анкету о себе, присылайте и мы обратимся к вам, как только будет возможность взять вас в команду.",
     "disclaimer": "Общество с ограниченной ответственностью «Сбер Автомотив Технологии»\nИНН 9725045830, ОГРН 1217700104160, КПП 772501001\nАдрес места нахождения: 115432, Россия, г. Москва, проспект Андропова, дом 10А",
     "copyright": "© SberAutoTech, 2022",
-    "coreBusiness": "основной вид деятельности: ОКВЭД 62.01",
+    "coreBusiness": "Основной вид деятельности: ОКВЭД 62.01",
     "accreditationIsLink": true,
     "accreditationText": "Аккредитация в качестве ИТ-компании",
     "privacyPolicyIsLink": true,
-    "privacyPolicyText": "Политика конфиденциальности"
+    "privacyPolicyText": "Политика конфиденциальности",
+    "modalLinkText": "Связаться с нами"
   },
   "FooterEn": {
     "id": 1,
     "locale": "en",
-    "header": "This is just the beginning of the new era of transportation. Join us in this adventure! Introduce yourself and we will contact you as soon as we can.",
+    "header": "Do you want to ask a question or learn more about SberAutoTech activities? Write to us by filling out the form. We will definitely contact you.",
     "description": "We are only at the beginning of the path and cannot reveal all the plans. Fill out a questionnaire about yourself, send it and we will contact you as soon as there is an opportunity to take you to the team.",
     "disclaimer": "The information published on the Site is provided for informational purposes only.",
     "copyright": "© SberAutoTech, 2022",
@@ -3371,7 +3372,8 @@
     "accreditationIsLink": false,
     "accreditationText": "Tax number 9725045830",
     "privacyPolicyIsLink": false,
-    "privacyPolicyText": ""
+    "privacyPolicyText": "",
+    "modalLinkText": "Contact us"
   },
   "PrivacyPolicyRu": {
     "id": 1,
@@ -3390,6 +3392,8 @@
     "title": "Хотите задать вопрос или узнать больше о деятельности SberAutoTech? Напишите нам или заполните форму. Мы обязательно с вами свяжемся.",
     "prEmailLabel": "Для СМИ",
     "prEmail": "pr@sberautotech.ru",
+    "commercialProposalsEmailLabel": "Для предложений о сотрудничестве",
+    "commercialProposalsEmail": "partners@sberautotech.ru",
     "contactEmailLabel": "По другим вопросам",
     "contactEmail": "contact@sberautotech.ru",
     "vacancyRespondHeader": "Откликнуться</br>на вакансию",
@@ -3406,6 +3410,8 @@
     "file": "Прикрепить файл",
     "successSend": "Сообщение отправлено.</br>Благодарим за интерес к нашей компании!",
     "errorSend": "Ваше резюме <p>не отправлено.</p> Попробуйте еще раз.",
+    "successContactSend": "Благодарим за обращение.",
+    "errorContactSend": "Обращение не отправлено. Попробуйте еще раз.",
     "errorButtonText": "Открыть форму",
     "successButtonText": "Отправить еще одно",
     "buttonText": "Отправить"
@@ -3413,28 +3419,32 @@
   "RespondFormEn": {
     "id": 1,
     "locale": "en",
-    "header": "Связаться с нами",
-    "title": "Хотите задать вопрос или узнать больше о деятельности SberAutoTech? Напишите нам или заполните форму. Мы обязательно с вами свяжемся.",
-    "prEmailLabel": "Отдел по связям с общественностью",
+    "header": "Stay in touch",
+    "title": "Ask us a question or learn more about the SberAutoTech! Write to us directly or fill out the form.",
+    "prEmailLabel": "PR Department",
     "prEmail": "pr@sberautotech.ru",
-    "contactEmailLabel": "По другим вопросам",
+    "commercialProposalsEmailLabel": "For commercial proposals",
+    "commercialProposalsEmail": "partners@sberautotech.ru",
+    "contactEmailLabel": "For other questions",
     "contactEmail": "contact@sberautotech.ru",
     "vacancyRespondHeader": "Откликнуться</br>на вакансию",
     "vacancyRespondTitle": "Руководитель направления технической поддержки SberAutoTech",
-    "name": "Имя",
-    "surname": "Фамилия",
+    "name": "Name",
+    "surname": "Surname",
     "email": "Email",
-    "mail": "Почта",
+    "mail": "Email",
     "fewWordsAboutMyself": "Пара слов о себе",
-    "theme": "Тема",
-    "comment": "Комментарий",
-    "telephone": "Телефон",
-    "consent": "Даю согласие на обработку моих персональных данных в соответствии с политикой конфиденциальности",
-    "file": "Прикрепить файл",
+    "theme": "Theme",
+    "comment": "Comment",
+    "telephone": "Telephone",
+    "consent": "I consent to the processing of my personal data in accordance with the privacy policy",
+    "file": "Attach file",
     "successSend": "Сообщение отправлено.</br>Благодарим за интерес к нашей компании!",
     "errorSend": "Ваше резюме <p>не отправлено.</p> Попробуйте еще раз.",
+    "successContactSend": "Thank you for contacting us.",
+    "errorContactSend": "Message has not been sent. Try again.",
     "errorButtonText": "Открыть форму",
     "successButtonText": "Отправить еще одно",
-    "buttonText": "Отправить"
+    "buttonText": "Send"
   }
 }

@@ -26,7 +26,7 @@
             letter-spacing: -0.01em;
             max-width: 300px;
         }
-        
+
     }
 
     &__play {
@@ -72,7 +72,7 @@
         grid-template-columns: 1fr 1fr;
         padding-bottom: 40px;
         margin: 40px 20px 0px 20px;
-        /* grid-gap: 40px; */
+        align-items: flex-start;
 
         &_inner {
             display: grid;
