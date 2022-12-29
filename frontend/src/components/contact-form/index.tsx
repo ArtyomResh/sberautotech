@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import Input from '../respond-form//input';
 import Textarea from '../respond-form/textarea';
-import Button from '../button';
+import Button from '../button-like/button';
 import CheckBox from '../respond-form/check-box';
 import { useClassnames } from '../../hooks/use-classnames';
 import { toBase64 } from '../../utils';

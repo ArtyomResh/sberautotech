@@ -6,7 +6,7 @@ import Layout from '../components/layout';
 import VacanciesList from '../components/vacancies-list';
 import TagsList from '../components/tags-list';
 import DirectionsList from '../components/directions-list';
-import Button from '../components/button';
+import Button from '../components/button-like/button';
 
 import { useClassnames } from '../hooks/use-classnames';
 

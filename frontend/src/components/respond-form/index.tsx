@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import Input from './input';
 import Textarea from './textarea';
-import Button from '../button';
+import Button from '../button-like/button';
 import CheckBox from './check-box';
 import InputFile from './inputFile';
 import { useClassnames } from '../../hooks/use-classnames';

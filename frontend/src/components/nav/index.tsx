@@ -1,27 +1,26 @@
 import React, { useState, SetStateAction, Dispatch, useEffect, useContext } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
-import { useClassnames } from '../../hooks/use-classnames';
-import useWindowSize from '../../hooks/use-window-resize';
-
-import style from './index.css';
-
-const MINIMUM_SCROLL = 5;
-const TIMEOUT_DELAY = 0;
-const PADDING = 20;
-
-import useDocumentScrollThrottled from './use-document-scroll-throttled';
-import { gtagClicked, toUnescapedHTML } from '../../utils';
 import { appContext } from '../../context/context';
 import { YM_ID } from '../../constants';
-
 import LogoWhite from '../../images/logo-white.inline.svg';
 import LogoBlack from '../../images/logo-black.inline.svg';
 import Burger from '../../images/burger.inline.svg';
 import Cross from '../../images/cross.inline.svg';
-import Button from '../button';
-import { BETA_TEST_LANADING_NAV_ID, BETA_TEST_LANDING_URL } from '../public-beta-signup/constants';
+import { useClassnames } from '../../hooks/use-classnames';
+import useWindowSize from '../../hooks/use-window-resize';
+import { gtagClicked, toUnescapedHTML } from '../../utils';
 import { isRu } from '../../utils/locale';
+
+import Button from '../button-like/button';
+import { BETA_TEST_LANADING_NAV_ID, BETA_TEST_LANDING_URL } from '../public-beta-signup/constants';
+
+import style from './index.css';
+import useDocumentScrollThrottled from './use-document-scroll-throttled';
+
+const MINIMUM_SCROLL = 5;
+const TIMEOUT_DELAY = 0;
+const PADDING = 20;
 
 export interface INavItem {
     text: string,

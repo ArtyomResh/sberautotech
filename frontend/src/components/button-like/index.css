@@ -1,0 +1,174 @@
+@import "../text/index.css";
+
+@define-mixin button_like_base_styles $selector {
+    .$(selector) {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        padding-left: 20px;
+        padding-right: 20px;
+        display: flex;
+        width: max-content;
+        height: max-content;
+        justify-content: center;
+        align-items: center;
+        border-radius: 60px;
+        border:none;
+        transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+        cursor: pointer;
+
+        @mixin-content;
+    }
+}
+
+@define-mixin button_like_elements_styles $selector {
+    .$(selector)__loader {
+        position: absolute;
+
+        svg {
+            height: 1.5em;
+            color: inherit;
+        }
+    }
+}
+
+@define-mixin button_like_state_styles $selector {
+    .$(selector) {
+        --color-accent: #66d4d0;
+        --color-accent-hover: #5ec4c1;
+        --color-accent-pressed: #6de3df;
+        --color-gray: #eef1f4;
+
+        &_variant-primary {
+            color: var(--color-white);
+            background-color: var(--color-accent);
+        }
+
+        &_variant-secondary,
+        &_active {
+            color: var(--color-black);
+            background-color: var(--color-neutral);
+
+            @media (hover: hover) and (pointer: fine) {
+
+                &:hover {
+                    color: var(--color-white);
+                    background-color: var(--color-neutral);
+                }
+            }
+
+            &:active {
+                background-color: var(--color-neutral);
+            }
+        }
+
+        &_block {
+            width: 100%;
+        }
+
+        &_text-hidden {
+            color: transparent;
+            user-select: none;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+
+            &:hover {
+                background-color: var(--color-accent-hover);
+            }
+        }
+
+        &:active {
+            background-color: var(--color-accent-pressed);
+        }
+
+        &:disabled {
+            color: var(--color-gray-dark); 
+            background-color: var(--color-gray);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+}
+
+@define-mixin button_like_size_l_styles $selector {
+
+    @mixin media_breakpoint_normal_desktop {
+        .$(selector) {
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+            @mixin t2;
+        }
+    }
+
+    @mixin media_breakpoint_small_desktop {
+
+        .$(selector) {
+
+            @mixin t3;
+        }
+    }
+
+    @mixin media_breakpoint_tablet {
+
+        .$(selector) {
+
+            @mixin t3;
+        }
+    }
+
+    @mixin media_breakpoint_mobile {
+
+        .$(selector) {
+
+            @mixin t3;
+        }
+    }
+}
+
+@define-mixin button_like_size_s_styles $selector {
+
+    @mixin media_breakpoint_normal_desktop {
+        .$(selector) {
+
+            @mixin t3;
+        }
+    }
+
+    @mixin media_breakpoint_small_desktop {
+
+        .$(selector) {
+
+            @mixin t3;
+        }
+    }
+
+    @mixin media_breakpoint_tablet {
+
+        .$(selector) {
+
+            @mixin t3;
+        }
+    }
+
+    @mixin media_breakpoint_mobile {
+
+        .$(selector) {
+
+            @mixin t4;
+        }
+    }
+}
+
+@define-mixin button_like $selector {
+
+    @mixin button_like_base_styles $selector;
+
+    @mixin button_like_elements_styles $selector;
+
+    @mixin button_like_state_styles $selector;
+
+    @mixin button_like_size_s_styles $(selector)_size-s;
+
+    @mixin button_like_size_l_styles  $(selector)_size-l;
+}

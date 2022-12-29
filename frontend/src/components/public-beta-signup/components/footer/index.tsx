@@ -7,7 +7,7 @@ import { formatText } from '../../../../utils';
 import Heading from '../../../heading';
 import Text from '../../../text';
 
-import LinkButton from '../../../link-button';
+import LinkButton from '../../../button-like/link-button';
 import GridWrapper from '../../../grid-wrapper';
 
 import styles from './index.css';

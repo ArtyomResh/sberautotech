@@ -1,5 +1,7 @@
 @import "../../text/index.css";
 
+@import "../../button-like/index.css";
+
 .input-file {
     width: 100%;
     position: relative;
@@ -8,36 +10,6 @@
         position: absolute;
         width: 100%;
         opacity: 0;
-    }
-
-    &__label {
-        padding-top: 16px;
-        padding-bottom: 16px;
-        padding-left: 20px;
-        padding-right: 20px;
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        border-radius: 60px;
-        background-color: var(--color-white);
-        transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
-        cursor: pointer;
-
-        @media (hover: hover) and (pointer: fine) {
-
-            &:hover {
-                color: #1f272e;
-            }
-        }
-
-        &_error {
-            border: 2px solid red;
-        }
-
-        &_has-file {
-            padding-right: 62px;
-        }
     }
 
     &__title {
@@ -71,48 +43,28 @@
     }
 }
 
-@mixin media_breakpoint_normal_desktop {
+.input-file__label {
 
-    .input-file {
+    &_error {
+        border: 2px solid red;
+    }
 
-        &__label {
-
-            @mixin t2;
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
+    &_has-file {
+        padding-right: 62px;
     }
 }
 
-@mixin media_breakpoint_small_desktop {
+@media (hover: hover) and (pointer: fine) {
 
-    .input-file {
-
-        &__label {
-
-            @mixin t3;
-        }
+    .input-file__label:hover {
+        color: #1f272e;
     }
 }
 
-@mixin media_breakpoint_tablet {
-
-    .input-file {
-
-        &__label {
-
-            @mixin t3;
-        }
-    }
+@mixin button_like_base_styles input-file__label {
+    width: 100%;
+    height: auto;
+    background-color: var(--color-white);
 }
 
-@mixin media_breakpoint_mobile {
-
-    .input-file {
-
-        &__label {
-
-            @mixin t3;
-        }
-    }
-}
+@mixin button_like_size_l_styles input-file__label;
