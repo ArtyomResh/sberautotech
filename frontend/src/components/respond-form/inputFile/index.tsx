@@ -20,7 +20,7 @@ interface IState {
 }
 
 const InputFile = ({ placeholder, name, className, onFileChange, ...props }: IProps) => {
-    const controller = useController({ name, rules: {
+    const controller = useController({ name : `${name}` as const, rules: {
         required: props.requiredValidation && 'Обязательное поле'
     }, shouldUnregister: true });
 

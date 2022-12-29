@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 
-export const toBase64 = (file: Blob) => new Promise((resolve, reject) => {
+export const toBase64 = (file: Blob) => new Promise<string | ArrayBuffer | null>((resolve, reject) => {
     const reader = new FileReader();
 
     reader.readAsDataURL(file);

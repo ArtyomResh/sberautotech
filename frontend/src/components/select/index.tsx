@@ -18,7 +18,7 @@ const Select: React.FC<TSelectProps> = React.forwardRef<unknown, TSelectProps>((
     return (
         <Controller
             control={control}
-            name={name}
+            name={`${name}` as const}
             rules={{ required: required && 'Обязательное поле' }}
             render={({ field, fieldState }) => {
                 const handleChange: Props['onChange'] = (...args) => {
@@ -43,8 +43,8 @@ const Select: React.FC<TSelectProps> = React.forwardRef<unknown, TSelectProps>((
                             options={options}
                             styles={{
                                 ...styles,
-                                control: (provided) => ({
-                                    ...styles.control(provided),
+                                control: (provided, state) => ({
+                                    ...styles.control?.(provided, state),
                                     ...(error ? { 'border': '1px solid red', 'boxShadow': '0 0 0 1px #ff364d;' } : {})
                                 })
                             }}

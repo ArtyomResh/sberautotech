@@ -22,12 +22,17 @@ interface IProps {
 }
 
 const Input = ({ type, placeholder, name, className, pattern, ...props }: IProps) => {
+    const fieldName = `${name}` as const;
     const { setValue } = useFormContext();
 
-    const controller = useController({ name, rules: {
-        required: props.requiredValidation && 'Обязательное поле',
-        pattern : pattern
-    }, shouldUnregister: true });
+    const controller = useController({
+        name : fieldName,
+        rules: {
+            required: props.requiredValidation && 'Обязательное поле',
+            pattern : pattern
+        },
+        shouldUnregister: true
+    });
     const controllerProps = controller.field;
 
     const cn = useClassnames(style);
@@ -37,38 +42,28 @@ const Input = ({ type, placeholder, name, className, pattern, ...props }: IProps
     };
 
     const handlePhonePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-        const input = e.target,
-            inputNumbersValue = getInputNumbersValue(input);
+        const input = e.target as HTMLInputElement,
+            inputNumbersValue = getInputNumbersValue(input.value);
         const pasted = e.clipboardData;
 
         if(pasted) {
             const pastedText = pasted.getData('Text');
 
             if(/\D/g.test(pastedText)) {
-                (input as HTMLInputElement).value = inputNumbersValue;
+                input.value = inputNumbersValue;
             }
         }
     };
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const input = e.target,
-            selectionStart = (input as HTMLInputElement).selectionStart;
+        const input = e.target;
         let formattedInputValue = '',
             inputNumbersValue = getInputNumbersValue((input as HTMLInputElement).value);
 
 
         if(!inputNumbersValue) {
-            setValue(name, '');
+            setValue(fieldName, '');
             void controllerProps.onChange(e);
-
-            return;
-        }
-
-        if((input as HTMLInputElement).value.length !== selectionStart) {
-            if(e.data && /\D/g.test(e.data)) {
-                setValue(name, inputNumbersValue);
-                void controllerProps.onChange(e);
-            }
 
             return;
         }
@@ -101,7 +96,7 @@ const Input = ({ type, placeholder, name, className, pattern, ...props }: IProps
         } else {
             formattedInputValue = `+${inputNumbersValue.substring(0, 16)}`;
         }
-        setValue(name, formattedInputValue);
+        setValue(fieldName, formattedInputValue);
         void controllerProps.onChange(e);
     };
 
@@ -117,15 +112,15 @@ const Input = ({ type, placeholder, name, className, pattern, ...props }: IProps
 
         if(errorType === 'pattern') {
             switch (type) {
-                case 'email':
-                    defaultMessage = 'Неверный формат почты';
-                    break;
-                case 'tel':
-                    defaultMessage = 'Неверный формат номера телефона';
-                    break;
-                default:
-                    defaultMessage = 'Недопустимое значение';
-                    break;
+            case 'email':
+                defaultMessage = 'Неверный формат почты';
+                break;
+            case 'tel':
+                defaultMessage = 'Неверный формат номера телефона';
+                break;
+            default:
+                defaultMessage = 'Недопустимое значение';
+                break;
             }
         }
 

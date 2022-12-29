@@ -1,4 +1,5 @@
 import { StylesConfig } from 'react-select';
+import { CSSObject } from '@emotion/serialize';
 
 interface ISelectOption {
     label: string,
@@ -11,13 +12,13 @@ const controlMediaQueryStyles = {
     'height'       : '80px',
     'fontSize'     : '20px',
     'lineHeight'   : '26px',
-    'fontWeight'   : '400',
+    'fontWeight'   : '400' as CSSObject['fontWeight'],
     'letterSpacing': '-0.05em'
 };
 const placeholderMediaQueryStyles = {
     'fontSize'     : '20px',
     'lineHeight'   : '26px',
-    'fontWeight'   : '400',
+    'fontWeight'   : '400' as CSSObject['fontWeight'],
     'letterSpacing': '-0.05em',
 
     '.ui-select__control--menu-is-open &': {
@@ -35,7 +36,7 @@ const placeholderMediaQueryStyles = {
 const optionMediaQueryStyles = {
     'fontSize'     : '20px',
     'lineHeight'   : '26px',
-    'fontWeight'   : '400',
+    'fontWeight'   : '400' as CSSObject['fontWeight'],
     'letterSpacing': '-0.05em'
 };
 const valueContainerMediaQueryStyles = {
@@ -69,7 +70,7 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         'borderRadius' : '16px',
         'fontSize'     : '24px',
         'lineHeight'   : '30px',
-        'fontWeight'   : '400',
+        'fontWeight'   : '400' as CSSObject['fontWeight'],
         'letterSpacing': '-0.05em',
         'outline'      : 'none',
         'background'   : 'transparent',
@@ -112,7 +113,7 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         'paddingRight' : '40px',
         'fontSize'     : '24px',
         'lineHeight'   : '30px',
-        'fontWeight'   : '400',
+        'fontWeight'   : '400' as CSSObject['fontWeight'],
         'letterSpacing': '-0.05em',
         'color'        : 'var(--color-black)',
         'transform'    : 'none',
@@ -175,7 +176,7 @@ const selectStyles: StylesConfig<ISelectOption, TIsMulti> = {
         'color'        : 'var(--color-black-dark)',
         'fontSize'     : '24px',
         'lineHeight'   : '30px',
-        'fontWeight'   : '400',
+        'fontWeight'   : '400'as CSSObject['fontWeight'],
         'letterSpacing': '-0.05em',
         'padding'      : '4px 16px',
 
