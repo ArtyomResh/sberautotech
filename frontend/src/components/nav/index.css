@@ -260,7 +260,7 @@
             padding-top: 80px; 
             padding-right: 10px;
             padding-left: 10px;
-            padding-bottom: 44px;
+            padding-bottom: 104px;
             width: 100vw;
             height: calc(100vh - var(--header-height));
             flex-direction: column;
