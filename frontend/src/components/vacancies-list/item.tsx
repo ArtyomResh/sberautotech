@@ -1,22 +1,36 @@
-import React, { useMemo, useEffect, useCallback, useState } from 'react';
+import React, { useMemo } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
-import TagsList from '../tags-list';
+import TagsList, { ITagListItem } from '../tags-list';
 import { toUnescapedHTML } from '../../utils';
 
 import style from './index.css';
-import { IVacanciesListItem } from './index';
 import { Link } from 'gatsby';
+
+export interface IVacanciesListItem {
+    id: string,
+    title: string,
+    city: {
+        text: string,
+        value: string
+    },
+    direction: {
+        header: string
+    },
+    tags: Array<ITagListItem>,
+    strapiId: number
+}
 
 interface IProps {
     data: IVacanciesListItem,
-    activeTags: Array<any>,
+    activeTags: Array<number>,
     onClickTag: any,
     searchString: string
 }
 
+
 const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag, searchString }) => {
-    const { title, city, area, direction, tags, strapiId } = data;
+    const { title, city, direction, tags, strapiId } = data;
     const cn = useClassnames(style);
 
     const titleWithSubstrGenerator = useMemo(() => {

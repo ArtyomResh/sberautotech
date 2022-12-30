@@ -32,7 +32,7 @@ interface ISlideItem {
     subTextSecond: string
 }
 
-const StoryCard = ({ story }) => {
+const StoryCard = ({ story }: {story: ISlideItem}) => {
     const cn = useClassnames(style);
     const text = useFormattedText(story.text) || '';
 

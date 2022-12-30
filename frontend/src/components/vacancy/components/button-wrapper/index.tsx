@@ -23,7 +23,7 @@ const ButtonWrapper = ({ className, title, huntflowId: vacancyId, children }: IP
         <Button
             className={className}
             type="button"
-            size="s"
+            buttonSize="s"
             isBlock={true}
             onClick={setIsPopupVisibleHandler}
         >

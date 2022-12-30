@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { ValidationRule } from 'react-hook-form/dist/types/validator';
-import { Message } from 'react-hook-form/dist/types/form';
-
-import style from './index.css';
+import { Message, useFormContext } from 'react-hook-form';
 
 import { useClassnames } from '../../../hooks/use-classnames';
 
-import { useFormContext } from 'react-hook-form';
+import style from './index.css';
 
 interface IProps {
     placeholder?: string,
@@ -16,12 +14,13 @@ interface IProps {
 
 const Textarea = ({ placeholder, name, requiredValidation }: IProps) => {
     const { register, formState, getValues } = useFormContext();
-    const textareaValue = getValues(name);
+    const fieldName = `${name}` as const;
+    const textareaValue = getValues(fieldName);
     const cn = useClassnames(style);
     const [hasValue, setHasValue] = useState(Boolean(textareaValue));
 
     const blurHandler = () => {
-        const textareaValue = getValues(name);
+        const textareaValue = getValues(fieldName);
 
         setHasValue(Boolean(textareaValue));
     };
@@ -33,7 +32,7 @@ const Textarea = ({ placeholder, name, requiredValidation }: IProps) => {
             <textarea
                 className={cn('textarea__field')}
                 placeholder=" "
-                {...register(name, {
+                {...register(fieldName, {
                     required: requiredValidation
                 })}
                 onBlur={blurHandler}

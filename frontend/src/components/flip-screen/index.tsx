@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { isMobile } from 'react-device-detect';
 
 import useFormattedText from '../../hooks/use-formatted-text';
 import { useClassnames } from '../../hooks/use-classnames';
@@ -12,16 +11,16 @@ interface IProps {
         primary_header: string,
         secondary_header: string,
         primary_text: string,
-        primary_text_float: string
+        primary_text_float: string,
         secondary_text: string,
         secondary_text_float: string
-    }
-    id: string
-    icon?: string
-    isMobile?: boolean
+    },
+    id: string,
+    icon?: string,
+    isMobile: boolean
 }
 
-const FlipScreen = ({data, id, icon} : IProps) => {
+const FlipScreen = ({ data, id, icon, isMobile }: IProps) => {
     const cn = useClassnames(style);
     const primaryHeader = useFormattedText(data.primary_header);
     const secondaryHeader = useFormattedText(data.secondary_header);
@@ -32,15 +31,15 @@ const FlipScreen = ({data, id, icon} : IProps) => {
         return primaryText ? (
             <span
                 className={cn(
-                    'flip__screen-text', 
-                    'flip__screen-text_primary', 
+                    'flip__screen-text',
+                    'flip__screen-text_primary',
                     `flip__screen-text_${data.primary_text_float}`
                 )}
             >
                 {toUnescapedHTML(primaryText)}
             </span>
-        ) : null
-    }, [data.primary_text_float])
+        ) : null;
+    }, [data.primary_text_float]);
 
     return (
         <div id={id} className={cn('flip__screen-wrapper', 'scroll-bound')}>
@@ -63,9 +62,9 @@ const FlipScreen = ({data, id, icon} : IProps) => {
                 <div className={cn('flip__text-wrapper', 'flip__text-wrapper_secondary')}>
                     {isMobile && getPrimaryText}
                     {secondaryHeader && (
-                        <span 
+                        <span
                             className={cn(
-                                'flip__screen-header', 
+                                'flip__screen-header',
                                 'flip__screen-header_secondary'
                             )}
                         >
@@ -76,7 +75,7 @@ const FlipScreen = ({data, id, icon} : IProps) => {
                         <span
                             className={cn(
                                 'flip__screen-text',
-                                'flip__screen-text_secondary', 
+                                'flip__screen-text_secondary',
                                 `flip__screen-text_${data.secondary_text_float}`
                             )}
                         >
@@ -87,7 +86,7 @@ const FlipScreen = ({data, id, icon} : IProps) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default FlipScreen;

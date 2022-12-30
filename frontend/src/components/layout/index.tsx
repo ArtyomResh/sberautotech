@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Nav, { INav } from '../nav';
-import Seo from '../seo';
+import Seo, { ISeo } from '../seo';
 import RespondForm from '../respond-form';
 import { ContactForm } from '../contact-form';
 import CookieAlert from '../cookie-alert';
@@ -13,15 +13,14 @@ import style from './index.css';
 
 interface IProps {
     children: React.ReactNode,
-    seo?: Record<string, unknown>,
-    theme?: INav['theme'],
+    seo?: ISeo,
+    theme: INav['theme'],
     pageId: INav['pageId'],
     setActivePageId?: INav['setActivePageId'],
-    type?: string,
     withNav?: boolean
 }
 
-const Layout = ({ children, seo, theme, pageId, setActivePageId, type, withNav = true }: IProps) => {
+const Layout = ({ children, seo, theme, pageId, setActivePageId, withNav = true }: IProps) => {
     const cn = useClassnames(style);
 
     return (

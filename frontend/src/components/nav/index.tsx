@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction, Dispatch, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { appContext } from '../../context/context';
@@ -127,7 +127,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
     };
 
     const onClick = () => {
-        gtagClicked('header_button_click', 'Join button');
+        gtagClicked('header_button_click');
         // @ts-expect-error: ym подставляется только при NODE_ENV === 'production'
         typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'form--success--svyazatsya_s_nami');
 
@@ -187,7 +187,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                 {isRu && (
                     <Button
                         type="button"
-                        size="s"
+                        buttonSize="s"
                         className={cn('nav__accept-button')}
                         onClick={onClick}
                     >

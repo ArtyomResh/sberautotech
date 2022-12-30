@@ -1,15 +1,15 @@
+import { IVacancy } from '../../../../types/strapi/vacancies';
 import React from 'react';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 import ArrowLeft from '../../../../images/arrow-left.inline.svg';
 
-import { IStrapiVacancies } from '../..';
 
 import ButtonWrapper from '../button-wrapper';
 
 import styles from './index.css';
 
-interface IProps extends Pick<IStrapiVacancies, 'city' | 'jobType' | 'title' | 'huntflowId'> {
+interface IProps extends Pick<IVacancy, 'city' | 'jobType' | 'title' | 'huntflowId'> {
     backToPreviousPage: () => void
 }
 

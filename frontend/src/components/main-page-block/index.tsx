@@ -54,7 +54,7 @@ const MainPageBlock = ({ block, index, blockId, pageNumber }: { block: IBlock, i
             ) : (
                 <img src={block.background.localFile.url} className={cn('block__image')} alt={block.link?.text} />
             )}
-            <div className={cn('block__bottom', pageNumber >= blockId ? 'block__bottom_showing' : 'block__bottom_hiding')}>
+            <div className={cn('block__bottom', pageNumber >= index ? 'block__bottom_showing' : 'block__bottom_hiding')}>
                 {text && <span className={cn('block__text')}>{toUnescapedHTML(text)}</span>}
                 {block.cards?.map((card, i) => (
                     <StoryCard key={i} card={card} />
