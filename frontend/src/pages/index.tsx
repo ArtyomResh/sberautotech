@@ -222,16 +222,18 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
     }, [pageNumber, isScrolling, lastScrollStartTime]);
 
     useEffect(() => {
-        const bodyElement = document.querySelector('body') as HTMLBodyElement;
+        if(isContactFormVisible || isRespondFormVisible || isNavVisible) {
+            const bodyElement = document.querySelector('body') as HTMLBodyElement;
 
-        bodyElement.style.overflow = 'hidden';
-        bodyElement.style.position = 'fixed';
+            bodyElement.style.overflow = 'hidden';
+            bodyElement.style.position = 'fixed';
 
-        return () => {
-            bodyElement.style.overflow = 'unset';
-            bodyElement.style.position = 'unset';
-        };
-    }, []);
+            return () => {
+                bodyElement.style.overflow = 'unset';
+                bodyElement.style.position = 'unset';
+            };
+        }
+    }, [isContactFormVisible, isRespondFormVisible, isNavVisible]);
 
     useEffect(() => {
         if(isContactFormVisible || isRespondFormVisible || isNavVisible) {
