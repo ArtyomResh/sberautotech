@@ -5,6 +5,8 @@ interface IAppContext {
     setIsContactFormVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
     isRespondFormVisible: boolean,
     setIsRespondFormVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
+    isNavVisible: boolean,
+    setIsNavVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
     vacancyTitle: string,
     setVacancyTitle: React.Dispatch<React.SetStateAction<string>> | null,
     huntflowId: string | null,
@@ -14,8 +16,10 @@ interface IAppContext {
 const appContext = createContext<IAppContext>({
     isContactFormVisible   : false,
     isRespondFormVisible   : false,
+    isNavVisible           : false,
     setIsRespondFormVisible: null,
     setIsContactFormVisible: null,
+    setIsNavVisible        : null,
     vacancyTitle           : '',
     setVacancyTitle        : null,
     huntflowId             : null,
@@ -26,6 +30,7 @@ const { Provider } = appContext;
 const AppProvider = ({ children }: { children: ReactElement }) => {
     const [isContactFormVisible, setIsContactFormVisible] = useState(false);
     const [isRespondFormVisible, setIsRespondFormVisible] = useState(false);
+    const [isNavVisible, setIsNavVisible] = useState(false);
     const [vacancyTitle, setVacancyTitle] = useState('');
     const [huntflowId, setHuntflowId] = useState('');
 
@@ -35,6 +40,8 @@ const AppProvider = ({ children }: { children: ReactElement }) => {
             setIsContactFormVisible,
             isRespondFormVisible,
             setIsRespondFormVisible,
+            isNavVisible,
+            setIsNavVisible,
             vacancyTitle,
             setVacancyTitle,
             huntflowId,
