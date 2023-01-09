@@ -1,3 +1,4 @@
+// TODO: Удалить ненужный код https://jira.csssr.io/browse/SBER-191
 import React, { useState, useEffect } from 'react';
 
 import Layout from '../layout';
