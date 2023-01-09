@@ -4,6 +4,8 @@ import { useController, useFormContext } from 'react-hook-form';
 
 import { useClassnames } from '../../../hooks/use-classnames';
 import useDeviceDetect from '../../../hooks/use-device-detect';
+import { validateEmail } from '../../../utils/validation/validateEmail';
+import { validatePhoneNumber } from '../../../utils/validation/validatePhoneNumber';
 
 import style from './index.css';
 
@@ -11,7 +13,7 @@ type TInputType = 'text' | 'email' | 'tel';
 type TAutoCompleteType = 'on' | 'off';
 
 interface IProps {
-    type?: TInputType,
+    type: TInputType,
     placeholder?: string,
     name: string,
     pattern?: RegExp | ValidationValueMessage<RegExp>,
@@ -22,6 +24,12 @@ interface IProps {
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
+const validators: {[key in TInputType]: ValidationValueMessage<RegExp> | null } = {
+    'text' : null,
+    'email': validateEmail,
+    'tel'  : validatePhoneNumber
+};
+
 const Input = ({ type, placeholder, name, className, pattern, onFocus, ...props }: IProps) => {
     const fieldName = `${name}` as const;
     const { setValue } = useFormContext();
@@ -30,7 +38,7 @@ const Input = ({ type, placeholder, name, className, pattern, onFocus, ...props 
         name : fieldName,
         rules: {
             required: props.requiredValidation && 'Обязательное поле',
-            pattern : pattern
+            pattern : pattern || validators[type] || undefined
         },
         shouldUnregister: true
     });
@@ -38,7 +46,7 @@ const Input = ({ type, placeholder, name, className, pattern, onFocus, ...props 
 
     const cn = useClassnames(style);
 
-    const { isMobile } = useDeviceDetect()
+    const { isMobile } = useDeviceDetect();
 
     const getInputNumbersValue = (string: string) => {
         return String(string).replace(/\D/g, '');
@@ -112,7 +120,7 @@ const Input = ({ type, placeholder, name, className, pattern, onFocus, ...props 
         }
 
         onFocus?.(e);
-    }
+    };
 
     const errorMessage = useMemo(() => {
         const error = controller.fieldState.error;
@@ -120,23 +128,8 @@ const Input = ({ type, placeholder, name, className, pattern, onFocus, ...props 
         if(!error) {
             return;
         }
-        const errorType = error.type;
 
-        let defaultMessage = 'Поле заполнено неверно';
-
-        if(errorType === 'pattern') {
-            switch (type) {
-            case 'email':
-                defaultMessage = 'Неверный формат почты';
-                break;
-            case 'tel':
-                defaultMessage = 'Неверный формат номера телефона';
-                break;
-            default:
-                defaultMessage = 'Недопустимое значение';
-                break;
-            }
-        }
+        const defaultMessage = 'Поле заполнено неверно';
 
         return error.message || defaultMessage;
     }, [controller.fieldState.error]);
