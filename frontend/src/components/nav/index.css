@@ -212,7 +212,6 @@
 @mixin media_breakpoint_nav_collapsed {
 
     .nav {
-
         &_light {
 
             .nav__list-item_active {
@@ -224,9 +223,13 @@
             display: none;
         }
 
+        &__list {
+            height: auto;
+        }
+
         &__list-item {
-            padding: 10px 0;
             margin: 0;
+            padding: 10px 0;
             font-size: 27px;
             font-family: var(--font-family-primary);
             line-height: 30px;
@@ -251,16 +254,20 @@
         }
 
         &__center {
-            flex-direction: column;
-            position: absolute;
+            position: fixed;
             left: 0;
             top: var(--header-height);
+            padding-top: 80px; 
+            padding-right: 10px;
+            padding-left: 10px;
+            padding-bottom: 104px;
             width: 100vw;
             height: calc(100vh - var(--header-height));
+            flex-direction: column;
             align-items: flex-start;
             justify-content: space-between;
-            padding: 80px 10px 10px 10px;
             background-color: #FFF;
+            overflow: auto;
 
             &_close {
                 display: none;
@@ -271,6 +278,10 @@
                 max-height: 100vh;
                 overflow-x: scroll;
             }
+        }
+
+        &__bottom-block-accept-button {
+            margin-top: 32px;
         }
     }
 }

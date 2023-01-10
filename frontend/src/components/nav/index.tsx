@@ -80,7 +80,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const [shouldAddShadow, setShouldAddShadow] = useState(false);
-    const { setIsContactFormVisible } = useContext(appContext);
+    const { setIsContactFormVisible, setIsNavVisible } = useContext(appContext);
     const [width, height] = useWindowSize();
     const cn = useClassnames(style);
 
@@ -114,6 +114,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
 
     const onMenuButtonClick = () => {
         setIsOpen(!isOpen);
+        setIsNavVisible?.(!isOpen);
     };
 
     const redirectHandler = () => {
