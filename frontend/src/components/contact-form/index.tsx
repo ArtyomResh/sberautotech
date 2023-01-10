@@ -210,6 +210,7 @@ export const ContactForm = () => {
         return null;
     }
 
+
     return (
         <React.Fragment>
             {!isSended && (
@@ -251,23 +252,47 @@ export const ContactForm = () => {
                                     <div className={cn('right-block__inputs')}>
                                         <div className={cn('right-block__top-section')}>
                                             <div className={cn('right-block__field-wrapper')}>
-                                                <Input type="text" placeholder={name} name={formFields.name} autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} requiredValidation={true} />
+                                                <Input 
+                                                    type="text" 
+                                                    placeholder={name} 
+                                                    name={formFields.name} 
+                                                    autocomplete="off" 
+                                                    pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} 
+                                                    requiredValidation={true}
+                                                />
                                             </div>
 
                                             <div className={cn('right-block__field-wrapper')}>
-                                                <Input type="email" placeholder={mail} name={formFields.email} autocomplete="off" requiredValidation={true} pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} />
+                                                <Input 
+                                                    type="email" 
+                                                    placeholder={mail} 
+                                                    name={formFields.email} 
+                                                    autocomplete="off" 
+                                                    requiredValidation={true} 
+                                                    pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g}
+                                                />
                                             </div>
                                         </div>
 
                                         <div className={cn('right-block__bottom-section')}>
                                             <div className={cn('right-block__field-wrapper', 'right-block__field-email')}>
-                                                <Input type="text" placeholder={theme} name={formFields.subject} autocomplete="off" requiredValidation={true} />
+                                                <Input 
+                                                    type="text" 
+                                                    placeholder={theme} 
+                                                    name={formFields.subject}
+                                                    autocomplete="off" 
+                                                    requiredValidation={true} 
+                                                />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className={cn('right-block__textarea-wrapper')}>
-                                        <Textarea placeholder={comment} name={formFields.comment} requiredValidation={true} />
+                                        <Textarea 
+                                            placeholder={comment} 
+                                            name={formFields.comment} 
+                                            requiredValidation={true} 
+                                        />
                                     </div>
 
                                     <div className={cn('right-block__checkbox-wrapper')}>
