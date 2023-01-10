@@ -24,6 +24,7 @@ import styles from './index.css';
 import selectStyles from './select.styles';
 import { UpdateOnMount } from '../../../update-on-mount';
 import { BETA_TEST_LANDING_URL } from '../../constants';
+import { validateName } from '../../../../utils/validation/validateName';
 
 interface IMobileOption {
     value: 'ios' | 'android', label: string
@@ -213,10 +214,7 @@ const SignupModal = (props: IProps) => {
                                 placeholder="Как вас зовут?"
                                 name={formFields.name}
                                 requiredValidation={true}
-                                pattern={{
-                                    message: 'Имя может состоять из букв и пробелов',
-                                    value  : /^[а-яА-Яa-zA-Z\s]*$/
-                                }}
+                                pattern={validateName}
                                 onFocus={handleFocus(formFields.name)}
                                 onBlur={handleBlur(formFields.name)}
                             />
@@ -226,7 +224,6 @@ const SignupModal = (props: IProps) => {
                                 placeholder="Электронная почта"
                                 name={formFields.email}
                                 requiredValidation={true}
-                                pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g}
                                 onFocus={handleFocus(formFields.email)}
                                 onBlur={handleBlur(formFields.email)}
                             />
@@ -237,7 +234,6 @@ const SignupModal = (props: IProps) => {
                                 placeholder="Номер телефона"
                                 name={formFields.phoneNumber}
                                 requiredValidation={true}
-                                pattern={/^(\+7 \d{3} (\d){3}–(\d{2})–(\d{2}))$/}
                                 onFocus={handleFocus(formFields.phoneNumber)}
                                 onBlur={handleBlur(formFields.phoneNumber)}
                             />
