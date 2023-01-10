@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
 import { ValidationValueMessage } from 'react-hook-form/dist/types/validator';
-
-import style from './index.css';
+import { useController, useFormContext } from 'react-hook-form';
 
 import { useClassnames } from '../../../hooks/use-classnames';
-import { useController, useFormContext } from 'react-hook-form';
+import useDeviceDetect from '../../../hooks/use-device-detect';
+
+import style from './index.css';
 
 type TInputType = 'text' | 'email' | 'tel';
 type TAutoCompleteType = 'on' | 'off';
@@ -21,7 +22,7 @@ interface IProps {
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
-const Input = ({ type, placeholder, name, className, pattern, ...props }: IProps) => {
+const Input = ({ type, placeholder, name, className, pattern, onFocus, ...props }: IProps) => {
     const fieldName = `${name}` as const;
     const { setValue } = useFormContext();
 
@@ -36,6 +37,8 @@ const Input = ({ type, placeholder, name, className, pattern, ...props }: IProps
     const controllerProps = controller.field;
 
     const cn = useClassnames(style);
+
+    const { isMobile } = useDeviceDetect()
 
     const getInputNumbersValue = (string: string) => {
         return String(string).replace(/\D/g, '');
@@ -100,6 +103,17 @@ const Input = ({ type, placeholder, name, className, pattern, ...props }: IProps
         void controllerProps.onChange(e);
     };
 
+
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        if(isMobile) {
+            // Хотим скролить поле во вбю,
+            // что бы оно появлялось над виртуальной клавиатурой на мобилках
+            e.target.scrollIntoView();
+        }
+
+        onFocus?.(e);
+    }
+
     const errorMessage = useMemo(() => {
         const error = controller.fieldState.error;
 
@@ -141,7 +155,7 @@ const Input = ({ type, placeholder, name, className, pattern, ...props }: IProps
                     type={type}
                     autoComplete={props.autocomplete || 'off'}
                     {...controllerProps}
-                    onFocus={props?.onFocus}
+                    onFocus={handleFocus}
                     onBlur={onBlur}
                 />
                 <label className={cn('input__label')} htmlFor="input">
@@ -165,7 +179,7 @@ const Input = ({ type, placeholder, name, className, pattern, ...props }: IProps
                     {...controllerProps}
                     onChange={handlePhoneChange}
                     onPaste={handlePhonePaste}
-                    onFocus={props?.onFocus}
+                    onFocus={handleFocus}
                     onBlur={onBlur}
                 />
                 <label className={cn('input__label', 'input__label_tel')} htmlFor="input">
