@@ -5,7 +5,7 @@ import CookieConsent from 'react-cookie-consent';
 import { useClassnames } from '../../hooks/use-classnames';
 
 import style from './index.css';
-import Button from '../button';
+import Button from '../button-like/button';
 
 const query = graphql`
   query {
@@ -21,7 +21,7 @@ const query = graphql`
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ButtonWrapper = (props: any) => <Button {...props} size="s" />;
+const ButtonWrapper = (props: any) => <Button {...props} buttonSize="s" />;
 
 const CookieAlert = () => {
     const cn = useClassnames(style);

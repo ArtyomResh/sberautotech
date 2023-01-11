@@ -9,7 +9,7 @@ import { gtagClicked } from '../../utils';
 import { isRu } from '../../utils/locale';
 import { appContext } from '../../context/context';
 
-import Button from '../button';
+import Button from '../button-like/button';
 import Heading from '../heading';
 import GridWrapper from '../grid-wrapper';
 import Text from '../text';
@@ -58,7 +58,7 @@ const Footer = ({ className }: {className?: string}) => {
             {isRu && (
                 <Button
                     className={cn('main-footer__button')}
-                    size="s"
+                    buttonSize="s"
                     onClick={handleClick}
                 >
                     {modalLinkText}

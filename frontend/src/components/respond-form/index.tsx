@@ -5,14 +5,15 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import Input from './input';
 import Textarea from './textarea';
-import Button from '../button';
+import Button from '../button-like/button';
 import CheckBox from './check-box';
 import InputFile from './inputFile';
 import { useClassnames } from '../../hooks/use-classnames';
 import { toBase64, toUnescapedHTML } from '../../utils';
 import { appContext } from '../../context/context';
 import useDocumentScrollThrottled from '../nav/use-document-scroll-throttled';
-import Alert from '../public-beta-signup/components/alert';
+import Alert from '../alert';
+import { validateName } from '../../utils/validation/validateName';
 
 import style from './index.css';
 
@@ -167,8 +168,11 @@ const RespondForm = () => {
         if(file) {
             const base64 = await toBase64(file);
 
-            formData.append('content', base64);
-            formData.append('filename', file.name);
+            if(base64) {
+                // TODO: избавиться от any https://jira.csssr.io/browse/SBER-187
+                formData.append('content', base64 as any);
+                formData.append('filename', file.name);
+            }
         }
 
         try {
@@ -229,15 +233,15 @@ const RespondForm = () => {
                             <div className={cn('right-block__inputs')}>
                                 <div className={cn('right-block__top-section')}>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type="text" placeholder={name} name={formFields.name} autocomplete="off" pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} requiredValidation={true} />
+                                        <Input type="text" placeholder={name} name={formFields.name} autocomplete="off" pattern={validateName} requiredValidation={true} />
                                     </div>
                                     <div className={cn('right-block__field-wrapper')}>
-                                        <Input type="text" placeholder={surname} name={formFields.surname} autocomplete="off" requiredValidation={true} pattern={/^[А-Яа-яЁёA-Za-z\s-]+$/i} />
+                                        <Input type="text" placeholder={surname} name={formFields.surname} autocomplete="off" requiredValidation={true} pattern={validateName} />
                                     </div>
                                 </div>
                                 <div className={cn('right-block__bottom-section')}>
                                     <div className={cn('right-block__field-wrapper', 'right-block__field-email')}>
-                                        <Input type="text" placeholder={mail} name={formFields.email} autocomplete="off" requiredValidation={true} pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g} />
+                                        <Input type="text" placeholder={mail} name={formFields.email} autocomplete="off" requiredValidation={true} />
                                     </div>
                                     <div className={cn('right-block__field-wrapper', 'right-block__field-email')}>
                                         <Input type="tel" placeholder={telephone} name={formFields.telephone} requiredValidation={true} />
@@ -280,6 +284,7 @@ const RespondForm = () => {
                     </form>
                 </FormProvider>
             )}
+
             <Alert
                 type={isError ? 'error' : 'success'}
                 onCloseClick={preventClosePopup}

@@ -7,7 +7,7 @@ import { gtagClicked } from '../../utils';
 import AccordeonHide from '../../images/accordeon-hide.inline.svg';
 import AccordeonShow from '../../images/accordeon-show.inline.svg';
 
-import LinkButton from '../link-button';
+import LinkButton from '../button-like/link-button';
 
 import style from './index.css';
 

@@ -1,12 +1,11 @@
 import React, { ChangeEvent } from 'react';
 import { ValidationRule } from 'react-hook-form/dist/types/validator';
-import { Message } from 'react-hook-form/dist/types/form';
+import { Message, useFormContext } from 'react-hook-form';
 
 import { useClassnames } from '../../../hooks/use-classnames';
 
 import style from './index.css';
 
-import { useFormContext } from 'react-hook-form';
 
 export interface IRadioButtonProps {
     label: string | React.ReactElement,
@@ -23,7 +22,7 @@ const CheckBox: React.FC<IRadioButtonProps> = ({ label, name, isBlock, ...props 
     const { register, formState } = useFormContext();
 
 
-    const { onChange, ...registerProps } = register(name, {
+    const { onChange, ...registerProps } = register(`${name}` as const, {
         required: props.requiredValidation
     });
 

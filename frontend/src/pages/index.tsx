@@ -178,7 +178,7 @@ const getScreenBlockId = (screen: IMainPageScreenData) => `main-page-screen-${sc
 
 const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
     const cn = useClassnames(style);
-    const { isContactFormVisible, isRespondFormVisible } = useContext(appContext);
+    const { isContactFormVisible, isRespondFormVisible, isNavVisible } = useContext(appContext);
     const [isScrolling, setIsScrolling] = useState(false);
     const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
     const pageNumber: number = links.findIndex(({ navId }) => navId === activePageId);
@@ -204,19 +204,21 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
     }, [pageNumber, isScrolling, lastScrollStartTime]);
 
     useEffect(() => {
-        const bodyElement = document.querySelector('body') as HTMLBodyElement;
+        if(isContactFormVisible || isRespondFormVisible || isNavVisible) {
+            const bodyElement = document.querySelector('body') as HTMLBodyElement;
 
-        bodyElement.style.overflow = 'hidden';
-        bodyElement.style.position = 'fixed';
+            bodyElement.style.overflow = 'hidden';
+            bodyElement.style.position = 'fixed';
 
-        return () => {
-            bodyElement.style.overflow = 'unset';
-            bodyElement.style.position = 'unset';
-        };
-    }, []);
+            return () => {
+                bodyElement.style.overflow = 'unset';
+                bodyElement.style.position = 'unset';
+            };
+        }
+    }, [isContactFormVisible, isRespondFormVisible, isNavVisible]);
 
     useEffect(() => {
-        if(isContactFormVisible || isRespondFormVisible) {
+        if(isContactFormVisible || isRespondFormVisible || isNavVisible) {
             return;
         }
         const onWheel = (e: WheelEvent) => {
@@ -253,7 +255,7 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
             window.removeEventListener('touchmove', onTouchMove);
             window.removeEventListener('touchend', onTouchEnd);
         };
-    }, [handleScroll, isRespondFormVisible, isContactFormVisible]);
+    }, [handleScroll, isRespondFormVisible, isContactFormVisible, isNavVisible]);
 
     return (
         <div className={cn('main-pa.ge-blocks')}>

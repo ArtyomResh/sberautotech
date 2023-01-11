@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProps } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import picPath from '../../static/pic.png';
@@ -17,12 +17,24 @@ const query = graphql`
   }
 `;
 
-const SEO = ({ seo = {} }) => {
+export interface ISeo {
+    metaTitle?: string,
+    metaDescription?: string,
+    shareImage?: string,
+    article?: boolean
+}
+
+interface IProps {
+    seo?: ISeo
+}
+
+
+const SEO = ({ seo = {} }: IProps) => {
     const { strapiGlobal } = useStaticQuery(query);
-    const { siteName, favicon } = strapiGlobal;
+    const { favicon } = strapiGlobal;
 
     const getMetaTags = () => {
-        const tags = [];
+        const tags: HelmetProps['meta'] = [];
 
         if(seo.metaTitle) {
             tags.push(
@@ -108,15 +120,11 @@ const SEO = ({ seo = {} }) => {
 export default SEO;
 
 SEO.propTypes = {
-    title      : PropTypes.string,
-    description: PropTypes.string,
-    shareImage : PropTypes.string,
-    article    : PropTypes.bool
+    shareImage: PropTypes.string,
+    article   : PropTypes.bool
 };
 
 SEO.defaultProps = {
-    title      : null,
-    description: null,
-    shareImage : null,
-    article    : false
+    shareImage: null,
+    article   : false
 };

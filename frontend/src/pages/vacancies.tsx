@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, PageProps, useStaticQuery } from 'gatsby';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 
@@ -6,15 +6,19 @@ import Layout from '../components/layout';
 import VacanciesList from '../components/vacancies-list';
 import TagsList from '../components/tags-list';
 import DirectionsList from '../components/directions-list';
-import Button from '../components/button';
+import Button from '../components/button-like/button';
 
 import { useClassnames } from '../hooks/use-classnames';
+import { pluralize } from '../utils';
 
 import SearchIcon from '../images/search.svg';
 import CrossIcon from '../images/cross.svg';
 
+import { IStrapiCollection, IStrapiSingleType, TStrapiEntity } from '../types/strapi';
+import { IDirection, IVacancy } from '../types/strapi/vacancies';
+import { IVacanciesPage } from '../types/strapi/vacanciesPage';
+
 import style from './vacancies.css';
-import { pluralize } from '../utils';
 
 const query = graphql`
   query {
@@ -32,6 +36,7 @@ const query = graphql`
     allStrapiVacancies(filter: {isSecret: {nin: true}}) {
       edges {
         node {
+          id
           locale
           area {
             text
@@ -74,9 +79,37 @@ const query = graphql`
   }
 `;
 
-const Vacancies = ({ location }) => {
+
+type TVacancy = Pick<TStrapiEntity<IVacancy>,
+'id' |
+'area' |
+'city' |
+'jobType' |
+'tags' |
+'title' |
+'direction' |
+'strapiId' >;
+
+
+type TDirection = Pick<TStrapiEntity<IDirection>,
+'header' |
+'strapiId'
+>;
+
+type TVacanciesPage = Pick<TStrapiEntity<IVacanciesPage>,
+'seo' |
+'pageId'
+>;
+
+interface IVacanciesPageData {
+    allStrapiVacancies: IStrapiCollection<TVacancy>,
+    allStrapiDirections: IStrapiCollection<TDirection>,
+    allStrapiVacanciesPage: IStrapiSingleType<TVacanciesPage>
+}
+
+const Vacancies: React.FC<PageProps> = ({ location }) => {
     const cn = useClassnames(style);
-    const data = useStaticQuery(query);
+    const data = useStaticQuery<IVacanciesPageData>(query);
     const params = new URLSearchParams(location.search);
     const directionParam = params.get('direction');
     const tagsParam = params.get('tags')?.split(',').map((item) => Number(item)) || [];
@@ -91,11 +124,12 @@ const Vacancies = ({ location }) => {
 
     const [activeDirection, setActiveDirection] = useState<number | null>(Number(directionParam));
     const [activeTags, setActiveTags] = useState<Array<number>>(tagsParam);
-    const [filteredVacancies, setFilteredVacancies] = useState<Array<any>>(vacanciesList);
+    const [filteredVacancies, setFilteredVacancies] = useState(vacanciesList);
     const [isMobileFilterVisible, setIsMobileFilterVisible] = useState(false);
 
+
     const filteredTags = useMemo(() => {
-        return filteredVacancies.reduce((acc, item) => {
+        return filteredVacancies.reduce<IVacancy['tags']>((acc, item) => {
             item.tags.forEach((tag) => {
                 if(!acc.find((tagInAcc) => tagInAcc.id === tag.id) && (activeDirection || activeTags.length)) {
                     acc.push(tag);
@@ -105,6 +139,7 @@ const Vacancies = ({ location }) => {
             return acc;
         }, []);
     }, [filteredVacancies]);
+
 
     const onClickDirection = useCallback((e) => {
         const selectedDirectionId = Number(e.target.getAttribute('data-id'));
@@ -160,7 +195,12 @@ const Vacancies = ({ location }) => {
 
     return (
         <div className={cn('vacancies__page')}>
-            <Layout seo={seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId={pageId}>
+            <Layout
+                seo={{
+                    ...seo,
+                    shareImage: undefined
+                }} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId={pageId}
+            >
                 <div className={cn('vacancies-page__wrapper')}>
                     {
                         !isMobileFilterVisible ? (

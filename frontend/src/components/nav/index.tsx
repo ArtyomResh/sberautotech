@@ -1,26 +1,25 @@
-import React, { useState, SetStateAction, Dispatch, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
-import { useClassnames } from '../../hooks/use-classnames';
-import useWindowSize from '../../hooks/use-window-resize';
-
-import style from './index.css';
-
-const MINIMUM_SCROLL = 5;
-const TIMEOUT_DELAY = 0;
-const PADDING = 20;
-
-import useDocumentScrollThrottled from './use-document-scroll-throttled';
-import { gtagClicked, toUnescapedHTML } from '../../utils';
 import { appContext } from '../../context/context';
 import { YM_ID } from '../../constants';
-
 import LogoWhite from '../../images/logo-white.inline.svg';
 import LogoBlack from '../../images/logo-black.inline.svg';
 import Burger from '../../images/burger.inline.svg';
 import Cross from '../../images/cross.inline.svg';
-import Button from '../button';
+import { useClassnames } from '../../hooks/use-classnames';
+import useWindowSize from '../../hooks/use-window-resize';
+import { gtagClicked, toUnescapedHTML } from '../../utils';
 import { isRu } from '../../utils/locale';
+
+import Button from '../button-like/button';
+
+import style from './index.css';
+import useDocumentScrollThrottled from './use-document-scroll-throttled';
+
+const MINIMUM_SCROLL = 5;
+const TIMEOUT_DELAY = 0;
+const PADDING = 20;
 
 export interface INavItem {
     text: string,
@@ -73,7 +72,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const [shouldAddShadow, setShouldAddShadow] = useState(false);
-    const { setIsContactFormVisible } = useContext(appContext);
+    const { setIsContactFormVisible, setIsNavVisible } = useContext(appContext);
     const [width, height] = useWindowSize();
     const cn = useClassnames(style);
 
@@ -107,6 +106,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
 
     const onMenuButtonClick = () => {
         setIsOpen(!isOpen);
+        setIsNavVisible?.(!isOpen);
     };
 
     const redirectHandler = () => {
@@ -120,7 +120,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
     };
 
     const onClick = () => {
-        gtagClicked('header_button_click', 'Join button');
+        gtagClicked('header_button_click');
         // @ts-expect-error: ym подставляется только при NODE_ENV === 'production'
         typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'form--success--svyazatsya_s_nami');
 
@@ -180,7 +180,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
                 {isRu && (
                     <Button
                         type="button"
-                        size="s"
+                        buttonSize="s"
                         className={cn('nav__accept-button')}
                         onClick={onClick}
                     >

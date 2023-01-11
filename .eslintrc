@@ -2,7 +2,7 @@
     "parser": "@typescript-eslint/parser",
     "reportUnusedDisableDirectives": true,
     "parserOptions": {
-        "project": "./tsconfig.json",
+        "project": "./frontend/tsconfig.json",
         "ecmaVersion": 6,
         "sourceType": "module",
         "ecmaFeatures": {

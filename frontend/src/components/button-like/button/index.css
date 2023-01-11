@@ -1,0 +1,3 @@
+@import "../index.css";
+
+@mixin button_like core-button;

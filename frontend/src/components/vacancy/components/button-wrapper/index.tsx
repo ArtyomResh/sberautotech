@@ -1,6 +1,6 @@
 import React, { useContext, useCallback } from 'react';
 
-import Button from '../../../button';
+import Button from '../../../button-like/button';
 import { appContext } from '../../../../context/context';
 
 interface IProps {
@@ -23,7 +23,7 @@ const ButtonWrapper = ({ className, title, huntflowId: vacancyId, children }: IP
         <Button
             className={className}
             type="button"
-            size="s"
+            buttonSize="s"
             isBlock={true}
             onClick={setIsPopupVisibleHandler}
         >
