@@ -9,10 +9,8 @@ import MainPageBlock, { IBlock } from '../components/main-page-block';
 
 import style from './index.css';
 import Loader from '../components/loader/loaderComponent';
-import { isRu } from '../utils/locale';
 import { appContext } from '../context/context';
-import { BETA_TEST_NAV_LINK, INavItem } from '../components/nav';
-import { BETA_TEST_LANADING_NAV_ID } from '../components/public-beta-signup/constants';
+import { INavItem } from '../components/nav';
 
 const query = graphql`
   query {
@@ -178,22 +176,6 @@ interface IIndexPageBlocksProps {
 
 const getScreenBlockId = (screen: IMainPageScreenData) => `main-page-screen-${screen.pageId}`;
 
-const betaTestScreen: IMainPageScreenData = {
-    pageId    : BETA_TEST_LANADING_NAV_ID,
-    id        : 0,
-    background: {
-        localFile: {
-            url: '/video/desktop/homepage-screen-beta-test.mp4'
-        }
-    },
-    mobileBackground: {
-        localFile: {
-            url: '/video/mobile/homepage-screen-beta-test.mp4'
-        }
-    },
-    text: '{Беспилотные автомобили} ждут первых пассажиров в&nbsp;парке «Сказка»'
-};
-
 const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
     const cn = useClassnames(style);
     const { isContactFormVisible, isRespondFormVisible, isNavVisible } = useContext(appContext);
@@ -293,8 +275,7 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
 const IndexPage = () => {
     const data = useStaticQuery(query);
     const screens = data.allStrapiHomepage.edges[0].node;
-    const { links: strapiLinks } = data.allStrapiNavPanel.edges[0].node as {links: Array<INavItem>};
-    const links = [BETA_TEST_NAV_LINK, ...strapiLinks];
+    const { links } = data.allStrapiNavPanel.edges[0].node as {links: Array<INavItem>};
     const [activePageId, setActivePageId] = useState(links[0].navId);
     const [isLoading, setIsLoading] = useState(true);
     const { isMobile } = useDeviceDetect();
@@ -310,10 +291,6 @@ const IndexPage = () => {
                 fetch(screens.fourth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.fourth_screen[0]) }))
             ].filter(Boolean);
 
-            if(isRu) {
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                preloadVideos.unshift(fetch(betaTestScreen[isMobile ? 'mobileBackground' : 'background']!.localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(betaTestScreen) })));
-            }
             Promise.all(preloadVideos).then((data) => {
                 setIsLoading(false);
                 data.forEach(({ blob, blockId }) => {
@@ -327,13 +304,12 @@ const IndexPage = () => {
     }, [isMobile]);
 
     const allScreens = [
-        isRu && betaTestScreen,
         screens.second_screen[0],
         screens.third_screen[0],
         screens.first_screen[0],
         screens.fourth_screen[0],
         screens.fifth_screen[0]
-    ].filter(Boolean) as Array<IMainPageScreenData>;
+    ];
 
     const sortedScreens = links.map((link, index) => {
         return allScreens.find((screen) => screen.pageId && link.navId === screen.pageId) || allScreens[index];
