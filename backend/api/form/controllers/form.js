@@ -2,7 +2,7 @@ const axios = require('axios');
 const FormData = require('form-data');
 const packagejson = require('../../../package.json');
 
-const HUNTFLOW_API = process.env.HUNTFLOW_API || 'https://api.huntflow.ru';
+const HUNTFLOW_API = process.env.HUNTFLOW_API || 'https://api.huntflow.ru/v2';
 const HUNTFLOW_TOKEN = process.env.HUNTFLOW_TOKEN;
 const HUNTFLOW_ACCOUNT_ID = process.env.HUNTFLOW_ACCOUNT_ID || '83078'; // id компании с ХФ
 const HUNTFLOW_SOURCE_ID = process.env.HUNTFLOW_SOURCE_ID || '331342'; // Сайт sberautotech.ru
@@ -116,30 +116,41 @@ module.exports = {
     }
 
     try {
-      const buffer = Buffer.from(content.split(',')[1], 'base64');
-      const form = new FormData();
-      form.append('file', buffer, filename);
-
-      const upload = await huntflowClient.post(`/accounts/${HUNTFLOW_ACCOUNT_ID}/upload`, form, {
-        headers: {
-          ...form.getHeaders(),
-          'X-File-Parse': true
+      const parseFileData = async () => {
+        if (!content) {
+          return {}
         }
-      });
+
+        const buffer = Buffer.from(file.split(',')[1], 'base64');
+        const form = new FormData();
+        form.append('file', buffer, filename);
+
+        const upload = await huntflowClient.post(`/accounts/${HUNTFLOW_ACCOUNT_ID}/upload`, form, {
+          headers: {
+            ...form.getHeaders(),
+            'X-File-Parse': true
+          }
+        });
+        return upload.data;
+      }
 
       const {
         id,
         text,
         photo,
-        fields: {
-          position,
-          email: dataEmail,
-          salary,
-          name: dataName,
-          phones,
-          birthdate
-        }
-      } = upload.data;
+        fields
+      } = await parseFileData();
+
+      const {
+        position,
+        email: dataEmail,
+        salary,
+        name: dataName,
+        phones,
+        birthdate
+      } = fields || {}
+
+      const applicantsFilesList = id ? [{ id }] : []
 
       const applicant = await huntflowClient.post(`/accounts/${HUNTFLOW_ACCOUNT_ID}/applicants`, {
         last_name: dataName?.last ?? surname,
@@ -158,7 +169,7 @@ module.exports = {
             body: text ?? textarea
           },
           auth_type: 'NATIVE',
-          files: [{ id }],
+          files: applicantsFilesList,
           account_source: HUNTFLOW_SOURCE_ID
         }]
       });
@@ -167,14 +178,14 @@ module.exports = {
         await huntflowClient.post(`/accounts/${HUNTFLOW_ACCOUNT_ID}/applicants/${applicant?.data?.id}/vacancy`, {
           vacancy: huntflowId,
           status: 117000,
-          files: [{ id }]
+          files: applicantsFilesList
         });
       }
+      ctx.send();
     } catch (err) {
-      console.error(err);
+      ctx.badRequest(err);
     }
 
-    ctx.send();
   },
 
   async contact(ctx) {
