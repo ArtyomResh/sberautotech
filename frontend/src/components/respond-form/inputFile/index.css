@@ -43,6 +43,14 @@
     }
 }
 
+@mixin button_like_base_styles input-file__label {
+    width: 100%;
+    height: auto;
+    background-color: var(--color-white);
+}
+
+@mixin button_like_size_l_styles input-file__label;
+
 .input-file__label {
 
     &_error {
@@ -55,16 +63,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-
     .input-file__label:hover {
         color: #1f272e;
     }
 }
-
-@mixin button_like_base_styles input-file__label {
-    width: 100%;
-    height: auto;
-    background-color: var(--color-white);
-}
-
-@mixin button_like_size_l_styles input-file__label;
