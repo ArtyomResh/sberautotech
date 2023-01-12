@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
-import privacyPolicyDocLink from '../../../static/footer/Политика_в_области_обработки_и_защиты_персональных_данных_0_5.pdf';
-import accreditationDocLink from '../../../static/footer/Аккредитация МинКомСвязь.pdf';
+import privacyPolicyDocLink from '../../../static/docs/Политика_в_области_обработки_и_защиты_персональных_данных_0_5.pdf';
+import accreditationDocLink from '../../../static/docs/Аккредитация МинКомСвязь.pdf';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import { gtagClicked } from '../../utils';
