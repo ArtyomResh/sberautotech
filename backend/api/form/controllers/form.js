@@ -111,8 +111,10 @@ module.exports = {
         `,
         attachments: [{ filename, path: content }]
       });
+
     } catch (err) {
-      console.error(err);
+      ctx.badRequest(err);
+      return;
     }
 
     try {
@@ -156,7 +158,7 @@ module.exports = {
         last_name: dataName?.last ?? surname,
         first_name: dataName?.first ?? name,
         middle_name: dataName?.middle,
-        phone: phones?.[0],
+        phone: phones?.[0] || telephone,
         email: dataEmail ?? email,
         position: position ?? direction,
         money: salary ?? '-',
@@ -181,11 +183,11 @@ module.exports = {
           files: applicantsFilesList
         });
       }
-      ctx.send();
     } catch (err) {
       ctx.badRequest(err);
+      return;
     }
-
+    ctx.send();
   },
 
   async contact(ctx) {
@@ -202,7 +204,8 @@ module.exports = {
         attachments: [{ filename, path: content }]
       });
     } catch (err) {
-      console.error(err);
+      ctx.badRequest(err);
+      return;
     }
 
     ctx.send();
