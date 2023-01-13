@@ -1,4 +1,5 @@
 import React, { createContext, ReactElement, useState, useContext } from 'react';
+import { INav } from '../components/nav';
 
 interface IAppContext {
     isContactFormVisible: boolean,
@@ -10,7 +11,9 @@ interface IAppContext {
     vacancyTitle: string,
     setVacancyTitle: React.Dispatch<React.SetStateAction<string>> | null,
     huntflowId: string | null,
-    setHuntflowId: React.Dispatch<React.SetStateAction<string>> | null
+    setHuntflowId: React.Dispatch<React.SetStateAction<string>> | null,
+    mainPageActivePageId: INav['pageId'] | null,
+    setMainPageActivePageId: React.Dispatch<React.SetStateAction<INav['pageId'] | null>> | null
 }
 
 const appContext = createContext<IAppContext>({
@@ -23,7 +26,9 @@ const appContext = createContext<IAppContext>({
     vacancyTitle           : '',
     setVacancyTitle        : null,
     huntflowId             : null,
-    setHuntflowId          : null
+    setHuntflowId          : null,
+    mainPageActivePageId   : null,
+    setMainPageActivePageId: null
 });
 const { Provider } = appContext;
 
@@ -33,6 +38,7 @@ const AppProvider = ({ children }: { children: ReactElement }) => {
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [vacancyTitle, setVacancyTitle] = useState('');
     const [huntflowId, setHuntflowId] = useState('');
+    const [activePageId, setActivePageId] = useState<INav['pageId'] | null>(null);
 
     return (
         <Provider value={{
@@ -45,7 +51,9 @@ const AppProvider = ({ children }: { children: ReactElement }) => {
             vacancyTitle,
             setVacancyTitle,
             huntflowId,
-            setHuntflowId
+            setHuntflowId,
+            mainPageActivePageId   : activePageId,
+            setMainPageActivePageId: setActivePageId
         }}
         >
             {children}

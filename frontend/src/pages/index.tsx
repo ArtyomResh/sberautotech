@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../hooks/use-classnames';
@@ -9,8 +9,8 @@ import MainPageBlock, { IBlock } from '../components/main-page-block';
 
 import style from './index.css';
 import Loader from '../components/loader/loaderComponent';
-import { appContext } from '../context/context';
-import { INavItem } from '../components/nav';
+import { useAppContext } from '../context/context';
+import { INav, INavItem } from '../components/nav';
 
 const query = graphql`
   query {
@@ -178,7 +178,7 @@ const getScreenBlockId = (screen: IMainPageScreenData) => `main-page-screen-${sc
 
 const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
     const cn = useClassnames(style);
-    const { isContactFormVisible, isRespondFormVisible, isNavVisible } = useContext(appContext);
+    const { isContactFormVisible, isRespondFormVisible, isNavVisible } = useAppContext();
     const [isScrolling, setIsScrolling] = useState(false);
     const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
     const pageNumber: number = links.findIndex(({ navId }) => navId === activePageId);
@@ -276,11 +276,21 @@ const IndexPage = () => {
     const data = useStaticQuery(query);
     const screens = data.allStrapiHomepage.edges[0].node;
     const { links } = data.allStrapiNavPanel.edges[0].node as {links: Array<INavItem>};
-    const [activePageId, setActivePageId] = useState(links[0].navId);
+    const { mainPageActivePageId, setMainPageActivePageId } = useAppContext();
     const [isLoading, setIsLoading] = useState(true);
     const { isMobile } = useDeviceDetect();
     const cn = useClassnames(style);
 
+    const activePageId = mainPageActivePageId || '';
+    const setActivePageId = (pageId: INav['pageId']) => {
+        setMainPageActivePageId?.(pageId);
+    };
+
+    useEffect(() => {
+        if(mainPageActivePageId === null) {
+            setActivePageId?.(links[0].navId);
+        }
+    }, []);
 
     useEffect(() => {
         if(isMobile !== null) {
