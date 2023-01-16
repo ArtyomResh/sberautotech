@@ -8,7 +8,6 @@ import Layout from '../components/layout';
 import MainPageBlock, { IBlock } from '../components/main-page-block';
 
 import style from './index.css';
-import Loader from '../components/loader/loaderComponent';
 import { useAppContext } from '../context/context';
 import { INav, INavItem } from '../components/nav';
 
@@ -179,14 +178,29 @@ const getScreenBlockId = (screen: IMainPageScreenData) => `main-page-screen-${sc
 const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
     const cn = useClassnames(style);
     const { isContactFormVisible, isRespondFormVisible, isNavVisible } = useAppContext();
+
+    useEffect(() => {
+        if(isContactFormVisible || isRespondFormVisible || isNavVisible) {
+            const bodyElement = document.querySelector('body') as HTMLBodyElement;
+
+            bodyElement.style.overflow = 'hidden';
+            bodyElement.style.position = 'fixed';
+
+            return () => {
+                bodyElement.style.overflow = 'unset';
+                bodyElement.style.position = 'unset';
+            };
+        }
+    }, [isContactFormVisible, isRespondFormVisible, isNavVisible]);
+
+    const pageNumber: number = links.findIndex(({ navId }) => navId === activePageId);
     const [isScrolling, setIsScrolling] = useState(false);
     const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
-    const pageNumber: number = links.findIndex(({ navId }) => navId === activePageId);
-    const pagesLength = screens.length;
 
     const handleScroll = useCallback((deltaY: number) => {
         const deltaPage = deltaY > 0 ? 1 : -1;
         const nextPageNumber = pageNumber + deltaPage;
+        const pagesLength = screens.length;
 
         const hasNextPage = (nextPageNumber >= 0) && (nextPageNumber < pagesLength);
 
@@ -202,20 +216,6 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
             }, ANIMATION_DURATION);
         }
     }, [pageNumber, isScrolling, lastScrollStartTime]);
-
-    useEffect(() => {
-        if(isContactFormVisible || isRespondFormVisible || isNavVisible) {
-            const bodyElement = document.querySelector('body') as HTMLBodyElement;
-
-            bodyElement.style.overflow = 'hidden';
-            bodyElement.style.position = 'fixed';
-
-            return () => {
-                bodyElement.style.overflow = 'unset';
-                bodyElement.style.position = 'unset';
-            };
-        }
-    }, [isContactFormVisible, isRespondFormVisible, isNavVisible]);
 
     useEffect(() => {
         if(isContactFormVisible || isRespondFormVisible || isNavVisible) {
@@ -277,7 +277,6 @@ const IndexPage = () => {
     const screens = data.allStrapiHomepage.edges[0].node;
     const { links } = data.allStrapiNavPanel.edges[0].node as {links: Array<INavItem>};
     const { mainPageActivePageId, setMainPageActivePageId } = useAppContext();
-    const [isLoading, setIsLoading] = useState(true);
     const { isMobile } = useDeviceDetect();
     const cn = useClassnames(style);
 
@@ -291,27 +290,6 @@ const IndexPage = () => {
             setActivePageId?.(links[0].navId);
         }
     }, []);
-
-    useEffect(() => {
-        if(isMobile !== null) {
-            const preloadVideos = [
-                fetch(screens.second_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.second_screen[0]) })),
-                fetch(screens.third_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.third_screen[0]) })),
-                fetch(screens.first_screen[0][isMobile ? 'background' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.first_screen[0]) })),
-                fetch(screens.fourth_screen[0][isMobile ? 'mobileBackground' : 'background'].localFile.url).then((response) => response.blob()).then((blob) => ({ blob, blockId: getScreenBlockId(screens.fourth_screen[0]) }))
-            ].filter(Boolean);
-
-            Promise.all(preloadVideos).then((data) => {
-                setIsLoading(false);
-                data.forEach(({ blob, blockId }) => {
-                    const bound = document.getElementById(blockId);
-                    const video = bound?.querySelector('video');
-
-                    video?.setAttribute('src', URL.createObjectURL(blob));
-                });
-            }).catch((e) => console.log(e));
-        }
-    }, [isMobile]);
 
     const allScreens = [
         screens.second_screen[0],
@@ -328,11 +306,7 @@ const IndexPage = () => {
     return (
         <div className={cn('main__page', `main__page_${activePageId}`)}>
             <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageId={activePageId} setActivePageId={setActivePageId}>
-                {isLoading ? (
-                    <div className={cn('loader__wrapper')}><Loader stopColor="#BDFFF8" /></div>
-                ) : (
-                    <IndexPageBlocks screens={sortedScreens} isMobile={isMobile} activePageId={activePageId} setActivePageId={setActivePageId} links={links} />
-                )}
+                <IndexPageBlocks screens={sortedScreens} isMobile={isMobile} activePageId={activePageId} setActivePageId={setActivePageId} links={links} />
             </Layout>
         </div>
     );

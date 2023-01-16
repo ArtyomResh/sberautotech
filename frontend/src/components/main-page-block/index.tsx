@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
-import { gtagClicked, toUnescapedHTML } from '../../utils';
+import { toUnescapedHTML } from '../../utils';
 import { useClassnames } from '../../hooks/use-classnames';
+import useDeviceDetect from '../../hooks/use-device-detect';
 import useFormattedText from '../../hooks/use-formatted-text';
 import StoryCard, { ICard } from '../story-card';
 
@@ -40,16 +40,21 @@ const MainPageBlock = ({ block, index, blockId, pageNumber }: { block: IBlock, i
     const cn = useClassnames(style);
     const text = useFormattedText(block.text);
     const visibilityClassName = pageNumber >= index ? 'block__wrapper_visible' : 'block__wrapper_hidden';
+    const { isMobile } = useDeviceDetect();
+
+    const videoSrc = isMobile ? block?.mobileBackground?.localFile?.url : block?.background?.localFile?.url;
 
     return (
         <div className={cn('block__wrapper', visibilityClassName)} id={blockId}>
-            {block.background.localFile.url.search('.mp4') !== -1 ? (
+            {(videoSrc && videoSrc?.search('.mp4') !== -1) ? (
                 <video
                     className={cn('block__image')}
                     muted={true}
                     loop={true}
                     autoPlay={true}
                     playsInline={true}
+                    preload="metadata"
+                    src={videoSrc}
                 />
             ) : (
                 <img src={block.background.localFile.url} className={cn('block__image')} alt={block.link?.text} />
