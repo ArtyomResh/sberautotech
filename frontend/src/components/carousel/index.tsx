@@ -138,6 +138,17 @@ const Carousel: React.FC<IProps> = ({ data }) => {
             }}
             onClick={onClick}
         >
+            <div className={cn('swiper-wrapper')} key="swiper-wrapper">
+                {data.slider_items.map((slide, i) => (
+                    <div key={i} className={cn('swiper-slide', 'carousel__slide')}>
+                        <div className={cn('carousel__slide-container')}>
+                            <div className={cn('carousel__img-container')}>
+                                <img className={cn('carousel__img')} src={slide.localFile.url} />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
             {elCursor}
             {header && (
                 <p
@@ -150,17 +161,6 @@ const Carousel: React.FC<IProps> = ({ data }) => {
                     {toUnescapedHTML(header)}
                 </p>
             )}
-            <div className={cn('swiper-wrapper')}>
-                {data.slider_items.map((slide, i) => (
-                    <div key={i} className={cn('swiper-slide', 'carousel__slide')}>
-                        <div className={cn('carousel__slide-container')}>
-                            <div className={cn('carousel__img-container')}>
-                                <img className={cn('carousel__img')} src={slide.localFile.url} />
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
         </div>
     );
 };
