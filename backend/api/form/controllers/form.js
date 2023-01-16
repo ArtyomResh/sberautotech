@@ -105,16 +105,14 @@ module.exports = {
         subject: vacancy ? `Отклик: ${vacancy}` : 'Отклик не по конкретной вакансии',
         html: `
           <p>${name} ${surname} - ${email}</p>
-          <p>Направление: ${direction}</p>
-          <p>Опыт: ${textarea}</p>
+          <p>О себе: ${textarea}</p>
           <p>Телефон: ${telephone}</p>
         `,
-        attachments: [{ filename, path: content }]
+        attachments: content ? [{ filename, path: content }] : []
       });
 
     } catch (err) {
-      ctx.badRequest(err);
-      return;
+      console.log('SendEmail error', err)
     }
 
     try {
@@ -201,11 +199,10 @@ module.exports = {
           <p>${name} - ${email}</p>
           <p>Комментарий: ${comment}</p>
         `,
-        attachments: [{ filename, path: content }]
+        attachments: content ? [{ filename, path: content }] : []
       });
     } catch (err) {
-      ctx.badRequest(err);
-      return;
+      console.log('SendEmail error', err)
     }
 
     ctx.send();
