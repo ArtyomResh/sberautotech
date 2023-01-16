@@ -3,33 +3,34 @@ import { INav } from '../components/nav';
 
 interface IAppContext {
     isContactFormVisible: boolean,
-    setIsContactFormVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
+    setIsContactFormVisible: React.Dispatch<React.SetStateAction<boolean>> | (() => void),
     isRespondFormVisible: boolean,
-    setIsRespondFormVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
+    setIsRespondFormVisible: React.Dispatch<React.SetStateAction<boolean>> | (() => void),
     isNavVisible: boolean,
-    setIsNavVisible: React.Dispatch<React.SetStateAction<boolean>> | null,
+    setIsNavVisible: React.Dispatch<React.SetStateAction<boolean>> | (() => void),
     vacancyTitle: string,
-    setVacancyTitle: React.Dispatch<React.SetStateAction<string>> | null,
+    setVacancyTitle: React.Dispatch<React.SetStateAction<string>> | (() => void),
     huntflowId: string | null,
-    setHuntflowId: React.Dispatch<React.SetStateAction<string>> | null,
+    setHuntflowId: React.Dispatch<React.SetStateAction<string>> | (() => void),
     mainPageActivePageId: INav['pageId'] | null,
-    setMainPageActivePageId: React.Dispatch<React.SetStateAction<INav['pageId'] | null>> | null
+    setMainPageActivePageId: React.Dispatch<React.SetStateAction<INav['pageId'] | null>> | (() => void)
 }
-
+/* eslint-disable @typescript-eslint/no-empty-function */
 const appContext = createContext<IAppContext>({
     isContactFormVisible   : false,
     isRespondFormVisible   : false,
     isNavVisible           : false,
-    setIsRespondFormVisible: null,
-    setIsContactFormVisible: null,
-    setIsNavVisible        : null,
+    setIsRespondFormVisible: () => {},
+    setIsContactFormVisible: () => {},
+    setIsNavVisible        : () => {},
     vacancyTitle           : '',
-    setVacancyTitle        : null,
+    setVacancyTitle        : () => {},
     huntflowId             : null,
-    setHuntflowId          : null,
+    setHuntflowId          : () => {},
     mainPageActivePageId   : null,
-    setMainPageActivePageId: null
+    setMainPageActivePageId: () => {}
 });
+/* eslint-ensable @typescript-eslint/no-empty-function */
 const { Provider } = appContext;
 
 const AppProvider = ({ children }: { children: ReactElement }) => {

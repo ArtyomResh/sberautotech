@@ -1,0 +1,20 @@
+.modal-form__field-wrapper {
+    margin-right: 20px;
+    width: 50%;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &_is-block {
+        width: 100%;
+    }
+}
+
+@mixin media_breakpoint_nav_collapsed {
+
+    .modal-form__field-wrapper {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+}

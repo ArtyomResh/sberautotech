@@ -1,0 +1,16 @@
+.modal-form__fields-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 690px;
+    margin-left: 40px;
+    align-self: flex-end;
+}
+
+@mixin media_breakpoint_nav_collapsed {
+
+    .modal-form__fields-container {
+        margin-top: 20px;
+        margin-left: 0;
+        min-width: 100%;
+    }
+}

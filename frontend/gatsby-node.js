@@ -4,7 +4,7 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
     // Query for nodes to use in creating pages.
     resolve(
         graphql(request).then((result) => {
-            if (result.errors) {
+            if(result.errors) {
                 reject(result.errors);
             }
 
@@ -13,30 +13,30 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
     );
 });
 
-const createVacanyPages = (vacanyEdges) => {
-    return !vacanyEdges ? [] : vacanyEdges.map(({ node }) => {
-        if (node.isSecret) {
+const createVacancyPages = (vacancyEdges) => {
+    return !vacancyEdges ? [] : vacancyEdges.map(({ node }) => {
+        if(node.isSecret) {
             return {
-                path: `/vacancies/special/${node.strapiId}`,
+                path     : `/vacancies/special/${node.strapiId}`,
                 component: path.resolve('src/pages/vacancy.tsx'),
-                context: {
+                context  : {
                     id: node.strapiId
                 }
             };
         }
 
         return {
-            path: `/vacancies/${node.strapiId}`,
+            path     : `/vacancies/${node.strapiId}`,
             component: path.resolve('src/pages/vacancy.tsx'),
-            context: {
+            context  : {
                 id: node.strapiId
             }
         };
     });
 };
 
-let vacanyPageIsHidden = false;
-let vacaniesPageIsHidden = false;
+let vacancyPageIsHidden = false;
+let vacanciesPageIsHidden = false;
 let careerPageIsHidden = false;
 
 exports.createPages = async ({ actions, graphql }) => {
@@ -76,13 +76,13 @@ exports.createPages = async ({ actions, graphql }) => {
       }
       `);
 
-    vacanyPageIsHidden = data.data?.allStrapiVacancyPage?.edges[0].node.isHidden;
-    vacaniesPageIsHidden = data.data?.allStrapiVacanciesPage?.edges[0].node.isHidden;
+    vacancyPageIsHidden = data.data?.allStrapiVacancyPage?.edges[0].node.isHidden;
+    vacanciesPageIsHidden = data.data?.allStrapiVacanciesPage?.edges[0].node.isHidden;
     careerPageIsHidden = data.data?.allStrapiCareer?.edges[0].node.isHidden;
 
-    if (!vacanyPageIsHidden) {
+    if(!vacancyPageIsHidden) {
         // Create pages for each article.
-        const vacancyPages = createVacanyPages(data.data?.allStrapiVacancies?.edges);
+        const vacancyPages = createVacancyPages(data.data?.allStrapiVacancies?.edges);
 
         vacancyPages.forEach((page) => createPage(page));
     }
@@ -92,15 +92,15 @@ exports.onCreatePage = async (args) => {
     const { actions, page } = args;
     const { deletePage } = actions;
 
-    if (page.path === '/vacancy/' && vacanyPageIsHidden) {
+    if(page.path === '/vacancy/' && vacancyPageIsHidden) {
         deletePage(page);
     }
 
-    if (page.path === '/vacancies/' && vacaniesPageIsHidden) {
+    if(page.path === '/vacancies/' && vacanciesPageIsHidden) {
         deletePage(page);
     }
 
-    if (page.path === '/career/' && careerPageIsHidden) {
+    if(page.path === '/career/' && careerPageIsHidden) {
         deletePage(page);
     }
 };
