@@ -38,7 +38,7 @@ interface IProps {
     buttonText: string,
     recaptchaHl: string,
     recaptchaVerifyCallback: () => void,
-    rightContainerComponent: React.ReactNode
+    leftContainerComponent: React.ReactNode
 }
 
 const ModalForm = ({
@@ -65,7 +65,7 @@ const ModalForm = ({
     buttonText,
     recaptchaHl,
     recaptchaVerifyCallback,
-    rightContainerComponent
+    leftContainerComponent
 }: IProps) => {
     const context = useForm({
         mode            : 'onSubmit',
@@ -139,7 +139,7 @@ const ModalForm = ({
                             </svg>
                         </div>
 
-                        {rightContainerComponent}
+                        {leftContainerComponent}
 
                         <FieldsContainer>
                             {children}

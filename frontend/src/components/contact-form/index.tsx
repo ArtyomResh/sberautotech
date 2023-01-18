@@ -52,7 +52,7 @@ export interface IContactFormData {
     file: string
 }
 
-interface IRightContainerProps {
+interface ILeftContainerProps {
     header: string,
     prEmailLabel: string,
     prEmail: string,
@@ -62,7 +62,7 @@ interface IRightContainerProps {
     contactEmail: string
 }
 
-const RightContainer = ({
+const LeftContainer = ({
     header,
     prEmailLabel,
     prEmail,
@@ -70,7 +70,7 @@ const RightContainer = ({
     commercialProposalsEmail,
     contactEmailLabel,
     contactEmail
-}: IRightContainerProps) => {
+}: ILeftContainerProps) => {
     const cn = useClassnames(style);
 
     return (
@@ -237,7 +237,7 @@ export const ContactForm = () => {
             buttonText={buttonText}
             recaptchaHl={locale}
             recaptchaVerifyCallback={handleVerifyCallback}
-            rightContainerComponent={<RightContainer
+            leftContainerComponent={<LeftContainer
                 header={header}
                 contactEmailLabel={contactEmailLabel}
                 contactEmail={contactEmail}

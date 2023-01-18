@@ -51,15 +51,15 @@ export interface IRespondFormData {
     file: string
 }
 
-export interface IRightContainerProps {
+export interface ILeftContainerProps {
     vacancyRespondHeader: string,
     vacancyTitle: string
 }
 
-const RightContainer = ({
+const LeftContainer = ({
     vacancyRespondHeader,
     vacancyTitle
-}: IRightContainerProps) => {
+}: ILeftContainerProps) => {
     const cn = useClassnames(style);
 
     return (
@@ -217,7 +217,7 @@ const RespondForm = () => {
             buttonText={buttonText}
             recaptchaHl={locale}
             recaptchaVerifyCallback={handleVerifyCallback}
-            rightContainerComponent={<RightContainer
+            leftContainerComponent={<LeftContainer
                 vacancyTitle={vacancyTitle}
                 vacancyRespondHeader={vacancyRespondHeader}
             />}
