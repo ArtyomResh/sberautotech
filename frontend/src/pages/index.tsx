@@ -286,8 +286,8 @@ const IndexPage = () => {
     };
 
     useEffect(() => {
-        if(mainPageActivePageId === null) {
-            setActivePageId?.(links[0].navId);
+        if(window.history.state.toTop || mainPageActivePageId === null) {
+            setActivePageId(links[0].navId);
         }
     }, []);
 
@@ -305,7 +305,7 @@ const IndexPage = () => {
 
     return (
         <div className={cn('main__page', `main__page_${activePageId}`)}>
-            <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageId={activePageId} setActivePageId={setActivePageId}>
+            <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageId={activePageId}>
                 <IndexPageBlocks screens={sortedScreens} isMobile={isMobile} activePageId={activePageId} setActivePageId={setActivePageId} links={links} />
             </Layout>
         </div>
