@@ -16,11 +16,10 @@ interface IProps {
     seo?: ISeo,
     theme: INav['theme'],
     pageId: INav['pageId'],
-    setActivePageId?: INav['setActivePageId'],
     withNav?: boolean
 }
 
-const Layout = ({ children, seo, theme, pageId, setActivePageId, withNav = true }: IProps) => {
+const Layout = ({ children, seo, theme, pageId, withNav = true }: IProps) => {
     const cn = useClassnames(style);
 
     return (
@@ -31,7 +30,6 @@ const Layout = ({ children, seo, theme, pageId, setActivePageId, withNav = true 
                     <Nav
                         theme={theme}
                         pageId={pageId}
-                        setActivePageId={setActivePageId}
                         whiteLogoImportant={theme?.whiteLogoImportant}
                     />
                 )}

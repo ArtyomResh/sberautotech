@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
-import { appContext } from '../../context/context';
+import { useAppContext } from '../../context/context';
 import { YM_ID } from '../../constants';
 import LogoWhite from '../../images/logo-white.inline.svg';
 import LogoBlack from '../../images/logo-black.inline.svg';
@@ -36,7 +36,6 @@ export interface ITheme {
 export interface INav {
     theme: ITheme,
     pageId: string,
-    setActivePageId?: (page: string) => void,
     whiteLogoImportant?: boolean
 }
 
@@ -66,13 +65,13 @@ const query = graphql`
   }
 `;
 
-const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
+const Nav = ({ theme, pageId, whiteLogoImportant }: INav) => {
     const data = useStaticQuery(query);
     const [isOpen, setIsOpen] = useState(false);
     const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const [shouldAddShadow, setShouldAddShadow] = useState(false);
-    const { setIsContactFormVisible, setIsNavVisible } = useContext(appContext);
+    const { setIsContactFormVisible, setIsNavVisible } = useAppContext();
     const [width, height] = useWindowSize();
     const cn = useClassnames(style);
 
@@ -110,10 +109,6 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
     };
 
     const redirectHandler = () => {
-        if(pageId) {
-            setActivePageId?.(pageId);
-        }
-
         if(isOpen) {
             onMenuButtonClick();
         }
@@ -138,7 +133,7 @@ const Nav = ({ theme, pageId, setActivePageId, whiteLogoImportant }: INav) => {
             }
         >
             <div className={cn('nav__left')}>
-                <Link className={cn('nav__logo')} to="/" onClick={redirectHandler}>
+                <Link className={cn('nav__logo')} to="/" onClick={redirectHandler} state={{ toTop: true }}>
                     {(theme.mode === 'light' && !isOpen) || (whiteLogoImportant && !isOpen) ? <LogoWhite /> : <LogoBlack />}
                 </Link>
             </div>
