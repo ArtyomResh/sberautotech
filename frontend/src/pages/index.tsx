@@ -286,7 +286,7 @@ const IndexPage = () => {
     };
 
     useEffect(() => {
-        if(window.history.state.toTop || mainPageActivePageId === null) {
+        if(window.history.state?.toTop || mainPageActivePageId === null) {
             setActivePageId(links[0].navId);
         }
     }, []);
