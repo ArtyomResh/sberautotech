@@ -1,0 +1,13 @@
+.modal-form__title {
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 60px;
+    letter-spacing: -0.02em;
+}
+
+@mixin media_breakpoint_nav_collapsed {
+    .modal-form__title {
+        font-size: 27px;
+        line-height: 30px;
+    }
+}
