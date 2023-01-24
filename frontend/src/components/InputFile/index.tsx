@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useController } from 'react-hook-form';
 
-import { useClassnames } from '../../../hooks/use-classnames';
-import CrossIcon from '../../../images/cross.inline.svg';
+import { useClassnames } from '../../hooks/use-classnames';
+import CrossIcon from '../../images/cross.inline.svg';
 
 import styles from './index.css';
 

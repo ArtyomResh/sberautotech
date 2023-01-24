@@ -2,16 +2,20 @@ import React, { useCallback, useRef, useState, useContext } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../../hooks/use-classnames';
-import { toBase64, toUnescapedHTML } from '../../utils';
+import { toBase64 } from '../../utils';
 import { appContext } from '../../context/context';
 import { validateName } from '../../utils/validation/validateName';
 
-import ModalForm from '../ModalForm';
+import Button from '../button-like/button';
+import CheckBox from '../Checkbox';
+import Input from '../Input';
+import InputFile from '../InputFile';
 import Fieldset from '../ModalForm/components/Fieldset';
 import FieldWrapper from '../ModalForm/components/FieldWrapper';
-import Title from '../ModalForm/components/Title';
+import ModalForm from '../ModalForm';
+import Recaptcha from '../ModalForm/components/Recaptcha';
+import Textarea from '../Textarea';
 
-import Input from './input';
 import style from './index.css';
 
 const FORM_URL = '/form/vacancy';
@@ -52,20 +56,17 @@ export interface IRespondFormData {
 }
 
 export interface ILeftContainerProps {
-    vacancyRespondHeader: string,
     vacancyTitle: string
 }
 
 const LeftContainer = ({
-    vacancyRespondHeader,
     vacancyTitle
 }: ILeftContainerProps) => {
     const cn = useClassnames(style);
 
     return (
-        <div className={cn('text-block')}>
-            <Title>{toUnescapedHTML(vacancyRespondHeader)}</Title>
-            <p className={cn('text-block__respond-vacancy-title')}>{vacancyTitle}</p>
+        <div className={cn('respond-form__left-container')}>
+            <p className={cn('respond-form__respond-vacancy-title')}>{vacancyTitle}</p>
         </div>
     );
 };
@@ -204,43 +205,71 @@ const RespondForm = () => {
             onCloseAlertClick={handleResetFormState}
             isFormVisible={isRespondFormVisible}
             setIsFormVisible={setIsRespondFormVisible}
-            textareaName={formFields.aboutMyself}
-            textareaPlaceholder={fewWordsAboutMyself}
-            checkboxName="acception"
-            checkboxLabel={consent}
-            inputFilePlaceholder={file}
-            inputFileName="file"
-            onFileChange={handleFileChange}
-            isRecaptchaConfirmed={isRecaptchaConfirmed}
-            buttonIsDisabled={isLoading}
-            buttonIsLoading={isLoading}
-            buttonText={buttonText}
-            recaptchaHl={locale}
-            recaptchaVerifyCallback={handleVerifyCallback}
-            leftContainerComponent={<LeftContainer
-                vacancyTitle={vacancyTitle}
-                vacancyRespondHeader={vacancyRespondHeader}
-            />}
+            leftContainerComponent={<LeftContainer vacancyTitle={vacancyTitle} />}
+            title={vacancyRespondHeader}
         >
-            <Fieldset legend="ФИО">
-                <FieldWrapper>
-                    <Input type="text" placeholder={name} name={formFields.name} autocomplete="off" pattern={validateName} requiredValidation={true} />
-                </FieldWrapper>
+            <div className={cn('respond-form__fields-container')}>
+                <Fieldset legend="ФИО">
+                    <FieldWrapper>
+                        <Input type="text" placeholder={name} name={formFields.name} autocomplete="off" pattern={validateName} requiredValidation={true} />
+                    </FieldWrapper>
 
-                <FieldWrapper>
-                    <Input type="text" placeholder={surname} name={formFields.surname} autocomplete="off" requiredValidation={true} pattern={validateName} />
-                </FieldWrapper>
-            </Fieldset>
+                    <FieldWrapper>
+                        <Input type="text" placeholder={surname} name={formFields.surname} autocomplete="off" requiredValidation={true} pattern={validateName} />
+                    </FieldWrapper>
+                </Fieldset>
 
-            <Fieldset legend="Контактные данные пользователя">
-                <FieldWrapper isBlock={true}>
-                    <Input type="text" placeholder={mail} name={formFields.email} autocomplete="off" requiredValidation={true} />
-                </FieldWrapper>
+                <Fieldset legend="Контактные данные пользователя">
+                    <FieldWrapper isBlock={true}>
+                        <Input type="text" placeholder={mail} name={formFields.email} autocomplete="off" requiredValidation={true} />
+                    </FieldWrapper>
 
-                <FieldWrapper isBlock={true}>
-                    <Input type="tel" placeholder={telephone} name={formFields.telephone} requiredValidation={true} />
-                </FieldWrapper>
-            </Fieldset>
+                    <FieldWrapper isBlock={true}>
+                        <Input type="tel" placeholder={telephone} name={formFields.telephone} requiredValidation={true} />
+                    </FieldWrapper>
+                </Fieldset>
+
+                <Textarea
+                    name={formFields.aboutMyself}
+                    placeholder={fewWordsAboutMyself}
+                    requiredValidation={true}
+                />
+
+                <CheckBox
+                    name="acception"
+                    label={consent}
+                    requiredValidation={true}
+                />
+
+                <div className={cn('respond-form__buttons')}>
+                    <FieldWrapper>
+                        <InputFile
+                            placeholder={file}
+                            name="file"
+                            onFileChange={handleFileChange}
+                        />
+                    </FieldWrapper>
+
+
+                    {isRecaptchaConfirmed ? (
+                        <FieldWrapper>
+                            <Button
+                                type="submit"
+                                disabled={isLoading}
+                                isLoading={isLoading}
+                                isBlock={true}
+                            >
+                                {buttonText}
+                            </Button>
+                        </FieldWrapper>
+                    ) : (
+                        <Recaptcha
+                            hl={locale}
+                            verifyCallback={handleVerifyCallback}
+                        />
+                    )}
+                </div>
+            </div>
         </ModalForm >
     );
 };

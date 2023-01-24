@@ -1,13 +1,9 @@
-.modal-form__title {
-    font-weight: 400;
-    font-size: 60px;
-    line-height: 60px;
-    letter-spacing: -0.02em;
-}
+@import '../../../heading/index.css';
 
-@mixin media_breakpoint_nav_collapsed {
+@mixin media_breakpoint_small_desktop {
+
     .modal-form__title {
-        font-size: 27px;
-        line-height: 30px;
+
+        @mixin h2;
     }
 }

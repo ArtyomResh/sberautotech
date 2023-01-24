@@ -20,7 +20,7 @@ const Alert = (props: React.PropsWithChildren<IProps>) => {
     return (
         <Fade duration={200} top={true} when={isVisible}>
             <div className={cn('alert', `alert_type-${type}`, { 'alert_visible': isVisible })}>
-                <Heading level={2} as="div" className={cn('alert__text')} dangerouslySetInnerHTML={{ __html: `${children}` }} />
+                <div className={cn('alert__text')} dangerouslySetInnerHTML={{ __html: `${children}` }} />
 
                 <button className={cn('alert__button')} type="button" title="Кнопка закрытия алёрта" onClick={onCloseClick}>
                     <Cross className={cn('alert__icon-cross')} />

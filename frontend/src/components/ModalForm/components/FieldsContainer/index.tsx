@@ -5,14 +5,15 @@ import { useClassnames } from '../../../../hooks/use-classnames';
 import style from './index.css';
 
 interface IProps {
-    children: React.ReactNode
+    children: React.ReactNode,
+    className?: string
 }
 
-const FieldsContainer = ({ children }: IProps) => {
+const FieldsContainer = ({ children, className }: IProps) => {
     const cn = useClassnames(style);
 
     return (
-        <div className={cn('modal-form__fields-container')}>
+        <div className={cn(className, 'modal-form__fields-container')}>
             {children}
         </div>
     );

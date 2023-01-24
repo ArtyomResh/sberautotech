@@ -1,18 +1,24 @@
 import React, { useCallback, useRef, useState, useContext } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
-import Input from '../respond-form/input';
+import Input from '../Input';
 import { useClassnames } from '../../hooks/use-classnames';
 import { toBase64 } from '../../utils';
 import { appContext } from '../../context/context';
 import { validateName } from '../../utils/validation/validateName';
 
-import ModalForm from '../ModalForm';
+import Button from '../button-like/button';
+import FieldsContainer from '../ModalForm/components/FieldsContainer';
 import Fieldset from '../ModalForm/components/Fieldset';
 import FieldWrapper from '../ModalForm/components/FieldWrapper';
-import Title from '../ModalForm/components/Title';
+import ModalForm from '../ModalForm';
+import Recaptcha from '../ModalForm/components/Recaptcha';
 
 import style from './index.css';
+import Textarea from '../Textarea';
+import Text from '../text';
+import CheckBox from '../Checkbox';
+import InputFile from '../InputFile';
 
 const FORM_URL = '/form/contact';
 
@@ -53,7 +59,6 @@ export interface IContactFormData {
 }
 
 interface ILeftContainerProps {
-    header: string,
     prEmailLabel: string,
     prEmail: string,
     commercialProposalsEmailLabel: string,
@@ -63,7 +68,6 @@ interface ILeftContainerProps {
 }
 
 const LeftContainer = ({
-    header,
     prEmailLabel,
     prEmail,
     commercialProposalsEmailLabel,
@@ -74,23 +78,46 @@ const LeftContainer = ({
     const cn = useClassnames(style);
 
     return (
-        <div className={cn('text-block')}>
-            <Title>{header}</Title>
+        <div className={cn('contact-form__left-container')}>
+            <div className={cn('contact-form__left-container-emails')}>
+                <Text className={cn('contact-form__pr-email-label')} size={4} as="h4">
+                    {prEmailLabel}
+                </Text>
+                <div className={cn('contact-form__email-link')}>
+                    <a href={`mailto:${prEmail}`} >
+                        <Text size={3}>
+                            {prEmail}
+                        </Text>
+                    </a>
+                </div>
 
-            <p className={cn('text-block__pr-email-label')}>{prEmailLabel}</p>
-            <a href={`mailto:${prEmail}`} className={cn('text-block__email-link')}>
-                {prEmail}
-            </a>
 
-            <p className={cn('text-block__pr-email-label')}>{commercialProposalsEmailLabel}</p>
-            <a href="mailto:partners@sberautotech.ru" className={cn('text-block__email-link')}>
-                {commercialProposalsEmail}
-            </a>
+                <Text className={cn('contact-form__pr-email-label')} size={4} as="h4">
+                    {commercialProposalsEmailLabel}
+                </Text>
+                <div className={cn('contact-form__email-link')}>
+                    <a href="mailto:partners@sberautotech.ru" >
+                        <Text size={3}>
+                            {commercialProposalsEmail}
+                        </Text>
 
-            <p className={cn('text-block__contact-email-label')}>{contactEmailLabel}</p>
-            <a href={`mailto:${contactEmail}`} className={cn('text-block__email-link')}>
-                {contactEmail}
-            </a>
+                    </a>
+                </div>
+
+
+                <Text className={cn('contact-form__pr-email-label')} size={4} as="h4">
+                    {contactEmailLabel}
+                </Text>
+                <div className={cn('contact-form__email-link')}>
+                    <a href={`mailto:${contactEmail}`}>
+                        <Text size={3}>
+                            {contactEmail}
+                        </Text>
+                    </a>
+                </div>
+
+            </div>
+
         </div>
     );
 };
@@ -224,21 +251,8 @@ export const ContactForm = () => {
             onCloseAlertClick={handleResetFormState}
             isFormVisible={isContactFormVisible}
             setIsFormVisible={setIsContactFormVisible}
-            textareaName={comment}
-            textareaPlaceholder={formFields.comment}
-            checkboxName="acception"
-            checkboxLabel={consent}
-            inputFilePlaceholder={file}
-            inputFileName={formFields.file}
-            onFileChange={handleFileChange}
-            isRecaptchaConfirmed={isRecaptchaConfirmed}
-            buttonIsDisabled={isLoading}
-            buttonIsLoading={isLoading}
-            buttonText={buttonText}
-            recaptchaHl={locale}
-            recaptchaVerifyCallback={handleVerifyCallback}
+            title={header}
             leftContainerComponent={<LeftContainer
-                header={header}
                 contactEmailLabel={contactEmailLabel}
                 contactEmail={contactEmail}
                 prEmailLabel={prEmailLabel}
@@ -247,40 +261,88 @@ export const ContactForm = () => {
                 commercialProposalsEmailLabel={commercialProposalsEmailLabel}
             />}
         >
-            <Fieldset legend="Данные пользователя">
-                <FieldWrapper>
-                    <Input
-                        type="text"
-                        placeholder={name}
-                        name={formFields.name}
-                        autocomplete="off"
-                        pattern={validateName}
-                        requiredValidation={true}
-                    />
-                </FieldWrapper>
+            <FieldsContainer>
+                <Fieldset legend="Данные пользователя">
+                    <FieldWrapper>
+                        <Input
+                            type="text"
+                            placeholder={name}
+                            name={formFields.name}
+                            autocomplete="off"
+                            pattern={validateName}
+                            requiredValidation={true}
+                        />
+                    </FieldWrapper>
 
-                <FieldWrapper>
-                    <Input
-                        type="email"
-                        placeholder={mail}
-                        name={formFields.email}
-                        autocomplete="off"
-                        requiredValidation={true}
-                    />
-                </FieldWrapper>
-            </Fieldset>
+                    <FieldWrapper>
+                        <Input
+                            type="email"
+                            placeholder={mail}
+                            name={formFields.email}
+                            autocomplete="off"
+                            requiredValidation={true}
+                        />
+                    </FieldWrapper>
+                </Fieldset>
 
-            <Fieldset legend="Тема обращения">
-                <FieldWrapper isBlock={true}>
-                    <Input
-                        type="text"
-                        placeholder={theme}
-                        name={formFields.subject}
-                        autocomplete="off"
-                        requiredValidation={true}
-                    />
-                </FieldWrapper>
-            </Fieldset>
+                <Fieldset legend="Тема обращения">
+                    <FieldWrapper isBlock={true}>
+                        <Input
+                            type="text"
+                            placeholder={theme}
+                            name={formFields.subject}
+                            autocomplete="off"
+                            requiredValidation={true}
+                        />
+                    </FieldWrapper>
+                </Fieldset>
+
+                <Textarea
+                    className={cn('contact-form__textarea')}
+                    name={formFields.comment}
+                    placeholder={comment}
+                    requiredValidation={true}
+                />
+
+                <CheckBox
+                    name="acception"
+                    label={consent}
+                    isBlock={true}
+                    requiredValidation={true}
+                />
+
+                <div className={cn('contact-form__buttons')}>
+                    <FieldWrapper>
+                        <InputFile
+                            placeholder={file}
+                            name="file"
+                            onFileChange={handleFileChange}
+                        />
+                    </FieldWrapper>
+
+
+                    {isRecaptchaConfirmed ? (
+                        <FieldWrapper>
+                            <Button
+                                type="submit"
+                                disabled={isLoading}
+                                isLoading={isLoading}
+                                isBlock={true}
+                            >
+                                {buttonText}
+                            </Button>
+                        </FieldWrapper>
+                    ) : (
+                        <Recaptcha
+                            hl={locale}
+                            verifyCallback={handleVerifyCallback}
+                        />
+                    )}
+                </div>
+            </FieldsContainer>
+
         </ModalForm>
     );
 };
+
+export default ContactForm;

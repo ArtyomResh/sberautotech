@@ -1,0 +1,15 @@
+@mixin media_breakpoint_tablet {
+
+    .modal-form__grecaptcha {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .modal-form__grecaptcha {
+        display: flex;
+        justify-content: center;
+    }
+}

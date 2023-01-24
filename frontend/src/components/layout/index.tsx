@@ -2,8 +2,8 @@ import React from 'react';
 
 import Nav, { INav } from '../nav';
 import Seo, { ISeo } from '../seo';
-import RespondForm from '../respond-form';
-import { ContactForm } from '../contact-form';
+import RespondForm from '../RespondForm';
+import ContactForm from '../ContactForm';
 import CookieAlert from '../cookie-alert';
 import { useClassnames } from '../../hooks/use-classnames';
 

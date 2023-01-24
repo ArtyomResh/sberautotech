@@ -12,15 +12,13 @@
 }
 
 .modal-form__fieldset-content {
-    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
 }
 
-@mixin media_breakpoint_nav_collapsed {
+@mixin media_breakpoint_mobile {
 
     .modal-form__fieldset-content {
-        margin-bottom: 0;
         flex-direction: column;
     }
 }
