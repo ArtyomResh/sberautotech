@@ -2,6 +2,9 @@ import React, { useContext, useCallback } from 'react';
 
 import Button from '../../../button-like/button';
 import { appContext } from '../../../../context/context';
+import { useClassnames } from '../../../../hooks/use-classnames';
+
+import styles from './index.css';
 
 interface IProps {
     children?: React.ReactNode,
@@ -11,7 +14,7 @@ interface IProps {
 }
 
 const ButtonWrapper = ({ className, title, huntflowId: vacancyId, children }: IProps) => {
-    const { setIsRespondFormVisible, setVacancyTitle, vacancyTitle, huntflowId, setHuntflowId } = useContext(appContext);
+    const { setIsRespondFormVisible, isRespondFormVisible, setVacancyTitle, vacancyTitle, huntflowId, setHuntflowId } = useContext(appContext);
 
     const setIsPopupVisibleHandler = useCallback(() => {
         setIsRespondFormVisible?.(true);
@@ -19,9 +22,11 @@ const ButtonWrapper = ({ className, title, huntflowId: vacancyId, children }: IP
         setHuntflowId?.(vacancyId);
     }, [vacancyTitle, huntflowId]);
 
+    const cn = useClassnames(styles);
+
     return (
         <Button
-            className={className}
+            className={cn(className, 'button-wrapper', { 'button-wrapper_is-visible-on-tablet': !isRespondFormVisible })}
             type="button"
             buttonSize="s"
             isBlock={true}

@@ -1,6 +1,8 @@
 .modal-form__field-wrapper {
     margin-right: 20px;
-    width: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: calc(50% - 10px);
 
     &:last-child {
         margin-right: 0;
@@ -11,10 +13,17 @@
     }
 }
 
-@mixin media_breakpoint_nav_collapsed {
+@mixin media_breakpoint_mobile {
 
-    .modal-form__field-wrapper {
-        margin-bottom: 20px;
-        width: 100%;
+    .modal-form {
+
+        &__field-wrapper {
+            margin-right: 0;
+            width: 100%;
+        }
+
+        &__field-wrapper:not(:first-of-type) {
+            margin-top: 20px;
+        }
     }
 }

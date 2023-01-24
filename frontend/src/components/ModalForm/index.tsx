@@ -6,13 +6,7 @@ import useDocumentScrollThrottled from '../nav/use-document-scroll-throttled';
 import Alert from '../alert';
 
 import style from './index.css';
-import Textarea from '../respond-form/textarea';
-import CheckBox from '../respond-form/check-box';
-import InputFile from '../respond-form/inputFile';
-import FieldWrapper from './components/FieldWrapper';
-import Button from '../button-like/button';
-import Recaptcha from 'react-recaptcha';
-import FieldsContainer from './components/FieldsContainer';
+import Title from './components/Title';
 
 interface IProps {
     className: string,
@@ -25,20 +19,8 @@ interface IProps {
     onCloseAlertClick: (e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
     isFormVisible: boolean,
     setIsFormVisible: React.Dispatch<React.SetStateAction<boolean>> | (() => void),
-    textareaName: string,
-    textareaPlaceholder: string,
-    checkboxName: string,
-    checkboxLabel: string,
-    inputFilePlaceholder: string,
-    inputFileName: string,
-    onFileChange: (file: File | null) => void,
-    isRecaptchaConfirmed: boolean,
-    buttonIsDisabled: boolean,
-    buttonIsLoading: boolean,
-    buttonText: string,
-    recaptchaHl: string,
-    recaptchaVerifyCallback: () => void,
-    leftContainerComponent: React.ReactNode
+    leftContainerComponent: React.ReactNode,
+    title: string
 }
 
 const ModalForm = ({
@@ -52,20 +34,8 @@ const ModalForm = ({
     onCloseAlertClick,
     isFormVisible,
     setIsFormVisible,
-    textareaName,
-    textareaPlaceholder,
-    checkboxName,
-    checkboxLabel,
-    inputFilePlaceholder,
-    inputFileName,
-    onFileChange,
-    isRecaptchaConfirmed,
-    buttonIsDisabled,
-    buttonIsLoading,
-    buttonText,
-    recaptchaHl,
-    recaptchaVerifyCallback,
-    leftContainerComponent
+    leftContainerComponent,
+    title
 }: IProps) => {
     const context = useForm({
         mode            : 'onSubmit',
@@ -139,55 +109,14 @@ const ModalForm = ({
                             </svg>
                         </div>
 
-                        {leftContainerComponent}
+                        <Title className={cn('modal-form__title')} dangerouslySetInnerHTML={{ __html: `${title}` }} />
 
-                        <FieldsContainer>
+                        <div className={cn('modal-form__content')}>
+                            {leftContainerComponent}
+
                             {children}
+                        </div>
 
-                            <div className={cn('modal-form__textarea-wrapper')}>
-                                <Textarea
-                                    name={textareaName}
-                                    placeholder={textareaPlaceholder}
-                                    requiredValidation={true}
-                                />
-                            </div>
-
-                            <div className={cn('modal-form__checkbox-wrapper')}>
-                                <CheckBox
-                                    name={checkboxName}
-                                    label={checkboxLabel}
-                                    requiredValidation={true}
-                                />
-                            </div>
-
-                            <div className={cn('modal-form__button-section')}>
-                                <FieldWrapper>
-                                    <InputFile placeholder={inputFilePlaceholder} name={inputFileName} onFileChange={onFileChange} />
-                                </FieldWrapper>
-
-
-                                {isRecaptchaConfirmed ? (
-                                    <FieldWrapper>
-                                        <Button
-                                            type="submit"
-                                            disabled={buttonIsDisabled}
-                                            isLoading={buttonIsLoading}
-                                            isBlock={true}
-                                        >
-                                            {buttonText}
-                                        </Button>
-                                    </FieldWrapper>
-                                ) : (
-                                    <Recaptcha
-                                        className={cn('modal-form__grecaptcha')}
-                                        sitekey="6LcxFCQbAAAAAPk5ZtW8P4LTJFuMUTHMh65Oap4n"
-                                        render="explicit"
-                                        hl={recaptchaHl}
-                                        verifyCallback={recaptchaVerifyCallback}
-                                    />
-                                )}
-                            </div>
-                        </FieldsContainer>
                     </form>
                 </FormProvider>
             )}

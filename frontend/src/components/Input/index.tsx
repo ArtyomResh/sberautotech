@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import { ValidationValueMessage } from 'react-hook-form/dist/types/validator';
 import { useController, useFormContext } from 'react-hook-form';
 
-import { useClassnames } from '../../../hooks/use-classnames';
-import useDeviceDetect from '../../../hooks/use-device-detect';
-import { validateEmail } from '../../../utils/validation/validateEmail';
-import { validatePhoneNumber } from '../../../utils/validation/validatePhoneNumber';
+import { useClassnames } from '../../hooks/use-classnames';
+import useDeviceDetect from '../../hooks/use-device-detect';
+import { validateEmail } from '../../utils/validation/validateEmail';
+import { validatePhoneNumber } from '../../utils/validation/validatePhoneNumber';
 
 import style from './index.css';
 

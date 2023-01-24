@@ -1,16 +1,40 @@
 .modal-form__fields-container {
     display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
     flex-direction: column;
-    min-width: 690px;
-    margin-left: 40px;
     align-self: flex-end;
+    gap: 20px;
+    width: 100%;
 }
 
-@mixin media_breakpoint_nav_collapsed {
+@mixin media_breakpoint_normal_desktop {
+
+    .modal-form__fields-container {
+        margin-left: 20px;
+        max-width: 50%;
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .modal-form__fields-container {
+        max-width: calc(50% - 10px);
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .modal-form__fields-container {
+        margin-top: 40px;
+        max-width: 100%;
+    }
+}
+
+@mixin media_breakpoint_mobile {
 
     .modal-form__fields-container {
         margin-top: 20px;
-        margin-left: 0;
-        min-width: 100%;
+        max-width: 100%;
     }
 }
