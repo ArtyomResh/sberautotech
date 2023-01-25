@@ -220,11 +220,11 @@ const RespondForm = () => {
                 </Fieldset>
 
                 <Fieldset legend="Контактные данные пользователя">
-                    <FieldWrapper isBlock={true}>
+                    <FieldWrapper>
                         <Input type="text" placeholder={mail} name={formFields.email} autocomplete="off" requiredValidation={true} />
                     </FieldWrapper>
 
-                    <FieldWrapper isBlock={true}>
+                    <FieldWrapper>
                         <Input type="tel" placeholder={telephone} name={formFields.telephone} requiredValidation={true} />
                     </FieldWrapper>
                 </Fieldset>
