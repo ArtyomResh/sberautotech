@@ -221,7 +221,7 @@ const RespondForm = () => {
 
                 <Fieldset legend="Контактные данные пользователя">
                     <FieldWrapper>
-                        <Input type="text" placeholder={mail} name={formFields.email} autocomplete="off" requiredValidation={true} />
+                        <Input type="email" placeholder={mail} name={formFields.email} autocomplete="off" requiredValidation={true} />
                     </FieldWrapper>
 
                     <FieldWrapper>
