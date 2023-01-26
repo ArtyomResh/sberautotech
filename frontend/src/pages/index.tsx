@@ -258,7 +258,7 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
     }, [handleScroll, isRespondFormVisible, isContactFormVisible, isNavVisible]);
 
     return (
-        <div className={cn('main-pa.ge-blocks')}>
+        <div className={cn('main-page-blocks')}>
             {screens.map((screen, index) => {
                 const link = links.find((link) => link.navId === screen.pageId)?.to || '/';
 

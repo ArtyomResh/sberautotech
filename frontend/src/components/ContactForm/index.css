@@ -1,0 +1,139 @@
+.contact-form {
+
+    &__left-container {
+        display: flex;
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &__left-container-emails {
+        margin-top: auto;
+    }
+
+    &__pr-email-label {
+        margin-top: 20px;
+        color: #43515C !important;
+    }
+
+    &__email-link {
+        margin-top: 4px;
+        display: block;
+    }
+
+    &__email-link a {
+        display: inline-block;
+    }
+
+    &__buttons {
+        margin-top: 20px;
+        display: flex;
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .contact-form {
+
+        &__left-container {
+            max-width: calc(50% - 10px);
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .contact-form {
+
+        &__left-container {
+            max-width: calc(50% - 30px);
+        }
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .contact-form {
+
+        &__left-container {
+            margin-top: 40px;
+            align-self: flex-start;
+            max-width: 100%;
+        }
+
+        &__left-container-emails {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        &__pr-email-label:first-of-type,
+        &__email-link:first-of-type {
+            width: 100%;
+        }
+
+        &__pr-email-label:nth-of-type(n + 2),
+        &__email-link:nth-of-type(n + 2) {
+            width: calc(50% - 10px);
+        }
+
+        &__pr-email-label:first-of-type {
+            margin-top: 0;
+            order: 1;
+        }
+
+        &__pr-email-label:nth-of-type(2) {
+            order: 3;
+        }
+
+        &__pr-email-label:nth-of-type(3) {
+            order: 4;
+        }
+
+        &__email-link:first-of-type {
+            order: 2;
+        }
+
+        &__email-link:nth-of-type(2) {
+            order: 5;
+        }
+
+        &__email-link:nth-of-type(3) {
+            order: 6;
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .contact-form {
+
+        &__left-container {
+            margin-top: 20px;
+            align-self: flex-start;
+            max-width: 100%;
+        }
+
+        &__left-container-emails {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        &__pr-email-label,
+        &__email-link {
+            width: 100%;
+        }
+
+        &__pr-email-label:first-of-type {
+            margin-top: 0;
+        }
+
+        &__buttons {
+            margin-top: 20px;
+            display: block;
+        }
+    }
+}

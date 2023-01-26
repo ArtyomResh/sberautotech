@@ -1,0 +1,24 @@
+.modal-form__fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.modal-form__fieldset-legend {
+    padding: 0;
+    height: 0;
+    width: 0;
+    opacity: 0;
+}
+
+.modal-form__fieldset-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin media_breakpoint_mobile {
+
+    .modal-form__fieldset-content {
+        flex-direction: column;
+    }
+}

@@ -38,6 +38,8 @@
     }
 
     &__text {
+
+        @mixin h2;
         color: var(--color-white);
     }
 
@@ -52,6 +54,7 @@
         top: 82px;
         left: 20px;
         width: calc(100% - 40px);
+        min-height: 188px;
     }
 }
 
@@ -61,8 +64,10 @@
         top: 72px;
         left: 20px;
         width: calc(100% - 40px);
+        min-height: 188px;
 
         &__text {
+
             @mixin h2;
         }
     }
@@ -75,6 +80,7 @@
         top: 0;
         left: 0;
         width: 100%;
+        min-height: 188px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
 
@@ -92,7 +98,13 @@
         padding-bottom: 20px;
         padding-left: 20px;
         width: 100%;
+        min-height: 124px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+
+        &__text {
+
+            @mixin h4;
+        }
     }
 }

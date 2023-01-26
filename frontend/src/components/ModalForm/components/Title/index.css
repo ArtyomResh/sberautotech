@@ -1,0 +1,9 @@
+@import '../../../heading/index.css';
+
+@mixin media_breakpoint_small_desktop {
+
+    .modal-form__title {
+
+        @mixin h2;
+    }
+}

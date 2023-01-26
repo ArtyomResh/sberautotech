@@ -1,0 +1,11 @@
+@mixin media_breakpoint_tablet {
+
+    .button-wrapper {
+        display: none;
+
+        &_is-visible-on-tablet {
+            display: block;
+        }
+    }
+
+}

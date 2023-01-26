@@ -2,7 +2,9 @@ import React, { ChangeEvent } from 'react';
 import { ValidationRule } from 'react-hook-form/dist/types/validator';
 import { Message, useFormContext } from 'react-hook-form';
 
-import { useClassnames } from '../../../hooks/use-classnames';
+import { useClassnames } from '../../hooks/use-classnames';
+
+import Text from '../text';
 
 import style from './index.css';
 
@@ -41,9 +43,10 @@ const CheckBox: React.FC<IRadioButtonProps> = ({ label, name, isBlock, ...props 
                 {...registerProps}
                 onChange={handleChange}
             />
-            <label className={cn('check-box__label', { 'check-box__label_block': isBlock })}>
+
+            <Text className={cn('check-box__label', { 'check-box__label_block': isBlock })} size={4} as="label">
                 {label}
-            </label>
+            </Text>
         </div>
     );
 };

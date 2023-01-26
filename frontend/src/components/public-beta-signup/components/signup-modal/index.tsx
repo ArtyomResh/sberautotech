@@ -13,8 +13,8 @@ import { IRegistrationRequest } from '../../../../utils/api/types';
 
 import Heading from '../../../heading';
 import Button from '../../../button-like/button';
-import Input from '../../../respond-form/input';
-import CheckBox from '../../../respond-form/check-box';
+import Input from '../../../Input';
+import CheckBox from '../../../Checkbox';
 import Select from '../../../select';
 import Text from '../../../text';
 import policyDocLink from '../../../../../static/signup-modal/Политика конфиденциальности.pdf';
