@@ -6,7 +6,6 @@ import accreditationDocLink from '../../../static/docs/Аккредитация 
 
 import { useClassnames } from '../../hooks/use-classnames';
 import { gtagClicked } from '../../utils';
-import { isRu } from '../../utils/locale';
 import { appContext } from '../../context/context';
 
 import Button from '../button-like/button';
@@ -49,21 +48,17 @@ const Footer = ({ className }: {className?: string}) => {
 
     return (
         <GridWrapper as="footer" className={cn('main-footer', className)}>
-            {isRu && (
-                <Heading className={cn('main-footer__header')} level={2}>
-                    {header}
-                </Heading>
-            )}
+            <Heading className={cn('main-footer__header')} level={2}>
+                {header}
+            </Heading>
 
-            {isRu && (
-                <Button
-                    className={cn('main-footer__button')}
-                    buttonSize="s"
-                    onClick={handleClick}
-                >
-                    {modalLinkText}
-                </Button>
-            )}
+            <Button
+                className={cn('main-footer__button')}
+                buttonSize="s"
+                onClick={handleClick}
+            >
+                {modalLinkText}
+            </Button>
 
             <Text
                 className={cn('main-footer__disclaimer')}

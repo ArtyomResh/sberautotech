@@ -1,4 +1,3 @@
-import common from './common.json';
-import page from './page.json';
+import validation from './validation.json';
 
-export const ru = { common, page };
+export const ru = { validation };

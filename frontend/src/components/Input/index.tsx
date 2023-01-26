@@ -6,6 +6,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import useDeviceDetect from '../../hooks/use-device-detect';
 import { validateEmail } from '../../utils/validation/validateEmail';
 import { validatePhoneNumber } from '../../utils/validation/validatePhoneNumber';
+import { validateRequired } from '../../utils/validation/validateRequired';
 
 import style from './index.css';
 
@@ -33,11 +34,10 @@ const validators: {[key in TInputType]: ValidationValueMessage<RegExp> | null } 
 const Input = ({ type, placeholder, name, className, pattern, onFocus, ...props }: IProps) => {
     const fieldName = `${name}` as const;
     const { setValue } = useFormContext();
-
     const controller = useController({
         name : fieldName,
         rules: {
-            required: props.requiredValidation && 'Обязательное поле',
+            required: validateRequired(Boolean(props.requiredValidation)),
             pattern : pattern || validators[type] || undefined
         },
         shouldUnregister: true

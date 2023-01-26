@@ -1,7 +1,10 @@
-import { useClassnames } from '../../hooks/use-classnames';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import ReactSelect, { Props } from 'react-select';
+
+import { useClassnames } from '../../hooks/use-classnames';
+import { validateRequired } from '../../utils/validation/validateRequired';
+
 import { defaultStyles } from './config';
 import style from './index.css';
 
@@ -19,7 +22,7 @@ const Select: React.FC<TSelectProps> = React.forwardRef<unknown, TSelectProps>((
         <Controller
             control={control}
             name={`${name}` as const}
-            rules={{ required: required && 'Обязательное поле' }}
+            rules={{ required: validateRequired(Boolean(required)) }}
             render={({ field, fieldState }) => {
                 const handleChange: Props['onChange'] = (...args) => {
                     field.onChange(...args);

@@ -1,13 +1,14 @@
 import React, { useCallback, useRef, useState, useContext } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
-import Input from '../Input';
+import { appContext } from '../../context/context';
 import { useClassnames } from '../../hooks/use-classnames';
 import { toBase64 } from '../../utils';
-import { appContext } from '../../context/context';
+import { isRu } from '../../utils/locale';
 import { validateName } from '../../utils/validation/validateName';
 
 import Button from '../button-like/button';
+import Input from '../Input';
 import FieldsContainer from '../ModalForm/components/FieldsContainer';
 import Fieldset from '../ModalForm/components/Fieldset';
 import FieldWrapper from '../ModalForm/components/FieldWrapper';
@@ -79,45 +80,45 @@ const LeftContainer = ({
 
     return (
         <div className={cn('contact-form__left-container')}>
-            <div className={cn('contact-form__left-container-emails')}>
-                <Text className={cn('contact-form__pr-email-label')} size={4} as="h4">
-                    {prEmailLabel}
-                </Text>
-                <div className={cn('contact-form__email-link')}>
-                    <a href={`mailto:${prEmail}`} >
-                        <Text size={3}>
-                            {prEmail}
-                        </Text>
-                    </a>
+            {isRu && (
+                <div className={cn('contact-form__left-container-emails')}>
+                    <Text className={cn('contact-form__pr-email-label')} size={4} as="h4">
+                        {prEmailLabel}
+                    </Text>
+                    <div className={cn('contact-form__email-link')}>
+                        <a href={`mailto:${prEmail}`} >
+                            <Text size={3}>
+                                {prEmail}
+                            </Text>
+                        </a>
+                    </div>
+
+
+                    <Text className={cn('contact-form__pr-email-label')} size={4} as="h4">
+                        {commercialProposalsEmailLabel}
+                    </Text>
+                    <div className={cn('contact-form__email-link')}>
+                        <a href="mailto:partners@sberautotech.ru" >
+                            <Text size={3}>
+                                {commercialProposalsEmail}
+                            </Text>
+
+                        </a>
+                    </div>
+
+
+                    <Text className={cn('contact-form__pr-email-label')} size={4} as="h4">
+                        {contactEmailLabel}
+                    </Text>
+                    <div className={cn('contact-form__email-link')}>
+                        <a href={`mailto:${contactEmail}`}>
+                            <Text size={3}>
+                                {contactEmail}
+                            </Text>
+                        </a>
+                    </div>
                 </div>
-
-
-                <Text className={cn('contact-form__pr-email-label')} size={4} as="h4">
-                    {commercialProposalsEmailLabel}
-                </Text>
-                <div className={cn('contact-form__email-link')}>
-                    <a href="mailto:partners@sberautotech.ru" >
-                        <Text size={3}>
-                            {commercialProposalsEmail}
-                        </Text>
-
-                    </a>
-                </div>
-
-
-                <Text className={cn('contact-form__pr-email-label')} size={4} as="h4">
-                    {contactEmailLabel}
-                </Text>
-                <div className={cn('contact-form__email-link')}>
-                    <a href={`mailto:${contactEmail}`}>
-                        <Text size={3}>
-                            {contactEmail}
-                        </Text>
-                    </a>
-                </div>
-
-            </div>
-
+            )}
         </div>
     );
 };
