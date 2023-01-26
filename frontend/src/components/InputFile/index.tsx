@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useController } from 'react-hook-form';
 
+import { validateRequired } from '../../utils/validation/validateRequired';
 import { useClassnames } from '../../hooks/use-classnames';
 import CrossIcon from '../../images/cross.inline.svg';
 
@@ -21,7 +22,7 @@ interface IState {
 
 const InputFile = ({ placeholder, name, className, onFileChange, ...props }: IProps) => {
     const controller = useController({ name : `${name}` as const, rules: {
-        required: props.requiredValidation && 'Обязательное поле'
+        required: validateRequired(Boolean(props.requiredValidation))
     }, shouldUnregister: true });
 
     const cn = useClassnames(styles);

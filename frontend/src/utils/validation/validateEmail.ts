@@ -1,6 +1,7 @@
 import { ValidationValueMessage } from 'react-hook-form';
+import { translate } from '../i18n';
 
 export const validateEmail: ValidationValueMessage<RegExp> = {
-    value  : /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-    message: 'Неверный формат почты'
+    message: translate('validation:email'),
+    value  : /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
 };
