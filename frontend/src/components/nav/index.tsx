@@ -10,7 +10,6 @@ import Cross from '../../images/cross.inline.svg';
 import { useClassnames } from '../../hooks/use-classnames';
 import useWindowSize from '../../hooks/use-window-resize';
 import { gtagClicked, toUnescapedHTML } from '../../utils';
-import { isRu } from '../../utils/locale';
 
 import Button from '../button-like/button';
 
@@ -152,16 +151,14 @@ const Nav = ({ theme, pageId, whiteLogoImportant }: INav) => {
                 </ul>
 
                 <div className={cn('nav__bottom-block')}>
-                    {isRu && (
-                        <Button
-                            type="button"
-                            className={cn('nav__bottom-block-accept-button')}
-                            isBlock={true}
-                            onClick={onClick}
-                        >
-                            {joinButtonText}
-                        </Button>
-                    )}
+                    <Button
+                        type="button"
+                        className={cn('nav__bottom-block-accept-button')}
+                        isBlock={true}
+                        onClick={onClick}
+                    >
+                        {joinButtonText}
+                    </Button>
 
                     <div className={cn('nav__link-block')}>
                         <Link className={cn('nav__link-bottom-block')} to={privacyPolicyLink} title={privacyPolicyText}>{privacyPolicyText}</Link>
@@ -172,16 +169,14 @@ const Nav = ({ theme, pageId, whiteLogoImportant }: INav) => {
                     </span>
                 </div>
 
-                {isRu && (
-                    <Button
-                        type="button"
-                        buttonSize="s"
-                        className={cn('nav__accept-button')}
-                        onClick={onClick}
-                    >
-                        {joinButtonText}
-                    </Button>
-                )}
+                <Button
+                    type="button"
+                    buttonSize="s"
+                    className={cn('nav__accept-button')}
+                    onClick={onClick}
+                >
+                    {joinButtonText}
+                </Button>
             </div>
             <div className={cn('nav__right')}>
                 <button className={cn('nav__menu-button')} onClick={onMenuButtonClick}>

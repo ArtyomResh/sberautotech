@@ -1,0 +1,6 @@
+{
+    "email": "Invalid email format",
+    "name": "A name can consist of letters and spaces",
+    "phone": "Invalid phone number format",
+    "required": "Required field"
+}
