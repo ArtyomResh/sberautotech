@@ -228,9 +228,9 @@ module.exports = {
     } catch (err) {
       if(ctx.request.headers['x-debug']) {
         ctx.badRequest(`Email sending was failed. Error: ${err.message}`);
-      } else {
-        ctx.send();
+        return;
       }
     }
+    ctx.send();
   }
 };
