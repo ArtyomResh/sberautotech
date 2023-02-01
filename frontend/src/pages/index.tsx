@@ -9,17 +9,23 @@ import MainPageBlock, { IBlock } from '../components/main-page-block';
 
 import style from './index.css';
 import { useAppContext } from '../context/context';
-import { INav, INavItem } from '../components/nav';
+import { INavProps } from '../components/nav';
+import { INavHierachicalLink } from '../types/strapi/navPanel';
 
 const query = graphql`
   query {
     allStrapiNavPanel {
       edges {
         node {
-          links {
+          hierarchicalLinks {
+            text
+            to
+            navId
+            sublinks {
               text
               to
               navId
+            }
           }
         }
       }
@@ -169,7 +175,7 @@ interface IIndexPageBlocksProps {
     activePageId: string,
     isMobile: boolean | null,
     setActivePageId: (id: string) => void,
-    links: Array<INavItem>,
+    links: Array<INavHierachicalLink>,
     navId?: string
 }
 
@@ -275,13 +281,13 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
 const IndexPage = () => {
     const data = useStaticQuery(query);
     const screens = data.allStrapiHomepage.edges[0].node;
-    const { links } = data.allStrapiNavPanel.edges[0].node as {links: Array<INavItem>};
+    const { links } = data.allStrapiNavPanel.edges[0].node as {links: Array<INavHierachicalLink>};
     const { mainPageActivePageId, setMainPageActivePageId } = useAppContext();
     const { isMobile } = useDeviceDetect();
     const cn = useClassnames(style);
 
     const activePageId = mainPageActivePageId || '';
-    const setActivePageId = (pageId: INav['pageId']) => {
+    const setActivePageId = (pageId: INavProps['currentPageId']) => {
         setMainPageActivePageId?.(pageId);
     };
 
@@ -305,7 +311,7 @@ const IndexPage = () => {
 
     return (
         <div className={cn('main__page', `main__page_${activePageId}`)}>
-            <Layout seo={screens.seo} theme={{ mode: 'light', logoColor: '#040A0A' }} pageId={activePageId}>
+            <Layout seo={screens.seo}>
                 <IndexPageBlocks screens={sortedScreens} isMobile={isMobile} activePageId={activePageId} setActivePageId={setActivePageId} links={links} />
             </Layout>
         </div>

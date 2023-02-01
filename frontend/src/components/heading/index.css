@@ -26,6 +26,13 @@
     letter-spacing: -0.04em;
 }
 
+@define-mixin h5 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 26px;
+    letter-spacing: -0.04em;
+}
+
 .heading {
     font-family: var(--font-family-primary);
     font-style: normal;
@@ -53,11 +60,15 @@
         @mixin h3;
     }
 
-    &_4,
+    &_4 {
+
+        @mixin h4;
+    }
+
     &_5,
     &_6 {
 
-        @mixin h4;
+        @mixin h5;
     }
 }
 

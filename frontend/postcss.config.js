@@ -21,13 +21,8 @@ const plugins = [
                 '@mixin-content': {},
             }
         },
-        media_breakpoint_nav_collapsed: {
-            '@media (max-width: 1210px)': {
-                '@mixin-content': {},
-            }
-        },
-        media_breakpoint_nav_fullwidth: {
-            '@media (min-width: 1211px)': {
+        media_breakpoint_below_desktop: {
+            '@media (max-width: 1279px)': {
                 '@mixin-content': {},
             }
         }

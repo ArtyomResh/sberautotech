@@ -71,7 +71,7 @@ const Vacancy: React.FC<IProps> = ({ data }) => {
                     shareImage: seo.shareImage.localFile.url,
                     metaTitle : title
                 }}
-                theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId={pageId}
+                pageId={pageId}
             >
                 <div className={cn('vacancy')}>
                     <div className={cn('vacancy__wrapper')}>

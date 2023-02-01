@@ -4,7 +4,6 @@ import Layout from '../components/layout';
 
 const NotFoundPage = () => (
     <Layout
-        theme={{ mode: 'dark', logoColor: '#040A0A' }}
         seo={{
             metaTitle      : '404: Not found',
             metaDescription: 'It looks like you got lost'

@@ -4,6 +4,7 @@ import Swiper from 'swiper';
 import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
 import { toUnescapedHTML } from '../../utils';
+import { ILocalFile } from '../../types';
 
 import CursorRight from '../../images/cursor-right.inline.svg';
 import CursorLeft from '../../images/cursor-left.inline.svg';
@@ -12,12 +13,6 @@ import style from './index.css';
 
 interface IProps {
     data: ISlider
-}
-
-export interface ILocalFile {
-    localFile: {
-        url: string
-    }
 }
 
 interface ISlider {

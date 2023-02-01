@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import { ILocalFile } from '../../types';
 import AccordeonItem from '../accordeon-item';
-import { ILocalFile } from '../carousel';
 
 import style from './index.css';
 
