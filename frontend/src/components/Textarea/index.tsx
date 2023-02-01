@@ -4,6 +4,7 @@ import { Message, useController } from 'react-hook-form';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import useDeviceDetect from '../../hooks/use-device-detect';
+import { translate } from '../../utils/i18n';
 
 import style from './index.css';
 
@@ -33,7 +34,7 @@ const Textarea = ({ className, placeholder, name, requiredValidation, onFocus }:
             return;
         }
 
-        const defaultMessage = 'Поле заполнено неверно';
+        const defaultMessage = translate('validation:default');
 
         return error.message || defaultMessage;
     }, [controller.fieldState.error]);
