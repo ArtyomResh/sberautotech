@@ -15,7 +15,7 @@ import Layout from '../layout';
 import VacancySidebar from './components/vacancy-sidebar';
 import ButtonWrapper from './components/button-wrapper';
 
-import styles from './index.css';
+import './index.css';
 
 type TNode = Pick<IVacancyPage,
 'pageId'|
@@ -37,7 +37,7 @@ export interface IProps {
 }
 
 const Vacancy: React.FC<IProps> = ({ data }) => {
-    const cn = useClassnames(styles);
+    const cn = useClassnames();
     const videoRef = useRef<HTMLVideoElement>(null);
     const [play, setPlay] = useState<boolean>(false);
 

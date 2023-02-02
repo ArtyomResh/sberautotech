@@ -6,7 +6,7 @@ import useFormattedText from '../../hooks/use-formatted-text';
 import { toUnescapedHTML } from '../../utils';
 import { ILocalFile } from '../../types';
 
-import style from './index.css';
+import './index.css';
 
 import ButtonPlay from '../../images/play-button.inline.svg';
 import ButtonPause from '../../images/pause-button.inline.svg';
@@ -33,7 +33,7 @@ interface ISlideItem {
 }
 
 const StoryCard = ({ story }: {story: ISlideItem}) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const text = useFormattedText(story.text) || '';
 
     return (
@@ -54,7 +54,7 @@ const StoryCard = ({ story }: {story: ISlideItem}) => {
 };
 
 const MainBlock: React.FC<IProps> = ({ data, storyCards }) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const { isMobile } = useDeviceDetect();
     const videoRef = useRef<HTMLVideoElement>(null);
     const [play, setPlay] = useState(true);

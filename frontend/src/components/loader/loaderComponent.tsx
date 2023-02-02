@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import LoaderIcon from './loader';
 import { useClassnames } from '../../hooks//use-classnames';
 
-import style from './loader.css';
+import './loader.css';
 
 export interface IProps {
     className?: string,
@@ -12,7 +12,7 @@ export interface IProps {
 }
 
 const Loader: FC<IProps> = (props) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <div className={cn('loader', props.className)}>

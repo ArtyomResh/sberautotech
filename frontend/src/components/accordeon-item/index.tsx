@@ -9,7 +9,7 @@ import AccordeonShow from '../../images/accordeon-show.inline.svg';
 
 import LinkButton from '../button-like/link-button';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     data: IListAccordeonItem,
@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const AccordeonItem: React.FC<IProps> = ({ data, className }) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const [isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {

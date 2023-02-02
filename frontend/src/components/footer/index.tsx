@@ -13,7 +13,7 @@ import Heading from '../heading';
 import GridWrapper from '../grid-wrapper';
 import Text from '../text';
 
-import styles from './index.css';
+import './index.css';
 
 const query = graphql`
   query {
@@ -36,7 +36,7 @@ const query = graphql`
 `;
 
 const Footer = ({ className }: {className?: string}) => {
-    const cn = useClassnames(styles);
+    const cn = useClassnames();
     const data = useStaticQuery(query);
     const { setIsContactFormVisible } = useContext(appContext);
     const { header, disclaimer, modalLinkText, copyright, coreBusiness, accreditationText, accreditationIsLink, privacyPolicyText, privacyPolicyIsLink } = data.allStrapiFooter.edges[0].node;

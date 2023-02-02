@@ -4,7 +4,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import { appContext } from '../../context/context';
 
-import style from './index.css';
+import './index.css';
 import VacanciesItem, { IVacanciesListItem } from './item';
 
 interface IProps {
@@ -16,7 +16,7 @@ interface IProps {
 
 
 const VacanciesList: React.FC<IProps> = ({ data, activeTags, onClickTag, searchString }) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     const { setIsRespondFormVisible } = useContext(appContext);
 

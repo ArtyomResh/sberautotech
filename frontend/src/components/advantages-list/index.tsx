@@ -18,7 +18,7 @@ const advantagesIcons = [
     <AdvantagesSixthIcon key="advantages-6" />
 ];
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     data: IAdvantagesList
@@ -34,7 +34,7 @@ interface IAdvantagesListItem {
 }
 
 const AdvantagesList: React.FC<IProps> = ({ data }) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <div className={cn('advantages__wrapper')}>

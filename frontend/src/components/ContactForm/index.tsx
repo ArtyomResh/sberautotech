@@ -15,7 +15,7 @@ import FieldWrapper from '../ModalForm/components/FieldWrapper';
 import ModalForm from '../ModalForm';
 import Recaptcha from '../ModalForm/components/Recaptcha';
 
-import style from './index.css';
+import './index.css';
 import Textarea from '../Textarea';
 import Text from '../text';
 import CheckBox from '../Checkbox';
@@ -76,7 +76,7 @@ const LeftContainer = ({
     contactEmailLabel,
     contactEmail
 }: ILeftContainerProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <div className={cn('contact-form__left-container')}>
@@ -130,7 +130,7 @@ export const ContactForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const { isContactFormVisible, setIsContactFormVisible } = useContext(appContext);
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const timeoutId = useRef<ReturnType<typeof setTimeout>>();
     const timeoutTime = 3000;
     const formFields: {[key in keyof IContactFormData]: key} = {

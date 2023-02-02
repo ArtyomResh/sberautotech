@@ -4,7 +4,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import useFormattedText from '../../hooks/use-formatted-text';
 import { toUnescapedHTML } from '../../utils';
 
-import style from './index.css';
+import './index.css';
 
 export interface ICard {
     image: {
@@ -16,7 +16,7 @@ export interface ICard {
 }
 
 const StoryCard = ({ card }: { card: ICard }) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const text = useFormattedText(card.text);
 
     return (

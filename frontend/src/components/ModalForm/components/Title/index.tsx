@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 
-import style from './index.css';
+import './index.css';
 import Heading from '../../../heading';
 
 type TProps = React.HTMLAttributes<HTMLHeadingElement> & {
@@ -10,7 +10,7 @@ type TProps = React.HTMLAttributes<HTMLHeadingElement> & {
 };
 
 const Title = ({ className, children, ...props }: TProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <Heading level={1} as="h2" className={cn(className, '.modal-form__title')} {...props}>

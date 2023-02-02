@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 
-import style from './loader.css';
+import './loader.css';
 
 import SVG, { IProps as IPropsSVG } from './index';
 
@@ -12,7 +12,7 @@ export interface IProps {
 }
 
 export const IconLoader = (props: IProps) => {
-    const cn = useClassnames(style, props.svg?.className, true);
+    const cn = useClassnames({}, props.svg?.className, true);
 
     const svgProps = {
         ...props.svg,

@@ -4,7 +4,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import TagsList, { ITagListItem } from '../tags-list';
 import { toUnescapedHTML } from '../../utils';
 
-import style from './index.css';
+import './index.css';
 import { Link } from 'gatsby';
 
 export interface IVacanciesListItem {
@@ -31,7 +31,7 @@ interface IProps {
 
 const VacanciesListItem: React.FC<IProps> = ({ data, activeTags, onClickTag, searchString }) => {
     const { title, city, direction, tags, strapiId } = data;
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     const titleWithSubstrGenerator = useMemo(() => {
         if(searchString.length) {

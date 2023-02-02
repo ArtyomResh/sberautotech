@@ -13,7 +13,7 @@ import FlipScreen from '../components/flip-screen';
 import FlipLogoIcon from '../images/flip-logo.svg';
 import SberCloudLogoIcon from '../images/sbercloud-logo.svg';
 
-import style from './flip.css';
+import './flip.css';
 
 const query = graphql`
   query {
@@ -218,7 +218,7 @@ const query = graphql`
 const DEBOUNCE_TIMER = 50;
 
 const FlipPage = () => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const data = useStaticQuery(query);
     const [isLoading, setIsLoading] = useState(true);
     const videoSource = useMemo(() => {

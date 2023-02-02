@@ -7,11 +7,12 @@ import useDeviceDetect from '../hooks/use-device-detect';
 import Layout from '../components/layout';
 import MainPageBlock, { IBlock } from '../components/main-page-block';
 
-import style from './index.css';
 import { useAppContext } from '../context/context';
 import { INavProps } from '../components/nav';
 import { INavHierachicalLink, INavPanel } from '../types/strapi/navPanel';
 import { IStrapiSingleType } from '../types/strapi';
+
+import './index.css';
 
 const query = graphql`
   query {
@@ -182,7 +183,7 @@ interface IIndexPageBlocksProps {
 const getScreenBlockId = (screen: IMainPageScreenData) => `main-page-screen-${screen.pageId}`;
 
 const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const { isContactFormVisible, isRespondFormVisible, isNavVisible } = useAppContext();
 
     useEffect(() => {
@@ -304,7 +305,7 @@ const IndexPage = () => {
     const { hierarchicalLinks: links } = data.allStrapiNavPanel.edges[0].node;
     const { mainPageActivePageId, setMainPageActivePageId } = useAppContext();
     const { isMobile } = useDeviceDetect();
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     const activePageId = mainPageActivePageId || '';
     const setActivePageId = (pageId: INavProps['currentPageId']) => {

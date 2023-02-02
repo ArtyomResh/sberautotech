@@ -4,7 +4,7 @@ import Button from '../../../button-like/button';
 import { appContext } from '../../../../context/context';
 import { useClassnames } from '../../../../hooks/use-classnames';
 
-import styles from './index.css';
+import './index.css';
 
 interface IProps {
     children?: React.ReactNode,
@@ -22,7 +22,7 @@ const ButtonWrapper = ({ className, title, huntflowId: vacancyId, children }: IP
         setHuntflowId?.(vacancyId);
     }, [vacancyTitle, huntflowId]);
 
-    const cn = useClassnames(styles);
+    const cn = useClassnames();
 
     return (
         <Button

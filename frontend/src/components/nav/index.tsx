@@ -17,7 +17,7 @@ import { INavHierachicalLink, INavPanel, INavSubLink } from '../../types/strapi/
 import { IStrapiSingleType } from '../../types/strapi';
 import GridWrapper from '../grid-wrapper';
 
-import style from './index.css';
+import './index.css';
 
 const MINIMUM_SCROLL = 5;
 const TIMEOUT_DELAY = 0;
@@ -67,7 +67,7 @@ const NavMenuItem: React.FC<{
     onMouseLeave: React.MouseEventHandler
 }> = ({ item, onMouseEnter, onMouseLeave }) => {
     const { text, to, navId, sublinks } = item;
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const sublistRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -118,7 +118,7 @@ const Nav = ({ currentPageId }: INavProps) => {
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const [isMinimumScrolled, setIsMinimumScrolled] = useState(false);
     const { setIsContactFormVisible, setIsNavVisible } = useAppContext();
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const [hoveredMenuItemId, setHoveredMenuItemId] = useState<TNavId | null>(null);
     const { hierarchicalLinks: links, joinButtonText/* , switchLangUrl*/ } = data.allStrapiNavPanel.edges[0].node;
 

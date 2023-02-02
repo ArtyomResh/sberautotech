@@ -18,7 +18,7 @@ import { IStrapiCollection, IStrapiSingleType, TStrapiEntity } from '../types/st
 import { IDirection, IVacancy } from '../types/strapi/vacancies';
 import { IVacanciesPage } from '../types/strapi/vacanciesPage';
 
-import style from './vacancies.css';
+import './vacancies.css';
 
 const query = graphql`
   query {
@@ -107,7 +107,7 @@ interface IVacanciesPageData {
 }
 
 const Vacancies: React.FC<PageProps> = ({ location }) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const data = useStaticQuery<IVacanciesPageData>(query);
     const params = new URLSearchParams(location.search);
     const directionParam = params.get('direction');

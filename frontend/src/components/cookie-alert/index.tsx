@@ -4,7 +4,7 @@ import CookieConsent from 'react-cookie-consent';
 
 import { useClassnames } from '../../hooks/use-classnames';
 
-import style from './index.css';
+import './index.css';
 import Button from '../button-like/button';
 
 const query = graphql`
@@ -24,7 +24,7 @@ const query = graphql`
 const ButtonWrapper = (props: any) => <Button {...props} buttonSize="s" />;
 
 const CookieAlert = () => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const { strapiGlobal: { cookieBanner: { title, description, decline, accept } } } = useStaticQuery(query);
 
     return (

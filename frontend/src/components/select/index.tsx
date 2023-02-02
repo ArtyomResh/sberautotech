@@ -6,7 +6,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import { validateRequired } from '../../utils/validation/validateRequired';
 
 import { defaultStyles } from './config';
-import style from './index.css';
+import './index.css';
 
 type TSelectProps = Props & {
     name: string,
@@ -16,7 +16,7 @@ type TSelectProps = Props & {
 };
 const Select: React.FC<TSelectProps> = React.forwardRef<unknown, TSelectProps>(({ placeholder, name, isDisabled, options, onChange, onFocus, onBlur, noOptionsMessage, styles = defaultStyles, components, required }, ref) => {
     const { control } = useFormContext();
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <Controller

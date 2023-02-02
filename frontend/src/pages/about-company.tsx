@@ -5,7 +5,7 @@ import { useClassnames } from '../hooks/use-classnames';
 
 import Layout from '../components/layout';
 
-import style from './about-company.css';
+import './about-company.css';
 import Footer from '../components/footer';
 import Carousel from '../components/carousel';
 import ListAccordeon from '../components/list-accordeon';
@@ -60,7 +60,7 @@ const query = graphql`
 
 
 const AboutCompanyPage = () => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const data = useStaticQuery(query);
     const { seo, pageId, headerBackground, headerText, list, slider } = data.allStrapiAboutCompany.edges[0].node;
 

@@ -5,7 +5,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import useDocumentScrollThrottled from '../nav/use-document-scroll-throttled';
 import Alert from '../alert';
 
-import style from './index.css';
+import './index.css';
 import Title from './components/Title';
 
 interface IProps {
@@ -46,7 +46,7 @@ const ModalForm = ({
 
     const [onTop, setSendToTop] = useState(false);
 
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const MINIMUM_SCROLL = 5;
