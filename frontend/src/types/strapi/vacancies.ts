@@ -34,7 +34,6 @@ export interface IVacancy {
     customDescription: string,
     direction: IDirection,
     jobType: IJobType,
-    publicationDate: string,
     tags: Array<ITag>,
     title: string,
     whatToDo: string,

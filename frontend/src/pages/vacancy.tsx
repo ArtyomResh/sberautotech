@@ -53,7 +53,6 @@ export const query = graphql`
           value
           duration
         }
-        publicationDate
         strapiId
         tags {
           text

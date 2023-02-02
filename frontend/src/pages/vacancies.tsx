@@ -64,7 +64,6 @@ const query = graphql`
             id
           }
           strapiId
-          publicationDate
         }
       }
     }
