@@ -6,7 +6,7 @@ import GridWrapper from '../../../grid-wrapper';
 
 import Accordion from '../Accordion';
 
-import style from './index.css';
+import './index.css';
 
 const principles = [
     { title: 'Безопасность', description: 'Благодаря набору сенсоров у&#160;беспилотного автомобиля есть полный обзор в&#160;360&#176; и&#160;нет слепых зон. Он&#160;непрерывно контролирует происходящее на&#160;дороге и&#160;за&#160;ее&#160;пределами, а&#160;времени для принятия верного решения ему требуется меньше, чем человеку. В&#160;отличие от&#160;человека, беспилотный автомобиль не&#160;устает, не&#160;отвлекается, не&#160;испытывает эмоций, что сделает дороги безопаснее.' },
@@ -15,7 +15,7 @@ const principles = [
 ];
 
 const Principles = () => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <GridWrapper>

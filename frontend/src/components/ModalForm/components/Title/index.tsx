@@ -2,8 +2,9 @@ import React from 'react';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 
-import './index.css';
 import Heading from '../../../heading';
+
+import './index.css';
 
 type TProps = React.HTMLAttributes<HTMLHeadingElement> & {
     className?: string

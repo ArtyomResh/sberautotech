@@ -6,10 +6,10 @@ import useFormattedText from '../../hooks/use-formatted-text';
 import { toUnescapedHTML } from '../../utils';
 import { ILocalFile } from '../../types';
 
-import './index.css';
-
 import ButtonPlay from '../../images/play-button.inline.svg';
 import ButtonPause from '../../images/pause-button.inline.svg';
+
+import './index.css';
 
 interface IProps {
     data: {

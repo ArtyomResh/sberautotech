@@ -3,8 +3,9 @@ import { Link as GatsbyLink } from 'gatsby';
 
 import { useClassnames } from '../../../hooks/use-classnames';
 
-import './index.css';
 import Loader from '../../loader/loaderComponent';
+
+import './index.css';
 
 type TProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     size?: 'l' | 's',

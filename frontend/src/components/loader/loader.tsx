@@ -2,9 +2,9 @@ import React from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 
-import './loader.css';
-
 import SVG, { IProps as IPropsSVG } from './index';
+
+import './loader.css';
 
 export interface IProps {
     svg?: IPropsSVG,

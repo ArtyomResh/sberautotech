@@ -8,7 +8,7 @@ import MinusIcon from '../../../../images/technology/accordion/minus.inline.svg'
 import { useClassnames } from '../../../../hooks/use-classnames';
 
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     title: string,
@@ -20,7 +20,7 @@ interface IProps {
 }
 
 const Accordion = ({ title, description, headingSize = 'm', color = 'black', withColumns, withBorderTop }: IProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const [isOpened, setIsOpened] = useState(false);
     const cssBlock = 'accordion';
 

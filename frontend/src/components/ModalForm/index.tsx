@@ -4,9 +4,9 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { useClassnames } from '../../hooks/use-classnames';
 import useDocumentScrollThrottled from '../nav/use-document-scroll-throttled';
 import Alert from '../alert';
+import Title from './components/Title';
 
 import './index.css';
-import Title from './components/Title';
 
 interface IProps {
     className: string,

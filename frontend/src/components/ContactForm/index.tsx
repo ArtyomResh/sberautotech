@@ -15,11 +15,12 @@ import FieldWrapper from '../ModalForm/components/FieldWrapper';
 import ModalForm from '../ModalForm';
 import Recaptcha from '../ModalForm/components/Recaptcha';
 
-import './index.css';
 import Textarea from '../Textarea';
 import Text from '../text';
 import CheckBox from '../Checkbox';
 import InputFile from '../InputFile';
+
+import './index.css';
 
 const FORM_URL = '/form/contact';
 

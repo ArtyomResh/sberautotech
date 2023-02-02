@@ -4,8 +4,9 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import { appContext } from '../../context/context';
 
-import './index.css';
 import VacanciesItem, { IVacanciesListItem } from './item';
+
+import './index.css';
 
 interface IProps {
     data: Array<IVacanciesListItem>,
