@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { useClassnames } from '../hooks/use-classnames';
@@ -10,7 +10,8 @@ import MainPageBlock, { IBlock } from '../components/main-page-block';
 import style from './index.css';
 import { useAppContext } from '../context/context';
 import { INavProps } from '../components/nav';
-import { INavHierachicalLink } from '../types/strapi/navPanel';
+import { INavHierachicalLink, INavPanel } from '../types/strapi/navPanel';
+import { IStrapiSingleType } from '../types/strapi';
 
 const query = graphql`
   query {
@@ -167,7 +168,7 @@ const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
 
 interface IMainPageScreenData extends IBlock {
-    pageId?: string
+    pageId: string
 }
 
 interface IIndexPageBlocksProps {
@@ -175,8 +176,7 @@ interface IIndexPageBlocksProps {
     activePageId: string,
     isMobile: boolean | null,
     setActivePageId: (id: string) => void,
-    links: Array<INavHierachicalLink>,
-    navId?: string
+    links: Array<INavHierachicalLink>
 }
 
 const getScreenBlockId = (screen: IMainPageScreenData) => `main-page-screen-${screen.pageId}`;
@@ -199,7 +199,7 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
         }
     }, [isContactFormVisible, isRespondFormVisible, isNavVisible]);
 
-    const pageNumber: number = links.findIndex(({ navId }) => navId === activePageId);
+    const pageNumber: number = screens.findIndex(({ pageId }) => pageId === activePageId);
     const [isScrolling, setIsScrolling] = useState(false);
     const [lastScrollStartTime, setLastScrollStartTime] = useState(Date.now());
 
@@ -216,7 +216,7 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
         if(!isScrolling && hasNextPage && isNewScroll) {
             setLastScrollStartTime(Date.now());
             setIsScrolling(true);
-            setActivePageId(links[nextPageNumber].navId);
+            setActivePageId(screens[nextPageNumber]?.pageId || '');
             setTimeout(() => {
                 setIsScrolling(false);
             }, ANIMATION_DURATION);
@@ -263,10 +263,25 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
         };
     }, [handleScroll, isRespondFormVisible, isContactFormVisible, isNavVisible]);
 
+    const pageIdLinks = useMemo(() => {
+        const res: {[navId: string]: string} = {};
+
+        links.forEach((link) => {
+            if(link.to) {
+                res[link.navId] = link.to;
+            }
+            link.sublinks?.forEach((sublink) => {
+                res[sublink.navId] = sublink.to;
+            });
+        });
+
+        return res;
+    }, [links]);
+
     return (
         <div className={cn('main-page-blocks')}>
             {screens.map((screen, index) => {
-                const link = links.find((link) => link.navId === screen.pageId)?.to || '/';
+                const link = (screen.pageId && pageIdLinks[screen.pageId]) || '/';
 
                 return (
                     <Link to={link} key={`page-screen-${index}`}>
@@ -278,10 +293,15 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
     );
 };
 
+interface IQueryData {
+    allStrapiNavPanel: IStrapiSingleType<Pick<INavPanel, 'links'>>,
+    allStrapiHomepage: any
+}
+
 const IndexPage = () => {
-    const data = useStaticQuery(query);
+    const data = useStaticQuery<IQueryData>(query);
     const screens = data.allStrapiHomepage.edges[0].node;
-    const { links } = data.allStrapiNavPanel.edges[0].node as {links: Array<INavHierachicalLink>};
+    const { links } = data.allStrapiNavPanel.edges[0].node;
     const { mainPageActivePageId, setMainPageActivePageId } = useAppContext();
     const { isMobile } = useDeviceDetect();
     const cn = useClassnames(style);
@@ -291,12 +311,6 @@ const IndexPage = () => {
         setMainPageActivePageId?.(pageId);
     };
 
-    useEffect(() => {
-        if(window.history.state?.toTop || mainPageActivePageId === null) {
-            setActivePageId(links[0].navId);
-        }
-    }, []);
-
     const allScreens = [
         screens.second_screen[0],
         screens.third_screen[0],
@@ -305,14 +319,17 @@ const IndexPage = () => {
         screens.fifth_screen[0]
     ];
 
-    const sortedScreens = links.map((link, index) => {
-        return allScreens.find((screen) => screen.pageId && link.navId === screen.pageId) || allScreens[index];
-    });
+    useEffect(() => {
+        if(window.history.state?.toTop || mainPageActivePageId === null) {
+            setActivePageId(allScreens[0].pageId);
+        }
+    }, []);
+
 
     return (
         <div className={cn('main__page', `main__page_${activePageId}`)}>
             <Layout seo={screens.seo}>
-                <IndexPageBlocks screens={sortedScreens} isMobile={isMobile} activePageId={activePageId} setActivePageId={setActivePageId} links={links} />
+                <IndexPageBlocks screens={allScreens} isMobile={isMobile} activePageId={activePageId} setActivePageId={setActivePageId} links={links} />
             </Layout>
         </div>
     );
