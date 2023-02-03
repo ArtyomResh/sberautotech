@@ -328,8 +328,19 @@ async function importVacancyPage() {
 }
 
 async function importNavPanel() {
-  await createEntry({ model: "nav-panel", entry: NavPanelRu });
-  await createEntry({ model: "nav-panel", entry: NavPanelEn });
+  const fillFiles = (fieldsData) => {
+    const files = [];
+    fieldsData.links.forEach((link, linkIndex) => {
+      link.sublinks && link.sublinks.forEach((sublink, sublinkIndex) => {
+        files[`links.${linkIndex}.sublinks.${sublinkIndex}.image`] = getFileData(sublink.image)
+      });
+    });
+    return files;
+  }
+
+
+  await createEntry({ model: "nav-panel", entry: NavPanelRu, files: fillFiles(NavPanelRu) });
+  await createEntry({ model: "nav-panel", entry: NavPanelEn, files: fillFiles(NavPanelEn) });
 }
 
 async function importPmefLandingPage() {
@@ -393,7 +404,7 @@ async function importSeedData() {
   await importFlip();
   await importNavPanel();
   await importFooter();
-  await importPrivacyPolicy(); 
+  await importPrivacyPolicy();
   await importPmefLandingPage();
   await importRespondForm();
   await importVacanciesPage();
