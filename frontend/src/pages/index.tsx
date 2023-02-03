@@ -294,14 +294,14 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
 };
 
 interface IQueryData {
-    allStrapiNavPanel: IStrapiSingleType<Pick<INavPanel, 'links'>>,
+    allStrapiNavPanel: IStrapiSingleType<Pick<INavPanel, 'hierarchicalLinks'>>,
     allStrapiHomepage: any
 }
 
 const IndexPage = () => {
     const data = useStaticQuery<IQueryData>(query);
     const screens = data.allStrapiHomepage.edges[0].node;
-    const { links } = data.allStrapiNavPanel.edges[0].node;
+    const { hierarchicalLinks: links } = data.allStrapiNavPanel.edges[0].node;
     const { mainPageActivePageId, setMainPageActivePageId } = useAppContext();
     const { isMobile } = useDeviceDetect();
     const cn = useClassnames(style);
@@ -329,7 +329,13 @@ const IndexPage = () => {
     return (
         <div className={cn('main__page', `main__page_${activePageId}`)}>
             <Layout seo={screens.seo}>
-                <IndexPageBlocks screens={allScreens} isMobile={isMobile} activePageId={activePageId} setActivePageId={setActivePageId} links={links} />
+                <IndexPageBlocks
+                    screens={allScreens}
+                    isMobile={isMobile}
+                    activePageId={activePageId}
+                    setActivePageId={setActivePageId}
+                    links={links}
+                />
             </Layout>
         </div>
     );
