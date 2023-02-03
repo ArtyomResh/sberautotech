@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_nav_hierarchical_links",
+  "info": {
+    "name": "NavHierarchicalLink",
+    "icon": "external-link-alt"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "to": {
+      "type": "string",
+      "required": false
+    },
+    "navId": {
+      "type": "string",
+      "required": true
+    },
+    "sublinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.nav-sub-link"
+    }
+  }
+}

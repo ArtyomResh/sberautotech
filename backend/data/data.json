@@ -3275,12 +3275,14 @@
       {
         "text": "ФЛИП",
         "to": "/flip",
-        "navId": "flip"
+        "navId": "flip",
+        "image": "self-driving-car-menu-icon.jpeg"
       },
       {
-        "text": "Беспилотник",
+        "text": "Легковые автомобили",
         "to": "/self-driving-car",
-        "navId": "self_driving_car"
+        "navId": "self_driving_car",
+        "image": "self-driving-car-menu-icon.jpeg"
       },
       {
         "text": "О компании",
@@ -3298,7 +3300,47 @@
         "navId": "vacancies"
       }
     ],
-    "joinButtonText": "Связаться с нами"
+    "hierarchicalLinksLinks": [
+      {
+        "text": "О компании",
+        "to": "/about-company",
+        "navId": "about_company",
+        "sublinks": []
+      },
+      {
+        "text": "Флот",
+        "to": "",
+        "navId": "fleet",
+        "sublinks": [
+          {
+            "text": "Легковые автомобили",
+            "to": "/self-driving-car",
+            "navId": "self_driving_car",
+            "image": "self-driving-car-menu-icon.jpeg"
+          },
+          {
+            "text": "ФЛИП",
+            "to": "/flip",
+            "navId": "flip",
+            "image": "self-driving-car-menu-icon.jpeg"
+          }
+        ]
+      },
+      {
+        "text": "Команда",
+        "to": "/career",
+        "navId": "career",
+        "sublinks": []
+      },
+      {
+        "text": "Карьера",
+        "to": "/vacancies",
+        "navId": "vacancies",
+        "sublinks": []
+      }
+    ],
+    "joinButtonText": "Связаться с нами",
+    "switchLangUrl": "sberautotech.com"
   },
   "NavPanelEn": {
     "id": 1,
@@ -3307,12 +3349,14 @@
       {
         "text": "FLIP",
         "to": "/flip",
-        "navId": "flip"
+        "navId": "flip",
+        "image": "self-driving-car-menu-icon.jpeg"
       },
       {
         "text": "Self-driving vehicle",
         "to": "/self-driving-car",
-        "navId": "self_driving_car"
+        "navId": "self_driving_car",
+        "image": "self-driving-car-menu-icon.jpeg"
       },
       {
         "text": "About us",
@@ -3320,12 +3364,40 @@
         "navId": "about_company"
       },
       {
-        "text": "Careers",
-        "to": "/career",
-        "navId": "career"
+        "text": "Флот",
+        "to": "",
+        "navId": "fleet"
       }
     ],
-    "joinButtonText": "Stay in touch"
+    "hierarchicalLinksLinks": [
+      {
+        "text": "About us",
+        "to": "/about-company",
+        "navId": "about_company",
+        "sublinks": []
+      },
+      {
+        "text": "Флот",
+        "to": "",
+        "navId": "fleet",
+        "sublinks": [
+          {
+            "text": "Self-driving vehicle",
+            "to": "/self-driving-car",
+            "navId": "self_driving_car",
+            "image": "self-driving-car-menu-icon.jpeg"
+          },
+          {
+            "text": "FLIP",
+            "to": "/flip",
+            "navId": "flip",
+            "image": "self-driving-car-menu-icon.jpeg"
+          }
+        ]
+      }
+    ],
+    "joinButtonText": "Stay in touch",
+    "switchLangUrl": "sberautotech.ru"
   },
   "FooterRu": {
     "id": 1,

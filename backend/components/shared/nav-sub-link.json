@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_nav_sub_links",
+  "info": {
+    "name": "NavSubLink",
+    "icon": "align-justify",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "to": {
+      "type": "string",
+      "required": true
+    },
+    "navId": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}
