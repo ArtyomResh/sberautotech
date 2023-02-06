@@ -90,23 +90,34 @@ const Input = ({ type, placeholder, name, className, pattern, onFocus, ...props 
 
             formattedInputValue = (input as HTMLInputElement).value;
 
+            const phoneOperatorCodeStartIndex = 1;
+            const phoneNumberFirstSubstringStartIndex = 4;
+            const phoneNumberSecondSubstringStartIndex = 7;
+            const phoneNumberThirdSubstringStartIndex = 9;
+            const phoneNumberThirdSubstringEndIndex = 11;
+
             if(inputNumbersValue.length > 1) {
-                formattedInputValue += inputNumbersValue.substring(1, 4);
+                formattedInputValue += inputNumbersValue.substring(phoneOperatorCodeStartIndex, phoneNumberFirstSubstringStartIndex);
             }
 
-            if(inputNumbersValue.length >= 5) {
-                formattedInputValue += ` ${inputNumbersValue.substring(4, 7)}`;
+            const phoneNumberLengthWithCountryAndOperatorCodes = 5;
+            if(inputNumbersValue.length >= phoneNumberLengthWithCountryAndOperatorCodes) {
+                formattedInputValue += ` ${inputNumbersValue.substring(phoneNumberFirstSubstringStartIndex, phoneNumberSecondSubstringStartIndex)}`;
             }
 
-            if(inputNumbersValue.length >= 8) {
-                formattedInputValue += `–${inputNumbersValue.substring(7, 9)}`;
+            const phoneNumberLengthWithCountryAndOperatorCodesAndFirstFourNumbers = 8;
+            if(inputNumbersValue.length >= phoneNumberLengthWithCountryAndOperatorCodesAndFirstFourNumbers) {
+                formattedInputValue += `–${inputNumbersValue.substring(phoneNumberSecondSubstringStartIndex, phoneNumberThirdSubstringStartIndex)}`;
             }
 
-            if(inputNumbersValue.length >= 10) {
-                formattedInputValue += `–${inputNumbersValue.substring(9, 11)}`;
+            const phoneNumberLengthWithCountryAndOperatorCodesAndFirstSixNumbers = 10;
+            if(inputNumbersValue.length >= phoneNumberLengthWithCountryAndOperatorCodesAndFirstSixNumbers) {
+                formattedInputValue += `–${inputNumbersValue.substring(phoneNumberThirdSubstringStartIndex, phoneNumberThirdSubstringEndIndex)}`;
             }
         } else {
-            formattedInputValue = `+${inputNumbersValue.substring(0, 16)}`;
+            const maxPhoneNumberLength = 16;
+
+            formattedInputValue = `+${inputNumbersValue.substring(0, maxPhoneNumberLength)}`;
         }
         setValue(fieldName, formattedInputValue);
         void controllerProps.onChange(e);

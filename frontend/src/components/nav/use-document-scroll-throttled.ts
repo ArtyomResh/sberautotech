@@ -33,7 +33,9 @@ const useDocumentScrollThrottled = (callback: (obj: { previousScrollTop: number,
                 window.scrollTo(scrollLeft, scrollTop);
             };
         } else {
-            window.onscroll = () => {};
+            window.onscroll = () => {
+                // do nothing.
+            };
         }
         window.addEventListener('scroll', handleDocumentScrollThrottled);
 

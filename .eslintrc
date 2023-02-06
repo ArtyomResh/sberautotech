@@ -2,7 +2,7 @@
     "parser": "@typescript-eslint/parser",
     "reportUnusedDisableDirectives": true,
     "parserOptions": {
-        "project": "./frontend/tsconfig.json",
+        "project": "./tsconfig.json",
         "ecmaVersion": 6,
         "sourceType": "module",
         "ecmaFeatures": {
@@ -304,6 +304,15 @@
                     "let",
                     "var"
                 ],
+                "next": "if"
+            },
+            {
+                "blankLine": "any",
+                "prev": [
+                    "const",
+                    "let",
+                    "var"
+                ],
                 "next": [
                     "const",
                     "let",
@@ -313,6 +322,19 @@
             {
                 "blankLine": "always",
                 "prev": "*",
+                "next": [
+                    "return",
+                    "if",
+                    "export"
+                ]
+            },
+            {
+                "blankLine": "any",
+                "prev": [
+                    "const",
+                    "let",
+                    "var"
+                ],
                 "next": [
                     "return",
                     "if",
