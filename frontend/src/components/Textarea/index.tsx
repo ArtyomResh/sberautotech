@@ -5,6 +5,7 @@ import { Message, useController } from 'react-hook-form';
 import { useClassnames } from '../../hooks/use-classnames';
 import useDeviceDetect from '../../hooks/use-device-detect';
 import { translate } from '../../utils/i18n';
+import { validateRequired } from '../../utils/validation/validateRequired';
 
 import style from './index.css';
 
@@ -23,7 +24,7 @@ const Textarea = ({ className, placeholder, name, requiredValidation, onFocus }:
     const controller = useController({
         name : fieldName,
         rules: {
-            required: requiredValidation && 'Обязательное поле'
+            required: validateRequired(Boolean(requiredValidation))
         },
         shouldUnregister: true
     });
