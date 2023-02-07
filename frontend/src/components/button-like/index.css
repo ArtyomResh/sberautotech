@@ -139,7 +139,7 @@
 
         .$(selector) {
 
-            @mixin t3;
+            @mixin t4;
         }
     }
 
@@ -155,7 +155,7 @@
 
         .$(selector) {
 
-            @mixin t4;
+            @mixin t3;
         }
     }
 }
