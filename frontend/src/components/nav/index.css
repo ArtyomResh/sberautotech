@@ -90,12 +90,7 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.5s 0s, visibility 0s 0.5s;
-
-        &_opened {
-            transition: opacity 0.5s 0s, visibility 0s 0s;
-            visibility: visible;
-            opacity: 1;
-        }
+        pointer-events: none;
     }
 
     &__submenu-overlay {
@@ -158,6 +153,12 @@
 @media (hover: hover) and (pointer: fine) {
 
     .nav {
+        &__list-item:hover &__submenu {
+            transition: opacity 0.5s 0s, visibility 0s 0s;
+            visibility: visible;
+            opacity: 1;
+            pointer-events: all;
+        }
 
         &__list-item:hover &__list-item-link,
         &__list-item:hover &__list-item-text {
