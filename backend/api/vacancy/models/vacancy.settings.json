@@ -16,6 +16,24 @@
     }
   },
   "attributes": {
+    "huntflowId": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string"
+    },
+    "isSecret": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": false
+    },
+
     "title": {
       "type": "string",
       "pluginOptions": {
@@ -24,21 +42,39 @@
         }
       }
     },
-    "publicationDate": {
-      "type": "date",
+    "about": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "type": "richtext"
     },
-    "conditions": {
-      "type": "richtext",
+    "customDescriptionHeader": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "type": "string",
+      "default": "Кого мы ищем"
+    },
+    "customDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
+    },
+    "whatToDoHeader": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "default": "Обязанности"
     },
     "whatToDo": {
       "type": "richtext",
@@ -56,45 +92,6 @@
         }
       }
     },
-    "city": {
-      "model": "city"
-    },
-    "direction": {
-      "model": "direction"
-    },
-    "tags": {
-      "collection": "tag"
-    },
-    "jobType": {
-      "model": "job-type"
-    },
-    "area": {
-      "model": "area"
-    },
-    "about": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "richtext"
-    },
-    "customDescription": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "richtext"
-    },
-    "plusses": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "richtext"
-    },
     "plussesHeader": {
       "pluginOptions": {
         "i18n": {
@@ -103,33 +100,6 @@
       },
       "type": "string",
       "default": "Будет плюсом"
-    },
-    "customDescriptionHeader": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "default": "Кого мы ищем"
-    },
-    "conditionsHeader": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "default": "Условия"
-    },
-    "whatToDoHeader": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "default": "Обязанности"
     },
     "whatWaitingForHeader": {
       "pluginOptions": {
@@ -140,22 +110,45 @@
       "type": "string",
       "default": "Требования"
     },
-    "huntflowId": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "string"
-    },
-    "isSecret": {
+    "plusses": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "boolean",
-      "default": false
+      "type": "richtext"
+    },
+    "conditionsHeader": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "default": "Условия"
+    },
+    "conditions": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "direction": {
+      "model": "direction"
+    },
+    "area": {
+      "model": "area"
+    },
+    "tags": {
+      "collection": "tag"
+    },
+    "city": {
+      "model": "city"
+    },
+    "jobType": {
+      "model": "job-type"
     }
   }
 }

@@ -112,7 +112,7 @@ module.exports = {
       });
 
     } catch (err) {
-      console.log('SendEmail error', err)
+      console.log(`Email sending was failed. Error: ${err.message}`);
     }
 
     try {
@@ -135,7 +135,7 @@ module.exports = {
           return upload.data;
         }
         catch (err) {
-          throw new Error(`File uploading failed: Error: ${err.message}`)
+          throw new Error(`File uploading was failed: Error: ${err.message}`)
         }
 
       }
@@ -156,18 +156,18 @@ module.exports = {
         birthdate
       } = fields || {}
 
-      const applicantsFilesList = id ? [{ id }] : []
+      const applicantsFilesList = id ? [id] : []
 
       const createApplicant = async () => {
         try {
           return await huntflowClient.post(`/accounts/${HUNTFLOW_ACCOUNT_ID}/applicants`, {
-            last_name: dataName?.last ?? surname,
-            first_name: dataName?.first ?? name,
+            last_name: dataName?.last || surname,
+            first_name: dataName?.first || name,
             middle_name: dataName?.middle,
             phone: phones?.[0] || telephone,
-            email: dataEmail ?? email,
-            position: position ?? direction,
-            money: salary ?? '-',
+            email: dataEmail || email,
+            position: position || direction,
+            money: salary || '-',
             birthday_day: birthdate?.day,
             birthday_month: birthdate?.month,
             birthday_year: birthdate?.year,
@@ -182,11 +182,11 @@ module.exports = {
             }]
           });
         } catch (err) {
-          throw new Error(`Applicant creating failed. Error: ${err.message}`)
+          throw new Error(`Applicant creating was failed. Error: ${err.message}`)
         }
       }
 
-      const applicant = createApplicant()
+      const applicant = await createApplicant()
 
       const createVacancyResponse = async () => {
         try {
@@ -199,7 +199,7 @@ module.exports = {
           }
         }
         catch (err) {
-          throw new Error(`Vacancy response creating failed: Error: ${err.message}`)
+          throw new Error(`Vacancy response creating was failed: Error: ${err.message}`)
         }
       }
 
@@ -226,10 +226,11 @@ module.exports = {
         attachments: content ? [{ filename, path: content }] : []
       });
     } catch (err) {
-      console.log('SendEmail error', err)
+      if(ctx.request.headers['x-debug']) {
+        ctx.badRequest(`Email sending was failed. Error: ${err.message}`);
+        return;
+      }
     }
-
     ctx.send();
-
   }
 };

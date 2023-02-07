@@ -52,7 +52,7 @@ export interface IRespondFormData {
     email: string,
     telephone: string,
     aboutMyself: string,
-    file: string
+    vcFile: string
 }
 
 export interface ILeftContainerProps {
@@ -87,7 +87,7 @@ const RespondForm = () => {
         email      : 'email',
         telephone  : 'telephone',
         aboutMyself: 'aboutMyself',
-        file       : 'file'
+        vcFile     : 'vcFile'
     };
 
     const {
@@ -245,8 +245,9 @@ const RespondForm = () => {
                     <FieldWrapper>
                         <InputFile
                             placeholder={file}
-                            name="file"
+                            name={formFields.vcFile}
                             onFileChange={handleFileChange}
+                            requiredValidation={true}
                         />
                     </FieldWrapper>
 

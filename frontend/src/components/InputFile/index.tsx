@@ -4,6 +4,7 @@ import { useController } from 'react-hook-form';
 import { validateRequired } from '../../utils/validation/validateRequired';
 import { useClassnames } from '../../hooks/use-classnames';
 import CrossIcon from '../../images/cross.inline.svg';
+import { translate } from '../../utils/i18n';
 
 import styles from './index.css';
 
@@ -21,24 +22,24 @@ interface IState {
 }
 
 const InputFile = ({ placeholder, name, className, onFileChange, ...props }: IProps) => {
+    const [file, setFile] = useState<IState>({ fileName: '', fileExtension: '' });
+
     const controller = useController({ name : `${name}` as const, rules: {
         required: validateRequired(Boolean(props.requiredValidation))
     }, shouldUnregister: true });
 
     const cn = useClassnames(styles);
 
-    const [file, setFile] = useState<IState>({ fileName: '', fileExtension: '' });
-
     const errorMessage = useMemo(() => {
         const error = controller.fieldState.error;
-        const defaultMessage = 'Поле заполнено неверно';
+        const defaultMessage = translate('validation:default');
 
         if(!error) {
             return;
         }
 
         return error.message || defaultMessage;
-    }, [controller.fieldState.error]);
+    }, [controller.fieldState.error, file.fileName, file.fileExtension]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target as HTMLInputElement;
@@ -51,6 +52,7 @@ const InputFile = ({ placeholder, name, className, onFileChange, ...props }: IPr
         if(fileSize / 1024 / 1024 < 1) {
             onFileChange?.(inputFile);
             setFile({ fileName, fileExtension });
+            controller.field.onChange(e);
         }
 
         e.target.value = '';
@@ -60,20 +62,18 @@ const InputFile = ({ placeholder, name, className, onFileChange, ...props }: IPr
         e.stopPropagation();
         onFileChange?.(null);
         setFile({ fileName: '', fileExtension: '' });
+        controller.field.onChange('');
     };
-
-    const controllerProps = controller.field;
 
     return (
         <div className={cn('input-file', className)}>
             <input
-                id="file"
+                id="fileInput"
                 type="file"
                 accept="application/pdf, application/msword, application/vnd.oasis.opendocument.text, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/rtf, .pdf, .doc, .docx, .rtf"
-                {...controllerProps}
                 onChange={handleFileChange}
             />
-            <label htmlFor="file" className={cn('input-file__label', { 'input-file__label_error': errorMessage, 'input-file__label_has-file': file.fileName })}>
+            <label htmlFor="fileInput" className={cn('input-file__label', { 'input-file__label_error': errorMessage, 'input-file__label_has-file': file.fileName })}>
                 <span className={cn({ 'input-file__title': file.fileName })}>
                     {file.fileName ? file.fileName : placeholder}
                 </span>

@@ -33,6 +33,24 @@
         }
       },
       "component": "shared.nav-link"
+    },
+    "hierarchicalLinks": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.nav-hierarchical-link"
+    },
+    "switchLangUrl": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }

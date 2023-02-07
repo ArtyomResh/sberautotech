@@ -7,6 +7,7 @@ import useDeviceDetect from '../../hooks/use-device-detect';
 import { validateEmail } from '../../utils/validation/validateEmail';
 import { validatePhoneNumber } from '../../utils/validation/validatePhoneNumber';
 import { validateRequired } from '../../utils/validation/validateRequired';
+import { translate } from '../../utils/i18n';
 
 import style from './index.css';
 
@@ -129,7 +130,7 @@ const Input = ({ type, placeholder, name, className, pattern, onFocus, ...props 
             return;
         }
 
-        const defaultMessage = 'Поле заполнено неверно';
+        const defaultMessage = translate('validation:default');
 
         return error.message || defaultMessage;
     }, [controller.fieldState.error]);
