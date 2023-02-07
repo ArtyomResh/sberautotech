@@ -277,13 +277,6 @@
 
         &__list-item-link {
             width: 100%;
-
-            @media (hover: hover) and (pointer: fine) {
-
-                &:hover {
-                    color: var(--color-accent);
-                }
-            }
         }
 
         &__list-item &__list-item-link,
