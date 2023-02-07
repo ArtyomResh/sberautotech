@@ -380,6 +380,7 @@
         }
 
         &__buttons {
+            padding-top: 20px;
             margin-top: auto;
         }
     }
