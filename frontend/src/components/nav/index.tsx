@@ -230,16 +230,14 @@ const Nav = ({ currentPageId }: INavProps) => {
 
                 <div className={cn('nav__buttons')}>
                     {renderSwitchLangBtn()}
-                    {isRu && (
-                        <Button
-                            type="button"
-                            buttonSize="s"
-                            className={cn('nav__accept-button')}
-                            onClick={onClick}
-                        >
-                            {joinButtonText}
-                        </Button>
-                    )}
+                    <Button
+                        type="button"
+                        buttonSize="s"
+                        className={cn('nav__accept-button')}
+                        onClick={onClick}
+                    >
+                        {joinButtonText}
+                    </Button>
                 </div>
             </div>
             <div className={cn('nav__collapsed-menu-buttons')}>
