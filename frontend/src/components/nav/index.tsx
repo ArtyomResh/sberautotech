@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { useAppContext } from '../../context/context';
@@ -7,7 +7,6 @@ import LogoBlack from '../../images/logo-black.inline.svg';
 import Burger from '../../images/burger.inline.svg';
 import Cross from '../../images/cross.inline.svg';
 import { useClassnames } from '../../hooks/use-classnames';
-import useWindowSize from '../../hooks/use-window-resize';
 import { gtagClicked } from '../../utils';
 import { isRu } from '../../utils/locale';
 
@@ -20,7 +19,6 @@ import { IStrapiSingleType } from '../../types/strapi';
 
 const MINIMUM_SCROLL = 5;
 const TIMEOUT_DELAY = 0;
-const PADDING = 20;
 
 export interface INavProps {
     currentPageId?: string
@@ -66,9 +64,8 @@ const NavMenuItem: React.FC<{
     currentNavId?: TNavId,
     onMouseEnter: React.MouseEventHandler,
     onMouseLeave: React.MouseEventHandler,
-    isActive: boolean,
     submenuIsOpened: boolean
-}> = ({ item, isActive, currentNavId, submenuIsOpened, onMouseEnter, onMouseLeave }) => {
+}> = ({ item, currentNavId, submenuIsOpened, onMouseEnter, onMouseLeave }) => {
     const { text, to, navId, sublinks } = item;
     const cn = useClassnames(style);
     const sublistRef = useRef<HTMLDivElement>(null);
@@ -76,7 +73,7 @@ const NavMenuItem: React.FC<{
     return (
         <li
             id={`nav__link-${navId}`}
-            className={cn('nav__list-item', { 'nav__list-item_active': isActive })}
+            className={cn('nav__list-item')}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
@@ -118,11 +115,9 @@ const NavMenuItem: React.FC<{
 const Nav = ({ currentPageId }: INavProps) => {
     const data = useStaticQuery<IQueryData>(query);
     const [isOpen, setIsOpen] = useState(false);
-    const [indicatorStyles, setIndicatorStyles] = useState({});
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const [isMinimumScrolled, setIsMinimumScrolled] = useState(false);
     const { setIsContactFormVisible, setIsNavVisible } = useAppContext();
-    const [width, height] = useWindowSize();
     const cn = useClassnames(style);
     const [hoveredMenuItemId, setHoveredMenuItemId] = useState<TNavId | null>(null);
     const { hierarchicalLinks: links, joinButtonText, switchLangUrl } = data.allStrapiNavPanel.edges[0].node;
@@ -132,23 +127,8 @@ const Nav = ({ currentPageId }: INavProps) => {
     };
 
 
-    const activeMenuItemId = links.find((link) => link.navId === currentPageId || link.sublinks.find((sublink) => sublink.navId === currentPageId))?.navId;
-
     const shouldShowShadow = isMinimumScrolled || links.some(isSubMenuOpened) || isOpen;
 
-
-    useEffect(() => {
-        const ANIMATION_DELAY = 200;
-
-        setTimeout(() => {
-            const activeElement = document.querySelector(`#nav__link-${activeMenuItemId}`) as HTMLElement;
-
-            setIndicatorStyles({
-                transform: `translateX(${activeElement?.offsetLeft - PADDING}px)`,
-                width    : activeElement?.offsetWidth
-            });
-        }, ANIMATION_DELAY);
-    }, [activeMenuItemId, width, height]);
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const isScrolledDown = previousScrollTop < currentScrollTop;
@@ -213,13 +193,11 @@ const Nav = ({ currentPageId }: INavProps) => {
             </div>
             <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
                 <ul className={cn('nav__list')}>
-                    <div className={cn('nav__indicator')} style={indicatorStyles} />
                     {
                         links.map((item: INavHierachicalLink, i: number) => (
                             <NavMenuItem
                                 item={item} key={i}
                                 currentNavId={currentPageId}
-                                isActive={!hoveredMenuItemId && currentPageId === item.navId || Boolean(hoveredMenuItemId) && hoveredMenuItemId === item.navId}
                                 submenuIsOpened={isSubMenuOpened((item))}
                                 onMouseEnter={handleMenuItemMouseEnter(item.navId)}
                                 onMouseLeave={handleMenuItemMouseLeave}
