@@ -376,7 +376,7 @@
 
         &__center {
             height: calc(100vh - var(--header-height));
-            padding-bottom: 104px;
+            padding-bottom: 116px;
         }
 
         &__buttons {
