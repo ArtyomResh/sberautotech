@@ -64,8 +64,7 @@ const NavMenuItem: React.FC<{
     currentNavId?: TNavId,
     onMouseEnter: React.MouseEventHandler,
     onMouseLeave: React.MouseEventHandler,
-    submenuIsOpened: boolean
-}> = ({ item, currentNavId, submenuIsOpened, onMouseEnter, onMouseLeave }) => {
+}> = ({ item, currentNavId, onMouseEnter, onMouseLeave }) => {
     const { text, to, navId, sublinks } = item;
     const cn = useClassnames(style);
     const sublistRef = useRef<HTMLDivElement>(null);
@@ -92,7 +91,7 @@ const NavMenuItem: React.FC<{
                 </div>
             ) }
             {sublinks && sublinks.length > 0 && (
-                <div className={cn('nav__submenu', { 'nav__submenu_opened': submenuIsOpened })}>
+                <div className={cn('nav__submenu')}>
                     <div className={cn('nav__submenu-overlay')} style={{ height: sublistRef.current?.clientHeight }} />
                     <div className={cn('nav__submenu-content')} ref={sublistRef}>
                         <ul className={cn('nav__submenu-list')}>
@@ -126,9 +125,8 @@ const Nav = ({ currentPageId }: INavProps) => {
         return !shouldHideHeader && link.sublinks.length > 0 && hoveredMenuItemId === link.navId;
     };
 
-
     const shouldShowShadow = isMinimumScrolled || links.some(isSubMenuOpened) || isOpen;
-
+    const activeMenuItemId = links.find((link) => link.navId === currentPageId || link.sublinks.find((sublink) => sublink.navId === currentPageId))?.navId;
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const isScrolledDown = previousScrollTop < currentScrollTop;
@@ -175,7 +173,6 @@ const Nav = ({ currentPageId }: INavProps) => {
         );
     };
 
-
     return (
         <nav
             className={
@@ -198,7 +195,6 @@ const Nav = ({ currentPageId }: INavProps) => {
                             <NavMenuItem
                                 item={item} key={i}
                                 currentNavId={currentPageId}
-                                submenuIsOpened={isSubMenuOpened((item))}
                                 onMouseEnter={handleMenuItemMouseEnter(item.navId)}
                                 onMouseLeave={handleMenuItemMouseLeave}
                             />
