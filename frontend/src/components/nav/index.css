@@ -119,10 +119,6 @@
     &__submenu-list-item {
         margin-top: 20px;
 
-        &_active {
-            color: var(--color-accent);
-        }
-
         @mixin h4;
     }
 
