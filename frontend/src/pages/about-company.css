@@ -1,39 +1,4 @@
 .about-company {
-    &__page {
-        .nav {
-            &:not(.nav_open-menu) {
-                background-color: rgba(0, 0, 0, 0.7);
-                color: #fff;
-
-                .nav__center {
-                    background-color: unset;
-                }
-            }
-
-            .nav__indicator {
-                -moz-transition: none;
-                -webkit-transition: none;
-                -ms-transition: none;
-                -o-transition: none;
-                transition: none;
-                background: #BDFFF8;
-            }
-
-            .nav__list-item_active {
-                color: #BDFFF8;
-            }
-
-            .nav__list-item{
-
-                @media (hover: hover) and (pointer: fine) {
-                    &:hover {
-                        color: #BDFFF8 !important;
-                    }
-                }
-            }
-        }
-    }
-
     &__header {
 
         &-wrapper {

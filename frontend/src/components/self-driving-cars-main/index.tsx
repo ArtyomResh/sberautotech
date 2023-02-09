@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
 import useDeviceDetect from '../../hooks/use-device-detect';
-import { ILocalFile } from '../carousel';
 import useFormattedText from '../../hooks/use-formatted-text';
 import { toUnescapedHTML } from '../../utils';
+import { ILocalFile } from '../../types';
 
 import style from './index.css';
 

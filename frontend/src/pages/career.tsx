@@ -95,7 +95,7 @@ const Career = () => {
         }));
 
     return (
-        <Layout seo={seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId={pageId}>
+        <Layout seo={seo} pageId={pageId}>
             <div className="career__carousel">
                 <Carousel data={top_slider} />
             </div>

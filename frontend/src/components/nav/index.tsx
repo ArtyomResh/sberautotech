@@ -1,41 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import { useAppContext } from '../../context/context';
 import { YM_ID } from '../../constants';
-import LogoWhite from '../../images/logo-white.inline.svg';
 import LogoBlack from '../../images/logo-black.inline.svg';
 import Burger from '../../images/burger.inline.svg';
 import Cross from '../../images/cross.inline.svg';
 import { useClassnames } from '../../hooks/use-classnames';
-import useWindowSize from '../../hooks/use-window-resize';
-import { gtagClicked, toUnescapedHTML } from '../../utils';
+import { gtagClicked } from '../../utils';
+import { isRu } from '../../utils/locale';
 
 import Button from '../button-like/button';
 
 import style from './index.css';
 import useDocumentScrollThrottled from './use-document-scroll-throttled';
+import { INavHierachicalLink, INavPanel, INavSubLink } from '../../types/strapi/navPanel';
+import { IStrapiSingleType } from '../../types/strapi';
 
 const MINIMUM_SCROLL = 5;
 const TIMEOUT_DELAY = 0;
-const PADDING = 20;
 
-export interface INavItem {
-    text: string,
-    to: string,
-    navId: string
-}
-
-export interface ITheme {
-    mode: string,
-    logoColor: string,
-    whiteLogoImportant?: boolean
-}
-
-export interface INav {
-    theme: ITheme,
-    pageId: string,
-    whiteLogoImportant?: boolean
+export interface INavProps {
+    currentPageId?: string
 }
 
 const query = graphql`
@@ -43,62 +29,110 @@ const query = graphql`
     allStrapiNavPanel {
       edges {
         node {
-          links {
+          hierarchicalLinks {
               text
               to
               navId
+              sublinks {
+                text
+                to
+                navId
+                image {
+                    localFile {
+                        url
+                    }
+                }
+              }
           }
           joinButtonText
+          switchLangUrl
         }
       }
     }
-    allStrapiFooter {
-        edges {
-          node {
-            disclaimer
-            privacyPolicyLink
-            privacyPolicyText
-          }
-        }
-      }
   }
 `;
 
-const Nav = ({ theme, pageId, whiteLogoImportant }: INav) => {
-    const data = useStaticQuery(query);
-    const [isOpen, setIsOpen] = useState(false);
-    const [indicatorStyles, setIndicatorStyles] = useState({});
-    const [shouldHideHeader, setShouldHideHeader] = useState(false);
-    const [shouldAddShadow, setShouldAddShadow] = useState(false);
-    const { setIsContactFormVisible, setIsNavVisible } = useAppContext();
-    const [width, height] = useWindowSize();
+type TNavId = INavHierachicalLink['navId'] | INavSubLink['navId'];
+
+interface IQueryData {
+    allStrapiNavPanel: IStrapiSingleType<Pick<INavPanel, 'hierarchicalLinks' | 'joinButtonText' | 'switchLangUrl'>>
+}
+
+
+const NavMenuItem: React.FC<{
+    item: INavHierachicalLink,
+    onMouseEnter: React.MouseEventHandler,
+    onMouseLeave: React.MouseEventHandler
+}> = ({ item, onMouseEnter, onMouseLeave }) => {
+    const { text, to, navId, sublinks } = item;
     const cn = useClassnames(style);
+    const sublistRef = useRef<HTMLDivElement>(null);
 
-    const { links, joinButtonText } = data.allStrapiNavPanel.edges[0].node;
-    const { disclaimer, privacyPolicyLink, privacyPolicyText } = data.allStrapiFooter.edges[0].node;
+    return (
+        <li
+            id={`nav__link-${navId}`}
+            className={cn('nav__list-item')}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+        >
+            {to ? (
+                <Link
+                    to={to}
+                    className={cn('nav__list-item-link')}
+                >
+                    {text}
+                </Link>
+            ) : (
+                <div
+                    className={cn('nav__list-item-text')}
+                >
+                    {text}
+                </div>
+            ) }
+            {sublinks && sublinks.length > 0 && (
+                <div className={cn('nav__submenu')}>
+                    <div className={cn('nav__submenu-overlay')} style={{ height: sublistRef.current?.clientHeight }} />
+                    <div className={cn('nav__submenu-content')} ref={sublistRef}>
+                        <ul className={cn('nav__submenu-list')}>
+                            {sublinks.map((sublink, index) => (
+                                <li key={`sublink-${index}`} className={cn('nav__submenu-list-item')}>
+                                    <Link to={sublink.to} className={cn('nav__submenu-list-item-link')}>
+                                        {sublink.text}
+                                    </Link>
+                                    {sublink.image?.localFile.url && <img src={sublink.image?.localFile.url} className={cn('nav__submenu-list-item-icon')} /> }
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
+        </li>
+    );
+};
 
-    useEffect(() => {
-        const ANIMATION_DELAY = 200;
+const Nav = ({ currentPageId }: INavProps) => {
+    const data = useStaticQuery<IQueryData>(query);
+    const [isOpen, setIsOpen] = useState(false);
+    const [shouldHideHeader, setShouldHideHeader] = useState(false);
+    const [isMinimumScrolled, setIsMinimumScrolled] = useState(false);
+    const { setIsContactFormVisible, setIsNavVisible } = useAppContext();
+    const cn = useClassnames(style);
+    const [hoveredMenuItemId, setHoveredMenuItemId] = useState<TNavId | null>(null);
+    const { hierarchicalLinks: links, joinButtonText, switchLangUrl } = data.allStrapiNavPanel.edges[0].node;
 
-        setTimeout(() => {
-            const activeElement = document.querySelector(`.nav__link-${pageId}`) as HTMLElement;
+    const isSubMenuOpened = (link: INavHierachicalLink) => {
+        return !shouldHideHeader && link.sublinks.length > 0 && hoveredMenuItemId === link.navId;
+    };
 
-            setIndicatorStyles({
-                transform: `translateX(${activeElement?.offsetLeft - PADDING}px)`,
-                width    : activeElement?.offsetWidth
-            });
-        }, ANIMATION_DELAY);
-    }, [pageId, width, height]);
+    const shouldShowShadow = isMinimumScrolled || links.some(isSubMenuOpened) || isOpen;
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const isScrolledDown = previousScrollTop < currentScrollTop;
         const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
 
         setTimeout(() => {
-            if(theme.mode === 'dark') {
-                setShouldHideHeader(isScrolledDown && isMinimumScrolled);
-                setShouldAddShadow(isMinimumScrolled);
-            }
+            setShouldHideHeader(isScrolledDown && isMinimumScrolled);
+            setIsMinimumScrolled(isMinimumScrolled);
         }, TIMEOUT_DELAY);
     });
 
@@ -121,66 +155,67 @@ const Nav = ({ theme, pageId, whiteLogoImportant }: INav) => {
         setIsContactFormVisible?.(true);
     };
 
+
+    const handleMenuItemMouseEnter = (navId: TNavId) => () => {
+        setHoveredMenuItemId(navId);
+    };
+    const handleMenuItemMouseLeave = () => {
+        setHoveredMenuItemId(null);
+    };
+
+    const renderSwitchLangBtn = () => {
+        return Boolean(switchLangUrl) && (
+            <a className={cn('nav__switch-lang-link')} href={switchLangUrl} onClick={redirectHandler}>
+                {isRu ? 'En' : 'Ru'}
+            </a>
+        );
+    };
+
     return (
         <nav
             className={
-                cn('nav', `nav_${theme.mode}`, {
+                cn('nav', {
                     'nav_open-menu': isOpen,
                     'nav_hidden'   : shouldHideHeader,
-                    'nav_shadow'   : shouldAddShadow
+                    'nav_shadow'   : shouldShowShadow
                 })
             }
         >
             <div className={cn('nav__left')}>
                 <Link className={cn('nav__logo')} to="/" onClick={redirectHandler} state={{ toTop: true }}>
-                    {(theme.mode === 'light' && !isOpen) || (whiteLogoImportant && !isOpen) ? <LogoWhite /> : <LogoBlack />}
+                    <LogoBlack />
                 </Link>
             </div>
             <div className={cn('nav__center', { 'nav__center_close': !isOpen })}>
                 <ul className={cn('nav__list')}>
-                    <div className={cn('nav__indicator')} style={indicatorStyles} />
                     {
-                        links.map(({ text, to, navId }: INavItem, i: number) => (
-                            <li key={i} className={cn('nav__list-item', { 'nav__list-item_active': pageId === navId })}>
-                                <Link to={to} className={cn('nav__link', `nav__link-${navId}`)}>
-                                    {text}
-                                </Link>
-                            </li>
+                        links.map((item: INavHierachicalLink, i: number) => (
+                            <NavMenuItem
+                                key={i}
+                                item={item}
+                                onMouseEnter={handleMenuItemMouseEnter(item.navId)}
+                                onMouseLeave={handleMenuItemMouseLeave}
+                            />
                         ))
                     }
                 </ul>
 
-                <div className={cn('nav__bottom-block')}>
+                <div className={cn('nav__buttons')}>
+                    {renderSwitchLangBtn()}
                     <Button
                         type="button"
-                        className={cn('nav__bottom-block-accept-button')}
-                        isBlock={true}
+                        buttonSize="s"
+                        className={cn('nav__accept-button')}
                         onClick={onClick}
                     >
                         {joinButtonText}
                     </Button>
-
-                    <div className={cn('nav__link-block')}>
-                        <Link className={cn('nav__link-bottom-block')} to={privacyPolicyLink} title={privacyPolicyText}>{privacyPolicyText}</Link>
-                    </div>
-
-                    <span className={cn('nav__disclaimer')}>
-                        {toUnescapedHTML(disclaimer)}
-                    </span>
                 </div>
-
-                <Button
-                    type="button"
-                    buttonSize="s"
-                    className={cn('nav__accept-button')}
-                    onClick={onClick}
-                >
-                    {joinButtonText}
-                </Button>
             </div>
-            <div className={cn('nav__right')}>
-                <button className={cn('nav__menu-button')} onClick={onMenuButtonClick}>
-                    {isOpen ? <Cross fill="#040A0A" /> : <Burger fill={theme.mode === 'light' || whiteLogoImportant ? '#FFF' : '#040A0A'} />}
+            <div className={cn('nav__collapsed-menu-buttons')}>
+                {renderSwitchLangBtn()}
+                <button className={cn('nav__burger')} onClick={onMenuButtonClick}>
+                    {isOpen ? <Cross fill="#040A0A" /> : <Burger />}
                 </button>
             </div>
         </nav>

@@ -198,7 +198,8 @@ const Vacancies: React.FC<PageProps> = ({ location }) => {
                 seo={{
                     ...seo,
                     shareImage: undefined
-                }} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId={pageId}
+                }}
+                pageId={pageId}
             >
                 <div className={cn('vacancies-page__wrapper')}>
                     {

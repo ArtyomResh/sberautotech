@@ -306,7 +306,6 @@ const FlipPage = () => {
         <div className="flip__page">
             <Layout
                 seo={seo}
-                theme={{ mode: 'dark', logoColor: 'white', whiteLogoImportant: true }}
                 pageId={pageId}
             >
                 {isLoading ? (

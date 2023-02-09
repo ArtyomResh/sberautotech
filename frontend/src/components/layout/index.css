@@ -93,3 +93,15 @@ select {
     --color-gray: #f3f8f9;
     --color-gray-dark: #86959d;
 }
+
+@mixin media_breakpoint_small_desktop {
+    :root {
+        --header-height: 74px;
+    }
+}
+
+@mixin media_breakpoint_below_desktop {
+    :root {
+        --header-height: 56px;
+    }
+}

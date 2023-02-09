@@ -23,7 +23,7 @@
     }
 }
 
-@mixin media_breakpoint_nav_collapsed {
+@mixin media_breakpoint_below_desktop {
 
     .respond-form {
 

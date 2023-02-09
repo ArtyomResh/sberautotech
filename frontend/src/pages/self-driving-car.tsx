@@ -68,7 +68,7 @@ const SelfDrivingCar = () => {
     const { seo, pageId, double_block, story_cards, slider } = data.allStrapiSelfDrivingCar.edges[0].node;
 
     return (
-        <Layout seo={seo} theme={{ mode: 'dark', logoColor: '#040A0A' }} pageId={pageId}>
+        <Layout seo={seo} pageId={pageId}>
             <MainBlock data={double_block} storyCards={story_cards} />
             <Carousel data={slider} />
             <Footer />

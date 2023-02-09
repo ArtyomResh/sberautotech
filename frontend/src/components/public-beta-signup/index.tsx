@@ -51,7 +51,7 @@ const PublicBetaSignup = () => {
     // };
 
     return (
-        <Layout theme={{ mode: 'dark', logoColor: '#040A0A' }} withNav={false} pageId="moscow">
+        <Layout withNav={false} pageId="moscow">
             <Header />
 
             <Hero /* onLinkClick={handleRegistrationResultAlertClose} */ />

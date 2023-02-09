@@ -1,5 +1,5 @@
 import React, { createContext, ReactElement, useState, useContext } from 'react';
-import { INav } from '../components/nav';
+import { INavProps } from '../components/nav';
 
 interface IAppContext {
     isContactFormVisible: boolean,
@@ -12,8 +12,8 @@ interface IAppContext {
     setVacancyTitle: React.Dispatch<React.SetStateAction<string>> | (() => void),
     huntflowId: string | null,
     setHuntflowId: React.Dispatch<React.SetStateAction<string>> | (() => void),
-    mainPageActivePageId: INav['pageId'] | null,
-    setMainPageActivePageId: React.Dispatch<React.SetStateAction<INav['pageId'] | null>> | (() => void)
+    mainPageActivePageId: INavProps['pageId'] | null,
+    setMainPageActivePageId: React.Dispatch<React.SetStateAction<INavProps['pageId'] | null>> | (() => void)
 }
 /* eslint-disable @typescript-eslint/no-empty-function */
 const appContext = createContext<IAppContext>({
@@ -39,7 +39,7 @@ const AppProvider = ({ children }: { children: ReactElement }) => {
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [vacancyTitle, setVacancyTitle] = useState('');
     const [huntflowId, setHuntflowId] = useState('');
-    const [activePageId, setActivePageId] = useState<INav['pageId'] | null>(null);
+    const [activePageId, setActivePageId] = useState<INavProps['pageId'] | null>(null);
 
     return (
         <Provider value={{

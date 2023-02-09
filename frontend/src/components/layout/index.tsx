@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Nav, { INav } from '../nav';
+import Nav, { INavProps } from '../nav';
 import Seo, { ISeo } from '../seo';
 import RespondForm from '../RespondForm';
 import ContactForm from '../ContactForm';
@@ -14,12 +14,11 @@ import style from './index.css';
 interface IProps {
     children: React.ReactNode,
     seo?: ISeo,
-    theme: INav['theme'],
-    pageId: INav['pageId'],
+    pageId?: INavProps['currentPageId'],
     withNav?: boolean
 }
 
-const Layout = ({ children, seo, theme, pageId, withNav = true }: IProps) => {
+const Layout = ({ children, seo, pageId, withNav = true }: IProps) => {
     const cn = useClassnames(style);
 
     return (
@@ -27,11 +26,7 @@ const Layout = ({ children, seo, theme, pageId, withNav = true }: IProps) => {
             <div className={cn('app__wrapper')}>
                 <Seo seo={seo} />
                 {withNav && (
-                    <Nav
-                        theme={theme}
-                        pageId={pageId}
-                        whiteLogoImportant={theme?.whiteLogoImportant}
-                    />
+                    <Nav currentPageId={pageId} />
                 )}
                 <main>{children}</main>
                 <RespondForm />
