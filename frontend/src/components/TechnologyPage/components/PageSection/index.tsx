@@ -15,8 +15,8 @@ export const PageSection: React.FC<IProps> = ({ children, removeBelowOffset, rem
 
     return (
         <section className={cn(cssBlock, {
-            [`${cssBlock}__remove-margin-top`]   : removeAboveOffset,
-            [`${cssBlock}__remove-margin-bottom`]: removeBelowOffset
+            [`${cssBlock}_without-margin-top`]   : removeAboveOffset,
+            [`${cssBlock}_without-margin-bottom`]: removeBelowOffset
         })}
         >
             {children}
