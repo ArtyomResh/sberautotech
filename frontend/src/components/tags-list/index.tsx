@@ -13,7 +13,7 @@ export interface ITagListItem {
 interface IProps {
     tags: Array<ITagListItem>,
     activeTags: Array<number>,
-    onClickTag: any
+    onClickTag: (e: React.MouseEvent<HTMLLIElement>) => void
 }
 
 const TagsList = ({ tags, activeTags, onClickTag }: IProps) => {

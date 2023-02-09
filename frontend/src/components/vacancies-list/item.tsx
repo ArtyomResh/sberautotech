@@ -24,7 +24,7 @@ export interface IVacanciesListItem {
 interface IProps {
     data: IVacanciesListItem,
     activeTags: Array<number>,
-    onClickTag: any,
+    onClickTag: (e: React.MouseEvent<HTMLLIElement>) => void,
     searchString: string
 }
 
