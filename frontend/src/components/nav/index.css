@@ -301,6 +301,7 @@
             opacity: 1;
             padding: 0 0 16px;
             transition: none;
+            pointer-events: all;
         }
 
         &__submenu-overlay {
