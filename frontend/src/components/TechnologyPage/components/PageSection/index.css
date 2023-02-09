@@ -1,0 +1,22 @@
+.page-section {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+
+    &__remove-margin-top {
+        padding-top: 0;
+    }
+
+    &__remove-margin-bottom {
+        padding-bottom: 0;
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .page-section {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}

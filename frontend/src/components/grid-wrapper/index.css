@@ -6,7 +6,6 @@
 @mixin media_breakpoint_normal_desktop {
 
     .grid-wrapper {
-        padding: 80px 20px;
         grid-template-columns: repeat(12, 1fr);
     }
 }
@@ -14,7 +13,6 @@
 @mixin media_breakpoint_small_desktop {
 
     .grid-wrapper {
-        padding: 60px 20px;
         grid-template-columns: repeat(12, 1fr);
     }
 }
@@ -22,7 +20,6 @@
 @mixin media_breakpoint_tablet {
 
     .grid-wrapper {
-        padding: 40px 20px;
         grid-template-columns: repeat(6, 1fr);
     }
 }
@@ -30,7 +27,6 @@
 @mixin media_breakpoint_mobile {
 
     .grid-wrapper {
-        padding: 30px 20px;
         grid-template-columns: repeat(2, 1fr);
     }
 }
