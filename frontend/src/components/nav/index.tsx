@@ -61,10 +61,9 @@ interface IQueryData {
 
 const NavMenuItem: React.FC<{
     item: INavHierachicalLink,
-    currentNavId?: TNavId,
     onMouseEnter: React.MouseEventHandler,
-    onMouseLeave: React.MouseEventHandler,
-}> = ({ item, currentNavId, onMouseEnter, onMouseLeave }) => {
+    onMouseLeave: React.MouseEventHandler
+}> = ({ item, onMouseEnter, onMouseLeave }) => {
     const { text, to, navId, sublinks } = item;
     const cn = useClassnames(style);
     const sublistRef = useRef<HTMLDivElement>(null);
@@ -96,7 +95,7 @@ const NavMenuItem: React.FC<{
                     <div className={cn('nav__submenu-content')} ref={sublistRef}>
                         <ul className={cn('nav__submenu-list')}>
                             {sublinks.map((sublink, index) => (
-                                <li key={`sublink-${index}`} className={cn('nav__submenu-list-item', { 'nav__submenu-list-item_active': sublink.navId === currentNavId })}>
+                                <li key={`sublink-${index}`} className={cn('nav__submenu-list-item')}>
                                     <Link to={sublink.to} className={cn('nav__submenu-list-item-link')}>
                                         {sublink.text}
                                     </Link>
@@ -126,7 +125,6 @@ const Nav = ({ currentPageId }: INavProps) => {
     };
 
     const shouldShowShadow = isMinimumScrolled || links.some(isSubMenuOpened) || isOpen;
-    const activeMenuItemId = links.find((link) => link.navId === currentPageId || link.sublinks.find((sublink) => sublink.navId === currentPageId))?.navId;
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const isScrolledDown = previousScrollTop < currentScrollTop;
@@ -193,8 +191,8 @@ const Nav = ({ currentPageId }: INavProps) => {
                     {
                         links.map((item: INavHierachicalLink, i: number) => (
                             <NavMenuItem
-                                item={item} key={i}
-                                currentNavId={currentPageId}
+                                key={i}
+                                item={item}
                                 onMouseEnter={handleMenuItemMouseEnter(item.navId)}
                                 onMouseLeave={handleMenuItemMouseLeave}
                             />
