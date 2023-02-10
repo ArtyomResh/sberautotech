@@ -1,0 +1,28 @@
+
+@mixin media_breakpoint_normal_desktop {
+
+    .principles {
+        grid-column: 5 / span 8;
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .principles {
+        grid-column: 5 / span 8;
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .principles {
+        grid-column: 1 / span 6;
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .principles {
+        grid-column: 1 / span 6;
+    }
+}
