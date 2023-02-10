@@ -5,6 +5,8 @@ import Footer from '../footer';
 import { TechnologyBanner } from './components/TechnologyBanner';
 import { PageSection } from './components/PageSection';
 
+import Principles from './components/Principles';
+
 const TechnologyPage = () => {
     const pageId = 'technology';
     const seo = {
@@ -20,6 +22,10 @@ const TechnologyPage = () => {
                     <TechnologyBanner />
                 </PageSection>
             </div>
+
+            <PageSection>
+                <Principles />
+            </PageSection>
 
             <Footer />
         </Layout>

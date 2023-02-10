@@ -1,0 +1,56 @@
+.accordion {
+
+    padding-bottom: 30px;
+
+    &_with_border-top {
+        border-top: 1px solid var(--color-black);
+    }
+
+    &__header {
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__button {
+        padding: 0;
+        border: none;
+        font-size: 0;
+        background-color: transparent;
+    }
+
+    &__icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    &__description {
+        padding-top: 20px;
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .accordion {
+        padding-bottom: 38px;
+
+        &__header {
+            padding-bottom: 20px;
+        }
+
+        &__icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        &__description {
+            padding-top: 0;
+        }
+
+        &__description_with-columns {
+            column-count: 2;
+            column-gap: 20px;
+        }
+    }
+}
