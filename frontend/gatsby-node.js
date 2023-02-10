@@ -17,18 +17,18 @@ const createVacancyPages = (vacancyEdges) => {
     return !vacancyEdges ? [] : vacancyEdges.map(({ node }) => {
         if(node.isSecret) {
             return {
-                path     : `/vacancies/special/${node.strapiId}`,
+                path: `/vacancies/special/${node.strapiId}`,
                 component: path.resolve('src/pages/vacancy.tsx'),
-                context  : {
+                context: {
                     id: node.strapiId
                 }
             };
         }
 
         return {
-            path     : `/vacancies/${node.strapiId}`,
+            path: `/vacancies/${node.strapiId}`,
             component: path.resolve('src/pages/vacancy.tsx'),
-            context  : {
+            context: {
                 id: node.strapiId
             }
         };
@@ -101,6 +101,12 @@ exports.onCreatePage = async (args) => {
     }
 
     if(page.path === '/career/' && careerPageIsHidden) {
+        deletePage(page);
+    }
+
+    const hideTechnology = process.env.NODE_ENV !== 'development' && process.env.IS_DEV_STAGE !== 'true';
+
+    if(page.path === '/technology/' && hideTechnology) {
         deletePage(page);
     }
 };
