@@ -16,7 +16,7 @@ export const Picture: React.FC<TProps> = ({ desktop, smallDesktop, tablet, mobil
             <source srcSet={mobile || tablet || smallDesktop || desktop} media="(max-width: 743px)" />
             <source srcSet={tablet || smallDesktop || desktop} media="(max-width: 1279px)" />
             <source srcSet={smallDesktop || desktop} media="(max-width: 1919px)" />
-            <img src={desktop} alt={alt} className={className}></img>
+            <img src={desktop} alt={alt}></img>
         </picture>
     );
 };

@@ -1,4 +1,6 @@
 .main-footer {
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 30px !important;
     padding-bottom: 20px !important;
     background-color: var(--color-white);
@@ -154,8 +156,8 @@
 @mixin media_breakpoint_mobile {
 
     .main-footer {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-left: 10px;
+        padding-right: 10px;
 
         &__header,
         &__button,

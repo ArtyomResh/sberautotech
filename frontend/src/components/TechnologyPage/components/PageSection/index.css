@@ -1,6 +1,6 @@
 .page-section {
-    padding-left: var(--page-content-vertical-padding);
-    padding-right: var(--page-content-vertical-padding);
+    padding-left: var(--page-section-vertical-padding);
+    padding-right: var(--page-section-vertical-padding);
     padding-top: 60px;
     padding-bottom: 60px;
 

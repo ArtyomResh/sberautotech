@@ -74,7 +74,7 @@ select {
 
 :root {
     --header-height: 82px;
-    --page-content-vertical-padding: 20px;
+    --page-section-vertical-padding: 20px;
 
     --zindex-base: 100;
     --zindex-dropdown: 101;
@@ -99,19 +99,19 @@ select {
 @mixin media_breakpoint_small_desktop {
     :root {
         --header-height: 74px;
-        --page-content-vertical-padding: 20px;
+        --page-section-vertical-padding: 20px;
     }
 }
 
 @mixin media_breakpoint_tablet {
     :root {
-        --page-content-vertical-padding: 20px;
+        --page-section-vertical-padding: 20px;
     }
 }
 
 @mixin media_breakpoint_mobile {
     :root {
-        --page-content-vertical-padding: 10px;
+        --page-section-vertical-padding: 10px;
     }
 }
 
