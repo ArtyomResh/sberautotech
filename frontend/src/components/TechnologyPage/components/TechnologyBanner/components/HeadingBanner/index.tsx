@@ -2,6 +2,7 @@ import React from 'react';
 import { useClassnames } from '../../../../../../hooks/use-classnames';
 import GridWrapper from '../../../../../grid-wrapper';
 import Heading from '../../../../../heading';
+import { IPictureVariants, Picture } from '../../../../../Picture';
 import Text from '../../../../../text';
 
 import styles from './index.css';
@@ -9,7 +10,7 @@ import styles from './index.css';
 export interface IHeroProps {
     title: string,
     description: string,
-    image: string
+    image: IPictureVariants
 }
 
 
@@ -20,7 +21,7 @@ const HeadingBanner: React.FC<IHeroProps> = ({ title, description, image }) => {
 
     return (
         <GridWrapper className={cn(cssBlock)}>
-            <img src={image} alt={title} className={cn(`${cssBlock}__image`)} />
+            <Picture {...image} alt={title} className={cn(`${cssBlock}__image`)} />
             <div className={cn(`${cssBlock}__title`)}>
                 <Heading
                     level={2}
