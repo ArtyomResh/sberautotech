@@ -118,13 +118,13 @@ const Nav = ({ currentPageId }: INavProps) => {
     const { setIsContactFormVisible, setIsNavVisible } = useAppContext();
     const cn = useClassnames(style);
     const [hoveredMenuItemId, setHoveredMenuItemId] = useState<TNavId | null>(null);
-    const { hierarchicalLinks: links, joinButtonText, switchLangUrl } = data.allStrapiNavPanel.edges[0].node;
+    const { hierarchicalLinks: links, joinButtonText/* , switchLangUrl */ } = data.allStrapiNavPanel.edges[0].node;
 
     const isSubMenuOpened = (link: INavHierachicalLink) => {
         return !shouldHideHeader && link.sublinks.length > 0 && hoveredMenuItemId === link.navId;
     };
 
-    const shouldShowShadow = isMinimumScrolled || links.some(isSubMenuOpened) || isOpen;
+    const shouldShowShadow = isMinimumScrolled && !links.some(isSubMenuOpened) && !isOpen;
 
     useDocumentScrollThrottled(({ previousScrollTop, currentScrollTop }) => {
         const isScrolledDown = previousScrollTop < currentScrollTop;
@@ -163,13 +163,14 @@ const Nav = ({ currentPageId }: INavProps) => {
         setHoveredMenuItemId(null);
     };
 
-    const renderSwitchLangBtn = () => {
-        return Boolean(switchLangUrl) && (
-            <a className={cn('nav__switch-lang-link')} href={switchLangUrl} onClick={redirectHandler}>
-                {isRu ? 'En' : 'Ru'}
-            </a>
-        );
-    };
+    //TODO: вернуть в рамках https://jira.csssr.io/browse/SBER-265
+    // const renderSwitchLangBtn = () => {
+    //     return Boolean(switchLangUrl) && (
+    //         <a className={cn('nav__switch-lang-link')} href={switchLangUrl} onClick={redirectHandler}>
+    //             {isRu ? 'En' : 'Ru'}
+    //         </a>
+    //     );
+    // };
 
     return (
         <nav
@@ -201,7 +202,7 @@ const Nav = ({ currentPageId }: INavProps) => {
                 </ul>
 
                 <div className={cn('nav__buttons')}>
-                    {renderSwitchLangBtn()}
+                    {/* {renderSwitchLangBtn()} */}
                     <Button
                         type="button"
                         buttonSize="s"
@@ -213,7 +214,7 @@ const Nav = ({ currentPageId }: INavProps) => {
                 </div>
             </div>
             <div className={cn('nav__collapsed-menu-buttons')}>
-                {renderSwitchLangBtn()}
+                {/* {renderSwitchLangBtn()} */}
                 <button className={cn('nav__burger')} onClick={onMenuButtonClick}>
                     {isOpen ? <Cross fill="#040A0A" /> : <Burger />}
                 </button>
