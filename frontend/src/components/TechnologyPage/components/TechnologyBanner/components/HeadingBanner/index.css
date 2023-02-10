@@ -5,7 +5,7 @@
     z-index: 0;
     width: 100%;
     height: 910px;
-    padding: 40px var(--content-vertical-padding);
+    padding: var(--content-vertical-padding);
     overflow: hidden;
 
     &__image {
@@ -20,7 +20,7 @@
             height: 100%;
             width: 100%;
             object-fit: cover;
-            border-radius: var(--content-vertical-padding);
+            border-radius: 30px;
         }
     }
 
@@ -37,12 +37,8 @@
 @mixin media_breakpoint_small_desktop {
 
     .heading-banner {
-        padding: 30px;
+        --content-vertical-padding: 30px;
         height: 680px;
-
-        &__image {
-            border-radius: 30px;
-        }
     }
 }
 
@@ -50,13 +46,9 @@
 
     .heading-banner {
         --banner-height: 744px;
-        --content-vertical-padding: var(--page-section-vertical-padding);
+        --content-vertical-padding: 0;
         grid-template-rows: var(--banner-height) auto;
         height: auto;
-        padding-left: 0;
-        padding-right: 0;
-        padding-top: 0;
-        padding-bottom: 0;
         overflow: visible;
 
         &__image {
