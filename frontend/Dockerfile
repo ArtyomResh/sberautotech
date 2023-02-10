@@ -6,8 +6,10 @@ WORKDIR /home/builder
 COPY frontend .
 
 ARG BACKEND_API_URL=http://sberautotech-backend.dev.fe.sbauto.tech
+ARG BUILD_DEV_STAGE
 ENV GATSBY_API_URL $BACKEND_API_URL
 ENV NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
+ENV IS_DEV_STAGE $BUILD_DEV_STAGE
 
 RUN yarn config set cafile "/etc/ssl/certs/ca-certificates.crt"
 
