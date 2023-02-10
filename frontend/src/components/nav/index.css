@@ -100,6 +100,7 @@
         width: 100vw;
         height: 0;
         background: var(--color-white);
+        box-shadow: 4px 7px 9px -5px rgba(34, 60, 80, 0.2);
     }
 
     &__submenu-content {
@@ -244,6 +245,7 @@
             flex-direction: column;
             align-items: flex-start;
             overflow: auto;
+            box-shadow: 4px 7px 9px -5px rgba(34, 60, 80, 0.2);
 
             &_close {
                 display: none;
@@ -378,6 +380,7 @@
         &__center {
             height: calc(100vh - var(--header-height));
             padding-bottom: 116px;
+            box-shadow: none;
         }
 
         &__buttons {
