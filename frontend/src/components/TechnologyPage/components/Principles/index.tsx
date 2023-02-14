@@ -21,10 +21,9 @@ const Principles = () => {
         <GridWrapper>
             <ul className={cn('principles')}>
                 {principles.map(({ title, description }, index) => (
-                    <Accordion key={title} title={title} description={description} withColumns={true} withBorderTop={index > 0} />
+                    <Accordion key={title} title={title} description={description} headingSize="m" withColumns={true} withBorderTop={index > 0} />
                 ))}
             </ul>
-
         </GridWrapper>
     );
 };
