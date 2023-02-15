@@ -6,6 +6,7 @@ import { TechnologyBanner } from './components/TechnologyBanner';
 import { PageSection } from './components/PageSection';
 
 import Principles from './components/Principles';
+import Sensors from './components/Sensors';
 
 const TechnologyPage = () => {
     const pageId = 'technology';
@@ -25,6 +26,10 @@ const TechnologyPage = () => {
 
             <PageSection>
                 <Principles />
+            </PageSection>
+
+            <PageSection>
+                <Sensors />
             </PageSection>
 
             <Footer />

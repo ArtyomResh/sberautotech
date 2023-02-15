@@ -6,6 +6,23 @@
         border-top: 1px solid var(--color-black);
     }
 
+    &_has_color-white {
+        color: var(--color-white);
+    }
+
+    &_has_color-white&_with_border-top {
+        border-color: var(--color-white);
+    }
+
+    &_has_color-white &__heading,
+    &_has_color-white &__description {
+        color: inherit;
+    }
+
+    &_has_color-white &__icon path {
+        fill: var(--color-white);
+    }
+
     &__header {
         padding-top: 20px;
         display: flex;
@@ -35,6 +52,16 @@
     .accordion {
         padding-bottom: 38px;
 
+        &_is_small &__icon,
+        &_is_large &__icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        &_is_small {
+            padding-bottom: 20px; 
+        }
+
         &__header {
             padding-bottom: 20px;
         }
@@ -51,6 +78,23 @@
         &__description_with-columns {
             column-count: 2;
             column-gap: 20px;
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .accordion {
+
+        &_is_small  &__icon,
+        &_is_large  &__icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        &_is_large  &__description,
+        &_is_small  &__header {
+            padding-top: 12px;
         }
     }
 }

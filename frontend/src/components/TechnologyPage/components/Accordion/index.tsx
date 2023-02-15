@@ -13,25 +13,46 @@ import style from './index.css';
 interface IProps {
     title: string,
     description: string,
+    headingSize: 's' | 'm' | 'l',
+    color?: 'white' | 'black',
     withColumns?: boolean,
     withBorderTop: boolean
 }
 
-const Accordion = ({ title, description, withColumns, withBorderTop }: IProps) => {
+const Accordion = ({ title, description, headingSize = 'm', color = 'black', withColumns, withBorderTop }: IProps) => {
     const cn = useClassnames(style);
     const [isOpened, setIsOpened] = useState(false);
     const cssBlock = 'accordion';
+
+    /* eslint-disable @typescript-eslint/no-magic-numbers */
+    const headingLevelNumberBySize = {
+        's': 4 as const,
+        'm': 3 as const,
+        'l': 2 as const
+    };
+    /* eslint-enable @typescript-eslint/no-magic-numbers */
 
     const handleOnButtonClick = () => {
         setIsOpened(!isOpened);
     };
 
     return (
-        <section className={cn(cssBlock, { [`${cssBlock}_with_border-top`]: withBorderTop })}>
+        <section
+            className={cn(cssBlock, {
+                [`${cssBlock}_with_border-top`]: withBorderTop,
+                [`${cssBlock}_has_color-white`]: color === 'white',
+                [`${cssBlock}_has_color-black`]: color === 'black',
+                [`${cssBlock}_is_small`]       : headingSize === 's',
+                [`${cssBlock}_is_medium`]      : headingSize === 'm',
+                [`${cssBlock}_is_large`]       : headingSize === 'l'
+            })}
+        >
             <div className={cn(`${cssBlock}__header`)} >
-                <Heading level={4}>
-                    {title}
-                </Heading>
+                <Heading
+                    className={cn(`${cssBlock}__heading`)}
+                    level={headingLevelNumberBySize[headingSize]}
+                    dangerouslySetInnerHTML={{ __html: title }}
+                />
 
                 <button
                     className={cn(`${cssBlock}__button`)}
