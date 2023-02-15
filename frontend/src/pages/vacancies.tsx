@@ -33,7 +33,7 @@ const query = graphql`
         }
       }
     }
-    allStrapiVacancies(filter: {isSecret: {nin: true}}) {
+    allStrapiVacancies(filter: {isSecret: {nin: true}, isArchived: {nin: true}}) {
       edges {
         node {
           id

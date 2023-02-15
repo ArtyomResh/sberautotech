@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Helmet, HelmetProps } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -118,13 +117,3 @@ const SEO = ({ seo = {} }: IProps) => {
 };
 
 export default SEO;
-
-SEO.propTypes = {
-    shareImage: PropTypes.string,
-    article   : PropTypes.bool
-};
-
-SEO.defaultProps = {
-    shareImage: null,
-    article   : false
-};

@@ -10,7 +10,7 @@ import VacanciesItem, { IVacanciesListItem } from './item';
 interface IProps {
     data: Array<IVacanciesListItem>,
     activeTags: Array<number>,
-    onClickTag: any,
+    onClickTag: (e: React.MouseEvent<HTMLLIElement>) => void,
     searchString: string
 }
 

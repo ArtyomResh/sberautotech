@@ -221,7 +221,11 @@ const FlipPage = () => {
     const cn = useClassnames(style);
     const data = useStaticQuery(query);
     const [isLoading, setIsLoading] = useState(true);
-    const videoSource = useMemo(() => (isMobile ? 'mobileBackground' : isSafari ? 'background' : 'backgroundOgg'), []);
+    const videoSource = useMemo(() => {
+        const desktopBackground = isSafari ? 'background' : 'backgroundOgg';
+
+        return isMobile ? 'mobileBackground' : desktopBackground;
+    }, []);
 
     const {
         seo,
@@ -259,7 +263,9 @@ const FlipPage = () => {
 
                 if(primaryTextBlock && secondaryTextBlock) {
                     if(percentScrolled >= 0.5) {
-                        primaryTextBlock.style.transform = `translateY(-${primaryTextBlock.offsetTop - 60}px)`;
+                        const headerHeight = 60;
+
+                        primaryTextBlock.style.transform = `translateY(-${primaryTextBlock.offsetTop - headerHeight}px)`;
                         secondaryTextBlock.style.opacity = '1';
 
                         if(primaryText) {
@@ -298,6 +304,7 @@ const FlipPage = () => {
             Promise.all(preloadVideos).then((data) => {
                 setIsLoading(false);
                 data.map((screen, i) => registerVideo(`#bound-${i + 1}`, URL.createObjectURL(screen)));
+                // eslint-disable-next-line no-console
             }).catch((e) => console.log(e));
         }
     }, [isMobile]);

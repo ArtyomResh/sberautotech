@@ -15,7 +15,7 @@ interface IProps {
     onSubmit: (data: Record<string, string>) => Promise<void>,
     alertType: 'error' | 'success',
     alertText: string,
-    onOutsideClick: (e?: any) => void,
+    onOutsideClick: (e?: React.MouseEvent) => void,
     onCloseAlertClick: (e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
     isFormVisible: boolean,
     setIsFormVisible: React.Dispatch<React.SetStateAction<boolean>> | (() => void),

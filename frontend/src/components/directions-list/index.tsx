@@ -6,11 +6,6 @@ import BackIcon from '../../images/back.inline.svg';
 
 import style from './index.css';
 
-interface IDirectionProps {
-    text: string,
-    isActive: boolean | undefined
-}
-
 interface IProps {
     directions: Array<{
         header: string,
@@ -18,7 +13,7 @@ interface IProps {
     }>,
     count: number,
     activeDirection: number | null,
-    onClickDirection: any
+    onClickDirection: (e: MouseEvent) => void
 }
 
 const DirectionsList = ({ directions, count, activeDirection, onClickDirection }: IProps) => {

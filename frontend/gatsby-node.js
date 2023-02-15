@@ -4,7 +4,7 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
     // Query for nodes to use in creating pages.
     resolve(
         graphql(request).then((result) => {
-            if(result.errors) {
+            if (result.errors) {
                 reject(result.errors);
             }
 
@@ -14,21 +14,21 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
 });
 
 const createVacancyPages = (vacancyEdges) => {
-    return !vacancyEdges ? [] : vacancyEdges.map(({ node }) => {
-        if(node.isSecret) {
+    return !vacancyEdges ? [] : vacancyEdges.filter(({ node }) => !node.isArchived).map(({ node }) => {
+        if (node.isSecret) {
             return {
-                path     : `/vacancies/special/${node.strapiId}`,
+                path: `/vacancies/special/${node.strapiId}`,
                 component: path.resolve('src/pages/vacancy.tsx'),
-                context  : {
+                context: {
                     id: node.strapiId
                 }
             };
         }
 
         return {
-            path     : `/vacancies/${node.strapiId}`,
+            path: `/vacancies/${node.strapiId}`,
             component: path.resolve('src/pages/vacancy.tsx'),
-            context  : {
+            context: {
                 id: node.strapiId
             }
         };
@@ -70,6 +70,7 @@ exports.createPages = async ({ actions, graphql }) => {
             node {
               strapiId
               isSecret
+              isArchived
             }
           }
         }
@@ -80,7 +81,7 @@ exports.createPages = async ({ actions, graphql }) => {
     vacanciesPageIsHidden = data.data?.allStrapiVacanciesPage?.edges[0].node.isHidden;
     careerPageIsHidden = data.data?.allStrapiCareer?.edges[0].node.isHidden;
 
-    if(!vacancyPageIsHidden) {
+    if (!vacancyPageIsHidden) {
         // Create pages for each article.
         const vacancyPages = createVacancyPages(data.data?.allStrapiVacancies?.edges);
 
@@ -92,15 +93,15 @@ exports.onCreatePage = async (args) => {
     const { actions, page } = args;
     const { deletePage } = actions;
 
-    if(page.path === '/vacancy/' && vacancyPageIsHidden) {
+    if (page.path === '/vacancy/' && vacancyPageIsHidden) {
         deletePage(page);
     }
 
-    if(page.path === '/vacancies/' && vacanciesPageIsHidden) {
+    if (page.path === '/vacancies/' && vacanciesPageIsHidden) {
         deletePage(page);
     }
 
-    if(page.path === '/career/' && careerPageIsHidden) {
+    if (page.path === '/career/' && careerPageIsHidden) {
         deletePage(page);
     }
 };
