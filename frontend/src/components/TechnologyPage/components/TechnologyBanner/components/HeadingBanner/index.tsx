@@ -1,7 +1,6 @@
 import React from 'react';
 import { useClassnames } from '../../../../../../hooks/use-classnames';
 import GridWrapper from '../../../../../grid-wrapper';
-import Heading from '../../../../../heading';
 import { IPictureVariants, Picture } from '../../../../../Picture';
 import Text from '../../../../../text';
 
@@ -22,15 +21,12 @@ const HeadingBanner: React.FC<IHeroProps> = ({ title, description, image }) => {
     return (
         <GridWrapper className={cn(cssBlock)}>
             <Picture {...image} alt={title} className={cn(`${cssBlock}__image`)} />
-            <div className={cn(`${cssBlock}__title`)}>
-                <Heading
-                    level={2}
 
-                >
-                    {title}
-                </Heading>
-            </div>
-            <Text className={cn(`${cssBlock}__description`)} size={1}>{description}</Text>
+            <h1 className={cn(`${cssBlock}__title`)}>
+                {title}
+            </h1>
+
+            <Text className={cn(`${cssBlock}__description`)} size={2}>{description}</Text>
         </GridWrapper>
     );
 };
