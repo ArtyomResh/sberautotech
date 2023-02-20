@@ -3,12 +3,10 @@
 
 .nav {
     position: fixed;
-    display: flex;
     gap: 20px;
     width: 100vw;
     height: var(--header-height);
     align-items: center;
-    justify-content: space-between;
     padding: 0 20px;
     color: var(--color-black);
     background: var(--color-white);
@@ -32,28 +30,25 @@
         cursor: pointer;
     }
 
-    &__center {
-        position: relative;
-        display: flex;
-        flex-grow: 1;
-        align-items: center;
-        background-color: inherit;
-        height: 100%;
+    &__left {
+        grid-column: 1 / span 4;
     }
 
-    &__buttons {
-        display: flex;
+    &__center {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 20px;
+        grid-column: 5 / span 8;
+        background-color: inherit;
         height: 100%;
-        min-width: min-content;
-        align-items: center;
     }
 
     &__list {
         position: relative;
         display: flex;
-        min-width: 614px;
+        grid-column: 1 / span 4;
         height: 100%;
-        margin: 0 auto !important;
     }
 
     &__list-item {
@@ -141,9 +136,26 @@
         transition: transform 0.5s, opacity 0.5s;
     }
 
-    &__switch-lang-link {
-        margin-right: 54px;
+    &__buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        align-items: center;
+        grid-column: 5 / span 4;
+        height: 100%;
+    }
 
+    &__desktop-switch-lang-btn {
+        grid-column: 1 / span 2;
+        justify-self: flex-end;
+    }
+
+    &__contact-button {
+        grid-column: 3 / span 2;
+        justify-self: flex-end;
+    }
+
+    &__switch-lang-link {
         @mixin t3;
     }
 }
@@ -198,11 +210,6 @@
 @mixin media_breakpoint_small_desktop {
 
     .nav {
-
-        &__list {
-            min-width: 400px;
-        }
-
         &__list-item {
 
             @mixin t4;
@@ -230,20 +237,25 @@
 @mixin media_breakpoint_below_desktop {
 
     .nav {
+        display: flex;
+        justify-content: space-between;
 
         &__center {
             position: fixed;
             left: 0;
-            top: var(--header-height);
+            /* -1px это хак чтобы в мобильном разрешении небыло черной полосы между хедером меню и выпадающим списком */
+            top: calc(var(--header-height) - 1px);
+            display: flex;
+            gap: 0;
+            flex-direction: column;
+            align-items: flex-start;
             padding-right: 20px;
             padding-left: 20px;
             padding-bottom: 20px;
+            box-sizing: border-box;
             width: 100%;
             height: auto;
             max-height: calc(100vh - var(--header-height));
-            box-sizing: border-box;
-            flex-direction: column;
-            align-items: flex-start;
             overflow: auto;
             box-shadow: 4px 7px 9px -5px rgba(34, 60, 80, 0.2);
 
@@ -347,8 +359,13 @@
             height: auto;
         }
 
-        &__accept-button {
+        &__contact-button {
             width: 100%;
+        }
+
+        &__buttons {
+            display: flex;
+            gap: 0;
         }
 
         &__buttons &__switch-lang-link {
@@ -356,15 +373,18 @@
         }
 
         &__switch-lang-link {
-            margin-right: 27px;
+            margin-right: 30px;
 
             @mixin t3;
         }
 
         &__burger {
-            width: 20px;
-            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 0;
+            width: 20px;
+            height: 100%;
             background-color: transparent;
             border: none;
             outline: none;
