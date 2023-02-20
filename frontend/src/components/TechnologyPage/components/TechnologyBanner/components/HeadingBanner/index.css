@@ -1,0 +1,127 @@
+
+@import '../../../../../heading/index.css';
+
+.heading-banner {
+    --content-vertical-padding: 40px;
+
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    padding: var(--content-vertical-padding);
+    overflow: hidden;
+
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+
+        & img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 30px;
+        }
+    }
+
+    &__title {
+        font-family: var(--font-family-primary);
+        font-style: normal;
+        color: var(--color-black);
+    }
+
+    &__description {
+        grid-column: 1 / span 8;
+        align-self: flex-end;
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .heading-banner {
+        height: 900px;
+
+        &__title {
+
+            @mixin h2;
+
+            grid-column: 1 / span 4;
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .heading-banner {
+        --content-vertical-padding: 30px;
+        height: 680px;
+
+        &__title {
+
+            @mixin h3;
+
+            grid-column: 1 / span 5;
+        }
+    }
+}
+
+@mixin media_breakpoint_below_desktop {
+
+    .heading-banner {
+        --banner-height: 744px;
+        --content-vertical-padding: 0;
+
+        grid-template-rows: var(--banner-height) auto;
+        height: auto;
+        overflow: visible;
+
+        &__image {
+            position: absolute;
+            top: 0;
+            left: calc(-1 * var(--page-section-vertical-padding));
+            width: calc(100% + calc(2 * var(--page-section-vertical-padding)));
+            height: var(--banner-height);
+        }
+
+        &__title {
+            align-self: flex-end;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        &__description {
+            grid-column: 1 / all;
+            align-self: flex-end;
+            padding-top: 20px;
+            padding-bottom: 0;
+        }
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .heading-banner {
+
+        &__title {
+
+            @mixin h2;
+
+            grid-column: 1 / span 6;
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .heading-banner {
+
+        &__title {
+
+            @mixin h4;
+
+            grid-column: 1 / span 2;
+        }
+    }
+}

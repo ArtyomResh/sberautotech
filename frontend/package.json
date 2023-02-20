@@ -38,7 +38,7 @@
     "react-reveal": "^1.2.2",
     "react-select": "4.3.0",
     "rehype-raw": "6.0.0",
-    "swiper": "^8.4.5"
+    "swiper": "^9.0.5"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.18.6",

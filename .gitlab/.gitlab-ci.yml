@@ -46,6 +46,7 @@ workflow:
         VERSION: "$CI_COMMIT_SHORT_SHA"
         REVIEW_MODULE: "sberautotech"
         BUILD_FRONTEND: "true"
+        BUILD_DEV_STAGE: "true"
         REVIEW_FRONTEND: "true"
         PUSH: "true"
         BACKEND_URL: "$BACKEND_DEV_URL"
@@ -53,6 +54,7 @@ workflow:
       variables:
         VERSION: "${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}-${CI_PIPELINE_IID}"
         BUILD_FRONTEND: "true"
+        BUILD_DEV_STAGE: "true"
         PUSH: "true"
         BACKEND_URL: "$BACKEND_DEV_URL"
         DEPLOY_FRONTEND_DEV: "true"
@@ -101,7 +103,7 @@ build:frontend:ru:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - |
-      docker build --pull --no-cache -t ${FRONTEND_IMAGE}-${VERSION} --build-arg BACKEND_API_URL=$BACKEND_URL -f frontend/Dockerfile .
+      docker build --pull --no-cache -t ${FRONTEND_IMAGE}-${VERSION} --build-arg BACKEND_API_URL=$BACKEND_URL --build-arg BUILD_DEV_STAGE=$BUILD_DEV_STAGE -f frontend/Dockerfile .
       if [ -n "$PUSH" ]; then
         docker push ${FRONTEND_IMAGE}-${VERSION}
       fi

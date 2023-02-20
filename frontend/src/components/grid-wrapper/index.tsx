@@ -4,12 +4,12 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import styles from './index.css';
 
-type TVideoPlayer = React.HTMLProps<HTMLDivElement> & {
+type TGridWrapperProps = React.HTMLProps<HTMLDivElement> & {
     as?: keyof JSX.IntrinsicElements,
     className?: string
 };
 
-const GridWrapper: React.FC<TVideoPlayer> = (props) => {
+const GridWrapper: React.FC<TGridWrapperProps> = (props) => {
     const cx = useClassnames(styles);
     const { children, className, as = 'div', ...restProps } = props;
 

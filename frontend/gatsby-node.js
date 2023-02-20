@@ -104,4 +104,10 @@ exports.onCreatePage = async (args) => {
     if (page.path === '/career/' && careerPageIsHidden) {
         deletePage(page);
     }
+
+    const hideTechnology = process.env.NODE_ENV !== 'development' && process.env.IS_DEV_STAGE !== 'true';
+
+    if(page.path === '/technology/' && hideTechnology) {
+        deletePage(page);
+    }
 };
