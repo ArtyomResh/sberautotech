@@ -1,5 +1,5 @@
 
-.card {
+.transport-type-card {
 
     &__wrapper {
         position: relative;
@@ -24,6 +24,7 @@
 
     &__title {
         margin-top: auto;
+        width: 50%;
     }
 
     &__description {
@@ -45,7 +46,7 @@
 
 @mixin media_breakpoint_normal_desktop {
 
-    .card {
+    .transport-type-card {
 
         &__wrapper {
             padding: 40px;
@@ -75,7 +76,7 @@
 
 @mixin media_breakpoint_small_desktop {
 
-    .card {
+    .transport-type-card {
 
         &__wrapper {
             height: 420px;
@@ -98,10 +99,14 @@
 
 @mixin media_breakpoint_below_desktop {
 
-    .card {
+    .transport-type-card {
 
         &__wrapper {
             height: 320px;
+        }
+
+        &__title {
+            max-width: 150px;
         }
 
         &__description {
@@ -120,7 +125,7 @@
 
 @media (hover: hover) and (pointer: fine) {
 
-    .card {
+    .transport-type-card {
         transition: background-color 500ms ease-out;
 
         &__wrapper:hover {

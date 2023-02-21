@@ -20,7 +20,7 @@ interface IProps {
 
 const Card = ({ className, title, description, image, href }: IProps) => {
     const cn = useClassnames(style);
-    const cssBlock = 'card';
+    const cssBlock = 'transport-type-card';
 
     return (
         <div className={cn(className, `${cssBlock}__wrapper`)}>
