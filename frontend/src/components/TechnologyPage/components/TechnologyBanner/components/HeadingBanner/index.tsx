@@ -20,7 +20,7 @@ const HeadingBanner: React.FC<IHeroProps> = ({ title, description, image }) => {
 
     return (
         <GridWrapper className={cn(cssBlock)}>
-            <Picture {...image} alt={title} className={cn(`${cssBlock}__image`)} />
+            <Picture image={image} alt={title} className={cn(`${cssBlock}__image`)} />
 
             <h1 className={cn(`${cssBlock}__title`)}>
                 {title}
