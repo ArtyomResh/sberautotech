@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_adaptive_video_sources",
+  "info": {
+    "name": "AdaptiveVideoSource",
+    "icon": "film",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "desktopNormal": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.video-source"
+    },
+    "desktopSmall": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.video-source"
+    },
+    "tablet": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.video-source"
+    },
+    "mobile": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.video-source"
+    }
+  }
+}
