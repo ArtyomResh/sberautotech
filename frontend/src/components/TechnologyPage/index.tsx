@@ -19,12 +19,9 @@ const TechnologyPage = () => {
 
     return (
         <Layout seo={seo} pageId={pageId}>
-            {/* Избавиться от хака с margin-top в рамках https://jira.csssr.io/browse/SBER-256 */}
-            <div style={{ marginTop: 84 }}>
-                <PageSection removeAboveOffset={true} removeBelowOffset={true}>
-                    <TechnologyBanner />
-                </PageSection>
-            </div>
+            <PageSection removeAboveOffset={true} removeBelowOffset={true}>
+                <TechnologyBanner />
+            </PageSection>
 
             <PageSection>
                 <Principles />
