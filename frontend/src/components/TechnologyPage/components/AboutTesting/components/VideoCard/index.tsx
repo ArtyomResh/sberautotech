@@ -41,7 +41,7 @@ const VideoCard = ({ className, title, description, video, poster }: IProps) => 
             <div className={cn(`${cssBlock}__false-video-block`)} />
 
             <VideoPlayer
-                className={cn(`${cssBlock}__video`, { [`${cssBlock}__video_is_maximal`]: isVideoMaximal })}
+                className={cn(`${cssBlock}__video`, { [`${cssBlock}__video_maximal`]: isVideoMaximal })}
                 video={video}
                 poster={poster}
                 preload="metadata"

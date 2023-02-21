@@ -28,7 +28,7 @@
         border-radius: 30px;
         overflow: hidden;
 
-        &_is_maximal {
+        &_maximal {
             width: 100%;
         }
     }
@@ -46,7 +46,7 @@
         }
 
         &__video {
-            &_is_maximal {
+            &_maximal {
                 margin-top: 20px;
             }
         }
@@ -58,7 +58,7 @@
     .video-card {
 
         &__video {
-            &_is_maximal {
+            &_maximal {
                 margin-top: 20px;
             }
         }
@@ -85,7 +85,7 @@
         &__video {
             height: 182px;
 
-            &_is_maximal {
+            &_maximal {
                 height: auto;
             }
         }
