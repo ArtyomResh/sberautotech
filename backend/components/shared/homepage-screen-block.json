@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_shared_homepage_screen_blocks",
+  "info": {
+    "name": "HomepageScreenBlock",
+    "icon": "square-full",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string",
+      "required": false
+    },
+    "pageId": {
+      "type": "string",
+      "required": false,
+      "unique": true
+    },
+    "backgroundVideo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.adaptive-video-source"
+    },
+    "backgroundImage": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.adaptive-image-source"
+    }
+  }
+}

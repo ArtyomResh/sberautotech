@@ -7,6 +7,43 @@
       "metaDescription": "СберАвтоТех — технологическая компания, которая создает транспорт будущего: беспилотный, безопасный и комфортный",
       "shareImage": null
     },
+    "screens": [
+      {
+        "text": "Sber Automotive Technologies {разрабатывает технологию автономного вождения}, совместимую с&nbsp;различными видами транспорта&nbsp;&mdash; от&nbsp;пассажирских автомобилей до&nbsp;грузовиков",
+        "link": "/about-company",
+        "pageId": "about-company",
+        "backgroundVideo": null,
+        "backgroundImage": null
+      },
+      {
+        "text": "Благодаря набору сенсоров у&nbsp;беспилотного автомобиля есть {полный обзор в&nbsp;360&deg;}: он&nbsp;непрерывно контролирует происходящеена&nbsp;дороге и&nbsp;за&nbsp;ее&nbsp;пределами",
+        "link": "/self-driving-car",
+        "pageId": "self-driving-car",
+        "backgroundVideo": null,
+        "backgroundImage": null
+      },
+      {
+        "text": "Своё видение транспорта будущего мы&nbsp;воплотили в&nbsp;прототипе {полностью автономного электромобиля}&nbsp;&mdash; ФЛИП",
+        "link": "/flip",
+        "pageId": "flip",
+        "backgroundVideo": null,
+        "backgroundImage": null
+      },
+      {
+        "text": "Каждый из нас сегодня работает над тем, чтобы уже завтра изменить мир к лучшему. {В команде SberAutoTech} — одни из лучших специалистов сразу двух рынков: IT и Automotive",
+        "link": "/career",
+        "pageId": "career",
+        "backgroundVideo": null,
+        "backgroundImage": null
+      },
+      {
+        "text": "Создание транспорта будущего&nbsp;&mdash; увлекательная задача, и&nbsp;мы&nbsp;с&nbsp;радостью {примем в&nbsp;нашу команду единомышленников}. Нам нужны идеи, опыт и&nbsp;желание менять мир",
+        "link": "/vacancies",
+        "pageId": "vacancies",
+        "backgroundVideo": null,
+        "backgroundImage": null
+      }
+    ],
     "first_screen": [
       {
         "text": "Безопасный и беспилотный — {транспорт будущего изменит логистику мегаполисов} и поможет нам лучше управлять самым ценным ресурсом — временем",
@@ -97,6 +134,29 @@
       "metaDescription": "SberAutoTech is a tech company. We create the transport of the future: self-driving, safe and comfortable",
       "shareImage": null
     },
+    "screens": [
+      {
+        "text": "{The Future is&nbsp;close}<br/>Driverless transportation will change the life of&nbsp;modern megapolis. Roads will be&nbsp;less loaded, and citizens will get more time and much safer space for their daily lives.",
+        "link": "/about-company",
+        "pageId": "about-company",
+        "backgroundVideo": null,
+        "backgroundImage": null
+      },
+      {
+        "text": "{Precise self-driving technology}<br/>We developed our own technology to make the most reliable self-driving vehicle. SberAutoTech vehicles have {full control over the road}, react faster than any human driver, and calculate all possible risks beforehand.",
+        "link": "/self-driving-car",
+        "pageId": "self-driving-car",
+        "backgroundVideo": null,
+        "backgroundImage": null
+      },
+      {
+        "text": "{SberAutoTech technologies} open up&nbsp;various new forms of&nbsp;mobility and will transform your daily urban life forever.",
+        "link": "/flip",
+        "pageId": "flip",
+        "backgroundVideo": null,
+        "backgroundImage": null
+      }
+    ],
     "first_screen": [
       {
         "text": "{The Future is&nbsp;close}<br/>Driverless transportation will change the life of&nbsp;modern megapolis. Roads will be&nbsp;less loaded, and citizens will get more time and much safer space for their daily lives.",
