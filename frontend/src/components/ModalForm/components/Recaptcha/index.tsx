@@ -3,7 +3,7 @@ import ReactRecaptcha from 'react-recaptcha';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     sitekey?: string,
@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const Recaptcha = ({ sitekey = '6LcxFCQbAAAAAPk5ZtW8P4LTJFuMUTHMh65Oap4n', render = 'explicit', hl, verifyCallback }: IProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <ReactRecaptcha

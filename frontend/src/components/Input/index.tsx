@@ -9,7 +9,7 @@ import { validatePhoneNumber } from '../../utils/validation/validatePhoneNumber'
 import { validateRequired } from '../../utils/validation/validateRequired';
 import { translate } from '../../utils/i18n';
 
-import style from './index.css';
+import './index.css';
 
 type TInputType = 'text' | 'email' | 'tel';
 type TAutoCompleteType = 'on' | 'off';
@@ -45,7 +45,7 @@ const Input = ({ type, placeholder, name, className, pattern, onFocus, ...props 
     });
     const controllerProps = controller.field;
 
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     const { isMobile } = useDeviceDetect();
 

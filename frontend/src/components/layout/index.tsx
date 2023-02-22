@@ -9,7 +9,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import { AppProvider } from '../../context/context';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     children: React.ReactNode,
@@ -19,7 +19,7 @@ interface IProps {
 }
 
 const Layout = ({ children, seo, pageId, withNav = true }: IProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <AppProvider>

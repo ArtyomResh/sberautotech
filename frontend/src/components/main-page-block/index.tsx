@@ -6,7 +6,7 @@ import useDeviceDetect from '../../hooks/use-device-detect';
 import useFormattedText from '../../hooks/use-formatted-text';
 import StoryCard, { ICard } from '../story-card';
 
-import style from './index.css';
+import './index.css';
 
 interface ILink {
     to: string,
@@ -37,7 +37,7 @@ export interface IBlock {
 }
 
 const MainPageBlock = ({ block, index, blockId, pageNumber }: { block: IBlock, index: number, blockId: string, pageNumber: number }) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const text = useFormattedText(block.text);
     const visibilityClassName = pageNumber >= index ? 'block__wrapper_visible' : 'block__wrapper_hidden';
     const { isMobile } = useDeviceDetect();

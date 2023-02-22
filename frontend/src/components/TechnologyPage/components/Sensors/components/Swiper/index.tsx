@@ -9,7 +9,7 @@ import { useClassnames } from '../../../../../../hooks/use-classnames';
 import Text from '../../../../../text';
 import Heading from '../../../../../heading';
 
-import style from './index.css';
+import './index.css';
 
 interface ISlide {
     title: string,
@@ -22,7 +22,7 @@ interface IProps {
 }
 
 const Swiper = ({ className, slides }: IProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const cssBlock = 'custom-swiper';
 
     return (

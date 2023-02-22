@@ -4,7 +4,7 @@ import GridWrapper from '../../../../../grid-wrapper';
 import { IPictureVariants, Picture } from '../../../../../Picture';
 import Text from '../../../../../text';
 
-import styles from './index.css';
+import './index.css';
 
 export interface IHeroProps {
     title: string,
@@ -16,7 +16,7 @@ export interface IHeroProps {
 const HeadingBanner: React.FC<IHeroProps> = ({ title, description, image }) => {
     const cssBlock = 'heading-banner';
 
-    const cn = useClassnames(styles);
+    const cn = useClassnames();
 
     return (
         <GridWrapper className={cn(cssBlock)}>

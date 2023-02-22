@@ -6,7 +6,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import Text from '../text';
 
-import style from './index.css';
+import './index.css';
 
 
 export interface IRadioButtonProps {
@@ -33,7 +33,7 @@ const CheckBox: React.FC<IRadioButtonProps> = ({ label, name, isBlock, ...props 
         props.onChange?.(e);
     };
 
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <div className={cn('check-box', props?.className)}>

@@ -7,7 +7,7 @@ import useDeviceDetect from '../../hooks/use-device-detect';
 import { translate } from '../../utils/i18n';
 import { validateRequired } from '../../utils/validation/validateRequired';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     className?: string,
@@ -19,7 +19,7 @@ interface IProps {
 
 const Textarea = ({ className, placeholder, name, requiredValidation, onFocus }: IProps) => {
     const fieldName = `${name}` as const;
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const { isMobile } = useDeviceDetect();
     const controller = useController({
         name : fieldName,

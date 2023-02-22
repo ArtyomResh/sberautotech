@@ -6,7 +6,8 @@ import GridWrapper from '../../../grid-wrapper';
 
 import Accordion from '../Accordion';
 
-import style from './index.css';
+import './index.css';
+
 import Swiper from './components/Swiper';
 
 const sensors = [
@@ -17,7 +18,7 @@ const sensors = [
 ];
 
 const Sensors = () => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     const cssBlock = 'sensors';
 

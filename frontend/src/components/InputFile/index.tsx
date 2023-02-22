@@ -6,7 +6,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import CrossIcon from '../../images/cross.inline.svg';
 import { translate } from '../../utils/i18n';
 
-import styles from './index.css';
+import './index.css';
 
 interface IProps {
     placeholder?: string,
@@ -28,7 +28,7 @@ const InputFile = ({ placeholder, name, className, onFileChange, ...props }: IPr
         required: validateRequired(Boolean(props.requiredValidation))
     }, shouldUnregister: true });
 
-    const cn = useClassnames(styles);
+    const cn = useClassnames();
 
     const errorMessage = useMemo(() => {
         const error = controller.fieldState.error;

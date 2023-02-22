@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     legend: string,
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const Fieldset = ({ legend, children }: IProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <fieldset className={cn('modal-form__fieldset')}>

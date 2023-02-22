@@ -16,7 +16,7 @@ import ModalForm from '../ModalForm';
 import Recaptcha from '../ModalForm/components/Recaptcha';
 import Textarea from '../Textarea';
 
-import style from './index.css';
+import './index.css';
 
 const FORM_URL = '/form/vacancy';
 
@@ -62,7 +62,7 @@ export interface ILeftContainerProps {
 const LeftContainer = ({
     vacancyTitle
 }: ILeftContainerProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <div className={cn('respond-form__left-container')}>
@@ -78,7 +78,7 @@ const RespondForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const { vacancyTitle, huntflowId, setVacancyTitle, setHuntflowId, isRespondFormVisible, setIsRespondFormVisible } = useContext(appContext);
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const timeoutId = useRef<ReturnType<typeof setTimeout>>();
     const timeoutTime = 3000;
     const formFields: {[key in keyof IRespondFormData]: key} = {

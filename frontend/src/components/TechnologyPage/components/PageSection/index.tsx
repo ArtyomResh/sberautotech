@@ -1,7 +1,7 @@
 import React from 'react';
 import { useClassnames } from '../../../../hooks/use-classnames';
 
-import styles from './index.css';
+import './index.css';
 
 interface IProps {
     removeBelowOffset?: boolean,
@@ -11,7 +11,7 @@ interface IProps {
 export const PageSection: React.FC<IProps> = ({ children, removeBelowOffset, removeAboveOffset }) => {
     const cssBlock = 'page-section';
 
-    const cn = useClassnames(styles);
+    const cn = useClassnames();
 
     return (
         <section className={cn(cssBlock, {

@@ -4,7 +4,7 @@ import Fade from 'react-reveal/Fade';
 import { useClassnames } from '../../hooks/use-classnames';
 import Cross from '../../images/cross.inline.svg';
 
-import styles from './index.css';
+import './index.css';
 
 interface IProps {
     type: 'success' | 'error',
@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const Alert = (props: React.PropsWithChildren<IProps>) => {
-    const cn = useClassnames(styles);
+    const cn = useClassnames();
     const { children, type, isVisible, onCloseClick } = props;
 
     return (

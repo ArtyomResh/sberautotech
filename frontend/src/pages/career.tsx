@@ -2,9 +2,9 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
 import Layout from '../components/layout';
-import Carousel from '../components/carousel';
 import ListAccordeon from '../components/list-accordeon';
 import AdvantagesList from '../components/advantages-list';
+import Carousel from '../components/carousel';
 import Footer from '../components/footer';
 
 const query = graphql`

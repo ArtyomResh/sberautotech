@@ -2,7 +2,7 @@ import React from 'react';
 import { useClassnames } from '../../../hooks/use-classnames';
 import Loader from '../../loader/loaderComponent';
 
-import styles from './index.css';
+import './index.css';
 
 type TProps = React.HTMLProps<HTMLButtonElement> & {
     type?: 'button' | 'reset' | 'submit',
@@ -14,7 +14,7 @@ type TProps = React.HTMLProps<HTMLButtonElement> & {
 };
 
 const Button = (props: TProps) => {
-    const cn = useClassnames(styles);
+    const cn = useClassnames();
     const { className, children, isActive, isBlock, isLoading, buttonSize: size = 'l', variant = 'primary', ...otherProps } = props;
 
     return (

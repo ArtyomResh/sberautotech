@@ -3,8 +3,9 @@ import { Link as GatsbyLink } from 'gatsby';
 
 import { useClassnames } from '../../../hooks/use-classnames';
 
-import styles from './index.css';
 import Loader from '../../loader/loaderComponent';
+
+import './index.css';
 
 type TProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     size?: 'l' | 's',
@@ -17,7 +18,7 @@ type TProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 };
 
 const LinkButton = (props: TProps) => {
-    const cn = useClassnames(styles);
+    const cn = useClassnames();
     const { className, children, href, isActive, isGatsbyLink, isBlock, isLoading, size = 'l', variant = 'primary', ...otherProps } = props;
 
     const classNames = cn(
