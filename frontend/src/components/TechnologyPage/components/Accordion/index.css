@@ -92,7 +92,7 @@
             height: 24px;
         }
 
-        &_is_large  &__description,
+        &_is_medium  &__description,
         &_is_small  &__header {
             padding-top: 12px;
         }
