@@ -51,11 +51,12 @@ const Accordion = ({ id, title, description, headingSize = 'm', color = 'black',
         <section
             className={cn(cssBlock, {
                 [`${cssBlock}_with_border-top`]: withBorderTop,
-                [`${cssBlock}_has_color-white`]: color === 'white',
-                [`${cssBlock}_has_color-black`]: color === 'black',
-                [`${cssBlock}_is_small`]       : headingSize === 's',
-                [`${cssBlock}_is_medium`]      : headingSize === 'm',
-                [`${cssBlock}_is_large`]       : headingSize === 'l'
+                [`${cssBlock}_color_white`]    : color === 'white',
+                [`${cssBlock}_color_black`]    : color === 'black',
+                [`${cssBlock}_small`]          : headingSize === 's',
+                [`${cssBlock}_medium`]         : headingSize === 'm',
+                [`${cssBlock}_large`]          : headingSize === 'l',
+                [`${cssBlock}_closed`]         : !isOpened
             })}
         >
             <div className={cn(`${cssBlock}__header`)} >

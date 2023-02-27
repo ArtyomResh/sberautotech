@@ -157,7 +157,6 @@ const Sensors = () => {
                 ))}
             </div>
 
-
         </GridWrapper>
     );
 };
