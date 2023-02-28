@@ -3,6 +3,10 @@
 
     .about-testing {
 
+        &__wrapper {
+            padding-bottom: 30px;
+        }
+
         &__title {
             grid-column: 1 / span 4;
         }
@@ -69,6 +73,10 @@
 @mixin media_breakpoint_mobile {
 
     .about-testing {
+
+        &__wrapper {
+            margin-bottom: -10px;
+        }
 
         &__title,
         &__description,

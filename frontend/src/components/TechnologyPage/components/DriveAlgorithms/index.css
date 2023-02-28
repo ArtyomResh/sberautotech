@@ -93,7 +93,7 @@
         }
 
         ul&__list {
-            padding-top: 18px;
+            padding-top: 16px;
             padding-left: 30px;
             padding-right: 30px;
             grid-column: 1 / span 4;
@@ -128,7 +128,7 @@
 
         ul&__list {
             grid-row: 4;
-            padding-top: 18px;
+            padding-top: 16px;
             padding-left: 30px;
             padding-right: 30px;
         }

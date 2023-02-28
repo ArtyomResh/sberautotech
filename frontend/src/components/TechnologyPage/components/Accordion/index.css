@@ -65,7 +65,8 @@
             height: 32px;
         }
 
-        &_closed&_small {
+        &_closed&_small,
+        &_closed&_medium {
             padding-bottom: 40px;
         }
 
@@ -73,7 +74,8 @@
             padding-bottom: 20px;
         }
 
-        &_closed&_small &__header {
+        &_closed&_small &__header,
+        &_closed&_medium &__header {
             padding-bottom: 0px;
         }
 

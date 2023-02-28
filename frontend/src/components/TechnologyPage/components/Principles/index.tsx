@@ -1,9 +1,7 @@
 import React from 'react';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
-
 import GridWrapper from '../../../grid-wrapper';
-
 import Accordion from '../Accordion';
 
 import './index.css';
@@ -20,8 +18,15 @@ const Principles = () => {
     return (
         <GridWrapper>
             <ul className={cn('principles')}>
-                {principles.map(({ title, description }, index) => (
-                    <Accordion key={title} title={title} description={description} headingSize="m" withColumns={true} withBorderTop={index > 0} />
+                {principles.map(({ title, description }) => (
+                    <Accordion
+                        key={title}
+                        title={title}
+                        description={description}
+                        headingSize="m"
+                        withColumns={true}
+                        withBorderTop={true}
+                    />
                 ))}
             </ul>
         </GridWrapper>
