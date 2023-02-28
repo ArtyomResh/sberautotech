@@ -3,12 +3,13 @@ import React from 'react';
 import Footer from '../footer';
 import Layout from '../layout';
 
+import AboutTesting from './components/AboutTesting';
+import DriveAlgorithms from './components/DriveAlgorithms';
 import { PageSection } from './components/PageSection';
 import Principles from './components/Principles';
 import Sensors from './components/Sensors';
 import { TechnologyBanner } from './components/TechnologyBanner';
 import TransportTypes from './components/TransportTypes';
-import DriveAlgorithms from './components/DriveAlgorithms';
 
 const TechnologyPage = () => {
     const pageId = 'technology';
@@ -37,6 +38,10 @@ const TechnologyPage = () => {
 
             <PageSection>
                 <DriveAlgorithms />
+            </PageSection>
+
+            <PageSection>
+                <AboutTesting />
             </PageSection>
 
             <Footer />
