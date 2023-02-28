@@ -8,6 +8,7 @@ import Principles from './components/Principles';
 import Sensors from './components/Sensors';
 import { TechnologyBanner } from './components/TechnologyBanner';
 import TransportTypes from './components/TransportTypes';
+import DriveAlgorithms from './components/DriveAlgorithms';
 
 const TechnologyPage = () => {
     const pageId = 'technology';
@@ -35,6 +36,10 @@ const TechnologyPage = () => {
 
             <PageSection>
                 <Sensors />
+            </PageSection>
+
+            <PageSection>
+                <DriveAlgorithms />
             </PageSection>
 
             <Footer />

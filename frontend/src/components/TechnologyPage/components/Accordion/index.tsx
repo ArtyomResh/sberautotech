@@ -3,9 +3,9 @@ import Fade from 'react-reveal/Fade';
 
 import Heading from '../../../../components/heading';
 import Text from '../../../../components/text';
-import PlusIcon from '../../../../images/technology/accordion/plus.inline.svg';
-import MinusIcon from '../../../../images/technology/accordion/minus.inline.svg';
 import { useClassnames } from '../../../../hooks/use-classnames';
+import MinusIcon from '../../../../images/technology/accordion/minus.inline.svg';
+import PlusIcon from '../../../../images/technology/accordion/plus.inline.svg';
 
 import './index.css';
 
@@ -16,23 +16,22 @@ type TProps = {
     color?: 'white' | 'black',
     withColumns?: boolean,
     withBorderTop: boolean,
-    isOpened?: boolean,
+    isOpened?: boolean
 } & ({
     id: string,
-    onClick?: (id: string) => void,
+    onClick?: (id: string) => void
 } | {
     id?: never,
-    onClick?: never,
-})
+    onClick?: never
+});
 
 const Accordion = ({ id, title, description, headingSize = 'm', color = 'black', withColumns, withBorderTop, isOpened: isOpenedFromProps = false, onClick }: TProps) => {
     const cn = useClassnames();
     const [isOpened, setIsOpened] = useState(isOpenedFromProps);
-    
-    useEffect(() => {
-        setIsOpened(isOpenedFromProps)
-    }, [isOpenedFromProps])
 
+    useEffect(() => {
+        setIsOpened(isOpenedFromProps);
+    }, [isOpenedFromProps]);
 
     const cssBlock = 'accordion';
     /* eslint-disable @typescript-eslint/no-magic-numbers */
@@ -52,11 +51,12 @@ const Accordion = ({ id, title, description, headingSize = 'm', color = 'black',
         <section
             className={cn(cssBlock, {
                 [`${cssBlock}_with_border-top`]: withBorderTop,
-                [`${cssBlock}_has_color-white`]: color === 'white',
-                [`${cssBlock}_has_color-black`]: color === 'black',
-                [`${cssBlock}_is_small`]       : headingSize === 's',
-                [`${cssBlock}_is_medium`]      : headingSize === 'm',
-                [`${cssBlock}_is_large`]       : headingSize === 'l'
+                [`${cssBlock}_color_white`]    : color === 'white',
+                [`${cssBlock}_color_black`]    : color === 'black',
+                [`${cssBlock}_small`]          : headingSize === 's',
+                [`${cssBlock}_medium`]         : headingSize === 'm',
+                [`${cssBlock}_large`]          : headingSize === 'l',
+                [`${cssBlock}_closed`]         : !isOpened
             })}
         >
             <div className={cn(`${cssBlock}__header`)} >
