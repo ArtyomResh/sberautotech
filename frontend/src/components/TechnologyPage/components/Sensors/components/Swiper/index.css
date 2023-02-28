@@ -50,7 +50,6 @@
             border-radius: 30px;
             flex-direction: column;
             justify-content: space-between;
-            background: linear-gradient(22.92deg, var(--gradient-color-gray) 0.42%, rgba(28, 37, 46, 0.93) 47.86%, rgba(15, 42, 68, 0) 126.61%), var(--gradient-color-black);
         }
 
         &__swiper-slide-title,

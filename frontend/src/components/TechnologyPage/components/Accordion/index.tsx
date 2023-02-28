@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Fade from 'react-reveal/Fade';
 
 import Heading from '../../../../components/heading';
@@ -7,23 +7,34 @@ import PlusIcon from '../../../../images/technology/accordion/plus.inline.svg';
 import MinusIcon from '../../../../images/technology/accordion/minus.inline.svg';
 import { useClassnames } from '../../../../hooks/use-classnames';
 
-
 import './index.css';
 
-interface IProps {
+type TProps = {
     title: string,
     description: string,
     headingSize: 's' | 'm' | 'l',
     color?: 'white' | 'black',
     withColumns?: boolean,
-    withBorderTop: boolean
-}
+    withBorderTop: boolean,
+    isOpened?: boolean,
+} & ({
+    id: string,
+    onClick?: (id: string) => void,
+} | {
+    id?: never,
+    onClick?: never,
+})
 
-const Accordion = ({ title, description, headingSize = 'm', color = 'black', withColumns, withBorderTop }: IProps) => {
+const Accordion = ({ id, title, description, headingSize = 'm', color = 'black', withColumns, withBorderTop, isOpened: isOpenedFromProps = false, onClick }: TProps) => {
     const cn = useClassnames();
-    const [isOpened, setIsOpened] = useState(false);
-    const cssBlock = 'accordion';
+    const [isOpened, setIsOpened] = useState(isOpenedFromProps);
+    
+    useEffect(() => {
+        setIsOpened(isOpenedFromProps)
+    }, [isOpenedFromProps])
 
+
+    const cssBlock = 'accordion';
     /* eslint-disable @typescript-eslint/no-magic-numbers */
     const headingLevelNumberBySize = {
         's': 4 as const,
@@ -34,6 +45,7 @@ const Accordion = ({ title, description, headingSize = 'm', color = 'black', wit
 
     const handleOnButtonClick = () => {
         setIsOpened(!isOpened);
+        onClick?.(id);
     };
 
     return (
