@@ -72,17 +72,6 @@
     }
 }
 
-@mixin media_breakpoint_normal_desktop {
-
-    .heading__level {
-
-        &_2 {
-
-            @mixin h2;
-        }
-    }
-}
-
 @mixin media_breakpoint_small_desktop {
 
     .heading__level {
@@ -92,9 +81,15 @@
             @mixin h2;
         }
 
-        &_2 {
+        &_2,
+        &_3 {
 
-            @mixin h3;
+            @mixin h4;
+        }
+
+        &_4 {
+
+            @mixin h5;
         }
     }
 }
@@ -108,9 +103,15 @@
             @mixin h2;
         }
 
-        &_2 {
+        &_2,
+        &_3 {
 
-            @mixin h3;
+            @mixin h4;
+        }
+
+        &_4 {
+
+            @mixin h5;
         }
     }
 }
@@ -119,14 +120,16 @@
 
     .heading__level {
 
-        &_1 {
+        &_1,
+        &_2,
+        &_3 {
 
             @mixin h4;
         }
 
-        &_2 {
+        &_4 {
 
-            @mixin h4;
+            @mixin h5;
         }
     }
 }

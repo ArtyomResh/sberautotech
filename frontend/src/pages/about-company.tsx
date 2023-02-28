@@ -4,13 +4,13 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { useClassnames } from '../hooks/use-classnames';
 
 import Layout from '../components/layout';
-
-import style from './about-company.css';
-import Footer from '../components/footer';
-import Carousel from '../components/carousel';
 import ListAccordeon from '../components/list-accordeon';
+import Carousel from '../components/carousel';
+import Footer from '../components/footer';
 import useFormattedText from '../hooks/use-formatted-text';
 import { toUnescapedHTML } from '../utils';
+
+import './about-company.css';
 
 const query = graphql`
   query {
@@ -60,7 +60,7 @@ const query = graphql`
 
 
 const AboutCompanyPage = () => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const data = useStaticQuery(query);
     const { seo, pageId, headerBackground, headerText, list, slider } = data.allStrapiAboutCompany.edges[0].node;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useClassnames } from '../../hooks/use-classnames';
 
-import styles from './index.css';
+import './index.css';
 
 type TTextProps = React.HTMLAttributes<HTMLElement> & {
 
@@ -15,7 +15,7 @@ type TTextProps = React.HTMLAttributes<HTMLElement> & {
 
 const Text = (props: TTextProps) => {
     const { as = 'div', size, className, children, ...restProps } = props;
-    const cx = useClassnames(styles);
+    const cx = useClassnames();
 
     const classNames = cx(className, 'text', {
         [`text__size_${size}`]: size

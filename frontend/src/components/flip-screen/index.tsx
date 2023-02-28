@@ -4,7 +4,7 @@ import useFormattedText from '../../hooks/use-formatted-text';
 import { useClassnames } from '../../hooks/use-classnames';
 import { toUnescapedHTML } from '../../utils';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     data: {
@@ -21,7 +21,7 @@ interface IProps {
 }
 
 const FlipScreen = ({ data, id, icon, isMobile }: IProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const primaryHeader = useFormattedText(data.primary_header);
     const secondaryHeader = useFormattedText(data.secondary_header);
     const primaryText = useFormattedText(data.primary_text);

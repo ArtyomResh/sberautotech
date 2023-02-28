@@ -3,7 +3,7 @@ import React from 'react';
 import { useClassnames } from '../../hooks/use-classnames';
 import Tag from '../tag';
 
-import style from './index.css';
+import './index.css';
 
 export interface ITagListItem {
     text: string,
@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const TagsList = ({ tags, activeTags, onClickTag }: IProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <ul className={cn('tags-list')}>

@@ -1,0 +1,68 @@
+
+.sensors {
+
+    &__wrapper {
+        --gradient-color-gray: #2D434C;
+        --gradient-color-black: #0D161B;
+
+        background: linear-gradient(22.92deg, var(--gradient-color-gray) 0.42%, rgba(28, 37, 46, 0.93) 47.86%, rgba(15, 42, 68, 0) 126.61%), var(--gradient-color-black);
+        border-radius: 30px;
+    }
+}
+
+@mixin media_breakpoint_normal_desktop {
+
+    .sensors {
+
+        &__wrapper ul.sensors {
+            padding-top: 20px;
+            padding-left: 40px;
+            padding-right: 40px;
+            grid-column: 1 / span 4;
+        }
+
+        &__swiper {
+            display: none;
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .sensors {
+
+        &__wrapper ul.sensors {
+            padding-top: 10px;
+            padding-left: 30px;
+            padding-right: 30px;
+            grid-column: 1 / span 4;
+        }
+
+        &__swiper {
+            display: none;
+        }
+    }
+}
+
+@mixin media_breakpoint_below_desktop {
+
+    .sensors {
+        display: none;
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .swiper {
+        grid-column: 1 / span 6;
+        display: block;
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .swiper {
+        grid-column: 1 / span 2;
+        display: block;
+    }
+}

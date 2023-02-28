@@ -36,8 +36,8 @@ const classNames = (targetStyle: IStyle, sourceStyle?: IStyle | string, combine?
     return classnames.bind(targetStyle);
 };
 
-export const useClassnames = (targetStyle: IStyle, sourceStyle?: IStyle | string, combine?: boolean) => {
-    return useMemo(() => classNames(targetStyle, sourceStyle, combine), [targetStyle, sourceStyle, combine]);
+export const useClassnames = (targetStyle?: IStyle, sourceStyle?: IStyle | string, combine?: boolean) => {
+    return useMemo(() => classNames(targetStyle || {}, sourceStyle, combine), [targetStyle, sourceStyle, combine]);
 };
 
 export default classNames;

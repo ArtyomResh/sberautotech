@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_video_sources",
+  "info": {
+    "name": "VideoSource",
+    "icon": "video",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sources": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "preview": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}

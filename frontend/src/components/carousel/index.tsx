@@ -9,7 +9,7 @@ import { ILocalFile } from '../../types';
 import CursorRight from '../../images/cursor-right.inline.svg';
 import CursorLeft from '../../images/cursor-left.inline.svg';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     data: ISlider
@@ -31,7 +31,7 @@ enum ECursorDirection {
 }
 
 const Carousel: React.FC<IProps> = ({ data }) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const containerRef = useRef<HTMLDivElement>(null);
     const [cursorDirection, setCursorDirection] = useState({ prev: '', actual: ECursorDirection.none });
     const [cursorCoordinates, setCursorCoordinates] = useState({ сoordinateX: 0, сoordinateY: 0 });

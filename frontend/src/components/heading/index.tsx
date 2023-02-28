@@ -1,7 +1,7 @@
 import React from 'react';
 import { useClassnames } from '../../hooks/use-classnames';
 
-import styles from './index.css';
+import './index.css';
 
 type THeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
 
@@ -15,7 +15,7 @@ type THeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
 
 const Heading = (props: THeadingProps) => {
     const { as, level = 1, className, children, ...restProps } = props;
-    const cx = useClassnames(styles);
+    const cx = useClassnames();
 
     const classNames = cx(className, 'heading', {
         [`heading__level_${level}`]: level

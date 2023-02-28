@@ -4,7 +4,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 import { ILocalFile } from '../../types';
 import AccordeonItem from '../accordeon-item';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     data: IListAccordeon,
@@ -32,7 +32,7 @@ export interface IListAccordeonItem {
 }
 
 const ListAccordeon: React.FC<IProps> = ({ data, className }) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <div className={cn('list-accordeon__wrapper', { [`${className}-wrapper`]: className })}>

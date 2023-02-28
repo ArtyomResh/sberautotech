@@ -4,7 +4,7 @@ import { useClassnames } from '../../hooks/use-classnames';
 
 import BackIcon from '../../images/back.inline.svg';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     directions: Array<{
@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const DirectionsList = ({ directions, count, activeDirection, onClickDirection }: IProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     const backToPreviousPage = useCallback(() => {
         window.history.back();

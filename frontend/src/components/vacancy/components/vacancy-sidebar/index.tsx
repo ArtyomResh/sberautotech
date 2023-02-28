@@ -7,14 +7,14 @@ import ArrowLeft from '../../../../images/arrow-left.inline.svg';
 
 import ButtonWrapper from '../button-wrapper';
 
-import styles from './index.css';
+import './index.css';
 
 interface IProps extends Pick<IVacancy, 'city' | 'jobType' | 'title' | 'huntflowId'> {
     backToPreviousPage: () => void
 }
 
 const VacancySidebar = ({ city, jobType, title, huntflowId, backToPreviousPage }: IProps) => {
-    const cn = useClassnames(styles);
+    const cn = useClassnames();
 
     return (
         <div className={cn('vacancy-sidebar')}>

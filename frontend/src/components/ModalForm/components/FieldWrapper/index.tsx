@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     isBlock?: boolean,
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const FieldWrapper = ({ isBlock, children }: IProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <div className={cn('modal-form__field-wrapper', {

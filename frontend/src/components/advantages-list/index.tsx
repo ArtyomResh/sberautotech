@@ -9,6 +9,8 @@ import AdvantagesFourthIcon from '../../images/advantages-4.inline.svg';
 import AdvantagesFifthIcon from '../../images/advantages-5.inline.svg';
 import AdvantagesSixthIcon from '../../images/advantages-6.inline.svg';
 
+import './index.css';
+
 const advantagesIcons = [
     <AdvantagesFirstIcon key="advantages-1" />,
     <AdvantagesSecondIcon key="advantages-2" />,
@@ -17,8 +19,6 @@ const advantagesIcons = [
     <AdvantagesFifthIcon key="advantages-5" />,
     <AdvantagesSixthIcon key="advantages-6" />
 ];
-
-import style from './index.css';
 
 interface IProps {
     data: IAdvantagesList
@@ -34,7 +34,7 @@ interface IAdvantagesListItem {
 }
 
 const AdvantagesList: React.FC<IProps> = ({ data }) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
 
     return (
         <div className={cn('advantages__wrapper')}>

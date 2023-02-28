@@ -1,7 +1,7 @@
 @define-mixin t1 {
     font-weight: 400;
     font-size: 28px;
-    line-height: 36px;
+    line-height: 34px;
     letter-spacing: -0.04em;
 }
 

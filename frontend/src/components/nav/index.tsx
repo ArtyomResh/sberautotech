@@ -12,10 +12,12 @@ import { isRu } from '../../utils/locale';
 
 import Button from '../button-like/button';
 
-import style from './index.css';
 import useDocumentScrollThrottled from './use-document-scroll-throttled';
 import { INavHierachicalLink, INavPanel, INavSubLink } from '../../types/strapi/navPanel';
 import { IStrapiSingleType } from '../../types/strapi';
+import GridWrapper from '../grid-wrapper';
+
+import './index.css';
 
 const MINIMUM_SCROLL = 5;
 const TIMEOUT_DELAY = 0;
@@ -65,7 +67,7 @@ const NavMenuItem: React.FC<{
     onMouseLeave: React.MouseEventHandler
 }> = ({ item, onMouseEnter, onMouseLeave }) => {
     const { text, to, navId, sublinks } = item;
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const sublistRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -116,9 +118,9 @@ const Nav = ({ currentPageId }: INavProps) => {
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const [isMinimumScrolled, setIsMinimumScrolled] = useState(false);
     const { setIsContactFormVisible, setIsNavVisible } = useAppContext();
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const [hoveredMenuItemId, setHoveredMenuItemId] = useState<TNavId | null>(null);
-    const { hierarchicalLinks: links, joinButtonText/* , switchLangUrl */ } = data.allStrapiNavPanel.edges[0].node;
+    const { hierarchicalLinks: links, joinButtonText/* , switchLangUrl*/ } = data.allStrapiNavPanel.edges[0].node;
 
     const isSubMenuOpened = (link: INavHierachicalLink) => {
         return !shouldHideHeader && link.sublinks.length > 0 && hoveredMenuItemId === link.navId;
@@ -163,7 +165,7 @@ const Nav = ({ currentPageId }: INavProps) => {
         setHoveredMenuItemId(null);
     };
 
-    //TODO: вернуть в рамках https://jira.csssr.io/browse/SBER-265
+    // TODO: вернуть в рамках https://jira.csssr.io/browse/SBER-265
     // const renderSwitchLangBtn = () => {
     //     return Boolean(switchLangUrl) && (
     //         <a className={cn('nav__switch-lang-link')} href={switchLangUrl} onClick={redirectHandler}>
@@ -173,7 +175,8 @@ const Nav = ({ currentPageId }: INavProps) => {
     // };
 
     return (
-        <nav
+        <GridWrapper
+            as="nav"
             className={
                 cn('nav', {
                     'nav_open-menu': isOpen,
@@ -202,11 +205,13 @@ const Nav = ({ currentPageId }: INavProps) => {
                 </ul>
 
                 <div className={cn('nav__buttons')}>
-                    {/* {renderSwitchLangBtn()} */}
+                    <div className={cn('nav__desktop-switch-lang-btn')}>
+                        {/* {renderSwitchLangBtn()} */}
+                    </div>
                     <Button
                         type="button"
                         buttonSize="s"
-                        className={cn('nav__accept-button')}
+                        className={cn('nav__contact-button')}
                         onClick={onClick}
                     >
                         {joinButtonText}
@@ -219,7 +224,7 @@ const Nav = ({ currentPageId }: INavProps) => {
                     {isOpen ? <Cross fill="#040A0A" /> : <Burger />}
                 </button>
             </div>
-        </nav>
+        </GridWrapper>
     );
 };
 
