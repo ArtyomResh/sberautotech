@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Layout from '../layout';
 import Footer from '../footer';
-import { TechnologyBanner } from './components/TechnologyBanner';
-import { PageSection } from './components/PageSection';
+import Layout from '../layout';
 
+import { PageSection } from './components/PageSection';
 import Principles from './components/Principles';
 import Sensors from './components/Sensors';
+import { TechnologyBanner } from './components/TechnologyBanner';
 import TransportTypes from './components/TransportTypes';
 
 const TechnologyPage = () => {
