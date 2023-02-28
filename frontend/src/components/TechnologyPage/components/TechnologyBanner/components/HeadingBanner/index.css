@@ -70,7 +70,6 @@
 @mixin media_breakpoint_below_desktop {
 
     .heading-banner {
-        --banner-height: 744px;
         --content-vertical-padding: 0;
 
         grid-template-rows: var(--banner-height) auto;
@@ -103,6 +102,7 @@
 @mixin media_breakpoint_tablet {
 
     .heading-banner {
+        --banner-height: 990px;
 
         &__title {
 
@@ -116,6 +116,7 @@
 @mixin media_breakpoint_mobile {
 
     .heading-banner {
+        --banner-height: 668px;
 
         &__title {
 
