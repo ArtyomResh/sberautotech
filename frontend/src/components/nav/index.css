@@ -26,10 +26,9 @@
     }
 
     &__logo {
-        height: inherit;
+        display: inline-flex;
         align-items: center;
-        display: flex;
-        cursor: pointer;
+        height: inherit;
     }
 
     &__left {
