@@ -1,5 +1,7 @@
 
 .sensors {
+    position: relative;
+    z-index: 1;
 
     &__wrapper {
         --gradient-color-gray: #2D434C;
