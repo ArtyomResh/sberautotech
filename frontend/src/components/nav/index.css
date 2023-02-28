@@ -2,6 +2,8 @@
 @import "../text/index.css";
 
 .nav {
+    --desktop-menu-items-paddings: 12px;
+
     position: fixed;
     gap: 20px;
     width: 100vw;
@@ -58,7 +60,6 @@
         text-align: left;
         white-space: nowrap;
         height: 100%;
-        padding: 0 10px;
 
         @mixin t3;
     }
@@ -68,8 +69,19 @@
         position: relative;
         display: flex;
         align-items: center;
+        padding: 0 var(--desktop-menu-items-paddings);
         height: 100%;
         cursor: pointer;
+    }
+
+    &__list-item:first-of-type &__list-item-link,
+    &__list-item:first-of-type &__list-item-text {
+        padding-left: 0;
+    }
+
+    &__list-item:last-of-type &__list-item-link,
+    &__list-item:last-of-type &__list-item-text {
+        padding-right: 0;
     }
 
     &__collapsed-menu-buttons {
@@ -81,7 +93,6 @@
         left: 0;
         top: 100%;
         width: 100%;
-        padding: 0 10px;
         background: var(--color-white);
         opacity: 0;
         visibility: hidden;
@@ -175,14 +186,25 @@
 
             &::before {
                 content: " ";
+                position: absolute;
                 top: 0;
-                left: 0;
-                width: 100%;
+                left: var(--desktop-menu-items-paddings);
+                right: var(--desktop-menu-items-paddings);
                 height: 5px;
                 background: var(--color-accent);
-                position: absolute;
                 border-radius: 10px;
             }
+        }
+
+
+        &__list-item:first-of-type:hover &__list-item-link::before,
+        &__list-item:first-of-type:hover &__list-item-text::before {
+            left: 0;
+        }
+
+        &__list-item:last-of-type:hover &__list-item-link::before,
+        &__list-item:last-of-type:hover &__list-item-text::before {
+            right: 0;
         }
 
         &__submenu-list-item {
