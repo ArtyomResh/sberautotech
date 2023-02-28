@@ -3,12 +3,12 @@ import React from 'react';
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
 
-import sidDesktopNormalImg from './assets/desktop-normal/sid.png';
-import flipDesktopNormaImg from './assets/desktop-normal/flip.png';
-import sidDesktopSmallImg from './assets/desktop-small/sid.png';
-import flipDesktopSmallImg from './assets/desktop-small/flip.png';
-import sidBelowDesktopImg from './assets/below-desktop/sid.png';
-import flipBelowDesktopImg from './assets/below-desktop/flip.png';
+import sidDesktopNormalImg from './assets/desktopNormal/sid.png';
+import flipDesktopNormaImg from './assets/desktopNormal/flip.png';
+import sidDesktopSmallImg from './assets/desktopSmall/sid.png';
+import flipDesktopSmallImg from './assets/desktopSmall/flip.png';
+import sidBelowDesktopImg from './assets/belowDesktop/sid.png';
+import flipBelowDesktopImg from './assets/belowDesktop/flip.png';
 
 import GridWrapper from '../../../grid-wrapper';
 import Heading from '../../../heading';
@@ -29,7 +29,7 @@ const transport = [
         },
         title      : 'Легковые автомобили',
         description: 'Серийный автомобиль может стать беспилотным&#160;&#8212; оборудование устанавливается либо на&#160;производстве, либо на&#160;специализированной станции',
-        href       : '/'
+        href       : '/self-driving-car'
     },
     {
         image: {
@@ -41,7 +41,7 @@ const transport = [
         },
         title      : 'ФЛИП',
         description: 'Создан исключительно для автономного вождения, в&#160;нем нет руля, панели управления и&#160;даже водительского кресла',
-        href       : '/'
+        href       : '/flip'
     }
 ];
 
