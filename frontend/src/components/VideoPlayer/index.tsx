@@ -3,11 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useClassnames } from '../../hooks/use-classnames';
 import Text from '../text';
 
+import styles from './index.css';
 import maximizeIconSrc from './static/maximize.svg';
 import minimizeIconSrc from './static/minimize.svg';
 import pauseIconSrc from './static/pause.svg';
 import playIconSrc from './static/play.svg';
-import styles from './index.css';
 
 export interface IVideo {
     webm: string,
@@ -15,7 +15,7 @@ export interface IVideo {
 }
 
 type TVideoPlayer = React.HTMLProps<HTMLVideoElement> & {
-    shouldStopPlaying?: boolean
+    shouldStopPlaying?: boolean,
     video: IVideo
 } & ({
     controlsType?: 'default' | never,
@@ -23,7 +23,7 @@ type TVideoPlayer = React.HTMLProps<HTMLVideoElement> & {
 } | {
     controlsType: 'advanced',
     onVideoSizeChange?: (isFullscreen: boolean) => void
-})
+});
 
 const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
     const cx = useClassnames(styles);
@@ -78,7 +78,7 @@ const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
 
                 { video.mp4 && <source src={video.mp4} type="video/mp4" /> }
                 { video.webm && <source src={video.webm} type="video/webm" />}
-                                
+
                 <Text size={2} as="p">
                     Извините, но ваш браузер не поддерживает проигрывание данного видео.
                 </Text>
