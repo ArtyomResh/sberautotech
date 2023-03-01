@@ -3,19 +3,18 @@ import { isMobileOnly } from 'react-device-detect';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
-
 import GridWrapper from '../../../grid-wrapper';
 import Heading from '../../../heading';
 import Text from '../../../text';
 
 import VideoCard from './components/VideoCard';
+import style from './index.css';
 import polygonJpegSrc from './static/polygon.jpeg';
 import polygonMp4Src from './static/polygon.mp4';
 import polygonWebmSrc from './static/polygon.webm';
 import showreelJpegSrc from './static/showreel.jpeg';
 import showreelMp4Src from './static/showreel.mp4';
 import showreelWebmSrc from './static/showreel.webm';
-import style from './index.css';
 
 const video = isMobileOnly ? { webm: showreelWebmSrc, mp4: showreelMp4Src } : { webm: polygonWebmSrc, mp4: polygonMp4Src };
 const poster = isMobileOnly ? showreelJpegSrc : polygonJpegSrc;
@@ -57,7 +56,7 @@ const AboutTesting = () => {
             <Text
                 className={cn(`${cssBlock}__description`)}
                 size={2}
-                dangerouslySetInnerHTML={{ __html: 'Беспилотная технология проходит несколько уровней тестирования. Автомобиль отправляется в&#160;город только тогда, когда мы&#160;полностью уверены в&#160;его безопасности и&#160;эффективности. Все компоненты также проходят обязательные проверки: климатические и&#160;вибрационные испытания, испытания на&#160;электромагнитную совместимость.' }}
+                dangerouslySetInnerHTML={{ __html: 'Беспилотная технология проходит несколько уровней тестирования. Автомобиль отправляется в&#160;город только тогда, когда мы&#160;полностью уверены в&#160;его безопасности и&#160;эффективности. Все компоненты также проходят обязательные проверки: климатические и&#160;вибрационные испытания, испытания на&#160;электромагнитную совместимость' }}
             />
 
             <ul className={cn(`${cssBlock}__tests`)}>

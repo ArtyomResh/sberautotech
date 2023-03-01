@@ -5,10 +5,10 @@ import Layout from '../layout';
 
 import AboutTesting from './components/AboutTesting';
 import DriveAlgorithms from './components/DriveAlgorithms';
-import { PageSection } from './components/PageSection';
+import PageSection from './components/PageSection';
 import Principles from './components/Principles';
 import Sensors from './components/Sensors';
-import { TechnologyBanner } from './components/TechnologyBanner';
+import TechnologyBanner from './components/TechnologyBanner';
 import TransportTypes from './components/TransportTypes';
 
 const TechnologyPage = () => {

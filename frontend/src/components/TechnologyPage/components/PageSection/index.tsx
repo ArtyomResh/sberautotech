@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useClassnames } from '../../../../hooks/use-classnames';
 
 import './index.css';
@@ -23,3 +24,5 @@ export const PageSection: React.FC<IProps> = ({ children, removeBelowOffset, rem
         </section>
     );
 };
+
+export default PageSection;

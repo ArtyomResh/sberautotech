@@ -9,7 +9,7 @@ import transportTabletImgSrc from './assets/tablet/transport.jpg';
 import HeadingBanner from './components/HeadingBanner';
 import './index.css';
 
-export const TechnologyBanner: React.FC = () => {
+const TechnologyBanner: React.FC = () => {
     const cn = useClassnames();
 
     const cssBlock = 'technology-banner';
@@ -17,8 +17,8 @@ export const TechnologyBanner: React.FC = () => {
     return (
         <HeadingBanner
             className={cn(cssBlock)}
-            title="Технология, которая изменит мир"
-            description="Мы&nbsp;создаем технологию, которая изменит мир. Доставка грузов станет быстрее и&nbsp;эффективнее, такси&nbsp;&mdash; безопаснее, а&nbsp;облик городов изменится вместе с&nbsp;транспортом"
+            title="Безопасное беспилотное будущее"
+            description="Технология автономного вождения будет повсюду уже через несколько лет. Доставка грузов станет быстрее и&#160;эффективнее, такси&#160;&#8212; безопаснее, а&#160;инфраструктура городов изменится вместе с&#160;транспортом"
             image={{
                 desktopNormal: transportDesktopNormalImgSrc,
                 desktopSmall : transportDesktopSmallImgSrc,
@@ -28,3 +28,5 @@ export const TechnologyBanner: React.FC = () => {
         />
     );
 };
+
+export default TechnologyBanner;
