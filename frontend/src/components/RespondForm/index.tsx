@@ -149,8 +149,7 @@ const RespondForm = () => {
             const base64 = await toBase64(file);
 
             if(base64) {
-                // TODO: избавиться от any https://jira.csssr.io/browse/SBER-187
-                formData.append('content', base64 as any);
+                formData.append('content', base64);
                 formData.append('filename', file.name);
             }
         }
