@@ -1,37 +1,20 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
+import React, { useState, useEffect, useCallback } from 'react';
 
-import { useClassnames } from '../hooks/use-classnames';
-import useDeviceDetect from '../hooks/use-device-detect';
 
 import Layout from '../components/layout';
-import MainPageBlock, { IBlock } from '../components/main-page-block';
-
-import { useAppContext } from '../context/context';
+import MainPageBlock from '../components/main-page-block';
 import { INavProps } from '../components/nav';
-import { INavHierachicalLink, INavPanel } from '../types/strapi/navPanel';
+import { useAppContext } from '../context/context';
+import { useClassnames } from '../hooks/use-classnames';
+import useDeviceDetect from '../hooks/use-device-detect';
 import { IStrapiSingleType } from '../types/strapi';
+import { IHomepage, IHomePageScreenBlock } from '../types/strapi/homepage';
 
 import './index.css';
 
 const query = graphql`
   query {
-    allStrapiNavPanel {
-      edges {
-        node {
-          hierarchicalLinks {
-            text
-            to
-            navId
-            sublinks {
-              text
-              to
-              navId
-            }
-          }
-        }
-      }
-    }
     allStrapiHomepage {
       edges {
         node {
@@ -39,125 +22,49 @@ const query = graphql`
             metaTitle
             metaDescription
           }
-          first_screen {
-            background {
-              localFile {
-                url
-              }
-              id
-            }
+          screens {
             text
-            id
+            link
             pageId
-          }
-          second_screen {
-            background {
-              localFile {
-                url
-              }
-              id
-            }
-            backgroundPoster {
-              localFile {
-                url
-              }
-              id
-            }
-            mobileBackground {
-              localFile {
-                url
-              }
-            }
-            mobileBackgroundPoster {
-              localFile {
-                url
-              }
-            }
-            text
-            id
-            pageId
-          }
-          third_screen {
-            background {
-              localFile {
-                url
-              }
-              id
-            }
-            backgroundPoster {
-              localFile {
-                url
-              }
-              id
-            }
-            mobileBackground {
-              localFile {
-                url
-              }
-            }
-            mobileBackgroundPoster {
-              localFile {
-                url
-              }
-            }
-            cards {
-              id
-              text
-              image {
-                localFile {
-                  url
+            backgroundVideo {
+              desktopNormal {
+                preview {
+                  localFile {
+                      url
+                  }
                 }
-                id
+                sources {
+                  localFile {
+                     url
+                  }
+                }
+              }
+              mobile {
+                preview {
+                  localFile {
+                      url
+                  }
+                }
+                sources {
+                  localFile {
+                     url
+                  }
+                }
               }
             }
-            id
-            text
-            pageId
+            backgroundImage {
+              desktopNormal {
+                localFile {
+                    url
+                }
+              }
+              mobile {
+                localFile {
+                    url
+                }
+              }
+            }
           }
-          fourth_screen {
-            background {
-              localFile {
-                url
-              }
-              id
-            }
-            backgroundPoster {
-              localFile {
-                url
-              }
-              id
-            }
-            mobileBackground {
-              localFile {
-                url
-              }
-            }
-            mobileBackgroundPoster {
-              localFile {
-                url
-              }
-            }
-            text
-            id
-            pageId
-          }
-          fifth_screen {
-            background {
-              localFile {
-                url
-              }
-              id
-            }
-            mobileBackground {
-              localFile {
-                url
-              }
-            }
-            text
-            id
-            pageId
-          }
-          id
         }
       }
     }
@@ -168,21 +75,14 @@ const ANIMATION_DURATION = 1000;
 const MAX_MOMENTUM_SCROLL_DURATION = 1750;
 const MAX_MOMENTUM_SCROLL_DURATION_MOBILE = 1050;
 
-interface IMainPageScreenData extends IBlock {
-    pageId: string
-}
-
 interface IIndexPageBlocksProps {
-    screens: Array<IMainPageScreenData>,
+    screens: Array<IHomePageScreenBlock>,
     activePageId: string,
     isMobile: boolean | null,
-    setActivePageId: (id: string) => void,
-    links: Array<INavHierachicalLink>
+    setActivePageId: (id: string) => void
 }
 
-const getScreenBlockId = (screen: IMainPageScreenData) => `main-page-screen-${screen.pageId}`;
-
-const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, links }: IIndexPageBlocksProps) => {
+const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId }: IIndexPageBlocksProps) => {
     const cn = useClassnames();
     const { isContactFormVisible, isRespondFormVisible, isNavVisible } = useAppContext();
 
@@ -264,29 +164,14 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
         };
     }, [handleScroll, isRespondFormVisible, isContactFormVisible, isNavVisible]);
 
-    const pageIdLinks = useMemo(() => {
-        const res: {[navId: string]: string} = {};
-
-        links.forEach((link) => {
-            if(link.to) {
-                res[link.navId] = link.to;
-            }
-            link.sublinks?.forEach((sublink) => {
-                res[sublink.navId] = sublink.to;
-            });
-        });
-
-        return res;
-    }, [links]);
-
     return (
-        <div className={cn('main-page-blocks')}>
+        <div className={cn('main__screens')}>
             {screens.map((screen, index) => {
-                const link = (screen.pageId && pageIdLinks[screen.pageId]) || '/';
+                const link = screen.link || '/';
 
                 return (
                     <Link to={link} key={`page-screen-${index}`}>
-                        <MainPageBlock block={screen} index={index} blockId={getScreenBlockId(screen)} pageNumber={pageNumber} />
+                        <MainPageBlock block={screen} index={index} pageNumber={pageNumber} />
                     </Link>
                 );
             })}
@@ -295,14 +180,12 @@ const IndexPageBlocks = ({ screens, activePageId, isMobile, setActivePageId, lin
 };
 
 interface IQueryData {
-    allStrapiNavPanel: IStrapiSingleType<Pick<INavPanel, 'hierarchicalLinks'>>,
-    allStrapiHomepage: any
+    allStrapiHomepage: IStrapiSingleType<Pick<IHomepage, 'screens' |'seo'>>
 }
 
 const IndexPage = () => {
     const data = useStaticQuery<IQueryData>(query);
-    const screens = data.allStrapiHomepage.edges[0].node;
-    const { hierarchicalLinks: links } = data.allStrapiNavPanel.edges[0].node;
+    const homepageData = data.allStrapiHomepage.edges[0].node;
     const { mainPageActivePageId, setMainPageActivePageId } = useAppContext();
     const { isMobile } = useDeviceDetect();
     const cn = useClassnames();
@@ -312,13 +195,7 @@ const IndexPage = () => {
         setMainPageActivePageId?.(pageId);
     };
 
-    const allScreens = [
-        screens.second_screen[0],
-        screens.third_screen[0],
-        screens.first_screen[0],
-        screens.fourth_screen[0],
-        screens.fifth_screen[0]
-    ];
+    const allScreens = homepageData.screens;
 
     useEffect(() => {
         if(window.history.state?.toTop || mainPageActivePageId === null) {
@@ -328,14 +205,13 @@ const IndexPage = () => {
 
 
     return (
-        <div className={cn('main__page', `main__page_${activePageId}`)}>
-            <Layout seo={screens.seo}>
+        <div className={cn('main__page')}>
+            <Layout seo={homepageData.seo}>
                 <IndexPageBlocks
                     screens={allScreens}
                     isMobile={isMobile}
                     activePageId={activePageId}
                     setActivePageId={setActivePageId}
-                    links={links}
                 />
             </Layout>
         </div>

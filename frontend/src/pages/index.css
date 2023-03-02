@@ -1,17 +1,11 @@
-.main__page {
-    width: 100vw;
-    height: 100vh;
-    background: black;
-}
-.main-page-blocks {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-}
+.main {
+    &__page {
+        width: 100vw;
+        height: 100vh;
+        background: var(--color-black-dark);
+    }
 
-.main__career {
-    .block__text {
-        max-width: 951px;
+    &__screens {
+        background: var(--color-black-dark);
     }
 }
