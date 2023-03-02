@@ -70,17 +70,9 @@
             padding-bottom: 40px;
         }
 
-        &__header {
-            padding-bottom: 20px;
-        }
-
         &_closed&_small &__header,
         &_closed&_medium &__header {
             padding-bottom: 0px;
-        }
-
-        &__description {
-            padding-top: 0;
         }
 
         &__description_with-columns {

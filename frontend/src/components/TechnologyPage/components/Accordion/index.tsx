@@ -80,7 +80,7 @@ const Accordion = ({ id, title, description, headingSize = 'm', color = 'black',
                 </button>
             </div>
 
-            <Fade duration={400} when={isOpened} collapse={true}>
+            <Fade duration={400} when={isOpenedFromProps} collapse={true} ssrReveal={true}>
                 <Text
                     className={cn(
                         `${cssBlock}__description`,
