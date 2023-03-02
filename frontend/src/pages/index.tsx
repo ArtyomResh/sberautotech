@@ -200,6 +200,7 @@ const IndexPage = () => {
     useEffect(() => {
         if(window.history.state?.toTop || mainPageActivePageId === null) {
             setActivePageId(allScreens[0].pageId);
+            window.history.replaceState({ toTop: false }, '', window.location.href);
         }
     }, []);
 
