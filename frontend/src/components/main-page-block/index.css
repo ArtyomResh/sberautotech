@@ -1,3 +1,5 @@
+@import "../heading/index.css";
+
 .block {
     &__wrapper {
         position: fixed;
@@ -36,7 +38,7 @@
     &__bottom {
         position: fixed;
         left: 0;
-        bottom: 40px;
+        bottom: 30px;
         padding: 0 20px;
         width: 100%;
         z-index: 1;
@@ -70,9 +72,6 @@
         grid-column: 1 / span 9;
         text-align: left;
         color: #fff;
-        font-size: 47px;
-        line-height: 48px;
-        letter-spacing: -0.01em;
 
         @media (hover: hover) and (pointer: fine) {
             &:hover {
@@ -83,37 +82,50 @@
         .selection-pattern {
             color: var(--color-accent-dark);
         }
+
+        @mixin h2;
     }
 }
 
-@media (max-width: 1024px) {
+@mixin media_breakpoint_small_desktop {
+
     .block {
 
-        &__bottom {
-            bottom: 20px;
-            padding: 0 10px;
-            flex-direction: column;
+        &__text {
+
+            @mixin h4;
         }
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .block {
+
+        &__text {
+
+            @mixin h4;
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .block {
+
+        &__text {
+
+            @mixin h5;
+        }
+    }
+}
+
+@mixin media_breakpoint_below_desktop {
+
+    .block {
 
         &__text {
             grid-column: 1 / span all;
-            font-size: 27px;
-            line-height: 30px;
-
-            @media (max-width: 450px) {
-                font-size: 26px;
-                line-height: 28px;
-            }
-
-            @media (max-width: 375px) {
-                font-size: 25px;
-                line-height: 28px;
-            }
-
-            @media (max-width: 330px) {
-                font-size: 21px;
-                line-height: 24px;
-            }
         }
     }
 }
