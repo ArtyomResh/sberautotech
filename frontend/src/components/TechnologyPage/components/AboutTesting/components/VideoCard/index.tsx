@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useClassnames } from '../../../../../../hooks/use-classnames';
 
-import Text from '../../../../../text';
+import { useClassnames } from '../../../../../../hooks/use-classnames';
 import Heading from '../../../../../heading';
+import Text from '../../../../../text';
 import VideoPlayer, { IVideo } from '../../../../../VideoPlayer';
 
 import style from './index.css';

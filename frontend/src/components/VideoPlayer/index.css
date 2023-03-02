@@ -68,7 +68,8 @@
 
     .video-player {
 
-        &:hover &__controls-advanced {
+        &:hover ~ &__controls-advanced,
+        &__controls-advanced:hover {
             opacity: 1;
         }
     }
