@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { useClassnames } from '../../hooks/use-classnames';
+import { useIsClient } from '../../utils/hooks/useIsClient';
 import Text from '../text';
 
 import styles from './index.css';
@@ -28,6 +29,7 @@ type TVideoPlayer = React.HTMLProps<HTMLVideoElement> & {
 const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
     const cx = useClassnames(styles);
     const { className, video, controlsType = 'default', onVideoSizeChange, shouldStopPlaying, ...restProps } = props;
+    const isClient = useIsClient();
 
     const videoElement = useRef<HTMLVideoElement | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -69,7 +71,7 @@ const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
     };
 
     return (
-        <div className={cx('video-player__wrapper', className)}>
+        <div className={cx('video-player__wrapper', { 'video-player__wrapper_server-side': !isClient }, className)}>
             <video
                 className={cx('video-player')}
                 ref={videoElement}
