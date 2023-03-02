@@ -63,6 +63,15 @@
     }
 }
 
+@mixin media_breakpoint_below_desktop {
+    .custom-swiper {
+
+        &__swiper-wrapper {
+            width: 100% !important;
+        }
+    }
+}
+
 @mixin media_breakpoint_tablet {
 
     .custom-swiper {
@@ -78,7 +87,7 @@
     .custom-swiper {
 
         &__swiper-wrapper {
-            grid-column: 1 / span 6;
+            grid-column: 1 / span 2;
         }
     }
 }
