@@ -3,6 +3,7 @@ import { isMobile, isTablet } from 'react-device-detect';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
+import { useIsClient } from '../../../../utils/hooks/useIsClient';
 import GridWrapper from '../../../grid-wrapper';
 import Heading from '../../../heading';
 import Text from '../../../text';
@@ -19,6 +20,7 @@ import showreelWebmSrc from './static/showreel.webm';
 const isMobileOnly = isMobile && !isTablet;
 const video = isMobileOnly ? { webm: showreelWebmSrc, mp4: showreelMp4Src } : { webm: polygonWebmSrc, mp4: polygonMp4Src };
 const poster = isMobileOnly ? showreelJpegSrc : polygonJpegSrc;
+
 const tests = [
     {
         title      : 'В&#160;симуляторе',
@@ -45,6 +47,9 @@ const AboutTesting = () => {
 
     const cssBlock = 'about-testing';
 
+    const isClient = useIsClient();
+
+
     return (
         <GridWrapper className={cn(`${cssBlock}__wrapper`)}>
 
@@ -60,7 +65,7 @@ const AboutTesting = () => {
                 dangerouslySetInnerHTML={{ __html: 'Беспилотная технология проходит несколько уровней тестирования. Автомобиль отправляется в&#160;город только тогда, когда мы&#160;полностью уверены в&#160;его безопасности и&#160;эффективности. Все компоненты также проходят обязательные проверки: климатические и&#160;вибрационные испытания, испытания на&#160;электромагнитную совместимость' }}
             />
 
-            <ul className={cn(`${cssBlock}__tests`)}>
+            <ul className={cn(`${cssBlock}__tests`)} key={`isClient-${isClient}`}>
                 {
                     tests.map(({ title, description, video, poster }) => (
                         <li key={title}>

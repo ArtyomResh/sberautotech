@@ -22,7 +22,9 @@ const TechnologyPage = () => {
         <Layout seo={seo} pageId={pageId}>
             <PageSection removeAboveOffset={true} removeBelowOffset={true}>
                 <TechnologyBanner />
+            </PageSection>
 
+            <PageSection removeAboveOffset={true} removeBelowOffset={true}>
                 <Principles />
             </PageSection>
 
