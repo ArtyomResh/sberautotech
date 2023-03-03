@@ -41,6 +41,7 @@
         border: none;
         font-size: 0;
         background-color: transparent;
+        cursor: pointer;
     }
 
     &__icon {
