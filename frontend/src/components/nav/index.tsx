@@ -1,23 +1,20 @@
-import React, { useState, useRef } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
+import React, { useState, useRef } from 'react';
 
-import { useAppContext } from '../../context/context';
 import { YM_ID } from '../../constants';
-import LogoBlack from '../../images/logo-black.inline.svg';
+import { useAppContext } from '../../context/context';
+import { useClassnames } from '../../hooks/use-classnames';
 import Burger from '../../images/burger.inline.svg';
 import Cross from '../../images/cross.inline.svg';
-import { useClassnames } from '../../hooks/use-classnames';
-import { gtagClicked } from '../../utils';
-import { isRu } from '../../utils/locale';
-
-import Button from '../button-like/button';
-
-import useDocumentScrollThrottled from './use-document-scroll-throttled';
-import { INavHierachicalLink, INavPanel, INavSubLink } from '../../types/strapi/navPanel';
+import LogoBlack from '../../images/logo-black.inline.svg';
 import { IStrapiSingleType } from '../../types/strapi';
+import { INavHierachicalLink, INavPanel, INavSubLink } from '../../types/strapi/navPanel';
+import { gtagClicked } from '../../utils';
+import Button from '../button-like/button';
 import GridWrapper from '../grid-wrapper';
 
 import './index.css';
+import useDocumentScrollThrottled from './use-document-scroll-throttled';
 
 const MINIMUM_SCROLL = 5;
 const TIMEOUT_DELAY = 0;
@@ -120,7 +117,12 @@ const Nav = ({ currentPageId }: INavProps) => {
     const { setIsContactFormVisible, setIsNavVisible } = useAppContext();
     const cn = useClassnames();
     const [hoveredMenuItemId, setHoveredMenuItemId] = useState<TNavId | null>(null);
-    const { hierarchicalLinks: links, joinButtonText/* , switchLangUrl*/ } = data.allStrapiNavPanel.edges[0].node;
+    const { hierarchicalLinks, joinButtonText/* , switchLangUrl*/ } = data.allStrapiNavPanel.edges[0].node;
+
+    // TODO: убрать скрытие ссылки на страницу технологии в рамках SBER-306
+    const hideTechnology = process.env.NODE_ENV !== 'development' && process.env.IS_DEV_STAGE !== 'true';
+
+    const links = hideTechnology ? hierarchicalLinks.filter((link) => !link.to || !link.to.includes('/technology')) : hierarchicalLinks;
 
     const isSubMenuOpened = (link: INavHierachicalLink) => {
         return !shouldHideHeader && link.sublinks.length > 0 && hoveredMenuItemId === link.navId;

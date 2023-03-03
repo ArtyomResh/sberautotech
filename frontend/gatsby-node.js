@@ -105,9 +105,11 @@ exports.onCreatePage = async (args) => {
         deletePage(page);
     }
 
+
+    // TODO: открыть страницу в рамках SBER-306
     const hideTechnology = process.env.NODE_ENV !== 'development' && process.env.IS_DEV_STAGE !== 'true';
 
-    if(page.path === '/technology/' && hideTechnology) {
+    if (page.path === '/technology/' && hideTechnology) {
         deletePage(page);
     }
 };
