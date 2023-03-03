@@ -3383,6 +3383,12 @@
     ],
     "hierarchicalLinksLinks": [
       {
+        "text": "Технология",
+        "to": "/technology",
+        "navId": "technology",
+        "sublinks": []
+      },
+      {
         "text": "О компании",
         "to": "/about-company",
         "navId": "about_company",
