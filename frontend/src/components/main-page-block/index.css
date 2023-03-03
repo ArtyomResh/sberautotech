@@ -93,7 +93,7 @@
 
         &__text {
 
-            @mixin h4;
+            @mixin h3;
         }
     }
 }
