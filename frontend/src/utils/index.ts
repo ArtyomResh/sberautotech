@@ -3,11 +3,11 @@ import { createElement } from 'react';
 import { IPictureVariants } from '../components/Picture';
 import { IAdaptiveImageSource } from '../types/strapi/common';
 
-export const toBase64 = (file: Blob) => new Promise<string | ArrayBuffer | null>((resolve, reject) => {
+export const toBase64 = (file: Blob) => new Promise<string | null>((resolve, reject) => {
     const reader = new FileReader();
 
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
+    reader.onload = () => resolve(reader.result as (string | null));
     reader.onerror = (error) => reject(error);
 });
 
