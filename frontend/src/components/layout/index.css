@@ -85,6 +85,7 @@ select {
     --zindex-modal: 106;
     --zindex-popover: 107;
     --zindex-tooltip: 108;
+    --z-index-video-fullscreen: 1000;
 
     --color-black: #1f272e;
     --color-black-dark: #10181f;
