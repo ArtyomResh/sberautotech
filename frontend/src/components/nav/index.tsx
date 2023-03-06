@@ -117,12 +117,7 @@ const Nav = ({ currentPageId }: INavProps) => {
     const { setIsContactFormVisible, setIsNavVisible } = useAppContext();
     const cn = useClassnames();
     const [hoveredMenuItemId, setHoveredMenuItemId] = useState<TNavId | null>(null);
-    const { hierarchicalLinks, joinButtonText/* , switchLangUrl*/ } = data.allStrapiNavPanel.edges[0].node;
-
-    // TODO: убрать скрытие ссылки на страницу технологии в рамках SBER-306
-    const hideTechnology = process.env.NODE_ENV !== 'development' && process.env.IS_DEV_STAGE !== 'true';
-
-    const links = hideTechnology ? hierarchicalLinks.filter((link) => !link.to || !link.to.includes('/technology')) : hierarchicalLinks;
+    const { hierarchicalLinks:links, joinButtonText/* , switchLangUrl*/ } = data.allStrapiNavPanel.edges[0].node;
 
     const isSubMenuOpened = (link: INavHierachicalLink) => {
         return !shouldHideHeader && link.sublinks.length > 0 && hoveredMenuItemId === link.navId;
