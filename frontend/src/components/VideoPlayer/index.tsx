@@ -19,7 +19,9 @@ export type TVideo = IVideoSrc | Array<IVideoSrc>;
 
 type TVideoPlayer = React.HTMLProps<HTMLVideoElement> & {
     shouldStopPlaying?: boolean,
-    video: TVideo
+    video: TVideo,
+    preview?: string,
+    previewClassName?: string
 } & ({
     controlsType?: 'default' | never,
     onVideoSizeChange?: never
@@ -30,7 +32,7 @@ type TVideoPlayer = React.HTMLProps<HTMLVideoElement> & {
 
 const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
     const cx = useClassnames(styles);
-    const { className, video, controlsType = 'default', onVideoSizeChange, shouldStopPlaying, poster, ...restProps } = props;
+    const { className, video, controlsType = 'default', onVideoSizeChange, shouldStopPlaying, preview, previewClassName, ...restProps } = props;
     const isClient = useIsClient();
 
     const videoElement = useRef<HTMLVideoElement | null>(null);
@@ -48,12 +50,6 @@ const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
     }, [setIsPlaying, shouldStopPlaying]);
 
     useEffect(() => {
-        if(isPlaying) {
-            setIsPlayingStarted(true);
-        }
-    }, [isPlaying]);
-
-    useEffect(() => {
         if(onVideoSizeChange) {
             onVideoSizeChange(isFullscreen);
         }
@@ -66,6 +62,7 @@ const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
         } else {
             try {
                 await videoElement?.current?.play();
+                setIsPlayingStarted(true);
                 setIsPlaying(true);
             } catch(e) {
                 // Не нашел каких-то логгеров ошибок
@@ -93,7 +90,7 @@ const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
                     Извините, но ваш браузер не поддерживает проигрывание данного видео.
                 </Text>
             </video >
-            {poster && !isFullscreen && !isPlayingStarted && <img src={poster} className={cx('video-player__poster')} />}
+            {preview && !isFullscreen && !isPlayingStarted && <img src={preview} className={cx('video-player__poster', previewClassName)} />}
 
             {(
                 controlsType === 'default'

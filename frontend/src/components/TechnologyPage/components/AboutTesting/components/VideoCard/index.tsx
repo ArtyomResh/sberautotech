@@ -12,10 +12,11 @@ interface IProps {
     title: string,
     description: string,
     video: TVideo,
-    poster: string
+    poster: string,
+    preview: string
 }
 
-const VideoCard = ({ className, title, description, video, poster }: IProps) => {
+const VideoCard = ({ className, title, description, video, poster, preview }: IProps) => {
     const cn = useClassnames();
     const cssBlock = 'video-card';
     const [isVideoMaximal, setIsVideoMaximal] = useState(false);
@@ -44,6 +45,8 @@ const VideoCard = ({ className, title, description, video, poster }: IProps) => 
                 className={cn(`${cssBlock}__video`, { [`${cssBlock}__video_maximal`]: isVideoMaximal })}
                 video={video}
                 poster={poster}
+                preview={preview}
+                previewClassName={cn(`${cssBlock}__video-poster`)}
                 preload="metadata"
                 controlsType="advanced"
                 onVideoSizeChange={handleVideoSizeChange}
