@@ -1,5 +1,8 @@
 import { createElement } from 'react';
 
+import { IPictureVariants } from '../components/Picture';
+import { IAdaptiveImageSource } from '../types/strapi/common';
+
 export const toBase64 = (file: Blob) => new Promise<string | ArrayBuffer | null>((resolve, reject) => {
     const reader = new FileReader();
 
@@ -41,3 +44,13 @@ export const pluralize = (n: number, one: string, few: string, many: string) => 
     return many;
 };
 /* eslint-enable @typescript-eslint/no-magic-numbers */
+
+
+export const strapiAdaptiveImageToPictureVariants = (strapiImage: IAdaptiveImageSource): IPictureVariants => {
+    return {
+        desktopNormal: strapiImage.desktopNormal?.localFile.url,
+        desktopSmall : strapiImage.desktopSmall?.localFile.url,
+        tablet       : strapiImage.tablet?.localFile.url,
+        mobile       : strapiImage.mobile?.localFile.url
+    };
+};

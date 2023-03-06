@@ -1,0 +1,96 @@
+
+@mixin media_breakpoint_normal_desktop {
+
+    .about-testing {
+
+        &__wrapper {
+            padding-bottom: 30px;
+        }
+
+        &__title {
+            grid-column: 1 / span 4;
+        }
+
+        &__description,
+        &__tests {
+            grid-column: 5 / span 8;
+        }
+
+        &__tests,
+        &__test {
+            margin-top: 40px;
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .about-testing {
+
+        &__title {
+            grid-column: 1 / span 4;
+        }
+
+        &__description,
+        &__tests {
+            grid-column: 5 / span 8;
+        }
+
+        &__test {
+            margin-top: 20px;
+        }
+
+        &__test:first-of-type {
+            margin-top: 30px;
+        }
+    }
+}
+
+@mixin media_breakpoint_tablet {
+
+    .about-testing {
+
+        &__title,
+        &__description,
+        &__tests {
+            grid-column: 1 / span 6;
+        }
+
+        &__description {
+            margin-top: 20px;
+        }
+
+        &__test:first-of-type {
+            margin-top: 30px;
+        }
+
+        &__test {
+            margin-top: 20px;
+        }
+    }
+}
+
+@mixin media_breakpoint_mobile {
+
+    .about-testing {
+
+        &__wrapper {
+            margin-bottom: -10px;
+        }
+
+        &__title,
+        &__description,
+        &__tests {
+            grid-column: 1 / span 2;
+        }
+
+        &__description {
+            margin-top: 20px;
+        }
+
+        &__tests,
+        &__test {
+            margin-top: 30px;
+        }
+    }
+}

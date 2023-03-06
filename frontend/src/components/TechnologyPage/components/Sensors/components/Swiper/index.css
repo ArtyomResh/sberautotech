@@ -50,7 +50,6 @@
             border-radius: 30px;
             flex-direction: column;
             justify-content: space-between;
-            background: linear-gradient(22.92deg, var(--gradient-color-gray) 0.42%, rgba(28, 37, 46, 0.93) 47.86%, rgba(15, 42, 68, 0) 126.61%), var(--gradient-color-black);
         }
 
         &__swiper-slide-title,
@@ -60,6 +59,15 @@
 
         &__swiper-slide-title {
             width: 50%;
+        }
+    }
+}
+
+@mixin media_breakpoint_below_desktop {
+    .custom-swiper {
+
+        &__swiper-wrapper {
+            width: 100% !important;
         }
     }
 }
@@ -79,7 +87,7 @@
     .custom-swiper {
 
         &__swiper-wrapper {
-            grid-column: 1 / span 6;
+            grid-column: 1 / span 2;
         }
     }
 }

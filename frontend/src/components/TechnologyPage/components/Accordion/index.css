@@ -6,20 +6,24 @@
         border-top: 1px solid var(--color-black);
     }
 
-    &_has_color-white {
+    &_color_white {
         color: var(--color-white);
     }
 
-    &_has_color-white&_with_border-top {
+    &__description {
+        padding-top: 20px;
+    }
+
+    &_color_white&_with_border-top {
         border-color: var(--color-white);
     }
 
-    &_has_color-white &__heading,
-    &_has_color-white &__description {
+    &_color_white &__heading,
+    &_color_white &__description {
         color: inherit;
     }
 
-    &_has_color-white &__icon path {
+    &_color_white &__icon path {
         fill: var(--color-white);
     }
 
@@ -31,7 +35,9 @@
     }
 
     &__button {
+        margin-left: 16px;
         padding: 0;
+        align-self: flex-start;
         border: none;
         font-size: 0;
         background-color: transparent;
@@ -41,10 +47,6 @@
         width: 32px;
         height: 32px;
     }
-
-    &__description {
-        padding-top: 20px;
-    }
 }
 
 @mixin media_breakpoint_normal_desktop {
@@ -52,27 +54,25 @@
     .accordion {
         padding-bottom: 38px;
 
-        &_is_small &__icon,
-        &_is_large &__icon {
-            width: 32px;
-            height: 32px;
-        }
-
-        &_is_small {
-            padding-bottom: 20px; 
-        }
-
-        &__header {
-            padding-bottom: 20px;
-        }
-
         &__icon {
             width: 40px;
             height: 40px;
         }
 
-        &__description {
-            padding-top: 0;
+        &_small &__icon,
+        &_large &__icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        &_closed&_small,
+        &_closed&_medium {
+            padding-bottom: 40px;
+        }
+
+        &_closed&_small &__header,
+        &_closed&_medium &__header {
+            padding-bottom: 0px;
         }
 
         &__description_with-columns {
@@ -86,14 +86,33 @@
 
     .accordion {
 
-        &_is_small  &__icon,
-        &_is_large  &__icon {
+        &_small &__icon,
+        &_large &__icon {
             width: 24px;
             height: 24px;
         }
 
-        &_is_large  &__description,
-        &_is_small  &__header {
+        &_medium &__description,
+        &_small &__header,
+        &_small &__description {
+            padding-top: 12px;
+        }
+    }
+}
+
+@mixin media_breakpoint_below_desktop {
+
+    .accordion {
+
+        &_small &__icon,
+        &_large &__icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        &_medium &__description,
+        &_small &__header,
+        &_small &__description {
             padding-top: 12px;
         }
     }

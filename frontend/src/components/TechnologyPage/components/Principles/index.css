@@ -1,28 +1,34 @@
 
 @mixin media_breakpoint_normal_desktop {
 
-    .principles {
+    ul.principles {
+        margin-top: 40px;
+        padding-bottom: 20px;
         grid-column: 5 / span 8;
     }
 }
 
 @mixin media_breakpoint_small_desktop {
 
-    .principles {
+    ul.principles {
+        margin-top: 30px;
         grid-column: 5 / span 8;
     }
 }
 
 @mixin media_breakpoint_tablet {
 
-    .principles {
+    ul.principles {
+        margin-top: 60px;
         grid-column: 1 / span 6;
     }
 }
 
 @mixin media_breakpoint_mobile {
 
-    .principles {
+    ul.principles {
+        margin-top: 40px;
+        margin-bottom: -10px;
         grid-column: 1 / span 6;
     }
 }

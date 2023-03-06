@@ -1,18 +1,32 @@
 import React from 'react';
-import HeadingBanner from './components/HeadingBanner';
-import bannerImg from '../../../../../static/technology/banner.jpg';
-import bannerImgT from '../../../../../static/technology/banner-tablet.jpeg';
 
-export const TechnologyBanner: React.FC = () => {
+import { useClassnames } from '../../../../hooks/use-classnames';
+
+import transportDesktopNormalImgSrc from './assets/desktopNormal/transport.jpg';
+import transportDesktopSmallImgSrc from './assets/desktopSmall/transport.jpg';
+import transportMobileImgSrc from './assets/mobile/transport.jpg';
+import transportTabletImgSrc from './assets/tablet/transport.jpg';
+import HeadingBanner from './components/HeadingBanner';
+import './index.css';
+
+const TechnologyBanner: React.FC = () => {
+    const cn = useClassnames();
+
+    const cssBlock = 'technology-banner';
+
     return (
         <HeadingBanner
-            title="Технология, которая изменит мир"
-            description="Мы&nbsp;создаем технологию, которая изменит мир. Доставка грузов станет быстрее и&nbsp;эффективнее, такси&nbsp;&mdash; безопаснее, а&nbsp;облик городов изменится вместе с&nbsp;транспортом"
+            className={cn(cssBlock)}
+            title="Безопасное беспилотное будущее"
+            description="Технология автономного вождения будет повсюду уже через несколько лет. Доставка грузов станет быстрее и&#160;эффективнее, такси&#160;&#8212; безопаснее, а&#160;инфраструктура городов изменится вместе с&#160;транспортом"
             image={{
-                // передать правильные изображения для всех размеров https://jira.csssr.io/browse/SBER-262
-                desktop: bannerImg,
-                tablet : bannerImgT
+                desktopNormal: transportDesktopNormalImgSrc,
+                desktopSmall : transportDesktopSmallImgSrc,
+                tablet       : transportTabletImgSrc,
+                mobile       : transportMobileImgSrc
             }}
         />
     );
 };
+
+export default TechnologyBanner;

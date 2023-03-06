@@ -1,70 +1,53 @@
 import React from 'react';
 
-import { toUnescapedHTML } from '../../utils';
 import { useClassnames } from '../../hooks/use-classnames';
 import useDeviceDetect from '../../hooks/use-device-detect';
 import useFormattedText from '../../hooks/use-formatted-text';
-import StoryCard, { ICard } from '../story-card';
+import { IAdaptiveImageSource, IAdaptiveVideoSource } from '../../types/strapi/common';
+import { strapiAdaptiveImageToPictureVariants, toUnescapedHTML } from '../../utils';
+import GridWrapper from '../grid-wrapper';
+import { Picture } from '../Picture';
 
 import './index.css';
 
-interface ILink {
-    to: string,
-    text: string,
-    style: 'border' | 'fill'
-}
-
 export interface IBlock {
-    id: number,
-    background: {
-        localFile: {
-            url: string
-        }
-    },
-    mobileBackground?: {
-        localFile: {
-            url: string
-        }
-    },
-    backgroundPoster?: {
-        localFile: {
-            url: string
-        }
-    },
-    link?: ILink,
-    text: string,
-    cards?: Array<ICard>
+    backgroundVideo?: Pick<IAdaptiveVideoSource, 'mobile' | 'desktopNormal'>,
+    backgroundImage?: IAdaptiveImageSource,
+    text?: string
 }
 
-const MainPageBlock = ({ block, index, blockId, pageNumber }: { block: IBlock, index: number, blockId: string, pageNumber: number }) => {
+const MainPageBlock = ({ block, index, pageNumber }: { block: IBlock, index: number, pageNumber: number }) => {
     const cn = useClassnames();
     const text = useFormattedText(block.text);
     const visibilityClassName = pageNumber >= index ? 'block__wrapper_visible' : 'block__wrapper_hidden';
     const { isMobile } = useDeviceDetect();
 
-    const videoSrc = isMobile ? block?.mobileBackground?.localFile?.url : block?.background?.localFile?.url;
+    const videoSrc = isMobile ? block?.backgroundVideo?.mobile : block?.backgroundVideo?.desktopNormal;
 
     return (
-        <div className={cn('block__wrapper', visibilityClassName)} id={blockId}>
-            {(videoSrc && videoSrc?.search('.mp4') !== -1) ? (
+        <div className={cn('block__wrapper', visibilityClassName)}>
+            {videoSrc?.sources[0] ? (
+                // TODO: перейти на использование VideoPlayer, который появится в задаче SBER-250
                 <video
-                    className={cn('block__image')}
+                    className={cn('block__background')}
                     muted={true}
                     loop={true}
                     autoPlay={true}
                     playsInline={true}
                     preload="metadata"
-                    src={videoSrc}
+                    src={videoSrc.sources[0].localFile.url}
+                    poster={videoSrc.preview?.localFile.url}
                 />
             ) : (
-                <img src={block.background.localFile.url} className={cn('block__image')} alt={block.link?.text} />
+                block.backgroundImage && <Picture
+                    className={cn('block__background')}
+                    alt=""
+                    image={strapiAdaptiveImageToPictureVariants(block.backgroundImage)}
+                />
             )}
-            <div className={cn('block__bottom', pageNumber >= index ? 'block__bottom_showing' : 'block__bottom_hiding')}>
+            <GridWrapper className={cn('block__bottom', pageNumber >= index ? 'block__bottom_showing' : 'block__bottom_hiding')}>
                 {text && <span className={cn('block__text')}>{toUnescapedHTML(text)}</span>}
-                {block.cards?.map((card, i) => (
-                    <StoryCard key={i} card={card} />
-                ))}
-            </div>
+            </GridWrapper>
         </div>
     );
 };

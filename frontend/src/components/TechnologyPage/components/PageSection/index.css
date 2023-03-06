@@ -48,8 +48,8 @@
 @mixin media_breakpoint_mobile {
 
     .page-section {
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding-top: 20px;
+        padding-bottom: 20px;
 
         &_without-margin-top {
             padding-top: 0;
