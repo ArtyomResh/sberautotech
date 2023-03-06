@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useClassnames } from '../../../../hooks/use-classnames';
+import { useClassnames } from '../../hooks/use-classnames';
 
 import './index.css';
 

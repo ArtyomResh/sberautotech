@@ -66,10 +66,14 @@ select {
     }
 }
 
-.app__wrapper {
+.app-layout {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+
+    &__main_nav-offset {
+        padding-top: var(--header-height);
+    }
 }
 
 :root {

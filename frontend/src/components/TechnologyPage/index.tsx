@@ -1,11 +1,12 @@
+import { isThisQuarter } from 'date-fns';
 import React from 'react';
 
 import Footer from '../footer';
 import Layout from '../layout';
+import PageSection from '../PageSection';
 
 import AboutTesting from './components/AboutTesting';
 import DriveAlgorithms from './components/DriveAlgorithms';
-import PageSection from './components/PageSection';
 import Principles from './components/Principles';
 import Sensors from './components/Sensors';
 import TechnologyBanner from './components/TechnologyBanner';
@@ -19,7 +20,7 @@ const TechnologyPage = () => {
     };
 
     return (
-        <Layout seo={seo} pageId={pageId}>
+        <Layout seo={seo} pageId={pageId} withNavOffset={true}>
             <PageSection removeAboveOffset={true} removeBelowOffset={true}>
                 <TechnologyBanner />
             </PageSection>
