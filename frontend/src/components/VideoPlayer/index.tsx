@@ -10,14 +10,16 @@ import minimizeIconSrc from './static/minimize.svg';
 import pauseIconSrc from './static/pause.svg';
 import playIconSrc from './static/play.svg';
 
-export interface IVideo {
-    webm: string,
-    mp4: string
+interface IVideoSrc {
+    type: string,
+    src: string
 }
+
+export type TVideo = IVideoSrc | Array<IVideoSrc>;
 
 type TVideoPlayer = React.HTMLProps<HTMLVideoElement> & {
     shouldStopPlaying?: boolean,
-    video: IVideo
+    video: TVideo
 } & ({
     controlsType?: 'default' | never,
     onVideoSizeChange?: never
@@ -28,13 +30,15 @@ type TVideoPlayer = React.HTMLProps<HTMLVideoElement> & {
 
 const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
     const cx = useClassnames(styles);
-    const { className, video, controlsType = 'default', onVideoSizeChange, shouldStopPlaying, ...restProps } = props;
+    const { className, video, controlsType = 'default', onVideoSizeChange, shouldStopPlaying, poster, ...restProps } = props;
     const isClient = useIsClient();
 
     const videoElement = useRef<HTMLVideoElement | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlayingStarted, setIsPlayingStarted] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
 
+    const videoVariants = Array.isArray(video) ? video : [video];
 
     useEffect(() => {
         if(shouldStopPlaying) {
@@ -42,6 +46,12 @@ const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
             videoElement?.current?.pause();
         }
     }, [setIsPlaying, shouldStopPlaying]);
+
+    useEffect(() => {
+        if(isPlaying) {
+            setIsPlayingStarted(true);
+        }
+    }, [isPlaying]);
 
     useEffect(() => {
         if(onVideoSizeChange) {
@@ -77,14 +87,13 @@ const VideoPlayer: React.FC<TVideoPlayer> = (props) => {
                 ref={videoElement}
                 {...restProps}
             >
-
-                { video.mp4 && <source src={video.mp4} type="video/mp4" /> }
-                { video.webm && <source src={video.webm} type="video/webm" />}
+                {videoVariants.map(({ type, src }, index) => <source key={index} src={src} type={`video/${type}`} />)}
 
                 <Text size={2} as="p">
                     Извините, но ваш браузер не поддерживает проигрывание данного видео.
                 </Text>
             </video >
+            {poster && !isFullscreen && !isPlayingStarted && <img src={poster} className={cx('video-player__poster')} />}
 
             {(
                 controlsType === 'default'

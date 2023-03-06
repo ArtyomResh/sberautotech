@@ -8,37 +8,39 @@ import GridWrapper from '../../../grid-wrapper';
 import Heading from '../../../heading';
 import Text from '../../../text';
 
+import polygonMp4Src from './assets/desktopNormal/polygon.mp4';
+import polygonPreviewSrc from './assets/desktopNormal/polygon_preview.jpeg';
+import simulatorMp4Src from './assets/desktopNormal/simulator.mp4';
+import simulatorPreviewSrc from './assets/desktopNormal/simulator_preview.jpeg';
+import townMp4Src from './assets/desktopNormal/town.mp4';
+import townPreviewSrc from './assets/desktopNormal/town_preview.jpeg';
+import polygonMobMp4Src from './assets/mobile/polygon_mob.mp4';
+import simulatorMobMp4Src from './assets/mobile/simulator_mob.mp4';
+import townMobMp4Src from './assets/mobile/town_mob.mp4';
 import VideoCard from './components/VideoCard';
 import style from './index.css';
-import polygonJpegSrc from './static/polygon.jpeg';
-import polygonMp4Src from './static/polygon.mp4';
-import polygonWebmSrc from './static/polygon.webm';
-import showreelJpegSrc from './static/showreel.jpeg';
-import showreelMp4Src from './static/showreel.mp4';
-import showreelWebmSrc from './static/showreel.webm';
+
 
 const isMobileOnly = isMobile && !isTablet;
-const video = isMobileOnly ? { webm: showreelWebmSrc, mp4: showreelMp4Src } : { webm: polygonWebmSrc, mp4: polygonMp4Src };
-const poster = isMobileOnly ? showreelJpegSrc : polygonJpegSrc;
 
 const tests = [
     {
         title      : 'В&#160;симуляторе',
         description: 'Тестирование в&#160;симуляторе точно воссоздает любую дорожную ситуацию. Так беспилотный автомобиль учится реагировать в&#160;различных обстоятельствах, включая очень редкие',
-        video,
-        poster
+        video      : isMobileOnly ? { src: simulatorMobMp4Src, type: 'mp4' } : { src: simulatorMp4Src, type: 'mp4' },
+        poster     : simulatorPreviewSrc
     },
     {
         title      : 'На&#160;полигоне',
         description: 'Тестирование на&#160;полигоне позволяет безопасно испытать технологию в&#160;условиях максимально приближенных к&#160;реальным, которые небезопасно отрабатывать в&#160;городе: экстренное торможение, резкие маневры, полностью автономное управление без водителя за&#160;рулём',
-        video,
-        poster
+        video      : isMobileOnly ? { src: polygonMobMp4Src, type: 'mp4' } : { src: polygonMp4Src, type: 'mp4' },
+        poster     : polygonPreviewSrc
     },
     {
         title      : 'В&#160;городе',
         description: 'Перед испытаниями в&#160;городе большинство ключевых сценариев и&#160;дорожных ситуаций уже отработаны на&#160;полигоне и&#160;автомобиль готов к&#160;испытаниям в&#160;условиях интенсивного живого трафика',
-        video,
-        poster
+        video      : isMobileOnly ? { src: townMobMp4Src, type: 'mp4' } : { src: townMp4Src, type: 'mp4' },
+        poster     : townPreviewSrc
     }
 ];
 

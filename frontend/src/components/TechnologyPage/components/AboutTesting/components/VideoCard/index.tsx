@@ -3,20 +3,20 @@ import React, { useState } from 'react';
 import { useClassnames } from '../../../../../../hooks/use-classnames';
 import Heading from '../../../../../heading';
 import Text from '../../../../../text';
-import VideoPlayer, { IVideo } from '../../../../../VideoPlayer';
+import VideoPlayer, { TVideo } from '../../../../../VideoPlayer';
 
-import style from './index.css';
+import './index.css';
 
 interface IProps {
     className?: string,
     title: string,
     description: string,
-    video: IVideo,
+    video: TVideo,
     poster: string
 }
 
 const VideoCard = ({ className, title, description, video, poster }: IProps) => {
-    const cn = useClassnames(style);
+    const cn = useClassnames();
     const cssBlock = 'video-card';
     const [isVideoMaximal, setIsVideoMaximal] = useState(false);
 
