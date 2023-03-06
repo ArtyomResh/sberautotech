@@ -18,6 +18,17 @@
         }
     }
 
+    &__poster {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        user-select: none;
+        pointer-events: none;
+    }
+
     &__button-play,
     &__button-maximize-minimize,
     &__button-play-stop {

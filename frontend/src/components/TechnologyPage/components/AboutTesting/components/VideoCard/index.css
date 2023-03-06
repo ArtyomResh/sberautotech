@@ -27,9 +27,11 @@
     &__video {
         border-radius: 30px;
         overflow: hidden;
+        height: 182px;
 
         &_maximal {
             width: 100%;
+            height: auto;
         }
     }
 }
@@ -69,6 +71,13 @@
 
     .video-card {
 
+        &__video {
+            height: 182px;
+
+            &_maximal {
+                height: auto;
+            }
+        }
     }
 }
 
