@@ -25,9 +25,10 @@
     }
 
     &__video {
+        position: relative; 
+        z-index: 1;
         border-radius: 30px;
         overflow: hidden;
-        height: 182px;
 
         &_maximal {
             width: 100%;
