@@ -59,26 +59,26 @@ const Accordion = ({ id, title, description, headingSize = 'm', color = 'black',
                 [`${cssBlock}_closed`]         : !isOpened
             })}
         >
-            <div className={cn(`${cssBlock}__header`)} >
+            <button
+                className={cn(`${cssBlock}__header`)}
+                type="button"
+                onClick={handleOnButtonClick}
+                aria-label={isOpened ? 'Свернуть аккордеон' : 'Развернуть аккордеон'}
+            >
                 <Heading
                     className={cn(`${cssBlock}__heading`)}
                     level={headingLevelNumberBySize[headingSize]}
                     dangerouslySetInnerHTML={{ __html: title }}
                 />
 
-                <button
-                    className={cn(`${cssBlock}__button`)}
-                    type="button"
-                    onClick={handleOnButtonClick}
-                    aria-label={isOpened ? 'Свернуть аккордеон' : 'Развернуть аккордеон'}
-                >
+                <div className={cn(`${cssBlock}__icon-wrapper`)}>
                     {
                         isOpened
                             ? <MinusIcon className={cn(`${cssBlock}__icon`)} />
                             : <PlusIcon className={cn(`${cssBlock}__icon`)} />
                     }
-                </button>
-            </div>
+                </div>
+            </button>
 
             <Fade duration={400} when={isOpened} collapse={true} ssrReveal={true}>
                 <Text
