@@ -220,8 +220,36 @@ async function importHomepage() {
       files[`fifth_screen.${i}.cards.${k}.image`] = getFileData(cardItem.imageName)
     })
   });
-  await createEntry({ model: "homepage", entry: homepageRu, files });
-  await createEntry({ model: "homepage", entry: homepageEn, files });
+
+  const fillFiles = (data) => {
+    const screenFiles = {}
+    data.screens?.forEach((screen, screenIndex) => {
+      if (screen.backgroundVideoNames) {
+        if (screen.backgroundVideoNames?.desktopNormalVideo) { screenFiles[`screens.${screenIndex}.backgroundVideo.desktopNormal.sources`] = [getFileData(screen.backgroundVideoNames?.desktopNormalVideo)]; }
+        if (screen.backgroundVideoNames?.desktopNormalPreview) { screenFiles[`screens.${screenIndex}.backgroundVideo.desktopNormal.preview`] = getFileData(screen.backgroundVideoNames?.desktopNormalPreview); }
+        if (screen.backgroundVideoNames?.desktopSmallVideo) { screenFiles[`screens.${screenIndex}.backgroundVideo.desktopSmall.sources`] = [getFileData(screen.backgroundVideoNames?.desktopSmallVideo)]; }
+        if (screen.backgroundVideoNames?.desktopSmallPreview) { screenFiles[`screens.${screenIndex}.backgroundVideo.desktopSmall.preview`] = getFileData(screen.backgroundVideoNames?.desktopSmallPreview); }
+        if (screen.backgroundVideoNames?.tabletVideo) { screenFiles[`screens.${screenIndex}.backgroundVideo.tablet.sources`] = [getFileData(screen.backgroundVideoNames?.tabletVideo)]; }
+        if (screen.backgroundVideoNames?.tabletPreview) { screenFiles[`screens.${screenIndex}.backgroundVideo.tablet.preview`] = getFileData(screen.backgroundVideoNames?.tabletPreview); }
+        if (screen.backgroundVideoNames?.mobileVideo) { screenFiles[`screens.${screenIndex}.backgroundVideo.mobile.sources`] = [getFileData(screen.backgroundVideoNames?.mobileVideo)]; }
+        if (screen.backgroundVideoNames?.mobilePreview) { screenFiles[`screens.${screenIndex}.backgroundVideo.mobile.preview`] = getFileData(screen.backgroundVideoNames?.mobilePreview); }
+      }
+
+      if (screen.backgroundImageNames) {
+        if (screen.backgroundImageNames?.desktopNormal) { screenFiles[`screens.${screenIndex}.backgroundImage.desktopNormal`] = getFileData(screen.backgroundImageNames?.desktopNormal); }
+        if (screen.backgroundImageNames?.desktopSmall) { screenFiles[`screens.${screenIndex}.backgroundImage.desktopSmall`] = getFileData(screen.backgroundImageNames?.desktopSmall); }
+        if (screen.backgroundImageNames?.tablet) { screenFiles[`screens.${screenIndex}.backgroundImage.tablet`] = getFileData(screen.backgroundImageNames?.tablet); }
+        if (screen.backgroundImageNames?.mobile) { screenFiles[`screens.${screenIndex}.backgroundImage.mobile`] = getFileData(screen.backgroundImageNames?.mobile); }
+      }
+    });
+    return screenFiles;
+  }
+
+  const ruScreenFiles = fillFiles(homepageRu);
+  const enScreenFiles = fillFiles(homepageEn);
+
+  await createEntry({ model: "homepage", entry: homepageRu, files: { ...files, ...ruScreenFiles } });
+  await createEntry({ model: "homepage", entry: homepageEn, files: { ...files, ...enScreenFiles } });
 }
 
 async function importGlobal() {
@@ -250,19 +278,19 @@ async function importSelfDrivingCar() {
 }
 
 async function importCareer() {
-    const files = {
-      "top_slider.slider_items": [],
-      "bottom_slider.slider_items": []
-    };
-    CareerRu.top_slider.slider_items_names.map((item) => {
-      files[`top_slider.slider_items`].push(getFileData(item))
-    });
+  const files = {
+    "top_slider.slider_items": [],
+    "bottom_slider.slider_items": []
+  };
+  CareerRu.top_slider.slider_items_names.map((item) => {
+    files[`top_slider.slider_items`].push(getFileData(item))
+  });
 
-    CareerRu.bottom_slider.slider_items_names.map((item) => {
-      files[`bottom_slider.slider_items`].push(getFileData(item))
-    });
-    await createEntry({ model: "career", entry: CareerRu, files });
-    await createEntry({ model: "career", entry: CareerEn, files });
+  CareerRu.bottom_slider.slider_items_names.map((item) => {
+    files[`bottom_slider.slider_items`].push(getFileData(item))
+  });
+  await createEntry({ model: "career", entry: CareerRu, files });
+  await createEntry({ model: "career", entry: CareerEn, files });
 }
 
 async function importAboutCompany() {
@@ -330,9 +358,9 @@ async function importVacancyPage() {
 async function importNavPanel() {
   const fillFiles = (fieldsData) => {
     const files = [];
-    fieldsData.links.forEach((link, linkIndex) => {
+    fieldsData.hierarchicalLinks?.forEach((link, linkIndex) => {
       link.sublinks && link.sublinks.forEach((sublink, sublinkIndex) => {
-        files[`links.${linkIndex}.sublinks.${sublinkIndex}.image`] = getFileData(sublink.image)
+        files[`hierarchicalLinks.${linkIndex}.sublinks.${sublinkIndex}.image`] = getFileData(sublink.imageName)
       });
     });
     return files;

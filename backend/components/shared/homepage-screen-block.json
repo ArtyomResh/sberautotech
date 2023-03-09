@@ -16,8 +16,7 @@
     },
     "pageId": {
       "type": "string",
-      "required": false,
-      "unique": true
+      "required": false
     },
     "backgroundVideo": {
       "type": "component",
