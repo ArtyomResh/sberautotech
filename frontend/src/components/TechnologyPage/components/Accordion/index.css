@@ -1,6 +1,10 @@
 .accordion {
+    --header-padding-bottom-below-normal-desktop: 30px;
+    --header-padding-bottom-on-normal-desktop: 40px;
+    --description-padding-top-default: 20px;
+    --description-padding-top-small: 12px;
 
-    padding-bottom: 30px;
+    padding-bottom: var(--header-padding-bottom-below-normal-desktop);
 
     &_with_border-top {
         border-top: 1px solid var(--color-black);
@@ -11,7 +15,7 @@
     }
 
     &__description {
-        padding-top: 20px;
+        padding-top: var(--description-padding-top-default);
     }
 
     &_color_white&_with_border-top {
@@ -19,6 +23,7 @@
     }
 
     &_color_white &__heading,
+    &_color_white &__header,
     &_color_white &__description {
         color: inherit;
     }
@@ -28,20 +33,39 @@
     }
 
     &__header {
+        position: relative;
+        z-index: 1;
         padding-top: 20px;
+        padding-left: 0;
+        padding-right: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
-
-    &__button {
-        margin-left: 16px;
-        padding: 0;
-        align-self: flex-start;
+        width: 100%;
         border: none;
         font-size: 0;
+        text-align: start;
         background-color: transparent;
         cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: calc(100% + var(--description-padding-top-default));
+            width: 100%;
+        }
+    }
+
+    &_closed&_medium &__header::before,
+    &_closed&_small &__header::before {
+        height: calc(100% + var(--header-padding-bottom-below-normal-desktop));
+    }
+
+    &__icon-wrapper {
+        margin-left: 16px;
+        padding: 0;
     }
 
     &__icon {
@@ -53,7 +77,11 @@
 @mixin media_breakpoint_normal_desktop {
 
     .accordion {
-        padding-bottom: 38px;
+        padding-bottom: var(--header-padding-bottom-on-normal-desktop);
+
+        &__header::before {
+            height: calc(100% + var(--description-padding-top-default));
+        }
 
         &__icon {
             width: 40px;
@@ -68,7 +96,12 @@
 
         &_closed&_small,
         &_closed&_medium {
-            padding-bottom: 40px;
+            padding-bottom: var(--header-padding-bottom-on-normal-desktop);
+        }
+
+        &_closed&_medium &__header::before,
+        &_closed&_small &__header::before {
+            height: calc(100% + var(--header-padding-bottom-on-normal-desktop));
         }
 
         &_closed&_small &__header,
@@ -94,9 +127,14 @@
         }
 
         &_medium &__description,
-        &_small &__header,
-        &_small &__description {
-            padding-top: 12px;
+        &_small &__description,
+        &_small &__header {
+            padding-top: var(--description-padding-top-small);
+        }
+
+        &_medium &__header::before,
+        &_small &__header::before {
+            height: calc(100% + var(--description-padding-top-small));
         }
     }
 }
@@ -114,7 +152,12 @@
         &_medium &__description,
         &_small &__header,
         &_small &__description {
-            padding-top: 12px;
+            padding-top: var(--description-padding-top-small);
+        }
+
+        &_medium &__header::before,
+        &_small &__header::before {
+            height: calc(100% + var(--description-padding-top-small));
         }
     }
 }
