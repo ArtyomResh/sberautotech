@@ -68,20 +68,6 @@
     }
 }
 
-@mixin media_breakpoint_tablet {
-
-    .video-card {
-
-        &__video {
-            height: 182px;
-
-            &_maximal {
-                height: auto;
-            }
-        }
-    }
-}
-
 @mixin media_breakpoint_mobile {
 
     .video-card {
