@@ -1,9 +1,9 @@
 import React from 'react';
-import { isMobile, isTablet } from 'react-device-detect';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
 import { useIsClient } from '../../../../utils/hooks/useIsClient';
+import { useSourceByScreenType } from '../../../../utils/hooks/useSourceByScreen';
 import GridWrapper from '../../../grid-wrapper';
 import Heading from '../../../heading';
 import Text from '../../../text';
@@ -21,35 +21,46 @@ import VideoCard from './components/VideoCard';
 import style from './index.css';
 
 
-const isMobileOnly = isMobile && !isTablet;
-
-const tests = [
-    {
-        title      : 'В&#160;симуляторе',
-        description: 'Тестирование в&#160;симуляторе точно воссоздает любую дорожную ситуацию. Так беспилотный автомобиль учится реагировать в&#160;различных обстоятельствах, включая очень редкие',
-        video      : isMobileOnly ? { src: simulatorMobMp4Src, type: 'mp4' } : { src: simulatorMp4Src, type: 'mp4' },
-        poster     : simulatorPreviewSrc
-    },
-    {
-        title      : 'На&#160;полигоне',
-        description: 'Тестирование на&#160;полигоне позволяет безопасно испытать технологию в&#160;условиях максимально приближенных к&#160;реальным, которые небезопасно отрабатывать в&#160;городе: экстренное торможение, резкие маневры, полностью автономное управление без водителя за&#160;рулём',
-        video      : isMobileOnly ? { src: polygonMobMp4Src, type: 'mp4' } : { src: polygonMp4Src, type: 'mp4' },
-        poster     : polygonPreviewSrc
-    },
-    {
-        title      : 'В&#160;городе',
-        description: 'Перед испытаниями в&#160;городе большинство ключевых сценариев и&#160;дорожных ситуаций уже отработаны на&#160;полигоне и&#160;автомобиль готов к&#160;испытаниям в&#160;условиях интенсивного живого трафика',
-        video      : isMobileOnly ? { src: townMobMp4Src, type: 'mp4' } : { src: townMp4Src, type: 'mp4' },
-        poster     : townPreviewSrc
-    }
-];
-
 const AboutTesting = () => {
     const cn = useClassnames(style);
 
     const cssBlock = 'about-testing';
 
     const isClient = useIsClient();
+
+    const simulatorVideo = useSourceByScreenType({
+        desktopNormal: { src: simulatorMp4Src, type: 'mp4' },
+        mobile       : { src: simulatorMobMp4Src, type: 'mp4' }
+    }, { src: simulatorMp4Src, type: 'mp4' });
+    const polygonMp4SrcVideo = useSourceByScreenType({
+        desktopNormal: { src: polygonMp4Src, type: 'mp4' },
+        mobile       : { src: polygonMobMp4Src, type: 'mp4' }
+    }, { src: polygonMp4Src, type: 'mp4' });
+    const townMp4SrcVideo = useSourceByScreenType({
+        desktopNormal: { src: townMp4Src, type: 'mp4' },
+        mobile       : { src: townMobMp4Src, type: 'mp4' }
+    }, { src: polygonMp4Src, type: 'mp4' });
+
+    const tests = [
+        {
+            title      : 'В&#160;симуляторе',
+            description: 'Тестирование в&#160;симуляторе точно воссоздает любую дорожную ситуацию. Так беспилотный автомобиль учится реагировать в&#160;различных обстоятельствах, включая очень редкие',
+            video      : simulatorVideo,
+            poster     : simulatorPreviewSrc
+        },
+        {
+            title      : 'На&#160;полигоне',
+            description: 'Тестирование на&#160;полигоне позволяет безопасно испытать технологию в&#160;условиях максимально приближенных к&#160;реальным, которые небезопасно отрабатывать в&#160;городе: экстренное торможение, резкие маневры, полностью автономное управление без водителя за&#160;рулём',
+            video      : polygonMp4SrcVideo,
+            poster     : polygonPreviewSrc
+        },
+        {
+            title      : 'В&#160;городе',
+            description: 'Перед испытаниями в&#160;городе большинство ключевых сценариев и&#160;дорожных ситуаций уже отработаны на&#160;полигоне и&#160;автомобиль готов к&#160;испытаниям в&#160;условиях интенсивного живого трафика',
+            video      : townMp4SrcVideo,
+            poster     : townPreviewSrc
+        }
+    ];
 
 
     return (
