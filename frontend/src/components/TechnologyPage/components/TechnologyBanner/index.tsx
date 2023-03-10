@@ -17,6 +17,7 @@ const TechnologyBanner: React.FC = () => {
     return (
         <HeadingBanner
             className={cn(cssBlock)}
+            descriptionClassName={cn(`${cssBlock}__description`)}
             title="Безопасное беспилотное будущее"
             description="Технология автономного вождения будет повсюду уже через несколько лет. Доставка грузов станет быстрее и&#160;эффективнее, такси&#160;&#8212; безопаснее, а&#160;инфраструктура городов изменится вместе с&#160;транспортом"
             image={{
