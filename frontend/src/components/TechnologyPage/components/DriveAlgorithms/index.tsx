@@ -2,24 +2,21 @@ import React, { useState } from 'react';
 
 import { useClassnames } from '../../../../hooks/use-classnames';
 import { formatText } from '../../../../utils';
+import { useSourceByScreenType } from '../../../../utils/hooks/useSourceByScreen';
 import GridWrapper from '../../../grid-wrapper';
 import Heading from '../../../heading';
-import { Picture } from '../../../Picture';
 import Text from '../../../text';
 import Accordion from '../Accordion';
 
-import pathPlanningImgDesktopNormalSrc from './assets/desktopNormal/path-planning.png';
-import perceptionImgDesktopNormalSrc from './assets/desktopNormal/perception.png';
-import predictionImgDesktopNormalSrc from './assets/desktopNormal/prediction.png';
-import pathPlanningImgDesktopSmallSrc from './assets/desktopSmall/path-planning.png';
+import perceptionVideoDesktopSmallSrc from './assets/desktopSmall/perception.mp4';
 import perceptionImgDesktopSmallSrc from './assets/desktopSmall/perception.png';
+import planningVideoDesktopSmallSrc from './assets/desktopSmall/planning.mp4';
+import planningImgDesktopSmallSrc from './assets/desktopSmall/planning.png';
+import predictionVideoDesktopSmallSrc from './assets/desktopSmall/prediction.mp4';
 import predictionImgDesktopSmallSrc from './assets/desktopSmall/prediction.png';
-import pathPlanningImgMobileSrc from './assets/mobile/path-planning.png';
-import perceptionImgMobileSrc from './assets/mobile/perception.png';
-import predictionImgMobileSrc from './assets/mobile/prediction.png';
-import pathPlanningImgTabletSrc from './assets/tablet/path-planning.png';
-import perceptionImgTabletSrc from './assets/tablet/perception.png';
-import predictionImgTabletSrc from './assets/tablet/prediction.png';
+import perceptionVideoMobileSrc from './assets/mobile/perception.mp4';
+import planningVideoMobileSrc from './assets/mobile/planning.mp4';
+import predictionVideoMobileSrc from './assets/mobile/prediction.mp4';
 import style from './index.css';
 
 
@@ -41,40 +38,40 @@ const driveAlgorithms = [
     }
 ];
 
-const images = [
-    {
-        id    : 'perception',
-        srcSet: {
-            desktopNormal: perceptionImgDesktopNormalSrc,
-            desktopSmall : perceptionImgDesktopSmallSrc,
-            tablet       : perceptionImgTabletSrc,
-            mobile       : perceptionImgMobileSrc
-        },
-        alt: 'Изображение с легковым беспилотным автомобиля СберАвтотех, на котором схематически показано как он видит объекты на дороге'
-    },
-    {
-        id    : 'prediction',
-        srcSet: {
-            desktopNormal: predictionImgDesktopNormalSrc,
-            desktopSmall : predictionImgDesktopSmallSrc,
-            tablet       : predictionImgTabletSrc,
-            mobile       : predictionImgMobileSrc
-        },
-        alt: 'Изображение с легковым беспилотным автомобиля СберАвтотех, на котором схематически показано что он может строить предположения относительно будущих положений окружающего его транспорта и пешеходов'
-    },
-    {
-        id    : 'path-planning',
-        srcSet: {
-            desktopNormal: pathPlanningImgDesktopNormalSrc,
-            desktopSmall : pathPlanningImgDesktopSmallSrc,
-            tablet       : pathPlanningImgTabletSrc,
-            mobile       : pathPlanningImgMobileSrc
-        },
-        alt: 'Изображение с легковым беспилотным автомобиля СберАвтотех, на котором схематически показано как он определяет какой манёвр и путь передвижения ему избрать'
-    }
-];
-
 const DriveAlgorithms = () => {
+    const predictionVideo = useSourceByScreenType<string>({
+        desktopSmall: predictionVideoDesktopSmallSrc,
+        mobile      : predictionVideoMobileSrc
+    }, predictionVideoDesktopSmallSrc);
+
+    const perceptionVideo = useSourceByScreenType<string>({
+        desktopSmall: perceptionVideoDesktopSmallSrc,
+        mobile      : perceptionVideoMobileSrc
+    }, perceptionVideoDesktopSmallSrc);
+
+    const planningVideo = useSourceByScreenType<string>({
+        desktopSmall: planningVideoDesktopSmallSrc,
+        mobile      : planningVideoMobileSrc
+    }, planningVideoDesktopSmallSrc);
+
+    const videos = [
+        {
+            id    : 'perception',
+            src   : perceptionVideo,
+            poster: perceptionImgDesktopSmallSrc
+        },
+        {
+            id    : 'prediction',
+            src   : predictionVideo,
+            poster: predictionImgDesktopSmallSrc
+        },
+        {
+            id    : 'path-planning',
+            src   : planningVideo,
+            poster: planningImgDesktopSmallSrc
+        }
+    ];
+
     const cn = useClassnames(style);
     const [openedAccordion, setOpenedAccordion] = useState(driveAlgorithms[0].id);
 
@@ -119,14 +116,21 @@ const DriveAlgorithms = () => {
             </ul>
 
             <div className={cn(`${cssBlock}__image-wrapper`)}>
-                {images.map(({ id, srcSet, alt }) => (
-                    <Picture
-                        key={id}
-                        className={cn(`${cssBlock}__image`, { [`${cssBlock}__image_visible`]: id === 'perception' || openedAccordion === id })}
-                        image={srcSet}
-                        alt={alt}
-                    />
+                {videos.map((video, index) => (
+                    <video
+                        className={cn(`${cssBlock}__image`, { [`${cssBlock}__image_visible`]: video.id === 'perception' || openedAccordion === video.id })}
+                        muted={true}
+                        loop={true}
+                        autoPlay={true}
+                        playsInline={true}
+                        preload="metadata"
+                        poster={video.poster}
+                        key={index}
+                    >
+                        <source src={video.src} type="video/mp4" />
+                    </video>
                 ))}
+
             </div>
         </GridWrapper>
     );
