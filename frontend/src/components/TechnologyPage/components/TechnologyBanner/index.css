@@ -2,3 +2,23 @@
 .technology-banner {
     margin-top: var(--header-height);
 }
+
+@mixin media_breakpoint_normal_desktop {
+
+    .technology-banner {
+
+        &__description {
+            grid-column: 1 / span 7;
+        }
+    }
+}
+
+@mixin media_breakpoint_small_desktop {
+
+    .technology-banner {
+
+        &__description {
+            grid-column: 1 / span 7;
+        }
+    }
+}

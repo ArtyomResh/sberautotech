@@ -11,11 +11,12 @@ export interface IHeroProps {
     title: string,
     description: string,
     image: IPictureVariants,
-    className: string
+    className: string,
+    descriptionClassName?: string
 }
 
 
-const HeadingBanner: React.FC<IHeroProps> = ({ title, description, image, className }) => {
+const HeadingBanner: React.FC<IHeroProps> = ({ title, description, image, className, descriptionClassName }) => {
     const cn = useClassnames();
 
     const cssBlock = 'heading-banner';
@@ -28,7 +29,7 @@ const HeadingBanner: React.FC<IHeroProps> = ({ title, description, image, classN
                 {title}
             </h1>
 
-            <Text className={cn(`${cssBlock}__description`)} size={2}>{description}</Text>
+            <Text className={cn(`${cssBlock}__description`, descriptionClassName)} size={2}>{description}</Text>
         </GridWrapper>
     );
 };
