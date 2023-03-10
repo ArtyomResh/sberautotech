@@ -10,9 +10,8 @@ import HeadingBanner from './components/HeadingBanner';
 import './index.css';
 
 const TechnologyBanner: React.FC = () => {
-    const cn = useClassnames();
-
     const cssBlock = 'technology-banner';
+    const cn = useClassnames();
 
     return (
         <HeadingBanner

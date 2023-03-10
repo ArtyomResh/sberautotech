@@ -1,13 +1,12 @@
 import React from 'react';
 
-import Nav, { INavProps } from '../nav';
-import Seo, { ISeo } from '../seo';
-import RespondForm from '../RespondForm';
+import { AppProvider } from '../../context/context';
+import { useClassnames } from '../../hooks/use-classnames';
 import ContactForm from '../ContactForm';
 import CookieAlert from '../cookie-alert';
-import { useClassnames } from '../../hooks/use-classnames';
-
-import { AppProvider } from '../../context/context';
+import Nav, { INavProps } from '../nav';
+import RespondForm from '../RespondForm';
+import Seo, { ISeo } from '../seo';
 
 import './index.css';
 
@@ -15,20 +14,19 @@ interface IProps {
     children: React.ReactNode,
     seo?: ISeo,
     pageId?: INavProps['currentPageId'],
-    withNav?: boolean
+    withNavOffset?: boolean
 }
 
-const Layout = ({ children, seo, pageId, withNav = true }: IProps) => {
+const Layout = ({ children, seo, pageId, withNavOffset }: IProps) => {
     const cn = useClassnames();
+    const cssBlock = 'app-layout';
 
     return (
         <AppProvider>
-            <div className={cn('app__wrapper')}>
+            <div className={cn(cssBlock)}>
                 <Seo seo={seo} />
-                {withNav && (
-                    <Nav currentPageId={pageId} />
-                )}
-                <main>{children}</main>
+                <Nav currentPageId={pageId} />
+                <main className={cn(`${cssBlock}__main`, { [`${cssBlock}__main_nav-offset`]: withNavOffset })}>{children}</main>
                 <RespondForm />
                 <ContactForm />
                 <CookieAlert />

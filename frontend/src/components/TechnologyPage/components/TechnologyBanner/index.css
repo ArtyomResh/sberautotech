@@ -1,8 +1,4 @@
 
-.technology-banner {
-    margin-top: var(--header-height);
-}
-
 @mixin media_breakpoint_normal_desktop {
 
     .technology-banner {

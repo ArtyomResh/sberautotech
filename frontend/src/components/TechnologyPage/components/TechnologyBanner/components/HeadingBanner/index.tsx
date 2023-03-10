@@ -11,7 +11,7 @@ export interface IHeroProps {
     title: string,
     description: string,
     image: IPictureVariants,
-    className: string,
+    className?: string,
     descriptionClassName?: string
 }
 

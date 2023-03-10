@@ -112,4 +112,10 @@ exports.onCreatePage = async (args) => {
     if (page.path === '/technology/' && hideTechnology) {
         deletePage(page);
     }
+
+    const hideFleet = process.env.NODE_ENV !== 'development' && process.env.IS_DEV_STAGE !== 'true';
+
+    if(page.path === '/fleet/' && hideFleet) {
+        deletePage(page);
+    }
 };
