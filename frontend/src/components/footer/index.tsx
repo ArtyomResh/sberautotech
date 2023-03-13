@@ -1,16 +1,14 @@
-import React, { useContext } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import React, { useContext } from 'react';
 
-import privacyPolicyDocLink from '../../../static/docs/Политика_в_области_обработки_и_защиты_персональных_данных_0_5.pdf';
 import accreditationDocLink from '../../../static/docs/Аккредитация МинКомСвязь.pdf';
-
-import { useClassnames } from '../../hooks/use-classnames';
-import { gtagClicked } from '../../utils';
+import privacyPolicyDocLink from '../../../static/docs/Политика_в_области_обработки_и_защиты_персональных_данных_0_5.pdf';
 import { appContext } from '../../context/context';
-
+import { useClassnames } from '../../hooks/use-classnames';
+import { formatText, gtagClicked } from '../../utils';
 import Button from '../button-like/button';
-import Heading from '../heading';
 import GridWrapper from '../grid-wrapper';
+import Heading from '../heading';
 import Text from '../text';
 
 import './index.css';
@@ -35,7 +33,12 @@ const query = graphql`
   }
 `;
 
-const Footer = ({ className }: {className?: string}) => {
+interface IProps {
+    header?: string,
+    className?: string
+}
+
+const Footer = ({ className, header: headerFromProps }: IProps) => {
     const cn = useClassnames();
     const data = useStaticQuery(query);
     const { setIsContactFormVisible } = useContext(appContext);
@@ -48,9 +51,7 @@ const Footer = ({ className }: {className?: string}) => {
 
     return (
         <GridWrapper as="footer" className={cn('main-footer', className)}>
-            <Heading className={cn('main-footer__header')} level={2}>
-                {header}
-            </Heading>
+            <Heading className={cn('main-footer__header')} level={2} dangerouslySetInnerHTML={{ __html: formatText(headerFromProps || header) }} />
 
             <Button
                 className={cn('main-footer__button')}
