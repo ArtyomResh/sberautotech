@@ -19,6 +19,8 @@ const TechnologyPage = () => {
         metaDescription: 'Технологичные технологии'
     };
 
+    const footerText = 'Заполните форму, чтобы познакомиться с&nbsp;нами поближе или задать вопрос!';
+
     return (
         <Layout seo={seo} pageId={pageId} withNavOffset={true}>
             <PageSection removeAboveOffset={true} removeBelowOffset={true}>
@@ -45,7 +47,7 @@ const TechnologyPage = () => {
                 <AboutTesting />
             </PageSection>
 
-            <Footer />
+            <Footer header={footerText} />
         </Layout>
     );
 };
