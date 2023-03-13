@@ -25,15 +25,19 @@
     }
 
     &__video {
-        position: relative; 
+        position: relative;
         z-index: 1;
-        border-radius: 30px;
         overflow: hidden;
 
         &_maximal {
             width: 100%;
             height: auto;
         }
+    }
+
+    &__video,
+    &__video-poster {
+        border-radius: 30px;
     }
 }
 

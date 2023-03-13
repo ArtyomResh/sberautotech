@@ -15,11 +15,47 @@ import simulatorPreviewSrc from './assets/desktopNormal/simulator_preview.jpeg';
 import townMp4Src from './assets/desktopNormal/town.mp4';
 import townPreviewSrc from './assets/desktopNormal/town_preview.jpeg';
 import polygonMobMp4Src from './assets/mobile/polygon_mob.mp4';
+import polygonMobPreviewSrc from './assets/mobile/polygon_mob_preview.jpeg';
 import simulatorMobMp4Src from './assets/mobile/simulator_mob.mp4';
+import simulatorMobPreviewSrc from './assets/mobile/simulator_mob_preview.jpeg';
 import townMobMp4Src from './assets/mobile/town_mob.mp4';
+import townMobPreviewSrc from './assets/mobile/town_mob_preview.jpeg';
 import VideoCard from './components/VideoCard';
 import style from './index.css';
 
+
+const simulatorSources = {
+    desktopNormal: {
+        video : { src: simulatorMp4Src, type: 'mp4' },
+        poster: simulatorPreviewSrc
+    },
+    mobile: {
+        video : { src: simulatorMobMp4Src, type: 'mp4' },
+        poster: simulatorMobPreviewSrc
+    }
+};
+
+const polygonSources = {
+    desktopNormal: {
+        video : { src: polygonMp4Src, type: 'mp4' },
+        poster: polygonPreviewSrc
+    },
+    mobile: {
+        video : { src: polygonMobMp4Src, type: 'mp4' },
+        poster: polygonMobPreviewSrc
+    }
+};
+
+const townSources = {
+    desktopNormal: {
+        video : { src: townMp4Src, type: 'mp4' },
+        poster: townPreviewSrc
+    },
+    mobile: {
+        video : { src: townMobMp4Src, type: 'mp4' },
+        poster: townMobPreviewSrc
+    }
+};
 
 const AboutTesting = () => {
     const cn = useClassnames(style);
@@ -28,37 +64,31 @@ const AboutTesting = () => {
 
     const isClient = useIsClient();
 
-    const simulatorVideo = useSourceByScreenType({
-        desktopNormal: { src: simulatorMp4Src, type: 'mp4' },
-        mobile       : { src: simulatorMobMp4Src, type: 'mp4' }
-    }, { src: simulatorMp4Src, type: 'mp4' });
-    const polygonMp4SrcVideo = useSourceByScreenType({
-        desktopNormal: { src: polygonMp4Src, type: 'mp4' },
-        mobile       : { src: polygonMobMp4Src, type: 'mp4' }
-    }, { src: polygonMp4Src, type: 'mp4' });
-    const townMp4SrcVideo = useSourceByScreenType({
-        desktopNormal: { src: townMp4Src, type: 'mp4' },
-        mobile       : { src: townMobMp4Src, type: 'mp4' }
-    }, { src: polygonMp4Src, type: 'mp4' });
+    const simulatorSrcSet = useSourceByScreenType(simulatorSources, simulatorSources.desktopNormal);
+    const polygonSrcSet = useSourceByScreenType(polygonSources, polygonSources.desktopNormal);
+    const townSrcSet = useSourceByScreenType(townSources, townSources.desktopNormal);
 
     const tests = [
         {
             title      : 'В&#160;симуляторе',
             description: 'Тестирование в&#160;симуляторе точно воссоздает любую дорожную ситуацию. Так беспилотный автомобиль учится реагировать в&#160;различных обстоятельствах, включая очень редкие',
-            video      : simulatorVideo,
-            poster     : simulatorPreviewSrc
+            video      : simulatorSrcSet.video,
+            poster     : simulatorSrcSet.poster,
+            preview    : simulatorPreviewSrc
         },
         {
             title      : 'На&#160;полигоне',
             description: 'Тестирование на&#160;полигоне позволяет безопасно испытать технологию в&#160;условиях максимально приближенных к&#160;реальным, которые небезопасно отрабатывать в&#160;городе: экстренное торможение, резкие маневры, полностью автономное управление без водителя за&#160;рулём',
-            video      : polygonMp4SrcVideo,
-            poster     : polygonPreviewSrc
+            video      : polygonSrcSet.video,
+            poster     : polygonSrcSet.poster,
+            preview    : polygonPreviewSrc
         },
         {
             title      : 'В&#160;городе',
             description: 'Перед испытаниями в&#160;городе большинство ключевых сценариев и&#160;дорожных ситуаций уже отработаны на&#160;полигоне и&#160;автомобиль готов к&#160;испытаниям в&#160;условиях интенсивного живого трафика',
-            video      : townMp4SrcVideo,
-            poster     : townPreviewSrc
+            video      : townSrcSet.video,
+            poster     : townSrcSet.poster,
+            preview    : townPreviewSrc
         }
     ];
 
@@ -80,7 +110,7 @@ const AboutTesting = () => {
 
             <ul className={cn(`${cssBlock}__tests`)} key={`isClient-${isClient}`}>
                 {
-                    tests.map(({ title, description, video, poster }) => (
+                    tests.map(({ title, description, video, poster, preview }) => (
                         <li key={title}>
                             <VideoCard
                                 key={title}
@@ -89,6 +119,7 @@ const AboutTesting = () => {
                                 description={description}
                                 video={video}
                                 poster={poster}
+                                preview={preview}
                             />
                         </li>
 
