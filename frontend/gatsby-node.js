@@ -14,7 +14,7 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
 });
 
 const createVacancyPages = (vacancyEdges) => {
-    return !vacancyEdges ? [] : vacancyEdges.filter(({ node }) => !node.isArchived).map(({ node }) => {
+    return !vacancyEdges ? [] : vacancyEdges.map(({ node }) => {
         if (node.isSecret) {
             return {
                 path: `/vacancies/special/${node.strapiId}`,
@@ -38,6 +38,117 @@ const createVacancyPages = (vacancyEdges) => {
 let vacancyPageIsHidden = false;
 let vacanciesPageIsHidden = false;
 let careerPageIsHidden = false;
+
+exports.createSchemaCustomization = ({ actions }) => {
+    const { createTypes } = actions;
+
+    createTypes(`
+        type StrapiCareer implements Node {
+            isHidden: Boolean
+            pageId: String
+        }
+
+        type StrapiVacancyPage implements Node {
+            isHidden: Boolean
+            pageId: String
+        }
+
+        type StrapiVacanciesPage implements Node {
+            isHidden: Boolean
+            pageId: String
+        }
+
+        type StrapiAboutCompany implements Node {
+            pageId: String
+        }
+
+        type StrapiFlip implements Node {
+            pageId: String
+        }
+
+        type StrapiSelfDrivingCar implements Node {
+            pageId: String
+        }
+
+        type StrapiRespondForm implements Node {
+            errorContactSend: String
+            successContactSend: String
+            commercialProposalsEmail: String
+            commercialProposalsEmailLabel: String
+        }
+
+        type StrapiFooter implements Node {
+            modalLinkText: String
+            copyright: String
+            coreBusiness: String
+            accreditationText: String
+            accreditationIsLink: Boolean
+            privacyPolicyIsLink: Boolean
+        }
+
+        type StrapiNavPanelHierarchicalLinksSublinksImage {
+            localFile: File @link(from: "localFile___NODE")
+        }
+
+        type StrapiNavPanelHierarchicalLinksSublinks {
+            text: String
+            to: String
+            navId: String
+            image: StrapiNavPanelHierarchicalLinksSublinksImage
+        }
+
+        type StrapiNavPanelHierarchicalLinks {
+            text: String
+            to: String
+            navId: String
+            sublinks: [StrapiNavPanelHierarchicalLinksSublinks]
+        }
+
+        type StrapiNavPanel implements Node {
+            hierarchicalLinks: [StrapiNavPanelHierarchicalLinks]
+            switchLangUrl: String
+        }
+
+        type StrapiHomepageScreensBackgroundVideoVariantPreview {
+            localFile: File @link(from: "localFile___NODE")
+        }
+
+        type StrapiHomepageScreensBackgroundVideoVariantSources {
+            localFile: File @link(from: "localFile___NODE")
+        }
+
+        type StrapiHomepageScreensBackgroundVideoVariant {
+            preview: StrapiHomepageScreensBackgroundVideoVariantPreview
+            sources: [StrapiHomepageScreensBackgroundVideoVariantSources]
+        }
+
+        type StrapiHomepageScreensBackgroundVideo {
+            desktopNormal: StrapiHomepageScreensBackgroundVideoVariant
+            mobile: StrapiHomepageScreensBackgroundVideoVariant
+        }
+
+        type StrapiHomepageScreensBackgroundImageVariant {
+            localFile: File @link(from: "localFile___NODE")
+        }
+
+        type StrapiHomepageScreensBackgroundImage {
+            desktopNormal: StrapiHomepageScreensBackgroundImageVariant
+            mobile: StrapiHomepageScreensBackgroundImageVariant
+        }
+
+        type StrapiHomepageScreens {
+            text: String
+            link: String
+            pageId: String
+            backgroundVideo: StrapiHomepageScreensBackgroundVideo
+            backgroundImage: StrapiHomepageScreensBackgroundImage
+        }
+
+        type StrapiHomepage implements Node {
+            screens: [StrapiHomepageScreens]
+        }
+    `);
+};
 
 exports.createPages = async ({ actions, graphql }) => {
     const { createPage } = actions;
@@ -70,7 +181,6 @@ exports.createPages = async ({ actions, graphql }) => {
             node {
               strapiId
               isSecret
-              isArchived
             }
           }
         }
