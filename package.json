@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "develop:database": "yarn --cwd backend database:start",
-    "develop:backend": "yarn --cwd backend develop",
+    "develop:backend": "wait-on tcp:5433 && yarn --cwd backend develop",
     "develop:frontend": "wait-on http://localhost:1337/admin && yarn --cwd frontend develop",
     "develop": "FORCE_COLOR=1 npm-run-all -l -p develop:*",
     "inst": "yarn && cd backend && yarn && cd ../frontend && yarn && cd .."

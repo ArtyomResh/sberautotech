@@ -2,6 +2,8 @@ require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`
 });
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 module.exports = {
     siteMetadata: {
         siteUrl: 'https://www.sberautotech.ru'
@@ -44,7 +46,7 @@ module.exports = {
                 }
             }
         },
-        {
+        ...(!isDevelopment ? [{
             resolve: 'gatsby-plugin-manifest',
             options: {
                 name      : 'Sber Automotive Technologies',
@@ -52,7 +54,7 @@ module.exports = {
                 icon      : 'src/images/favicon.png',
                 display   : 'minimal-ui'
             }
-        },
+        }] : []),
         {
             resolve: 'gatsby-plugin-typescript',
             options: {

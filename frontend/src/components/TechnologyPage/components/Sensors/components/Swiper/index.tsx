@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
-import { EffectFade, Pagination, type Swiper as SwiperT } from 'swiper';
+import { EffectFade, Pagination } from 'swiper';
+import type { Swiper as SwiperT } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 

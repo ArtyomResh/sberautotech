@@ -42,8 +42,6 @@ const query = graphql`
           mail
           contactEmail
           contactEmailLabel
-          commercialProposalsEmail
-          commercialProposalsEmailLabel
           prEmail
           prEmailLabel
         }
@@ -150,8 +148,6 @@ export const ContactForm = () => {
         contactEmail,
         prEmailLabel,
         prEmail,
-        commercialProposalsEmail,
-        commercialProposalsEmailLabel,
         errorContactSend,
         file,
         locale,
@@ -161,6 +157,8 @@ export const ContactForm = () => {
         successContactSend,
         buttonText
     } = data.allStrapiRespondForm.edges[0].node;
+    const commercialProposalsEmail = data.allStrapiRespondForm.edges[0].node.commercialProposalsEmail || '';
+    const commercialProposalsEmailLabel = data.allStrapiRespondForm.edges[0].node.commercialProposalsEmailLabel || '';
 
     const fileRef = useRef<File | null>(null);
 

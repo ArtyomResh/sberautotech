@@ -58,19 +58,27 @@ async function setPublicPermissions(newPermissions) {
   const publicPermissions = await strapi
     .query("permission", "users-permissions")
     .find({
+      _limit: -1,
       type: ["users-permissions", "application"],
       role: publicRole.id,
     });
 
   // Update permission to match new config
   const controllersToUpdate = Object.keys(newPermissions);
+  const normalizedPermissions = Object.entries(newPermissions).reduce(
+    (result, [controller, actions]) => ({
+      ...result,
+      [controller]: actions.map((action) => action.toLowerCase()),
+    }),
+    {}
+  );
   const updatePromises = publicPermissions
     .filter((permission) => {
       // Only update permissions included in newConfig
       if (!controllersToUpdate.includes(permission.controller)) {
         return false;
       }
-      if (!newPermissions[permission.controller].includes(permission.action)) {
+      if (!normalizedPermissions[permission.controller].includes(permission.action.toLowerCase())) {
         return false;
       }
       return true;
@@ -395,29 +403,31 @@ async function importFooter() {
   await createEntry({ model: "footer", entry: FooterEn });
 }
 
+const publicPermissionsConfig = {
+  global: ['find'],
+  homepage: ['find'],
+  'self-driving-car': ['find'],
+  career: ['find'],
+  'about-company': ['find'],
+  flip: ['find'],
+  'nav-panel': ['find'],
+  'vacancies-page': ['find'],
+  'vacancy-page': ['find'],
+  footer: ['find'],
+  'privacy-policy': ['find'],
+  'respond-form': ['find'],
+  'pmef-landing-page': ['find'],
+  form: ['send'],
+  vacancy: ['find', 'findOne'],
+  tag: ['find', 'findOne'],
+  direction: ['find', 'findOne'],
+  city: ['find', 'findOne'],
+  area: ['find', 'findOne'],
+  'job-type': ['find', 'findOne']
+};
+
 async function importSeedData() {
-  await setPublicPermissions({
-    global: ['find'],
-    homepage: ['find'],
-    'self-driving-car': ['find'],
-    career: ['find'],
-    'about-company': ['find'],
-    flip: ['find'],
-    'nav-panel': ['find'],
-    'vacancies-page': ['find'],
-    'vacancy-page': ['find'],
-    footer: ['find'],
-    'privacy-policy': ['find'],
-    'respond-form': ['find'],
-    'pmef-landing-page': ['find'],
-    form: ['send'],
-    vacancy: ['find', 'findone'],
-    tag: ['find', 'findone'],
-    direction: ['find', 'findone'],
-    city: ['find', 'findone'],
-    area: ['find', 'findone'],
-    'job-type': ['find', 'findone']
-  });
+  await setPublicPermissions(publicPermissionsConfig);
   await importTags();
   await importDirections();
   await importCities();
@@ -437,6 +447,7 @@ async function importSeedData() {
   await importRespondForm();
   await importVacanciesPage();
   await importVacancyPage();
+  await setPublicPermissions(publicPermissionsConfig);
 }
 
 module.exports = async () => {

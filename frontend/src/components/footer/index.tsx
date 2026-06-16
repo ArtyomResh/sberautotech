@@ -13,6 +13,15 @@ import Text from '../text';
 
 import './index.css';
 
+const DEFAULT_FOOTER_CONTENT = {
+    modalLinkText      : 'Связаться с нами',
+    copyright          : '© SberAutoTech, 2022',
+    coreBusiness       : 'Основной вид деятельности: ОКВЭД 62.01',
+    accreditationText  : 'Аккредитация в качестве ИТ-компании',
+    accreditationIsLink: true,
+    privacyPolicyIsLink: true
+};
+
 const query = graphql`
   query {
     allStrapiFooter {
@@ -20,13 +29,7 @@ const query = graphql`
         node {
           header
           disclaimer
-          modalLinkText
-          copyright
-          coreBusiness
-          accreditationText
-          accreditationIsLink
           privacyPolicyText
-          privacyPolicyIsLink
         }
       }
     },
@@ -42,7 +45,15 @@ const Footer = ({ className, header: headerFromProps }: IProps) => {
     const cn = useClassnames();
     const data = useStaticQuery(query);
     const { setIsContactFormVisible } = useContext(appContext);
-    const { header, disclaimer, modalLinkText, copyright, coreBusiness, accreditationText, accreditationIsLink, privacyPolicyText, privacyPolicyIsLink } = data.allStrapiFooter.edges[0].node;
+    const { header, disclaimer, privacyPolicyText } = data.allStrapiFooter.edges[0].node;
+    const {
+        modalLinkText,
+        copyright,
+        coreBusiness,
+        accreditationText,
+        accreditationIsLink,
+        privacyPolicyIsLink
+    } = DEFAULT_FOOTER_CONTENT;
 
     const handleClick = () => {
         gtagClicked('footer_button_click');

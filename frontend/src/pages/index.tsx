@@ -198,7 +198,7 @@ const IndexPage = () => {
     const allScreens = homepageData.screens;
 
     useEffect(() => {
-        if(window.history.state?.toTop || mainPageActivePageId === null) {
+        if((window.history.state?.toTop || mainPageActivePageId === null) && allScreens?.length) {
             setActivePageId(allScreens[0].pageId);
             window.history.replaceState({ toTop: false }, '', window.location.href);
         }
