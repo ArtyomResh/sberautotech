@@ -80,8 +80,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "GATSBY_LOCALE_CODE=ru gatsby build --prefix-paths && python3 download-media.py && find public -type f \\( -name '*.html' -o -name '*.js' \\) -exec sed -i 's|http://localhost:1337/uploads|/sberautotech/uploads|g' {} +",
-    "buildEn": "GATSBY_LOCALE_CODE=en gatsby build --prefix-paths && python3 download-media.py && find public -type f \\( -name '*.html' -o -name '*.js' \\) -exec sed -i 's|http://localhost:1337/uploads|/sberautotech/uploads|g' {} +",
+    "build": "GATSBY_LOCALE_CODE=ru gatsby build --prefix-paths && python3 download-media.py && find public -type f \\( -name '*.html' -o -name '*.js' -o -name '*.json' \\) -exec sed -i 's|http://localhost:1337/uploads|/sberautotech/uploads|g' {} +",
+    "buildEn": "GATSBY_LOCALE_CODE=en gatsby build --prefix-paths && python3 download-media.py && find public -type f \\( -name '*.html' -o -name '*.js' -o -name '*.json' \\) -exec sed -i 's|http://localhost:1337/uploads|/sberautotech/uploads|g' {} +",
     "develop": "gatsby clean && GATSBY_LOCALE_CODE=ru gatsby develop --open -H 0.0.0.0",
     "developEn": "gatsby clean && GATSBY_LOCALE_CODE=en gatsby develop --open -H 0.0.0.0",
     "dev": "yarn develop",
