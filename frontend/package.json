@@ -80,8 +80,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "GATSBY_LOCALE_CODE=ru gatsby build",
-    "buildEn": "GATSBY_LOCALE_CODE=en gatsby build",
+    "build": "GATSBY_LOCALE_CODE=ru gatsby build --prefix-paths",
+    "buildEn": "GATSBY_LOCALE_CODE=en gatsby build --prefix-paths",
     "develop": "gatsby clean && GATSBY_LOCALE_CODE=ru gatsby develop --open -H 0.0.0.0",
     "developEn": "gatsby clean && GATSBY_LOCALE_CODE=en gatsby develop --open -H 0.0.0.0",
     "dev": "yarn develop",

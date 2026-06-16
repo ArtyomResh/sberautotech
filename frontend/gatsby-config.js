@@ -5,8 +5,9 @@ require('dotenv').config({
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = {
+    pathPrefix: '/sberautotech',
     siteMetadata: {
-        siteUrl: 'https://www.sberautotech.ru'
+        siteUrl: process.env.GATSBY_SITE_URL || 'https://www.sberautotech.ru'
     },
     plugins: [
         {
@@ -187,8 +188,8 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-robots-txt',
             options: {
-                host   : 'https://sberautotech.ru',
-                sitemap: 'https://sberautotech.ru/sitemap-index.xml',
+                host   : process.env.GATSBY_SITE_URL || 'https://sberautotech.ru',
+                sitemap: `${process.env.GATSBY_SITE_URL || 'https://sberautotech.ru'}/sitemap-index.xml`,
                 policy : [{ userAgent: '*', allow: '/' }]
             }
         },
