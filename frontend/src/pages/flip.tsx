@@ -222,7 +222,7 @@ const FlipPage = () => {
     const data = useStaticQuery(query);
     const [isLoading, setIsLoading] = useState(true);
     const videoSource = useMemo(() => {
-        const desktopBackground = isSafari ? 'background' : 'backgroundOgg';
+        const desktopBackground = 'background';
 
         return isMobile ? 'mobileBackground' : desktopBackground;
     }, []);
@@ -303,10 +303,12 @@ const FlipPage = () => {
 
             Promise.allSettled(preloadVideos).then((results) => {
                 setIsLoading(false);
-                results.forEach((result, i) => {
-                    if (result.status === 'fulfilled') {
-                        registerVideo(`#bound-${i + 1}`, URL.createObjectURL(result.value));
-                    }
+                requestAnimationFrame(() => {
+                    results.forEach((result, i) => {
+                        if (result.status === 'fulfilled') {
+                            registerVideo(`#bound-${i + 1}`, URL.createObjectURL(result.value));
+                        }
+                    });
                 });
             });
         }
