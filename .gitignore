@@ -115,3 +115,4 @@ build
 .strapi-updater.json
 public
 !frontend/public
+frontend/static/uploads

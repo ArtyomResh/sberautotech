@@ -80,8 +80,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "GATSBY_LOCALE_CODE=ru gatsby build --prefix-paths",
-    "buildEn": "GATSBY_LOCALE_CODE=en gatsby build --prefix-paths",
+    "build": "cp -r ../backend/data/uploads static/uploads 2>/dev/null; GATSBY_LOCALE_CODE=ru gatsby build --prefix-paths && find public -type f -exec sed -i 's|http://localhost:1337/uploads|/uploads|g' {} +",
+    "buildEn": "cp -r ../backend/data/uploads static/uploads 2>/dev/null; GATSBY_LOCALE_CODE=en gatsby build --prefix-paths && find public -type f -exec sed -i 's|http://localhost:1337/uploads|/uploads|g' {} +",
     "develop": "gatsby clean && GATSBY_LOCALE_CODE=ru gatsby develop --open -H 0.0.0.0",
     "developEn": "gatsby clean && GATSBY_LOCALE_CODE=en gatsby develop --open -H 0.0.0.0",
     "dev": "yarn develop",
