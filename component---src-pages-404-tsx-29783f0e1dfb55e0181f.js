@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksberautotech_ru_frontend=self.webpackChunksberautotech_ru_frontend||[]).push([[218],{32513:function(e,t,n){n.r(t);var o=n(67294),u=n.n(o),s=n(30109);t.default=function(){return u().createElement(s.Z,{seo:{metaTitle:"404: Not found",metaDescription:"It looks like you got lost"},pageId:"not_found"},u().createElement("h1",null,"NOT FOUND"),u().createElement("p",null,"You just hit a route that doesn't exist... the sadness."))}}}]);
+//# sourceMappingURL=component---src-pages-404-tsx-29783f0e1dfb55e0181f.js.map
