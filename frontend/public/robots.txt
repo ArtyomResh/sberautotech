@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://artyomresh.github.io/sberautotech/sitemap-index.xml
-Host: https://artyomresh.github.io
+Sitemap: https://sberautotech.ru/sitemap-index.xml
+Host: https://sberautotech.ru
