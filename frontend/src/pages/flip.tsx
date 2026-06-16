@@ -301,11 +301,14 @@ const FlipPage = () => {
                 fetch(eighth_screen[videoSource].localFile.url).then((response) => response.blob())
             ];
 
-            Promise.all(preloadVideos).then((data) => {
+            Promise.allSettled(preloadVideos).then((results) => {
                 setIsLoading(false);
-                data.map((screen, i) => registerVideo(`#bound-${i + 1}`, URL.createObjectURL(screen)));
-                // eslint-disable-next-line no-console
-            }).catch((e) => console.log(e));
+                results.forEach((result, i) => {
+                    if (result.status === 'fulfilled') {
+                        registerVideo(`#bound-${i + 1}`, URL.createObjectURL(result.value));
+                    }
+                });
+            });
         }
     }, [isMobile]);
 
