@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksberautotech_ru_frontend=self.webpackChunksberautotech_ru_frontend||[]).push([[806],{34097:function(e,n,t){n.Z=t.p+"static/Политика_в_области_обработки_и_защиты_персональных_данных_0_5-b89066a6665e334d4e0c82f0635c450c.pdf"},64373:function(e,n,t){t.r(n);var c=t(67294),u=t.n(c),f=t(34097);n.default=function(){return(0,c.useEffect)((function(){window.location.href=f.Z}),[]),u().createElement(u().Fragment,null)}}}]);
+//# sourceMappingURL=component---src-pages-privacy-policy-tsx-f321ac657ccf107827bd.js.map
